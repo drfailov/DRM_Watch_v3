@@ -1,0 +1,5 @@
+(fp_lib_table
+  (version 7)
+  (lib (name "usbs")(type "KiCad")(uri "C:/Data/Projects/2023-10-05 SHARP MEMORY LCD/Board/Connector_USB.pretty")(options "")(descr ""))
+  (lib (name "Project-Lib")(type "KiCad")(uri "${KIPRJMOD}/Project-Lib.pretty")(options "")(descr ""))
+)

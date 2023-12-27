@@ -1,0 +1,3 @@
+3DX_CUI_DEVICES_Supplier: CUI Devices
+3DX_CUI_DEVICES_Description: 5 mm, 3 V, 76 dB, Surface Mount (SMT), Magnetic Audio Transducer Buzzer
+3DX_CUI_DEVICES_Model Number: CSS-0575A-SMT-TR

@@ -1,0 +1,58 @@
+### Footprint positions - created on Wed Dec 20 20:28:56 2023 ###
+### Printed by KiCad version 7.0.9
+## Unit = mm, Angle = deg.
+## Side : top
+# Ref     Val                 Package                                           PosX       PosY       Rot  Side
+BT1       Battery_Cell        Battery                                        76.7080   -69.2150   90.0000  top
+C1        0.1uF               C_0805_2012Metric                             117.2930   -84.5820   90.0000  top
+C2        10pF                C_0603_1608Metric                              98.5520   -66.5480    0.0000  top
+C3        10pF                C_0603_1608Metric                              97.0150   -61.9480    0.0000  top
+C4        0.1uF               C_0603_1608Metric                             119.3250   -84.4070  -90.0000  top
+C5        0.1uF               C_0603_1608Metric                             121.1030   -84.4070  -90.0000  top
+C6        0.1uF               C_0603_1608Metric                             118.3510   -81.2800    0.0000  top
+C7        1uF                 C_0603_1608Metric                             106.9340   -57.1630   90.0000  top
+C8        0.1uF               C_0603_1608Metric                             108.7120   -57.1630   90.0000  top
+C9        1uF                 C_0805_2012Metric                             106.9340   -83.8860  180.0000  top
+C10       1uF                 C_0805_2012Metric                             115.0070   -84.5820  -90.0000  top
+C11       10uF                C_0603_1608Metric                             117.0940   -57.6580  180.0000  top
+C12       10uF                C_0603_1608Metric                             113.0300   -57.6580  180.0000  top
+C13       TBD                 C_0603_1608Metric                             106.1850   -50.8300    0.0000  top
+D1        LED_TOP             SMD-LED-Side-View                              67.5640   -58.8500   90.0000  top
+D2        LED_BOTTOM          SMD-LED-Side-View                              67.5640   -71.9600   90.0000  top
+D3        LED_STBY            HOLE_LED_0805_2012Metric                      122.4280   -54.3560  180.0000  top
+D4        LED_CHARGE          HOLE_LED_0805_2012Metric                      122.4280   -51.3080  180.0000  top
+D5        LED_STATUS          HOLE_LED_0805_2012Metric                      122.4280   -57.6580  180.0000  top
+J1        TYPE-C-31-M-12      HRO_TYPE-C-31-M-12                            126.6700   -65.0310   90.0000  top
+J2        687110149022        687110149022                                   97.5360   -74.5950    0.0000  top
+LS1       CMT-7525S-SMT       CUI_CMT-7525S-SMT                              81.2800   -83.5660   90.0000  top
+M1        ~                   m1.2-screw-mount                               71.1200   -83.3120    0.0000  top
+M2        ~                   m1.2-screw-mount                              124.4600   -47.7520    0.0000  top
+M3        ~                   m1.2-screw-mount                               95.2500   -48.0060    0.0000  top
+Q1        2N7002LT1G          SOT95P240X111-3N                               87.5090   -79.2480  180.0000  top
+R1        1K                  R_0603_1608Metric                              90.9320   -78.9940   90.0000  top
+R2        5.1K                R_0603_1608Metric                             126.2380   -72.6440  -90.0000  top
+R3        5.1K                R_0603_1608Metric                             124.2060   -72.6440   90.0000  top
+R4        R22                 R_0603_1608Metric                              87.3760   -82.5500    0.0000  top
+R5        R22                 R_0603_1608Metric                              69.3420   -59.7530   90.0000  top
+R6        R22                 R_0603_1608Metric                              69.3420   -72.8350   90.0000  top
+R7        1K                  R_0603_1608Metric                             126.2380   -54.3560  180.0000  top
+R8        1K                  R_0603_1608Metric                             126.1750   -51.3080  180.0000  top
+R9        10K                 R_0603_1608Metric                             109.7280   -52.5780   90.0000  top
+R10       R22                 R_0603_1608Metric                             126.1750   -57.6580    0.0000  top
+R11       100K                R_0603_1608Metric                              99.5050   -48.9320    0.0000  top
+R12       100K                R_0603_1608Metric                              99.5050   -46.9900  180.0000  top
+R13       100K                R_0603_1608Metric                             120.4590   -71.8820  180.0000  top
+R14       100K                R_0603_1608Metric                             120.4590   -73.6600    0.0000  top
+R15       TBD                 R_0603_1608Metric                             105.4100   -52.8320  180.0000  top
+S1        TL3330AF130QG       SW_TL3330AF130QG                               67.8180   -52.0700  -90.0000  top
+S2        TL3330AF130QG       SW_TL3330AF130QG                               67.8180   -65.2780  -90.0000  top
+S3        TL3330AF130QG       SW_TL3330AF130QG                              123.3370   -78.8280   90.0000  top
+S4        TL3330AF130QG       SW_TL3330AF130QG                               67.8180   -78.4860  -90.0000  top
+T1        ~                   Touch-Region                                   80.2640   -77.4700    0.0000  top
+T2        ~                   Touch-Region                                   97.5360   -77.4700    0.0000  top
+T3        ~                   Touch-Region                                  114.8080   -77.4700    0.0000  top
+U1        ESP32-S2            QFN-56-1EP_7x7mm_P0.4mm_EP4x4mm_ThermalVias   104.7890   -63.3590   90.0000  top
+U2        ~                   ME6211_SOT-23-5                               111.5725   -84.5820    0.0000  top
+U3        TP4056              SO08                                          115.0620   -53.5940  -90.0000  top
+Y1        XRCGB48M000F0Z00R0  OSC_XRCGB48M000F0Z00R0                         97.4020   -64.2880  180.0000  top
+## End

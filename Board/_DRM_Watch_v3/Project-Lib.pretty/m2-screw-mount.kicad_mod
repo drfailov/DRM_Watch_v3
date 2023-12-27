@@ -1,0 +1,23 @@
+(footprint "m2-screw-mount" (version 20221018) (generator pcbnew)
+  (layer "F.Cu")
+  (attr smd)
+  (fp_text reference "REF**" (at 0.254 -8.358 unlocked) (layer "F.SilkS") hide
+      (effects (font (size 1 1) (thickness 0.1)))
+    (tstamp e85f7992-f1f2-482b-9be8-becdcce5bae8)
+  )
+  (fp_text value "m2-screw-mount" (at 0.254 -6.858 unlocked) (layer "F.Fab") hide
+      (effects (font (size 1 1) (thickness 0.15)))
+    (tstamp a93b1334-0cff-40ba-abb4-44625cba4ec3)
+  )
+  (fp_text user "${REFERENCE}" (at 0.254 -5.358 unlocked) (layer "F.Fab") hide
+      (effects (font (size 1 1) (thickness 0.15)))
+    (tstamp dba73f63-bea2-4ebe-8420-7524fe24cdc8)
+  )
+  (pad "1" thru_hole circle (at 0 0) (size 4.5 4.5) (drill 2.8) (layers "*.Cu" "*.Mask" "Eco2.User")
+    (solder_mask_margin 0.3) (tstamp b50ec7d4-5a6d-4006-8469-82306cbfd076))
+  (model "C:/Data/Projects/2023-10-05 SHARP MEMORY LCD/Board/ScrewMount/2023-12-18 M2 Screw Mount v6.step"
+    (offset (xyz 0 0 3))
+    (scale (xyz 1 1 1))
+    (rotate (xyz 180 0 0))
+  )
+)
