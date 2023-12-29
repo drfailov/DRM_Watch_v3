@@ -17,7 +17,7 @@ void modeTestLoop(){
   lcd()->drawBox(0, 0, 400, 240);
   
   lcd()->setColorIndex(black);
-  lcd()->setFont(u8g2_font_10x20_tf);
+  lcd()->setFont(u8g2_font_10x20_t_cyrillic);
 
   int y=0;
   int interval = 16;
@@ -32,8 +32,8 @@ void modeTestLoop(){
   y+=interval; lcd()->setCursor(10, y); lcd()->print("Temperature:"); lcd()->print(temperature());
   
   
-  draw_ic24_lock(lx(), ly1());
-  draw_ic24_menu(lx(), ly3());
+  draw_ic24_lock(lx(), ly1(), black);
+  draw_ic24_arrow_left(lx(), ly2(), black);
 
   lcd()->sendBuffer();
 
@@ -46,10 +46,11 @@ void modeTestButtonUp(){
 }
 
 void modeTestButtonCenter(){
+  setModeMainMenu();
 }
 
 void modeTestButtonDown(){
-  setModeWatchface();
+  //setModeWatchface();
   //rtc()->setTime(/*s*/0, /*m*/9, /*h*/0,   /*d*/9, /*M*/10, /*y*/2023);  // 17th Jan 2021 15:24:30
   //playMelody();
 }

@@ -10,22 +10,22 @@ void drawBattery(int x, int y){
   if(isChargerConnected()){
     float voltage = readSensBatteryVoltage();
     if(voltage > 4110)
-      draw_ic24_battery_full(x, y);
+      draw_ic24_battery_full(x, y, black);
     else
-      draw_ic24_battery_charging(x, y);
+      draw_ic24_battery_charging(x, y, black);
   }
   else{
     int bars = batteryBars();
     if(bars == 4) 
-      draw_ic24_battery100(x, y);
+      draw_ic24_battery100(x, y, black);
     if(bars == 3) 
-      draw_ic24_battery75(x, y);
+      draw_ic24_battery75(x, y, black);
     if(bars == 2) 
-      draw_ic24_battery50(x, y);
+      draw_ic24_battery50(x, y, black);
     if(bars == 1) 
-      draw_ic24_battery25(x, y);
+      draw_ic24_battery25(x, y, black);
     if(bars == 0) 
-      draw_ic24_battery0(x, y);
+      draw_ic24_battery0(x, y, black);
   }
   
 }

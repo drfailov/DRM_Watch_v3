@@ -1,3 +1,6 @@
+int ledTopValue = 0;
+int ledBottomValue = 0;
+
 void initLed(){
   //test LEDs
   pinMode(LED_TOP_PIN, OUTPUT);
@@ -18,4 +21,24 @@ void ledStatusOn(){
 }
 void ledStatusOff(){
   digitalWrite(LED_STATUS_PIN, LOW);
+}
+
+void ledFlashlightToggleTop(){
+  if(ledTopValue == 0){
+    ledTopValue = 255;
+  }
+  else{
+    ledTopValue = 0;
+  }
+  digitalWrite(LED_TOP_PIN, ledTopValue==0?LOW:HIGH); 
+}
+
+void ledFlashlightToggleBottom(){
+  if(ledBottomValue == 0){
+    ledBottomValue = 255;
+  }
+  else{
+    ledBottomValue = 0;
+  }
+  analogWrite(LED_BOTTOM_PIN, ledBottomValue); 
 }

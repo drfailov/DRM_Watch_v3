@@ -1,6 +1,7 @@
 #include <Arduino.h>
 #include <U8g2lib.h>
 #include <ESP32Time.h>
+#include "Roboto_24.h"
 
 #ifdef U8X8_HAVE_HW_SPI
 #include <SPI.h>
@@ -21,13 +22,15 @@ bool white = 1;
 #define SENS_USB_PIN 3
 #define SENS_BATERY_PIN 4
 #define BUZZER_PIN 12
-#define LED_TOP_PIN 33
-#define LED_BOTTOM_PIN 34
+#define LED_TOP_PIN GPIO_NUM_33
+#define LED_BOTTOM_PIN GPIO_NUM_34
 #define LED_STATUS_PIN 35
 #define TOUCH1_PIN 8
 #define TOUCH2_PIN 9
 #define TOUCH3_PIN 10
 #define CHARGER_EN_PIN 37
+
+int autoReturnTime = 120000;//ms
 
 typedef void (*Runnable)();
 RTC_DATA_ATTR Runnable modeSetup;
@@ -79,9 +82,9 @@ void goToSleep(){
   */
   lcd()->setColorIndex(0);
   
-  draw_ic24_empty(lx(), ly1());
-  draw_ic24_unlock(lx(), ly2());
-  draw_ic24_empty(lx(), ly3());
+  draw_ic24_empty(lx(), ly1(), black);
+  draw_ic24_unlock(lx(), ly2(), black);
+  draw_ic24_empty(lx(), ly3(), black);
   //lcd()->setFont(u8g2_font_10x20_tf);
   //lcd()->drawStr(330, 125, "UNLOCK");
   lcd()->sendBuffer();
@@ -93,6 +96,7 @@ void goToSleep(){
   esp_deep_sleep_start();
 }
 
+void doNothing(){} //to use as reference in modes for buttons
 
 
 

@@ -2,6 +2,18 @@
 bool temperatureInit = false;
 
 
+void drawTemperature(int x, int y){
+  lcd()->setFont(u8g2_font_10x20_t_cyrillic); 
+  draw_ic24_temperature(x,y, black);
+  lcd()->setCursor(x+24, y+18);
+  lcd()->print(temperature());
+  lcd()->print("°C");
+}
+
+void resetTemperatureSensor(){
+  temperatureInit = false;
+}
+
 float temperature(){
   if(!temperatureInit){
     temp_sensor_config_t temp_sensor = TSENS_CONFIG_DEFAULT();
