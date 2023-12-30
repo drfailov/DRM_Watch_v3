@@ -1,3 +1,5 @@
+int slotToFill=0;
+
 const int modeWiFiListStatePreparing = 0;
 const int modeWiFiListStateSettingUp = 1;
 const int modeWiFiListStateSettingUpDelay = 2;
@@ -7,12 +9,20 @@ const int modeWiFiListStateSettingUpSelectingNetwork = 5;
 int modeWiFiListState = 0;
 long modeWiFiListStateChangeTime = 0;
 
+void setModeWiFiList(int _slotToFill){
+  slotToFill = _slotToFill;
+  setModeWiFiList_();
+}
 void setModeWiFiList(){
+  slotToFill = 0;
+  setModeWiFiList_();
+}
+void setModeWiFiList_(){
   Serial.println(F("Set mode: WiFiList"));
-  modeSetup = setModeWiFiList;
+  modeSetup = setModeWiFiList_;
   modeLoop = modeWiFiListLoop;
   modeButtonUp = modeMainMenuButtonUp;
-  modeButtonCenter = modeTestButtonCenter;
+  modeButtonCenter = modeWiFiListButtonCenter;
   modeButtonDown = modeMainMenuButtonDown;
   //modeButtonUpLong = modeWatchfaceButtonUp;
   //modeButtonCenterLong = modeWatchfaceButtonUp;
@@ -25,15 +35,10 @@ void modeWiFiListLoop(){
   lcd()->setColorIndex(white);
   lcd()->drawBox(0, 0, 400, 240);
 
-  lcd()->setColorIndex(black);
-  lcd()->drawLine(369, 0, 369, 260);
-  lcd()->drawLine(370, 0, 370, 260);
 
   drawBattery(339, 1);
-  draw_ic24_arrow_up(lx(), ly1(), black);
-  draw_ic24_check2(lx(), ly2(), black);
-  draw_ic24_arrow_down(lx(), ly3(), black);
 
+  drawMenuLegend();
   
   if(modeWiFiListState == modeWiFiListStatePreparing){
     drawMessage("Підготовка...");
@@ -51,7 +56,7 @@ void modeWiFiListLoop(){
     modeWiFiListStateChangeTime = millis();
   }
   else if(modeWiFiListState == modeWiFiListStateSettingUpDelay){
-    drawMessage("Підготовка до сканування...");
+    drawMessage("Підготовка сканування...");
     if(millis()-modeWiFiListStateChangeTime > 500){
       modeWiFiListState = modeWiFiListStateSettingUpScanning;
       modeWiFiListStateChangeTime = millis();
@@ -68,13 +73,17 @@ void modeWiFiListLoop(){
       modeWiFiListState = modeWiFiListStateSettingUpSelectingNetwork;
       modeWiFiListStateChangeTime = millis();
       selected = 0;
-      items = n;
+      items = n+1;
     }
   }
   else if(modeWiFiListState == modeWiFiListStateSettingUpNoNetworks){
-    drawMessage("Мереж не знайдено");
+    drawMessage("Мереж не знайдено.");
   }
   else if(modeWiFiListState == modeWiFiListStateSettingUpSelectingNetwork){
+    if(slotToFill == 0)
+      drawListItem(0, draw_ic24_arrow_left, "Повернутись", "В меню налаштувань", false); //
+    else
+      drawListItem(0, draw_ic24_arrow_left, "Повернутись", "До списку збережених мереж", false); //
     for(int i=0; i<items; i++){
       int rssi = WiFi.RSSI(i);
       void (*drawIcon)(int x,int y, bool color);
@@ -82,7 +91,7 @@ void modeWiFiListLoop(){
       else if (rssi > -67) drawIcon = draw_ic24_wifi_2;
       else if (rssi > -70) drawIcon = draw_ic24_wifi_1;
       else if (rssi > -80) drawIcon = draw_ic24_wifi_0;
-      drawListItem(i, drawIcon, WiFi.SSID(i).c_str(), (String("")+rssi+"dBm " + encryprionType(i)).c_str(), false); //
+      drawListItem(i+1, drawIcon, WiFi.SSID(i).c_str(), (String("")+rssi+"dBm " + encryprionType(i)).c_str(), false); //
     }
   }
   
@@ -90,28 +99,46 @@ void modeWiFiListLoop(){
   resetTemperatureSensor();
 }
 
-char* encryprionType(int i){
+
+void modeWiFiListButtonCenter(){
+  if(modeWiFiListState == modeWiFiListStateSettingUpNoNetworks){
+      if(slotToFill == 0)
+        setModeMainMenu();
+      else
+        setModeSavedWiFiList();
+  }
+  if(modeWiFiListState == modeWiFiListStateSettingUpSelectingNetwork){
+    if(selected == 0){
+        if(slotToFill == 0)
+          setModeMainMenu();
+        else
+          setModeSavedWiFiList();
+    }
+  }
+}
+
+const char* encryprionType(int i){
   switch (WiFi.encryptionType(i))
-            {
-            case WIFI_AUTH_OPEN:
-                return ("Open");
-            case WIFI_AUTH_WEP:
-                return ("WEP");
-            case WIFI_AUTH_WPA_PSK:
-                return ("WPA");
-            case WIFI_AUTH_WPA2_PSK:
-                return  ("WPA2");
-            case WIFI_AUTH_WPA_WPA2_PSK:
-                return  ("WPA+WPA2");
-            case WIFI_AUTH_WPA2_ENTERPRISE:
-                return ("WPA2-EAP");
-            case WIFI_AUTH_WPA3_PSK:
-                return ("WPA3");
-            case WIFI_AUTH_WPA2_WPA3_PSK:
-                return ("WPA2+WPA3");
-            case WIFI_AUTH_WAPI_PSK:
-                return ("WAPI");
-            default:
-                return ("unknown");
-            }
+  {
+  case WIFI_AUTH_OPEN:
+      return ("Open");
+  case WIFI_AUTH_WEP:
+      return ("WEP");
+  case WIFI_AUTH_WPA_PSK:
+      return ("WPA");
+  case WIFI_AUTH_WPA2_PSK:
+      return  ("WPA2");
+  case WIFI_AUTH_WPA_WPA2_PSK:
+      return  ("WPA+WPA2");
+  case WIFI_AUTH_WPA2_ENTERPRISE:
+      return ("WPA2-EAP");
+  case WIFI_AUTH_WPA3_PSK:
+      return ("WPA3");
+  case WIFI_AUTH_WPA2_WPA3_PSK:
+      return ("WPA2+WPA3");
+  case WIFI_AUTH_WAPI_PSK:
+      return ("WAPI");
+  default:
+      return ("unknown");
+  }
 }

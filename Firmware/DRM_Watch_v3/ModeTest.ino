@@ -31,6 +31,7 @@ void modeTestLoop(){
   y+=interval; lcd()->setCursor(x, y); wakeup_reason();
   y+=interval; lcd()->setCursor(x, y); lcd()->print("Since last action:"); lcd()->print(sinceLastAction());
   y+=interval; lcd()->setCursor(x, y); lcd()->print("Temperature:"); lcd()->print(temperature());
+  y+=interval; lcd()->setCursor(x, y); lcd()->print("Preferences remaining memory:"); lcd()->print(getPreferencesFreeSpace());
   
   
   draw_ic24_lock(lx(), ly1(), black);

@@ -28,16 +28,11 @@ void modeMainMenuLoop(){
   drawMenuItem(itemSettings, draw_ic24_settings, "Нашаштування", false);
   drawMenuItem(itemAbout, draw_ic24_about, "Про програму", false);
 
-  lcd()->setColorIndex(black);
-  lcd()->drawLine(369, 0, 369, 260);
-  lcd()->drawLine(370, 0, 370, 260);
   
   drawTemperature(5, 5);
   drawBattery(339, 1);
-  draw_ic24_arrow_up(lx(), ly1(), black);
-  draw_ic24_check2(lx(), ly2(), black);
-  draw_ic24_arrow_down(lx(), ly3(), black);
   
+  drawMenuLegend();
 
 
   lcd()->sendBuffer();
@@ -63,7 +58,8 @@ void modeMainMenuButtonCenter(){
   }
   if(selected == itemSettings){
     //setModeTimeSync();
-    setModeWiFiList();
+    //setModeWiFiList();
+    setModeSavedWiFiList();
     return;
   }
   
@@ -139,8 +135,16 @@ void drawListItem(byte index, void (*drawIcon)(int x,int y, bool color), const c
     lcd()->setFont(u8g2_font_10x20_t_cyrillic);  //ok
     lcd()->setColorIndex(black);
     lcd()->setCursor(5, 18); 
-    lcd()->print(selected);lcd()->print("/");lcd()->print(items); 
+    lcd()->print(selected+1);lcd()->print("/");lcd()->print(items); 
   }
   if(animate)
     lcd()->sendBuffer();
+}
+void drawMenuLegend(){
+  lcd()->setColorIndex(black);
+  lcd()->drawLine(369, 0, 369, 260);
+  lcd()->drawLine(370, 0, 370, 260);
+  draw_ic24_arrow_up(lx(), ly1(), black);
+  draw_ic24_check2(lx(), ly2(), black);
+  draw_ic24_arrow_down(lx(), ly3(), black);
 }
