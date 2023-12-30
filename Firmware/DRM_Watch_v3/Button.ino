@@ -50,19 +50,19 @@ void processButton(gpio_num_t pin, Runnable onPressed, Runnable onLongPressed){
         lastActionTime = millis();
         buttonBeep();
         onPressed();
-        //if(modeLoop != 0) modeLoop();
+        if(modeLoop != 0) modeLoop();
       }
       else if(onPressed != 0 && onLongPressed == 0 && lastActionTime >= pressStarted && millis()-pressStarted>firstClickDelay && millis()-lastActionTime>nextClickDelay){//next clicks while user holding button
         lastActionTime = millis();
         buttonBeep();
         onPressed();
-        //if(modeLoop != 0) modeLoop();
+        if(modeLoop != 0) modeLoop();
       }
       else if(onLongPressed != 0 && millis()-pressStarted>firstClickDelay){
         lastActionTime = millis();
         buttonLongBeep();
         onLongPressed();
-        //if(modeLoop != 0) modeLoop();
+        if(modeLoop != 0) modeLoop();
         break;
       }
     }

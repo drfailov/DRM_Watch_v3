@@ -3,10 +3,10 @@ U8G2_LS027B7DH01_400X240_F_4W_HW_SPI u8g2(U8G2_R0, /* cs=*/ 5, /* dc=*/ U8X8_PIN
 
   //"sdsdd" = const char [5]
 
-  ////lcd()->setFont(u8g2_font_unifont_t_cyrillic);   //small
+  ////lcd()->setFont(u8g2_font_unifont_t_cyrillic);   //+   small
   //lcd()->setFont(u8g2_font_cu12_t_cyrillic);  //small
   //lcd()->setFont(u8g2_font_inr24_t_cyrillic);  //big
-  //lcd()->setFont(u8g2_font_10x20_t_cyrillic);  //ok
+  //lcd()->setFont(u8g2_font_10x20_t_cyrillic);  //+   ok
   
 
 void lcdInit(){
@@ -25,12 +25,12 @@ U8G2_LS027B7DH01_400X240_F_4W_HW_SPI* lcd(){
 
 void drawMessage(String text){
   lcd()->setColorIndex(white);
-  lcd()->drawBox(0, 0, 400, 240);
+  lcd()->drawBox(0, 80, 400, 140);
   
   lcd()->setColorIndex(black);
   lcd()->setFont(u8g2_font_10x20_t_cyrillic);
 
-  lcd()->setCursor(10, 110); lcd()->print(text);
+  lcd()->setCursor(30, 110); lcd()->print(text);
 
   lcd()->sendBuffer();
 }

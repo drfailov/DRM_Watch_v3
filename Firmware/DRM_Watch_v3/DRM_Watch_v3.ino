@@ -1,7 +1,6 @@
 #include <Arduino.h>
 #include <U8g2lib.h>
 #include <ESP32Time.h>
-#include "Roboto_24.h"
 
 #ifdef U8X8_HAVE_HW_SPI
 #include <SPI.h>
@@ -31,6 +30,8 @@ bool white = 1;
 #define CHARGER_EN_PIN 37
 
 int autoReturnTime = 120000;//ms
+int items =0;     //global for menus
+int selected = 0; //global for menus
 
 typedef void (*Runnable)();
 RTC_DATA_ATTR Runnable modeSetup;

@@ -3,6 +3,10 @@ Icons used as reference:
 <a href="https://www.flaticon.com/free-icons/tick" title="tick icons">Tick icons created by Octopocto - Flaticon</a>
 <a href="https://www.flaticon.com/free-icons/info" title="info icons">Info icons created by Freepik - Flaticon</a>
 <a href="https://www.flaticon.com/free-icons/wrench" title="wrench icons">Wrench icons created by Uniconlabs - Flaticon</a>
+<a href="https://www.flaticon.com/free-icons/wifi" title="wifi icons">Wifi icons created by Freepik - Flaticon</a>
+<a href="https://www.flaticon.com/free-icons/key" title="key icons">Key icons created by Google - Flaticon</a>
+
+
 
 
 
@@ -32,3 +36,14 @@ Changelog:
 2023-12-29 v0.1 Main menu is functional
 2023-12-29 v0.1 new icons
 2023-12-29 v0.1 auto-sync time with NTP server
+2023-12-30 v0.1 Discovered HUGE time drift, looking for ways to fix it
+2023-12-30 v0.1 Trying to build libraries
+2023-12-30 v0.1 Created Wi-Fi scanner mode
+
+
+
+
+
+
+
+

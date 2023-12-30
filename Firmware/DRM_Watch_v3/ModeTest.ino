@@ -17,19 +17,20 @@ void modeTestLoop(){
   lcd()->drawBox(0, 0, 400, 240);
   
   lcd()->setColorIndex(black);
-  lcd()->setFont(u8g2_font_10x20_t_cyrillic);
+  lcd()->setFont(u8g2_font_unifont_t_cyrillic);
 
-  int y=0;
-  int interval = 16;
+  int y=2;
+  int x=5;
+  int interval = 13;
 
-  y+=interval; lcd()->drawStr(10, y, rtc()->getTime("%B %d %Y %H:%M:%S").c_str());
-  y+=interval; lcd()->setCursor(10, y); lcd()->print("Millis:"); lcd()->print(millis());
-  y+=interval; lcd()->setCursor(10, y); lcd()->print("RAW ");  lcd()->print("BATTERY: "); lcd()->print(readSensBatteryRaw()); lcd()->print(", USB:"); lcd()->print(readSensUsbRaw());
-  y+=interval; lcd()->setCursor(10, y); lcd()->print("VOLTAGE ");  lcd()->print("BATTERY: "); lcd()->print(readSensBatteryVoltage()); lcd()->print(" ("); lcd()->print(batteryBars()); lcd()->print(" bars)"); 
-  y+=interval; lcd()->setCursor(10, y); lcd()->print("BUTTONS "); lcd()->print("TOP:");lcd()->print(isPressed(BUT_UP)); lcd()->print(" CENTER:");lcd()->print(isPressed(BUT_CENTER)); lcd()->print(" BOTTOM:");lcd()->print(isPressed(BUT_DOWN));
-  y+=interval; lcd()->setCursor(10, y); wakeup_reason();
-  y+=interval; lcd()->setCursor(10, y); lcd()->print("Since last action:"); lcd()->print(sinceLastAction());
-  y+=interval; lcd()->setCursor(10, y); lcd()->print("Temperature:"); lcd()->print(temperature());
+  y+=interval; lcd()->drawStr(x, y, rtc()->getTime("%B %d %Y %H:%M:%S").c_str());
+  y+=interval; lcd()->setCursor(x, y); lcd()->print("Millis:"); lcd()->print(millis());
+  y+=interval; lcd()->setCursor(x, y); lcd()->print("RAW ");  lcd()->print("BATTERY: "); lcd()->print(readSensBatteryRaw()); lcd()->print(", USB:"); lcd()->print(readSensUsbRaw());
+  y+=interval; lcd()->setCursor(x, y); lcd()->print("VOLTAGE ");  lcd()->print("BATTERY: "); lcd()->print(readSensBatteryVoltage()); lcd()->print(" ("); lcd()->print(batteryBars()); lcd()->print(" bars)"); 
+  y+=interval; lcd()->setCursor(x, y); lcd()->print("BUTTONS "); lcd()->print("TOP:");lcd()->print(isPressed(BUT_UP)); lcd()->print(" CENTER:");lcd()->print(isPressed(BUT_CENTER)); lcd()->print(" BOTTOM:");lcd()->print(isPressed(BUT_DOWN));
+  y+=interval; lcd()->setCursor(x, y); wakeup_reason();
+  y+=interval; lcd()->setCursor(x, y); lcd()->print("Since last action:"); lcd()->print(sinceLastAction());
+  y+=interval; lcd()->setCursor(x, y); lcd()->print("Temperature:"); lcd()->print(temperature());
   
   
   draw_ic24_lock(lx(), ly1(), black);

@@ -14,7 +14,8 @@ LCD Assistant
 
 
 
-
+Known libraries conflicts:
+Temperature measurement is hanging system if after Wi-Fi usage it were not initialized.
 
 
 

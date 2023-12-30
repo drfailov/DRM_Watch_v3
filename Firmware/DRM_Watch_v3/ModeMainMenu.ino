@@ -2,8 +2,6 @@ const int itemBack=0;
 const int itemApps=1;
 const int itemSettings=2;
 const int itemAbout=3;
-int items = 4;
-int selected = 0;
 
 void setModeMainMenu(){
   Serial.println(F("Set mode: Main Menu"));
@@ -16,6 +14,7 @@ void setModeMainMenu(){
   //modeButtonCenterLong = modeWatchfaceButtonUp;
   //modeButtonDownLong = modeWatchfaceButtonUp;
   selected = 0;
+  items = 4;
 }
 
 void modeMainMenuLoop(){
@@ -63,7 +62,8 @@ void modeMainMenuButtonCenter(){
     return;
   }
   if(selected == itemSettings){
-    setModeTimeSync();
+    //setModeTimeSync();
+    setModeWiFiList();
     return;
   }
   
@@ -106,6 +106,40 @@ void drawMenuItem(byte index, void (*drawIcon)(int x,int y, bool color), const c
     lcd()->setCursor(8, 232);
     lcd()->setColorIndex(black);
     lcd()->print(name);
+  }
+  if(animate)
+    lcd()->sendBuffer();
+}
+void drawListItem(byte index, void (*drawIcon)(int x,int y, bool color), const char* name, const char* description, bool animate){
+  int lines = 4;
+  if(selected/(lines) != index/(lines)) return;
+  const int xOffset = 10;
+  const int yOffset = 30;
+  const int width=345;
+  const int height=42;
+  const int margin = 8;
+  int x = xOffset;
+  int y = yOffset + (height+margin) * ((index%(lines)));
+  
+  lcd()->setColorIndex(black);
+  if(selected == index)
+    lcd()->drawBox(/*x*/x, /*y*/y, /*w*/width, /*h*/height);
+  else{
+    lcd()->drawFrame(/*x*/x, /*y*/y, /*w*/width, /*h*/height);
+    lcd()->drawFrame(/*x*/x+1, /*y*/y+1, /*w*/width-2, /*h*/height-2);
+  }
+  drawIcon(x + 9, y+9, selected == index?white:black);
+  
+  lcd()->setFont(u8g2_font_10x20_t_cyrillic);  //ok
+  lcd()->setColorIndex(selected == index?white:black);
+  lcd()->setCursor(x+45, y+20); lcd()->print(name);
+  lcd()->setFont(u8g2_font_unifont_t_cyrillic);  //ok
+  lcd()->setCursor(x+45, y+35); lcd()->print(description);
+  if(selected == index){
+    lcd()->setFont(u8g2_font_10x20_t_cyrillic);  //ok
+    lcd()->setColorIndex(black);
+    lcd()->setCursor(5, 18); 
+    lcd()->print(selected);lcd()->print("/");lcd()->print(items); 
   }
   if(animate)
     lcd()->sendBuffer();
