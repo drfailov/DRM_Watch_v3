@@ -9,7 +9,7 @@ Icons used as reference:
 <a href="https://www.flaticon.com/free-icons/bookmark" title="bookmark icons">Bookmark icons created by Freepik - Flaticon</a>
 <a href="https://www.flaticon.com/free-icons/backspace" title="backspace icons">Backspace icons created by apien - Flaticon</a>
 <a href="https://www.flaticon.com/free-icons/up-arrow" title="up arrow icons">Up arrow icons created by Icon mania - Flaticon</a>
-
+<a href="https://www.flaticon.com/free-icons/cancel" title="cancel icons">Cancel icons created by torskaya - Flaticon</a>
 
 
 

@@ -18,16 +18,25 @@ const int KEYBOARD_MODE_NORMAL = 0;
 const int KEYBOARD_MODE_CAPS = 1;
 const int KEYBOARD_MODE_SYM = 2;
 
+String keyboardTitle = "";
+Runnable keyboardDone = 0;
 int keyboardMode = KEYBOARD_MODE_NORMAL;
 String text = "";
 int selectedRow = 0;
 int selectedCol = 0;
-int keyDefaultWidth = 28;
+int keyDefaultWidth = 30;
 
 Key keys[] = {
-  {/*row*/0, /*col*/0, /*width*/keyDefaultWidth, /*letter*/'1', /*letterCaps*/'1', /*letterSym*/'1', /*drawable*/0, /*drawableCaps*/0, /*drawableSym*/0, /*onClick*/addLetter},
-  {/*row*/0, /*col*/1, /*width*/keyDefaultWidth, /*letter*/'2', /*letterCaps*/'2', /*letterSym*/'2', /*drawable*/0, /*drawableCaps*/0, /*drawableSym*/0, /*onClick*/addLetter},
-  {/*row*/0, /*col*/2, /*width*/keyDefaultWidth, /*letter*/'3', /*letterCaps*/'3', /*letterSym*/'3', /*drawable*/0, /*drawableCaps*/0, /*drawableSym*/0, /*onClick*/addLetter},
+  {/*row*/0, /*col*/0, /*width*/keyDefaultWidth, /*letter*/'1', /*letterCaps*/'1', /*letterSym*/'!', /*drawable*/0, /*drawableCaps*/0, /*drawableSym*/0, /*onClick*/addLetter},
+  {/*row*/0, /*col*/1, /*width*/keyDefaultWidth, /*letter*/'2', /*letterCaps*/'2', /*letterSym*/'@', /*drawable*/0, /*drawableCaps*/0, /*drawableSym*/0, /*onClick*/addLetter},
+  {/*row*/0, /*col*/2, /*width*/keyDefaultWidth, /*letter*/'3', /*letterCaps*/'3', /*letterSym*/'#', /*drawable*/0, /*drawableCaps*/0, /*drawableSym*/0, /*onClick*/addLetter},
+  {/*row*/0, /*col*/3, /*width*/keyDefaultWidth, /*letter*/'4', /*letterCaps*/'4', /*letterSym*/'$', /*drawable*/0, /*drawableCaps*/0, /*drawableSym*/0, /*onClick*/addLetter},
+  {/*row*/0, /*col*/4, /*width*/keyDefaultWidth, /*letter*/'5', /*letterCaps*/'5', /*letterSym*/'%', /*drawable*/0, /*drawableCaps*/0, /*drawableSym*/0, /*onClick*/addLetter},
+  {/*row*/0, /*col*/5, /*width*/keyDefaultWidth, /*letter*/'6', /*letterCaps*/'6', /*letterSym*/'^', /*drawable*/0, /*drawableCaps*/0, /*drawableSym*/0, /*onClick*/addLetter},
+  {/*row*/0, /*col*/6, /*width*/keyDefaultWidth, /*letter*/'7', /*letterCaps*/'7', /*letterSym*/'&', /*drawable*/0, /*drawableCaps*/0, /*drawableSym*/0, /*onClick*/addLetter},
+  {/*row*/0, /*col*/7, /*width*/keyDefaultWidth, /*letter*/'8', /*letterCaps*/'8', /*letterSym*/'*', /*drawable*/0, /*drawableCaps*/0, /*drawableSym*/0, /*onClick*/addLetter},
+  {/*row*/0, /*col*/8, /*width*/keyDefaultWidth, /*letter*/'9', /*letterCaps*/'9', /*letterSym*/'(', /*drawable*/0, /*drawableCaps*/0, /*drawableSym*/0, /*onClick*/addLetter},
+  {/*row*/0, /*col*/9, /*width*/keyDefaultWidth, /*letter*/'0', /*letterCaps*/'0', /*letterSym*/')', /*drawable*/0, /*drawableCaps*/0, /*drawableSym*/0, /*onClick*/addLetter},
 
   {/*row*/1, /*col*/0, /*width*/keyDefaultWidth, /*letter*/'q', /*letterCaps*/'Q', /*letterSym*/'%', /*drawable*/0, /*drawableCaps*/0, /*drawableSym*/0, /*onClick*/addLetter},
   {/*row*/1, /*col*/1, /*width*/keyDefaultWidth, /*letter*/'w', /*letterCaps*/'W', /*letterSym*/'\\',/*drawable*/0, /*drawableCaps*/0, /*drawableSym*/0, /*onClick*/addLetter},
@@ -44,15 +53,42 @@ Key keys[] = {
   {/*row*/2, /*col*/0, /*width*/keyDefaultWidth, /*letter*/'a', /*letterCaps*/'A', /*letterSym*/'@', /*drawable*/0, /*drawableCaps*/0, /*drawableSym*/0, /*onClick*/addLetter},
   {/*row*/2, /*col*/1, /*width*/keyDefaultWidth, /*letter*/'s', /*letterCaps*/'S', /*letterSym*/'#', /*drawable*/0, /*drawableCaps*/0, /*drawableSym*/0, /*onClick*/addLetter},
   {/*row*/2, /*col*/2, /*width*/keyDefaultWidth, /*letter*/'d', /*letterCaps*/'D', /*letterSym*/'$', /*drawable*/0, /*drawableCaps*/0, /*drawableSym*/0, /*onClick*/addLetter},
+  {/*row*/2, /*col*/3, /*width*/keyDefaultWidth, /*letter*/'f', /*letterCaps*/'F', /*letterSym*/'_', /*drawable*/0, /*drawableCaps*/0, /*drawableSym*/0, /*onClick*/addLetter},
+  {/*row*/2, /*col*/4, /*width*/keyDefaultWidth, /*letter*/'g', /*letterCaps*/'G', /*letterSym*/'&', /*drawable*/0, /*drawableCaps*/0, /*drawableSym*/0, /*onClick*/addLetter},
+  {/*row*/2, /*col*/5, /*width*/keyDefaultWidth, /*letter*/'h', /*letterCaps*/'H', /*letterSym*/'-', /*drawable*/0, /*drawableCaps*/0, /*drawableSym*/0, /*onClick*/addLetter},
+  {/*row*/2, /*col*/6, /*width*/keyDefaultWidth, /*letter*/'j', /*letterCaps*/'J', /*letterSym*/'+', /*drawable*/0, /*drawableCaps*/0, /*drawableSym*/0, /*onClick*/addLetter},
+  {/*row*/2, /*col*/7, /*width*/keyDefaultWidth, /*letter*/'k', /*letterCaps*/'K', /*letterSym*/'(', /*drawable*/0, /*drawableCaps*/0, /*drawableSym*/0, /*onClick*/addLetter},
+  {/*row*/2, /*col*/8, /*width*/keyDefaultWidth, /*letter*/'l', /*letterCaps*/'L', /*letterSym*/')', /*drawable*/0, /*drawableCaps*/0, /*drawableSym*/0, /*onClick*/addLetter},
 
 
-  {/*row*/3, /*col*/0, /*width*/36, /*letter*/0, /*letterCaps*/0, /*letterSym*/0, /*drawable*/draw_ic16_shift_normal, /*drawableCaps*/draw_ic16_shift_cap, /*drawableSym*/draw_ic16_shift_sym, /*onClick*/shift},
-  {/*row*/3, /*col*/1, /*width*/36, /*letter*/0, /*letterCaps*/0, /*letterSym*/0, /*drawable*/draw_ic16_backspace, /*drawableCaps*/draw_ic16_backspace, /*drawableSym*/draw_ic16_backspace, /*onClick*/backspace},
+  {/*row*/3, /*col*/0, /*width*/46, /*letter*/0, /*letterCaps*/0, /*letterSym*/0, /*drawable*/draw_ic16_shift_normal, /*drawableCaps*/draw_ic16_shift_cap, /*drawableSym*/draw_ic16_shift_sym, /*onClick*/shift},
+  {/*row*/3, /*col*/1, /*width*/keyDefaultWidth, /*letter*/'z', /*letterCaps*/'Z', /*letterSym*/'*', /*drawable*/0, /*drawableCaps*/0, /*drawableSym*/0, /*onClick*/addLetter},
+  {/*row*/3, /*col*/2, /*width*/keyDefaultWidth, /*letter*/'x', /*letterCaps*/'X', /*letterSym*/'\"',/*drawable*/0, /*drawableCaps*/0, /*drawableSym*/0, /*onClick*/addLetter},
+  {/*row*/3, /*col*/3, /*width*/keyDefaultWidth, /*letter*/'c', /*letterCaps*/'C', /*letterSym*/'\'',/*drawable*/0, /*drawableCaps*/0, /*drawableSym*/0, /*onClick*/addLetter},
+  {/*row*/3, /*col*/4, /*width*/keyDefaultWidth, /*letter*/'v', /*letterCaps*/'V', /*letterSym*/':', /*drawable*/0, /*drawableCaps*/0, /*drawableSym*/0, /*onClick*/addLetter},
+  {/*row*/3, /*col*/5, /*width*/keyDefaultWidth, /*letter*/'b', /*letterCaps*/'B', /*letterSym*/';', /*drawable*/0, /*drawableCaps*/0, /*drawableSym*/0, /*onClick*/addLetter},
+  {/*row*/3, /*col*/6, /*width*/keyDefaultWidth, /*letter*/'n', /*letterCaps*/'N', /*letterSym*/'!', /*drawable*/0, /*drawableCaps*/0, /*drawableSym*/0, /*onClick*/addLetter},
+  {/*row*/3, /*col*/7, /*width*/keyDefaultWidth, /*letter*/'m', /*letterCaps*/'M', /*letterSym*/'?', /*drawable*/0, /*drawableCaps*/0, /*drawableSym*/0, /*onClick*/addLetter},
+  {/*row*/3, /*col*/8, /*width*/48, /*letter*/0, /*letterCaps*/0, /*letterSym*/0, /*drawable*/draw_ic16_backspace, /*drawableCaps*/draw_ic16_backspace, /*drawableSym*/draw_ic16_backspace, /*onClick*/backspace},
   
-  {/*row*/4, /*col*/1, /*width*/36, /*letter*/0, /*letterCaps*/0, /*letterSym*/0, /*drawable*/draw_ic16_check, /*drawableCaps*/draw_ic16_check, /*drawableSym*/draw_ic16_check, /*onClick*/setModeMainMenu},
+  {/*row*/4, /*col*/0, /*width*/60, /*letter*/0, /*letterCaps*/0, /*letterSym*/0, /*drawable*/draw_ic16_cancel, /*drawableCaps*/draw_ic16_cancel, /*drawableSym*/draw_ic16_cancel, /*onClick*/setModeMainMenu},
+  {/*row*/4, /*col*/1, /*width*/keyDefaultWidth, /*letter*/',', /*letterCaps*/',', /*letterSym*/',', /*drawable*/0, /*drawableCaps*/0, /*drawableSym*/0, /*onClick*/addLetter},
+  {/*row*/4, /*col*/2, /*width*/137, /*letter*/' ', /*letterCaps*/' ', /*letterSym*/' ', /*drawable*/0, /*drawableCaps*/0, /*drawableSym*/0, /*onClick*/addLetter},
+  {/*row*/4, /*col*/3, /*width*/keyDefaultWidth, /*letter*/'.', /*letterCaps*/'.', /*letterSym*/'.', /*drawable*/0, /*drawableCaps*/0, /*drawableSym*/0, /*onClick*/addLetter},
+  {/*row*/4, /*col*/4, /*width*/63, /*letter*/0, /*letterCaps*/0, /*letterSym*/0, /*drawable*/draw_ic16_check, /*drawableCaps*/draw_ic16_check, /*drawableSym*/draw_ic16_check, /*onClick*/keyboardDone},
   
   };
 
+
+void setModeKeyboard(String title, Runnable onDone){
+  keyboardTitle = title;
+  keyboardDone = onDone;
+  setModeKeyboard();
+}
+
+String getKeybordResult(){
+  return text;
+}
 
 void setModeKeyboard(){
   Serial.println(F("Set mode: Keyboard"));
@@ -70,16 +106,35 @@ void setModeKeyboard(){
 }
 
 
-void modeKeyboardLoop(){
-  
+void modeKeyboardLoop(){  
   lcd()->setColorIndex(white);
   lcd()->drawBox(0, 0, 400, 240);
 
   lcd()->setFont(u8g2_font_10x20_t_cyrillic);  //ok
-  lcd()->setCursor(10, 20);
+  lcd()->setCursor(6, 16);
+  lcd()->setColorIndex(black);
+  lcd()->print(keyboardTitle);
+
+  lcd()->drawFrame(/*x*/14, /*y*/29, /*w*/336, /*h*/30);
+
+  lcd()->setFont(u8g2_font_10x20_t_cyrillic);  //ok
+  lcd()->setCursor(25, 50);
   lcd()->setColorIndex(black);
   lcd()->print(text);
+  if(millis()%1000>500)
+    lcd()->print('|');
 
+  //limit row selection
+  if(selectedRow == 0 && selectedCol>9)
+    selectedCol = 0;
+  if(selectedRow == 1 && selectedCol>9)
+    selectedCol = 0;
+  if(selectedRow == 2 && selectedCol>8)
+    selectedCol = 0;
+  if(selectedRow == 3 && selectedCol>8)
+    selectedCol = 0;
+  if(selectedRow == 4 && selectedCol>4)
+    selectedCol = 0;
 
   int lastRow = -1;
   int x = 0;
@@ -88,10 +143,10 @@ void modeKeyboardLoop(){
     if(lastRow != key.row){
       x=0;
       if(key.row == 0) x = 10;
-      if(key.row == 1) x = 15;
-      if(key.row == 2) x = 20;
-      if(key.row == 3) x = 25;
-      if(key.row == 4) x = 30;
+      if(key.row == 1) x = 10;
+      if(key.row == 2) x = 17;
+      if(key.row == 3) x = 10;
+      if(key.row == 4) x = 10;
     }
     x = drawKey(i, x);
     lastRow = key.row;
@@ -114,12 +169,6 @@ void modeKeyboardLoop(){
 
 void modeKeyboardButtonUp(){
   selectedCol++;
-  if(selectedRow == 0 && selectedCol>9)
-    selectedCol = 0;
-  if(selectedRow == 1 && selectedCol>10)
-    selectedCol = 0;
-  if(selectedRow == 2 && selectedCol>10)
-    selectedCol = 0;
 }
 
 void modeKeyboardButtonCenter(){
@@ -143,10 +192,10 @@ int drawKey(int index, int startX){ //return X of key end
   Key key = keys[index];
 
   bool selected = selectedRow == key.row && selectedCol == key.col;
-  const int yOffset = 60;
+  const int yOffset = 69;
   const int height=30;
-  const int marginX = 5;
-  const int marginY = 5;
+  const int marginX = 4;
+  const int marginY = 4;
   int x = startX + marginX;
   int y = yOffset + (height+marginY) * key.row;
   
@@ -155,17 +204,17 @@ int drawKey(int index, int startX){ //return X of key end
     lcd()->drawBox(/*x*/x, /*y*/y, /*w*/key.width, /*h*/height);
   else{
     lcd()->drawFrame(/*x*/x, /*y*/y, /*w*/key.width, /*h*/height);
-    lcd()->drawFrame(/*x*/x+1, /*y*/y+1, /*w*/key.width-2, /*h*/height-2);
+    //lcd()->drawFrame(/*x*/x+1, /*y*/y+1, /*w*/key.width-2, /*h*/height-2);
   }
   if(keyboardMode == KEYBOARD_MODE_NORMAL && key.drawIcon != 0)
-    key.drawIcon(x+(key.width/2)-8, y+8, selected?white:black);
+    key.drawIcon(x+(key.width/2)-8, y+7, selected?white:black);
   if(keyboardMode == KEYBOARD_MODE_CAPS && key.drawIconCaps != 0)
-    key.drawIconCaps(x+(key.width/2)-8, y+8, selected?white:black);
+    key.drawIconCaps(x+(key.width/2)-8, y+7, selected?white:black);
   if(keyboardMode == KEYBOARD_MODE_SYM && key.drawIconSym != 0)
-    key.drawIconSym(x+(key.width/2)-8, y+8, selected?white:black);
+    key.drawIconSym(x+(key.width/2)-8, y+7, selected?white:black);
 
   lcd()->setFont(u8g2_font_10x20_t_cyrillic);  //ok
-  lcd()->setCursor(x+(key.width/2)-5, y+19);
+  lcd()->setCursor(x+(key.width/2)-5, y+21);
   lcd()->setColorIndex(selected?white:black);
   if(keyboardMode == KEYBOARD_MODE_NORMAL && key.letter != 0)
     lcd()->print(key.letter);
@@ -178,6 +227,8 @@ int drawKey(int index, int startX){ //return X of key end
 
 
 void addLetter(){
+  if(text.length() > 30)
+    return;
   for(int i=0; i<cntKeys(); i++){
       if(keys[i].col == selectedCol && keys[i].row == selectedRow){
         
@@ -208,4 +259,3 @@ void shift(){
 
 
 //----------------------//----------------------//----------------------//----------------------//----------------------//----------------------//----------------------
-void letter(char w){};
