@@ -39,8 +39,8 @@ void modeTestLoop(){
 
   lcd()->sendBuffer();
 
-  if(sinceLastAction() > 90000)
-    goToSleep();
+  if(sinceLastAction() > autoReturnTime) //auto go to watchface
+    setModeWatchface();
 }
 
 void modeTestButtonUp(){

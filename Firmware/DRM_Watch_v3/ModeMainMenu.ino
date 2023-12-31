@@ -2,6 +2,7 @@ const int itemBack=0;
 const int itemApps=1;
 const int itemSettings=2;
 const int itemAbout=3;
+const int itemDebug=4;
 
 void setModeMainMenu(){
   Serial.println(F("Set mode: Main Menu"));
@@ -14,7 +15,7 @@ void setModeMainMenu(){
   //modeButtonCenterLong = modeWatchfaceButtonUp;
   //modeButtonDownLong = modeWatchfaceButtonUp;
   selected = 0;
-  items = 4;
+  items = 5;
 }
 
 void modeMainMenuLoop(){
@@ -27,6 +28,7 @@ void modeMainMenuLoop(){
   drawMenuItem(itemApps, draw_ic24_apps, "Програми", false);
   drawMenuItem(itemSettings, draw_ic24_settings, "Нашаштування", false);
   drawMenuItem(itemAbout, draw_ic24_about, "Про програму", false);
+  drawMenuItem(itemDebug, draw_ic24_bug, "Інженерне меню", false);
 
   
   drawTemperature(5, 5);
@@ -64,6 +66,11 @@ void modeMainMenuButtonCenter(){
   }
   
   if(selected == itemAbout){
+    setModeKeyboard();
+    return;
+  }
+  
+  if(selected == itemDebug){
     setModeTest();
     return;
   }
@@ -76,7 +83,7 @@ void modeMainMenuButtonDown(){
 }
 
 
-void drawMenuItem(byte index, void (*drawIcon)(int x,int y, bool color), const char* name, bool animate){
+void drawMenuItem(byte index, Drawable drawIcon, const char* name, bool animate){
   int lines = 2;
   int cols = 4;
   if(selected/(lines*cols) != index/(lines*cols)) return;
@@ -106,7 +113,7 @@ void drawMenuItem(byte index, void (*drawIcon)(int x,int y, bool color), const c
   if(animate)
     lcd()->sendBuffer();
 }
-void drawListItem(byte index, void (*drawIcon)(int x,int y, bool color), const char* name, const char* description, bool animate){
+void drawListItem(byte index, Drawable drawIcon, const char* name, const char* description, bool animate){
   int lines = 4;
   if(selected/(lines) != index/(lines)) return;
   const int xOffset = 10;

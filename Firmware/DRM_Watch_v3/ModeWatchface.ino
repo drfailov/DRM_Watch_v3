@@ -7,7 +7,7 @@ void setModeWatchface(){
   modeButtonCenter = modeWatchfaceButtonCenter;
   modeButtonDown = modeWatchfaceButtonDown;
   //modeButtonUpLong = modeWatchfaceButtonUp;
-  modeButtonCenterLong = ledFlashlightToggleTop;
+  //modeButtonCenterLong = ledFlashlightToggleTop;
   //modeButtonDownLong = modeWatchfaceButtonUp;
   registerAction();
 }
@@ -35,6 +35,7 @@ void modeWatchfaceLoop(){
   drawBattery(371, 214);
   
   //Serial.println("draw legend...");
+  draw_ic24_flashlight(lx(), ly1(), black);
   draw_ic24_flashlight(lx(), ly2(), black);
   draw_ic24_menu(lx(), ly3(), black);
 
@@ -47,11 +48,11 @@ void modeWatchfaceLoop(){
 }
 
 void modeWatchfaceButtonUp(){
-  
+  ledFlashlightToggleTop();
 }
 
 void modeWatchfaceButtonCenter(){
-  //shortBeep();
+  ledFlashlightToggleBottom();
 }
 
 void modeWatchfaceButtonDown(){

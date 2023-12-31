@@ -97,6 +97,8 @@ void modeWiFiListLoop(){
   
   lcd()->sendBuffer();
   resetTemperatureSensor();
+  if(sinceLastAction() > autoReturnTime) //auto go to watchface
+    setModeWatchface();
 }
 
 

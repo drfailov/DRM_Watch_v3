@@ -34,6 +34,7 @@ int items =0;     //global for menus
 int selected = 0; //global for menus
 
 typedef void (*Runnable)();
+typedef void (*Drawable)(int x,int y, bool color);
 RTC_DATA_ATTR Runnable modeSetup;
 Runnable modeLoop = 0;
 Runnable modeButtonUp = 0;

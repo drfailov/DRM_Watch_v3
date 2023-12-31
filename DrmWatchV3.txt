@@ -5,7 +5,10 @@ Icons used as reference:
 <a href="https://www.flaticon.com/free-icons/wrench" title="wrench icons">Wrench icons created by Uniconlabs - Flaticon</a>
 <a href="https://www.flaticon.com/free-icons/wifi" title="wifi icons">Wifi icons created by Freepik - Flaticon</a>
 <a href="https://www.flaticon.com/free-icons/key" title="key icons">Key icons created by Google - Flaticon</a>
-
+<a href="https://www.flaticon.com/free-icons/bug-report" title="bug report icons">Bug report icons created by Maniprasanth - Flaticon</a>
+<a href="https://www.flaticon.com/free-icons/bookmark" title="bookmark icons">Bookmark icons created by Freepik - Flaticon</a>
+<a href="https://www.flaticon.com/free-icons/backspace" title="backspace icons">Backspace icons created by apien - Flaticon</a>
+<a href="https://www.flaticon.com/free-icons/up-arrow" title="up arrow icons">Up arrow icons created by Icon mania - Flaticon</a>
 
 
 
@@ -39,7 +42,7 @@ Changelog:
 2023-12-30 v0.1 Discovered HUGE time drift, looking for ways to fix it
 2023-12-30 v0.1 Trying to build libraries
 2023-12-30 v0.1 Created Wi-Fi scanner mode
-
+2023-12-31 v0.1 Started development of Keyboard
 
 
 
