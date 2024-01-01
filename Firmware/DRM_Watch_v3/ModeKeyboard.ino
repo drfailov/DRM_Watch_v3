@@ -20,6 +20,7 @@ const int KEYBOARD_MODE_SYM = 2;
 
 String keyboardTitle = "";
 Runnable keyboardDone = 0;
+Runnable keyboardCancel = 0;
 int keyboardMode = KEYBOARD_MODE_NORMAL;
 String text = "";
 int selectedRow = 0;
@@ -71,18 +72,19 @@ Key keys[] = {
   {/*row*/3, /*col*/7, /*width*/keyDefaultWidth, /*letter*/'m', /*letterCaps*/'M', /*letterSym*/'?', /*drawable*/0, /*drawableCaps*/0, /*drawableSym*/0, /*onClick*/addLetter},
   {/*row*/3, /*col*/8, /*width*/48, /*letter*/0, /*letterCaps*/0, /*letterSym*/0, /*drawable*/draw_ic16_backspace, /*drawableCaps*/draw_ic16_backspace, /*drawableSym*/draw_ic16_backspace, /*onClick*/backspace},
   
-  {/*row*/4, /*col*/0, /*width*/60, /*letter*/0, /*letterCaps*/0, /*letterSym*/0, /*drawable*/draw_ic16_cancel, /*drawableCaps*/draw_ic16_cancel, /*drawableSym*/draw_ic16_cancel, /*onClick*/setModeMainMenu},
+  {/*row*/4, /*col*/0, /*width*/60, /*letter*/0, /*letterCaps*/0, /*letterSym*/0, /*drawable*/draw_ic16_cancel, /*drawableCaps*/draw_ic16_cancel, /*drawableSym*/draw_ic16_cancel, /*onClick*/modeKeyboardCancel},
   {/*row*/4, /*col*/1, /*width*/keyDefaultWidth, /*letter*/',', /*letterCaps*/',', /*letterSym*/',', /*drawable*/0, /*drawableCaps*/0, /*drawableSym*/0, /*onClick*/addLetter},
   {/*row*/4, /*col*/2, /*width*/137, /*letter*/' ', /*letterCaps*/' ', /*letterSym*/' ', /*drawable*/0, /*drawableCaps*/0, /*drawableSym*/0, /*onClick*/addLetter},
   {/*row*/4, /*col*/3, /*width*/keyDefaultWidth, /*letter*/'.', /*letterCaps*/'.', /*letterSym*/'.', /*drawable*/0, /*drawableCaps*/0, /*drawableSym*/0, /*onClick*/addLetter},
-  {/*row*/4, /*col*/4, /*width*/63, /*letter*/0, /*letterCaps*/0, /*letterSym*/0, /*drawable*/draw_ic16_check, /*drawableCaps*/draw_ic16_check, /*drawableSym*/draw_ic16_check, /*onClick*/keyboardDone},
+  {/*row*/4, /*col*/4, /*width*/63, /*letter*/0, /*letterCaps*/0, /*letterSym*/0, /*drawable*/draw_ic16_check, /*drawableCaps*/draw_ic16_check, /*drawableSym*/draw_ic16_check, /*onClick*/modeKeyboardDone},
   
   };
 
 
-void setModeKeyboard(String title, Runnable onDone){
+void setModeKeyboard(String title, Runnable onDone, Runnable onCancel){
   keyboardTitle = title;
   keyboardDone = onDone;
+  keyboardCancel = onCancel;
   setModeKeyboard();
 }
 
@@ -182,6 +184,18 @@ void modeKeyboardButtonDown(){
   selectedRow++;
   if(selectedRow > 4)
     selectedRow=0;
+}
+
+void modeKeyboardCancel(){
+  if(keyboardCancel!=0)
+    keyboardCancel();
+  else
+    setModeWatchface();
+}
+
+void modeKeyboardDone(){
+  if(keyboardDone!=0)
+    keyboardDone();
 }
 
 int cntKeys(){

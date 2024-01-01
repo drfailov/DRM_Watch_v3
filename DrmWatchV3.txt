@@ -43,6 +43,7 @@ Changelog:
 2023-12-30 v0.1 Trying to build libraries
 2023-12-30 v0.1 Created Wi-Fi scanner mode
 2023-12-31 v0.1 Started development of Keyboard
+2024-01-01 v0.1 Wi-Fi network saving.
 
 
 

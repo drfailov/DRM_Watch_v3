@@ -66,7 +66,6 @@ void modeMainMenuButtonCenter(){
   }
   
   if(selected == itemAbout){
-    setModeKeyboard(String("Введіть пароль для ")+"тест", setModeWatchface);
     return;
   }
   

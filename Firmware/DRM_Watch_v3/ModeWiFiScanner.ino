@@ -1,0 +1,174 @@
+String modeWiFiScannerSelectedNetwork = "";
+Runnable modeWiFiScannerOnNetworkSelected = 0;
+Runnable modeWiFiScannerOnCancel = 0;
+
+const int modeWiFiScannerStatePreparing = 0;
+const int modeWiFiScannerStateSettingUp = 1;
+const int modeWiFiScannerStateSettingUpDelay = 2;
+const int modeWiFiScannerStateSettingUpScanning = 3;
+const int modeWiFiScannerStateSettingUpNoNetworks = 4;
+const int modeWiFiScannerStateSettingUpSelectingNetwork = 5;
+int modeWiFiScannerState = 0;
+long modeWiFiScannerStateChangeTime = 0;
+
+void setModeWiFiScanner(Runnable onSelected, Runnable onCancel){
+  modeWiFiScannerOnNetworkSelected = onSelected;
+  modeWiFiScannerOnCancel = onCancel;
+  setModeWiFiScanner_();
+}
+void setModeWiFiScanner(){
+  setModeWiFiScanner_();
+}
+void setModeWiFiScanner_(){
+  Serial.println(F("Set mode: WiFiScanner"));
+  modeSetup = setModeWiFiScanner_;
+  modeLoop = modeWiFiScannerLoop;
+  modeButtonUp = modeMainMenuButtonUp;
+  modeButtonCenter = modeWiFiScannerButtonCenter;
+  modeButtonDown = modeMainMenuButtonDown;
+  //modeButtonUpLong = modeWatchfaceButtonUp;
+  //modeButtonCenterLong = modeWatchfaceButtonUp;
+  //modeButtonDownLong = modeWatchfaceButtonUp;
+  modeWiFiScannerState = modeWiFiScannerStatePreparing;
+  modeWiFiScannerStateChangeTime = millis();
+}
+
+void modeWiFiScannerLoop(){
+  lcd()->setColorIndex(white);
+  lcd()->drawBox(0, 0, 400, 240);
+
+
+  drawBattery(339, 1);
+
+  drawMenuLegend();
+  
+  if(modeWiFiScannerState == modeWiFiScannerStatePreparing){
+    drawMessage("Підготовка...");
+    if(millis()-modeWiFiScannerStateChangeTime > 500){
+      modeWiFiScannerState = modeWiFiScannerStateSettingUp;
+      modeWiFiScannerStateChangeTime = millis();
+    }
+  }
+  else if(modeWiFiScannerState == modeWiFiScannerStateSettingUp){
+    drawMessage("Налаштування Wi-Fi...");
+    // Set WiFi to station mode and disconnect from an AP if it was previously connected.
+    WiFi.mode(WIFI_STA);
+    WiFi.disconnect();
+    modeWiFiScannerState = modeWiFiScannerStateSettingUpDelay;
+    modeWiFiScannerStateChangeTime = millis();
+  }
+  else if(modeWiFiScannerState == modeWiFiScannerStateSettingUpDelay){
+    drawMessage("Підготовка сканування...");
+    if(millis()-modeWiFiScannerStateChangeTime > 500){
+      modeWiFiScannerState = modeWiFiScannerStateSettingUpScanning;
+      modeWiFiScannerStateChangeTime = millis();
+    }
+  }
+  else if(modeWiFiScannerState == modeWiFiScannerStateSettingUpScanning){
+    drawMessage("Cканування...");
+    int n = WiFi.scanNetworks();
+    if(n==0){
+      modeWiFiScannerState = modeWiFiScannerStateSettingUpNoNetworks;
+      modeWiFiScannerStateChangeTime = millis();
+    }
+    else{
+      modeWiFiScannerState = modeWiFiScannerStateSettingUpSelectingNetwork;
+      modeWiFiScannerStateChangeTime = millis();
+      selected = 0;
+      items = n+1;
+    }
+  }
+  else if(modeWiFiScannerState == modeWiFiScannerStateSettingUpNoNetworks){
+    drawMessage("Мереж не знайдено.");
+  }
+  else if(modeWiFiScannerState == modeWiFiScannerStateSettingUpSelectingNetwork){
+    drawListItem(0, draw_ic24_arrow_left, "Повернутись", "Назад", false); 
+    for(int i=0; i<items-1; i++){
+      int rssi = WiFi.RSSI(i);
+      void (*drawIcon)(int x,int y, bool color);
+      if(rssi > -55) drawIcon = draw_ic24_wifi_3;
+      else if (rssi > -67) drawIcon = draw_ic24_wifi_2;
+      else if (rssi > -70) drawIcon = draw_ic24_wifi_1;
+      else if (rssi > -80) drawIcon = draw_ic24_wifi_0;
+      drawListItem(i+1, drawIcon, WiFi.SSID(i).c_str(), (String("")+rssi+"dBm " + encryprionType(i)).c_str(), false); //
+    }
+  }
+  
+  lcd()->sendBuffer();
+  resetTemperatureSensor();
+  if(sinceLastAction() > autoReturnTime) //auto go to watchface
+    setModeWatchface();
+}
+
+String modeWiFiScannerGetSelectedNetworkName(){
+  return modeWiFiScannerSelectedNetwork;
+}
+
+void modeWiFiScannerButtonCenter(){
+  if(modeWiFiScannerState == modeWiFiScannerStateSettingUpNoNetworks){
+      if(modeWiFiScannerOnCancel != 0)
+        modeWiFiScannerOnCancel();
+      else
+        setModeMainMenu();
+  }
+  if(modeWiFiScannerState == modeWiFiScannerStateSettingUpSelectingNetwork){
+    if(selected == 0){
+      if(modeWiFiScannerOnCancel != 0)
+        modeWiFiScannerOnCancel();
+      else
+        setModeMainMenu();
+    }
+    else{
+      modeWiFiScannerSelectedNetwork = WiFi.SSID(selected-1);
+      if(modeWiFiScannerOnNetworkSelected != 0)
+        modeWiFiScannerOnNetworkSelected();
+    }
+  }
+}
+
+void tryConnectWifi(String ssid, String password, Runnable onConnected, Runnable onFailed){
+  drawMessage("Спроба з'єднання..", ssid + " " + password);
+  WiFi.begin(ssid, password);
+  for (long timeStarted = millis(); WiFi.status() != WL_CONNECTED ;) {
+    delay(900);
+    lcd()->print(".");
+    lcd()->sendBuffer();
+    if(millis()-timeStarted > 10000){
+      drawMessage("З'єднатись не вдалось.");
+      delay(500);
+      if(onFailed != 0)
+        onFailed();
+      return;
+    }
+  }
+  drawMessage("Підключено.");
+  delay(500);
+  if(onConnected != 0)
+    onConnected();
+}
+
+const char* encryprionType(int i){
+  switch (WiFi.encryptionType(i))
+  {
+  case WIFI_AUTH_OPEN:
+      return ("Open");
+  case WIFI_AUTH_WEP:
+      return ("WEP");
+  case WIFI_AUTH_WPA_PSK:
+      return ("WPA");
+  case WIFI_AUTH_WPA2_PSK:
+      return  ("WPA2");
+  case WIFI_AUTH_WPA_WPA2_PSK:
+      return  ("WPA+WPA2");
+  case WIFI_AUTH_WPA2_ENTERPRISE:
+      return ("WPA2-EAP");
+  case WIFI_AUTH_WPA3_PSK:
+      return ("WPA3");
+  case WIFI_AUTH_WPA2_WPA3_PSK:
+      return ("WPA2+WPA3");
+  case WIFI_AUTH_WAPI_PSK:
+      return ("WAPI");
+  default:
+      return ("unknown");
+  }
+}

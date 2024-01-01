@@ -1,3 +1,4 @@
+int ModeSavedWiFiListSelectedSlot = 0;
 
 void setModeSavedWiFiList(){
   Serial.println(F("Set mode: SavedWiFiList"));
@@ -24,6 +25,8 @@ void modeSavedWiFiListLoop(){
   for(int i=1; i<items; i++){
     if(wifiSlotIsEmpty(i))
       drawListItem(i, draw_ic24_wifi_0, "Пусто", "Немає даних про мережу", false); //
+    else
+      drawListItem(i, draw_ic24_wifi_3, wifiSlotName(i).c_str(), wifiSlotPassword(i).c_str(), false); //
   }
 
   lcd()->sendBuffer();
@@ -33,10 +36,40 @@ void modeSavedWiFiListLoop(){
 }
 
 void modeSavedWiFiListButtonCenter(){
+  ModeSavedWiFiListSelectedSlot = selected;
   if(selected == 0){
       setModeMainMenu();
   }
   else if(wifiSlotIsEmpty(selected)){
-    setModeWiFiList(selected);
+    setModeWiFiScanner(modeSavedWiFiListOnNetworkNameSelected, setModeSavedWiFiList);
+  }
+  else{
+    //deleet
   }
 }
+
+void modeSavedWiFiListOnNetworkNameSelected(){
+  setModeKeyboard(String("Введіть пароль для ")+modeWiFiScannerGetSelectedNetworkName(), modeSavedWiFiListOnNetworkPasswordSelected, setModeSavedWiFiList);
+}
+
+void modeSavedWiFiListOnNetworkPasswordSelected(){
+  String ssid = modeWiFiScannerGetSelectedNetworkName();
+  String password = getKeybordResult();
+  tryConnectWifi(ssid, password, modeSavedWiFiListOnNetworkConnected, modeSavedWiFiListOnNetworkFailed);
+}
+void modeSavedWiFiListOnNetworkConnected(){
+  String ssid = modeWiFiScannerGetSelectedNetworkName();
+  String password = getKeybordResult();
+  int slot = ModeSavedWiFiListSelectedSlot;
+  drawMessage("Збереження...", ssid + " " + password);
+  delay(500);
+  if(wifiSlotSave(slot, ssid, password)){
+    drawMessage("Збережено.");
+  }
+  delay(500);
+  setModeSavedWiFiList();
+}
+void modeSavedWiFiListOnNetworkFailed(){
+  setModeSavedWiFiList();
+}
+
