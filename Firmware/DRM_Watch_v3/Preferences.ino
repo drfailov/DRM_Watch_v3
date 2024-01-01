@@ -28,6 +28,10 @@ bool wifiSlotSave(int slot, String ssid, String password){ //1 ... wifiSlotCnt
   return savedSsid>0 && savedPassword>0;
 }
 
+bool wifiSlotClear(int slot){ //1 ... wifiSlotCnt
+  return wifiSlotSave(slot, "-empty-", "-empty-");
+}
+
 int getPreferencesFreeSpace(){
   return preferencesObject.freeEntries();
 }

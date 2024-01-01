@@ -45,7 +45,13 @@ void modeSavedWiFiListButtonCenter(){
   }
   else{
     //deleet
+    questionModeSet("Видалити мережу " + wifiSlotName(selected) + "?", modeSavedWiFiListOnDeleteNetwork, setModeSavedWiFiList);
   }
+}
+
+void modeSavedWiFiListOnDeleteNetwork(){
+  wifiSlotClear(selected);
+  setModeSavedWiFiList();
 }
 
 void modeSavedWiFiListOnNetworkNameSelected(){
