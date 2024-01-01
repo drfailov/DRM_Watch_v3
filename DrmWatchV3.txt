@@ -10,6 +10,9 @@ Icons used as reference:
 <a href="https://www.flaticon.com/free-icons/backspace" title="backspace icons">Backspace icons created by apien - Flaticon</a>
 <a href="https://www.flaticon.com/free-icons/up-arrow" title="up arrow icons">Up arrow icons created by Icon mania - Flaticon</a>
 <a href="https://www.flaticon.com/free-icons/cancel" title="cancel icons">Cancel icons created by torskaya - Flaticon</a>
+<a href="https://www.flaticon.com/free-icons/question" title="question icons">Question icons created by Dave Gandy - Flaticon</a>
+
+
 
 
 
@@ -46,6 +49,7 @@ Changelog:
 2024-01-01 v0.1 Wi-Fi network saving.
 2024-01-01 v0.1 Synchronizing time with saved Wi-Fi network.
 2024-01-01 v0.1 Removing saved network
+2024-01-01 v0.1 New Question Window
 
 
 

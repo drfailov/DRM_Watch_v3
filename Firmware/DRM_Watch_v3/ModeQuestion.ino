@@ -1,8 +1,9 @@
 Runnable questionModeOnYes = 0;
 Runnable questionModeOnNo = 0;
-String questionModeText = "";
+String questionModeText1 = "";
+String questionModeText2 = "";
 
-void questionModeSet(String _text, Runnable _onYes, Runnable _onNo){
+void questionModeSet(String _text1, String _text2, Runnable _onYes, Runnable _onNo){
   Serial.println(F("Set mode: Question"));
   modeSetup = doNothing;
   modeLoop = questionModeLoop;
@@ -12,7 +13,8 @@ void questionModeSet(String _text, Runnable _onYes, Runnable _onNo){
   //modeButtonUpLong = modeWatchfaceButtonUp;
   //modeButtonCenterLong = modeWatchfaceButtonUp;
   //modeButtonDownLong = modeWatchfaceButtonUp;
-  questionModeText = _text;
+  questionModeText1 = _text1;
+  questionModeText2 = _text2;
   questionModeOnYes = _onYes;
   questionModeOnNo = _onNo;
 }
@@ -21,7 +23,11 @@ void questionModeLoop(){
   draw_ic24_check2(lx(), ly1(), black);
   draw_ic24_empty(lx(), ly2(), black);
   draw_ic24_cancel(lx(), ly3(), black);
-  drawMessage(questionModeText);
+  drawQuestion(questionModeText1, questionModeText2);
+
+  
+  if(sinceLastAction() > autoReturnTime) //auto go to watchface
+    setModeWatchface();
 }
 
 

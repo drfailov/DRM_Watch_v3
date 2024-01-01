@@ -26,7 +26,7 @@ U8G2_LS027B7DH01_400X240_F_4W_HW_SPI* lcd(){
 void drawMessage(String text){
   int x = 15;
   int y = 79;
-  int width = 340;
+  int width = 345;
   int height = 70;
   lcd()->setColorIndex(white);
   lcd()->drawBox(/*x*/x+1, /*y*/y+1, /*w*/width-2, /*h*/height-2);
@@ -45,7 +45,7 @@ void drawMessage(String text){
 void drawMessage(String text, String text2){
   int x = 15;
   int y = 79;
-  int width = 340;
+  int width = 345;
   int height = 70;
   lcd()->setColorIndex(white);
   lcd()->drawBox(/*x*/x+1, /*y*/y+1, /*w*/width-2, /*h*/height-2);
@@ -55,8 +55,29 @@ void drawMessage(String text, String text2){
   draw_ic24_about(x+10, y+22, black);
 
   lcd()->setColorIndex(black);
-  lcd()->setFont(u8g2_font_10x20_t_cyrillic);
+  lcd()->setFont(u8g2_font_unifont_t_cyrillic);  //ok
   lcd()->setCursor(x+45, y+49); lcd()->print(text2);
+  lcd()->setFont(u8g2_font_10x20_t_cyrillic);
+  lcd()->setCursor(x+45, y+29); lcd()->print(text);
+
+  lcd()->sendBuffer();
+}
+void drawQuestion(String text, String text2){
+  int x = 15;
+  int y = 79;
+  int width = 345;
+  int height = 70;
+  lcd()->setColorIndex(white);
+  lcd()->drawBox(/*x*/x+1, /*y*/y+1, /*w*/width-2, /*h*/height-2);
+  lcd()->setColorIndex(black);
+  lcd()->drawFrame(/*x*/x, /*y*/y, /*w*/width, /*h*/height);
+  lcd()->drawFrame(/*x*/x+1, /*y*/y+1, /*w*/width-2, /*h*/height-2);
+  draw_ic24_question(x+10, y+22, black);
+
+  lcd()->setColorIndex(black);
+  lcd()->setFont(u8g2_font_unifont_t_cyrillic);  //ok
+  lcd()->setCursor(x+45, y+49); lcd()->print(text2);
+  lcd()->setFont(u8g2_font_10x20_t_cyrillic);
   lcd()->setCursor(x+45, y+29); lcd()->print(text);
 
   lcd()->sendBuffer();
