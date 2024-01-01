@@ -1,4 +1,4 @@
-
+bool dontSleep = false;
 
 void setModeTest(){
   Serial.println(F("Set mode: Test"));
@@ -24,7 +24,7 @@ void modeTestLoop(){
   int interval = 13;
 
   y+=interval; lcd()->drawStr(x, y, rtc()->getTime("%B %d %Y %H:%M:%S").c_str());
-  y+=interval; lcd()->setCursor(x, y); lcd()->print("Millis:"); lcd()->print(millis());
+  y+=interval; lcd()->setCursor(x, y); lcd()->print("Millis:"); lcd()->print(millis()); lcd()->print(",   Don't sleep: "); lcd()->print(dontSleep);
   y+=interval; lcd()->setCursor(x, y); lcd()->print("RAW ");  lcd()->print("BATTERY: "); lcd()->print(readSensBatteryRaw()); lcd()->print(", USB:"); lcd()->print(readSensUsbRaw());
   y+=interval; lcd()->setCursor(x, y); lcd()->print("VOLTAGE ");  lcd()->print("BATTERY: "); lcd()->print(readSensBatteryVoltage()); lcd()->print(" ("); lcd()->print(batteryBars()); lcd()->print(" bars)"); 
   y+=interval; lcd()->setCursor(x, y); lcd()->print("BUTTONS "); lcd()->print("TOP:");lcd()->print(isPressed(BUT_UP)); lcd()->print(" CENTER:");lcd()->print(isPressed(BUT_CENTER)); lcd()->print(" BOTTOM:");lcd()->print(isPressed(BUT_DOWN));
@@ -32,15 +32,18 @@ void modeTestLoop(){
   y+=interval; lcd()->setCursor(x, y); lcd()->print("Since last action:"); lcd()->print(sinceLastAction());
   y+=interval; lcd()->setCursor(x, y); lcd()->print("Temperature:"); lcd()->print(temperature());
   y+=interval; lcd()->setCursor(x, y); lcd()->print("Preferences remaining memory:"); lcd()->print(getPreferencesFreeSpace());
+  y+=interval; lcd()->setCursor(x, y); lcd()->print("RTC CLK: "); lcd()->print(getRtcSlk());
+  
   
   
   draw_ic24_lock(lx(), ly1(), black);
   draw_ic24_arrow_left(lx(), ly2(), black);
+  draw_ic24_coffee(lx(), ly3(), black);
 
   lcd()->sendBuffer();
 
-  if(sinceLastAction() > autoReturnTime) //auto go to watchface
-    setModeWatchface();
+  if(sinceLastAction() > autoReturnTime && !dontSleep) //auto go to sleep
+    goToSleep();
 }
 
 void modeTestButtonUp(){
@@ -52,9 +55,7 @@ void modeTestButtonCenter(){
 }
 
 void modeTestButtonDown(){
-  //setModeWatchface();
-  //rtc()->setTime(/*s*/0, /*m*/9, /*h*/0,   /*d*/9, /*M*/10, /*y*/2023);  // 17th Jan 2021 15:24:30
-  //playMelody();
+  dontSleep=!dontSleep;
 }
 
 

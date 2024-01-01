@@ -15,6 +15,11 @@ Icons used as reference:
 
 
 
+RTC Source info:
+https://www.esp32.com/viewtopic.php?f=19&t=31371&hilit=esp32+lib+builder#p108261
+
+
+
 
 Changelog:
 2023-12 Board: Add LEDs to show status
@@ -50,7 +55,7 @@ Changelog:
 2024-01-01 v0.1 Synchronizing time with saved Wi-Fi network.
 2024-01-01 v0.1 Removing saved network
 2024-01-01 v0.1 New Question Window
-
+2024-01-01 v0.1 Dont Sleep option on debug screen
 
 
 
