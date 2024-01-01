@@ -56,6 +56,7 @@ Changelog:
 2024-01-01 v0.1 Removing saved network
 2024-01-01 v0.1 New Question Window
 2024-01-01 v0.1 Dont Sleep option on debug screen
+2024-01-01 v0.1 More NTP servers used at once
 
 
 

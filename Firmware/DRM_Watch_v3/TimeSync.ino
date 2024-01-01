@@ -1,8 +1,6 @@
 #include <WiFi.h>
 #include "time.h"
 
-const char* ssid     = "Dr. Failov:VPN";
-const char* password = "Manuleee";
 const long  gmtOffset_sec = 7200;
 const int   daylightOffset_sec = 3600;
 
@@ -27,20 +25,18 @@ void initTime(){
   setTimezone("EET-2EEST,M3.5.0/3,M10.5.0/4"); //kyiv
 }
 
-
 void setTimezone(String timezone){
   Serial.printf("  Setting Timezone to %s\n",timezone.c_str());
   setenv("TZ",timezone.c_str(),1);  //  Now adjust the TZ.  Clock settings are adjusted to show the new local time
   tzset();
 }
 
-
 void timeSync(){
   if(connectToKnownWifi()){
     drawMessage("Скидання часу...");
     rtc()->setTime(0);
     drawMessage("З'єднання з сервером...");
-    configTime(0, 0, ntpServer);
+    configTime(0, 0, ntpServer, ntpServer1, ntpServer2);
     printLocalTime();
     initTime();
   }
@@ -51,7 +47,6 @@ void timeSync(){
   setModeWatchface();
   drawMessage("Готово.");
   delay(500);
-
 }
 
 void printLocalTime()
