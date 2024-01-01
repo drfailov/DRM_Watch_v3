@@ -48,6 +48,7 @@ Runnable modeButtonDownLong = 0;
 void setup(void) {
   Serial.begin(115200);
   initPreferences();
+  initTime();
   lcdInit();
   initButtons();
   initLed();

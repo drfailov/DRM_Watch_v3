@@ -11,7 +11,7 @@ void setModeSavedWiFiList(){
   //modeButtonCenterLong = modeWatchfaceButtonUp;
   //modeButtonDownLong = modeWatchfaceButtonUp;
   selected = 0;
-  items = 6;
+  items = wifiSlotCnt()+1;
 }
 
 
@@ -57,6 +57,7 @@ void modeSavedWiFiListOnNetworkPasswordSelected(){
   String password = getKeybordResult();
   tryConnectWifi(ssid, password, modeSavedWiFiListOnNetworkConnected, modeSavedWiFiListOnNetworkFailed);
 }
+
 void modeSavedWiFiListOnNetworkConnected(){
   String ssid = modeWiFiScannerGetSelectedNetworkName();
   String password = getKeybordResult();
@@ -69,7 +70,18 @@ void modeSavedWiFiListOnNetworkConnected(){
   delay(500);
   setModeSavedWiFiList();
 }
+
 void modeSavedWiFiListOnNetworkFailed(){
   setModeSavedWiFiList();
+}
+
+bool connectToKnownWifi(){
+  for(int i=1; i<=wifiSlotCnt(); i++){//chek all saved networks
+    if(!wifiSlotIsEmpty(i)){ //try connect
+      if(tryConnectWifi(wifiSlotName(i), wifiSlotPassword(i),0,0))
+        return true;
+    }
+  }
+  return false;
 }
 

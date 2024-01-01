@@ -1,3 +1,5 @@
+#include <WiFi.h>
+
 String modeWiFiScannerSelectedNetwork = "";
 Runnable modeWiFiScannerOnNetworkSelected = 0;
 Runnable modeWiFiScannerOnCancel = 0;
@@ -126,7 +128,7 @@ void modeWiFiScannerButtonCenter(){
   }
 }
 
-void tryConnectWifi(String ssid, String password, Runnable onConnected, Runnable onFailed){
+bool tryConnectWifi(String ssid, String password, Runnable onConnected, Runnable onFailed){
   drawMessage("Спроба з'єднання..", ssid + " " + password);
   WiFi.begin(ssid, password);
   for (long timeStarted = millis(); WiFi.status() != WL_CONNECTED ;) {
@@ -138,13 +140,14 @@ void tryConnectWifi(String ssid, String password, Runnable onConnected, Runnable
       delay(500);
       if(onFailed != 0)
         onFailed();
-      return;
+      return false;
     }
   }
   drawMessage("Підключено.");
   delay(500);
   if(onConnected != 0)
     onConnected();
+  return true;
 }
 
 const char* encryprionType(int i){

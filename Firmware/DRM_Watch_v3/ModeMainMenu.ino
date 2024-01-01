@@ -66,6 +66,7 @@ void modeMainMenuButtonCenter(){
   }
   
   if(selected == itemAbout){
+    timeSync();
     return;
   }
   
