@@ -81,13 +81,4 @@ void modeSavedWiFiListOnNetworkFailed(){
   setModeSavedWiFiList();
 }
 
-bool connectToKnownWifi(){
-  for(int i=1; i<=wifiSlotCnt(); i++){//chek all saved networks
-    if(!wifiSlotIsEmpty(i)){ //try connect
-      if(tryConnectWifi(wifiSlotName(i), wifiSlotPassword(i),0,0))
-        return true;
-    }
-  }
-  return false;
-}
 

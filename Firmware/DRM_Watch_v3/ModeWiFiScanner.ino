@@ -150,6 +150,28 @@ bool tryConnectWifi(String ssid, String password, Runnable onConnected, Runnable
   return true;
 }
 
+bool connectToKnownWifi(){
+  drawMessage("Налаштування Wi-Fi...");
+  WiFi.mode(WIFI_STA);
+  WiFi.disconnect();
+  delay(100);
+  drawMessage("Cканування...");
+  int n = WiFi.scanNetworks();
+  if(n==0){
+    drawMessage("Мереж не знайдено.");
+    delay(1000);
+    return false;
+  }
+  drawMessage("Пошук знайомих мереж...");
+  for(int i=0; i<items-1; i++){
+    String name = WiFi.SSID(i);
+    int index = getWifiSavedIndex(name);
+    if(index != -1 && tryConnectWifi(name, wifiSlotPassword(index),0,0))
+        return true;
+  }
+  return false;
+}
+
 const char* encryprionType(int i){
   switch (WiFi.encryptionType(i))
   {

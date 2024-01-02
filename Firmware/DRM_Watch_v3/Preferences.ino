@@ -7,7 +7,7 @@ void initPreferences(){
 }
 
 int wifiSlotCnt(){
-  return 5;
+  return 7;
 }
 
 bool wifiSlotIsEmpty(int slot){ //1 ... wifiSlotCnt
@@ -20,6 +20,14 @@ String wifiSlotName(int slot){ //1 ... wifiSlotCnt
 
 String wifiSlotPassword(int slot){ //1 ... wifiSlotCnt
   return preferencesObject.getString((String("ws")+slot+"p").c_str(), "-empty-");
+}
+
+int getWifiSavedIndex(String name){
+  for(int i=1; i<wifiSlotCnt(); i++){
+    if(wifiSlotName(i) == name)
+      return i;
+  }
+  return -1;
 }
 
 bool wifiSlotSave(int slot, String ssid, String password){ //1 ... wifiSlotCnt
