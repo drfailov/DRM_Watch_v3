@@ -30,6 +30,8 @@ bool white = 1;
 #define CHARGER_EN_PIN 37
 
 int autoReturnTime = 120000;//ms
+int autoSleepTime = 15000;//ms
+int autoSleepTimeFlashlightOn = 300000;//ms
 int items =0;     //global for menus
 int selected = 0; //global for menus
 

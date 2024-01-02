@@ -22,7 +22,10 @@ void modeMainMenuLoop(){
   lcd()->setColorIndex(white);
   lcd()->drawBox(0, 0, 400, 240);
 
-
+  lcd()->setFont(u8g2_font_10x20_t_cyrillic);  //ok
+  lcd()->setColorIndex(black);
+  lcd()->setCursor(5, 18); 
+  lcd()->print("Головне меню");
   
   drawMenuItem(itemBack, draw_ic24_arrow_left, "Назад", false);
   drawMenuItem(itemApps, draw_ic24_apps, "Програми", false);
@@ -31,7 +34,7 @@ void modeMainMenuLoop(){
   drawMenuItem(itemDebug, draw_ic24_bug, "Інженерне меню", false);
 
   
-  drawTemperature(5, 5);
+  //drawTemperature(5, 5);
   drawBattery(339, 1);
   
   drawMenuLegend();
@@ -59,14 +62,12 @@ void modeMainMenuButtonCenter(){
     return;
   }
   if(selected == itemSettings){
-    //setModeTimeSync();
-    //setModeWiFiList();
-    setModeSavedWiFiList();
+    setModeSettingsMenu();
     return;
   }
   
   if(selected == itemAbout){
-    timeSync();
+    drawMessage("В процесі розробки.");
     return;
   }
   
@@ -117,10 +118,10 @@ void drawListItem(byte index, Drawable drawIcon, const char* name, const char* d
   int lines = 4;
   if(selected/(lines) != index/(lines)) return;
   const int xOffset = 10;
-  const int yOffset = 30;
+  const int yOffset = 28;
   const int width=345;
   const int height=42;
-  const int margin = 8;
+  const int margin = 6;
   int x = xOffset;
   int y = yOffset + (height+margin) * ((index%(lines)));
   
@@ -141,7 +142,7 @@ void drawListItem(byte index, Drawable drawIcon, const char* name, const char* d
   if(selected == index){
     lcd()->setFont(u8g2_font_10x20_t_cyrillic);  //ok
     lcd()->setColorIndex(black);
-    lcd()->setCursor(5, 18); 
+    lcd()->setCursor(5, 235); 
     lcd()->print(selected+1);lcd()->print("/");lcd()->print(items); 
   }
   if(animate)

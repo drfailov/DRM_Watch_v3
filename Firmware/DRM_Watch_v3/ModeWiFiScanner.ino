@@ -39,6 +39,10 @@ void modeWiFiScannerLoop(){
   lcd()->setColorIndex(white);
   lcd()->drawBox(0, 0, 400, 240);
 
+  lcd()->setFont(u8g2_font_10x20_t_cyrillic);  //ok
+  lcd()->setColorIndex(black);
+  lcd()->setCursor(5, 18); 
+  lcd()->print("Знайдені мережі");
 
   drawBattery(339, 1);
 
@@ -157,19 +161,24 @@ bool connectToKnownWifi(){
   delay(100);
   drawMessage("Cканування...");
   int n = WiFi.scanNetworks();
-  if(n==0){
-    drawMessage("Мереж не знайдено.");
-    delay(1000);
-    return false;
-  }
   drawMessage("Пошук знайомих мереж...");
-  for(int i=0; i<items-1; i++){
+  for(int i=0; i<n; i++){
     String name = WiFi.SSID(i);
     int index = getWifiSavedIndex(name);
     if(index != -1 && tryConnectWifi(name, wifiSlotPassword(index),0,0))
         return true;
   }
+  drawMessage("Відомих мереж не знайдено.", "Додайте одну з доступних мереж.");
+  delay(2000);
+  wifiOff();
   return false;
+}
+
+void wifiOff(){
+  drawMessage("Вимкнення Wi-Fi...");
+  WiFi.disconnect(true);
+  WiFi.mode(WIFI_OFF);
+  resetTemperatureSensor();
 }
 
 const char* encryprionType(int i){

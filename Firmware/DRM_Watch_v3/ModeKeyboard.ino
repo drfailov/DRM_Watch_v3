@@ -113,7 +113,7 @@ void modeKeyboardLoop(){
   lcd()->drawBox(0, 0, 400, 240);
 
   lcd()->setFont(u8g2_font_10x20_t_cyrillic);  //ok
-  lcd()->setCursor(6, 16);
+  lcd()->setCursor(5, 18); 
   lcd()->setColorIndex(black);
   lcd()->print(keyboardTitle);
 

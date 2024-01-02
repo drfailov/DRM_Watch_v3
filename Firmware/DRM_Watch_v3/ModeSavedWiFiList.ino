@@ -18,6 +18,13 @@ void setModeSavedWiFiList(){
 void modeSavedWiFiListLoop(){
   lcd()->setColorIndex(white);
   lcd()->drawBox(0, 0, 400, 240);
+
+
+  lcd()->setFont(u8g2_font_10x20_t_cyrillic);  //ok
+  lcd()->setColorIndex(black);
+  lcd()->setCursor(5, 18); 
+  lcd()->print("Збережені мережі");
+
   drawMenuLegend();
   drawBattery(339, 1);
 
@@ -38,7 +45,7 @@ void modeSavedWiFiListLoop(){
 void modeSavedWiFiListButtonCenter(){
   ModeSavedWiFiListSelectedSlot = selected;
   if(selected == 0){
-      setModeMainMenu();
+      setModeSettingsMenu();
   }
   else if(wifiSlotIsEmpty(selected)){
     setModeWiFiScanner(modeSavedWiFiListOnNetworkNameSelected, setModeSavedWiFiList);
@@ -74,6 +81,7 @@ void modeSavedWiFiListOnNetworkConnected(){
     drawMessage("Збережено.");
   }
   delay(500);
+  wifiOff();
   setModeSavedWiFiList();
 }
 

@@ -23,6 +23,9 @@ void ledStatusOff(){
   digitalWrite(LED_STATUS_PIN, LOW);
 }
 
+bool isFlashlightOn(){
+  return (ledTopValue != 0 ||  ledBottomValue != 0);
+}
 void ledFlashlightToggleTop(){
   if(ledTopValue == 0){
     ledTopValue = 255;

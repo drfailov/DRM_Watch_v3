@@ -43,7 +43,8 @@ void modeWatchfaceLoop(){
   if(esp_sleep_get_wakeup_cause() != ESP_SLEEP_WAKEUP_TIMER) //if wake by timer, don't refresh display to keep image static
     lcd()->sendBuffer();
 
-  if(sinceLastAction() > 15000) //auto go to sleep
+  int sleepTimeout = isFlashlightOn()?autoSleepTimeFlashlightOn:autoSleepTime;
+  if(sinceLastAction() > sleepTimeout) //auto go to sleep
     goToSleep();
 }
 

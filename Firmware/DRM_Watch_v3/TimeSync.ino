@@ -52,7 +52,7 @@ void timeSync(){
 
     bool lastSyncValid = lastSyncTime > 1609459200;  // 1st Jan 2021 00:00:00;
     bool measuredTimeValid = measuredTime > lastSyncTime;
-    bool sinceLastSyncValid = sinceLastSync > 60*60*2; //2h
+    bool sinceLastSyncValid = sinceLastSync > 60*60*10; //60*60*10  = 10h
     
     drawMessage(String("timeForSyncMillis=")+timeForSyncMillis);
     drawMessage(String("measuredTime=")+measuredTime);
@@ -69,22 +69,20 @@ void timeSync(){
       double deltaDouble = delta;
       double sinceLastSyncDouble = sinceLastSync;
       double coefficient = deltaDouble/sinceLastSyncDouble; 
-      saveTimeCoef(coefficient);
+      if(saveTimeCoef(coefficient))
+        drawMessage(String("SAVED coefficient=")+String(coefficient, 6));
+      else
+        drawMessage(String("ERROR SAVING coefficient=")+String(coefficient, 6));
 
       drawMessage(String("actualTime=")+actualTime);
       drawMessage(String("delta=")+delta);
       drawMessage(String("deltaDouble=")+deltaDouble);
       drawMessage(String("sinceLastSyncDouble=")+sinceLastSyncDouble);
-      drawMessage(String("coefficient=")+String(coefficient, 6));
     }
+    wifiOff();
+    setModeWatchface();
   }
-  drawMessage("Вимкнення Wi-Fi...");
-  WiFi.disconnect(true);
-  WiFi.mode(WIFI_OFF);
-  resetTemperatureSensor();
-  setModeWatchface();
-  drawMessage("Готово.");
-  delay(500);
+  
 }
 
 void printLocalTime()

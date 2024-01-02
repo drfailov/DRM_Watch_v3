@@ -49,10 +49,10 @@ unsigned long getLastTimeSync(){
   return preferencesObject.getULong64("lastTimeSync1", 0);
 }
 bool saveTimeCoef(double coef){
-  return preferencesObject.putDouble("timeCorrectionCoef1", coef) > 0;
+  return preferencesObject.putDouble("timeCorrection1", coef) > 0;
 }
 double getTimeCoef(){
-  return preferencesObject.getDouble("timeCorrectionCoef1", 0);
+  return preferencesObject.getDouble("timeCorrection1", 0);
 }
 
 //----------------------//----------------------//----------------------//----------------------//----------------------//----------------------//----------------------
