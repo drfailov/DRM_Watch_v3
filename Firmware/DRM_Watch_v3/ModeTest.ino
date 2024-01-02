@@ -23,7 +23,8 @@ void modeTestLoop(){
   int x=5;
   int interval = 13;
 
-  y+=interval; lcd()->drawStr(x, y, rtc()->getTime("%B %d %Y %H:%M:%S").c_str());
+  y+=interval; lcd()->setCursor(x, y); lcd()->print("Meas:"); lcd()->print(rtc()->getTime("%d %b %Y %H:%M:%S"));  lcd()->print("   Epoch:"); lcd()->print(rtc()->getEpoch());
+  y+=interval; lcd()->setCursor(x, y); lcd()->print("Corr:"); lcd()->print(rtcCorrected()->getTime("%d %b %Y %H:%M:%S"));  lcd()->print("   Epoch:"); lcd()->print(rtcCorrected()->getEpoch());
   y+=interval; lcd()->setCursor(x, y); lcd()->print("Millis:"); lcd()->print(millis()); lcd()->print(",   Don't sleep: "); lcd()->print(dontSleep);
   y+=interval; lcd()->setCursor(x, y); lcd()->print("RAW ");  lcd()->print("BATTERY: "); lcd()->print(readSensBatteryRaw()); lcd()->print(", USB:"); lcd()->print(readSensUsbRaw());
   y+=interval; lcd()->setCursor(x, y); lcd()->print("VOLTAGE ");  lcd()->print("BATTERY: "); lcd()->print(readSensBatteryVoltage()); lcd()->print(" ("); lcd()->print(batteryBars()); lcd()->print(" bars)"); 
@@ -33,6 +34,8 @@ void modeTestLoop(){
   y+=interval; lcd()->setCursor(x, y); lcd()->print("Temperature:"); lcd()->print(temperature());
   y+=interval; lcd()->setCursor(x, y); lcd()->print("Preferences remaining memory:"); lcd()->print(getPreferencesFreeSpace());
   y+=interval; lcd()->setCursor(x, y); lcd()->print("RTC CLK: "); lcd()->print(getRtcSlk());
+  y+=interval; lcd()->setCursor(x, y); lcd()->print("Last sync: "); lcd()->print(getLastTimeSync());  lcd()->print("   Time coef: "); lcd()->print(String(getTimeCoef(), 6));  
+  
   
   
   
@@ -56,6 +59,8 @@ void modeTestButtonCenter(){
 
 void modeTestButtonDown(){
   dontSleep=!dontSleep;
+  if(dontSleep)
+    buttonLongBeep();
 }
 
 

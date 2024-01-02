@@ -33,12 +33,50 @@ void setTimezone(String timezone){
 
 void timeSync(){
   if(connectToKnownWifi()){
+    drawMessage("Збір даних...");
+    unsigned long lastSyncTime = getLastTimeSync(); //s
+    unsigned long measuredTime = rtc()->getEpoch(); //s
+    unsigned long syncStartedMillis = millis();     //millis
     drawMessage("Скидання часу...");
     rtc()->setTime(0);
     drawMessage("З'єднання з сервером...");
     configTime(0, 0, ntpServer, ntpServer1, ntpServer2);
     printLocalTime();
+    delay(500);
+    saveLastTimeSync(rtc()->getEpoch());
+    drawMessage("Відновлення часового поясу...");
     initTime();
+    unsigned long timeForSyncMillis = (millis()-syncStartedMillis) ;  //ms
+    measuredTime += timeForSyncMillis / 1000; //s
+    unsigned long sinceLastSync = measuredTime-lastSyncTime;  //s
+
+    bool lastSyncValid = lastSyncTime > 1609459200;  // 1st Jan 2021 00:00:00;
+    bool measuredTimeValid = measuredTime > lastSyncTime;
+    bool sinceLastSyncValid = sinceLastSync > 60*60*2; //2h
+    
+    drawMessage(String("timeForSyncMillis=")+timeForSyncMillis);
+    drawMessage(String("measuredTime=")+measuredTime);
+    drawMessage(String("lastSyncTime=")+lastSyncTime);
+    drawMessage(String("sinceLastSync=")+sinceLastSync);
+
+    drawMessage(String("lastSyncValid=")+lastSyncValid);
+    drawMessage(String("measuredTimeValid=")+measuredTimeValid);
+    drawMessage(String("sinceLastSyncValid=")+sinceLastSyncValid);
+    if(lastSyncValid && measuredTimeValid && sinceLastSyncValid){
+      drawMessage("Аналіз похибки...");
+      unsigned long actualTime = rtc()->getEpoch(); //s
+      long delta = actualTime-measuredTime;  //s
+      double deltaDouble = delta;
+      double sinceLastSyncDouble = sinceLastSync;
+      double coefficient = deltaDouble/sinceLastSyncDouble; 
+      saveTimeCoef(coefficient);
+
+      drawMessage(String("actualTime=")+actualTime);
+      drawMessage(String("delta=")+delta);
+      drawMessage(String("deltaDouble=")+deltaDouble);
+      drawMessage(String("sinceLastSyncDouble=")+sinceLastSyncDouble);
+      drawMessage(String("coefficient=")+String(coefficient, 6));
+    }
   }
   drawMessage("Вимкнення Wi-Fi...");
   WiFi.disconnect(true);

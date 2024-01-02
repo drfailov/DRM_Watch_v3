@@ -21,12 +21,12 @@ void modeWatchfaceLoop(){
   //Serial.println("draw time...");
   lcd()->setColorIndex(black);
   lcd()->setFont(u8g2_font_logisoso92_tn);
-  lcd()->drawStr(60, 160, rtc()->getTime("%H:%M").c_str());
+  lcd()->drawStr(60, 160, rtcCorrected()->getTime("%H:%M").c_str());
 
   //Serial.println("draw date...");
   lcd()->setFont(u8g2_font_10x20_t_cyrillic);
   lcd()->setColorIndex(black);
-  lcd()->drawStr(5, 25, rtc()->getTime("%d %b %Y").c_str());
+  lcd()->drawStr(5, 25, rtcCorrected()->getTime("%d %b %Y").c_str());
   
   //Serial.println("draw temperature...");
   drawTemperature(5, 213);

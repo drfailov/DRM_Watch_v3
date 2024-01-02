@@ -32,6 +32,23 @@ bool wifiSlotClear(int slot){ //1 ... wifiSlotCnt
   return wifiSlotSave(slot, "-empty-", "-empty-");
 }
 
+//----------------------//----------------------//----------------------//----------------------//----------------------//----------------------//----------------------
+
+bool saveLastTimeSync(unsigned long epoch){
+  return preferencesObject.putULong64("lastTimeSync1", epoch) > 0;
+}
+unsigned long getLastTimeSync(){
+  return preferencesObject.getULong64("lastTimeSync1", 0);
+}
+bool saveTimeCoef(double coef){
+  return preferencesObject.putDouble("timeCorrectionCoef1", coef) > 0;
+}
+double getTimeCoef(){
+  return preferencesObject.getDouble("timeCorrectionCoef1", 0);
+}
+
+//----------------------//----------------------//----------------------//----------------------//----------------------//----------------------//----------------------
+
 int getPreferencesFreeSpace(){
   return preferencesObject.freeEntries();
 }

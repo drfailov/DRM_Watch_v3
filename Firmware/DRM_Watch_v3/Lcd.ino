@@ -24,6 +24,7 @@ U8G2_LS027B7DH01_400X240_F_4W_HW_SPI* lcd(){
 }
 
 void drawMessage(String text){
+  Serial.println(text);
   int x = 15;
   int y = 79;
   int width = 345;
@@ -40,9 +41,12 @@ void drawMessage(String text){
   lcd()->setCursor(x+45, y+39); lcd()->print(text);
 
   lcd()->sendBuffer();
+  delay(100);
 }
 
 void drawMessage(String text, String text2){
+  Serial.println(text);
+  Serial.println(text2);
   int x = 15;
   int y = 79;
   int width = 345;
@@ -61,8 +65,11 @@ void drawMessage(String text, String text2){
   lcd()->setCursor(x+45, y+29); lcd()->print(text);
 
   lcd()->sendBuffer();
+  delay(100);
 }
 void drawQuestion(String text, String text2){
+  Serial.println(text);
+  Serial.println(text2);
   int x = 15;
   int y = 79;
   int width = 345;
@@ -81,6 +88,7 @@ void drawQuestion(String text, String text2){
   lcd()->setCursor(x+45, y+29); lcd()->print(text);
 
   lcd()->sendBuffer();
+  delay(100);
 }
 
 
