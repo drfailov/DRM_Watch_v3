@@ -31,8 +31,7 @@ void modeWatchfaceLoop(){
   //Serial.println("draw temperature...");
   drawTemperature(5, 213);
 
-  //Serial.println("draw battery...");
-  drawBattery(371, 214);
+  drawStatusbar(371, 214, false);
   
   //Serial.println("draw legend...");
   draw_ic24_flashlight(lx(), ly1(), black);
@@ -57,7 +56,26 @@ void modeWatchfaceButtonCenter(){
 }
 
 void modeWatchfaceButtonDown(){
-  //shortBeep();
-  //setModeTest();
   setModeMainMenu();
+}
+
+void drawStatusbar(int x, int y, bool drawTime){
+  int interval = 6;
+  if(drawTime){
+    lcd()->setColorIndex(black);
+    lcd()->setFont(u8g2_font_10x20_t_cyrillic);
+    String time = rtcCorrected()->getTime("%H:%M");
+    int width = lcd()->getStrWidth(time.c_str());
+    //x-=width;
+    lcd()->setCursor(x-width+24, y+18); 
+    lcd()->print(time);
+    x-=width;
+    x-=interval;
+  }
+  //Serial.println("draw battery...");
+  drawBattery(x, y);
+  x -= 24;
+  x-=interval;
+  if(isFlashlightOn())
+    draw_ic24_flashlight(x, y, black);
 }

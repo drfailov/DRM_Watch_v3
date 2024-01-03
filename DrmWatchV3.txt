@@ -13,7 +13,7 @@ Icons used as reference:
 <a href="https://www.flaticon.com/free-icons/question" title="question icons">Question icons created by Dave Gandy - Flaticon</a>
 <a href="https://www.flaticon.com/free-icons/synchronization" title="synchronization icons">Synchronization icons created by Freepik - Flaticon</a>
 <a href="https://www.flaticon.com/free-icons/time" title="time icons">Time icons created by Ilham Fitrotul Hayat - Flaticon</a>
-
+<a href="https://www.flaticon.com/free-icons/music-note" title="music note icons">Music note icons created by iconsax - Flaticon</a>
 
 
 
@@ -64,8 +64,8 @@ Changelog:
 2024-01-02 v0.1 Time correction algorythm based on NTP time synchronization
 2024-01-02 v0.1 Significantly optimized connection to known network
 2024-01-02 v0.1 Settings menu
-
-
+2024-01-02 v0.1 added apps menu, added new icons
+2024-01-02 v0.1 created statusbar
 
 
 

@@ -7,7 +7,7 @@ const int itemModeSettingsSetTimeZone=5;
 
 void setModeSettingsMenu(){
   Serial.println(F("Set mode: Settings Menu"));
-  modeSetup = setModeTest;
+  modeSetup = setModeSettingsMenu;
   modeLoop = modeSettingsMenuLoop;
   modeButtonUp = modeMainMenuButtonUp;
   modeButtonCenter = modeSettingsMenuButtonCenter;
@@ -37,7 +37,7 @@ void modeSettingsMenuLoop(){
   drawMenuItem(itemModeSettingsSetTimeZone, draw_ic24_timezone, "Обрати часовий пояс", false);
 
   
-  drawBattery(339, 1);
+  drawStatusbar(339, 1, true);
   
   drawMenuLegend();
 

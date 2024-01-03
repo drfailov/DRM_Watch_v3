@@ -35,7 +35,7 @@ void modeMainMenuLoop(){
 
   
   //drawTemperature(5, 5);
-  drawBattery(339, 1);
+  drawStatusbar(339, 1, true);
   
   drawMenuLegend();
 
@@ -58,7 +58,7 @@ void modeMainMenuButtonCenter(){
     return;
   }
   if(selected == itemApps){
-    playMelody();
+    setModeAppsMenu();
     return;
   }
   if(selected == itemSettings){

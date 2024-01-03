@@ -26,7 +26,7 @@ void modeSavedWiFiListLoop(){
   lcd()->print("Збережені мережі");
 
   drawMenuLegend();
-  drawBattery(339, 1);
+  drawStatusbar(339, 1, true);
 
   drawListItem(0, draw_ic24_arrow_left, "Повернутись", "В меню налаштувань", false); //
   for(int i=1; i<items; i++){
@@ -62,7 +62,7 @@ void modeSavedWiFiListOnDeleteNetwork(){
 }
 
 void modeSavedWiFiListOnNetworkNameSelected(){
-  setModeKeyboard(String("Введіть пароль для ")+modeWiFiScannerGetSelectedNetworkName(), modeSavedWiFiListOnNetworkPasswordSelected, setModeSavedWiFiList);
+  setModeKeyboard(String("Пароль:")+modeWiFiScannerGetSelectedNetworkName(), modeSavedWiFiListOnNetworkPasswordSelected, setModeSavedWiFiList);
 }
 
 void modeSavedWiFiListOnNetworkPasswordSelected(){

@@ -155,7 +155,7 @@ void modeKeyboardLoop(){
   }
 
   
-  drawBattery(339, 1);
+  drawStatusbar(339, 1, false);
   lcd()->setColorIndex(black);
   lcd()->drawLine(369, 0, 369, 260);
   lcd()->drawLine(370, 0, 370, 260);

@@ -44,7 +44,7 @@ void modeWiFiScannerLoop(){
   lcd()->setCursor(5, 18); 
   lcd()->print("Знайдені мережі");
 
-  drawBattery(339, 1);
+  drawStatusbar(339, 1, true);
 
   drawMenuLegend();
   
