@@ -1,3 +1,4 @@
+
 const byte groovyBlue[] = {
   125,
   0b10011101, 0b00100100, 0b00100100, 0b00100100, 0b00100100,
@@ -23,11 +24,6 @@ const byte groovyBlue[] = {
   0b01011111, 0b00100100, 0b10011000, 0b10011011, 0b10011000,
   0b10011011, 0b01011101, 0b11111111,
 };
-const byte* const getMelodyGroovyBlue() {
-  return groovyBlue;
-}
-
-
 const byte blue[]  = {
     140,
     0b00001001, 0b00001010, 0b01000111, 0b01001010, 0b01001100, 
@@ -41,71 +37,179 @@ const byte blue[]  = {
     0b00001010, 0b01000111, 0b01001010, 0b01001001, 0b01000101, 
     0b01000101, 0b00000111, 0b11111111, 
 };
-
-const byte* getMelodyBlue() {
-  return blue;
-}
-
-
-
-
-//Максимальная длина строки:                  |          |
-const char modeMenuMelodiesItem1[]  = "Entertainer";
-const char modeMenuMelodiesItem2[]  = "Badinerie";
-const char modeMenuMelodiesItem3[]  = "Nokia Tune";
-const char modeMenuMelodiesItem4[]  = "Mozart";
-const char modeMenuMelodiesItem5[]  = "Mario";
-const char modeMenuMelodiesItem6[]  = "Groovy Blue";
-const char modeMenuMelodiesItem7[]  = "Ukraine";
-const char modeMenuMelodiesItem8[]  = "Blue";
-const char modeMenuMelodiesItem9[]  = "Was Wollen";
-
-
-const char*  modeMenuMelodiesItems[]  = {
-  modeMenuMelodiesItem1,
-  modeMenuMelodiesItem2,
-  modeMenuMelodiesItem3,
-  modeMenuMelodiesItem4,
-  modeMenuMelodiesItem5,
-  modeMenuMelodiesItem6,
-  modeMenuMelodiesItem7,
-  modeMenuMelodiesItem8,
-  modeMenuMelodiesItem9
+const byte badinerie[]  = {
+  125,
+  0b01010111, 0b10011010, 0b10010111, 0b01010010, 0b10010111,
+  0b10010010, 0b01001110, 0b10010010, 0b10001110, 0b00001011,
+  0b10000110, 0b10001011, 0b10001110, 0b10001011, 0b10001101,
+  0b10001011, 0b10001101, 0b10001011, 0b10001010, 0b10001101,
+  0b10010000, 0b10001101, 0b01001110, 0b01001011, 0b01010111,
+  0b10011010, 0b10010111, 0b01010010, 0b10010111, 0b10010010,
+  0b01001110, 0b10010010, 0b10001110, 0b00001011, 0b01001110,
+  0b01001110, 0b01001110, 0b01001110, 0b01010111, 0b01001110,
+  0b11001110, 0b11001101, 0b11001110, 0b11001101, 0b01001101,
+  0b01010010, 0b01010010, 0b01010010, 0b01010010, 0b01011010,
+  0b01010010, 0b11010010, 0b11010001, 0b11010010, 0b11010001,
+  0b01010001, 0b10001101, 0b10010010, 0b10010101, 0b10010010,
+  0b10010100, 0b10010010, 0b10010100, 0b10010010, 0b10010001,
+  0b10010100, 0b10010111, 0b10010100, 0b10010101, 0b10010100,
+  0b10010101, 0b10010100, 0b10010010, 0b10010101, 0b10010010,
+  0b10010001, 0b10010010, 0b10010111, 0b10010010, 0b10010001,
+  0b10010010, 0b10011001, 0b10010010, 0b10010001, 0b10010010,
+  0b10011010, 0b10010010, 0b10010001, 0b10010010, 0b10011010,
+  0b10011001, 0b10010111, 0b10011001, 0b10010101, 0b10010100,
+  0b10010010, 0b01010101, 0b01010100, 0b00010010, 0b11111111,
+};
+const byte mozart[]  = {
+  240,
+  0b01010101, 0b10010100, 0b10100100, 0b01010100, 0b01100100,
+  0b01010101, 0b10010100, 0b10100100, 0b01010100, 0b01100100,
+  0b01010101, 0b10010100, 0b10100100, 0b00010100, 0b00011100,
+  0b00100100, 0b10100100, 0b01011100, 0b10011011, 0b10100100,
+  0b01011001, 0b01100100, 0b01011001, 0b10010111, 0b10100100,
+  0b01010101, 0b01100100, 0b01010101, 0b11100100, 0b10010100,
+  0b10100100, 0b01010010, 0b01100100, 0b01010010, 0b00100100,
+  0b01100100, 0b01010100, 0b11100100, 0b01010010, 0b11100100,
+  0b01010010, 0b01100100, 0b01010100, 0b10010010, 0b10100100,
+  0b01010010, 0b01100100, 0b01010100, 0b10010010, 0b10100100,
+  0b00010010, 0b01011011, 0b00100100, 0b01100100, 0b01011011,
+  0b01011001, 0b01011000, 0b01100100, 0b01011000, 0b01010101,
+  0b01010100, 0b01100100, 0b11100100, 0b01010100, 0b01010010,
+  0b01010000, 0b01100100, 0b01010000, 0b00100100, 0b01100100,
+  0b01011100, 0b10011011, 0b10100100, 0b00011011, 0b00011110,
+  0b00011000, 0b00011011, 0b00011001, 0b00010100, 0b00100100,
+  0b01011100, 0b11100100, 0b10011011, 0b10100100, 0b00011011,
+  0b00011110, 0b00011000, 0b00011011, 0b00011001, 0b00011100,
+  0b01011011, 0b01011001, 0b01010111, 0b01010101, 0b00010100,
+  0b00010011, 0b00010100, 0b00100100, 0b10001000, 0b10100100,
+  0b10001000, 0b10100100, 0b00001000, 0b00100100, 0b10001000,
+  0b10100100, 0b10001000, 0b10100100, 0b00001000, 0b00100100,
+  0b10001000, 0b10100100, 0b10001000, 0b10100100, 0b01001000,
+  0b01100100, 0b10001000, 0b10100100, 0b10001000, 0b10100100,
+  0b01001000, 0b01100100, 0b10001000, 0b10100100, 0b10001000,
+  0b10100100, 0b00001000, 0b11111111,
+};
+const byte mario[]  = {
+  100,
+  0b10010000, 0b10010000, 0b11100100, 0b01010000, 0b10001100,
+  0b01010000, 0b01010011, 0b01100100, 0b01000111, 0b01100100,
+  0b01001100, 0b10100100, 0b01000111, 0b10100100, 0b01000100,
+  0b10100100, 0b01001001, 0b01001011, 0b10001010, 0b01001001,
+  0b01000111, 0b10010000, 0b10010011, 0b01010101, 0b10010001,
+  0b01010011, 0b01010000, 0b10001100, 0b10001110, 0b01001011,
+  0b10100100, 0b01001100, 0b10100100, 0b01000111, 0b10100100,
+  0b01000100, 0b10100100, 0b01001001, 0b01001011, 0b10001010,
+  0b01001001, 0b01000111, 0b10010000, 0b10010011, 0b01010101,
+  0b10010001, 0b01010011, 0b01010000, 0b10001100, 0b10001110,
+  0b01001011, 0b01100100, 0b10010011, 0b10010010, 0b10010001,
+  0b11111111,
+};
+const byte entertainer[]  = {
+  140,
+  0b01001110, 0b01001111, 0b01010000, 0b00011000, 0b01010000,
+  0b00011000, 0b01010000, 0b00011000, 0b01011000, 0b01011010,
+  0b01011011, 0b01011100, 0b01011000, 0b01011010, 0b00011100,
+  0b01010111, 0b00011010, 0b00011000, 0b00100100, 0b01001110,
+  0b01001111, 0b01010000, 0b00011000, 0b01010000, 0b00011000,
+  0b01010000, 0b00011000, 0b01100100, 0b01010101, 0b01010011,
+  0b01010010, 0b01010101, 0b01011000, 0b00011100, 0b01011010,
+  0b01011000, 0b01010101, 0b00011010, 0b11111111,
+};
+const byte toreador[]  = {
+  165,
+  0b00011000, 0b00011010, 0b10011000, 0b00010101, 0b00010101,
+  0b01010101, 0b10100100, 0b10010011, 0b00010101, 0b10010110,
+  0b00010101, 0b00100100, 0b00010110, 0b00010011, 0b10011000,
+  0b00010101, 0b00100100, 0b00010001, 0b00001110, 0b10010011,
+  0b00001100, 0b00100100, 0b00010011, 0b01010011, 0b01011010,
+  0b01011000, 0b01010110, 0b01010101, 0b11100100, 0b01010011,
+  0b01010101, 0b01010110, 0b00010101, 0b00100100, 0b00010000,
+  0b00010101, 0b00010101, 0b01010100, 0b01010111, 0b00011100,
+  0b01100100, 0b11011010, 0b10011100, 0b11011010, 0b01011001,
+  0b01011010, 0b01010011, 0b01010101, 0b00010110, 0b01100100,
+  0b11010101, 0b10010110, 0b11010101, 0b01010001, 0b01011010,
+  0b00011000, 0b00100100, 0b11010001, 0b10010011, 0b11010001,
+  0b01001100, 0b01010110, 0b01010101, 0b01100100, 0b01010011,
+  0b01100100, 0b01010001, 0b00100100, 0b00100100, 0b11111111,
+};
+const byte ukraine[] = {
+    110,
+    0b00010000, 0b01100100, 0b01010000, 0b01010000, 0b01001110, 
+    0b01010000, 0b01010001, 0b00010011, 0b01100100, 0b01010001, 
+    0b00010000, 0b00001110, 0b00001100, 0b00010000, 0b00001011, 
+    0b00010000, 0b01001001, 0b01001000, 0b01001001, 0b01001011, 
+    0b00001100, 0b00001110, 0b00010000, 0b01100100, 0b01010000, 
+    0b01010000, 0b01001110, 0b01010000, 0b01010001, 0b00010011, 
+    0b01100100, 0b01010001, 0b00010000, 0b00001110, 0b00001100, 
+    0b00001001, 0b00010000, 0b00001000, 0b00001001, 0b00000100, 
+    0b00001001, 0b11111111, 
+};
+const byte wasWollenWirTrinken[]  = {
+  115,
+    0b01001001, 0b01001001, 0b10000111, 0b10000110, 0b00000111, 
+    0b00000100, 0b01000100, 0b01001001, 0b01001001, 0b01000111, 
+    0b01000110, 0b01001001, 0b01001001, 0b10000111, 0b10000101, 
+    0b00000111, 0b00000100, 0b01000110, 0b01000010, 0b00000100, 
+    0b01100100, 0b01010101, 0b01010101, 0b10010011, 0b10010010, 
+    0b00010011, 0b00010000, 0b01010000, 0b01010101, 0b01010101, 
+    0b01010011, 0b01010010, 0b01010101, 0b01010101, 0b10010011, 
+    0b10010001, 0b00010011, 0b00010000, 0b01010010, 0b01001110, 
+    0b00010000, 0b01100100, 0b01010000, 0b01010011, 0b01010101, 
+    0b00010111, 0b00010111, 0b01011000, 0b01010101, 0b00010111, 
+    0b01100100, 0b01010101, 0b01010101, 0b10010011, 0b10010010, 
+    0b00010011, 0b00010000, 0b01010000, 0b01010101, 0b01010101, 
+    0b01010011, 0b01010010, 0b01010101, 0b01010101, 0b10010011, 
+    0b10010001, 0b00010011, 0b00010000, 0b01010010, 0b01001110, 
+    0b00010000, 0b11111111
+};
+const byte nokiaTune[] = {
+  112,
+  0b10011111, 0b10011101, 0b01010101, 0b01010111, 0b10011100,
+  0b10011010, 0b01010001, 0b01010011, 0b10011010, 0b10011000,
+  0b01010000, 0b01010011, 0b00011000, 0b11111111,
 };
 
-byte getMelodyCount(){ return 9;}
-const char* getMelodyName(byte index){
-  return (modeMenuMelodiesItems[index+1]);
+
+//----------------------//----------------------//----------------------//----------------------//----------------------//----------------------//----------------------
+
+
+
+struct Melody {             
+  String name;   
+  const byte* data;         
+  Melody(String _name, const byte* _data):name(_name), data(_data) {}
+};    
+
+Melody melodies[]={
+  {"groovyBlue", groovyBlue},
+  {"blue", blue},
+  {"badinerie", badinerie},
+  {"mozart", mozart},
+  {"mario", mario},
+  {"entertainer", entertainer},
+  {"toreador", toreador},
+  {"ukraine", ukraine},
+  {"wasWollenWirTrinken", wasWollenWirTrinken},
+  {"nokiaTune", nokiaTune}
+};
+
+int getMelodyCount(){
+   return sizeof(melodies)/sizeof(melodies[0]);
 }
-const byte* getMelodyByIndex(byte index){
-  // if (index == 0) 
-    // return getMelodyEntertainer();
-  // if (index == 1)  
-  //   return getMelodyBadinerie();
-  // if (index == 2)  
-  //   return getMelodyNokiaTune();
-  // if (index == 3) 
-  //   return getMelodyMozart();
-  // if (index == 4) 
-  //   return getMelodyMario();
-  if (index == 5) 
-    return getMelodyGroovyBlue();
-  // if (index == 6) 
-  //   return getMelodyUkraine();
-  // if (index == 7) 
-  //   return getMelodyBlue();  
-  // if (index == 8) 
-  //   return getMelodyWasWollenWirTrinken();  
-  return 0;  
+
+String getMelodyName(int index){
+   return melodies[index].name;
+}
+
+const byte* getMelodyData(int index){
+   return melodies[index].data;
 }
 
 
 
 
 
-
-
-bool melodyPlayerLoopMelody = false;
+bool melodyPlayerLoopMelody = false;   
 
 //return true if was played completely or false if interrupted
 bool melodyPlayerPlayMelody(const byte* melody) {
@@ -139,17 +243,21 @@ bool melodyPlayerPlayMelody(const byte* melody) {
       long noteStarted = millis();
       if (frequency != 0){
         //displayBacklightOn();
-        buzTone(frequency, timeMs);
+        buzTone(frequency);
       }
       else{
         buzNoTone();
       }
+      while(millis() - noteStarted < timeMs-150)
+        melodyPlayerDrawScreen();
       while(millis() - noteStarted < timeMs);
       buzNoTone();
       //displayBacklightOff();
       delay(13);
       
-    //   if (isButtonUpPressed()){
+      if (isButtonUpPressed()){
+        return false;
+      }
     //     if(isButtonUpHold()){
     //       melodyPlayerLoopMelody = !melodyPlayerLoopMelody;
     //       melodyPlayerDrawScreen();
@@ -163,37 +271,26 @@ bool melodyPlayerPlayMelody(const byte* melody) {
     
     buzNoTone();
     //pinMode(pinBuzzer, INPUT);
-    delay(1000);
+    //delay(5000);
   }while(melodyPlayerLoopMelody);
   //displayBacklightOn();
   return true;
 }
 
 void melodyPlayerDrawScreen() {
-//   displayClear();
-//   displayDrawVector(/*path*/getPathZubat(), /*x*/24, /*y*/10, /*animate*/false, /*color*/1);
-// #ifdef LANG_EN
-//   displayDrawText(20, 60, 1, F("Playing..."));
-// #endif
-// #ifdef LANG_RU
-//   displayDrawText(17, 60, 1, F("Пoпиликaeм!"));
-// #endif
-// #ifdef LANG_UA
-//   displayDrawText(20, 60, 1, F("Виконую..."));
-// #endif
 
-//   if(!melodyPlayerLoopMelody){
-//     byte hour = rtcGetHours();
-//     byte minute = rtcGetMinutes();
-//     sprintf(buffer, timeFormat, hour, minute);
-//     displayDrawText(0, 0, 1, buffer);
-//   }
-//   else{
-//     displayDrawIconFlip(0, 0, 1);
-//   }
-  
-//   displayDrawBattery(79, 0);
-//   displayUpdate();
+  lcd()->setColorIndex(white);
+  lcd()->drawBox(0, 0, 400, 240);
+
+  lcd()->setFont(u8g2_font_10x20_t_cyrillic);  //ok
+  lcd()->setCursor(5, 18); 
+  lcd()->setColorIndex(black);
+  lcd()->print("Плеєр");
+
+  lcd()->print(millis());
+
+  drawStatusbar(363, 1, true);
+  lcd()->sendBuffer();
 }
 
 void printBits(byte myByte) {
@@ -214,3 +311,17 @@ int melodyPlayerGetLength(const byte* melody) {
   }
   return 0;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

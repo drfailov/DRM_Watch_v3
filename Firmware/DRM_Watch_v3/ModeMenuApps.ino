@@ -51,7 +51,8 @@ void ModeAppsMenuButtonCenter(){
     //playMelody();
     //melodyPlayerPlayMelody(getMelodyGroovyBlue());
     
-    melodyPlayerPlayMelody(getMelodyBlue());
+    //melodyPlayerPlayMelody(getMelodyData(0));
+    setModeMelodyListMenu();
     
     return;
   }

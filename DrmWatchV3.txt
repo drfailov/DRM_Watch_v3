@@ -68,6 +68,7 @@ Changelog:
 2024-01-02 v0.10 created statusbar
 2024-01-03 v0.11 Added some icons to 16px size
 2024-01-03 v0.11 Started porting music player
+2024-01-03 v0.11 Added menu for melodies list
 
 
 

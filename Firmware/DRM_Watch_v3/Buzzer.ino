@@ -10,6 +10,10 @@ void buzzerInit(){
   }
 }
 
+void buzTone(int freq){
+  buzzer.tone(freq);
+  //delay(duration);
+}
 void buzTone(int freq, int duration){
   buzzer.tone(freq, duration);
   //delay(duration);

@@ -12,7 +12,8 @@ class ToneESP32 {
     int channel;
   public:    
     ToneESP32(int pin, int channel);      
-    void tone(int note, int duree);
+    void tone(int note, int duree);   
+    void tone(int note);
     void noTone();    
 };
 

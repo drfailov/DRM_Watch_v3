@@ -14,6 +14,10 @@ void ToneESP32::tone(int note, int duree ) {
     delay(duree);
     ledcWrite( channel, 0 );
 }
+void ToneESP32::tone(int note ) {     
+	ledcSetup( channel, note, PWM_Res );
+	ledcWrite( channel, 127 );                            
+}
 
 
 void ToneESP32::noTone() {
