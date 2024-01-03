@@ -248,16 +248,18 @@ bool melodyPlayerPlayMelody(const byte* melody) {
       else{
         buzNoTone();
       }
-      while(millis() - noteStarted < timeMs-150)
+      while(millis() - noteStarted < timeMs-150){
         melodyPlayerDrawScreen();
+        if (isButtonUpPressed()){
+          buzNoTone();
+          return false;
+        }
+      }
       while(millis() - noteStarted < timeMs);
       buzNoTone();
       //displayBacklightOff();
       delay(13);
       
-      if (isButtonUpPressed()){
-        return false;
-      }
     //     if(isButtonUpHold()){
     //       melodyPlayerLoopMelody = !melodyPlayerLoopMelody;
     //       melodyPlayerDrawScreen();
