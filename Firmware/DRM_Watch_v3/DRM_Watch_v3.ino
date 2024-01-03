@@ -29,6 +29,7 @@ bool white = 1;
 #define TOUCH3_PIN 10
 #define CHARGER_EN_PIN 37
 
+bool dontSleep = false;
 int autoReturnTime = 120000;//ms
 int autoSleepTime = 15000;//ms
 int autoSleepTimeFlashlightOn = 300000;//ms
@@ -69,8 +70,12 @@ void setup(void) {
 
 void loop(void) {
   buttonsLoop();
-  if(modeLoop != 0)
-    modeLoop();
+  if(modeLoop != 0){
+    // unsigned long millisStarted = millis();
+    modeLoop();    //usually kakes about 125 ... 150ms
+    // unsigned long millisEnd = millis();
+    // Serial.print("Loop: "); Serial.print(millisEnd-millisStarted); Serial.println("ms.");
+  }
   if(esp_sleep_get_wakeup_cause() == ESP_SLEEP_WAKEUP_TIMER)/*periodical wakeup*/
     goToSleep();
 }

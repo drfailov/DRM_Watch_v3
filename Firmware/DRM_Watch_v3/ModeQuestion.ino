@@ -10,9 +10,9 @@ void questionModeSet(String _text1, String _text2, Runnable _onYes, Runnable _on
   modeButtonUp = questionModeOnButtonUp;
   modeButtonCenter = doNothing;
   modeButtonDown = questionModeOnButtonDown;
-  //modeButtonUpLong = modeWatchfaceButtonUp;
-  //modeButtonCenterLong = modeWatchfaceButtonUp;
-  //modeButtonDownLong = modeWatchfaceButtonUp;
+  modeButtonUpLong = 0;
+  modeButtonCenterLong = 0;
+  modeButtonDownLong = 0;
   questionModeText1 = _text1;
   questionModeText2 = _text2;
   questionModeOnYes = _onYes;

@@ -6,9 +6,9 @@ void setModeWatchface(){
   modeButtonUp = modeWatchfaceButtonUp;
   modeButtonCenter = modeWatchfaceButtonCenter;
   modeButtonDown = modeWatchfaceButtonDown;
-  //modeButtonUpLong = modeWatchfaceButtonUp;
-  //modeButtonCenterLong = ledFlashlightToggleTop;
-  //modeButtonDownLong = modeWatchfaceButtonUp;
+  modeButtonUpLong = switchDontSleep;
+  modeButtonCenterLong = switchDontSleep;
+  modeButtonDownLong = 0;
   registerAction();
 }
 
@@ -31,20 +31,22 @@ void modeWatchfaceLoop(){
   //Serial.println("draw temperature...");
   drawTemperature(5, 213);
 
-  drawStatusbar(371, 214, false);
+  drawStatusbar(395, 214, false);
   
   //Serial.println("draw legend...");
-  draw_ic24_flashlight(lx(), ly1(), black);
-  draw_ic24_flashlight(lx(), ly2(), black);
-  draw_ic24_menu(lx(), ly3(), black);
+  draw_ic16_flashlight(lx(), ly1(), black);
+  draw_ic16_flashlight(lx(), ly2(), black);
+  draw_ic16_menu(lx(), ly3(), black);
 
 
   if(esp_sleep_get_wakeup_cause() != ESP_SLEEP_WAKEUP_TIMER) //if wake by timer, don't refresh display to keep image static
     lcd()->sendBuffer();
 
-  int sleepTimeout = isFlashlightOn()?autoSleepTimeFlashlightOn:autoSleepTime;
-  if(sinceLastAction() > sleepTimeout) //auto go to sleep
-    goToSleep();
+  if(!dontSleep){
+    int sleepTimeout = isFlashlightOn()?autoSleepTimeFlashlightOn:autoSleepTime;
+    if(sinceLastAction() > sleepTimeout) //auto go to sleep
+      goToSleep();
+  }
 }
 
 void modeWatchfaceButtonUp(){
@@ -59,23 +61,38 @@ void modeWatchfaceButtonDown(){
   setModeMainMenu();
 }
 
+void switchDontSleep(){
+  dontSleep=!dontSleep;
+  if(dontSleep)
+    buttonLongBeep();
+}
+
 void drawStatusbar(int x, int y, bool drawTime){
-  int interval = 6;
+  int interval = 5;
   if(drawTime){
     lcd()->setColorIndex(black);
     lcd()->setFont(u8g2_font_10x20_t_cyrillic);
     String time = rtcCorrected()->getTime("%H:%M");
     int width = lcd()->getStrWidth(time.c_str());
-    //x-=width;
-    lcd()->setCursor(x-width+24, y+18); 
-    lcd()->print(time);
     x-=width;
+    lcd()->setCursor(x, y+18); 
+    lcd()->print(time);
     x-=interval;
   }
   //Serial.println("draw battery...");
-  drawBattery(x, y);
-  x -= 24;
-  x-=interval;
-  if(isFlashlightOn())
-    draw_ic24_flashlight(x, y, black);
+  {
+    x -= 24;
+    drawBattery(x, y);
+    x-=interval;
+  }
+  if(isFlashlightOn()){
+    x -= 16;
+    draw_ic16_flashlight(x, y+4, black);
+    x-=interval;
+  }
+  if(dontSleep){
+    x -= 16;
+    draw_ic16_coffee(x, y+4, black);
+    x-=interval;
+  }
 }

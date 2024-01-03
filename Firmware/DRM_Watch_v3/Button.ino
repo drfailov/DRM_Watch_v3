@@ -29,6 +29,10 @@ bool isPressed(gpio_num_t pin){
   return true;
 }
 
+bool isButtonUpPressed(){
+  return isPressed(BUT_UP);
+}
+
 void registerAction(){
   lastActionTime=millis();
 }

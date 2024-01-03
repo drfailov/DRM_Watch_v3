@@ -9,9 +9,9 @@ void setModeAppsMenu(){
   modeButtonUp = modeMainMenuButtonUp;
   modeButtonCenter = ModeAppsMenuButtonCenter;
   modeButtonDown = modeMainMenuButtonDown;
-  //modeButtonUpLong = modeWatchfaceButtonUp;
-  //modeButtonCenterLong = modeWatchfaceButtonUp;
-  //modeButtonDownLong = modeWatchfaceButtonUp;
+  modeButtonUpLong = 0;
+  modeButtonCenterLong = 0;
+  modeButtonDownLong = 0;
   selected = 0;
   items = 3;
 }
@@ -30,7 +30,7 @@ void ModeAppsMenuLoop(){
   drawMenuItem(itemModeAppsAlarm, draw_ic24_alarm, "Будильник", false);
   drawMenuItem(itemModeAppsMusic, draw_ic24_music, "Мелодії", false);
 
-  drawStatusbar(339, 1, true);
+  drawStatusbar(363, 1, true);
   drawMenuLegend();
   lcd()->sendBuffer();
   
@@ -48,7 +48,11 @@ void ModeAppsMenuButtonCenter(){
     return;
   }
   if(selected==itemModeAppsMusic){
-    playMelody();
+    //playMelody();
+    //melodyPlayerPlayMelody(getMelodyGroovyBlue());
+    
+    melodyPlayerPlayMelody(getMelodyBlue());
+    
     return;
   }
   

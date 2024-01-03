@@ -7,9 +7,9 @@ void setModeSavedWiFiList(){
   modeButtonUp = modeMainMenuButtonUp;
   modeButtonCenter = modeSavedWiFiListButtonCenter;
   modeButtonDown = modeMainMenuButtonDown;
-  //modeButtonUpLong = modeWatchfaceButtonUp;
-  //modeButtonCenterLong = modeWatchfaceButtonUp;
-  //modeButtonDownLong = modeWatchfaceButtonUp;
+  modeButtonUpLong = 0;
+  modeButtonCenterLong = 0;
+  modeButtonDownLong = 0;
   selected = 0;
   items = wifiSlotCnt()+1;
 }
@@ -26,7 +26,7 @@ void modeSavedWiFiListLoop(){
   lcd()->print("Збережені мережі");
 
   drawMenuLegend();
-  drawStatusbar(339, 1, true);
+  drawStatusbar(363, 1, true);
 
   drawListItem(0, draw_ic24_arrow_left, "Повернутись", "В меню налаштувань", false); //
   for(int i=1; i<items; i++){

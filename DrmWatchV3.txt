@@ -39,33 +39,38 @@ Changelog:
 2023-12 Board: DRC checks
 2023-12 Board: Add silkscreen notes
 2023-12-24 v0.1 Sleep
-2023-12-25 v0.1 Temperature readings
-2023-12-25 v0.1 Icons
-2023-12-25 v0.1 Cyrillic
-2023-12-26 v0.1 new icons: battery, menu, alarm, apps, lock
-2023-12-26 v0.1 New button algorithm, better filtration, repeated click mode and long click mode
-2023-12-26 v0.1 Fixed wrong temperature reading after sleep
-2023-12-27 v0.1 Working voltage calculation
-2023-12-27 v0.1 Drawing actual battery status
-2023-12-28 v0.1 First version of flashlight functionality
-2023-12-29 v0.1 Main menu is functional
-2023-12-29 v0.1 new icons
-2023-12-29 v0.1 auto-sync time with NTP server
-2023-12-30 v0.1 Discovered HUGE time drift, looking for ways to fix it
-2023-12-30 v0.1 Trying to build libraries
-2023-12-30 v0.1 Created Wi-Fi scanner mode
-2023-12-31 v0.1 Started development of Keyboard
-2024-01-01 v0.1 Wi-Fi network saving.
-2024-01-01 v0.1 Synchronizing time with saved Wi-Fi network.
-2024-01-01 v0.1 Removing saved network
-2024-01-01 v0.1 New Question Window
-2024-01-01 v0.1 Dont Sleep option on debug screen
-2024-01-01 v0.1 More NTP servers used at once
-2024-01-02 v0.1 Time correction algorythm based on NTP time synchronization
-2024-01-02 v0.1 Significantly optimized connection to known network
-2024-01-02 v0.1 Settings menu
-2024-01-02 v0.1 added apps menu, added new icons
-2024-01-02 v0.1 created statusbar
+2023-12-25 v0.2 Temperature readings
+2023-12-25 v0.2 Icons
+2023-12-25 v0.2 Cyrillic
+2023-12-26 v0.3 new icons: battery, menu, alarm, apps, lock
+2023-12-26 v0.3 New button algorithm, better filtration, repeated click mode and long click mode
+2023-12-26 v0.3 Fixed wrong temperature reading after sleep
+2023-12-27 v0.4 Working voltage calculation
+2023-12-27 v0.4 Drawing actual battery status
+2023-12-28 v0.5 First version of flashlight functionality
+2023-12-29 v0.6 Main menu is functional
+2023-12-29 v0.6 new icons
+2023-12-29 v0.6 auto-sync time with NTP server
+2023-12-30 v0.7 Discovered HUGE time drift, looking for ways to fix it
+2023-12-30 v0.7 Trying to build libraries
+2023-12-30 v0.7 Created Wi-Fi scanner mode
+2023-12-31 v0.8 Started development of Keyboard
+2024-01-01 v0.9 Wi-Fi network saving.
+2024-01-01 v0.9 Synchronizing time with saved Wi-Fi network.
+2024-01-01 v0.9 Removing saved network
+2024-01-01 v0.9 New Question Window
+2024-01-01 v0.9 Dont Sleep option on debug screen
+2024-01-01 v0.9 More NTP servers used at once
+2024-01-02 v0.10 Time correction algorythm based on NTP time synchronization
+2024-01-02 v0.10 Significantly optimized connection to known network
+2024-01-02 v0.10 Settings menu
+2024-01-02 v0.10 added apps menu, added new icons
+2024-01-02 v0.10 created statusbar
+2024-01-03 v0.11 Added some icons to 16px size
+2024-01-03 v0.11 Started porting music player
+
+
+
 
 
 

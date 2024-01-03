@@ -12,9 +12,9 @@ void setModeSettingsMenu(){
   modeButtonUp = modeMainMenuButtonUp;
   modeButtonCenter = modeSettingsMenuButtonCenter;
   modeButtonDown = modeMainMenuButtonDown;
-  //modeButtonUpLong = modeWatchfaceButtonUp;
-  //modeButtonCenterLong = modeWatchfaceButtonUp;
-  //modeButtonDownLong = modeWatchfaceButtonUp;
+  modeButtonUpLong = 0;
+  modeButtonCenterLong = 0;
+  modeButtonDownLong = 0;
   selected = 0;
   items = 6;
 }
@@ -37,7 +37,7 @@ void modeSettingsMenuLoop(){
   drawMenuItem(itemModeSettingsSetTimeZone, draw_ic24_timezone, "Обрати часовий пояс", false);
 
   
-  drawStatusbar(339, 1, true);
+  drawStatusbar(363, 1, true);
   
   drawMenuLegend();
 

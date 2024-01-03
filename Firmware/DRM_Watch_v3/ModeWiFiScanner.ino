@@ -28,9 +28,9 @@ void setModeWiFiScanner_(){
   modeButtonUp = modeMainMenuButtonUp;
   modeButtonCenter = modeWiFiScannerButtonCenter;
   modeButtonDown = modeMainMenuButtonDown;
-  //modeButtonUpLong = modeWatchfaceButtonUp;
-  //modeButtonCenterLong = modeWatchfaceButtonUp;
-  //modeButtonDownLong = modeWatchfaceButtonUp;
+  modeButtonUpLong = 0;
+  modeButtonCenterLong = 0;
+  modeButtonDownLong = 0;
   modeWiFiScannerState = modeWiFiScannerStatePreparing;
   modeWiFiScannerStateChangeTime = millis();
 }
@@ -44,7 +44,7 @@ void modeWiFiScannerLoop(){
   lcd()->setCursor(5, 18); 
   lcd()->print("Знайдені мережі");
 
-  drawStatusbar(339, 1, true);
+  drawStatusbar(363, 1, true);
 
   drawMenuLegend();
   

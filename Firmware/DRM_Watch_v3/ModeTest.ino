@@ -1,4 +1,4 @@
-bool dontSleep = false;
+
 
 void setModeTest(){
   Serial.println(F("Set mode: Test"));
@@ -7,9 +7,9 @@ void setModeTest(){
   modeButtonUp = modeTestButtonUp;
   modeButtonCenter = modeTestButtonCenter;
   modeButtonDown = modeTestButtonDown;
-  //modeButtonUpLong = modeWatchfaceButtonUp;
-  //modeButtonCenterLong = modeWatchfaceButtonUp;
-  //modeButtonDownLong = modeWatchfaceButtonUp;
+  modeButtonUpLong = 0;
+  modeButtonCenterLong = 0;
+  modeButtonDownLong = 0;
 }
 
 void modeTestLoop(){ 
@@ -43,7 +43,7 @@ void modeTestLoop(){
   
   draw_ic24_lock(lx(), ly1(), black);
   draw_ic24_arrow_left(lx(), ly2(), black);
-  draw_ic24_coffee(lx(), ly3(), black);
+  //draw_ic24_coffee(lx(), ly3(), black);
 
   lcd()->sendBuffer();
 
@@ -60,9 +60,6 @@ void modeTestButtonCenter(){
 }
 
 void modeTestButtonDown(){
-  dontSleep=!dontSleep;
-  if(dontSleep)
-    buttonLongBeep();
 }
 
 

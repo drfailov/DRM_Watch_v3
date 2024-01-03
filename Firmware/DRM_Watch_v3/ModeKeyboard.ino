@@ -99,9 +99,9 @@ void setModeKeyboard(){
   modeButtonUp = modeKeyboardButtonUp;
   modeButtonCenter = modeKeyboardButtonCenter;
   modeButtonDown = modeKeyboardButtonDown;
-  //modeButtonUpLong = modeWatchfaceButtonUp;
-  //modeButtonCenterLong = modeWatchfaceButtonUp;
-  //modeButtonDownLong = modeWatchfaceButtonUp;
+  modeButtonUpLong = 0;
+  modeButtonCenterLong = 0;
+  modeButtonDownLong = 0;
   text = "";
   selectedRow = 0;
   selectedCol = 0;
@@ -155,7 +155,8 @@ void modeKeyboardLoop(){
   }
 
   
-  drawStatusbar(339, 1, false);
+  
+  drawStatusbar(363, 1, false);
   lcd()->setColorIndex(black);
   lcd()->drawLine(369, 0, 369, 260);
   lcd()->drawLine(370, 0, 370, 260);

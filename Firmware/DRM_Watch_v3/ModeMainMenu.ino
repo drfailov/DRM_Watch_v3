@@ -11,9 +11,9 @@ void setModeMainMenu(){
   modeButtonUp = modeMainMenuButtonUp;
   modeButtonCenter = modeMainMenuButtonCenter;
   modeButtonDown = modeMainMenuButtonDown;
-  //modeButtonUpLong = modeWatchfaceButtonUp;
-  //modeButtonCenterLong = modeWatchfaceButtonUp;
-  //modeButtonDownLong = modeWatchfaceButtonUp;
+  modeButtonUpLong = 0;
+  modeButtonCenterLong = 0;
+  modeButtonDownLong = 0;
   selected = 0;
   items = 5;
 }
@@ -35,7 +35,7 @@ void modeMainMenuLoop(){
 
   
   //drawTemperature(5, 5);
-  drawStatusbar(339, 1, true);
+  drawStatusbar(363, 1, true);
   
   drawMenuLegend();
 
@@ -152,7 +152,7 @@ void drawMenuLegend(){
   lcd()->setColorIndex(black);
   lcd()->drawLine(369, 0, 369, 260);
   lcd()->drawLine(370, 0, 370, 260);
-  draw_ic24_arrow_up(lx(), ly1(), black);
-  draw_ic24_check2(lx(), ly2(), black);
-  draw_ic24_arrow_down(lx(), ly3(), black);
+  draw_ic16_arrow_up(lx(), ly1(), black);
+  draw_ic16_check(lx(), ly2(), black);
+  draw_ic16_arrow_down(lx(), ly3(), black);
 }
