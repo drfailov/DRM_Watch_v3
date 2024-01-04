@@ -5,8 +5,8 @@ ToneESP32 buzzer(BUZZER_PIN, /*BUZZER_CHANNEL*/0);
 
 void buzzerInit(){
   if(esp_sleep_get_wakeup_cause() == 0){
-    //buzzer.tone(1000, 250);
-    playInit();
+    buzzer.tone(3000, 50);
+    buzzer.tone(2800, 50);
   }
 }
 

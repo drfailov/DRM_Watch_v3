@@ -10,7 +10,7 @@ void setModeMelodyListMenu(){
   modeButtonUpLong = 0;
   modeButtonCenterLong = 0;
   modeButtonDownLong = 0;
-  selected = 0;
+  //selected = 0;
   items = getMelodyCount()+1;
 }
 
@@ -43,6 +43,7 @@ void ModeMelodyListMenuButtonCenter(){
     return;
   }
   else{
+    melodyPlayerSetMelodyName(getMelodyName(selected-1));
     melodyPlayerPlayMelody(getMelodyData(selected-1));
     return;
   }

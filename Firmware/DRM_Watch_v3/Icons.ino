@@ -52,22 +52,37 @@ const unsigned char ic16_coffee [] = {
 0x00, 0x00, 0xFF, 0xF8, 0xBF, 0xFF, 0xBF, 0xF9, 0xBF, 0xF9, 0xBF, 0xFB, 0xBF, 0xFE, 0xDF, 0xF8,
 0x5F, 0xF0, 0x7F, 0xF0, 0x3F, 0xE0, 0x1F, 0xC0, 0x00, 0x00, 0xFF, 0xFC, 0x7F, 0xF8, 0x00, 0x00
 };void draw_ic16_coffee(int x, int y, bool color){lcd()->setColorIndex(color);  lcd()->drawBitmap(x, y, 2, 16, ic16_coffee);}
+
+
 const unsigned char ic16_arrow_up [] = {
 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x80, 0x03, 0xC0, 0x07, 0xE0, 0x0F, 0xF0, 0x1F, 0xF8,
 0x3F, 0xFC, 0x7F, 0xFE, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
 };void draw_ic16_arrow_up(int x, int y, bool color){lcd()->setColorIndex(color);  lcd()->drawBitmap(x, y, 2, 16, ic16_arrow_up);}
+
+
 const unsigned char ic16_arrow_down [] = {
 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0x7F, 0xFE, 0x3F, 0xFC,
 0x1F, 0xF8, 0x0F, 0xF0, 0x07, 0xE0, 0x03, 0xC0, 0x01, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
 };void draw_ic16_arrow_down(int x, int y, bool color){lcd()->setColorIndex(color);  lcd()->drawBitmap(x, y, 2, 16, ic16_arrow_down);}
+
+
 const unsigned char ic16_flashlight [] = {
 0x01, 0x80, 0x01, 0x80, 0x31, 0x8C, 0x38, 0x1C, 0x11, 0x88, 0x07, 0xE0, 0x07, 0xE0, 0xEF, 0xF7,
 0xEF, 0xF7, 0x07, 0xE0, 0x07, 0xE0, 0x11, 0x88, 0x38, 0x1C, 0x31, 0x8C, 0x01, 0x80, 0x01, 0x80
 };void draw_ic16_flashlight(int x, int y, bool color){lcd()->setColorIndex(color);  lcd()->drawBitmap(x, y, 2, 16, ic16_flashlight);}
+
+
 const unsigned char ic16_menu [] = {
 0x7F, 0xFE, 0xFF, 0xFF, 0x7F, 0xFE, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x7F, 0xFE, 0xFF, 0xFF,
 0x7F, 0xFE, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x7F, 0xFE, 0xFF, 0xFF, 0x7F, 0xFE, 0x00, 0x00
 };void draw_ic16_menu(int x, int y, bool color){lcd()->setColorIndex(color);  lcd()->drawBitmap(x, y, 2, 16, ic16_menu);}
+
+
+const unsigned char ic16_repeat [] = {
+0x00, 0x08, 0x00, 0x0C, 0x1F, 0xFE, 0x3F, 0xFF, 0x7F, 0xFE, 0xF0, 0x0C, 0xE0, 0x08, 0xE0, 0x00,
+0x00, 0x07, 0x10, 0x07, 0x30, 0x0F, 0x7F, 0xFE, 0xFF, 0xFC, 0x7F, 0xF8, 0x30, 0x00, 0x10, 0x00
+};void draw_ic16_repeat(int x, int y, bool color){lcd()->setColorIndex(color);  lcd()->drawBitmap(x, y, 2, 16, ic16_repeat);}
+
 
 //----------------------//----------------------//----------------------//----------------------//----------------------//----------------------//----------------------
 
@@ -394,3 +409,42 @@ const unsigned char ic24_music [] = {
 0x1F, 0xC3, 0xFC, 0x1F, 0xC3, 0xFC, 0x3F, 0xC3, 0xFC, 0x3F, 0xC1, 0xFC, 0x3F, 0xC0, 0xF8, 0x1F,
 0xC0, 0x00, 0x0F, 0x80, 0x00, 0x00, 0x00, 0x00, 
 };void draw_ic24_music(int x, int y, bool color){lcd()->setColorIndex(color);  lcd()->drawBitmap(x, y, 3, 24, ic24_music);}
+
+
+
+//----------------------//----------------------//----------------------//----------------------//----------------------//----------------------//----------------------
+
+
+
+const byte pathDrmWatch[] = { 57,
+   0,  0,     7,  0,    10,  3,    10, 13,     7, 16,  //D
+   0, 16,     0,  0,   255,255,    13, 16,    13,  0,  //R
+  20,  0,    22,  2,    22,  6,    20,  8,    14,  8,
+  22, 16,   255,255,    25, 16,    25,  0,    33,  8,  //M
+  41,  0,    41, 16,   255,255,     1, 23,     4, 34,  //W
+   6, 28,     8, 34,    11, 22,   255,255,    11, 34,  //A
+  15, 22,    17, 29,    14, 29,    17, 29,    19, 34,
+ 255,255,    20, 22,    26, 22,    23, 22,    23, 34,  //T
+ 255,255,    36, 24,    34, 22,    31, 22,    29, 24,  //C
+  29, 32,    31, 34,    34, 34,    36, 32,   255,255,
+  39, 22,    39, 34,    39, 30,    41, 28,    43, 28,  //H
+  45, 30,    45, 34
+}; const byte* getPathDrmWatch(){return pathDrmWatch;}
+
+const byte pathBubble[] = { 12,
+  39, 28,    53, 18,    89, 18,    95, 15,    95,  3,  
+  89,  0,    5,   0,     0,  3,     0, 15,     5, 18,
+  40, 18,   37,  29
+}; const byte* getpathBubble(){return pathBubble;}
+
+const byte pathZubat[] = { 42,
+   0, 36,     4, 35,    20,  3,    23,  0,    36,  0, //контур
+  34,  3,    34,  8,    23,  8,    16, 24,    35, 24,
+  35, 35,    33, 37,     0, 37,   255,255,    16, 43,//лапы
+  18, 41,    20, 43,    18, 41,    18, 37,    26, 37,
+  26, 41,    24, 43,    26, 41,    28, 43,   255,255,
+  33,  9,    29, 17,    28,  9,    23, 17,    23,  8, //зубы
+  20, 16,    23, 23,    27, 15,    29, 23,    33, 15,
+  34, 23,   255,255,    31,  2,    31,  4,    31,  3, //глаз
+  32,  3,    30,  3
+}; const byte* getPathZubat(){return pathZubat;}

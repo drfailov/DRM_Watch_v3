@@ -67,7 +67,7 @@ void switchDontSleep(){
     buttonLongBeep();
 }
 
-void drawStatusbar(int x, int y, bool drawTime){
+int drawStatusbar(int x, int y, bool drawTime){
   int interval = 5;
   if(drawTime){
     lcd()->setColorIndex(black);
@@ -95,4 +95,5 @@ void drawStatusbar(int x, int y, bool drawTime){
     draw_ic16_coffee(x, y+4, black);
     x-=interval;
   }
+  return x;
 }

@@ -69,8 +69,10 @@ Changelog:
 2024-01-03 v0.11 Added some icons to 16px size
 2024-01-03 v0.11 Started porting music player
 2024-01-03 v0.11 Added menu for melodies list
-
-
+2024-01-04 v0.12 Melody Player
+2024-01-04 v0.12 Vector Graphics
+2024-01-04 v0.12 UI Improvement
+2024-01-04 v0.12 Init screen
 
 
 

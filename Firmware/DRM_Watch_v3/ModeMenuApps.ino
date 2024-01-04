@@ -53,7 +53,7 @@ void ModeAppsMenuButtonCenter(){
     
     //melodyPlayerPlayMelody(getMelodyData(0));
     setModeMelodyListMenu();
-    
+    selected = 0;
     return;
   }
   

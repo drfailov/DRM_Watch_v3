@@ -181,16 +181,16 @@ struct Melody {
 };    
 
 Melody melodies[]={
-  {"groovyBlue", groovyBlue},
-  {"blue", blue},
-  {"badinerie", badinerie},
-  {"mozart", mozart},
-  {"mario", mario},
-  {"entertainer", entertainer},
-  {"toreador", toreador},
-  {"ukraine", ukraine},
-  {"wasWollenWirTrinken", wasWollenWirTrinken},
-  {"nokiaTune", nokiaTune}
+  {"Badinerie", badinerie},
+  {"Entertainer", entertainer},
+  {"Nokia Tune", nokiaTune},
+  {"Groovy Blue", groovyBlue},
+  {"Ukraine", ukraine},
+  {"Was Woller Wir Trinken", wasWollenWirTrinken},
+  {"Blue", blue},
+  {"Mozart", mozart},
+  {"Mario", mario},
+  {"Toreador", toreador}
 };
 
 int getMelodyCount(){
@@ -210,18 +210,53 @@ const byte* getMelodyData(int index){
 
 
 bool melodyPlayerLoopMelody = false;   
+bool melodyPlayerCont = true;
+String melodyPlayerMelodyName;
+unsigned long melodyPlayerPlayStarted = 0;
 
+void melodyPlayerSetMelodyName(String _name){
+  melodyPlayerMelodyName=_name;
+}
 //return true if was played completely or false if interrupted
 bool melodyPlayerPlayMelody(const byte* melody) {
-  //displayTransition();
+  Serial.println(F("Set mode: PlayMelody"));
+  melodyPlayerPlayStarted = millis();
+  modeLoop = melodyPlayerDrawScreen;
+  modeButtonUp = 0;
+  modeButtonCenter = 0;
+  modeButtonDown = 0;
+  modeButtonUpLong = melodyPlayerButtonUp;
+  modeButtonCenterLong = 0;
+  modeButtonDownLong = melodyPlayerButtonDown;
+  melodyPlayerCont = true;
   melodyPlayerLoopMelody = false;
+  
+  byte length = melodyPlayerGetLength(melody);
+  int prequencyThreshold = 0;
+  int lastFreq = 0;
+  {//analyze melody
+    long noteSum = 0;
+    long noteCnt = 0;
+    for (byte i = 1; i < length - 1 && melodyPlayerCont; i++) {
+      byte b = (melody[i]);
+      byte noteNumberByte = 0;
+      for (byte i = 0; i < 6; i++)
+        bitWrite(noteNumberByte, i, bitRead(b, i));
+      float noteNumber = noteNumberByte;
+      float frequency = 0;
+      if (noteNumber < 36)
+        frequency = 250.0 * pow(2.0, (noteNumber / 12.0));
+      noteSum += frequency;
+      noteCnt ++;
+    }
+    prequencyThreshold = 100 + noteSum/noteCnt;
+    Serial.print("prequencyThreshold="); Serial.println(prequencyThreshold);
+  }
   do{
     melodyPlayerDrawScreen();
-    //pinMode(pinBuzzer, OUTPUT);
-    byte length = melodyPlayerGetLength(melody);
     float tempo = (melody[0]);
     float whole_notes_per_second = tempo / 240.0;
-    for (byte i = 1; i < length - 1; i++) {
+    for (byte i = 1; i < length - 1 && melodyPlayerCont; i++) {
       byte b = (melody[i]);
       byte duration = 0;
       if (bitRead(b, 7) == 0 && bitRead(b, 6) == 0) duration = 4;
@@ -242,41 +277,33 @@ bool melodyPlayerPlayMelody(const byte* melody) {
   
       long noteStarted = millis();
       if (frequency != 0){
-        //displayBacklightOn();
+        if(frequency>prequencyThreshold)
+          ledFlashlightTopOn();
+        else
+          ledFlashlightBottonOn();
+        lastFreq = frequency;
         buzTone(frequency);
       }
       else{
+        ledFlashlightOffAll();
         buzNoTone();
       }
       while(millis() - noteStarted < timeMs-150){
+        buttonsLoop();
         melodyPlayerDrawScreen();
-        if (isButtonUpPressed()){
-          buzNoTone();
-          return false;
-        }
       }
       while(millis() - noteStarted < timeMs);
+      ledFlashlightOffAll();
       buzNoTone();
-      //displayBacklightOff();
       delay(13);
-      
-    //     if(isButtonUpHold()){
-    //       melodyPlayerLoopMelody = !melodyPlayerLoopMelody;
-    //       melodyPlayerDrawScreen();
-    //     }
-    //     else{
-    //       displayBacklightOn();
-    //       return false;
-    //     }
-    //   }
+      buttonsLoop();
     }
-    
+    ledFlashlightOffAll();
     buzNoTone();
-    //pinMode(pinBuzzer, INPUT);
-    //delay(5000);
+    delay(500);
   }while(melodyPlayerLoopMelody);
-  //displayBacklightOn();
-  return true;
+  modeSetup();
+  return melodyPlayerCont;
 }
 
 void melodyPlayerDrawScreen() {
@@ -288,11 +315,47 @@ void melodyPlayerDrawScreen() {
   lcd()->setCursor(5, 18); 
   lcd()->setColorIndex(black);
   lcd()->print("Плеєр");
+  
+  int x = drawStatusbar(363, 1, true);
+  if(melodyPlayerLoopMelody)
+    draw_ic16_repeat(x-16, 5, black);
+  
 
-  lcd()->print(millis());
+  if(melodyPlayerCont){
+    displayDrawVector(getPathZubat(), 130, 45, 3.0, 3, false, black);
+    
+    lcd()->setCursor(5, 230); 
+    int sec = (millis()-melodyPlayerPlayStarted)/1000;
+    if(sec < 10)
+      lcd()->print("0");
+    lcd()->print(sec);
+    lcd()->print("s");
 
-  drawStatusbar(363, 1, true);
+    int width = lcd()->getStrWidth(melodyPlayerMelodyName.c_str());
+    lcd()->setCursor(200-width/2, 230); 
+    lcd()->print(melodyPlayerMelodyName);
+  }
+  else{
+    lcd()->setCursor(150, 120); 
+    lcd()->print("Зупинка...");
+  }
+
+
+
+  lcd()->drawLine(369, 0, 369, 260);
+  lcd()->drawLine(370, 0, 370, 260);
+  draw_ic16_cancel(lx(), ly1(), black);
+  draw_ic16_repeat(lx(), ly3(), black);
   lcd()->sendBuffer();
+}
+
+
+void melodyPlayerButtonUp(){
+  melodyPlayerCont = false;
+  melodyPlayerLoopMelody = false;
+}
+void melodyPlayerButtonDown(){
+  melodyPlayerLoopMelody = !melodyPlayerLoopMelody;
 }
 
 void printBits(byte myByte) {

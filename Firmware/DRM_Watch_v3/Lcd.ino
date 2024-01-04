@@ -94,7 +94,36 @@ void drawQuestion(String text, String text2){
 
 
 
-
+//Рисование векторной картинки. Формат вектора описан в комментарии ниже.
+//max number of points for one path is 255.
+//Array type: const PROGMEM byte path[] = {...);
+//Array format: {numberOfPoints, x0, y0, x1, y1, x2, y2, ...}
+//255,255 coordinates is skipped, so it can be used for separate paths
+//animate: 0-noAnimation, 1...-speed,low is slow.
+void displayDrawVector(const byte* data_array, int X, int Y, float scale, int thickness, byte animate, bool color){
+  lcd()->setColorIndex(color);
+  byte numberOfPoints = (data_array[0]);
+  byte lx = (data_array[1]);
+  byte ly = (data_array[2]);
+  int currentIndex = 3;
+  for(byte i=1; i < numberOfPoints; i++){
+    byte x = (data_array[currentIndex]);
+    byte y = (data_array[currentIndex + 1]);
+    if(x != 255 && y != 255 && lx != 255 && ly != 255){
+      for(int ox = X; ox < X+thickness; ox++)
+        for(int oy = Y; oy < Y+thickness; oy++)
+          lcd()->drawLine(/*X1*/lx*scale + ox, /*Y1*/ly*scale + oy, /*X2*/x*scale + ox, /*Y2*/y*scale + oy);
+    }
+    if(animate!=0 && i%animate==0){
+      lcd()->sendBuffer();
+      if (isButtonUpPressed()) 
+        animate = false;
+    }
+    currentIndex += 2;
+    lx = x;
+    ly = y;
+  }
+}
 
 
 

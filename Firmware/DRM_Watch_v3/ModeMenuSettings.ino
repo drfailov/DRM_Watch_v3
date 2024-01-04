@@ -4,6 +4,7 @@ const int itemModeSettingsSavedNetworks=2;
 const int itemModeSettingsSynchronizeTime=3;
 const int itemModeSettingsSetTime=4;
 const int itemModeSettingsSetTimeZone=5;
+const int itemModeSettingsReboot=6;
 
 void setModeSettingsMenu(){
   Serial.println(F("Set mode: Settings Menu"));
@@ -16,7 +17,7 @@ void setModeSettingsMenu(){
   modeButtonCenterLong = 0;
   modeButtonDownLong = 0;
   selected = 0;
-  items = 6;
+  items = 7;
 }
 
 
@@ -35,6 +36,7 @@ void modeSettingsMenuLoop(){
   drawMenuItem(itemModeSettingsSynchronizeTime, draw_ic24_sync, "Синхронізувати час з сервером", false);
   drawMenuItem(itemModeSettingsSetTime, draw_ic24_clock, "Задати час", false);
   drawMenuItem(itemModeSettingsSetTimeZone, draw_ic24_timezone, "Обрати часовий пояс", false);
+  drawMenuItem(itemModeSettingsReboot, draw_ic24_sync, "Перезавантажити", false);
 
   
   drawStatusbar(363, 1, true);
@@ -71,6 +73,10 @@ void modeSettingsMenuButtonCenter(){
   }
   if(selected==itemModeSettingsSetTimeZone){
     drawMessage("В процесі розробки.");
+    return;
+  }
+  if(selected==itemModeSettingsReboot){
+    modeButtonUpLong();
     return;
   }
   

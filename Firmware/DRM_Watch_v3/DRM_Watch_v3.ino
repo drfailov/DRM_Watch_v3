@@ -50,15 +50,22 @@ Runnable modeButtonDownLong = 0;
 
 void setup(void) {
   Serial.begin(115200);
+  buzzerInit();
   initRtc();
   initPreferences();
   initTime();
   lcdInit();
   initButtons();
   initLed();
-  buzzerInit();
   if(esp_sleep_get_wakeup_cause() == 0){
-    delay(1000);
+    
+    lcd()->setColorIndex(white);
+    lcd()->drawBox(0, 0, 400, 240);
+    displayDrawVector(getPathZubat(), 40, 60, 3.0, 3, 0, black);
+    displayDrawVector(getPathDrmWatch(), 190, 60, 3.0, 2, 5, black);
+    lcd()->sendBuffer();
+    ledSelftest();
+    playInit();
     setModeWatchface();
   }
   else{
