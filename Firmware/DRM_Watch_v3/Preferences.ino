@@ -57,6 +57,21 @@ double getTimeCoef(){
 
 //----------------------//----------------------//----------------------//----------------------//----------------------//----------------------//----------------------
 
+bool getWhiteValue(){
+  return !getInversionValue();
+}
+bool getBlackValue(){
+  return getInversionValue();
+}
+bool getInversionValue(){
+  return preferencesObject.getInt("screenInverse", 0)==1;
+}
+void saveInversionValue(bool value){
+  preferencesObject.putInt("screenInverse", value?1:0);
+}
+
+//----------------------//----------------------//----------------------//----------------------//----------------------//----------------------//----------------------
+
 int getPreferencesFreeSpace(){
   return preferencesObject.freeEntries();
 }

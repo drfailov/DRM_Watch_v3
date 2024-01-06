@@ -38,3 +38,40 @@ String getRtcSlk(){
     }
     return "N/A";
 }
+
+void drawDayOfWeek (int x, int y){
+  lcd()->setFont(u8g2_font_10x20_t_cyrillic);  //ok
+  lcd()->setColorIndex(black);
+  lcd()->setCursor(x, y); 
+  switch(rtcCorrected()->getDayofWeek()){
+    case 0: lcd()->print("Нд"); break;
+    case 1: lcd()->print("Пн"); break;
+    case 2: lcd()->print("Вт"); break;
+    case 3: lcd()->print("Ср"); break;
+    case 4: lcd()->print("Чт"); break;
+    case 5: lcd()->print("Пт"); break;
+    case 6: lcd()->print("Сб"); break;
+  }
+}
+
+void drawDate (int x, int y){
+  lcd()->setFont(u8g2_font_10x20_t_cyrillic);  //ok
+  lcd()->setColorIndex(black);
+  lcd()->setCursor(x, y); 
+  lcd()->print(rtcCorrected()->getDay());
+  switch(rtcCorrected()->getMonth()){
+    case 0: lcd()->print(" Січ "); break;
+    case 1: lcd()->print(" Лют "); break;
+    case 2: lcd()->print(" Бер "); break;
+    case 3: lcd()->print(" Кві "); break;
+    case 4: lcd()->print(" Тра "); break;
+    case 5: lcd()->print(" Чер "); break;
+    case 6: lcd()->print(" Лип "); break;
+    case 7: lcd()->print(" Сер "); break;
+    case 8: lcd()->print(" Вер "); break;
+    case 9: lcd()->print(" Жов "); break;
+    case 10:lcd()->print(" Лис "); break;
+    case 11:lcd()->print(" Гру "); break;
+  }
+  lcd()->print(rtcCorrected()->getYear());
+}

@@ -160,9 +160,9 @@ void modeKeyboardLoop(){
   lcd()->setColorIndex(black);
   lcd()->drawLine(369, 0, 369, 260);
   lcd()->drawLine(370, 0, 370, 260);
-  draw_ic24_arrow_right(lx(), ly1(), black);
-  draw_ic24_check2(lx(), ly2(), black);
-  draw_ic24_arrow_down(lx(), ly3(), black);
+  draw_ic16_arrow_right(lx(), ly1(), black);
+  draw_ic16_check(lx(), ly2(), black);
+  draw_ic16_arrow_down(lx(), ly3(), black);
   
   lcd()->sendBuffer();
   if(sinceLastAction() > autoReturnTime) //auto go to watchface

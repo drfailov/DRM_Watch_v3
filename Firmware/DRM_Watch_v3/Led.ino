@@ -35,7 +35,8 @@ void ledFlashlightToggleTop(){
   else{
     ledTopValue = 0;
   }
-  digitalWrite(LED_TOP_PIN, ledTopValue==0?LOW:HIGH); 
+  //digitalWrite(LED_TOP_PIN, ledTopValue==0?LOW:HIGH); 
+  analogWrite(LED_TOP_PIN, ledTopValue); 
 }
 void ledFlashlightToggleBottom(){
   if(ledBottomValue == 0){
@@ -47,14 +48,15 @@ void ledFlashlightToggleBottom(){
   analogWrite(LED_BOTTOM_PIN, ledBottomValue); 
 }
 void ledFlashlightOffAll(){
-  analogWrite(LED_TOP_PIN, 0); 
-  // analogWrite(LED_BOTTOM_PIN, 0); 
+  ledTopValue = 0;
+  analogWrite(LED_TOP_PIN, ledTopValue); 
+
   analogWrite(LED_STATUS_PIN, 0); 
 }
 void ledFlashlightTopOn(){ 
-  analogWrite(LED_TOP_PIN, 180); 
+  ledTopValue = 180;
+  analogWrite(LED_TOP_PIN, ledTopValue); 
 }
 void ledFlashlightBottonOn(){
-  // analogWrite(LED_BOTTOM_PIN, 180); 
   analogWrite(LED_STATUS_PIN, 50); 
 }

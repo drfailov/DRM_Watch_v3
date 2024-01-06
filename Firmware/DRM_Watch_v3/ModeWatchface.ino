@@ -24,9 +24,8 @@ void modeWatchfaceLoop(){
   lcd()->drawStr(60, 160, rtcCorrected()->getTime("%H:%M").c_str());
 
   //Serial.println("draw date...");
-  lcd()->setFont(u8g2_font_10x20_t_cyrillic);
-  lcd()->setColorIndex(black);
-  lcd()->drawStr(5, 25, rtcCorrected()->getTime("%d %b %Y").c_str());
+  drawDate(5, 20);
+  drawDayOfWeek(375, 20);
   
   //Serial.println("draw temperature...");
   drawTemperature(5, 213);

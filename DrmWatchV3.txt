@@ -14,6 +14,9 @@ Icons used as reference:
 <a href="https://www.flaticon.com/free-icons/synchronization" title="synchronization icons">Synchronization icons created by Freepik - Flaticon</a>
 <a href="https://www.flaticon.com/free-icons/time" title="time icons">Time icons created by Ilham Fitrotul Hayat - Flaticon</a>
 <a href="https://www.flaticon.com/free-icons/music-note" title="music note icons">Music note icons created by iconsax - Flaticon</a>
+<a href="https://www.flaticon.com/free-icons/refresh" title="refresh icons">Refresh icons created by Pixel perfect - Flaticon</a>
+<a href="https://www.flaticon.com/free-icons/black-and-white" title="black and white icons">Black and white icons created by Ch.designer - Flaticon</a>
+
 
 
 
@@ -73,6 +76,8 @@ Changelog:
 2024-01-04 v0.12 Vector Graphics
 2024-01-04 v0.12 UI Improvement
 2024-01-04 v0.12 Init screen
+2024-01-06 v0.13 Fixed keyboard legend
+2024-01-06 v0.13 Added option to invert screen
 
 
 

@@ -8,8 +8,6 @@
 #ifdef U8X8_HAVE_HW_I2C
 #include <Wire.h>
 #endif
-bool black = 0;
-bool white = 1;
 
 #define LCD_CLK 7
 #define LCD_SDA 11
@@ -29,6 +27,8 @@ bool white = 1;
 #define TOUCH3_PIN 10
 #define CHARGER_EN_PIN 37
 
+bool black = 1;
+bool white = 0;
 bool dontSleep = false;
 int autoReturnTime = 120000;//ms
 int autoSleepTime = 15000;//ms
@@ -50,9 +50,11 @@ Runnable modeButtonDownLong = 0;
 
 void setup(void) {
   Serial.begin(115200);
+  initPreferences();
+  black = getBlackValue();
+  white = getWhiteValue();
   buzzerInit();
   initRtc();
-  initPreferences();
   initTime();
   lcdInit();
   initButtons();
