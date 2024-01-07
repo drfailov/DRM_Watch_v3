@@ -78,10 +78,18 @@ Changelog:
 2024-01-04 v0.12 Init screen
 2024-01-06 v0.13 Fixed keyboard legend
 2024-01-06 v0.13 Added option to invert screen
+2024-01-07 v0.14 light flashlight slightly when system not in sleep
+2024-01-07 v0.14 version info
+2024-01-07 v0.14 Init view
+2024-01-07 v0.14 about window
+2024-01-07 v0.14 Fixed: permament reconnection USB while device sleeps
+2024-01-07 v0.14 mode off
 
 
 
 
 
-
+==== todo:
+auto-sync daily
+statusbar icon when auto return to watchface soon
 

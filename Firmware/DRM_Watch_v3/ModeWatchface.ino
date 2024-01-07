@@ -7,7 +7,7 @@ void setModeWatchface(){
   modeButtonCenter = modeWatchfaceButtonCenter;
   modeButtonDown = modeWatchfaceButtonDown;
   modeButtonUpLong = switchDontSleep;
-  modeButtonCenterLong = switchDontSleep;
+  modeButtonCenterLong = setModeOff;
   modeButtonDownLong = 0;
   registerAction();
 }
@@ -43,7 +43,7 @@ void modeWatchfaceLoop(){
 
   if(!dontSleep){
     int sleepTimeout = isFlashlightOn()?autoSleepTimeFlashlightOn:autoSleepTime;
-    if(sinceLastAction() > sleepTimeout) //auto go to sleep
+    if(sinceLastAction() > sleepTimeout && !dontSleep) //auto go to sleep
       goToSleep();
   }
 }

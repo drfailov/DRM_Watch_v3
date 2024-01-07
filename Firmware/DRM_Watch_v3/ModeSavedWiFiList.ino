@@ -38,7 +38,7 @@ void modeSavedWiFiListLoop(){
 
   lcd()->sendBuffer();
   
-  if(sinceLastAction() > autoReturnTime) //auto go to watchface
+  if(sinceLastAction() > autoReturnTime && !dontSleep) //auto go to watchface
     setModeWatchface();
 }
 

@@ -165,7 +165,7 @@ void modeKeyboardLoop(){
   draw_ic16_arrow_down(lx(), ly3(), black);
   
   lcd()->sendBuffer();
-  if(sinceLastAction() > autoReturnTime) //auto go to watchface
+  if(sinceLastAction() > autoReturnTime && !dontSleep) //auto go to watchface
     setModeWatchface();
 }
 

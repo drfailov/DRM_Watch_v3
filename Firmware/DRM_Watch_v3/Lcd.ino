@@ -1,3 +1,4 @@
+#include "driver/rtc_io.h"
 //RTC_DATA_ATTR 
 U8G2_LS027B7DH01_400X240_F_4W_HW_SPI u8g2(U8G2_R0, /* cs=*/ 5, /* dc=*/ U8X8_PIN_NONE, /* reset=*/ U8X8_PIN_NONE); //on/*CLK*/7, /*SDA*/11, /*CS*/5   //WORKS!!!!!!!!
 
@@ -10,13 +11,32 @@ U8G2_LS027B7DH01_400X240_F_4W_HW_SPI u8g2(U8G2_R0, /* cs=*/ 5, /* dc=*/ U8X8_PIN
   
 
 void lcdInit(){
-  pinMode(LCD_EN, OUTPUT);
-  digitalWrite(LCD_EN, HIGH);
+  if(isOff())
+    return;
+  lcdPowerOn();
   if(esp_sleep_get_wakeup_cause() == 0)/*If first start*/
     u8g2.begin();
   else
     u8g2.initInterface();
   u8g2.enableUTF8Print();  
+}
+
+void lcdPowerOn(){
+  pinMode(LCD_EN, OUTPUT);
+  digitalWrite(LCD_EN, HIGH);
+  
+  rtc_gpio_hold_dis(LCD_EN);
+}
+void lcdPowerOff(){
+  pinMode(LCD_EN, OUTPUT);
+  digitalWrite(LCD_EN, LOW);
+  //pinMode(LCD_EN, INPUT_PULLDOWN);
+  //gpio_hold_dis(LCD_EN);
+  //gpio_deep_sleep_hold_dis();
+  rtc_gpio_hold_en(LCD_EN);
+
+  //pinMode(LCD_EN, OUTPUT);
+  //digitalWrite(LCD_EN, LOW);
 }
 
 U8G2_LS027B7DH01_400X240_F_4W_HW_SPI* lcd(){

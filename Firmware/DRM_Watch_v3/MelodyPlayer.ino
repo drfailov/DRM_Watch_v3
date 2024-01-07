@@ -278,9 +278,9 @@ bool melodyPlayerPlayMelody(const byte* melody) {
       long noteStarted = millis();
       if (frequency != 0){
         if(frequency>prequencyThreshold)
-          ledFlashlightTopOn();
+          ledFlashlightOnTop();
         else
-          ledFlashlightBottonOn();
+          ledFlashlightOnBottom();
         lastFreq = frequency;
         buzTone(frequency);
       }

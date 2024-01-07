@@ -26,7 +26,7 @@ void questionModeLoop(){
   drawQuestion(questionModeText1, questionModeText2);
 
   
-  if(sinceLastAction() > autoReturnTime) //auto go to watchface
+  if(sinceLastAction() > autoReturnTime && !dontSleep) //auto go to watchface
     setModeWatchface();
 }
 

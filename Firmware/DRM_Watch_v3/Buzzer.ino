@@ -23,10 +23,12 @@ void buzNoTone(){
 }
 
 void buttonBeep(){
-  buzzer.tone(2000, 50);
+  if(!isOff())
+    buzzer.tone(2000, 50);
 }
 void buttonLongBeep(){
-  buzzer.tone(2000, 150);
+  if(!isOff())
+    buzzer.tone(2000, 150);
 }
 
 

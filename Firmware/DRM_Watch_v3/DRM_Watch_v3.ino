@@ -27,6 +27,7 @@
 #define TOUCH3_PIN 10
 #define CHARGER_EN_PIN 37
 
+String version = "v0.14";
 bool black = 1;
 bool white = 0;
 bool dontSleep = false;
@@ -49,7 +50,8 @@ Runnable modeButtonDownLong = 0;
 
 
 void setup(void) {
-  Serial.begin(115200);
+  if(esp_sleep_get_wakeup_cause() != ESP_SLEEP_WAKEUP_TIMER && !isOff())/*periodical wakeup*/
+    Serial.begin(115200);
   initPreferences();
   black = getBlackValue();
   white = getWhiteValue();
@@ -60,14 +62,26 @@ void setup(void) {
   initButtons();
   initLed();
   if(esp_sleep_get_wakeup_cause() == 0){
-    
     lcd()->setColorIndex(white);
     lcd()->drawBox(0, 0, 400, 240);
-    displayDrawVector(getPathZubat(), 40, 60, 3.0, 3, 0, black);
-    displayDrawVector(getPathDrmWatch(), 190, 60, 3.0, 2, 5, black);
+    lcd()->setFont(u8g2_font_10x20_t_cyrillic);  //ok
+    lcd()->setColorIndex(black);
+    lcd()->setCursor(345, 234); 
+    lcd()->print(version);
+    int x=130;
+    displayDrawVector(getPathZubat(), x, 60, 3.0, 3, 0, black);
     lcd()->sendBuffer();
     ledSelftest();
     playInit();
+    while(x>40){
+      displayDrawVector(getPathZubat(), x, 60, 3.0, 3, 0, white);
+      x-=15;
+      displayDrawVector(getPathZubat(), x, 60, 3.0, 3, 0, black);
+      lcd()->sendBuffer();
+    }
+    displayDrawVector(getPathDrmWatch(), 190, 60, 3.0, 2, 4, black);
+    lcd()->sendBuffer();
+    delay(300);
     setModeWatchface();
   }
   else{
@@ -109,11 +123,15 @@ void goToSleep(){
   //lcd()->setFont(u8g2_font_10x20_tf);
   //lcd()->drawStr(330, 125, "UNLOCK");
   lcd()->sendBuffer();
-  delay(50);
+  delay(20);
   
   
   esp_sleep_enable_ext0_wakeup(BUT_CENTER, 0); //1 = High, 0 = Low
-  esp_sleep_enable_timer_wakeup(28 * 1000000ULL);
+  
+  if(isOff())
+    esp_sleep_enable_timer_wakeup(300 * 1000000ULL);
+  else
+    esp_sleep_enable_timer_wakeup(28 * 1000000ULL);
   esp_deep_sleep_start();
 }
 

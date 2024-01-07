@@ -7,14 +7,15 @@ void initLed(){
   pinMode(LED_TOP_PIN, OUTPUT);
   pinMode(LED_BOTTOM_PIN, OUTPUT);
   pinMode(LED_STATUS_PIN, OUTPUT);
+  ledFlashlightOffAll();
 }
 
 void ledSelftest(){
-    digitalWrite(LED_TOP_PIN, HIGH); delay(50);
-    digitalWrite(LED_BOTTOM_PIN, HIGH); delay(50);
+    ledFlashlightOnTop(); delay(50);
+    ledFlashlightOnBottom(); delay(50);
     digitalWrite(LED_STATUS_PIN, HIGH); delay(50);
-    digitalWrite(LED_TOP_PIN, LOW); delay(50);
-    digitalWrite(LED_BOTTOM_PIN, LOW); delay(50);
+    ledFlashlightOffTop(); delay(50);
+    ledFlashlightOffBottom(); delay(50);
     digitalWrite(LED_STATUS_PIN, LOW); delay(50);
 }
 
@@ -25,38 +26,57 @@ void ledStatusOff(){
   digitalWrite(LED_STATUS_PIN, LOW);
 }
 
-bool isFlashlightOn(){
-  return (ledTopValue != 0 ||  ledBottomValue != 0);
+bool isFlasthilghTopOn(){
+  return ledTopValue > 20;
 }
-void ledFlashlightToggleTop(){
-  if(ledTopValue == 0){
-    ledTopValue = 255;
-  }
-  else{
-    ledTopValue = 0;
-  }
-  //digitalWrite(LED_TOP_PIN, ledTopValue==0?LOW:HIGH); 
+
+bool isFlasthilghBottomOn(){
+  return ledBottomValue > 20;
+}
+
+bool isFlashlightOn(){
+  return (isFlasthilghTopOn() ||  isFlasthilghBottomOn());
+}
+
+void ledFlashlightOnTop(){
+  ledTopValue = 255;
   analogWrite(LED_TOP_PIN, ledTopValue); 
 }
-void ledFlashlightToggleBottom(){
-  if(ledBottomValue == 0){
-    ledBottomValue = 255;
-  }
-  else{
-    ledBottomValue = 0;
-  }
+
+void ledFlashlightOffTop(){
+  ledTopValue = 5;
+  if(esp_sleep_get_wakeup_cause() == ESP_SLEEP_WAKEUP_TIMER || isOff())/*periodical wakeup*/
+    ledTopValue = 0;
+  analogWrite(LED_TOP_PIN, ledTopValue); 
+}
+
+void ledFlashlightOnBottom(){
+  ledBottomValue = 255;
   analogWrite(LED_BOTTOM_PIN, ledBottomValue); 
 }
-void ledFlashlightOffAll(){
-  ledTopValue = 0;
-  analogWrite(LED_TOP_PIN, ledTopValue); 
 
-  analogWrite(LED_STATUS_PIN, 0); 
+void ledFlashlightOffBottom(){
+  ledBottomValue = 5;
+  if(esp_sleep_get_wakeup_cause() == ESP_SLEEP_WAKEUP_TIMER || isOff())/*periodical wakeup*/
+    ledBottomValue = 0;
+  analogWrite(LED_BOTTOM_PIN, ledBottomValue); 
 }
-void ledFlashlightTopOn(){ 
-  ledTopValue = 180;
-  analogWrite(LED_TOP_PIN, ledTopValue); 
+
+void ledFlashlightToggleTop(){
+  if(isFlasthilghTopOn())
+    ledFlashlightOffTop();
+  else
+    ledFlashlightOnTop();
 }
-void ledFlashlightBottonOn(){
-  analogWrite(LED_STATUS_PIN, 50); 
+
+void ledFlashlightToggleBottom(){
+  if(isFlasthilghBottomOn())
+    ledFlashlightOffBottom();
+  else
+    ledFlashlightOnBottom();
+}
+
+void ledFlashlightOffAll(){
+  ledFlashlightOffBottom();
+  ledFlashlightOffTop();
 }
