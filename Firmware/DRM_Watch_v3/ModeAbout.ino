@@ -10,6 +10,8 @@ void modeAboutSetup(){
   modeButtonUpLong = 0;
   modeButtonCenterLong = 0;
   modeButtonDownLong = 0;
+  registerAction();
+  enableAutoReturn = true;
 }
 
 void modeAboutLoop(){
@@ -19,6 +21,7 @@ void modeAboutLoop(){
   lcd()->setColorIndex(black);
   lcd()->setCursor(5, 17);  lcd()->print("Made by Dr.Failov");
   drawStatusbar(395, 1, true);
+  lcd()->setColorIndex(black);
   lcd()->setCursor(5, 234);  lcd()->print(version);
   lcd()->setCursor(135, 234);  lcd()->print("Made in Ukraine");
   lcd()->setCursor(355, 234);  lcd()->print("2024");
@@ -28,8 +31,4 @@ void modeAboutLoop(){
   delay(500);
   displayDrawVector(getPathDrmWatch(), 190, 60, 3.0, 2, 6, white);
   lcd()->sendBuffer();
-
-  
-  if(sinceLastAction() > autoReturnTime && !dontSleep) //auto go to watchface
-    setModeWatchface();
 }

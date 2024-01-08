@@ -102,6 +102,8 @@ void setModeKeyboard(){
   modeButtonUpLong = 0;
   modeButtonCenterLong = 0;
   modeButtonDownLong = 0;
+  registerAction();
+  enableAutoReturn = true;
   text = "";
   selectedRow = 0;
   selectedCol = 0;
@@ -165,8 +167,6 @@ void modeKeyboardLoop(){
   draw_ic16_arrow_down(lx(), ly3(), black);
   
   lcd()->sendBuffer();
-  if(sinceLastAction() > autoReturnTime && !dontSleep) //auto go to watchface
-    setModeWatchface();
 }
 
 

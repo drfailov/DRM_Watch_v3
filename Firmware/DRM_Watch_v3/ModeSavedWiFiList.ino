@@ -10,6 +10,8 @@ void setModeSavedWiFiList(){
   modeButtonUpLong = 0;
   modeButtonCenterLong = 0;
   modeButtonDownLong = 0;
+  registerAction();
+  enableAutoReturn = true;
   selected = 0;
   items = wifiSlotCnt()+1;
 }
@@ -37,9 +39,6 @@ void modeSavedWiFiListLoop(){
   }
 
   lcd()->sendBuffer();
-  
-  if(sinceLastAction() > autoReturnTime && !dontSleep) //auto go to watchface
-    setModeWatchface();
 }
 
 void modeSavedWiFiListButtonCenter(){

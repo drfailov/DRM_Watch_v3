@@ -13,6 +13,8 @@ void questionModeSet(String _text1, String _text2, Runnable _onYes, Runnable _on
   modeButtonUpLong = 0;
   modeButtonCenterLong = 0;
   modeButtonDownLong = 0;
+  registerAction();
+  enableAutoReturn = true;
   questionModeText1 = _text1;
   questionModeText2 = _text2;
   questionModeOnYes = _onYes;
@@ -20,14 +22,11 @@ void questionModeSet(String _text1, String _text2, Runnable _onYes, Runnable _on
 }
 
 void questionModeLoop(){
-  draw_ic24_check2(lx(), ly1(), black);
-  draw_ic24_empty(lx(), ly2(), black);
-  draw_ic24_cancel(lx(), ly3(), black);
+  draw_ic16_check(lx(), ly1(), black);
+  draw_ic16_empty(lx(), ly2(), black);
+  draw_ic16_cancel(lx(), ly3(), black);
   drawQuestion(questionModeText1, questionModeText2);
 
-  
-  if(sinceLastAction() > autoReturnTime && !dontSleep) //auto go to watchface
-    setModeWatchface();
 }
 
 

@@ -37,7 +37,7 @@ void registerAction(){
   lastActionTime=millis();
 }
 
-unsigned long sinceLastAction(){
+int sinceLastAction(){
   return millis() - lastActionTime;
 }
 

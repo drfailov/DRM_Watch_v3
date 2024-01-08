@@ -10,6 +10,8 @@ void setModeMelodyListMenu(){
   modeButtonUpLong = 0;
   modeButtonCenterLong = 0;
   modeButtonDownLong = 0;
+  registerAction();
+  enableAutoReturn = true;
   //selected = 0;
   items = getMelodyCount()+1;
 }
@@ -32,9 +34,6 @@ void ModeMelodyListMenuLoop(){
   drawStatusbar(363, 1, true);
   drawMenuLegend();
   lcd()->sendBuffer();
-  
-  if(sinceLastAction() > autoReturnTime && !dontSleep) //auto go to watchface
-    setModeWatchface();
 }
 
 void ModeMelodyListMenuButtonCenter(){

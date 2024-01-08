@@ -10,6 +10,8 @@ void setModeTest(){
   modeButtonUpLong = 0;
   modeButtonCenterLong = 0;
   modeButtonDownLong = 0;
+  registerAction();
+  enableAutoReturn = false;
 }
 
 void modeTestLoop(){ 
@@ -46,9 +48,6 @@ void modeTestLoop(){
   //draw_ic24_coffee(lx(), ly3(), black);
 
   lcd()->sendBuffer();
-
-  if(sinceLastAction() > autoReturnTime && !dontSleep) //auto go to sleep
-    goToSleep();
 }
 
 void modeTestButtonUp(){

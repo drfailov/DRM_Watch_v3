@@ -9,6 +9,7 @@ void setModeWatchface(){
   modeButtonUpLong = switchDontSleep;
   modeButtonCenterLong = setModeOff;
   modeButtonDownLong = 0;
+  enableAutoReturn = false;
   registerAction();
 }
 
@@ -33,9 +34,9 @@ void modeWatchfaceLoop(){
   drawStatusbar(395, 214, false);
   
   //Serial.println("draw legend...");
-  draw_ic16_flashlight(lx(), ly1(), black);
-  draw_ic16_flashlight(lx(), ly2(), black);
-  draw_ic16_menu(lx(), ly3(), black);
+  // draw_ic16_flashlight(lx(), ly1(), black);
+  // draw_ic16_flashlight(lx(), ly2(), black);
+  // draw_ic16_menu(lx(), ly3(), black);
 
 
   if(esp_sleep_get_wakeup_cause() != ESP_SLEEP_WAKEUP_TIMER) //if wake by timer, don't refresh display to keep image static
@@ -92,6 +93,20 @@ int drawStatusbar(int x, int y, bool drawTime){
   if(dontSleep){
     x -= 16;
     draw_ic16_coffee(x, y+4, black);
+    x-=interval;
+  }
+  if(enableAutoReturn && autoReturnTime-sinceLastAction() < 31000 && !dontSleep) {
+    long s = (autoReturnTime-sinceLastAction())/1000;
+    String text = String("")+s;
+    lcd()->setColorIndex(black);
+    lcd()->setFont(u8g2_font_unifont_t_cyrillic);
+    int width = lcd()->getStrWidth(text.c_str());
+    int margin = 4;
+    x -= width+margin*2;
+    lcd()->drawRBox(/*x*/x, /*y*/y+4, /*w*/width+margin*2, /*h*/ 16, /*r*/3);
+    lcd()->setColorIndex(white);
+    lcd()->setCursor(x+margin, y+17); 
+    lcd()->print(text);
     x-=interval;
   }
   return x;

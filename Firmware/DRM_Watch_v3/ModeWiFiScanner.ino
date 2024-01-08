@@ -16,6 +16,7 @@ long modeWiFiScannerStateChangeTime = 0;
 void setModeWiFiScanner(Runnable onSelected, Runnable onCancel){
   modeWiFiScannerOnNetworkSelected = onSelected;
   modeWiFiScannerOnCancel = onCancel;
+  enableAutoReturn = true;
   setModeWiFiScanner_();
 }
 void setModeWiFiScanner(){
@@ -31,6 +32,7 @@ void setModeWiFiScanner_(){
   modeButtonUpLong = 0;
   modeButtonCenterLong = 0;
   modeButtonDownLong = 0;
+  registerAction();
   modeWiFiScannerState = modeWiFiScannerStatePreparing;
   modeWiFiScannerStateChangeTime = millis();
 }
@@ -102,8 +104,6 @@ void modeWiFiScannerLoop(){
   
   lcd()->sendBuffer();
   resetTemperatureSensor();
-  if(sinceLastAction() > autoReturnTime && !dontSleep) //auto go to watchface
-    setModeWatchface();
 }
 
 String modeWiFiScannerGetSelectedNetworkName(){

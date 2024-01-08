@@ -13,6 +13,8 @@ void setModeOff(){
   modeButtonUpLong = 0;
   modeButtonCenterLong = turnOn;
   modeButtonDownLong = 0;
+  registerAction();
+  enableAutoReturn = false;
 }
 void modeOffLoop(){
   lcdPowerOff();  

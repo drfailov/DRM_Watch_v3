@@ -228,6 +228,7 @@ bool melodyPlayerPlayMelody(const byte* melody) {
   modeButtonUpLong = melodyPlayerButtonUp;
   modeButtonCenterLong = 0;
   modeButtonDownLong = melodyPlayerButtonDown;
+  enableAutoReturn = false;
   melodyPlayerCont = true;
   melodyPlayerLoopMelody = false;
   

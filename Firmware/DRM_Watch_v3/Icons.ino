@@ -4,6 +4,7 @@ int ly2(){return 110;}
 int ly3(){return 165;}
 void draw_ic32_empty(int x, int y, bool color){lcd()->setColorIndex(!color); lcd()->drawBox(x, y, 32, 32);}
 void draw_ic24_empty(int x, int y, bool color){lcd()->setColorIndex(!color); lcd()->drawBox(x, y, 24, 24);}
+void draw_ic16_empty(int x, int y, bool color){lcd()->setColorIndex(!color); lcd()->drawBox(x, y, 16, 16);}
 
 
 

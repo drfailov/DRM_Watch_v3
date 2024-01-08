@@ -1,7 +1,6 @@
 #include <Arduino.h>
 #include <U8g2lib.h>
 #include <ESP32Time.h>
-
 #ifdef U8X8_HAVE_HW_SPI
 #include <SPI.h>
 #endif
@@ -27,10 +26,11 @@
 #define TOUCH3_PIN 10
 #define CHARGER_EN_PIN 37
 
-String version = "v0.14";
+String version = "v0.15";        //================================== <<<<< VERSION
 bool black = 1;
 bool white = 0;
 bool dontSleep = false;
+bool enableAutoReturn = false; //is set when new mode selected
 int autoReturnTime = 120000;//ms
 int autoSleepTime = 15000;//ms
 int autoSleepTimeFlashlightOn = 300000;//ms
@@ -99,6 +99,10 @@ void loop(void) {
     // unsigned long millisEnd = millis();
     // Serial.print("Loop: "); Serial.print(millisEnd-millisStarted); Serial.println("ms.");
   }
+  
+  if(enableAutoReturn && sinceLastAction() > autoReturnTime && !dontSleep) //auto go to watchface
+    setModeWatchface();
+
   if(esp_sleep_get_wakeup_cause() == ESP_SLEEP_WAKEUP_TIMER)/*periodical wakeup*/
     goToSleep();
 }
