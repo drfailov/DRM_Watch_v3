@@ -14,6 +14,10 @@ void setModeWatchface(){
 }
 
 void modeWatchfaceLoop(){ 
+  
+  if(esp_sleep_get_wakeup_cause() == ESP_SLEEP_WAKEUP_TIMER) //make auto sync only when watch is sleeping and not interrupt user
+    loopTimeAutoSync();  
+    
   //Serial.println("clear screen...");
   lcd()->setColorIndex(white);
   lcd()->drawBox(0, 0, 400, 240);
@@ -39,8 +43,9 @@ void modeWatchfaceLoop(){
   // draw_ic16_menu(lx(), ly3(), black);
 
 
-  if(esp_sleep_get_wakeup_cause() != ESP_SLEEP_WAKEUP_TIMER) //if wake by timer, don't refresh display to keep image static
+  if(esp_sleep_get_wakeup_cause() != ESP_SLEEP_WAKEUP_TIMER) //if wake by timer, don't refresh display to keep image static, image will refresh when go to lock screen and drawing lock icon
     lcd()->sendBuffer();
+
 
   if(!dontSleep){
     int sleepTimeout = isFlashlightOn()?autoSleepTimeFlashlightOn:autoSleepTime;

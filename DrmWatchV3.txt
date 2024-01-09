@@ -85,17 +85,21 @@ Changelog:
 2024-01-07 v0.14 Fixed: permament reconnection USB while device sleeps
 2024-01-07 v0.14 mode off
 2024-01-08 v0.15 Added statusbar icon when auto return to watchface soon
+2024-01-09 v0.16 auto-sync daily
+
+
+
+
 
 
 
 
 ==== todo:
-auto-sync daily
 menu showing all parameters on screen
 stopwatch
 alarm
 time setting
 time coef setting
 select timezone
-
+fix sleep time is set temporary to 8s
 

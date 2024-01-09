@@ -26,7 +26,7 @@
 #define TOUCH3_PIN 10
 #define CHARGER_EN_PIN 37
 
-String version = "v0.15";        //================================== <<<<< VERSION
+String version = "v0.16";        //================================== <<<<< VERSION
 bool black = 1;
 bool white = 0;
 bool dontSleep = false;

@@ -41,7 +41,12 @@ bool wifiSlotClear(int slot){ //1 ... wifiSlotCnt
 }
 
 //----------------------//----------------------//----------------------//----------------------//----------------------//----------------------//----------------------
-
+bool saveLastTryTimeSync(unsigned long epoch){
+  return preferencesObject.putULong64("lastTryTimeSync", epoch) > 0;
+}
+unsigned long getLastTryTimeSync(){
+  return preferencesObject.getULong64("lastTryTimeSync", 0);
+}
 bool saveLastTimeSync(unsigned long epoch){
   return preferencesObject.putULong64("lastTimeSync1", epoch) > 0;
 }
