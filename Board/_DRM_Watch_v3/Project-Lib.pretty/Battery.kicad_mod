@@ -54,12 +54,7 @@
       )
     )
   )
-  (model "C:/Data/Projects/2023-10-05 SHARP MEMORY LCD/Board/3dmodel-test/2023-12-02 Spinner v2.step" hide
-    (offset (xyz 0 0 0))
-    (scale (xyz 1 1 1))
-    (rotate (xyz 0 0 0))
-  )
-  (model "C:/Data/Projects/2023-10-05 SHARP MEMORY LCD/Board/3dmodel-test/2023-12-16 lipo 502030 v1.step"
+  (model "../3dmodel-test/2023-12-16 lipo 502030 v1.step"
     (offset (xyz -7 6 0))
     (scale (xyz 1 1 1))
     (rotate (xyz 0 0 0))

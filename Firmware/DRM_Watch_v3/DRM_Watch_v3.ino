@@ -18,13 +18,19 @@
 #define SENS_USB_PIN 3
 #define SENS_BATERY_PIN 4
 #define BUZZER_PIN 12
-#define LED_TOP_PIN GPIO_NUM_33
-#define LED_BOTTOM_PIN GPIO_NUM_34
-#define LED_STATUS_PIN 35
+#define LED_TOP_PIN GPIO_NUM_33      //OLD
+#define LED_BOTTOM_PIN GPIO_NUM_34   //OLD
+#define LED_STATUS_PIN 35            //OLD
+//#define LED_TOP_PIN GPIO_NUM_36      //NEW
+//#define LED_BOTTOM_PIN GPIO_NUM_37   //NEW
+//#define LED_STATUS_PIN GPIO_NUM_38   //NEW
 #define TOUCH1_PIN 8
 #define TOUCH2_PIN 9
 #define TOUCH3_PIN 10
-#define CHARGER_EN_PIN 37
+//#define CHARGER_EN_PIN 37  //OLD
+#define BACKLIGHT1_PIN 31    //NEW
+#define BACKLIGHT2_PIN 32    //NEW
+
 
 String version = "v0.16";        //================================== <<<<< VERSION
 bool black = 1;
@@ -52,6 +58,10 @@ Runnable modeButtonDownLong = 0;
 void setup(void) {
   if(esp_sleep_get_wakeup_cause() != ESP_SLEEP_WAKEUP_TIMER && !isOff())/*periodical wakeup*/
     Serial.begin(115200);
+
+  pinMode(CHARGER_EN_PIN, OUTPUT);
+  digitalWrite(CHARGER_EN_PIN, HIGH);
+  
   initPreferences();
   black = getBlackValue();
   white = getWhiteValue();

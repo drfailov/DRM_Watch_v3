@@ -17,7 +17,7 @@
     (stroke (width 0.05) (type default)) (fill none) (layer "F.CrtYd") (tstamp 8c5ee7f9-73dd-4fde-b8eb-9a1f6c50c938))
   (pad "1" thru_hole circle (at 0 0) (size 3.5 3.5) (drill 2.2) (layers "*.Cu" "*.Mask" "Eco2.User")
     (solder_mask_margin 0.3) (tstamp b50ec7d4-5a6d-4006-8469-82306cbfd076))
-  (model "C:/Data/Projects/2023-10-05 SHARP MEMORY LCD/Board/ScrewMount/M1.2 Screw Mount v9.step"
+  (model "../ScrewMount/M1.2 Screw Mount v9.step"
     (offset (xyz 0 0 1.4))
     (scale (xyz 1 1 1))
     (rotate (xyz 180 0 0))

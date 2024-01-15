@@ -105,7 +105,7 @@
     (solder_mask_margin 0.102) (tstamp 6849eca1-5a27-4848-a80e-00abdf6f0f57))
   (pad "Z2" smd rect (at 4.05 2.75) (size 2 1.8) (layers "F.Cu" "F.Paste" "F.Mask")
     (solder_mask_margin 0.102) (tstamp a7ac7f34-44fc-468b-b3df-d17e353920d7))
-  (model "C:/Data/Projects/2023-10-05 SHARP MEMORY LCD/Board/lcd connector/143115216-659-687110149022/687110149022.stp"
+  (model "../lcd connector/143115216-659-687110149022/687110149022.stp"
     (offset (xyz 0 -2.5 0))
     (scale (xyz 1 1 1))
     (rotate (xyz 0 0 0))

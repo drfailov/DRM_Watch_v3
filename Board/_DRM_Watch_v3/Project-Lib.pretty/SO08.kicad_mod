@@ -126,7 +126,7 @@
     (solder_mask_margin 0.102) (tstamp c46d1ad8-1b60-4226-9a5e-8a3c5c5e1352))
   (pad "9" smd rect (at 0 0) (size 3 2) (layers "F.Cu" "F.Paste" "F.Mask")
     (solder_mask_margin 0.102) (tstamp 898c3dc8-87b2-4969-8021-e5542b9a121f))
-  (model "C:/Data/Projects/2023-10-05 SHARP MEMORY LCD/Board/CHARGE/TP4056/TP4056.step"
+  (model "../CHARGE/TP4056/TP4056.step"
     (offset (xyz 0 0 0))
     (scale (xyz 1 1 1))
     (rotate (xyz -90 0 -90))

@@ -41,7 +41,7 @@
     (solder_mask_margin 0.1) (thermal_bridge_angle 45) (tstamp c3528918-5203-4e88-88b1-07944082cda7))
   (pad "2" smd roundrect (at -1.7 0) (size 1 1) (layers "F.Cu" "F.Paste" "F.Mask") (roundrect_rratio 0.25)
     (solder_mask_margin 0.1) (thermal_bridge_angle 45) (tstamp e04374c9-e12d-41d4-b025-917c4803b106))
-  (model "C:/Data/Projects/2023-10-05 SHARP MEMORY LCD/Board/LED/2023-12-17 LED v1.step"
+  (model "../LED/2023-12-17 LED v1.step"
     (offset (xyz -1.7 0.7 0))
     (scale (xyz 1 1 1))
     (rotate (xyz 0 0 0))

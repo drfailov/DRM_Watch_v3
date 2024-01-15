@@ -59,7 +59,7 @@
     (solder_mask_margin 0.102) (tstamp 5901a51d-4ac4-4e0d-a733-07f4013e5025))
   (pad "P" smd rect (at -1.476 1.984 270) (size 2.5 2.5) (layers "F.Cu" "F.Paste" "F.Mask")
     (solder_mask_margin 0.102) (tstamp a52021ee-4544-4111-a732-e944d5c99049))
-  (model "C:/Data/Projects/2023-10-05 SHARP MEMORY LCD/Board/buzzer2/CUI_DEVICES_CMT-7525S-SMT-TR/CUI_DEVICES_CMT-7525S-SMT-TR.step"
+  (model "../buzzer2/CUI_DEVICES_CMT-7525S-SMT-TR/CUI_DEVICES_CMT-7525S-SMT-TR.step"
     (offset (xyz -2.2 4.7 2.5))
     (scale (xyz 1 1 1))
     (rotate (xyz -90 0 0))

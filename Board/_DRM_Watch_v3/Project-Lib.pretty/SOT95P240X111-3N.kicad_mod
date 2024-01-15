@@ -46,7 +46,7 @@
     (solder_mask_margin 0.102) (tstamp 40b01890-0f50-4e53-af1e-4c7a42aa387a))
   (pad "3" smd roundrect (at 1.06 0) (size 1.23 0.6) (layers "F.Cu" "F.Paste" "F.Mask") (roundrect_rratio 0.07)
     (solder_mask_margin 0.102) (tstamp f109366c-385e-4b6f-bb9f-4e16bd45aaa5))
-  (model "C:/Data/Projects/2023-10-05 SHARP MEMORY LCD/Board/mosfet/2N7002LT1G/2N7002LT1G.step"
+  (model "../mosfet/2N7002LT1G/2N7002LT1G.step"
     (offset (xyz 0 0 0))
     (scale (xyz 1 1 1))
     (rotate (xyz -90 0 0))

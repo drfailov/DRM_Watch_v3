@@ -86,7 +86,18 @@ Changelog:
 2024-01-07 v0.14 mode off
 2024-01-08 v0.15 Added statusbar icon when auto return to watchface soon
 2024-01-09 v0.16 auto-sync daily
-
+2024-01-15 Board: add step-up resistor and cap to RST pin
+2024-01-15 Board: quartz bigger package
+2024-01-15 Board: add more testpoints for unused pins
+2024-01-15 Board: top led: place for smaller led
+2024-01-15 Board: move caacitors closer to chips
+2024-01-15 Board: make wifi wire thicker
+2024-01-15 Board: move wifi antenna closer to chips
+2024-01-15 Board: add vias around ANT wire
+2024-01-15 Board: move antenna elements closer to chip 
+2024-01-15 Board: replace onboard antenna by wire soldered on board
+2024-01-15 Board: Add jumper to close charger
+2024-01-15 Board: Add dm123a chip    (static const uint8_t SDA = 33;   static const uint8_t SCL = 35;)
 
 
 
@@ -102,4 +113,12 @@ time setting
 time coef setting
 select timezone
 fix sleep time is set temporary to 8s
+
+
+
+
+
+blinding lights:
+https://zserge.com/nokia-composer/
+https://musescore.com/user/33801712/scores/5905576
 

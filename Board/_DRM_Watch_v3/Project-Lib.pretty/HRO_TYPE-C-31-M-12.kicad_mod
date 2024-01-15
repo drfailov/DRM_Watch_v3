@@ -190,7 +190,7 @@
     (solder_mask_margin 0.102) (tstamp 99489f32-ffff-4453-b717-836bd3f4401a))
   (pad "S4" thru_hole oval (at 4.325 0) (size 0.9 1.7) (drill oval 0.6 1.4) (layers "*.Cu" "*.Mask")
     (solder_mask_margin 0.102) (tstamp 288fca1a-a654-4b18-8d7f-32dbb7b4a5a4))
-  (model "C:/Data/Projects/2023-10-05 SHARP MEMORY LCD/Board/TYPE-C-31-M-12/TYPE-C-31-M-12.step"
+  (model "../TYPE-C-31-M-12/TYPE-C-31-M-12.step"
     (offset (xyz 0 0 0))
     (scale (xyz 1 1 1))
     (rotate (xyz -90 0 0))
