@@ -8,6 +8,10 @@
 #include <Wire.h>
 #endif
 
+#define HW_REV_1
+//#define HW_REV_2
+
+#ifdef HW_REV_1
 #define LCD_CLK 7
 #define LCD_SDA 11
 #define LCD_CS 5
@@ -21,18 +25,37 @@
 #define LED_TOP_PIN GPIO_NUM_33      //OLD
 #define LED_BOTTOM_PIN GPIO_NUM_34   //OLD
 #define LED_STATUS_PIN 35            //OLD
-//#define LED_TOP_PIN GPIO_NUM_36      //NEW
-//#define LED_BOTTOM_PIN GPIO_NUM_37   //NEW
-//#define LED_STATUS_PIN GPIO_NUM_38   //NEW
 #define TOUCH1_PIN 8
 #define TOUCH2_PIN 9
 #define TOUCH3_PIN 10
-//#define CHARGER_EN_PIN 37  //OLD
+#define CHARGER_EN_PIN 37  //OLD
+#endif
+
+#ifdef HW_REV_2
+#define LCD_CLK 7
+#define LCD_SDA 11
+#define LCD_CS 5
+#define LCD_EN GPIO_NUM_6
+#define BUT_UP GPIO_NUM_0 //Active LOW
+#define BUT_CENTER GPIO_NUM_1 //Active LOW
+#define BUT_DOWN GPIO_NUM_2 //Active LOW
+#define SENS_USB_PIN 3
+#define SENS_BATERY_PIN 4
+#define BUZZER_PIN 12
+#define LED_TOP_PIN GPIO_NUM_36      //NEW
+#define LED_BOTTOM_PIN GPIO_NUM_37   //NEW
+#define LED_STATUS_PIN GPIO_NUM_38   //NEW
+#define TOUCH1_PIN 8
+#define TOUCH2_PIN 9
+#define TOUCH3_PIN 10
 #define BACKLIGHT1_PIN 31    //NEW
 #define BACKLIGHT2_PIN 32    //NEW
+#define RTC_SDA_PIN 0    
+#define RTC_SCL_PIN 0    
+#endif
 
 
-String version = "v0.16";        //================================== <<<<< VERSION
+String version = "v0.17";        //================================== <<<<< VERSION
 bool black = 1;
 bool white = 0;
 bool dontSleep = false;
@@ -57,11 +80,7 @@ Runnable modeButtonDownLong = 0;
 
 void setup(void) {
   if(esp_sleep_get_wakeup_cause() != ESP_SLEEP_WAKEUP_TIMER && !isOff())/*periodical wakeup*/
-    Serial.begin(115200);
-
-  pinMode(CHARGER_EN_PIN, OUTPUT);
-  digitalWrite(CHARGER_EN_PIN, HIGH);
-  
+    Serial.begin(115200);  
   initPreferences();
   black = getBlackValue();
   white = getWhiteValue();
@@ -134,8 +153,6 @@ void goToSleep(){
   draw_ic24_empty(lx(), ly1(), black);
   draw_ic24_unlock(lx(), ly2(), black);
   draw_ic24_empty(lx(), ly3(), black);
-  //lcd()->setFont(u8g2_font_10x20_tf);
-  //lcd()->drawStr(330, 125, "UNLOCK");
   lcd()->sendBuffer();
   delay(20);
   

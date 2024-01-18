@@ -98,7 +98,7 @@ Changelog:
 2024-01-15 Board: replace onboard antenna by wire soldered on board
 2024-01-15 Board: Add jumper to close charger
 2024-01-15 Board: Add dm123a chip    (static const uint8_t SDA = 33;   static const uint8_t SCL = 35;)
-
+2024-01-16 v0.17 Added touch data to testmode
 
 
 

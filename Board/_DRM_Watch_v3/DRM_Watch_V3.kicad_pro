@@ -490,7 +490,7 @@
       "idf": "",
       "netlist": "",
       "specctra_dsn": "20231216DRM_Watch_V3.dsn",
-      "step": "1.step",
+      "step": "../2024-01-15 GERBER/2024-01-15 board.step",
       "vrml": ""
     },
     "page_layout_descr_file": ""

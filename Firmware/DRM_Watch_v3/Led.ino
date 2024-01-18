@@ -38,13 +38,17 @@ bool isFlashlightOn(){
   return (isFlasthilghTopOn() ||  isFlasthilghBottomOn());
 }
 
+void ledFlashlightSetValueTop(int ledTopValue){
+  analogWrite(LED_TOP_PIN, ledTopValue); 
+}
+
 void ledFlashlightOnTop(){
   ledTopValue = 255;
   analogWrite(LED_TOP_PIN, ledTopValue); 
 }
 
 void ledFlashlightOffTop(){
-  ledTopValue = 5;
+  ledTopValue = 7;
   if(esp_sleep_get_wakeup_cause() == ESP_SLEEP_WAKEUP_TIMER || isOff())/*periodical wakeup*/
     ledTopValue = 0;
   analogWrite(LED_TOP_PIN, ledTopValue); 
@@ -56,7 +60,7 @@ void ledFlashlightOnBottom(){
 }
 
 void ledFlashlightOffBottom(){
-  ledBottomValue = 5;
+  ledBottomValue = 1;
   if(esp_sleep_get_wakeup_cause() == ESP_SLEEP_WAKEUP_TIMER || isOff())/*periodical wakeup*/
     ledBottomValue = 0;
   analogWrite(LED_BOTTOM_PIN, ledBottomValue); 
