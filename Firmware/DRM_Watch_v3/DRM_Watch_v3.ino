@@ -55,7 +55,7 @@
 #endif
 
 
-String version = "v0.17";        //================================== <<<<< VERSION
+String version = "v0.18";        //================================== <<<<< VERSION
 bool black = 1;
 bool white = 0;
 bool dontSleep = false;

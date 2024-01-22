@@ -99,7 +99,7 @@ Changelog:
 2024-01-15 Board: Add jumper to close charger
 2024-01-15 Board: Add dm123a chip    (static const uint8_t SDA = 33;   static const uint8_t SCL = 35;)
 2024-01-16 v0.17 Added touch data to testmode
-
+2024-01-23 v0.18 New melodies format and new melodies added
 
 
 
