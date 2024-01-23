@@ -1,0 +1,18 @@
+{
+  "name": "MIDI-to-Arduino",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "snowpack dev",
+    "build": "snowpack build"
+  },
+  "dependencies": {
+    "@tonejs/midi": "^2.0.27",
+    "@tonejs/ui": "^0.1.5",
+    "tone": "^14.7.77"
+  },
+  "devDependencies": {
+    "snowpack": "^3.8.6"
+  }
+}

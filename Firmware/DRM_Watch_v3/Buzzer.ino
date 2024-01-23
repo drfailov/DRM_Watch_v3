@@ -9,17 +9,25 @@ void buzzerInit(){
     buzzer.tone(2800, 50);
   }
 }
-
-void buzTone(int freq){
+int freq = 0;
+void buzTone(int _freq){
+  freq=_freq;
   buzzer.tone(freq);
-  //delay(duration);
 }
-void buzTone(int freq, int duration){
+void buzDownFreq(){
+  freq --;
+  buzTone(freq);
+}
+int buzGetFreq(){
+  return freq;
+}
+void buzTone(int _freq, int duration){
+  freq=_freq;
   buzzer.tone(freq, duration);
-  //delay(duration);
 }
 void buzNoTone(){
     buzzer.noTone(); 
+    freq = 0;
 }
 
 void buttonBeep(){
