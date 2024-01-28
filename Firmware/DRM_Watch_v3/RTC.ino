@@ -29,6 +29,10 @@ ESP32Time* rtcCorrected(){
   return &rtcObjCorrected;
 }
 
+unsigned long rtcGetEpoch(){
+  return rtcCorrected() -> getEpoch();
+}
+
 
 String getRtcSlk(){
   switch(rtc_clk_slow_freq_get()){

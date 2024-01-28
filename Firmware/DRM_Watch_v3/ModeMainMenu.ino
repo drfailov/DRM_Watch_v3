@@ -31,7 +31,7 @@ void modeMainMenuLoop(){
   
   drawMenuItem(itemBack, draw_ic24_arrow_left, "Назад", false);
   drawMenuItem(itemApps, draw_ic24_apps, "Програми", false);
-  drawMenuItem(itemSettings, draw_ic24_settings, "Нашаштування", false);
+  drawMenuItem(itemSettings, draw_ic24_settings, "Налаштування", false);
   drawMenuItem(itemAbout, draw_ic24_about, "Про програму", false);
   drawMenuItem(itemDebug, draw_ic24_bug, "Інженерне меню", false);
 

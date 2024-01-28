@@ -14,7 +14,6 @@ void setModeTest(){
   enableAutoReturn = false;
 }
 
-int lt3=-1;
 void modeTestLoop(){ 
   lcd()->setColorIndex(white);
   lcd()->drawBox(0, 0, 400, 240);
@@ -39,27 +38,8 @@ void modeTestLoop(){
   y+=interval; lcd()->setCursor(x, y); lcd()->print("Since last action:"); lcd()->print(sinceLastAction());
   y+=interval; lcd()->setCursor(x, y); lcd()->print("Temperature:"); lcd()->print(temperature());
   y+=interval; lcd()->setCursor(x, y); lcd()->print("Preferences remaining memory:"); lcd()->print(getPreferencesFreeSpace());
-  int touch_value1 = touchRead(TOUCH1_PIN);
-  int touch_value2 = touchRead(TOUCH2_PIN);
-  int touch_value3 = touchRead(TOUCH3_PIN);
-  y+=interval; lcd()->setCursor(x, y); lcd()->print("Touch1:"); lcd()->print(touch_value1);  lcd()->print(", Touch2:"); lcd()->print(touch_value2);  lcd()->print(", Touch3:"); lcd()->print(touch_value3);
+  y+=interval; lcd()->setCursor(x, y); lcd()->print("Touch1:"); lcd()->print(touchRead(TOUCH1_PIN));  lcd()->print(", Touch2:"); lcd()->print(touchRead(TOUCH2_PIN));  lcd()->print(", Touch3:"); lcd()->print(touchRead(TOUCH3_PIN));
 
-  if(lt3 != -1){
-    int dt3 = touch_value3-lt3;
-    Serial.print(dt3);Serial.println(";");
-    if(dt3 > 100){
-      ledFlashlightOnBottom();
-      registerAction();
-      buttonBeep();
-    }
-    if(dt3 < -100){
-      ledFlashlightOffBottom();
-      registerAction();
-      buttonBeep();
-    }
-  }
-  //Serial.print(touch_value1);Serial.print(" ");Serial.print(touch_value2);Serial.print(" ");Serial.print(touch_value3);Serial.println(";");
-  lt3 = touch_value3;
   
   draw_ic24_lock(lx(), ly1(), black);
   draw_ic24_arrow_left(lx(), ly2(), black);

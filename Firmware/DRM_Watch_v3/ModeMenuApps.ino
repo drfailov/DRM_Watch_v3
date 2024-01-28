@@ -1,6 +1,7 @@
 const int itemModeAppsBack=0;
-const int itemModeAppsAlarm=1;
+const int itemModeAppsStopwatch=1;
 const int itemModeAppsMusic=2;
+const int itemModeAppsAlarm=3;
 
 void setModeAppsMenu(){
   Serial.println(F("Set mode: Apps Menu"));
@@ -15,7 +16,7 @@ void setModeAppsMenu(){
   registerAction();
   enableAutoReturn = true;
   selected = 0;
-  items = 3;
+  items = 4;
 }
 
 
@@ -29,8 +30,10 @@ void ModeAppsMenuLoop(){
   lcd()->print("Програми");
   
   drawMenuItem(itemModeAppsBack, draw_ic24_arrow_left, "Назад", false);
-  drawMenuItem(itemModeAppsAlarm, draw_ic24_alarm, "Будильник", false);
+  drawMenuItem(itemModeAppsStopwatch, draw_ic24_stopwatch, "Секундомір", false);
   drawMenuItem(itemModeAppsMusic, draw_ic24_music, "Мелодії", false);
+  drawMenuItem(itemModeAppsAlarm, draw_ic24_alarm, "Будильник", false);
+  
 
   drawStatusbar(363, 1, true);
   drawMenuLegend();
@@ -47,13 +50,12 @@ void ModeAppsMenuButtonCenter(){
     return;
   }
   if(selected==itemModeAppsMusic){
-    //playMelody();
-    //melodyPlayerPlayMelody(getMelodyGroovyBlue());
-    
-    //melodyPlayerPlayMelody(getMelodyData(0));
     setModeMelodyListMenu();
     selected = 0;
     return;
   }
-  
+  if(selected==itemModeAppsStopwatch){
+    setModeStopwatch();
+    return;
+  }
 }

@@ -135,9 +135,9 @@ void displayDrawVector(const byte* data_array, int X, int Y, float scale, int th
           lcd()->drawLine(/*X1*/lx*scale + ox, /*Y1*/ly*scale + oy, /*X2*/x*scale + ox, /*Y2*/y*scale + oy);
     }
     if(animate!=0 && i%animate==0){
-      lcd()->sendBuffer();
-      if (isButtonUpPressed()) 
-        animate = false;
+      if (!isAnyButtonPressed()) {
+        lcd()->sendBuffer();
+      }
     }
     currentIndex += 2;
     lx = x;

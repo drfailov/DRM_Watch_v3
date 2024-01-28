@@ -16,6 +16,8 @@ Icons used as reference:
 <a href="https://www.flaticon.com/free-icons/music-note" title="music note icons">Music note icons created by iconsax - Flaticon</a>
 <a href="https://www.flaticon.com/free-icons/refresh" title="refresh icons">Refresh icons created by Pixel perfect - Flaticon</a>
 <a href="https://www.flaticon.com/free-icons/black-and-white" title="black and white icons">Black and white icons created by Ch.designer - Flaticon</a>
+<a href="https://www.flaticon.com/free-icons/clock" title="clock icons">Clock icons created by Freepik - Flaticon</a>
+
 
 
 
@@ -102,6 +104,13 @@ Changelog:
 2024-01-23 v0.18 New melodies format and new melodies added
 2024-01-24 Added instrument to convert MIDI files to melodies
 2024-01-24 v0.19 New melodies 
+2024-01-25 v0.20 improved mechanism of skipping animation
+2024-01-25 v0.20 don't sleep when charger connected
+2024-01-25 v0.20 added new icons
+2024-01-25 v0.20 started cheating stopwatch
+2024-01-27 Updated model case
+2024-01-28 Updated model case
+2024-01-28 Added images to engrave on back and front panel
 
 
 
@@ -113,7 +122,6 @@ alarm
 time setting
 time coef setting
 select timezone
-fix sleep time is set temporary to 8s
 
 
 

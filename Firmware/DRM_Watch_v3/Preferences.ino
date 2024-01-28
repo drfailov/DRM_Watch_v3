@@ -1,10 +1,36 @@
 #include <Preferences.h>
 
+//   max name len: 15
+
 Preferences preferencesObject;
 
 void initPreferences(){
   preferencesObject.begin("drm-watch-v3", false);
 }
+
+
+//----------------------//---------------------- STOPWATCH ----------//----------------------//----------------------//----------------------//----------------------
+bool saveStopwatchStartedTime(unsigned long epoch){
+  return preferencesObject.putULong64("stopwatch1", epoch) > 0;
+}
+
+bool saveStopwatchFinishedTime(unsigned long epoch){
+  return preferencesObject.putULong64("stopwatch2", epoch) > 0;
+}
+
+unsigned long getStopwatchStartedTime(){
+  return preferencesObject.getULong64("stopwatch1", 0);
+}
+
+unsigned long getStopwatchFinishedTime(){
+  return preferencesObject.getULong64("stopwatch2", 0);
+}
+
+bool isStopwatchRunning(){
+  return getStopwatchStartedTime() != 0 && getStopwatchFinishedTime() == 0;
+}
+
+//----------------------//---------------------- SAVED WI-FI --------//----------------------//----------------------//----------------------//----------------------
 
 int wifiSlotCnt(){
   return 7;
@@ -40,7 +66,7 @@ bool wifiSlotClear(int slot){ //1 ... wifiSlotCnt
   return wifiSlotSave(slot, "-empty-", "-empty-");
 }
 
-//----------------------//----------------------//----------------------//----------------------//----------------------//----------------------//----------------------
+//----------------------//---------------------- TIME SYNC ------------//----------------------//----------------------//----------------------//----------------------
 bool saveLastTryTimeSync(unsigned long epoch){
   return preferencesObject.putULong64("lastTryTimeSync", epoch) > 0;
 }
@@ -60,7 +86,7 @@ double getTimeCoef(){
   return preferencesObject.getDouble("timeCorrection1", 0);
 }
 
-//----------------------//----------------------//----------------------//----------------------//----------------------//----------------------//----------------------
+//----------------------//---------------------- DISPLAY COLORS -------//----------------------//----------------------//----------------------//----------------------
 
 bool getWhiteValue(){
   return !getInversionValue();

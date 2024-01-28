@@ -33,6 +33,18 @@ bool isButtonUpPressed(){
   return isPressed(BUT_UP);
 }
 
+bool isButtonCenterPressed(){
+  return isPressed(BUT_CENTER);
+}
+
+bool isButtonDownPressed(){
+  return isPressed(BUT_DOWN);
+}
+
+bool isAnyButtonPressed(){
+  return isButtonUpPressed() || isButtonCenterPressed() || isButtonDownPressed();
+}
+
 void registerAction(){
   lastActionTime=millis();
 }

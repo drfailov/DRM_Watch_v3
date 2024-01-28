@@ -4,12 +4,12 @@ void modeAboutSetup(){
   Serial.println(F("Set mode: About"));
   modeSetup = modeAboutSetup;
   modeLoop = modeAboutLoop;
-  modeButtonUp = setModeWatchface;
-  modeButtonCenter = setModeWatchface;
-  modeButtonDown = setModeWatchface;
-  modeButtonUpLong = 0;
-  modeButtonCenterLong = 0;
-  modeButtonDownLong = 0;
+  modeButtonUp = doNothing;
+  modeButtonCenter = doNothing;
+  modeButtonDown = doNothing;
+  modeButtonUpLong = setModeWatchface;
+  modeButtonCenterLong = setModeWatchface;
+  modeButtonDownLong = setModeWatchface;
   registerAction();
   enableAutoReturn = true;
 }
@@ -28,7 +28,10 @@ void modeAboutLoop(){
 
   displayDrawVector(getPathZubat(), 40, 60, 3.0, 3, 0, black);
   displayDrawVector(getPathDrmWatch(), 190, 60, 3.0, 2, 4, black);
-  delay(500);
-  displayDrawVector(getPathDrmWatch(), 190, 60, 3.0, 2, 6, white);
   lcd()->sendBuffer();
+  if(!isAnyButtonPressed()){
+    delay(500);
+    displayDrawVector(getPathDrmWatch(), 190, 60, 3.0, 2, 6, white);
+    lcd()->sendBuffer();
+  }
 }

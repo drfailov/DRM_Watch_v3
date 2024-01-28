@@ -47,7 +47,7 @@ void modeWatchfaceLoop(){
     lcd()->sendBuffer();
 
 
-  if(!dontSleep){
+  if(!dontSleep && !isChargerConnected()){
     int sleepTimeout = isFlashlightOn()?autoSleepTimeFlashlightOn:autoSleepTime;
     if(sinceLastAction() > sleepTimeout && !dontSleep) //auto go to sleep
       goToSleep();
@@ -98,6 +98,11 @@ int drawStatusbar(int x, int y, bool drawTime){
   if(dontSleep){
     x -= 16;
     draw_ic16_coffee(x, y+4, black);
+    x-=interval;
+  }
+  if(isStopwatchRunning()){
+    x -= 16;
+    draw_ic16_stopwatch(x, y+4, black);
     x-=interval;
   }
   if(enableAutoReturn && autoReturnTime-sinceLastAction() < 31000 && !dontSleep) {
