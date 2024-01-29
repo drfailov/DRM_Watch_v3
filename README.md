@@ -30,6 +30,7 @@ ESP32-S2 based watch with SHARP Memory LCD.
 
 ## Modules used as components source
 <p align="center">
+<img src="Photos/5a768_electronic_circuits_gI_0_MemoryLCDPress.jpg" width="200"/>
 <img src="Photos/1333_1.png" width="200"/>
 <img src="Photos/large_AOC777-1.jpg" width="200"/>
 </p>
