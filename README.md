@@ -2,9 +2,15 @@
 ESP32-S2 based watch with SHARP Memory LCD
 
 
+<p align="center"><img src="Photos/DRM_zb2.png" width="300"/></p>
+
 
 ESP32-S2 based watch with SHARP Memory LCD
 
+<p align="center">
+<img src="Photos/1333_1.png" width="200"/>
+<img src="Photos/large_AOC777-1.jpg" width="200"/>
+</p>
 
 
 
