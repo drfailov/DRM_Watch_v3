@@ -12,6 +12,9 @@ void modeAboutSetup(){
   modeButtonDownLong = setModeWatchface;
   registerAction();
   enableAutoReturn = true;
+  enableAutoSleep = false; 
+  autoReturnTime = autoReturnDefaultTime;
+  autoSleepTime = autoSleepDefaultTime;
 }
 
 void modeAboutLoop(){

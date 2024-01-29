@@ -4,7 +4,7 @@ ToneESP32 buzzer(BUZZER_PIN, /*BUZZER_CHANNEL*/0);
 
 
 void buzzerInit(){
-  if(esp_sleep_get_wakeup_cause() == 0){
+  if(esp_sleep_get_wakeup_cause() == 0){ //reboot manually
     buzzer.tone(3000, 50);
     buzzer.tone(2800, 50);
   }
@@ -26,10 +26,26 @@ void buzTone(int _freq, int duration){
   buzzer.tone(freq, duration);
 }
 void buzNoTone(){
-    buzzer.noTone(); 
-    freq = 0;
+  buzzer.noTone(); 
+  freq = 0;
 }
 
+void buzPlayChargerConnectedTone(){
+  if(isOff())
+    return;
+  for(int i=0; i<10; i++){
+    buzTone(2000+i*20, 10);
+    delay(5);
+  }
+}
+void buzPlayChargerDisconnectedTone(){
+  if(isOff())
+    return;
+  for(int i=0; i<10; i++){
+    buzTone(2000-i*20, 10);
+    delay(5);
+  }
+}
 void buttonBeep(){
   if(!isOff())
     buzzer.tone(2000, 50);

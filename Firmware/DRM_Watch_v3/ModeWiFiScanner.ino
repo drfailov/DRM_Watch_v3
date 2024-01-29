@@ -33,6 +33,11 @@ void setModeWiFiScanner_(){
   modeButtonCenterLong = 0;
   modeButtonDownLong = 0;
   registerAction();
+  enableAutoReturn = true;
+  enableAutoSleep = false; 
+  autoReturnTime = autoReturnDefaultTime;
+  autoSleepTime = autoSleepDefaultTime;
+  
   modeWiFiScannerState = modeWiFiScannerStatePreparing;
   modeWiFiScannerStateChangeTime = millis();
 }

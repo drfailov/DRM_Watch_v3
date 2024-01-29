@@ -15,6 +15,10 @@ void questionModeSet(String _text1, String _text2, Runnable _onYes, Runnable _on
   modeButtonDownLong = 0;
   registerAction();
   enableAutoReturn = true;
+  enableAutoSleep = false; 
+  autoReturnTime = autoReturnDefaultTime;
+  autoSleepTime = autoSleepDefaultTime;
+
   questionModeText1 = _text1;
   questionModeText2 = _text2;
   questionModeOnYes = _onYes;

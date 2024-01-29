@@ -17,6 +17,7 @@ Icons used as reference:
 <a href="https://www.flaticon.com/free-icons/refresh" title="refresh icons">Refresh icons created by Pixel perfect - Flaticon</a>
 <a href="https://www.flaticon.com/free-icons/black-and-white" title="black and white icons">Black and white icons created by Ch.designer - Flaticon</a>
 <a href="https://www.flaticon.com/free-icons/clock" title="clock icons">Clock icons created by Freepik - Flaticon</a>
+<a href="https://www.flaticon.com/free-icons/pause" title="pause icons">Pause icons created by Slidicon - Flaticon</a>
 
 
 
@@ -111,7 +112,10 @@ Changelog:
 2024-01-27 Updated model case
 2024-01-28 Updated model case
 2024-01-28 Added images to engrave on back and front panel
-
+2024-01-29 v0.21 fixed case when unsiccessful tyme sync makes time-travel tool
+2024-01-29 v0.21 improved work of auto-sleep and auto exit functions
+2024-01-29 v0.21 Added counter for auto sleep
+2024-01-29 v0.21 Charger connected and charger disconnected tones
 
 
 
@@ -119,11 +123,12 @@ Changelog:
 menu showing all parameters on screen
 stopwatch
 alarm
+calendar
 time setting
 time coef setting
 select timezone
-
-
+setting tone of all sounds
+last charged info
 
 
 

@@ -104,6 +104,10 @@ void setModeKeyboard(){
   modeButtonDownLong = 0;
   registerAction();
   enableAutoReturn = true;
+  enableAutoSleep = false; 
+  autoReturnTime = autoReturnDefaultTime;
+  autoSleepTime = autoSleepDefaultTime;
+  
   text = "";
   selectedRow = 0;
   selectedCol = 0;

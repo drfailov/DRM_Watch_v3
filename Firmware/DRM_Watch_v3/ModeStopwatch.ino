@@ -1,62 +1,92 @@
+const int itemModeStopwatchBack=0;
+const int itemModeStopwatchStartStop=1;
+const int itemModeStopwatchReset=2;
+const int itemModeStopwatchLock=3;
+
 void setModeStopwatch(){
   Serial.println(F("Set mode: Stopwatch"));
   modeSetup = setModeStopwatch;
   modeLoop = modeStopwatchLoop;
-  modeButtonUp = modeStopwatchButtonUp;
+  modeButtonUp = modeMainMenuButtonUp;
   modeButtonCenter = modeStopwatchButtonCenter;
-  modeButtonDown = modeStopwatchButtonDown;
+  modeButtonDown = modeMainMenuButtonDown;
   modeButtonUpLong = 0;
   modeButtonCenterLong = 0;
   modeButtonDownLong = 0;
   registerAction();
   enableAutoReturn = false;
+  enableAutoSleep = true; 
+  autoReturnTime = autoReturnDefaultTime;
+  autoSleepTime = autoReturnDefaultTime;
+  selected = 1;
+  items = 4;
 }
 
 
 void modeStopwatchLoop(){ 
   lcd()->setColorIndex(white);
   lcd()->drawBox(0, 0, 400, 240);
-
-
-
+  
   lcd()->setFont(u8g2_font_10x20_t_cyrillic);  //ok
   lcd()->setColorIndex(black);
   lcd()->setCursor(5, 18); 
   lcd()->print("Секундомір");
-
   drawStatusbar(363, 1, true);  
 
+  
+  unsigned long now = rtcGetEpoch();
+  unsigned long start = getStopwatchStartedTime();
+  unsigned long end = getStopwatchFinishedTime();
+  if(start != 0 && end == 0) end = now;
+  unsigned long dd = end-start;
+  unsigned long sphour = (60*60);
+  unsigned long hours = dd / sphour;
+  dd -= hours*sphour;
+  unsigned long spminute = 60;
+  unsigned long minutes = dd / spminute;
+  dd -= minutes*spminute;
+  unsigned long seconds = dd;
+  
   lcd()->setColorIndex(black);
   lcd()->setFont(u8g2_font_inr24_t_cyrillic);
-  lcd()->setCursor(50, 60);
-  lcd()->print("00:00:00"); 
+  lcd()->setCursor(90, 90);
+  if(hours < 10) lcd()->print("0"); lcd()->print(hours); 
+  lcd()->print(":"); 
+  if(minutes < 10) lcd()->print("0"); lcd()->print(minutes); 
+  lcd()->print(":"); 
+  if(seconds < 10) lcd()->print("0"); lcd()->print(seconds); 
 
-  lcd()->setColorIndex(black);
-  lcd()->drawLine(369, 0, 369, 260);
-  lcd()->drawLine(370, 0, 370, 260);
+  
+  drawMenuItem(itemModeAppsBack, draw_ic24_arrow_left, "Назад", false, 130);
   if(isStopwatchRunning())
-    draw_ic16_cancel(lx(), ly1(), black);
+    drawMenuItem(itemModeStopwatchStartStop, draw_ic24_pause, "Пауза", false, 130);
   else
-    draw_ic16_arrow_right(lx(), ly1(), black);
-  draw_ic16_cancel(lx(), ly2(), black);
-  draw_ic16_repeat(lx(), ly3(), black);
+    drawMenuItem(itemModeStopwatchStartStop, draw_ic24_arrow_right, "Запустити", false, 130);
+  drawMenuItem(itemModeStopwatchReset, draw_ic24_reboot, "Скинути", false, 130);
+  drawMenuItem(itemModeStopwatchLock, draw_ic24_lock, "Заблокувати екран", false, 130);
 
+  drawMenuLegend();
   lcd()->sendBuffer();
 }
 
-void modeStopwatchButtonUp(){
-  if(isStopwatchRunning()){
-    saveStopwatchFinishedTime(rtcGetEpoch());
-  }
-  else{
-    saveStopwatchStartedTime(rtcGetEpoch());
-    saveStopwatchFinishedTime(0);
-  }
-}
-
 void modeStopwatchButtonCenter(){
-  setModeAppsMenu();
-}
-
-void modeStopwatchButtonDown(){
+  if(selected == itemModeStopwatchBack){
+    setModeAppsMenu();
+  }
+  if(selected == itemModeStopwatchStartStop){
+    if(isStopwatchRunning()){ //do PAUSE
+      saveStopwatchFinishedTime(rtcGetEpoch());
+    }
+    else{ //do RESUME
+      saveStopwatchStartedTime(rtcGetEpoch());
+      saveStopwatchFinishedTime(0);
+    }
+  }
+  if(selected == itemModeStopwatchReset){
+    saveStopwatchStartedTime(0);
+    saveStopwatchFinishedTime(0);
+  }  
+  if(selected == itemModeStopwatchLock){
+    goToSleep();
+  }  
 }

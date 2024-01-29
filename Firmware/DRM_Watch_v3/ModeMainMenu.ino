@@ -16,6 +16,9 @@ void setModeMainMenu(){
   modeButtonDownLong = 0;
   registerAction();
   enableAutoReturn = true;
+  enableAutoSleep = false; 
+  autoReturnTime = autoReturnDefaultTime;
+  autoSleepTime = autoSleepDefaultTime;
   selected = 0;
   items = 5;
 }
@@ -84,11 +87,13 @@ void modeMainMenuButtonDown(){
 
 
 void drawMenuItem(byte index, Drawable drawIcon, const char* name, bool animate){
+  drawMenuItem(index, drawIcon, name, animate, 60);
+}
+void drawMenuItem(byte index, Drawable drawIcon, const char* name, bool animate, const int yOffset){
   int lines = 2;
   int cols = 4;
   if(selected/(lines*cols) != index/(lines*cols)) return;
   const int xOffset = 35;
-  const int yOffset = 60;
   const int width=62;
   const int height=42;
   const int margin = 15;
@@ -108,6 +113,7 @@ void drawMenuItem(byte index, Drawable drawIcon, const char* name, bool animate)
   if(selected == index){
     lcd()->setCursor(8, 232);
     lcd()->setColorIndex(black);
+    lcd()->setFont(u8g2_font_10x20_t_cyrillic);  //ok
     lcd()->print(name);
   }
   if(animate)

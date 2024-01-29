@@ -55,14 +55,19 @@
 #endif
 
 
-String version = "v0.20";        //================================== <<<<< VERSION
+String version = "v0.21";        //================================== <<<<< VERSION
 bool black = 1;
 bool white = 0;
+
 bool dontSleep = false;
+const int autoReturnDefaultTime = 120000;//ms
+const int autoSleepDefaultTime = 15000;//ms
+const int autoSleepDefaultTimeWhenFlashlightOn = 300000;//ms
 bool enableAutoReturn = false; //is set when new mode selected
-int autoReturnTime = 120000;//ms
-int autoSleepTime = 15000;//ms
-int autoSleepTimeFlashlightOn = 300000;//ms
+bool enableAutoSleep = false; //is set when new mode selected
+int autoReturnTime = autoReturnDefaultTime;//ms
+int autoSleepTime = autoSleepDefaultTime;//ms
+
 int items =0;     //global for menus
 int selected = 0; //global for menus
 
@@ -131,6 +136,10 @@ void loop(void) {
   
   if(enableAutoReturn && sinceLastAction() > autoReturnTime && !dontSleep) //auto go to watchface
     setModeWatchface();
+  
+  int _autoSleepTime = isFlashlightOn()?autoSleepDefaultTimeWhenFlashlightOn:autoSleepTime;
+  if(enableAutoSleep && sinceLastAction() > _autoSleepTime && !dontSleep && !isChargerConnected()) //auto go to sleep
+    goToSleep();
 
   if(esp_sleep_get_wakeup_cause() == ESP_SLEEP_WAKEUP_TIMER)/*periodical wakeup*/
     goToSleep();
@@ -160,9 +169,9 @@ void goToSleep(){
   esp_sleep_enable_ext0_wakeup(BUT_CENTER, 0); //1 = High, 0 = Low
   
   if(isOff())
-    esp_sleep_enable_timer_wakeup(300 * 1000000ULL);
+    esp_sleep_enable_timer_wakeup(600 * 1000000ULL);
   else
-    esp_sleep_enable_timer_wakeup(28 * 1000000ULL);
+    esp_sleep_enable_timer_wakeup(55 * 1000000ULL);
   esp_deep_sleep_start();
 }
 

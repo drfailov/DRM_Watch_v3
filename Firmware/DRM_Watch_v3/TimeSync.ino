@@ -74,14 +74,16 @@ void timeSync(){
     configTime(0, 0, ntpServer, ntpServer1, ntpServer2);
     printLocalTime();
     delay(500);
-    saveLastTryTimeSync(rtc()->getEpoch());
-    saveLastTimeSync(rtc()->getEpoch());
+    unsigned long thisSyncTime = rtc()->getEpoch();
+    saveLastTryTimeSync(thisSyncTime);
+    saveLastTimeSync(thisSyncTime);
     drawMessage("Відновлення часового поясу...");
     initTime();
     unsigned long timeForSyncMillis = (millis()-syncStartedMillis) ;  //ms
     measuredTime += timeForSyncMillis / 1000; //s
     unsigned long sinceLastSync = measuredTime-lastSyncTime;  //s
 
+    bool thisSyncValid = thisSyncTime > 1609459200;  // 1st Jan 2021 00:00:00;
     bool lastSyncValid = lastSyncTime > 1609459200;  // 1st Jan 2021 00:00:00;
     bool measuredTimeValid = measuredTime > lastSyncTime;
     bool sinceLastSyncValid = sinceLastSync > 60*60*10; //60*60*10  = 10h
@@ -94,7 +96,7 @@ void timeSync(){
     // drawMessage(String("lastSyncValid=")+lastSyncValid);
     // drawMessage(String("measuredTimeValid=")+measuredTimeValid);
     // drawMessage(String("sinceLastSyncValid=")+sinceLastSyncValid);
-    if(lastSyncValid && measuredTimeValid && sinceLastSyncValid){
+    if(thisSyncValid && lastSyncValid && measuredTimeValid && sinceLastSyncValid){
       drawMessage("Аналіз похибки...");
       unsigned long actualTime = rtc()->getEpoch(); //s
       long delta = actualTime-measuredTime;  //s

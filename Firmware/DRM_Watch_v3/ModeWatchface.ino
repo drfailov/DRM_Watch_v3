@@ -10,6 +10,9 @@ void setModeWatchface(){
   modeButtonCenterLong = setModeOff;
   modeButtonDownLong = 0;
   enableAutoReturn = false;
+  enableAutoSleep = true; 
+  autoReturnTime = autoReturnDefaultTime;
+  autoSleepTime = autoSleepDefaultTime;
   registerAction();
 }
 
@@ -46,12 +49,6 @@ void modeWatchfaceLoop(){
   if(esp_sleep_get_wakeup_cause() != ESP_SLEEP_WAKEUP_TIMER) //if wake by timer, don't refresh display to keep image static, image will refresh when go to lock screen and drawing lock icon
     lcd()->sendBuffer();
 
-
-  if(!dontSleep && !isChargerConnected()){
-    int sleepTimeout = isFlashlightOn()?autoSleepTimeFlashlightOn:autoSleepTime;
-    if(sinceLastAction() > sleepTimeout && !dontSleep) //auto go to sleep
-      goToSleep();
-  }
 }
 
 void modeWatchfaceButtonUp(){
@@ -105,19 +102,36 @@ int drawStatusbar(int x, int y, bool drawTime){
     draw_ic16_stopwatch(x, y+4, black);
     x-=interval;
   }
-  if(enableAutoReturn && autoReturnTime-sinceLastAction() < 31000 && !dontSleep) {
-    long s = (autoReturnTime-sinceLastAction())/1000;
-    String text = String("")+s;
-    lcd()->setColorIndex(black);
-    lcd()->setFont(u8g2_font_unifont_t_cyrillic);
-    int width = lcd()->getStrWidth(text.c_str());
-    int margin = 4;
-    x -= width+margin*2;
-    lcd()->drawRBox(/*x*/x, /*y*/y+4, /*w*/width+margin*2, /*h*/ 16, /*r*/3);
-    lcd()->setColorIndex(white);
-    lcd()->setCursor(x+margin, y+17); 
-    lcd()->print(text);
-    x-=interval;
+
+  if(esp_sleep_get_wakeup_cause() != ESP_SLEEP_WAKEUP_TIMER){
+    int timeToExit = -1;
+    if(enableAutoReturn && !dontSleep)
+      timeToExit = autoReturnTime-sinceLastAction();
+    int timeToSleep = -1;
+    int _autoSleepTime = isFlashlightOn()?autoSleepDefaultTimeWhenFlashlightOn:autoSleepTime;
+    if(enableAutoSleep && !dontSleep && !isChargerConnected() ) 
+      timeToSleep = _autoSleepTime-sinceLastAction();
+    int timeToAction = -1;
+    if(timeToExit != -1)
+      timeToAction = timeToExit;
+    if(timeToSleep != -1 && (timeToSleep < timeToAction || timeToAction == -1))
+      timeToAction = timeToSleep;
+    if(timeToAction != -1 && timeToAction < 46000) {
+      long s = timeToAction/1000;
+      String text = String("")+s;
+      lcd()->setColorIndex(black);
+      lcd()->setFont(u8g2_font_unifont_t_cyrillic);
+      int width = lcd()->getStrWidth(text.c_str());
+      int margin = 4;
+      x -= width+margin*2;
+      lcd()->drawRBox(/*x*/x, /*y*/y+4, /*w*/width+margin*2, /*h*/ 16, /*r*/3);
+      lcd()->setColorIndex(white);
+      lcd()->setCursor(x+margin, y+17); 
+      lcd()->print(text);
+      x-=interval;
+    }
   }
+
+
   return x;
 }

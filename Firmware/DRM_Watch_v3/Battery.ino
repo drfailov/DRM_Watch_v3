@@ -46,8 +46,25 @@ byte batteryBars(){
   return level;
 }
 
+bool previousState = false;
 bool isChargerConnected(){
-  return readSensUsbRaw() > 4000;
+  bool result = readSensUsbRaw() > 4000;
+  if(!result && previousState)
+    onChargerDisconnected();
+  if(result && !previousState)
+    onChargerConnected();
+  previousState = result;
+  return result;
+}
+
+void onChargerDisconnected(){
+  buzPlayChargerDisconnectedTone();
+  registerAction();
+}
+
+void onChargerConnected(){
+  buzPlayChargerConnectedTone();
+  registerAction();
 }
 
 int readSensBatteryRaw(){

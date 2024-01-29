@@ -15,6 +15,9 @@ void setModeOff(){
   modeButtonDownLong = 0;
   registerAction();
   enableAutoReturn = false;
+  enableAutoSleep = false; 
+  autoReturnTime = autoReturnDefaultTime;
+  autoSleepTime = autoSleepDefaultTime;
 }
 void modeOffLoop(){
   lcdPowerOff();  

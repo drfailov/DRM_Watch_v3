@@ -15,6 +15,9 @@ void setModeAppsMenu(){
   modeButtonDownLong = 0;
   registerAction();
   enableAutoReturn = true;
+  enableAutoSleep = false; 
+  autoReturnTime = autoReturnDefaultTime;
+  autoSleepTime = autoSleepDefaultTime;
   selected = 0;
   items = 4;
 }
