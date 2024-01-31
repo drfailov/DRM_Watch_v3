@@ -55,7 +55,7 @@
 #endif
 
 
-String version = "v0.21";        //================================== <<<<< VERSION
+String version = "v0.22";        //================================== <<<<< VERSION
 bool black = 1;
 bool white = 0;
 

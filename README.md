@@ -12,6 +12,9 @@ ESP32-S2 based watch with SHARP Memory LCD
 ESP32-S2 based watch with SHARP Memory LCD.
 
 ## Features
+- Meow function, can be accessed from menu;
+- Stopwatch, can be accessed from menu;
+
 - Low power consumption, while screen is always showing time;
 - Charging over USB, battery status indication;
 - Easy to get components needed to assemble;

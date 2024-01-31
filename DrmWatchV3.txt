@@ -116,7 +116,7 @@ Changelog:
 2024-01-29 v0.21 improved work of auto-sleep and auto exit functions
 2024-01-29 v0.21 Added counter for auto sleep
 2024-01-29 v0.21 Charger connected and charger disconnected tones
-
+2024-01-31 v0.22 Added meow function
 
 
 ==== todo:
