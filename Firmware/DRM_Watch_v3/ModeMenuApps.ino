@@ -46,12 +46,12 @@ void ModeAppsMenuLoop(){
 }
 
 void ModeAppsMenuButtonCenter(){
-  if(selected == itemBack){
+  if(selected == itemModeAppsBack){
     setModeMainMenu();
     return;
   }
   if(selected == itemModeAppsAlarm){
-    drawMessage("В процесі розробки.");
+    setModeAlertSettingsMenu();
     return;
   }
   if(selected==itemModeAppsMusic){

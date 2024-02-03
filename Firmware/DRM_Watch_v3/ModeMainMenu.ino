@@ -87,21 +87,21 @@ void modeMainMenuButtonDown(){
 
 
 void drawMenuItem(byte index, Drawable drawIcon, const char* name, bool animate){
-  drawMenuItem(index, drawIcon, name, animate, 60);
+  drawMenuItem(index, drawIcon, name, animate, -1, -1);
 }
-void drawMenuItem(byte index, Drawable drawIcon, const char* name, bool animate, const int yOffset){
-  int lines = 2;
-  int cols = 4;
-  if(selected/(lines*cols) != index/(lines*cols)) return;
-  const int xOffset = 35;
+void drawMenuItem(byte index, Drawable drawIcon, const char* name, bool animate, int x, int y){
   const int width=62;
   const int height=42;
-  const int margin = 15;
-  int x = xOffset + 6 + (width+margin) * (index%cols);
-  int y = yOffset + (height+margin) * ((index%(lines*cols))/cols);
-  //void(* drawR) (int x, int y, int w, int h) = selected == index?lcd()->drawBox:lcd()->drawFrame;
-  //lcd()->drawFrame(u8g2_uint_t x, u8g2_uint_t y, u8g2_uint_t w, u8g2_uint_t h)
-  
+  if(x == -1 || y == -1){
+    int lines = 2;
+    int cols = 4;
+    if(selected/(lines*cols) != index/(lines*cols)) return;
+    const int xOffset = 35;
+    const int yOffset = 60;
+    const int margin = 15;
+    x = xOffset + 6 + (width+margin) * (index%cols);
+    y = yOffset + (height+margin) * ((index%(lines*cols))/cols);
+  }  
   lcd()->setColorIndex(black);
   if(selected == index)
     lcd()->drawBox(/*x*/x, /*y*/y, /*w*/width, /*h*/height);

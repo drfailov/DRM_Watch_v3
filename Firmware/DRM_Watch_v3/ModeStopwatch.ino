@@ -1,7 +1,6 @@
 const int itemModeStopwatchBack=0;
 const int itemModeStopwatchStartStop=1;
 const int itemModeStopwatchReset=2;
-const int itemModeStopwatchLock=3;
 
 void setModeStopwatch(){
   Serial.println(F("Set mode: Stopwatch"));
@@ -19,7 +18,7 @@ void setModeStopwatch(){
   autoReturnTime = autoReturnDefaultTime;
   autoSleepTime = autoReturnDefaultTime;
   selected = 1;
-  items = 4;
+  items = 3;
 }
 
 
@@ -47,13 +46,12 @@ void modeStopwatchLoop(){
 
 
   
-  drawMenuItem(itemModeAppsBack, draw_ic24_back, "Назад", false, 130);
+  drawMenuItem(itemModeAppsBack, draw_ic24_back, "Назад", false, 70, 130);
   if(isStopwatchRunning())
-    drawMenuItem(itemModeStopwatchStartStop, draw_ic24_pause, "Пауза", false, 130);
+    drawMenuItem(itemModeStopwatchStartStop, draw_ic24_pause, "Пауза", false, 140, 130);
   else
-    drawMenuItem(itemModeStopwatchStartStop, draw_ic24_arrow_right, "Запустити", false, 130);
-  drawMenuItem(itemModeStopwatchReset, draw_ic24_reboot, "Скинути", false, 130);
-  drawMenuItem(itemModeStopwatchLock, draw_ic24_lock, "Заблокувати екран", false, 130);
+    drawMenuItem(itemModeStopwatchStartStop, draw_ic24_arrow_right, "Запустити", false, 140, 130);
+  drawMenuItem(itemModeStopwatchReset, draw_ic24_reboot, "Скинути", false, 210, 130);
 
   drawMenuLegend();
   lcd()->sendBuffer();
@@ -86,8 +84,5 @@ void modeStopwatchButtonCenter(){
       saveStopwatchStartedTime(0);
       saveStopwatchFinishedTime(0);
     }
-  }  
-  if(selected == itemModeStopwatchLock){
-    goToSleep();
   }  
 }

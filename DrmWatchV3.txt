@@ -123,6 +123,7 @@ Changelog:
 2024-02-03 v0.23 added value showing time since last charging
 2024-02-03 v0.23 replaced back icon
 2024-02-03 v0.23 started implementing of alert functionality
+2024-02-03 v0.23 Updated layout of buttons on some screens
 
 
 

@@ -138,11 +138,29 @@ bool getAlertEnabled(int index){         //123456789012345
 bool saveAlertEnabled(int index, bool value){
   return preferencesObject.putInt((String("alertEnabled")+index).c_str(), value?1:0);
 }
-int getAlertLastRunDay(int index){         //123456789012345
+int getAlertLastRunDay(int index){       //123456789012345
   return preferencesObject.getInt((String("alertLRD")+index).c_str() , 0);
 }
 bool saveAlertLastRunDay(int index, int value){
   return preferencesObject.putInt((String("alertLRD")+index).c_str(), value);
+}
+int getAlertHour(int index){             //123456789012345
+  return preferencesObject.getInt((String("alertHour")+index).c_str() , 0);
+}
+bool saveAlertHour(int index, int value){
+  return preferencesObject.putInt((String("alertHour")+index).c_str(), value);
+}
+int getAlertMinute(int index){             //123456789012345
+  return preferencesObject.getInt((String("alertMinute")+index).c_str() , 0);
+}
+bool saveAlertMinute(int index, int value){
+  return preferencesObject.putInt((String("alertMinute")+index).c_str(), value);
+}
+int getAlertMelody(int index){             //123456789012345
+  return preferencesObject.getInt((String("alertMelody")+index).c_str() , 0);
+}
+bool saveAlertMelody(int index, int value){
+  return preferencesObject.putInt((String("alertMelody")+index).c_str(), value);
 }
 
   
