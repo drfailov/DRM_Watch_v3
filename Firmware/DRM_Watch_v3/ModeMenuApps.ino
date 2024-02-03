@@ -33,7 +33,7 @@ void ModeAppsMenuLoop(){
   lcd()->setCursor(5, 18); 
   lcd()->print("Програми");
   
-  drawMenuItem(itemModeAppsBack, draw_ic24_arrow_left, "Назад", false);
+  drawMenuItem(itemModeAppsBack, draw_ic24_back, "Назад", false);
   drawMenuItem(itemModeAppsStopwatch, draw_ic24_stopwatch, "Секундомір", false);
   drawMenuItem(itemModeAppsMusic, draw_ic24_music, "Мелодії", false);
   drawMenuItem(itemModeAppsAlarm, draw_ic24_alarm, "Будильник", false);

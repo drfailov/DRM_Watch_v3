@@ -39,7 +39,7 @@ void modeSettingsMenuLoop(){
   drawStatusbar(363, 1, true);  
   drawMenuLegend();
 
-  drawMenuItem(itemModeSettingsBack, draw_ic24_arrow_left, "Назад", false);
+  drawMenuItem(itemModeSettingsBack, draw_ic24_back, "Назад", false);
   drawMenuItem(itemModeSettingsSelectWatchface, draw_ic24_watchface, "Обрати циферблат", false);
   drawMenuItem(itemModeSettingsSavedNetworks, draw_ic24_saved, "Список збережениx мереж Wi-Fi", false);
   drawMenuItem(itemModeSettingsSynchronizeTime, draw_ic24_sync, "Синхронізувати час з сервером", false);

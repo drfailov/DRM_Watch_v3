@@ -111,6 +111,31 @@ void drawQuestion(String text, String text2){
   delay(100);
 }
 
+void displayPrintSecondsAsTime(unsigned long dd){
+  unsigned long spday = (24*60*60);
+  unsigned long days = dd / spday;
+  dd -= days*spday;
+  unsigned long sphour = (60*60);
+  unsigned long hours = dd / sphour;
+  dd -= hours*sphour;
+  unsigned long spminute = 60;
+  unsigned long minutes = dd / spminute;
+  dd -= minutes*spminute;
+  unsigned long seconds = dd;
+  
+  if(days>0){
+    lcd()->print(days); 
+    lcd()->print("d "); 
+  }
+  if(hours < 10) lcd()->print("0"); 
+  lcd()->print(hours); 
+  lcd()->print(":"); 
+  if(minutes < 10) lcd()->print("0"); 
+  lcd()->print(minutes); 
+  lcd()->print(":"); 
+  if(seconds < 10) lcd()->print("0"); 
+  lcd()->print(seconds); 
+}
 
 
 

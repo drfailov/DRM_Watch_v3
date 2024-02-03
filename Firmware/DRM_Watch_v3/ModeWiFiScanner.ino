@@ -95,7 +95,7 @@ void modeWiFiScannerLoop(){
     drawMessage("Мереж не знайдено.");
   }
   else if(modeWiFiScannerState == modeWiFiScannerStateSettingUpSelectingNetwork){
-    drawListItem(0, draw_ic24_arrow_left, "Повернутись", "Назад", false); 
+    drawListItem(0, draw_ic24_back, "Повернутись", "Назад", false); 
     for(int i=0; i<items-1; i++){
       int rssi = WiFi.RSSI(i);
       void (*drawIcon)(int x,int y, bool color);

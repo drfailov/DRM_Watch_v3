@@ -64,9 +64,9 @@ void playInit(){
     delay(100);
   }
   for(byte i=0; i<6; i++){
-    ledStatusOn();
+    ledFlashlightOnTop();
     buzzer.tone(5000, 30);  
-    ledStatusOff();
+    ledFlashlightOffTop();
     buzzer.noTone(); 
     delay(30);
   }

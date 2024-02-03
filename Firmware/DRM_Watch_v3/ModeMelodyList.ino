@@ -29,7 +29,7 @@ void ModeMelodyListMenuLoop(){
   lcd()->setCursor(5, 18); 
   lcd()->print("Список Мелодій");
   
-  drawMenuItem(itemModeMelodyListBack, draw_ic24_arrow_left, "Назад", false);
+  drawMenuItem(itemModeMelodyListBack, draw_ic24_back, "Назад", false);
   for(int i=0; i<getMelodyCount(); i++){
     drawMenuItem(i+1, draw_ic24_music, getMelodyName(i).c_str(), false);
   }

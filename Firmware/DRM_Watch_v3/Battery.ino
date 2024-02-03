@@ -60,6 +60,7 @@ bool isChargerConnected(){
 void onChargerDisconnected(){
   buzPlayChargerDisconnectedTone();
   registerAction();
+  saveLastChargedTime();
 }
 
 void onChargerConnected(){

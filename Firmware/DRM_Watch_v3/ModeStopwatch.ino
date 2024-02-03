@@ -39,25 +39,15 @@ void modeStopwatchLoop(){
   unsigned long end = getStopwatchFinishedTime();
   if(start != 0 && end == 0) end = now;
   unsigned long dd = end-start;
-  unsigned long sphour = (60*60);
-  unsigned long hours = dd / sphour;
-  dd -= hours*sphour;
-  unsigned long spminute = 60;
-  unsigned long minutes = dd / spminute;
-  dd -= minutes*spminute;
-  unsigned long seconds = dd;
   
   lcd()->setColorIndex(black);
   lcd()->setFont(u8g2_font_inr24_t_cyrillic);
   lcd()->setCursor(90, 90);
-  if(hours < 10) lcd()->print("0"); lcd()->print(hours); 
-  lcd()->print(":"); 
-  if(minutes < 10) lcd()->print("0"); lcd()->print(minutes); 
-  lcd()->print(":"); 
-  if(seconds < 10) lcd()->print("0"); lcd()->print(seconds); 
+  displayPrintSecondsAsTime(dd);
+
 
   
-  drawMenuItem(itemModeAppsBack, draw_ic24_arrow_left, "Назад", false, 130);
+  drawMenuItem(itemModeAppsBack, draw_ic24_back, "Назад", false, 130);
   if(isStopwatchRunning())
     drawMenuItem(itemModeStopwatchStartStop, draw_ic24_pause, "Пауза", false, 130);
   else
@@ -78,13 +68,24 @@ void modeStopwatchButtonCenter(){
       saveStopwatchFinishedTime(rtcGetEpoch());
     }
     else{ //do RESUME
-      saveStopwatchStartedTime(rtcGetEpoch());
+      unsigned long now = rtcGetEpoch();
+      unsigned long stopwatchStarted = getStopwatchStartedTime();
+      unsigned long stopwatchFinished = getStopwatchFinishedTime();
+      unsigned long dt = stopwatchFinished - stopwatchStarted;
+      unsigned long newStartedTime = now - dt;
+      saveStopwatchStartedTime(newStartedTime);
       saveStopwatchFinishedTime(0);
     }
   }
   if(selected == itemModeStopwatchReset){
-    saveStopwatchStartedTime(0);
-    saveStopwatchFinishedTime(0);
+    if(isStopwatchRunning()){
+      unsigned long now = rtcGetEpoch();
+      saveStopwatchStartedTime(now);
+    }
+    else{
+      saveStopwatchStartedTime(0);
+      saveStopwatchFinishedTime(0);
+    }
   }  
   if(selected == itemModeStopwatchLock){
     goToSleep();

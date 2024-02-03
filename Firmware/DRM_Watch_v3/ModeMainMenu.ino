@@ -32,7 +32,7 @@ void modeMainMenuLoop(){
   lcd()->setCursor(5, 18); 
   lcd()->print("Головне меню");
   
-  drawMenuItem(itemBack, draw_ic24_arrow_left, "Назад", false);
+  drawMenuItem(itemBack, draw_ic24_back, "Назад", false);
   drawMenuItem(itemApps, draw_ic24_apps, "Програми", false);
   drawMenuItem(itemSettings, draw_ic24_settings, "Налаштування", false);
   drawMenuItem(itemAbout, draw_ic24_about, "Про програму", false);

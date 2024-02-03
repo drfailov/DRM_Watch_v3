@@ -33,7 +33,7 @@ void modeSavedWiFiListLoop(){
   drawMenuLegend();
   drawStatusbar(363, 1, true);
 
-  drawListItem(0, draw_ic24_arrow_left, "Повернутись", "В меню налаштувань", false); //
+  drawListItem(0, draw_ic24_back, "Повернутись", "В меню налаштувань", false); //
   for(int i=1; i<items; i++){
     if(wifiSlotIsEmpty(i))
       drawListItem(i, draw_ic24_wifi_0, "Пусто", "Немає даних про мережу", false); //

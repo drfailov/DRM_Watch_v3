@@ -55,7 +55,7 @@
 #endif
 
 
-String version = "v0.22";        //================================== <<<<< VERSION
+String version = "v0.23";        //================================== <<<<< VERSION
 bool black = 1;
 bool white = 0;
 
@@ -140,6 +140,32 @@ void loop(void) {
   int _autoSleepTime = isFlashlightOn()?autoSleepDefaultTimeWhenFlashlightOn:autoSleepTime;
   if(enableAutoSleep && sinceLastAction() > _autoSleepTime && !dontSleep && !isChargerConnected()) //auto go to sleep
     goToSleep();
+
+  //Обработка будильника
+  { //alert
+    //play melody and mark this day as playen if:
+    //-alert enabled
+    //-in this day was not playen
+    //-this is right time to play
+
+    // bool alertIsEnabled = eepromReadAlertEnabled();
+    // byte alertLastRunDay = eepromReadAlertLastDayRun();
+    // byte alertTimeHour = eepromReadAlertHour();
+    // byte alertTimeMinute = eepromReadAlertMinute();
+    // byte alertMelodyIndex = eepromReadAlertMelodyIndex();
+
+    // if (alertIsEnabled) {
+    //   if (alertLastRunDay != day) {
+    //     if ((hour == alertTimeHour && minute >= alertTimeMinute) || (hour > alertTimeHour)) {
+    //       eepromSaveAlertLastDayRun(day);
+    //       long timeStarted = millis();
+    //       long playTime = 180000;
+    //       displayBacklightOn();
+    //       while (melodyPlayerPlayMelody(getMelodyByIndex(alertMelodyIndex)) && millis() - timeStarted < playTime);
+    //     }
+    //   }
+    // }
+  }
 
   if(esp_sleep_get_wakeup_cause() == ESP_SLEEP_WAKEUP_TIMER)/*periodical wakeup*/
     goToSleep();

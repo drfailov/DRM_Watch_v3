@@ -18,7 +18,7 @@ Icons used as reference:
 <a href="https://www.flaticon.com/free-icons/black-and-white" title="black and white icons">Black and white icons created by Ch.designer - Flaticon</a>
 <a href="https://www.flaticon.com/free-icons/clock" title="clock icons">Clock icons created by Freepik - Flaticon</a>
 <a href="https://www.flaticon.com/free-icons/pause" title="pause icons">Pause icons created by Slidicon - Flaticon</a>
-
+<a href="https://www.flaticon.com/free-icons/back" title="back icons">Back icons created by Chanut - Flaticon</a>
 
 
 
@@ -117,22 +117,29 @@ Changelog:
 2024-01-29 v0.21 Added counter for auto sleep
 2024-01-29 v0.21 Charger connected and charger disconnected tones
 2024-01-31 v0.22 Added meow function
+2024-02-02 Board: Added pull-up resistors for SCL SDA lines
+2024-02-03 v0.23 Stopwatch fixed
+2024-02-03 v0.23 updated init led effect
+2024-02-03 v0.23 added value showing time since last charging
+2024-02-03 v0.23 replaced back icon
+2024-02-03 v0.23 started implementing of alert functionality
+
+
+
+
 
 
 ==== todo:
 menu showing all parameters on screen
-stopwatch
 alarm
 calendar
 time setting
-time coef setting
 select timezone
 setting tone of all sounds
-last charged info
+game of life
+game of life watchface
+game pong
 
 
 
-blinding lights:
-https://zserge.com/nokia-composer/
-https://musescore.com/user/33801712/scores/5905576
 

@@ -30,7 +30,7 @@ void modeTestLoop(){
 
   y+=interval; lcd()->setCursor(x, y); lcd()->print("Meas: "); lcd()->print(rtc()->getTime("%d %b %Y %H:%M:%S"));  lcd()->print("  Epoch:"); lcd()->print(rtc()->getEpoch());
   y+=interval; lcd()->setCursor(x, y); lcd()->print("Corr: "); lcd()->print(rtcCorrected()->getTime("%d %b %Y %H:%M:%S"));  lcd()->print("  Epoch:"); lcd()->print(rtcCorrected()->getEpoch());
-  y+=interval; lcd()->setCursor(x, y); lcd()->print("SinceLastSync: "); lcd()->print(rtc()->getEpoch()-getLastTimeSync());  lcd()->print("   Last sync: "); lcd()->print(getLastTimeSync());  
+  y+=interval; lcd()->setCursor(x, y); lcd()->print("SinceLastSync: "); displayPrintSecondsAsTime(rtc()->getEpoch()-getLastTimeSync());  lcd()->print("   Last sync: "); lcd()->print(getLastTimeSync());  
   y+=interval; lcd()->setCursor(x, y); lcd()->print("Correcton: "); lcd()->print(getTimeCoef()*(rtc()->getEpoch()-getLastTimeSync())); lcd()->print("s,  Time coef: "); lcd()->print(String(getTimeCoef(), 8));   
   y+=interval; lcd()->setCursor(x, y); lcd()->print("RTC CLK SRC: "); lcd()->print(getRtcSlk());
   y+=interval; lcd()->setCursor(x, y); lcd()->print("Wakeup_reason: "); wakeup_reason();
@@ -42,6 +42,7 @@ void modeTestLoop(){
   y+=interval; lcd()->setCursor(x, y); lcd()->print("Temperature:"); lcd()->print(temperature());
   y+=interval; lcd()->setCursor(x, y); lcd()->print("Preferences remaining memory:"); lcd()->print(getPreferencesFreeSpace());
   y+=interval; lcd()->setCursor(x, y); lcd()->print("Touch1:"); lcd()->print(touchRead(TOUCH1_PIN));  lcd()->print(", Touch2:"); lcd()->print(touchRead(TOUCH2_PIN));  lcd()->print(", Touch3:"); lcd()->print(touchRead(TOUCH3_PIN));
+  y+=interval; lcd()->setCursor(x, y); lcd()->print("SinceLastCharged:"); displayPrintSecondsAsTime(getTimeSinceLastCharged());
 
   
   draw_ic24_lock(lx(), ly1(), black);

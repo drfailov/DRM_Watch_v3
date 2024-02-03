@@ -101,7 +101,54 @@ void saveInversionValue(bool value){
   preferencesObject.putInt("screenInverse", value?1:0);
 }
 
+//----------------------//---------------------- LAST CHARGED ------------//----------------------//----------------------//----------------------//----------------------
+
+unsigned long getLastChargedTime(){
+  return preferencesObject.getULong64("LastCharged", 0);
+}
+unsigned long getTimeSinceLastCharged(){
+  return rtcGetEpoch() - getLastChargedTime();
+}
+bool saveLastChargedTime(unsigned long epoch){
+  return preferencesObject.putULong64("LastCharged", epoch) > 0;
+}
+bool saveLastChargedTime(){
+  return saveLastChargedTime(rtcGetEpoch());
+}
+
+//----------------------//---------------------- ALERT -----------------//----------------------//----------------------//----------------------//----------------------
+/*  bool alertIsEnabled = eepromReadAlertEnabled();
+    byte alertLastRunDay = eepromReadAlertLastDayRun();
+    byte alertTimeHour = eepromReadAlertHour();
+    byte alertTimeMinute = eepromReadAlertMinute();
+    byte alertMelodyIndex = eepromReadAlertMelodyIndex();*/
+
+int getAlertsNumber(){
+  return 1;
+}
+bool getAnyAlertEnabled(){
+  for(int i=0; i<getAlertsNumber(); i++)
+    if(getAlertEnabled(i))
+      return true;
+  return false;
+}
+bool getAlertEnabled(int index){         //123456789012345
+  return preferencesObject.getInt((String("alertEnabled")+index).c_str() , 0)==1;
+}
+bool saveAlertEnabled(int index, bool value){
+  return preferencesObject.putInt((String("alertEnabled")+index).c_str(), value?1:0);
+}
+int getAlertLastRunDay(int index){         //123456789012345
+  return preferencesObject.getInt((String("alertLRD")+index).c_str() , 0);
+}
+bool saveAlertLastRunDay(int index, int value){
+  return preferencesObject.putInt((String("alertLRD")+index).c_str(), value);
+}
+
+  
 //----------------------//----------------------//----------------------//----------------------//----------------------//----------------------//----------------------
+
+
 
 int getPreferencesFreeSpace(){
   return preferencesObject.freeEntries();
