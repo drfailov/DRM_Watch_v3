@@ -55,7 +55,7 @@
 #endif
 
 
-String version = "v0.23";        //================================== <<<<< VERSION
+String version = "v0.24";        //================================== <<<<< VERSION
 bool black = 1;
 bool white = 0;
 
@@ -81,6 +81,8 @@ Runnable modeButtonDown = 0;
 Runnable modeButtonUpLong = 0;
 Runnable modeButtonCenterLong = 0;
 Runnable modeButtonDownLong = 0;
+#define BUFFER_SIZE 40  //размер текстового буфера. Чем меньше тем экономнее.
+char buffer[BUFFER_SIZE];   //общий на всю программу текстовый буфер чтобы не объявлять каждый раз локальную.
 
 
 void setup(void) {

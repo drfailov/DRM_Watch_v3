@@ -19,7 +19,8 @@ Icons used as reference:
 <a href="https://www.flaticon.com/free-icons/clock" title="clock icons">Clock icons created by Freepik - Flaticon</a>
 <a href="https://www.flaticon.com/free-icons/pause" title="pause icons">Pause icons created by Slidicon - Flaticon</a>
 <a href="https://www.flaticon.com/free-icons/back" title="back icons">Back icons created by Chanut - Flaticon</a>
-
+<a href="https://www.flaticon.com/free-icons/plus-sign" title="plus sign icons">Plus sign icons created by Smashicons - Flaticon</a>
+<a href="https://www.flaticon.com/free-icons/substraction" title="substraction icons">Substraction icons created by Smashicons - Flaticon</a>
 
 
 
@@ -124,7 +125,7 @@ Changelog:
 2024-02-03 v0.23 replaced back icon
 2024-02-03 v0.23 started implementing of alert functionality
 2024-02-03 v0.23 Updated layout of buttons on some screens
-
+2024-02-04 v0.24 Added UI for setting alert
 
 
 
