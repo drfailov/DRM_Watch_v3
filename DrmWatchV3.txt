@@ -126,6 +126,7 @@ Changelog:
 2024-02-03 v0.23 started implementing of alert functionality
 2024-02-03 v0.23 Updated layout of buttons on some screens
 2024-02-04 v0.24 Added UI for setting alert
+2024-02-05 v0.25 Made alert functional
 
 
 
@@ -141,6 +142,8 @@ setting tone of all sounds
 game of life
 game of life watchface
 game pong
+melody back icon bad
+unlock icon bad
 
 
 

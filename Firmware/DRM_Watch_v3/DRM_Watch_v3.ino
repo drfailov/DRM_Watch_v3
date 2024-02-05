@@ -55,7 +55,7 @@
 #endif
 
 
-String version = "v0.24";        //================================== <<<<< VERSION
+String version = "v0.25";        //================================== <<<<< VERSION
 bool black = 1;
 bool white = 0;
 
@@ -128,6 +128,30 @@ void setup(void) {
 }
 
 void loop(void) {
+  for(int alertIndex=0; alertIndex<getAlertsNumber(); alertIndex++){ //Обработка будильника 
+    //play melody and mark this day as playen if:  alert enabled, in this day was not playen, this is right time to play
+    bool alertIsEnabled = getAlertEnabled(alertIndex);
+    int alertLastRunDay = getAlertLastRunDay(alertIndex);
+    int alertTimeHour = getAlertHour(alertIndex);
+    int alertTimeMinute = getAlertMinute(alertIndex);
+    int alertMelodyIndex = getAlertMelody(alertIndex);
+    int hour = rtcGetHour();
+    int minute = rtcGetMinute();
+    int day = rtcGetDay();
+    if (alertIsEnabled) {
+      if (alertLastRunDay != day) {
+        if ((hour == alertTimeHour && minute >= alertTimeMinute) || (hour > alertTimeHour)) {
+          saveAlertLastRunDay(alertIndex, day);
+          long timeStarted = millis();
+          long playTime = 180000;
+          sprintf(buffer, "Alert %d (%02d:%02d)", alertIndex, alertTimeHour, alertTimeMinute);
+          melodyPlayerSetMelodyName(String(buffer));
+          while (melodyPlayerPlayMelody(getMelodyData(alertMelodyIndex)) && millis() - timeStarted < playTime);
+        }
+      }
+    }
+  }
+
   buttonsLoop();
   if(modeLoop != 0){
     // unsigned long millisStarted = millis();
@@ -142,32 +166,6 @@ void loop(void) {
   int _autoSleepTime = isFlashlightOn()?autoSleepDefaultTimeWhenFlashlightOn:autoSleepTime;
   if(enableAutoSleep && sinceLastAction() > _autoSleepTime && !dontSleep && !isChargerConnected()) //auto go to sleep
     goToSleep();
-
-  //Обработка будильника
-  { //alert
-    //play melody and mark this day as playen if:
-    //-alert enabled
-    //-in this day was not playen
-    //-this is right time to play
-
-    // bool alertIsEnabled = eepromReadAlertEnabled();
-    // byte alertLastRunDay = eepromReadAlertLastDayRun();
-    // byte alertTimeHour = eepromReadAlertHour();
-    // byte alertTimeMinute = eepromReadAlertMinute();
-    // byte alertMelodyIndex = eepromReadAlertMelodyIndex();
-
-    // if (alertIsEnabled) {
-    //   if (alertLastRunDay != day) {
-    //     if ((hour == alertTimeHour && minute >= alertTimeMinute) || (hour > alertTimeHour)) {
-    //       eepromSaveAlertLastDayRun(day);
-    //       long timeStarted = millis();
-    //       long playTime = 180000;
-    //       displayBacklightOn();
-    //       while (melodyPlayerPlayMelody(getMelodyByIndex(alertMelodyIndex)) && millis() - timeStarted < playTime);
-    //     }
-    //   }
-    // }
-  }
 
   if(esp_sleep_get_wakeup_cause() == ESP_SLEEP_WAKEUP_TIMER)/*periodical wakeup*/
     goToSleep();

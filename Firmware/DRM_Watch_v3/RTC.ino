@@ -32,6 +32,15 @@ ESP32Time* rtcCorrected(){
 unsigned long rtcGetEpoch(){
   return rtcCorrected() -> getEpoch();
 }
+int rtcGetHour(){
+  return rtcCorrected() -> getHour(true);
+}
+int rtcGetMinute(){
+  return rtcCorrected() -> getMinute();
+}
+int rtcGetDay(){
+  return rtcCorrected() -> getDay();
+}
 
 
 String getRtcSlk(){

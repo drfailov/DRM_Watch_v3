@@ -27,6 +27,9 @@ void setModeAlertSettingsMenu(){
   autoSleepTime = autoSleepDefaultTime;
   selected = 0;
   items = 5;
+  modeAlertSettingsHourValue = getAlertHour(modeAlertSettingsIndex);
+  modeAlertSettingsMinuteValue = getAlertMinute(modeAlertSettingsIndex);
+  modeAlertSettingsMelodyValue = getAlertMelody(modeAlertSettingsIndex);
 }
 
 
@@ -112,14 +115,36 @@ void ModeAlertSettingsMenuButtonCenter(){
   }
   if(selected==itemModeAlertSettingsHour){
     modeAlertSettingsEditMode = !modeAlertSettingsEditMode;
+    if(!modeAlertSettingsEditMode){
+      saveAlertHour(modeAlertSettingsIndex, modeAlertSettingsHourValue);
+      resetAlertMetadata(modeAlertSettingsIndex);
+    }
     return;
   }
   if(selected==itemModeAlertSettingsMinute){
     modeAlertSettingsEditMode = !modeAlertSettingsEditMode;
+    if(!modeAlertSettingsEditMode){
+      saveAlertMinute(modeAlertSettingsIndex, modeAlertSettingsMinuteValue);
+      resetAlertMetadata(modeAlertSettingsIndex);
+    }
     return;
   }
   if(selected==itemModeAlertSettingsMelody){
     modeAlertSettingsEditMode = !modeAlertSettingsEditMode;
+    if(!modeAlertSettingsEditMode)
+      saveAlertMelody(modeAlertSettingsIndex, modeAlertSettingsMelodyValue);
     return;
   }
+}
+//fix alarm, предотвращение включения будильника сразу в момент установки
+void resetAlertMetadata(int index){
+  int hour = rtcGetHour();
+  int minute = rtcGetMinute();
+  int day = rtcGetDay();
+  int HourValue = getAlertHour(index);
+  int MinuteValue = getAlertMinute(index);
+  if((hour == HourValue && minute >= MinuteValue) || (hour > HourValue))
+    saveAlertLastRunDay(index, day);
+  else
+    saveAlertLastRunDay(index, 0);
 }

@@ -6,7 +6,7 @@
 ESP32-S2 based watch with SHARP Memory LCD
 
 
-<p align="center"><img src="Photos/DRM_zb2.png" width="300"/></p>
+<p align="center"><img src="Photos/DRM_zb2.png" width="100"/></p>
 <p align="center">
 <img src="Photos/photo_2024-02-04_23-56-24.jpg" width="200"/>
 <img src="Photos/photo_2024-02-04_16-33-34.jpg" width="200"/>
@@ -19,6 +19,7 @@ ESP32-S2 based watch with SHARP Memory LCD.
 ## Features
 - Meow function, can be accessed from menu;
 - Stopwatch, can be accessed from menu;
+- Alert, can be accessed from menu;
 
 - Low power consumption, while screen is always showing time;
 - Charging over USB, battery status indication;
@@ -64,6 +65,11 @@ Add melody array to MelodyPlayer.ini file and add melody to melodies array.
 ## Known libraries conflicts:
 Temperature measurement is hanging system if after Wi-Fi usage it were not initialized.
 
+
+## References
+
+- Big repository of phone melodies where I found some melodies
+http://onj3.andrelouis.com/phonetones/unzipped/
 
 
 

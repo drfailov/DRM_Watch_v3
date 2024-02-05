@@ -1,6 +1,6 @@
 const int longClickDelay = 700;//ms 
-const int firstClickDelay = 700;//ms 
-const int nextClickDelay = 150;//ms 
+const int firstClickDelay = 500;//ms 
+const int nextClickDelay = 60;//ms 
 
 
 unsigned long lastActionTime = 0;
