@@ -44,9 +44,10 @@ void initTime(){
 21:56 - success auto sync
 22:01 - success auto sync*/
 void loopTimeAutoSync(){
+  return; //disable auto-sync
   long intervalBetweenSuccessSync = 22*60*60;//s    : 20h
   long intervalBetweenFailedSync = 4*60*60;//s    : 4h
-  long now = rtc()->getEpoch();
+  long now = _rtcInternal()->getEpoch();
   long sinceLastSync = now - getLastTimeSync();
   long sinceLastTrySync = now - getLastTryTimeSync();
   if((now < getLastTryTimeSync() || sinceLastTrySync > intervalBetweenFailedSync) 
@@ -62,19 +63,19 @@ void setTimezone(String timezone){
 }
 
 void timeSync(){
-  saveLastTryTimeSync(rtc()->getEpoch());
+  saveLastTryTimeSync(_rtcInternal()->getEpoch());
   if(connectToKnownWifi()){
     drawMessage("Збір даних...");
     unsigned long lastSyncTime = getLastTimeSync(); //s
-    unsigned long measuredTime = rtc()->getEpoch(); //s
+    unsigned long measuredTime = _rtcInternal()->getEpoch(); //s
     unsigned long syncStartedMillis = millis();     //millis
     drawMessage("Скидання часу...");
-    rtc()->setTime(0);
+    _rtcInternal()->setTime(0);
     drawMessage("З'єднання з сервером...");
     configTime(0, 0, ntpServer, ntpServer1, ntpServer2);
     printLocalTime();
     delay(500);
-    unsigned long thisSyncTime = rtc()->getEpoch();
+    unsigned long thisSyncTime = _rtcInternal()->getEpoch();
     saveLastTryTimeSync(thisSyncTime);
     saveLastTimeSync(thisSyncTime);
     drawMessage("Відновлення часового поясу...");
@@ -87,7 +88,6 @@ void timeSync(){
     bool lastSyncValid = lastSyncTime > 1609459200;  // 1st Jan 2021 00:00:00;
     bool measuredTimeValid = measuredTime > lastSyncTime;
     bool sinceLastSyncValid = sinceLastSync > 60*60*10; //60*60*10  = 10h
-    
     // drawMessage(String("timeForSyncMillis=")+timeForSyncMillis);
     // drawMessage(String("measuredTime=")+measuredTime);
     // drawMessage(String("lastSyncTime=")+lastSyncTime);
@@ -96,9 +96,15 @@ void timeSync(){
     // drawMessage(String("lastSyncValid=")+lastSyncValid);
     // drawMessage(String("measuredTimeValid=")+measuredTimeValid);
     // drawMessage(String("sinceLastSyncValid=")+sinceLastSyncValid);
+    if(thisSyncValid){
+      unsigned long actualTime = _rtcInternal()->getEpoch(); //s
+      unsigned long timezone = 60*60*2;
+      adjustExternalRtc(actualTime + timezone);
+    }
+
     if(thisSyncValid && lastSyncValid && measuredTimeValid && sinceLastSyncValid){
       drawMessage("Аналіз похибки...");
-      unsigned long actualTime = rtc()->getEpoch(); //s
+      unsigned long actualTime = _rtcInternal()->getEpoch(); //s
       long delta = actualTime-measuredTime;  //s
       double deltaDouble = delta;
       double sinceLastSyncDouble = sinceLastSync;

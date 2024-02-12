@@ -108,7 +108,7 @@ void modeWiFiScannerLoop(){
   }
   
   lcd()->sendBuffer();
-  resetTemperatureSensor();
+  resetCpuTemperatureSensor();
 }
 
 String modeWiFiScannerGetSelectedNetworkName(){
@@ -183,7 +183,7 @@ void wifiOff(){
   drawMessage("Вимкнення Wi-Fi...");
   WiFi.disconnect(true);
   WiFi.mode(WIFI_OFF);
-  resetTemperatureSensor();
+  resetCpuTemperatureSensor();
 }
 
 const char* encryprionType(int i){

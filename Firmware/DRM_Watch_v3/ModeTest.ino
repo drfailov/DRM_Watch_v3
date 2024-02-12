@@ -28,21 +28,22 @@ void modeTestLoop(){
   int x=5;
   int interval = 13;
 
-  y+=interval; lcd()->setCursor(x, y); lcd()->print("Meas: "); lcd()->print(rtc()->getTime("%d %b %Y %H:%M:%S"));  lcd()->print("  Epoch:"); lcd()->print(rtc()->getEpoch());
-  y+=interval; lcd()->setCursor(x, y); lcd()->print("Corr: "); lcd()->print(rtcCorrected()->getTime("%d %b %Y %H:%M:%S"));  lcd()->print("  Epoch:"); lcd()->print(rtcCorrected()->getEpoch());
-  y+=interval; lcd()->setCursor(x, y); lcd()->print("SinceLastSync: "); displayPrintSecondsAsTime(rtc()->getEpoch()-getLastTimeSync());  lcd()->print("   Last sync: "); lcd()->print(getLastTimeSync());  
-  y+=interval; lcd()->setCursor(x, y); lcd()->print("Correcton: "); lcd()->print(getTimeCoef()*(rtc()->getEpoch()-getLastTimeSync())); lcd()->print("s,  Time coef: "); lcd()->print(String(getTimeCoef(), 8));   
-  y+=interval; lcd()->setCursor(x, y); lcd()->print("RTC CLK SRC: "); lcd()->print(getRtcSlk());
+  y+=interval; lcd()->setCursor(x, y); lcd()->print("Meas: "); lcd()->print(_rtcInternal()->getTime("%d %b %Y %H:%M:%S"));  lcd()->print("  Epoch:"); lcd()->print(_rtcInternal()->getEpoch());
+  y+=interval; lcd()->setCursor(x, y); lcd()->print("Corr: "); lcd()->print(_rtcInternalCorrected()->getTime("%d %b %Y %H:%M:%S"));  lcd()->print("  Epoch:"); lcd()->print(_rtcInternalCorrected()->getEpoch());
+  y+=interval; lcd()->setCursor(x, y); lcd()->print("SinceLastSync:"); displayPrintSecondsAsTime(rtcGetEpoch()-getLastTimeSync());  lcd()->print(" Last sync:"); lcd()->print(getLastTimeSync());  
+  y+=interval; lcd()->setCursor(x, y); lcd()->print("Correcton: "); lcd()->print(getTimeCoef()*(rtcGetEpoch()-getLastTimeSync())); lcd()->print("s,  Time coef: "); lcd()->print(String(getTimeCoef(), 8));   
+  y+=interval; lcd()->setCursor(x, y); lcd()->print("RTC CLK SRC: "); lcd()->print(getRtcSrc());
   y+=interval; lcd()->setCursor(x, y); lcd()->print("Wakeup_reason: "); wakeup_reason();
   y+=interval; lcd()->setCursor(x, y); lcd()->print("Millis:"); lcd()->print(millis()); lcd()->print(",   Don't sleep: "); lcd()->print(dontSleep);
   y+=interval; lcd()->setCursor(x, y); lcd()->print("RAW ");  lcd()->print("BATTERY: "); lcd()->print(readSensBatteryRaw()); lcd()->print(", USB:"); lcd()->print(readSensUsbRaw()); lcd()->print(" : "); lcd()->print(isChargerConnected());
   y+=interval; lcd()->setCursor(x, y); lcd()->print("VOLTAGE ");  lcd()->print("BATTERY: "); lcd()->print(readSensBatteryVoltage()); lcd()->print(" ("); lcd()->print(batteryBars()); lcd()->print(" bars)"); 
   y+=interval; lcd()->setCursor(x, y); lcd()->print("BUTTONS "); lcd()->print("TOP:");lcd()->print(isPressed(BUT_UP)); lcd()->print(" CENTER:");lcd()->print(isPressed(BUT_CENTER)); lcd()->print(" BOTTOM:");lcd()->print(isPressed(BUT_DOWN));
-  y+=interval; lcd()->setCursor(x, y); lcd()->print("Since last action:"); lcd()->print(sinceLastAction());
-  y+=interval; lcd()->setCursor(x, y); lcd()->print("Temperature:"); lcd()->print(temperature());
-  y+=interval; lcd()->setCursor(x, y); lcd()->print("Preferences remaining memory:"); lcd()->print(getPreferencesFreeSpace());
-  y+=interval; lcd()->setCursor(x, y); lcd()->print("Touch1:"); lcd()->print(touchRead(TOUCH1_PIN));  lcd()->print(", Touch2:"); lcd()->print(touchRead(TOUCH2_PIN));  lcd()->print(", Touch3:"); lcd()->print(touchRead(TOUCH3_PIN));
-  y+=interval; lcd()->setCursor(x, y); lcd()->print("SinceLastCharged:"); displayPrintSecondsAsTime(getTimeSinceLastCharged());
+  y+=interval; lcd()->setCursor(x, y); lcd()->print("Since last action: "); lcd()->print(sinceLastAction());
+  y+=interval; lcd()->setCursor(x, y); lcd()->print("Temperature: "); lcd()->print(temperature());
+  y+=interval; lcd()->setCursor(x, y); lcd()->print("Preferences remaining memory: "); lcd()->print(getPreferencesFreeSpace());
+  y+=interval; lcd()->setCursor(x, y); lcd()->print("Touch1: "); lcd()->print(touchRead(TOUCH1_PIN));  lcd()->print(", Touch2:"); lcd()->print(touchRead(TOUCH2_PIN));  lcd()->print(", Touch3:"); lcd()->print(touchRead(TOUCH3_PIN));
+  y+=interval; lcd()->setCursor(x, y); lcd()->print("SinceLastCharged: "); displayPrintSecondsAsTime(getTimeSinceLastCharged());
+  y+=interval; lcd()->setCursor(x, y); lcd()->print("rtcChipTemperature: "); lcd()->print(rtcChipTemperature());
 
   
   draw_ic24_lock(lx(), ly1(), black);

@@ -127,12 +127,15 @@ Changelog:
 2024-02-03 v0.23 Updated layout of buttons on some screens
 2024-02-04 v0.24 Added UI for setting alert
 2024-02-05 v0.25 Made alert functional
-
+2024-02-12 v0.26 added support for DS3231M RTC Chip
 
 
 
 
 ==== todo:
+board: move backlight to D17 D18
+Board: move elements to make compact
+
 menu showing all parameters on screen
 alarm
 calendar
@@ -141,10 +144,11 @@ select timezone
 setting tone of all sounds
 game of life
 game of life watchface
+game ant
 game pong
 melody back icon bad
 unlock icon bad
-
+add option to enable or disable auto sync (default is off)
 
 
 

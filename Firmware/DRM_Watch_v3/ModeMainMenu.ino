@@ -127,48 +127,6 @@ void drawNumberFrame(byte index, int number, const char* name, bool editMode, bo
     itoa(number,buffer,10); //(integer, yourBuffer, base)
 
   drawTextFrame(index, buffer, name, editMode, animate, x, y, width);
-
-  // const int width=62;
-  // const int height=42;
-  
-  // if(strlen(buffer) <= 2)
-  //   lcd()->setFont(u8g2_font_inr24_t_cyrillic);  //ok
-  // else
-  //   lcd()->setFont(u8g2_font_10x20_t_cyrillic);  //ok
-  // int textwidth = lcd()->getStrWidth(buffer);
-  // int textHeight = lcd() -> getAscent();
-  // int textOffsetX = (width - textwidth) / 2;
-  // int textOffsetY = textHeight + (height - textHeight) / 2;
-  // int textX = x + textOffsetX;
-  // int textY = y + textOffsetY;
-  // int textMargin = 4;
-
-  // lcd()->setColorIndex(black);
-  // if(selected == index){
-  //   lcd()->drawBox(/*x*/x, /*y*/y, /*w*/width, /*h*/height);
-  //   if(editMode) {
-  //     lcd()->setColorIndex(white);
-  //     lcd()->drawBox(/*x*/textX-textMargin, /*y*/textY-textMargin-textHeight, /*w*/textwidth + textMargin*2, /*h*/textHeight + textMargin*2);
-  //   }
-  // }
-  // else{
-  //   lcd()->drawFrame(/*x*/x, /*y*/y, /*w*/width, /*h*/height);
-  //   lcd()->drawFrame(/*x*/x+1, /*y*/y+1, /*w*/width-2, /*h*/height-2);
-  // }
-  // lcd()->setColorIndex(selected == index?white:black);
-  // if(editMode) lcd()->setColorIndex(black);
-  
-  // lcd()->setCursor(textX, textY);
-  // lcd()->print(buffer);
-
-  // if(selected == index){
-  //   lcd()->setCursor(8, 232);
-  //   lcd()->setColorIndex(black);
-  //   lcd()->setFont(u8g2_font_10x20_t_cyrillic);  //ok
-  //   lcd()->print(name);
-  // }
-  // if(animate)
-  //   lcd()->sendBuffer();
 }
 
 void drawTextFrame(byte index, const char* text, const char* name, bool editMode, bool animate, int x, int y, int width){

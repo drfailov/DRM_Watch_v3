@@ -8,8 +8,13 @@
 #include <Wire.h>
 #endif
 
-#define HW_REV_1
-//#define HW_REV_2
+/*Do not use pins!
+ D17 - Stays ON when firmware update
+ D31 - Used for flash communication
+ D32 - Used for flash communication
+*/
+//#define HW_REV_1
+#define HW_REV_2
 
 #ifdef HW_REV_1
 #define LCD_CLK 7
@@ -48,14 +53,12 @@
 #define TOUCH1_PIN 8
 #define TOUCH2_PIN 9
 #define TOUCH3_PIN 10
-#define BACKLIGHT1_PIN 31    //NEW
-#define BACKLIGHT2_PIN 32    //NEW
-#define RTC_SDA_PIN 0    
-#define RTC_SCL_PIN 0    
+#define RTC_SDA_PIN 33    
+#define RTC_SCL_PIN 35    
 #endif
 
 
-String version = "v0.25";        //================================== <<<<< VERSION
+String version = "v0.26";        //================================== <<<<< VERSION
 bool black = 1;
 bool white = 0;
 
@@ -86,11 +89,11 @@ char buffer[BUFFER_SIZE];   //общий на всю программу текс
 
 
 void setup(void) {
-  if(esp_sleep_get_wakeup_cause() != ESP_SLEEP_WAKEUP_TIMER && !isOff())/*periodical wakeup*/
+  if(esp_sleep_get_wakeup_cause() != ESP_SLEEP_WAKEUP_TIMER && !isOff())/*NOT periodical wakeup*/
     Serial.begin(115200);  
   initPreferences();
-  black = getBlackValue();
-  white = getWhiteValue();
+  black = getBlackValue(); //load from memory
+  white = getWhiteValue(); //load from memory
   buzzerInit();
   initRtc();
   initTime();
@@ -122,8 +125,9 @@ void setup(void) {
   }
   else{
     modeSetup();
-    if(esp_sleep_get_wakeup_cause() == ESP_SLEEP_WAKEUP_EXT0)/*By button*/
+    if(esp_sleep_get_wakeup_cause() == ESP_SLEEP_WAKEUP_EXT0){/*By button*/
       buttonBeep();
+    }
   }
 }
 

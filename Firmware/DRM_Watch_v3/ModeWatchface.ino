@@ -29,7 +29,12 @@ void modeWatchfaceLoop(){
   //Serial.println("draw time...");
   lcd()->setColorIndex(black);
   lcd()->setFont(u8g2_font_logisoso92_tn);
-  lcd()->drawStr(60, 160, rtcCorrected()->getTime("%H:%M").c_str());
+  int h = rtcGetHour();
+  int m = rtcGetMinute();
+  sprintf(buffer, "%02d:%02d", h,m);
+  int width = lcd()->getStrWidth(buffer);
+  lcd()->setCursor((400-width)/2, 160);
+  lcd()->print(buffer); 
 
   //Serial.println("draw date...");
   drawDate(5, 20);
@@ -74,15 +79,16 @@ int drawStatusbar(int x, int y, bool drawTime){
   if(drawTime){
     lcd()->setColorIndex(black);
     lcd()->setFont(u8g2_font_10x20_t_cyrillic);
-    String time = rtcCorrected()->getTime("%H:%M");
-    int width = lcd()->getStrWidth(time.c_str());
+    int h = rtcGetHour();
+    int m = rtcGetMinute();
+    sprintf(buffer, "%02d:%02d", h,m);
+    int width = lcd()->getStrWidth(buffer);
     x-=width;
     lcd()->setCursor(x, y+18); 
-    lcd()->print(time);
+    lcd()->print(buffer);
     x-=interval;
   }
-  //Serial.println("draw battery...");
-  {
+  { //Serial.println("draw battery...");
     x -= 24;
     drawBattery(x, y);
     x-=interval;
