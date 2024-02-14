@@ -22,7 +22,7 @@ Icons used as reference:
 <a href="https://www.flaticon.com/free-icons/plus-sign" title="plus sign icons">Plus sign icons created by Smashicons - Flaticon</a>
 <a href="https://www.flaticon.com/free-icons/substraction" title="substraction icons">Substraction icons created by Smashicons - Flaticon</a>
 <a href="https://www.flaticon.com/free-icons/mute" title="mute icons">Mute icons created by adrianadam - Flaticon</a>
-
+<a href="https://www.flaticon.com/free-icons/alert" title="alert icons">Alert icons created by Freepik - Flaticon</a>
 
 
 
@@ -134,6 +134,12 @@ Changelog:
 2024-02-14 v0.27 fxd: melody back icon bad
 2024-02-14 v0.27 Added icons mute and unmute
 2024-02-14 v0.27 Added silent mode
+2024-02-14 v0.27 fixed: if disconnected from charger, watch immediately go to sleep
+2024-02-14 v0.27 add option to enable or disable auto sync (default is off)
+2024-02-14 v0.27 Added warning sign if RTC not ready
+2024-02-14 v0.27 Redesign main menu:  big buttons
+2024-02-14 v0.27 Redesign main menu: move debug to apps
+2024-02-14 v0.27 fixed: unlock icon bad
 
 
 ==== todo:
@@ -149,8 +155,8 @@ game of life
 game of life watchface
 game ant
 game pong
-unlock icon bad
-add option to enable or disable auto sync (default is off)
+test screen looks bad when locked
+Because NTP server outputs UTC time, make that RTC stored UTC time and to be corrected when used. Internal RTC same way.
 
 
 

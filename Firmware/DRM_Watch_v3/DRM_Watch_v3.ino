@@ -95,11 +95,13 @@ void setup(void) {
   black = getBlackValue(); //load from memory
   white = getWhiteValue(); //load from memory
   buzzerInit();
-  initRtc();
-  initTime();
+  if(esp_sleep_get_wakeup_cause() == ESP_SLEEP_WAKEUP_EXT0/*By button*/) buttonBeep();
   lcdInit();
   initButtons();
   initLed();
+  if(esp_sleep_get_wakeup_cause() == 0) drawMessage("Init RTC...");
+  initRtc();
+  initTime();
   if(esp_sleep_get_wakeup_cause() == 0){
     lcd()->setColorIndex(white);
     lcd()->drawBox(0, 0, 400, 240);
@@ -125,9 +127,6 @@ void setup(void) {
   }
   else{
     modeSetup();
-    if(esp_sleep_get_wakeup_cause() == ESP_SLEEP_WAKEUP_EXT0){/*By button*/
-      buttonBeep();
-    }
   }
 }
 
@@ -168,7 +167,7 @@ void loop(void) {
     setModeWatchface();
   
   int _autoSleepTime = isFlashlightOn()?autoSleepDefaultTimeWhenFlashlightOn:autoSleepTime;
-  if(enableAutoSleep && sinceLastAction() > _autoSleepTime && !dontSleep && !isChargerConnected()) //auto go to sleep
+  if(enableAutoSleep && !isChargerConnected() && sinceLastAction() > _autoSleepTime && !dontSleep) //auto go to sleep
     goToSleep();
 
   if(esp_sleep_get_wakeup_cause() == ESP_SLEEP_WAKEUP_TIMER)/*periodical wakeup*/
@@ -189,9 +188,9 @@ void goToSleep(){
   */
   lcd()->setColorIndex(0);
   
-  draw_ic24_empty(lx(), ly1(), black);
-  draw_ic24_unlock(lx(), ly2(), black);
-  draw_ic24_empty(lx(), ly3(), black);
+  draw_ic16_empty(lx(), ly1(), black);
+  draw_ic16_unlock(lx(), ly2(), black);
+  draw_ic16_empty(lx(), ly3(), black);
   lcd()->sendBuffer();
   delay(20);
   

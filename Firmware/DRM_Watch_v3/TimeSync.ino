@@ -44,7 +44,8 @@ void initTime(){
 21:56 - success auto sync
 22:01 - success auto sync*/
 void loopTimeAutoSync(){
-  return; //disable auto-sync
+  if(!getTimeSyncEnabled())
+    return;
   long intervalBetweenSuccessSync = 22*60*60;//s    : 20h
   long intervalBetweenFailedSync = 4*60*60;//s    : 4h
   long now = _rtcInternal()->getEpoch();

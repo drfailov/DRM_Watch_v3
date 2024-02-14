@@ -2,7 +2,6 @@ const int itemBack=0;
 const int itemApps=1;
 const int itemSettings=2;
 const int itemAbout=3;
-const int itemDebug=4;
 
 void setModeMainMenu(){
   Serial.println(F("Set mode: Main Menu"));
@@ -20,7 +19,7 @@ void setModeMainMenu(){
   autoReturnTime = autoReturnDefaultTime;
   autoSleepTime = autoSleepDefaultTime;
   selected = 0;
-  items = 5;
+  items = 4;
 }
 
 void modeMainMenuLoop(){
@@ -32,11 +31,11 @@ void modeMainMenuLoop(){
   lcd()->setCursor(5, 18); 
   lcd()->print("Головне меню");
   
-  drawMenuItem(itemBack, draw_ic24_back, "Назад", false);
-  drawMenuItem(itemApps, draw_ic24_apps, "Програми", false);
-  drawMenuItem(itemSettings, draw_ic24_settings, "Налаштування", false);
-  drawMenuItem(itemAbout, draw_ic24_about, "Про програму", false);
-  drawMenuItem(itemDebug, draw_ic24_bug, "Інженерне меню", false);
+
+  drawMenuItem(itemBack,     draw_ic24_back,      "Назад",        false, 13,  70, 75, 80);
+  drawMenuItem(itemApps,     draw_ic24_apps,      "Програми",     false, 102, 70, 75, 80);
+  drawMenuItem(itemSettings, draw_ic24_settings,  "Налаштування", false, 191, 70, 75, 80);
+  drawMenuItem(itemAbout,    draw_ic24_about,     "Про програму", false, 280, 70, 75, 80);
 
   
   //drawTemperature(5, 5);
@@ -72,11 +71,6 @@ void modeMainMenuButtonCenter(){
     modeAboutSetup();
     return;
   }
-  
-  if(selected == itemDebug){
-    setModeTest();
-    return;
-  }
 }
 
 void modeMainMenuButtonDown(){
@@ -87,12 +81,13 @@ void modeMainMenuButtonDown(){
 
 
 void drawMenuItem(byte index, Drawable drawIcon, const char* name, bool animate){
-  drawMenuItem(index, drawIcon, name, animate, -1, -1);
+  drawMenuItem(index, drawIcon, name, animate, -1, -1, 62, 42);
+}
+void drawMenuItem(byte index, Drawable drawIcon, const char* name, bool animate, int x, int y){
+  drawMenuItem(index, drawIcon, name, animate, x, y, 62, 42);
 }
 
-void drawMenuItem(byte index, Drawable drawIcon, const char* name, bool animate, int x, int y){
-  const int width=62;
-  const int height=42;
+void drawMenuItem(byte index, Drawable drawIcon, const char* name, bool animate, int x, int y, int width, int height){
   if(x == -1 || y == -1){
     int lines = 2;
     int cols = 4;
@@ -110,7 +105,10 @@ void drawMenuItem(byte index, Drawable drawIcon, const char* name, bool animate,
     lcd()->drawFrame(/*x*/x, /*y*/y, /*w*/width, /*h*/height);
     lcd()->drawFrame(/*x*/x+1, /*y*/y+1, /*w*/width-2, /*h*/height-2);
   }
-  drawIcon(x + 19, y+9, selected == index?white:black);
+  int iconsize = 24;
+  int iconx = x+(width-iconsize)/2;
+  int icony = y+(height-iconsize)/2;
+  drawIcon(iconx, icony, selected == index?white:black);
   if(selected == index){
     lcd()->setCursor(8, 232);
     lcd()->setColorIndex(black);

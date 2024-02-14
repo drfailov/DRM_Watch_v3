@@ -2,11 +2,12 @@ const int itemModeSettingsBack=0;
 const int itemModeSettingsSelectWatchface=1;
 const int itemModeSettingsSavedNetworks=2;
 const int itemModeSettingsSynchronizeTime=3;
-const int itemModeSettingsSetTime=4;
-const int itemModeSettingsSetTimeZone=5;
-const int itemModeSettingsReboot=6;
-const int itemModeSettingsInvert=7;
-const int itemModeSettingsMute=8;
+const int itemModeSettingsSynchronizeTimeEnable=4;
+const int itemModeSettingsSetTime=5;
+const int itemModeSettingsSetTimeZone=6;
+const int itemModeSettingsReboot=7;
+const int itemModeSettingsInvert=8;
+const int itemModeSettingsMute=9;
 
 void setModeSettingsMenu(){
   Serial.println(F("Set mode: Settings Menu"));
@@ -24,7 +25,7 @@ void setModeSettingsMenu(){
   autoReturnTime = autoReturnDefaultTime;
   autoSleepTime = autoSleepDefaultTime;
   selected = 0;
-  items = 9;
+  items = 10;
 }
 
 
@@ -44,14 +45,18 @@ void modeSettingsMenuLoop(){
   drawMenuItem(itemModeSettingsSelectWatchface, draw_ic24_watchface, "Обрати циферблат", false);
   drawMenuItem(itemModeSettingsSavedNetworks, draw_ic24_saved, "Список збережениx мереж Wi-Fi", false);
   drawMenuItem(itemModeSettingsSynchronizeTime, draw_ic24_sync, "Синхронізувати час з сервером", false);
+  if(getTimeSyncEnabled())
+    drawMenuItem(itemModeSettingsSynchronizeTimeEnable, draw_ic24_check, "Автосинхронізація часу увімкнена", false);
+  else
+    drawMenuItem(itemModeSettingsSynchronizeTimeEnable, draw_ic24_cancel, "Автосинхронізація часу вимкнена", false);  
   drawMenuItem(itemModeSettingsSetTime, draw_ic24_clock, "Задати час", false);
   drawMenuItem(itemModeSettingsSetTimeZone, draw_ic24_timezone, "Обрати часовий пояс", false);
   drawMenuItem(itemModeSettingsReboot, draw_ic24_reboot, "Перезавантажити", false);
   drawMenuItem(itemModeSettingsInvert, draw_ic24_invert, "Інвертувати екран", false);
   if(getMuteEnabled())
-    drawMenuItem(itemModeSettingsMute, draw_ic24_sound_mute, "Увімкнути звук", false);
+    drawMenuItem(itemModeSettingsMute, draw_ic24_sound_mute, "Звук вимкнено", false);
   else
-    drawMenuItem(itemModeSettingsMute, draw_ic24_sound_on, "Вимкнути звук", false);
+    drawMenuItem(itemModeSettingsMute, draw_ic24_sound_on, "Звук увімкнено", false);
   
 
   lcd()->sendBuffer();
@@ -72,6 +77,10 @@ void modeSettingsMenuButtonCenter(){
   }
   if(selected==itemModeSettingsSynchronizeTime){
     timeSync();
+    return;
+  }
+  if(selected==itemModeSettingsSynchronizeTimeEnable){
+    saveTimeSyncEnabled(!getTimeSyncEnabled());
     return;
   }
   if(selected==itemModeSettingsSetTime){

@@ -30,6 +30,7 @@ void modeTestLoop(){
 
   y+=interval; lcd()->setCursor(x, y); lcd()->print("Meas: "); lcd()->print(_rtcInternal()->getTime("%d %b %Y %H:%M:%S"));  lcd()->print("  Epoch:"); lcd()->print(_rtcInternal()->getEpoch());
   y+=interval; lcd()->setCursor(x, y); lcd()->print("Corr: "); lcd()->print(_rtcInternalCorrected()->getTime("%d %b %Y %H:%M:%S"));  lcd()->print("  Epoch:"); lcd()->print(_rtcInternalCorrected()->getEpoch());
+  //y+=interval; lcd()->setCursor(x, y); lcd()->print("Ext: "); lcd()->print(_rtcInternalCorrected()->getTime("%d %b %Y %H:%M:%S"));  lcd()->print("  Epoch:"); lcd()->print(_rtcInternalCorrected()->getEpoch());
   y+=interval; lcd()->setCursor(x, y); lcd()->print("SinceLastSync:"); displayPrintSecondsAsTime(rtcGetEpoch()-getLastTimeSync());  lcd()->print(" Last sync:"); lcd()->print(getLastTimeSync());  
   y+=interval; lcd()->setCursor(x, y); lcd()->print("Correcton: "); lcd()->print(getTimeCoef()*(rtcGetEpoch()-getLastTimeSync())); lcd()->print("s,  Time coef: "); lcd()->print(String(getTimeCoef(), 8));   
   y+=interval; lcd()->setCursor(x, y); lcd()->print("RTC CLK SRC: "); lcd()->print(getRtcSrc());
@@ -48,7 +49,6 @@ void modeTestLoop(){
   
   draw_ic24_lock(lx(), ly1(), black);
   draw_ic24_arrow_left(lx(), ly2(), black);
-  //draw_ic24_coffee(lx(), ly3(), black);
 
   lcd()->sendBuffer();
 }
@@ -58,7 +58,7 @@ void modeTestButtonUp(){
 }
 
 void modeTestButtonCenter(){
-  setModeMainMenu();
+  setModeAppsMenu();
 }
 
 void modeTestButtonDown(){

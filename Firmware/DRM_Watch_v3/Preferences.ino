@@ -67,6 +67,12 @@ bool wifiSlotClear(int slot){ //1 ... wifiSlotCnt
 }
 
 //----------------------//---------------------- TIME SYNC ------------//----------------------//----------------------//----------------------//----------------------
+bool getTimeSyncEnabled(){               //123456789012345
+  return preferencesObject.getInt((String("TimeSyncEnable")).c_str() , 0)==1;
+}
+bool saveTimeSyncEnabled(bool value){
+  return preferencesObject.putInt((String("TimeSyncEnable")).c_str(), value?1:0);
+}
 bool saveLastTryTimeSync(unsigned long epoch){
   return preferencesObject.putULong64("lastTryTimeSync", epoch) > 0;
 }

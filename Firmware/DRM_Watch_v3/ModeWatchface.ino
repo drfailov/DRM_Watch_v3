@@ -118,6 +118,12 @@ int drawStatusbar(int x, int y, bool drawTime){
     draw_ic16_sound_mute(x, y+4, black);
     x-=interval;
   }
+  if(!isExternalRtcActive()){
+    x -= 16;
+    draw_ic16_warning(x, y+4, black);
+    x-=interval;
+  }
+  
 
   if(esp_sleep_get_wakeup_cause() != ESP_SLEEP_WAKEUP_TIMER){
     int timeToExit = -1;

@@ -111,6 +111,9 @@ String getRtcSrc(){
     }
     return "N/A";
 }
+bool isExternalRtcActive(){
+  return rtcReady;
+}
 
 void drawDayOfWeek (int x, int y){
   lcd()->setFont(u8g2_font_10x20_t_cyrillic);  //ok
