@@ -116,6 +116,15 @@ bool saveLastChargedTime(){
   return saveLastChargedTime(rtcGetEpoch());
 }
 
+//----------------------//---------------------- MUTE -----------------//----------------------//----------------------//----------------------//----------------------
+
+bool getMuteEnabled(){                   //123456789012345
+  return preferencesObject.getInt((String("soundMute")).c_str() , 0)==1;
+}
+bool saveMuteEnabled(bool value){
+  return preferencesObject.putInt((String("soundMute")).c_str(), value?1:0);
+}
+
 //----------------------//---------------------- ALERT -----------------//----------------------//----------------------//----------------------//----------------------
 /*  bool alertIsEnabled = eepromReadAlertEnabled();
     byte alertLastRunDay = eepromReadAlertLastDayRun();

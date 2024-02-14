@@ -21,6 +21,9 @@ Icons used as reference:
 <a href="https://www.flaticon.com/free-icons/back" title="back icons">Back icons created by Chanut - Flaticon</a>
 <a href="https://www.flaticon.com/free-icons/plus-sign" title="plus sign icons">Plus sign icons created by Smashicons - Flaticon</a>
 <a href="https://www.flaticon.com/free-icons/substraction" title="substraction icons">Substraction icons created by Smashicons - Flaticon</a>
+<a href="https://www.flaticon.com/free-icons/mute" title="mute icons">Mute icons created by adrianadam - Flaticon</a>
+
+
 
 
 
@@ -128,16 +131,16 @@ Changelog:
 2024-02-04 v0.24 Added UI for setting alert
 2024-02-05 v0.25 Made alert functional
 2024-02-12 v0.26 added support for DS3231M RTC Chip
-
-
+2024-02-14 v0.27 fxd: melody back icon bad
+2024-02-14 v0.27 Added icons mute and unmute
+2024-02-14 v0.27 Added silent mode
 
 
 ==== todo:
-board: move backlight to D17 D18
+board: Add EL backlight
 Board: move elements to make compact
 
 menu showing all parameters on screen
-alarm
 calendar
 time setting
 select timezone
@@ -146,9 +149,9 @@ game of life
 game of life watchface
 game ant
 game pong
-melody back icon bad
 unlock icon bad
 add option to enable or disable auto sync (default is off)
+
 
 
 

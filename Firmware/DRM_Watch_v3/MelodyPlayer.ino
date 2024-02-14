@@ -182,7 +182,7 @@ void melodyPlayerDrawScreen() {
 
   lcd()->drawLine(369, 0, 369, 260);
   lcd()->drawLine(370, 0, 370, 260);
-  draw_ic24_back(lx(), ly1(), black);
+  draw_ic16_back(lx(), ly1(), black);
   draw_ic16_repeat(lx(), ly3(), black);
   lcd()->sendBuffer();
 }

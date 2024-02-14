@@ -6,6 +6,7 @@ const int itemModeSettingsSetTime=4;
 const int itemModeSettingsSetTimeZone=5;
 const int itemModeSettingsReboot=6;
 const int itemModeSettingsInvert=7;
+const int itemModeSettingsMute=8;
 
 void setModeSettingsMenu(){
   Serial.println(F("Set mode: Settings Menu"));
@@ -23,7 +24,7 @@ void setModeSettingsMenu(){
   autoReturnTime = autoReturnDefaultTime;
   autoSleepTime = autoSleepDefaultTime;
   selected = 0;
-  items = 8;
+  items = 9;
 }
 
 
@@ -47,6 +48,11 @@ void modeSettingsMenuLoop(){
   drawMenuItem(itemModeSettingsSetTimeZone, draw_ic24_timezone, "Обрати часовий пояс", false);
   drawMenuItem(itemModeSettingsReboot, draw_ic24_reboot, "Перезавантажити", false);
   drawMenuItem(itemModeSettingsInvert, draw_ic24_invert, "Інвертувати екран", false);
+  if(getMuteEnabled())
+    drawMenuItem(itemModeSettingsMute, draw_ic24_sound_mute, "Увімкнути звук", false);
+  else
+    drawMenuItem(itemModeSettingsMute, draw_ic24_sound_on, "Вимкнути звук", false);
+  
 
   lcd()->sendBuffer();
 }
@@ -84,6 +90,10 @@ void modeSettingsMenuButtonCenter(){
     saveInversionValue(!getInversionValue());
     black = getBlackValue();
     white = getWhiteValue();
+    return;
+  }
+  if(selected==itemModeSettingsMute){
+    saveMuteEnabled(!getMuteEnabled());
     return;
   }
   
