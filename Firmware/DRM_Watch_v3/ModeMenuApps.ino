@@ -4,6 +4,7 @@ const int itemModeAppsMusic=2;
 const int itemModeAppsAlarm=3;
 const int itemModeAppsMeow=4;
 const int itemModeAppsDebug=5;
+const int itemModeAppsLife=6;
 
 void setModeAppsMenu(){
   Serial.println(F("Set mode: Apps Menu"));
@@ -21,7 +22,7 @@ void setModeAppsMenu(){
   autoReturnTime = autoReturnDefaultTime;
   autoSleepTime = autoSleepDefaultTime;
   selected = 0;
-  items = 6;
+  items = 7;
 }
 
 
@@ -40,6 +41,8 @@ void ModeAppsMenuLoop(){
   drawMenuItem(itemModeAppsAlarm, draw_ic24_alarm, "Будильник", false);
   drawMenuItem(itemModeAppsMeow, draw_ic24_meow, "Meow", false);
   drawMenuItem(itemModeAppsDebug, draw_ic24_bug, "Інженерне меню", false);
+  drawMenuItem(itemModeAppsLife, draw_ic24_bug, "Клітковий автомат \"Життя\"", false);
+  
   
 
   drawStatusbar(363, 1, true);
@@ -73,4 +76,9 @@ void ModeAppsMenuButtonCenter(){
     setModeTest();
     return;
   }
+  if(selected == itemModeAppsLife){
+    setModeLife();
+    return;
+  }
+  
 }
