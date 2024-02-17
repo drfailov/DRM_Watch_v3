@@ -58,7 +58,7 @@
 #endif
 
 
-String version = "v0.28";        //================================== <<<<< VERSION
+String version = "v0.29";        //================================== <<<<< VERSION
 bool black = 1;
 bool white = 0;
 
@@ -71,7 +71,7 @@ bool enableAutoSleep = false; //is set when new mode selected
 int autoReturnTime = autoReturnDefaultTime;//ms
 int autoSleepTime = autoSleepDefaultTime;//ms
 
-int items =0;     //global for menus
+int items = 0;    //global for menus
 int selected = 0; //global for menus
 
 typedef void (*Runnable)();
@@ -163,7 +163,7 @@ void loop(void) {
     // Serial.print("Loop: "); Serial.print(millisEnd-millisStarted); Serial.println("ms.");
   }
   
-  if(enableAutoReturn && sinceLastAction() > autoReturnTime && !dontSleep) //auto go to watchface
+  if((enableAutoReturn || batteryBars() <= 1) && sinceLastAction() > autoReturnTime && !dontSleep) //auto go to watchface
     setModeWatchface();
   
   int _autoSleepTime = isFlashlightOn()?autoSleepDefaultTimeWhenFlashlightOn:autoSleepTime;

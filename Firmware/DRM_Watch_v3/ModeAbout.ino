@@ -7,9 +7,9 @@ void modeAboutSetup(){
   modeButtonUp = doNothing;
   modeButtonCenter = doNothing;
   modeButtonDown = doNothing;
-  modeButtonUpLong = setModeWatchface;
-  modeButtonCenterLong = setModeWatchface;
-  modeButtonDownLong = setModeWatchface;
+  modeButtonUpLong = setModeMainMenu;
+  modeButtonCenterLong = setModeMainMenu;
+  modeButtonDownLong = setModeMainMenu;
   registerAction();
   enableAutoReturn = true;
   enableAutoSleep = false; 

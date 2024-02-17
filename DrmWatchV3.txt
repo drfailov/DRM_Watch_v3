@@ -141,6 +141,9 @@ Changelog:
 2024-02-14 v0.27 Redesign main menu: move debug to apps
 2024-02-14 v0.27 fixed: unlock icon bad
 2024-02-15 v0.28 started writing game of life
+2024-02-15 v0.29 game of life working
+2024-02-15 v0.29 when battey is low, modes with disabled auto-return will be forced to return
+
 
 
 ==== todo:
