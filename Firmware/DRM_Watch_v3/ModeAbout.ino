@@ -4,12 +4,12 @@ void modeAboutSetup(){
   Serial.println(F("Set mode: About"));
   modeSetup = modeAboutSetup;
   modeLoop = modeAboutLoop;
-  modeButtonUp = doNothing;
-  modeButtonCenter = doNothing;
-  modeButtonDown = doNothing;
-  modeButtonUpLong = setModeMainMenu;
-  modeButtonCenterLong = setModeMainMenu;
-  modeButtonDownLong = setModeMainMenu;
+  modeButtonUp = modeAboutButton;
+  modeButtonCenter = modeAboutButton;
+  modeButtonDown = modeAboutButton;
+  modeButtonUpLong = 0;
+  modeButtonCenterLong = 0;
+  modeButtonDownLong = 0;
   registerAction();
   enableAutoReturn = true;
   enableAutoSleep = false; 
@@ -37,4 +37,8 @@ void modeAboutLoop(){
     displayDrawVector(getPathDrmWatch(), 190, 60, 3.0, 2, 6, white);
     lcd()->sendBuffer();
   }
+}
+
+void modeAboutButton(){
+  setModeMainMenu();
 }

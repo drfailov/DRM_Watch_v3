@@ -57,7 +57,8 @@
 #define RTC_SCL_PIN 35    
 #endif
 
-
+#define lcd_w 400
+#define lcd_h 240
 String version = "v0.29";        //================================== <<<<< VERSION
 bool black = 1;
 bool white = 0;

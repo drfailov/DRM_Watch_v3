@@ -41,7 +41,7 @@ void ModeAppsMenuLoop(){
   drawMenuItem(itemModeAppsAlarm, draw_ic24_alarm, "Будильник", false);
   drawMenuItem(itemModeAppsMeow, draw_ic24_meow, "Meow", false);
   drawMenuItem(itemModeAppsDebug, draw_ic24_bug, "Інженерне меню", false);
-  drawMenuItem(itemModeAppsLife, draw_ic24_bug, "Клітковий автомат \"Життя\"", false);
+  drawMenuItem(itemModeAppsLife, draw_ic24_life, "Клітковий автомат \"Життя\"", false);
   
   
 
