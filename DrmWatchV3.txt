@@ -144,6 +144,9 @@ Changelog:
 2024-02-15 v0.29 game of life working
 2024-02-15 v0.29 when battey is low, modes with disabled auto-return will be forced to return
 2024-02-15 v0.29 added life icon
+2024-02-19 v0.30 Life screen buffer optimized
+2024-02-19 v0.30 Screen buffer scaled
+2024-02-19 v0.30 Screen buffer moved to RTC memory
 
 
 ==== todo:

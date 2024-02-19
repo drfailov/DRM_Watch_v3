@@ -59,7 +59,10 @@
 
 #define lcd_w 400
 #define lcd_h 240
-String version = "v0.29";        //================================== <<<<< VERSION
+const int BUFF_SCALE = 3;  //screenBuffer
+const int BUFF_W = lcd_w/BUFF_SCALE;   //screenBuffer
+const int BUFF_H = lcd_h/BUFF_SCALE;   //screenBuffer
+String version = "v0.30";        //================================== <<<<< VERSION
 bool black = 1;
 bool white = 0;
 

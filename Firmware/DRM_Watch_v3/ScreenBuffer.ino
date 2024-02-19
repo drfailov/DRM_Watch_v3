@@ -1,33 +1,36 @@
-byte* screenBuffer; //min: 1073340148   max: 1073646548
-void initScreenBuffer(){
-  if(screenBuffer == nullptr)
-    screenBuffer = new byte[lcd_w*lcd_h];
-}
+RTC_DATA_ATTR byte screenBuffer[BUFF_W*BUFF_H/8]; 
+
 void randScreenBuffer(){
-  initScreenBuffer();
-  for(int i=0; i<lcd_w*lcd_h; i++)
-    screenBuffer[i] = rand()%2==1;
+  for(int i=0; i<BUFF_W*BUFF_H/8; i++)
+    screenBuffer[i] = rand()%255;
 }
 void zeroScreenBuffer(){
-  initScreenBuffer();
-  for(int i=0; i<lcd_w*lcd_h; i++)
+  for(int i=0; i<BUFF_W*BUFF_H/8; i++)
     screenBuffer[i] = 0;
 }
 bool getScreenBuffer(int x, int y){
-  //initScreenBuffer();
-  if(x<0 || y<0 || x>=lcd_w || y>=lcd_h) return false;
-  return screenBuffer[lcd_w*y+x];
+  if(x<0 || y<0 || x>=BUFF_W || y>=BUFF_H) return false;
+  int addr = BUFF_W*y+x;
+  int cellIndex = addr/8;
+  int bitIndex = addr%8;
+  byte cell = screenBuffer[cellIndex];
+  bool value = bitRead(cell, bitIndex);
+  return value;
 }
 void setScreenBuffer(int x, int y, bool val){
-  //initScreenBuffer();    //yes: 149ms   no: 110ms
-  screenBuffer[lcd_w*y+x] = val;
+  if(x<0 || y<0 || x>=BUFF_W || y>=BUFF_H) return;
+  int addr = BUFF_W*y+x;
+  int cellIndex = addr/8;
+  int bitIndex = addr%8;
+  byte cell = screenBuffer[cellIndex];
+  bitWrite(cell, bitIndex, val);
+  screenBuffer[cellIndex] = cell;
 }
 void drawScreenBuffer(){
-  initScreenBuffer();
-  for(int y=0; y<lcd_h; y++){
-    for(int x=0; x<lcd_w; x++){
+  for(int y=0; y<BUFF_H; y++){
+    for(int x=0; x<BUFF_W; x++){
       lcd()->setColorIndex(getScreenBuffer(x,y)?black:white);
-      lcd()->drawPixel(x,y);
+      lcd()->drawBox(x*BUFF_SCALE, y*BUFF_SCALE, BUFF_SCALE, BUFF_SCALE);
     }
   }
 }

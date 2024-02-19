@@ -40,18 +40,18 @@ void ModeLifeButtonDown(){
 
 
 void lifeStep(){
-  bool lastCol [lcd_h];
-  bool currCol [lcd_h];
-  for(int y = 0; y < lcd_h; y++)
+  bool lastCol [BUFF_H];
+  bool currCol [BUFF_H];
+  for(int y = 0; y < BUFF_H; y++)
       currCol[y] = false;
   
-  for(int x = 0; x < lcd_w; x++){
-    for(int y = 0; y < lcd_h; y++)
+  for(int x = 0; x < BUFF_W; x++){
+    for(int y = 0; y < BUFF_H; y++)
       lastCol[y] = currCol[y];
-    for(int y = 0; y < lcd_h; y++)
+    for(int y = 0; y < BUFF_H; y++)
       currCol[y] = getScreenBuffer(x,y);
       
-    for(int y = 0; y < lcd_h; y++){
+    for(int y = 0; y < BUFF_H; y++){
       //Serial.print(x);Serial.print(", ");Serial.println(y); delay(1);
       bool topleft = y==0?false:lastCol[y-1];
       bool top = y==0?false:currCol[y-1];
@@ -59,11 +59,11 @@ void lifeStep(){
       
       bool left = lastCol[y];
       bool current = currCol[y];
-      bool right = x>=lcd_w-1?false:getScreenBuffer(x + 1, y);
+      bool right = x>=BUFF_W-1?false:getScreenBuffer(x + 1, y);
       
-      bool bottomleft = y>=lcd_h-1?false:lastCol[y+1];
-      bool bottom = y>=lcd_h-1?false:currCol[y+1];
-      bool bottomright = y>=lcd_h-1?false:(x>=lcd_w-1?false:getScreenBuffer(x+1, y+1)); //============todo
+      bool bottomleft = y>=BUFF_H-1?false:lastCol[y+1];
+      bool bottom = y>=BUFF_H-1?false:currCol[y+1];
+      bool bottomright = y>=BUFF_H-1?false:(x>=BUFF_W-1?false:getScreenBuffer(x+1, y+1)); //============todo
 
       int neighbours = topleft+top+topright+left+right+bottomleft+bottom+bottomright;
       
