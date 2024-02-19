@@ -1,4 +1,4 @@
-
+bool firstDraw = true;
 void setModeWatchface(){
   Serial.println(F("Set mode: Watchface"));
   modeSetup = setModeWatchface;
@@ -14,42 +14,15 @@ void setModeWatchface(){
   autoReturnTime = autoReturnDefaultTime;
   autoSleepTime = autoSleepDefaultTime;
   registerAction();
+  firstDraw = true;
 }
 
 void modeWatchfaceLoop(){ 
-  
   if(esp_sleep_get_wakeup_cause() == ESP_SLEEP_WAKEUP_TIMER) //make auto sync only when watch is sleeping and not interrupt user
     loopTimeAutoSync();  
-    
-  //Serial.println("clear screen...");
-  lcd()->setColorIndex(white);
-  lcd()->drawBox(0, 0, 400, 240);
-  
-  
-  //Serial.println("draw time...");
-  lcd()->setColorIndex(black);
-  lcd()->setFont(u8g2_font_logisoso92_tn);
-  int h = rtcGetHour();
-  int m = rtcGetMinute();
-  sprintf(buffer, "%02d:%02d", h,m);
-  int width = lcd()->getStrWidth(buffer);
-  lcd()->setCursor((400-width)/2, 160);
-  lcd()->print(buffer); 
 
-  //Serial.println("draw date...");
-  drawDate(5, 20);
-  drawDayOfWeek(375, 20);
-  
-  //Serial.println("draw temperature...");
-  drawTemperature(5, 213);
-
-  drawStatusbar(395, 214, false);
-  
-  //Serial.println("draw legend...");
-  // draw_ic16_flashlight(lx(), ly1(), black);
-  // draw_ic16_flashlight(lx(), ly2(), black);
-  // draw_ic16_menu(lx(), ly3(), black);
-
+  drawWatchfaceLife(firstDraw);  
+  firstDraw = false;
 
   if(esp_sleep_get_wakeup_cause() != ESP_SLEEP_WAKEUP_TIMER) //if wake by timer, don't refresh display to keep image static, image will refresh when go to lock screen and drawing lock icon
     lcd()->sendBuffer();

@@ -47,8 +47,8 @@ void modeTestLoop(){
   y+=interval; lcd()->setCursor(x, y); lcd()->print("rtcChipTemperature: "); lcd()->print(rtcChipTemperature());
 
   
-  draw_ic24_lock(lx(), ly1(), black);
-  draw_ic24_arrow_left(lx(), ly2(), black);
+  //draw_ic24_lock(lx(), ly1(), black);
+  draw_ic16_back(lx(), ly2(), black);
 
   lcd()->sendBuffer();
 }

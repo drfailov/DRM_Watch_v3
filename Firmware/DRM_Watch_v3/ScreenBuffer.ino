@@ -27,8 +27,16 @@ void setScreenBuffer(int x, int y, bool val){
   screenBuffer[cellIndex] = cell;
 }
 void drawScreenBuffer(){
-  for(int y=0; y<BUFF_H; y++){
-    for(int x=0; x<BUFF_W; x++){
+  drawScreenBuffer(0,0,BUFF_W,BUFF_H);
+}
+void drawScreenBuffer(int xstart, int ystart, int xend, int yend){
+  if(xstart < 0) xstart=0;
+  if(ystart < 0) ystart=0;
+  if(xend >= BUFF_W) xend=BUFF_W-1;
+  if(yend >= BUFF_H) yend=BUFF_H-1;
+
+  for(int y=ystart; y<yend; y++){
+    for(int x=xstart; x<xend; x++){
       lcd()->setColorIndex(getScreenBuffer(x,y)?black:white);
       lcd()->drawBox(x*BUFF_SCALE, y*BUFF_SCALE, BUFF_SCALE, BUFF_SCALE);
     }

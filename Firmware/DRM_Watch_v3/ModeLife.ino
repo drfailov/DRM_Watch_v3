@@ -1,3 +1,4 @@
+
 void setModeLife(){
   Serial.println(F("Set mode: Life"));
   modeSetup = setModeLife;
