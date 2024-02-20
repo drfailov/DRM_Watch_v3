@@ -206,8 +206,7 @@ void drawListItem(byte index, Drawable drawIcon, const char* name, const char* d
 
 void drawMenuLegend(){
   lcd()->setColorIndex(black);
-  lcd()->drawLine(369, 0, 369, 260);
-  lcd()->drawLine(370, 0, 370, 260);
+  lcd()->drawBox(369, 0, 2, 260);
   draw_ic16_arrow_up(lx(), ly1(), black);
   draw_ic16_check(lx(), ly2(), black);
   draw_ic16_arrow_down(lx(), ly3(), black);

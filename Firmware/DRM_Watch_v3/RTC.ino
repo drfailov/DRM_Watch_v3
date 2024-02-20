@@ -75,7 +75,7 @@ int rtcGetDay(){
   }
   return _rtcInternalCorrected() -> getDay();
 }
-int rtcGetMonth(){ //00-11
+int rtcGetMonth(){ /*00-11*/
   if(rtcReady){
     DateTime datetime = DS3231M.now();
     int month = datetime.month(); //01-12

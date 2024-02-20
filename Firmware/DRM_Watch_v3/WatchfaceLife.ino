@@ -1,6 +1,6 @@
 void drawWatchfaceLife(bool firstDraw){
   int x_del = 240;
-  if(firstDraw)
+  if(firstDraw && millis()>2000)
     randScreenBuffer();
   lifeStep();
   drawScreenBuffer(0,0,x_del/BUFF_SCALE,BUFF_H);

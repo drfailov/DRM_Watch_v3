@@ -149,6 +149,8 @@ Changelog:
 2024-02-19 v0.30 Screen buffer moved to RTC memory
 2024-02-19 v0.30 Started working on Life wathcface
 2024-02-19 v0.30 Done Life wathcface
+2024-02-20 v0.31 calendar added and working
+
 
 
 ==== todo:

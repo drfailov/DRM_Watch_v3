@@ -62,7 +62,7 @@
 const int BUFF_SCALE = 2;  //screenBuffer  //2 is 3KB out of 8KB RTC Memory
 const int BUFF_W = lcd_w/BUFF_SCALE;   //screenBuffer
 const int BUFF_H = lcd_h/BUFF_SCALE;   //screenBuffer
-String version = "v0.30";        //================================== <<<<< VERSION
+String version = "v0.31";        //================================== <<<<< VERSION
 bool black = 1;
 bool white = 0;
 

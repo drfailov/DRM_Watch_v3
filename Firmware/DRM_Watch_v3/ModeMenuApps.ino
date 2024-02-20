@@ -3,8 +3,9 @@ const int itemModeAppsStopwatch=1;
 const int itemModeAppsMusic=2;
 const int itemModeAppsAlarm=3;
 const int itemModeAppsMeow=4;
-const int itemModeAppsDebug=5;
-const int itemModeAppsLife=6;
+const int itemModeAppsLife=5;
+const int itemModeAppsCalendar=6;
+const int itemModeAppsDebug=7;
 
 void setModeAppsMenu(){
   Serial.println(F("Set mode: Apps Menu"));
@@ -22,7 +23,7 @@ void setModeAppsMenu(){
   autoReturnTime = autoReturnDefaultTime;
   autoSleepTime = autoSleepDefaultTime;
   selected = 0;
-  items = 7;
+  items = 8;
 }
 
 
@@ -40,8 +41,10 @@ void ModeAppsMenuLoop(){
   drawMenuItem(itemModeAppsMusic, draw_ic24_music, "Мелодії", false);
   drawMenuItem(itemModeAppsAlarm, draw_ic24_alarm, "Будильник", false);
   drawMenuItem(itemModeAppsMeow, draw_ic24_meow, "Meow", false);
-  drawMenuItem(itemModeAppsDebug, draw_ic24_bug, "Інженерне меню", false);
   drawMenuItem(itemModeAppsLife, draw_ic24_life, "Клітковий автомат \"Життя\"", false);
+  drawMenuItem(itemModeAppsCalendar, draw_ic24_calendar, "Календар", false);
+  drawMenuItem(itemModeAppsDebug, draw_ic24_bug, "Інженерне меню", false);
+  
   
   
 
@@ -70,6 +73,10 @@ void ModeAppsMenuButtonCenter(){
   }
   if(selected==itemModeAppsMeow){
     setModeMeow();
+    return;
+  }
+  if(selected == itemModeAppsCalendar){
+    setModeCalendar();
     return;
   }
   if(selected == itemModeAppsDebug){

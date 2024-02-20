@@ -14,7 +14,10 @@ void setModeWatchface(){
   autoReturnTime = autoReturnDefaultTime;
   autoSleepTime = autoSleepDefaultTime;
   registerAction();
-  firstDraw = true;
+  if(esp_sleep_get_wakeup_cause() == ESP_SLEEP_WAKEUP_TIMER)/*periodical wakeup*/
+    firstDraw = false;
+  else
+    firstDraw = true;
 }
 
 void modeWatchfaceLoop(){ 

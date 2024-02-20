@@ -45,6 +45,7 @@ void modeTestLoop(){
   y+=interval; lcd()->setCursor(x, y); lcd()->print("Touch1: "); lcd()->print(touchRead(TOUCH1_PIN));  lcd()->print(", Touch2:"); lcd()->print(touchRead(TOUCH2_PIN));  lcd()->print(", Touch3:"); lcd()->print(touchRead(TOUCH3_PIN));
   y+=interval; lcd()->setCursor(x, y); lcd()->print("SinceLastCharged: "); displayPrintSecondsAsTime(getTimeSinceLastCharged());
   y+=interval; lcd()->setCursor(x, y); lcd()->print("rtcChipTemperature: "); lcd()->print(rtcChipTemperature());
+  y+=interval; lcd()->setCursor(x, y); lcd()->print("RAM State: "); lcd()->print(esp_get_free_heap_size());  lcd()->print(",  ");  lcd()->print(ESP.getFreeHeap()); //RAM diagnosis
 
   
   //draw_ic24_lock(lx(), ly1(), black);
