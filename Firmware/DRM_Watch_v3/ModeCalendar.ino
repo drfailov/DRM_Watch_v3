@@ -75,7 +75,7 @@ void ModeCalendarLoop(){
   lcd()->drawBox(369, 0, 2, 260);
   draw_ic16_arrow_up(lx(), ly1(), black);
   draw_ic16_back(lx(), ly2(), black);
-  draw_ic16_arrow_up(lx(), ly3(), black);
+  draw_ic16_arrow_down(lx(), ly3(), black);
   lcd()->sendBuffer();
 }
 

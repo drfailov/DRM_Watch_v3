@@ -1,86 +1,59 @@
-int ledTopValue = 0;
-int ledBottomValue = 0;
+const int LED_TOP = 0;
+const int LED_BOTTOM = 1;
+const int LED_STATUS = 2;
+const int LED_CNT = 3;
+float ledActual[LED_CNT];
+float ledTarget[LED_CNT];
+hw_timer_t *Timer_Cfg;
+float led_coef = 0.03;
 
+void IRAM_ATTR Timer_ISR()
+{
+  for(int i=0; i<LED_CNT; i++){
+    float dv = ledTarget[i]-ledActual[i];
+    ledActual[i] += dv*led_coef;
+  }
+  analogWrite(LED_TOP_PIN, (int)ledActual[LED_TOP]); 
+  analogWrite(LED_BOTTOM_PIN, (int)ledActual[LED_BOTTOM]); 
+  analogWrite(LED_STATUS_PIN, (int)ledActual[LED_STATUS]);   
+}
 
 void initLed(){
-  //test LEDs
   pinMode(LED_TOP_PIN, OUTPUT);
   pinMode(LED_BOTTOM_PIN, OUTPUT);
   pinMode(LED_STATUS_PIN, OUTPUT);
   ledFlashlightOffAll();
+  Timer_Cfg = timerBegin(0, 80, true);
+  timerAttachInterrupt(Timer_Cfg, &Timer_ISR, true);
+  timerAlarmWrite(Timer_Cfg, 3000, true);
+  timerAlarmEnable(Timer_Cfg);
 }
 
 void ledSelftest(){
     ledFlashlightOnTop(); delay(50);
     ledFlashlightOnBottom(); delay(50);
-    digitalWrite(LED_STATUS_PIN, HIGH); delay(50);
+    ledStatusOn(); delay(50);
     ledFlashlightOffTop(); delay(50);
     ledFlashlightOffBottom(); delay(50);
-    digitalWrite(LED_STATUS_PIN, LOW); delay(50);
+    ledStatusOff(); delay(50);
 }
 
-void ledStatusOn(){
-  digitalWrite(LED_STATUS_PIN, HIGH);
-}
-void ledStatusOff(){
-  digitalWrite(LED_STATUS_PIN, LOW);
-}
+bool isFlasthilghTopOn(){ return ledTarget[LED_TOP] > 20; }
+bool isFlasthilghBottomOn(){ return ledTarget[LED_BOTTOM] > 20;}
+bool isStatusLedOn(){ return ledTarget[LED_STATUS] > 20;}
+bool isFlashlightOn(){ return (isFlasthilghTopOn() ||  isFlasthilghBottomOn()); }
 
-bool isFlasthilghTopOn(){
-  return ledTopValue > 20;
-}
+void ledFlashlightOnTop(){ ledTarget[LED_TOP] = 255; }
+void ledFlashlightOnBottom(){ ledTarget[LED_BOTTOM] = 255; }
+void ledStatusOn(){ ledTarget[LED_STATUS] = 255; }
 
-bool isFlasthilghBottomOn(){
-  return ledBottomValue > 20;
-}
+void ledFlashlightOffTop(){ ledTarget[LED_TOP] = (esp_sleep_get_wakeup_cause() == ESP_SLEEP_WAKEUP_TIMER || isOff())?0:7;}
+void ledFlashlightOffBottom(){ ledTarget[LED_BOTTOM] = (esp_sleep_get_wakeup_cause() == ESP_SLEEP_WAKEUP_TIMER || isOff())?0:1;}
+void ledFlashlightOffAll(){ ledFlashlightOffBottom(); ledFlashlightOffTop();}
+void ledStatusOff(){ ledTarget[LED_STATUS] = 0; }
 
-bool isFlashlightOn(){
-  return (isFlasthilghTopOn() ||  isFlasthilghBottomOn());
-}
+void ledFlashlightToggleTop(){ if(isFlasthilghTopOn()) ledFlashlightOffTop(); else ledFlashlightOnTop();}
+void ledFlashlightToggleBottom(){ if(isFlasthilghBottomOn()) ledFlashlightOffBottom(); else ledFlashlightOnBottom();}
 
-void ledFlashlightSetValueTop(int ledTopValue){
-  analogWrite(LED_TOP_PIN, ledTopValue); 
-}
 
-void ledFlashlightOnTop(){
-  ledTopValue = 255;
-  analogWrite(LED_TOP_PIN, ledTopValue); 
-}
 
-void ledFlashlightOffTop(){
-  ledTopValue = 7;
-  if(esp_sleep_get_wakeup_cause() == ESP_SLEEP_WAKEUP_TIMER || isOff())/*periodical wakeup*/
-    ledTopValue = 0;
-  analogWrite(LED_TOP_PIN, ledTopValue); 
-}
-
-void ledFlashlightOnBottom(){
-  ledBottomValue = 255;
-  analogWrite(LED_BOTTOM_PIN, ledBottomValue); 
-}
-
-void ledFlashlightOffBottom(){
-  ledBottomValue = 1;
-  if(esp_sleep_get_wakeup_cause() == ESP_SLEEP_WAKEUP_TIMER || isOff())/*periodical wakeup*/
-    ledBottomValue = 0;
-  analogWrite(LED_BOTTOM_PIN, ledBottomValue); 
-}
-
-void ledFlashlightToggleTop(){
-  if(isFlasthilghTopOn())
-    ledFlashlightOffTop();
-  else
-    ledFlashlightOnTop();
-}
-
-void ledFlashlightToggleBottom(){
-  if(isFlasthilghBottomOn())
-    ledFlashlightOffBottom();
-  else
-    ledFlashlightOnBottom();
-}
-
-void ledFlashlightOffAll(){
-  ledFlashlightOffBottom();
-  ledFlashlightOffTop();
-}

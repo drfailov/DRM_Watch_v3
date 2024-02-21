@@ -150,23 +150,24 @@ Changelog:
 2024-02-19 v0.30 Started working on Life wathcface
 2024-02-19 v0.30 Done Life wathcface
 2024-02-20 v0.31 calendar added and working
+2024-02-21 v0.32 added slow light change, rewrite all LED class
+2024-02-21 v0.32 Calendar legend fixed
 
 
 
 ==== todo:
 board: Add EL backlight
 Board: move elements to make compact
+move led-status to edge and make lightpipe for it
+move led-charging to edge and make lightpipe for it or remove it entirely
 
 menu showing all parameters on screen
-calendar
 time setting
-LED anomation
 select timezone
 setting tone of all sounds
-game of life watchface
+button sound selection
 game ant
 game pong
-test screen looks bad when locked
 Because NTP server outputs UTC time, make that RTC stored UTC time and to be corrected when used. Internal RTC same way.
 
 
