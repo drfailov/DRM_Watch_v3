@@ -49,10 +49,23 @@ void buzPlayChargerDisconnectedTone(){
     delay(5);
   }
 }
+
 void buttonBeep(){
   if(getMuteEnabled()) return;
-  if(!isOff())
-    buzzer.tone(2000, 50);
+  if(!isOff()){
+    int sound = getButtonSound();
+    if(sound == 0){
+      buzzer.tone(2000, 50);
+    }
+    if(sound == 1){
+      buzzer.tone(3000, 40);
+    }
+    if(sound == 2){
+      buzzer.tone(2000, 15);
+      buzzer.tone(3000, 50);
+    }
+  }
+    
 }
 void buttonLongBeep(){
   if(getMuteEnabled()) return;

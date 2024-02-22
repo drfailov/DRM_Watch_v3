@@ -131,6 +131,17 @@ bool saveMuteEnabled(bool value){
   return preferencesObject.putInt((String("soundMute")).c_str(), value?1:0);
 }
 
+//----------------------//---------------------- BUTTON SOUND -----------------//----------------------//----------------------//----------------------//----------------------
+
+
+int getButtonSound(){
+  return preferencesObject.getInt("ButtonSound" , 0);
+}
+bool saveButtonSound(int value){
+  int totalSounds = 3;
+  return preferencesObject.putInt("ButtonSound", value%totalSounds);
+}
+
 //----------------------//---------------------- ALERT -----------------//----------------------//----------------------//----------------------//----------------------
 /*  bool alertIsEnabled = eepromReadAlertEnabled();
     byte alertLastRunDay = eepromReadAlertLastDayRun();

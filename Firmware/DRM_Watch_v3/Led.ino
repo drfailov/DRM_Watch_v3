@@ -48,7 +48,7 @@ void ledFlashlightOnBottom(){ ledTarget[LED_BOTTOM] = 255; }
 void ledStatusOn(){ ledTarget[LED_STATUS] = 255; }
 
 void ledFlashlightOffTop(){ ledTarget[LED_TOP] = (esp_sleep_get_wakeup_cause() == ESP_SLEEP_WAKEUP_TIMER || isOff())?0:7;}
-void ledFlashlightOffBottom(){ ledTarget[LED_BOTTOM] = (esp_sleep_get_wakeup_cause() == ESP_SLEEP_WAKEUP_TIMER || isOff())?0:1;}
+void ledFlashlightOffBottom(){ ledTarget[LED_BOTTOM] = (esp_sleep_get_wakeup_cause() == ESP_SLEEP_WAKEUP_TIMER || isOff())?0:2;}
 void ledFlashlightOffAll(){ ledFlashlightOffBottom(); ledFlashlightOffTop();}
 void ledStatusOff(){ ledTarget[LED_STATUS] = 0; }
 
