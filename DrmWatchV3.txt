@@ -153,6 +153,9 @@ Changelog:
 2024-02-21 v0.32 added slow light change, rewrite all LED class
 2024-02-21 v0.32 Calendar legend fixed
 2024-02-22 v0.33 button sound selection
+2024-02-25 Board: Added symbols for HV857
+2024-02-26 Board: Added case outline to board project
+2024-02-26 Schematic: Added elements for EL Backlight
 
 
 ==== todo:
