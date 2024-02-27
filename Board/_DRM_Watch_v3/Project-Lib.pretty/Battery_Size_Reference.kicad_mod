@@ -15,4 +15,9 @@
   )
   (fp_rect (start -14.986 10.16) (end 16.256 -10.414)
     (stroke (width 0.1) (type default)) (fill none) (layer "F.Fab") (tstamp 228c153f-f962-4f68-9b5d-c05b6f3e4839))
+  (model "../3dmodel-test/2023-12-16 lipo 502030 v1.step" hide
+    (offset (xyz 0 0 0))
+    (scale (xyz 1 1 1))
+    (rotate (xyz 0 0 0))
+  )
 )
