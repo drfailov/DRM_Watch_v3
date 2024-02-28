@@ -7305,7 +7305,7 @@
     (property "Value" "US1D" (at 275.59 245.11 0)
       (effects (font (size 1.27 1.27)))
     )
-    (property "Footprint" "Diode_SMD:D_SMA" (at 275.59 244.475 0)
+    (property "Footprint" "Project-Lib:US1D" (at 275.59 244.475 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Datasheet" "https://www.diodes.com/assets/Datasheets/ds16008.pdf" (at 275.59 248.92 0)
