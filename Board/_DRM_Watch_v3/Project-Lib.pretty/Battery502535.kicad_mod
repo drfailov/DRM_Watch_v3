@@ -19,6 +19,8 @@
   )
   (fp_rect (start -15.367 -9.017) (end 15.367 11.176)
     (stroke (width 0.1) (type default)) (fill none) (layer "F.SilkS") (tstamp 23972bba-d008-41b3-b17f-7aa1dd97505f))
+  (fp_rect (start -14.097 -6.731) (end -8.89 -8.128)
+    (stroke (width 0.05) (type default)) (fill none) (layer "F.CrtYd") (tstamp 80eb38ae-4229-4ba8-8c57-dd3aff1ae6da))
   (fp_rect (start -17.5 -11.557) (end 17.5 13.443)
     (stroke (width 0.1) (type dash)) (fill none) (layer "F.Fab") (tstamp e2c2e66d-080a-4514-ac97-029afba0f6f9))
 )

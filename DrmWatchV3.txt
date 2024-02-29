@@ -158,13 +158,14 @@ Changelog:
 2024-02-26 Schematic: Added elements for EL Backlight
 2024-02-27 Board: Destroyed all the board wiring and start over. 
 2024-02-27 Board: Moved elements and more wiring 
+2024-02-29 move led-charging to edge and make lightpipe for it 
+2024-02-29 move led-status to edge and make lightpipe for it
+2024-02-29 board: Add EL backlight
+2024-02-29 Board: move elements to make compact
 
 
 ==== todo:
-board: Add EL backlight
-Board: move elements to make compact
-move led-status to edge and make lightpipe for it
-move led-charging to edge and make lightpipe for it or remove it entirely
+board: add more info to FAB layer to meke it more informative
 
 menu showing all parameters on screen
 multi alerts
@@ -172,7 +173,6 @@ select watchfaces
 time setting
 select timezone
 setting tone of all sounds
-
 game ant
 game pong
 Because NTP server outputs UTC time, make that RTC stored UTC time and to be corrected when used. Internal RTC same way.
