@@ -3,7 +3,7 @@
   (descr "LED SMD 0805 (2012 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: https://docs.google.com/spreadsheets/d/1BsfQQcO9C6DZCsRaXUlFlo91Tg2WpOkGARC1WS5S8t0/edit?usp=sharing), generated with kicad-footprint-generator")
   (tags "LED")
   (attr smd)
-  (fp_text reference "REF**" (at 0 -0.762) (layer "F.Fab")
+  (fp_text reference "REF**" (at 0 -0.381) (layer "F.Fab")
       (effects (font (size 0.15 0.15) (thickness 0.0375)))
     (tstamp 4bd5a48b-5afe-47ea-b18b-904e1316d68f)
   )
@@ -12,7 +12,7 @@
     (tstamp a16933c9-8a05-4c8f-bab9-ec8b8683fe20)
   )
   (fp_text user "LED" (at 0 0) (layer "F.Fab")
-      (effects (font (size 0.15 0.15) (thickness 0.0375)))
+      (effects (font (size 0.2 0.2) (thickness 0.0375)))
     (tstamp 7cd307a7-eb70-40ed-b8e0-7acc62a80060)
   )
   (fp_text user "${REFERENCE}" (at 0 -1.143) (layer "F.Fab") hide

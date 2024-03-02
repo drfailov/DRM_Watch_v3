@@ -93,18 +93,18 @@ Changelog:
 2024-01-07 v0.14 mode off
 2024-01-08 v0.15 Added statusbar icon when auto return to watchface soon
 2024-01-09 v0.16 auto-sync daily
-2024-01-15 Board: add step-up resistor and cap to RST pin
-2024-01-15 Board: quartz bigger package
-2024-01-15 Board: add more testpoints for unused pins
-2024-01-15 Board: top led: place for smaller led
-2024-01-15 Board: move caacitors closer to chips
-2024-01-15 Board: make wifi wire thicker
-2024-01-15 Board: move wifi antenna closer to chips
-2024-01-15 Board: add vias around ANT wire
-2024-01-15 Board: move antenna elements closer to chip 
-2024-01-15 Board: replace onboard antenna by wire soldered on board
-2024-01-15 Board: Add jumper to close charger
-2024-01-15 Board: Add dm123a chip    (static const uint8_t SDA = 33;   static const uint8_t SCL = 35;)
+2024-01-15 Board rev2: add step-up resistor and cap to RST pin
+2024-01-15 Board rev2: quartz bigger package
+2024-01-15 Board rev2: add more testpoints for unused pins
+2024-01-15 Board rev2: top led: place for smaller led
+2024-01-15 Board rev2: move caacitors closer to chips
+2024-01-15 Board rev2: make wifi wire thicker
+2024-01-15 Board rev2: move wifi antenna closer to chips
+2024-01-15 Board rev2: add vias around ANT wire
+2024-01-15 Board rev2: move antenna elements closer to chip 
+2024-01-15 Board rev2: replace onboard antenna by wire soldered on board
+2024-01-15 Board rev2: Add jumper to close charger
+2024-01-15 Board rev2: Add dm123a chip    (static const uint8_t SDA = 33;   static const uint8_t SCL = 35;)
 2024-01-16 v0.17 Added touch data to testmode
 2024-01-23 v0.18 New melodies format and new melodies added
 2024-01-24 Added instrument to convert MIDI files to melodies
@@ -121,7 +121,7 @@ Changelog:
 2024-01-29 v0.21 Added counter for auto sleep
 2024-01-29 v0.21 Charger connected and charger disconnected tones
 2024-01-31 v0.22 Added meow function
-2024-02-02 Board: Added pull-up resistors for SCL SDA lines
+2024-02-02 Board rev3: Added pull-up resistors for SCL SDA lines
 2024-02-03 v0.23 Stopwatch fixed
 2024-02-03 v0.23 updated init led effect
 2024-02-03 v0.23 added value showing time since last charging
@@ -153,19 +153,21 @@ Changelog:
 2024-02-21 v0.32 added slow light change, rewrite all LED class
 2024-02-21 v0.32 Calendar legend fixed
 2024-02-22 v0.33 button sound selection
-2024-02-25 Board: Added symbols for HV857
-2024-02-26 Board: Added case outline to board project
+2024-02-25 Board rev3: Added symbols for HV857
+2024-02-26 Board rev3: Added case outline to board project
 2024-02-26 Schematic: Added elements for EL Backlight
-2024-02-27 Board: Destroyed all the board wiring and start over. 
-2024-02-27 Board: Moved elements and more wiring 
+2024-02-27 Board rev3: Destroyed all the board wiring and start over. 
+2024-02-27 Board rev3: Moved elements and more wiring 
 2024-02-29 move led-charging to edge and make lightpipe for it 
 2024-02-29 move led-status to edge and make lightpipe for it
-2024-02-29 board: Add EL backlight
-2024-02-29 Board: move elements to make compact
+2024-02-29 board rev3: Add EL backlight
+2024-02-29 Board rev3: move elements to make compact
+2024-03-02 Board rev3: add more info to FAB layer to meke it more informative
+
 
 
 ==== todo:
-board: add more info to FAB layer to meke it more informative
+
 
 menu showing all parameters on screen
 multi alerts
