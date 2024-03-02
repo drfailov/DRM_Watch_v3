@@ -163,6 +163,7 @@ Changelog:
 2024-02-29 board rev3: Add EL backlight
 2024-02-29 Board rev3: move elements to make compact
 2024-03-02 Board rev3: add more info to FAB layer to meke it more informative
+2024-03-02 Board rev3: prepared GERBER
 
 
 
