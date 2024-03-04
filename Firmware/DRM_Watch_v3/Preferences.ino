@@ -66,6 +66,15 @@ bool wifiSlotClear(int slot){ //1 ... wifiSlotCnt
   return wifiSlotSave(slot, "-empty-", "-empty-");
 }
 
+//----------------------//---------------------- TIMEZONE ------------//----------------------//----------------------//----------------------//----------------------
+
+int getTimeOffsetSec(){          //123456789012345
+  return preferencesObject.getInt("timeOffsetSec", 60*60*2);
+}
+bool saveTimeOffsetSec(int value){
+  return preferencesObject.putInt("timeOffsetSec", value);
+}
+
 //----------------------//---------------------- TIME SYNC ------------//----------------------//----------------------//----------------------//----------------------
 bool getTimeSyncEnabled(){               //123456789012345
   return preferencesObject.getInt((String("TimeSyncEnable")).c_str() , 0)==1;

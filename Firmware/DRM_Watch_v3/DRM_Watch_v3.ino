@@ -62,7 +62,7 @@
 const int BUFF_SCALE = 2;  //screenBuffer  //2 is 3KB out of 8KB RTC Memory
 const int BUFF_W = lcd_w/BUFF_SCALE;   //screenBuffer
 const int BUFF_H = lcd_h/BUFF_SCALE;   //screenBuffer
-String version = "v0.33";        //================================== <<<<< VERSION
+String version = "v0.34";        //================================== <<<<< VERSION
 bool black = 1;
 bool white = 0;
 
@@ -167,7 +167,7 @@ void loop(void) {
     // Serial.print("Loop: "); Serial.print(millisEnd-millisStarted); Serial.println("ms.");
   }
   
-  if((enableAutoReturn || batteryBars() <= 1) && sinceLastAction() > autoReturnTime && !dontSleep) //auto go to watchface
+  if((enableAutoReturn || (!enableAutoSleep && batteryBars() <= 1)) && sinceLastAction() > autoReturnTime && !dontSleep) //auto go to watchface
     setModeWatchface();
   
   int _autoSleepTime = isFlashlightOn()?autoSleepDefaultTimeWhenFlashlightOn:autoSleepTime;

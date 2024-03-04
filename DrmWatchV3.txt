@@ -164,12 +164,13 @@ Changelog:
 2024-02-29 Board rev3: move elements to make compact
 2024-03-02 Board rev3: add more info to FAB layer to meke it more informative
 2024-03-02 Board rev3: prepared GERBER
+2024-03-04 v0.34 Fixed: Stopwatch screen is constantly returnng to watchface
+2024-03-04 v0.34 Internal and external RTC now using UTC time and offset is added before use
+
 
 
 
 ==== todo:
-
-
 menu showing all parameters on screen
 multi alerts
 select watchfaces
@@ -178,7 +179,9 @@ select timezone
 setting tone of all sounds
 game ant
 game pong
-Because NTP server outputs UTC time, make that RTC stored UTC time and to be corrected when used. Internal RTC same way.
+toggle autosync
+round clock
+auto-finding when Life is cycled and restart automatically
 
 
 

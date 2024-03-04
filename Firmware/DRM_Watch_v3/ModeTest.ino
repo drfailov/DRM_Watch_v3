@@ -28,34 +28,39 @@ void modeTestLoop(){
   int x=5;
   int interval = 13;
 
-  y+=interval; lcd()->setCursor(x, y); lcd()->print("Meas: "); lcd()->print(_rtcInternal()->getTime("%d %b %Y %H:%M:%S"));  lcd()->print("  Epoch:"); lcd()->print(_rtcInternal()->getEpoch());
-  y+=interval; lcd()->setCursor(x, y); lcd()->print("Corr: "); lcd()->print(_rtcInternalCorrected()->getTime("%d %b %Y %H:%M:%S"));  lcd()->print("  Epoch:"); lcd()->print(_rtcInternalCorrected()->getEpoch());
-  //y+=interval; lcd()->setCursor(x, y); lcd()->print("Ext: "); lcd()->print(_rtcInternalCorrected()->getTime("%d %b %Y %H:%M:%S"));  lcd()->print("  Epoch:"); lcd()->print(_rtcInternalCorrected()->getEpoch());
-  y+=interval; lcd()->setCursor(x, y); lcd()->print("SinceLastSync:"); displayPrintSecondsAsTime(rtcGetEpoch()-getLastTimeSync());  lcd()->print(" Last sync:"); lcd()->print(getLastTimeSync());  
+  y+=interval; lcd()->setCursor(x, y); lcd()->print("Internal RTC: "); lcd()->print(_rtcInternal()->getTime("%d %b %Y %H:%M:%S"));  lcd()->print(" ("); lcd()->print(_rtcInternal()->getEpoch());   lcd()->print(")");
+  y+=interval; lcd()->setCursor(x, y); lcd()->print("Corr Int RTC: "); lcd()->print(_rtcInternalCorrected()->getTime("%d %b %Y %H:%M:%S"));  lcd()->print("  ("); lcd()->print(_rtcInternalCorrected()->getEpoch()); lcd()->print(")");
   y+=interval; lcd()->setCursor(x, y); lcd()->print("Correcton: "); lcd()->print(getTimeCoef()*(rtcGetEpoch()-getLastTimeSync())); lcd()->print("s,  Time coef: "); lcd()->print(String(getTimeCoef(), 8));   
+  y+=interval; lcd()->setCursor(x, y); lcd()->print("External RTC: "); printRtcGetTimeRaw();   
+  y+=interval; lcd()->setCursor(x, y); lcd()->print("SinceLastSync:"); displayPrintSecondsAsTime(rtcGetEpoch()-getLastTimeSync());  lcd()->print(" Last sync:"); lcd()->print(getLastTimeSync());   
   y+=interval; lcd()->setCursor(x, y); lcd()->print("RTC CLK SRC: "); lcd()->print(getRtcSrc());
+
   y+=interval; lcd()->setCursor(x, y); lcd()->print("Wakeup_reason: "); wakeup_reason();
   y+=interval; lcd()->setCursor(x, y); lcd()->print("Millis:"); lcd()->print(millis()); lcd()->print(",   Don't sleep: "); lcd()->print(dontSleep);
+
   y+=interval; lcd()->setCursor(x, y); lcd()->print("RAW ");  lcd()->print("BATTERY: "); lcd()->print(readSensBatteryRaw()); lcd()->print(", USB:"); lcd()->print(readSensUsbRaw()); lcd()->print(" : "); lcd()->print(isChargerConnected());
   y+=interval; lcd()->setCursor(x, y); lcd()->print("VOLTAGE ");  lcd()->print("BATTERY: "); lcd()->print(readSensBatteryVoltage()); lcd()->print(" ("); lcd()->print(batteryBars()); lcd()->print(" bars)"); 
+  y+=interval; lcd()->setCursor(x, y); lcd()->print("SinceLastCharged: "); displayPrintSecondsAsTime(getTimeSinceLastCharged());
+
   y+=interval; lcd()->setCursor(x, y); lcd()->print("BUTTONS "); lcd()->print("TOP:");lcd()->print(isPressed(BUT_UP)); lcd()->print(" CENTER:");lcd()->print(isPressed(BUT_CENTER)); lcd()->print(" BOTTOM:");lcd()->print(isPressed(BUT_DOWN));
   y+=interval; lcd()->setCursor(x, y); lcd()->print("Since last action: "); lcd()->print(sinceLastAction());
+
   y+=interval; lcd()->setCursor(x, y); lcd()->print("Temperature: "); lcd()->print(temperature());
-  y+=interval; lcd()->setCursor(x, y); lcd()->print("Preferences remaining memory: "); lcd()->print(getPreferencesFreeSpace());
-  y+=interval; lcd()->setCursor(x, y); lcd()->print("Touch1: "); lcd()->print(touchRead(TOUCH1_PIN));  lcd()->print(", Touch2:"); lcd()->print(touchRead(TOUCH2_PIN));  lcd()->print(", Touch3:"); lcd()->print(touchRead(TOUCH3_PIN));
-  y+=interval; lcd()->setCursor(x, y); lcd()->print("SinceLastCharged: "); displayPrintSecondsAsTime(getTimeSinceLastCharged());
   y+=interval; lcd()->setCursor(x, y); lcd()->print("rtcChipTemperature: "); lcd()->print(rtcChipTemperature());
+
+  y+=interval; lcd()->setCursor(x, y); lcd()->print("Preferences remaining memory: "); lcd()->print(getPreferencesFreeSpace());
   y+=interval; lcd()->setCursor(x, y); lcd()->print("RAM State: "); lcd()->print(esp_get_free_heap_size());  lcd()->print(",  ");  lcd()->print(ESP.getFreeHeap()); //RAM diagnosis
 
   
   //draw_ic24_lock(lx(), ly1(), black);
   draw_ic16_back(lx(), ly2(), black);
 
-  lcd()->sendBuffer();
+if(esp_sleep_get_wakeup_cause() != ESP_SLEEP_WAKEUP_TIMER) //if wake by timer, don't refresh display to keep image static, image will refresh when go to lock screen and drawing lock icon
+    lcd()->sendBuffer();
 }
 
 void modeTestButtonUp(){
-  goToSleep();
+  //goToSleep();
 }
 
 void modeTestButtonCenter(){

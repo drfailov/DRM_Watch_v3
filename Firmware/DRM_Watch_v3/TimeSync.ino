@@ -1,8 +1,8 @@
 #include <WiFi.h>
 #include "time.h"
 
-const long  gmtOffset_sec = 7200;
-const int   daylightOffset_sec = 3600;
+//const long  gmtOffset_sec = 7200;
+//const int   daylightOffset_sec = 3600;
 
 const char* ntpServer = "time.windows.com"; 
 const char* ntpServer1 = "pool.ntp.org"; 
@@ -22,7 +22,7 @@ const char* ntpServer2 = "time.google.com";
 // }
 void initTime(){
   //src: https://gist.github.com/alwynallan/24d96091655391107939 
-  setTimezone("EET-2EEST,M3.5.0/3,M10.5.0/4"); //kyiv
+  //setTimezone("EET-2EEST,M3.5.0/3,M10.5.0/4"); //kyiv
 }
 
 /*Test I made:
@@ -79,8 +79,8 @@ void timeSync(){
     unsigned long thisSyncTime = _rtcInternal()->getEpoch();
     saveLastTryTimeSync(thisSyncTime);
     saveLastTimeSync(thisSyncTime);
-    drawMessage("Відновлення часового поясу...");
-    initTime();
+    //drawMessage("Відновлення часового поясу...");
+    //initTime();
     unsigned long timeForSyncMillis = (millis()-syncStartedMillis) ;  //ms
     measuredTime += timeForSyncMillis / 1000; //s
     unsigned long sinceLastSync = measuredTime-lastSyncTime;  //s
@@ -99,8 +99,9 @@ void timeSync(){
     // drawMessage(String("sinceLastSyncValid=")+sinceLastSyncValid);
     if(thisSyncValid){
       unsigned long actualTime = _rtcInternal()->getEpoch(); //s
-      unsigned long timezone = 60*60*2;
-      adjustExternalRtc(actualTime + timezone);
+      //unsigned long timezone = 60*60*2;
+      //adjustExternalRtc(actualTime + timezone);
+      adjustExternalRtc(actualTime);
     }
 
     if(thisSyncValid && lastSyncValid && measuredTimeValid && sinceLastSyncValid){

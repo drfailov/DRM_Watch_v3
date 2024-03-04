@@ -40,44 +40,70 @@ ESP32Time* _rtcInternalCorrected(){
   return &rtcInternalCorrected;
 }
 
+void printRtcGetTimeRaw(){
+  //"%d %b %Y %H:%M:%S"
+  if(!rtcReady){
+    lcd()->print("-- NO EXT RTC --");
+    return; 
+  }
+  DateTime datetime = DS3231M.now();
+  lcd()->print(datetime.day());
+  lcd()->print(".");
+  lcd()->print(datetime.month());
+  lcd()->print(".");
+  lcd()->print(datetime.year());
+  lcd()->print(" ");
+  lcd()->print(datetime.hour());
+  lcd()->print(":");
+  lcd()->print(datetime.minute());
+  lcd()->print(":");
+  lcd()->print(datetime.second());
+}
+
 unsigned long rtcGetEpoch(){
   if(rtcReady){
-    DateTime datetime = DS3231M.now();
+    TimeSpan ts = TimeSpan(getTimeOffsetSec());
+    DateTime datetime = DS3231M.now() + ts;
     return datetime.unixtime();
   }
   return _rtcInternalCorrected() -> getEpoch();
 }
 int rtcGetHour(){
   if(rtcReady){
-    DateTime datetime = DS3231M.now();
+    TimeSpan ts = TimeSpan(getTimeOffsetSec());
+    DateTime datetime = DS3231M.now() + ts;
     return datetime.hour();
   }
   return _rtcInternalCorrected() -> getHour(true);
 }
 int rtcGetMinute(){
   if(rtcReady){
-    DateTime datetime = DS3231M.now();
+    TimeSpan ts = TimeSpan(getTimeOffsetSec());
+    DateTime datetime = DS3231M.now() + ts;
     return datetime.minute();
   }
   return _rtcInternalCorrected() -> getMinute();
 }
 int rtcGetSecond(){
   if(rtcReady){
-    DateTime datetime = DS3231M.now();
+    TimeSpan ts = TimeSpan(getTimeOffsetSec());
+    DateTime datetime = DS3231M.now() + ts;
     return datetime.second();
   }
   return _rtcInternalCorrected() -> getSecond();
 }
 int rtcGetDay(){
   if(rtcReady){
-    DateTime datetime = DS3231M.now();
+    TimeSpan ts = TimeSpan(getTimeOffsetSec());
+    DateTime datetime = DS3231M.now() + ts;
     return datetime.day();
   }
   return _rtcInternalCorrected() -> getDay();
 }
 int rtcGetMonth(){ /*00-11*/
   if(rtcReady){
-    DateTime datetime = DS3231M.now();
+    TimeSpan ts = TimeSpan(getTimeOffsetSec());
+    DateTime datetime = DS3231M.now() + ts;
     int month = datetime.month(); //01-12
     return month-1;
   }
@@ -85,14 +111,16 @@ int rtcGetMonth(){ /*00-11*/
 }
 int rtcGetYear(){
   if(rtcReady){
-    DateTime datetime = DS3231M.now();
+    TimeSpan ts = TimeSpan(getTimeOffsetSec());
+    DateTime datetime = DS3231M.now() + ts;
     return datetime.year();
   }
   return _rtcInternalCorrected() -> getYear();
 }
 int rtcGetDayOfWeek(){
   if(rtcReady){
-    DateTime datetime = DS3231M.now();
+    TimeSpan ts = TimeSpan(getTimeOffsetSec());
+    DateTime datetime = DS3231M.now() + ts;
     return datetime.dayOfTheWeek();
   }
   return _rtcInternalCorrected() -> getDayofWeek();
