@@ -86,7 +86,7 @@ void modeSettingsMenuButtonCenter(){
     return;
   }
   if(selected==itemModeSettingsSetTimeZone){
-    drawMessage("В процесі розробки.");
+    setmodeSetTimezoneMenu();
     return;
   }
   if(selected==itemModeSettingsReboot){

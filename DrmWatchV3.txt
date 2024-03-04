@@ -166,7 +166,7 @@ Changelog:
 2024-03-02 Board rev3: prepared GERBER
 2024-03-04 v0.34 Fixed: Stopwatch screen is constantly returnng to watchface
 2024-03-04 v0.34 Internal and external RTC now using UTC time and offset is added before use
-
+2024-03-04 v0.34 Started work on timesone set screen
 
 
 

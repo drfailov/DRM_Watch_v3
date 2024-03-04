@@ -68,10 +68,10 @@ bool wifiSlotClear(int slot){ //1 ... wifiSlotCnt
 
 //----------------------//---------------------- TIMEZONE ------------//----------------------//----------------------//----------------------//----------------------
 
-int getTimeOffsetSec(){          //123456789012345
+long getTimeOffsetSec(){          //123456789012345
   return preferencesObject.getInt("timeOffsetSec", 60*60*2);
 }
-bool saveTimeOffsetSec(int value){
+bool saveTimeOffsetSec(long value){
   return preferencesObject.putInt("timeOffsetSec", value);
 }
 

@@ -111,6 +111,7 @@ void ModeAlertSettingsMenuButtonCenter(){
   }
   if(selected == itemModeAlertSettingsEnabled){
     saveAlertEnabled(modeAlertSettingsIndex, !getAlertEnabled(modeAlertSettingsIndex));
+    resetAlertMetadata(modeAlertSettingsIndex);
     return;
   }
   if(selected==itemModeAlertSettingsHour){
