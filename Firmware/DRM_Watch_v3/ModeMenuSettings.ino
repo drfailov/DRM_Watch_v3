@@ -1,14 +1,10 @@
 const int itemModeSettingsBack=0;
-const int itemModeSettingsSelectWatchface=1;
-const int itemModeSettingsSavedNetworks=2;
-const int itemModeSettingsSynchronizeTime=3;
-const int itemModeSettingsSynchronizeTimeEnable=4;
-const int itemModeSettingsSetTime=5;
-const int itemModeSettingsSetTimeZone=6;
-const int itemModeSettingsButtonSound=7;
-const int itemModeSettingsInvert=8;
-const int itemModeSettingsMute=9;
-const int itemModeSettingsReboot=10;
+const int itemModeSettingsCategoryTime=1;
+const int itemModeSettingsCategoryDisplay=2;
+const int itemModeSettingsSavedNetworks=3;
+const int itemModeSettingsButtonSound=4;
+const int itemModeSettingsMute=5;
+const int itemModeSettingsReboot=6;
 
 void setModeSettingsMenu(){
   Serial.println(F("Set mode: Settings Menu"));
@@ -26,7 +22,7 @@ void setModeSettingsMenu(){
   autoReturnTime = autoReturnDefaultTime;
   autoSleepTime = autoSleepDefaultTime;
   selected = 0;
-  items = 11;
+  items = 8;
 }
 
 
@@ -42,19 +38,14 @@ void modeSettingsMenuLoop(){
   drawStatusbar(363, 1, true);  
   drawMenuLegend();
 
-  drawMenuItem(itemModeSettingsBack, draw_ic24_back, "Назад", false);
-  drawMenuItem(itemModeSettingsSelectWatchface, draw_ic24_watchface, "Обрати циферблат", false);
-  drawMenuItem(itemModeSettingsSavedNetworks, draw_ic24_saved, "Список збережениx мереж Wi-Fi", false);
-  drawMenuItem(itemModeSettingsSynchronizeTime, draw_ic24_sync, "Синхронізувати час з сервером", false);
-  if(getTimeSyncEnabled()) drawMenuItem(itemModeSettingsSynchronizeTimeEnable, draw_ic24_check, "Автосинхронізація часу увімкнена", false);
-  else drawMenuItem(itemModeSettingsSynchronizeTimeEnable, draw_ic24_cancel, "Автосинхронізація часу вимкнена", false);  
-  drawMenuItem(itemModeSettingsSetTime, draw_ic24_clock, "Задати час", false);
-  drawMenuItem(itemModeSettingsSetTimeZone, draw_ic24_timezone, "Обрати часовий пояс", false);
-  drawMenuItem(itemModeSettingsReboot, draw_ic24_reboot, "Перезавантажити", false);
-  drawMenuItem(itemModeSettingsInvert, draw_ic24_invert, "Інвертувати екран", false);
-  if(getMuteEnabled()) drawMenuItem(itemModeSettingsMute, draw_ic24_sound_mute, "Звук вимкнено", false);
-  else drawMenuItem(itemModeSettingsMute, draw_ic24_sound_on, "Звук увімкнено", false);
-  drawMenuItem(itemModeSettingsButtonSound, draw_ic24_buttonsound, "Звук кнопок", false);
+  drawListItem(itemModeSettingsBack, draw_ic24_back, "Назад", "Повернутись до головного меню", false);
+  drawListItem(itemModeSettingsCategoryTime, draw_ic24_clock, "Налаштування часу", "Налаштування що стосуються часу", false);
+  drawListItem(itemModeSettingsCategoryDisplay, draw_ic24_display, "Налаштування дисплея", "Налаштування що стосуються дисплея", false);
+  drawListItem(itemModeSettingsSavedNetworks, draw_ic24_wifi_3, "Список збережениx мереж Wi-Fi", "Мережі для доступу до Інтернет", false); /*draw_ic24_saved*/
+  drawListItem(itemModeSettingsReboot, draw_ic24_reboot, "Перезавантажити", "Перезавантажити годинник", false);
+  if(getMuteEnabled()) drawListItem(itemModeSettingsMute, draw_ic24_sound_mute, "Тихий режим", "Зараз звук вимкнено", false);
+  else drawListItem(itemModeSettingsMute, draw_ic24_sound_on, "Тихий режим", "Зараз звук увімкнено", false);
+  drawListItem(itemModeSettingsButtonSound, draw_ic24_buttonsound, "Звук кнопок", "Обрати звук кнопок", false);
   
 
   lcd()->sendBuffer();
@@ -65,40 +56,44 @@ void modeSettingsMenuButtonCenter(){
     setModeMainMenu();
     return;
   }
-  if(selected == itemModeSettingsSelectWatchface){
-    drawMessage("В процесі розробки.");
+  if(selected == itemModeSettingsCategoryTime){
+    setModeMenuSettingsTime();
+    return;
+  }
+  if(selected == itemModeSettingsCategoryDisplay){
+    setModeMenuSettingsDisplay();
     return;
   }
   if(selected==itemModeSettingsSavedNetworks){
     setModeSavedWiFiList();
     return;
   }
-  if(selected==itemModeSettingsSynchronizeTime){
-    timeSync();
-    return;
-  }
-  if(selected==itemModeSettingsSynchronizeTimeEnable){
-    saveTimeSyncEnabled(!getTimeSyncEnabled());
-    return;
-  }
-  if(selected==itemModeSettingsSetTime){
-    drawMessage("В процесі розробки.");
-    return;
-  }
-  if(selected==itemModeSettingsSetTimeZone){
-    setmodeSetTimezoneMenu();
-    return;
-  }
+  // if(selected==itemModeSettingsSynchronizeTime){
+  //   timeSync();
+  //   return;
+  // }
+  // if(selected==itemModeSettingsSynchronizeTimeEnable){
+  //   saveTimeSyncEnabled(!getTimeSyncEnabled());
+  //   return;
+  // }
+  // if(selected==itemModeSettingsSetTime){
+  //   drawMessage("В процесі розробки.");
+  //   return;
+  // }
+  // if(selected==itemModeSettingsSetTimeZone){
+  //   ();
+  //   return;
+  // }
   if(selected==itemModeSettingsReboot){
     modeButtonUpLong();
     return;
   }
-  if(selected==itemModeSettingsInvert){
-    saveInversionValue(!getInversionValue());
-    black = getBlackValue();
-    white = getWhiteValue();
-    return;
-  }
+  // if(selected==itemModeSettingsInvert){
+  //   saveInversionValue(!getInversionValue());
+  //   black = getBlackValue();
+  //   white = getWhiteValue();
+  //   return;
+  // }
   if(selected==itemModeSettingsMute){
     saveMuteEnabled(!getMuteEnabled());
     return;

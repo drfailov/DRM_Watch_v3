@@ -24,7 +24,8 @@ Icons used as reference:
 <a href="https://www.flaticon.com/free-icons/mute" title="mute icons">Mute icons created by adrianadam - Flaticon</a>
 <a href="https://www.flaticon.com/free-icons/alert" title="alert icons">Alert icons created by Freepik - Flaticon</a>
 <a href="https://www.flaticon.com/free-icons/calendar" title="calendar icons">Calendar icons created by Hilmy Abiyyu A. - Flaticon</a>
-
+<a href="https://www.flaticon.com/free-icons/capture" title="capture icons">Capture icons created by Pixel perfect - Flaticon</a>
+ 
 
 
 
@@ -167,7 +168,11 @@ Changelog:
 2024-03-04 v0.34 Fixed: Stopwatch screen is constantly returnng to watchface
 2024-03-04 v0.34 Internal and external RTC now using UTC time and offset is added before use
 2024-03-04 v0.34 Started work on timesone set screen
-
+2024-03-07 v0.35 timesone set screen working
+2024-03-07 v0.35 main menu elem size
+2024-03-07 v0.35 Added settings category: Time
+2024-03-07 v0.35 Added settings category: Display
+2024-03-07 v0.35 Settings redesigh
 
 
 ==== todo:
@@ -175,11 +180,9 @@ menu showing all parameters on screen
 multi alerts
 select watchfaces
 time setting
-select timezone
 setting tone of all sounds
 game ant
 game pong
-toggle autosync
 round clock
 auto-finding when Life is cycled and restart automatically
 

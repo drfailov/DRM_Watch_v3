@@ -67,25 +67,22 @@ void modeSetTimezoneMenuButtonUp(){
     modeMainMenuButtonUp();
     return;
   }
-  //if(selected == itemmodeSetTimezoneHour)  modeSetTimezoneHourValue ++;
+  if(selected == itemmodeSetTimezoneHour) saveTimeOffsetSec(getTimeOffsetSec()+60*30);
 }
 void modeSetTimezoneMenuButtonDown(){
   if(!modeSetTimezoneEditMode){
     modeMainMenuButtonDown();
     return;
   }
-  //if(selected == itemmodeSetTimezoneHour)  modeSetTimezoneHourValue --;
+  if(selected == itemmodeSetTimezoneHour) saveTimeOffsetSec(getTimeOffsetSec()-60*30);
 }
 void modeSetTimezoneMenuButtonCenter(){
   if(selected == itemmodeSetTimezoneBack){
-    setModeSettingsMenu();
+    setModeMenuSettingsTime();
     return;
   }
   if(selected==itemmodeSetTimezoneHour){
     modeSetTimezoneEditMode = !modeSetTimezoneEditMode;
-    if(!modeSetTimezoneEditMode){
-      //save
-    }
     return;
   }
 }

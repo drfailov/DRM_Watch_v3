@@ -147,7 +147,7 @@ int getButtonSound(){
   return preferencesObject.getInt("ButtonSound" , 0);
 }
 bool saveButtonSound(int value){
-  int totalSounds = 3;
+  int totalSounds = 4;
   return preferencesObject.putInt("ButtonSound", value%totalSounds);
 }
 

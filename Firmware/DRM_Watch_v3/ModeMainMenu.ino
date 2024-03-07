@@ -32,10 +32,10 @@ void modeMainMenuLoop(){
   lcd()->print("Головне меню");
   
 
-  drawMenuItem(itemBack,     draw_ic24_back,      "Назад",        false, 13,  70, 75, 80);
-  drawMenuItem(itemApps,     draw_ic24_apps,      "Програми",     false, 102, 70, 75, 80);
-  drawMenuItem(itemSettings, draw_ic24_settings,  "Налаштування", false, 191, 70, 75, 80);
-  drawMenuItem(itemAbout,    draw_ic24_about,     "Про програму", false, 280, 70, 75, 80);
+  drawMenuItem(itemBack,     draw_ic24_back,      "Назад",        false, /*x*/13,  /*y*/90, /*w*/77, /*h*/60);
+  drawMenuItem(itemApps,     draw_ic24_apps,      "Програми",     false, /*x*/102, /*y*/90, /*w*/77, /*h*/60);
+  drawMenuItem(itemSettings, draw_ic24_settings,  "Налаштування", false, /*x*/191, /*y*/90, /*w*/77, /*h*/60);
+  drawMenuItem(itemAbout,    draw_ic24_about,     "Про програму", false, /*x*/280, /*y*/90, /*w*/77, /*h*/60);
 
   
   //drawTemperature(5, 5);
