@@ -1,6 +1,6 @@
-
+int modeAboutCounter = 0;
 void modeAboutSetup(){
-//setModeWatchface
+  clearScreenAnimation();
   Serial.println(F("Set mode: About"));
   modeSetup = modeAboutSetup;
   modeLoop = modeAboutLoop;
@@ -15,6 +15,7 @@ void modeAboutSetup(){
   enableAutoSleep = false; 
   autoReturnTime = autoReturnDefaultTime;
   autoSleepTime = autoSleepDefaultTime;
+  modeAboutCounter = 0;
 }
 
 void modeAboutLoop(){
@@ -29,14 +30,27 @@ void modeAboutLoop(){
   lcd()->setCursor(135, 234);  lcd()->print("Made in Ukraine");
   lcd()->setCursor(355, 234);  lcd()->print("2024");
 
-  displayDrawVector(getPathZubat(), 40, 60, 3.0, 3, 0, black);
-  displayDrawVector(getPathDrmWatch(), 190, 60, 3.0, 2, 4, black);
-  lcd()->sendBuffer();
-  if(!isAnyButtonPressed()){
-    delay(500);
-    displayDrawVector(getPathDrmWatch(), 190, 60, 3.0, 2, 6, white);
-    lcd()->sendBuffer();
+  if(modeAboutCounter == 0){
+    displayDrawVector(getPathZubat(), 40, 60, 3.0, 3, 3, black);
+    displayDrawVector(getPathDrmWatch(), 190, 60, 3.0, 2, 3, black);
   }
+  else if(modeAboutCounter < 10){
+    displayDrawVector(getPathZubat(), 40, 60, 3.0, 3, 0, black);
+    displayDrawVector(getPathDrmWatch(), 190, 60, 3.0, 2, 0, black);
+  }
+  else if(modeAboutCounter%2==0){
+    displayDrawVector(getPathZubat(), 40, 60, 3.0, 3, 0, black);
+    displayDrawVector(getPathDrmWatch(), 190, 60, 3.0, 2, 0, black);
+    displayDrawVector(getPathDrmWatch(), 190, 60, 3.0, 2, 5, white);
+  }
+  else{
+    displayDrawVector(getPathZubat(), 40, 60, 3.0, 3, 0, black);
+    displayDrawVector(getPathDrmWatch(), 190, 60, 3.0, 2, 3, black);
+    lcd()->sendBuffer();
+    for(unsigned long started = millis(); millis()-started<300; ) if(isAnyButtonPressed()) break;
+  }
+  lcd()->sendBuffer();
+  modeAboutCounter++;
 }
 
 void modeAboutButton(){

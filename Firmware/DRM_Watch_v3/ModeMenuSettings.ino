@@ -7,6 +7,7 @@ const int itemModeSettingsMute=5;
 const int itemModeSettingsReboot=6;
 
 void setModeSettingsMenu(){
+  clearScreenAnimation();
   Serial.println(F("Set mode: Settings Menu"));
   modeSetup = setModeSettingsMenu;
   modeLoop = modeSettingsMenuLoop;
@@ -22,7 +23,7 @@ void setModeSettingsMenu(){
   autoReturnTime = autoReturnDefaultTime;
   autoSleepTime = autoSleepDefaultTime;
   selected = 0;
-  items = 8;
+  items = 7;
 }
 
 
@@ -38,14 +39,14 @@ void modeSettingsMenuLoop(){
   drawStatusbar(363, 1, true);  
   drawMenuLegend();
 
-  drawListItem(itemModeSettingsBack, draw_ic24_back, "Назад", "Повернутись до головного меню", false);
-  drawListItem(itemModeSettingsCategoryTime, draw_ic24_clock, "Налаштування часу", "Налаштування що стосуються часу", false);
-  drawListItem(itemModeSettingsCategoryDisplay, draw_ic24_display, "Налаштування дисплея", "Налаштування що стосуються дисплея", false);
-  drawListItem(itemModeSettingsSavedNetworks, draw_ic24_wifi_3, "Список збережениx мереж Wi-Fi", "Мережі для доступу до Інтернет", false); /*draw_ic24_saved*/
-  drawListItem(itemModeSettingsReboot, draw_ic24_reboot, "Перезавантажити", "Перезавантажити годинник", false);
-  if(getMuteEnabled()) drawListItem(itemModeSettingsMute, draw_ic24_sound_mute, "Тихий режим", "Зараз звук вимкнено", false);
-  else drawListItem(itemModeSettingsMute, draw_ic24_sound_on, "Тихий режим", "Зараз звук увімкнено", false);
-  drawListItem(itemModeSettingsButtonSound, draw_ic24_buttonsound, "Звук кнопок", "Обрати звук кнопок", false);
+  drawListItem(itemModeSettingsBack, draw_ic24_back, "Назад", "Повернутись до головного меню", firstDraw);
+  drawListItem(itemModeSettingsCategoryTime, draw_ic24_clock, "Налаштування часу", "Налаштування що стосуються часу", firstDraw);
+  drawListItem(itemModeSettingsCategoryDisplay, draw_ic24_display, "Налаштування дисплея", "Налаштування що стосуються дисплея", firstDraw);
+  drawListItem(itemModeSettingsSavedNetworks, draw_ic24_wifi_3, "Список збережениx мереж Wi-Fi", "Мережі для доступу до Інтернет", firstDraw); /*draw_ic24_saved*/
+  drawListItem(itemModeSettingsReboot, draw_ic24_reboot, "Перезавантажити", "Перезавантажити годинник", firstDraw);
+  if(getMuteEnabled()) drawListItem(itemModeSettingsMute, draw_ic24_sound_mute, "Тихий режим", "Зараз звук вимкнено", firstDraw);
+  else drawListItem(itemModeSettingsMute, draw_ic24_sound_on, "Тихий режим", "Зараз звук увімкнено", firstDraw);
+  drawListItem(itemModeSettingsButtonSound, draw_ic24_buttonsound, "Звук кнопок", "Обрати звук кнопок", firstDraw);
   
 
   lcd()->sendBuffer();

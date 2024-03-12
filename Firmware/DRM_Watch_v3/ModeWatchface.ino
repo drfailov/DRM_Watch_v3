@@ -1,5 +1,5 @@
-bool firstDraw = true;
 void setModeWatchface(){
+  clearScreenAnimation();
   Serial.println(F("Set mode: Watchface"));
   modeSetup = setModeWatchface;
   modeLoop = modeWatchfaceLoop;
@@ -14,10 +14,6 @@ void setModeWatchface(){
   autoReturnTime = autoReturnDefaultTime;
   autoSleepTime = autoSleepDefaultTime;
   registerAction();
-  if(esp_sleep_get_wakeup_cause() == ESP_SLEEP_WAKEUP_TIMER)/*periodical wakeup*/
-    firstDraw = false;
-  else
-    firstDraw = true;
 }
 
 void modeWatchfaceLoop(){ 
@@ -25,7 +21,6 @@ void modeWatchfaceLoop(){
     loopTimeAutoSync();  
 
   drawWatchfaceLife(firstDraw);  
-  firstDraw = false;
 
   if(esp_sleep_get_wakeup_cause() != ESP_SLEEP_WAKEUP_TIMER) //if wake by timer, don't refresh display to keep image static, image will refresh when go to lock screen and drawing lock icon
     lcd()->sendBuffer();

@@ -1,5 +1,6 @@
 
 void setModeLife(){
+  clearScreenAnimation();
   Serial.println(F("Set mode: Life"));
   modeSetup = setModeLife;
   modeLoop = ModeLifeLoop;

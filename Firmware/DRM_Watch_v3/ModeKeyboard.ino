@@ -93,6 +93,7 @@ String getKeybordResult(){
 }
 
 void setModeKeyboard(){
+  clearScreenAnimation();
   Serial.println(F("Set mode: Keyboard"));
   modeSetup = setModeKeyboard;
   modeLoop = modeKeyboardLoop;

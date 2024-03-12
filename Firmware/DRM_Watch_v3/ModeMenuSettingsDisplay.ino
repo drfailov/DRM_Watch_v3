@@ -3,6 +3,7 @@ const int ModeMenuSettingsDisplayItemSelectWatchface = 1;
 const int ModeMenuSettingsDisplayItemInvertDisplay = 2;
 
 void setModeMenuSettingsDisplay(){
+  clearScreenAnimation();
   Serial.println(F("Set mode: ModeMenuSettingsDisplay"));
   modeSetup = setModeMenuSettingsDisplay;
   modeLoop = ModeMenuSettingsDisplayLoop;
@@ -34,9 +35,9 @@ void ModeMenuSettingsDisplayLoop(){
   drawMenuLegend();
   drawStatusbar(363, 1, true);
 
-  drawListItem(ModeMenuSettingsDisplayItemBack, draw_ic24_back, "Повернутись", "В меню налаштувань", false); //
-  drawListItem(ModeMenuSettingsDisplayItemSelectWatchface, draw_ic24_watchface, "Обрати циферблат", "Дизайн відображення часу", false); //
-  drawListItem(ModeMenuSettingsDisplayItemInvertDisplay, draw_ic24_invert, "Інвертувати екран", "Поміняти місцями чорне i біле", false); //
+  drawListItem(ModeMenuSettingsDisplayItemBack, draw_ic24_back, "Повернутись", "В меню налаштувань", firstDraw); //
+  drawListItem(ModeMenuSettingsDisplayItemSelectWatchface, draw_ic24_watchface, "Обрати циферблат", "Дизайн відображення часу", firstDraw); //
+  drawListItem(ModeMenuSettingsDisplayItemInvertDisplay, draw_ic24_invert, "Інвертувати екран", "Поміняти місцями чорне i біле", firstDraw); //
 
   lcd()->sendBuffer();
 }

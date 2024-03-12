@@ -57,12 +57,13 @@
 #define RTC_SCL_PIN 35    
 #endif
 
-#define lcd_w 400
-#define lcd_h 240
+#define W 400
+#define H 240
 const int BUFF_SCALE = 2;  //screenBuffer  //2 is 3KB out of 8KB RTC Memory
-const int BUFF_W = lcd_w/BUFF_SCALE;   //screenBuffer
-const int BUFF_H = lcd_h/BUFF_SCALE;   //screenBuffer
-String version = "v0.35";        //================================== <<<<< VERSION
+const int BUFF_W = W/BUFF_SCALE;   //screenBuffer
+const int BUFF_H = H/BUFF_SCALE;   //screenBuffer
+bool firstDraw = true;  //used to animate first frame of any mode. Resets on clearScreenAnimation.
+String version = "v0.36";        //================================== <<<<< VERSION
 bool black = 1;
 bool white = 0;
 
@@ -79,6 +80,7 @@ int items = 0;    //global for menus
 int selected = 0; //global for menus
 
 typedef void (*Runnable)();
+typedef void (*WatchfaceDrawable)(bool firstDraw);
 typedef void (*Drawable)(int x,int y, bool color);
 RTC_DATA_ATTR Runnable modeSetup;
 Runnable modeLoop = 0;
@@ -106,6 +108,7 @@ void setup(void) {
   if(esp_sleep_get_wakeup_cause() == 0) drawMessage("Init RTC...");
   initRtc();
   initTime();
+  
   if(esp_sleep_get_wakeup_cause() == 0){
     lcd()->setColorIndex(white);
     lcd()->drawBox(0, 0, 400, 240);
@@ -124,9 +127,10 @@ void setup(void) {
       displayDrawVector(getPathZubat(), x, 60, 3.0, 3, 0, black);
       lcd()->sendBuffer();
     }
-    displayDrawVector(getPathDrmWatch(), 190, 60, 3.0, 2, 4, black);
+    displayDrawVector(getPathDrmWatch(), 190, 60, 3.0, 2, 3, black);
     lcd()->sendBuffer();
     delay(300);
+    firstDraw = true;
     setModeWatchface();
   }
   else{
@@ -161,8 +165,9 @@ void loop(void) {
 
   buttonsLoop();
   if(modeLoop != 0){
-    // unsigned long millisStarted = millis();
-    modeLoop();    //usually kakes about 125 ... 150ms
+     //unsigned long millisStarted = millis();
+    modeLoop();    //125ms 1MHz SPI  |   63ms  3MHz SPI
+    firstDraw = false;
     // unsigned long millisEnd = millis();
     // Serial.print("Loop: "); Serial.print(millisEnd-millisStarted); Serial.println("ms.");
   }

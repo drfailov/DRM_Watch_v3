@@ -8,6 +8,7 @@ tm _tm;
 
 
 void setModeCalendar(){
+  clearScreenAnimation();
   Serial.println(F("Set mode: Calendar"));
   modeSetup = setModeCalendar;
   modeLoop = ModeCalendarLoop;
@@ -68,7 +69,10 @@ void ModeCalendarLoop(){
       int y = yoffset + week*dayh;
       lcd()->setCursor(x, y); 
       lcd()->print(drawday);
-      if(DoW == 7) week++;
+      if(DoW == 7) {
+        week++;
+        if(firstDraw) lcd()->sendBuffer();
+      }
     }
   }
   lcd()->setColorIndex(black);

@@ -4,6 +4,7 @@ const int itemSettings=2;
 const int itemAbout=3;
 
 void setModeMainMenu(){
+  clearScreenAnimation();
   Serial.println(F("Set mode: Main Menu"));
   modeSetup = setModeTest;
   modeLoop = modeMainMenuLoop;
@@ -31,18 +32,13 @@ void modeMainMenuLoop(){
   lcd()->setCursor(5, 18); 
   lcd()->print("Головне меню");
   
-
-  drawMenuItem(itemBack,     draw_ic24_back,      "Назад",        false, /*x*/13,  /*y*/90, /*w*/77, /*h*/60);
-  drawMenuItem(itemApps,     draw_ic24_apps,      "Програми",     false, /*x*/102, /*y*/90, /*w*/77, /*h*/60);
-  drawMenuItem(itemSettings, draw_ic24_settings,  "Налаштування", false, /*x*/191, /*y*/90, /*w*/77, /*h*/60);
-  drawMenuItem(itemAbout,    draw_ic24_about,     "Про програму", false, /*x*/280, /*y*/90, /*w*/77, /*h*/60);
-
-  
-  //drawTemperature(5, 5);
   drawStatusbar(363, 1, true);
-  
   drawMenuLegend();
 
+  drawMenuItem(itemBack,     draw_ic24_back,      "Назад",        /*animate*/firstDraw, /*x*/13,  /*y*/90, /*w*/77, /*h*/60);
+  drawMenuItem(itemApps,     draw_ic24_apps,      "Програми",     /*animate*/firstDraw, /*x*/102, /*y*/90, /*w*/77, /*h*/60);
+  drawMenuItem(itemSettings, draw_ic24_settings,  "Налаштування", /*animate*/firstDraw, /*x*/191, /*y*/90, /*w*/77, /*h*/60);
+  drawMenuItem(itemAbout,    draw_ic24_about,     "Про програму", /*animate*/firstDraw, /*x*/280, /*y*/90, /*w*/77, /*h*/60);
 
   lcd()->sendBuffer(); 
 }

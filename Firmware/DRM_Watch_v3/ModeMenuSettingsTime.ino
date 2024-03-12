@@ -5,6 +5,7 @@ const int ModeMenuSettingsTimeItemSetTime = 3;
 const int ModeMenuSettingsTimeItemSetTimeZone = 4;
 
 void setModeMenuSettingsTime(){
+  clearScreenAnimation();
   Serial.println(F("Set mode: ModeMenuSettingsTime"));
   modeSetup = setModeMenuSettingsTime;
   modeLoop = ModeMenuSettingsTimeLoop;
@@ -37,12 +38,12 @@ void ModeMenuSettingsTimeLoop(){
   drawMenuLegend();
   drawStatusbar(363, 1, true);
 
-  drawListItem(ModeMenuSettingsTimeItemBack, draw_ic24_back, "Повернутись", "В меню налаштувань", false); //
-  drawListItem(ModeMenuSettingsTimeItemSyncTime, draw_ic24_sync, "Синхронізувати час", "Через збережену Wi-Fi мережу", false); //
-  if(getTimeSyncEnabled()) drawListItem(ModeMenuSettingsTimeItemAutoSyncEnabled, draw_ic24_check, "Автосинхронізація часу", "Зараз увімкнена", false); 
-  else  drawListItem(ModeMenuSettingsTimeItemAutoSyncEnabled, draw_ic24_cancel, "Автосинхронізація часу", "Зараз вимкнена", false);
-  drawListItem(ModeMenuSettingsTimeItemSetTime, draw_ic24_clock, "Встановити час", "Встановити поточний час вручну", false);
-  drawListItem(ModeMenuSettingsTimeItemSetTimeZone, draw_ic24_timezone, "Встановити часовий пояс", "Встановити зміщення відносно UTC", false);
+  drawListItem(ModeMenuSettingsTimeItemBack, draw_ic24_back, "Повернутись", "В меню налаштувань", firstDraw); //
+  drawListItem(ModeMenuSettingsTimeItemSyncTime, draw_ic24_sync, "Синхронізувати час", "Через збережену Wi-Fi мережу", firstDraw); //
+  if(getTimeSyncEnabled()) drawListItem(ModeMenuSettingsTimeItemAutoSyncEnabled, draw_ic24_check, "Автосинхронізація часу", "Зараз увімкнена", firstDraw); 
+  else  drawListItem(ModeMenuSettingsTimeItemAutoSyncEnabled, draw_ic24_cancel, "Автосинхронізація часу", "Зараз вимкнена", firstDraw);
+  drawListItem(ModeMenuSettingsTimeItemSetTime, draw_ic24_clock, "Встановити час", "Встановити поточний час вручну", firstDraw);
+  drawListItem(ModeMenuSettingsTimeItemSetTimeZone, draw_ic24_timezone, "Встановити часовий пояс", "Встановити зміщення відносно UTC", firstDraw);
   
 
 

@@ -1,6 +1,7 @@
 
 
 void setModeTest(){
+  clearScreenAnimation();
   Serial.println(F("Set mode: Test"));
   modeSetup = setModeTest;
   modeLoop = modeTestLoop;
@@ -51,6 +52,9 @@ void modeTestLoop(){
   y+=interval; lcd()->setCursor(x, y); lcd()->print("Preferences remaining memory: "); lcd()->print(getPreferencesFreeSpace());
   y+=interval; lcd()->setCursor(x, y); lcd()->print("RAM State: "); lcd()->print(esp_get_free_heap_size());  lcd()->print(",  ");  lcd()->print(ESP.getFreeHeap()); //RAM diagnosis
 
+  y+=interval; lcd()->setCursor(x, y); lcd()->print("SPI Clock: "); lcd()->print(lcd()->getBusClock());
+  //uint32_t getBusClock(void);
+  //void setBusClock(uint32_t clock_speed);
   
   //draw_ic24_lock(lx(), ly1(), black);
   draw_ic16_back(lx(), ly2(), black);

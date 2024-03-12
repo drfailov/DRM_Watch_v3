@@ -7,6 +7,7 @@ long meowPause = 0;
 float meowTone = 1.3f;
 
 void setModeMeow(){
+  clearScreenAnimation();
   Serial.println(F("Set mode: Meow"));
   modeSetup = setModeMeow;
   modeLoop = modeMeowLoop;
@@ -47,9 +48,9 @@ void modeMeowLoop(){
 
   displayDrawVector(getPathZubat(), 110, 40, 2.0, 2, false, black);
 
-  drawMenuItem(itemModeMeowBack, draw_ic24_back, "Назад", false, 70, 160);
-  drawMenuItem(itemModeMeowToneUp, draw_ic24_arrow_up, "Збільшити тон", false, 140, 160);
-  drawMenuItem(itemModeMeowToneDown, draw_ic24_arrow_down, "Зменшити тон", false, 210, 160);
+  drawMenuItem(itemModeMeowBack, draw_ic24_back, "Назад", firstDraw, 70, 160);
+  drawMenuItem(itemModeMeowToneUp, draw_ic24_arrow_up, "Збільшити тон", firstDraw, 140, 160);
+  drawMenuItem(itemModeMeowToneDown, draw_ic24_arrow_down, "Зменшити тон", firstDraw, 210, 160);
 
   lcd()->sendBuffer();
   if(millis() - lastMeowEnd > meowPause){

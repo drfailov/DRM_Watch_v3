@@ -5,6 +5,7 @@ const int itemmodeSetTimezoneBack=0;
 const int itemmodeSetTimezoneHour=1;
 
 void setmodeSetTimezoneMenu(){
+  clearScreenAnimation();
   Serial.println(F("Set mode: set timezone"));
   modeSetup = setmodeSetTimezoneMenu;
   modeLoop = modeSetTimezoneMenuLoop;
@@ -32,16 +33,20 @@ void modeSetTimezoneMenuLoop(){
   lcd()->setColorIndex(black);
   lcd()->setCursor(5, 18); 
   lcd()->print("Часовий пояс");
+
+  drawStatusbar(363, 1, true);
+  drawMenuLegend();
+  if(modeSetTimezoneEditMode){
+    draw_ic16_plus(lx(), ly1(), black);
+    draw_ic16_minus(lx(), ly3(), black);
+  }
   
-  drawMenuItem(itemmodeSetTimezoneBack, draw_ic24_back, "Назад", false, 30, 32);
-  
+  drawMenuItem(itemmodeSetTimezoneBack, draw_ic24_back, "Назад", firstDraw, 30, 32);
 
   lcd()->setFont(u8g2_font_10x20_t_cyrillic);  //ok
   lcd()->setColorIndex(black);
   lcd()->setCursor(30, 113); 
   lcd()->print("Час");
-  //drawNumberFrame(/*index*/itemmodeSetTimezoneHour, /*number*/modeSetTimezoneHourValue, /*name*/"Обрати годину", /*editMode*/modeSetTimezoneEditMode, /*animate*/false, /*x*/68, /*y*/87, /*Width*/82);
-  
   long offset = getTimeOffsetSec();
   long hours = offset/(60*60);
   offset -= hours*(60*60);
@@ -51,14 +56,8 @@ void modeSetTimezoneMenuLoop(){
   text += hours;
   text += ":";
   text += minutes;
-  drawTextFrame(/*index*/itemmodeSetTimezoneHour, /*text*/text.c_str(), /*name*/"Обрати часовий пояс", /*editMode*/modeSetTimezoneEditMode, /*animate*/false, /*x*/30, /*y*/145, /*width*/308);
-
-  drawStatusbar(363, 1, true);
-  drawMenuLegend();
-  if(modeSetTimezoneEditMode){
-    draw_ic16_plus(lx(), ly1(), black);
-    draw_ic16_minus(lx(), ly3(), black);
-  }
+  drawTextFrame(/*index*/itemmodeSetTimezoneHour, /*text*/text.c_str(), /*name*/"Обрати часовий пояс", /*editMode*/modeSetTimezoneEditMode, /*animate*/firstDraw, /*x*/30, /*y*/145, /*width*/308);
+  
   lcd()->sendBuffer();
 }
 

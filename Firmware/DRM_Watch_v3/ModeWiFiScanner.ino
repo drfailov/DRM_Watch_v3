@@ -23,6 +23,7 @@ void setModeWiFiScanner(){
   setModeWiFiScanner_();
 }
 void setModeWiFiScanner_(){
+  clearScreenAnimation();
   Serial.println(F("Set mode: WiFiScanner"));
   modeSetup = setModeWiFiScanner_;
   modeLoop = modeWiFiScannerLoop;

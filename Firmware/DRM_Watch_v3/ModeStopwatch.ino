@@ -3,6 +3,7 @@ const int itemModeStopwatchStartStop=1;
 const int itemModeStopwatchReset=2;
 
 void setModeStopwatch(){
+  clearScreenAnimation();
   Serial.println(F("Set mode: Stopwatch"));
   modeSetup = setModeStopwatch;
   modeLoop = modeStopwatchLoop;
@@ -32,12 +33,14 @@ void modeStopwatchLoop(){
   lcd()->print("Секундомір");
   drawStatusbar(363, 1, true);  
 
+  drawMenuLegend();
   
   unsigned long now = rtcGetEpoch();
   unsigned long start = getStopwatchStartedTime();
   unsigned long end = getStopwatchFinishedTime();
   if(start != 0 && end == 0) end = now;
   unsigned long dd = end-start;
+
   
   lcd()->setColorIndex(black);
   lcd()->setFont(u8g2_font_inr24_t_cyrillic);
@@ -46,14 +49,13 @@ void modeStopwatchLoop(){
 
 
   
-  drawMenuItem(itemModeAppsBack, draw_ic24_back, "Назад", false, 70, 130);
+  drawMenuItem(itemModeAppsBack, draw_ic24_back, "Назад", firstDraw, 70, 130);
   if(isStopwatchRunning())
-    drawMenuItem(itemModeStopwatchStartStop, draw_ic24_pause, "Пауза", false, 140, 130);
+    drawMenuItem(itemModeStopwatchStartStop, draw_ic24_pause, "Пауза", firstDraw, 140, 130);
   else
-    drawMenuItem(itemModeStopwatchStartStop, draw_ic24_arrow_right, "Запустити", false, 140, 130);
-  drawMenuItem(itemModeStopwatchReset, draw_ic24_reboot, "Скинути", false, 210, 130);
+    drawMenuItem(itemModeStopwatchStartStop, draw_ic24_arrow_right, "Запустити", firstDraw, 140, 130);
+  drawMenuItem(itemModeStopwatchReset, draw_ic24_reboot, "Скинути", firstDraw, 210, 130);
 
-  drawMenuLegend();
   lcd()->sendBuffer();
 }
 

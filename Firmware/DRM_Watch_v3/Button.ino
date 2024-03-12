@@ -16,9 +16,9 @@ void initButtons(){
 
 
 void buttonsLoop(){
-  processButton(BUT_UP, modeButtonUp, modeButtonUpLong);
-  processButton(BUT_CENTER, modeButtonCenter, modeButtonCenterLong);
-  processButton(BUT_DOWN, modeButtonDown, modeButtonDownLong);
+  processButton(BUT_UP, &modeButtonUp, &modeButtonUpLong);
+  processButton(BUT_CENTER, &modeButtonCenter, &modeButtonCenterLong);
+  processButton(BUT_DOWN, &modeButtonDown, &modeButtonDownLong);
 }
 
 
@@ -57,28 +57,31 @@ int sinceLastAction(){
 //----------------------//----------------------//----------------------//----------------------//----------------------//----------------------//----------------------
 
 
-void processButton(gpio_num_t pin, Runnable onPressed, Runnable onLongPressed){
+void processButton(gpio_num_t pin, Runnable *onPressed, Runnable *onLongPressed){
   if(!isPressed(pin))
     buttonReady[pin] = true;
   if(buttonReady[pin] && isPressed(pin)){
     for(unsigned long pressStarted = millis(); isPressed(pin);){  
-      if(onPressed != 0 && lastActionTime < pressStarted){//first click
+      if((*onPressed) != 0 && lastActionTime < pressStarted){//first click
         lastActionTime = millis();
         buttonBeep();
-        onPressed();
+        (*onPressed)();
         if(modeLoop != 0) modeLoop();
+        firstDraw = false;
       }
-      else if(onPressed != 0 && onLongPressed == 0 && lastActionTime >= pressStarted && millis()-pressStarted>firstClickDelay && millis()-lastActionTime>nextClickDelay){//next clicks while user holding button
+      else if((*onPressed) != 0 && (*onLongPressed) == 0 && lastActionTime >= pressStarted && millis()-pressStarted>firstClickDelay && millis()-lastActionTime>nextClickDelay){//next clicks while user holding button
         lastActionTime = millis();
         buttonBeep();
-        onPressed();
+        (*onPressed)();
         if(modeLoop != 0) modeLoop();
+        firstDraw = false;
       }
-      else if(onLongPressed != 0 && millis()-pressStarted>firstClickDelay){
+      else if((*onLongPressed) != 0 && millis()-pressStarted>firstClickDelay){
         lastActionTime = millis();
         buttonLongBeep();
-        onLongPressed();
+        (*onLongPressed)();
         if(modeLoop != 0) modeLoop();
+        firstDraw = false;
         break;
       }
     }

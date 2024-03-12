@@ -1,7 +1,0 @@
-{
-    "configuration": "CDCOnBoot=default,MSCOnBoot=default,DFUOnBoot=default,PartitionScheme=default,DebugLevel=none,EraseFlash=none",
-    "board": "esp32:esp32:lolin_s2_mini",
-    "programmer": "esptool",
-    "sketch": "DRM_Watch_v3.ino",
-    "port": "COM4"
-}

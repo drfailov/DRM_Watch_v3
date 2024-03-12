@@ -1,6 +1,7 @@
 RTC_DATA_ATTR bool deviceOff = false;
 
 void setModeOff(){
+  clearScreenAnimation();
   drawMessage("Вимкнення...");
   delay(500);
   deviceOff = true;

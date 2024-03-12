@@ -18,6 +18,7 @@ void lcdInit(){
     u8g2.begin();
   else
     u8g2.initInterface();
+  u8g2.setBusClock(3000000);   //1MHz is default, 2MHz is max recommended, 3.5MHz is still OK, 4MHz is glitchy, 5MHZ not working at all
   u8g2.enableUTF8Print();  
 }
 
@@ -41,6 +42,48 @@ void lcdPowerOff(){
 
 U8G2_LS027B7DH01_400X240_F_4W_HW_SPI* lcd(){
   return &u8g2;
+}
+
+void clearScreenAnimation(){
+  if(esp_sleep_get_wakeup_cause() == ESP_SLEEP_WAKEUP_TIMER)/*periodical wakeup*/
+    return;
+  firstDraw = true;
+
+  //clearScreenAnimationWhiteLeftToRight();
+  //clearScreenAnimationCircleFromRight();
+  clearScreenAnimationWhiteFromRight();
+}
+
+void clearScreenAnimationCircleFromRight(){
+  int curr = 0;
+  float targ = 50;
+  while(targ < W){
+    targ *=1.5;
+    lcd()->setColorIndex(white);
+    for(; curr<targ; curr+=2){
+      lcd()->drawCircle(/*x0*/400, /*y0*/H/2, /*rad*/curr, /*opt*/U8G2_DRAW_UPPER_LEFT|U8G2_DRAW_LOWER_LEFT);   //drawDisc     U8G2_DRAW_ALL
+    }
+    lcd()->setColorIndex(black);
+    lcd()->drawCircle(/*x0*/400, /*y0*/H/2, /*rad*/curr+2, /*opt*/U8G2_DRAW_UPPER_LEFT|U8G2_DRAW_LOWER_LEFT);   //drawDisc     U8G2_DRAW_ALL
+    lcd()->sendBuffer();
+  }
+  
+}
+void clearScreenAnimationWhiteFromRight(){
+  lcd()->setColorIndex(white);
+  int step = 90;
+  for(int x=W-step; x>0; x-=step){
+    lcd()->drawBox(/*x*/x, /*y*/0, /*w*/step, /*h*/H);
+    lcd()->sendBuffer();
+  }
+}
+void clearScreenAnimationWhiteLeftToRight(){
+  lcd()->setColorIndex(white);
+  int step = 100;
+  for(int x=0; x<W; x+=step){
+    lcd()->drawBox(/*x*/x, /*y*/0, /*w*/step, /*h*/H);
+    lcd()->sendBuffer();
+  }
 }
 
 void drawMessage(String text){

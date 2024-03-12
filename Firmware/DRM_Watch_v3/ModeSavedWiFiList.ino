@@ -1,6 +1,7 @@
 int ModeSavedWiFiListSelectedSlot = 0;
 
 void setModeSavedWiFiList(){
+  clearScreenAnimation();
   Serial.println(F("Set mode: SavedWiFiList"));
   modeSetup = setModeSavedWiFiList;
   modeLoop = modeSavedWiFiListLoop;
@@ -33,12 +34,12 @@ void modeSavedWiFiListLoop(){
   drawMenuLegend();
   drawStatusbar(363, 1, true);
 
-  drawListItem(0, draw_ic24_back, "Повернутись", "В меню налаштувань", false); //
+  drawListItem(0, draw_ic24_back, "Повернутись", "В меню налаштувань", firstDraw); //
   for(int i=1; i<items; i++){
     if(wifiSlotIsEmpty(i))
-      drawListItem(i, draw_ic24_wifi_0, "Пусто", "Немає даних про мережу", false); //
+      drawListItem(i, draw_ic24_wifi_0, "Пусто", "Немає даних про мережу", firstDraw); //
     else
-      drawListItem(i, draw_ic24_wifi_3, wifiSlotName(i).c_str(), wifiSlotPassword(i).c_str(), false); //
+      drawListItem(i, draw_ic24_wifi_3, wifiSlotName(i).c_str(), wifiSlotPassword(i).c_str(), firstDraw); //
   }
 
   lcd()->sendBuffer();

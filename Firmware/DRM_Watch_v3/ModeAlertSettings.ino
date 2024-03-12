@@ -11,6 +11,7 @@ const int itemModeAlertSettingsMinute=3;
 const int itemModeAlertSettingsMelody=4;
 
 void setModeAlertSettingsMenu(){
+  clearScreenAnimation();
   Serial.println(F("Set mode: Alert settings Menu"));
   modeSetup = setModeAlertSettingsMenu;
   modeLoop = ModeAlertSettingsMenuLoop;
@@ -49,33 +50,6 @@ void ModeAlertSettingsMenuLoop(){
   lcd()->setCursor(5, 18); 
   lcd()->print("Будильник ");
   lcd()->print(modeAlertSettingsIndex);
-  
-  drawMenuItem(itemModeAlertSettingsBack, draw_ic24_back, "Назад", false, 30, 32);
-  lcd()->setFont(u8g2_font_10x20_t_cyrillic);  //ok
-  lcd()->setColorIndex(black);
-  lcd()->setCursor(189, 57); 
-  lcd()->print("Активний");
-  if(getAlertEnabled(modeAlertSettingsIndex))
-    drawMenuItem(itemModeAlertSettingsEnabled, draw_ic24_check, "Вимкнути", false, 277, 32);
-  else
-    drawMenuItem(itemModeAlertSettingsEnabled, draw_ic24_empty, "Увімкнути", false, 277, 32);
-
-  lcd()->setFont(u8g2_font_10x20_t_cyrillic);  //ok
-  lcd()->setColorIndex(black);
-  lcd()->setCursor(30, 113); 
-  lcd()->print("Час");
-  drawNumberFrame(/*index*/itemModeAlertSettingsHour, /*number*/modeAlertSettingsHourValue, /*name*/"Обрати годину", /*editMode*/modeAlertSettingsEditMode, /*animate*/false, /*x*/68, /*y*/87, /*Width*/82);
-  lcd()->setFont(u8g2_font_inr24_t_cyrillic);  //ok
-  lcd()->setColorIndex(black);
-  lcd()->setCursor(152, 116); 
-  lcd()->print(":");
-  drawNumberFrame(/*index*/itemModeAlertSettingsMinute, /*number*/modeAlertSettingsMinuteValue, /*name*/"Обрати хвилину", /*editMode*/modeAlertSettingsEditMode, /*animate*/false, /*x*/173, /*y*/87, /*Width*/82);
-
-  lcd()->setFont(u8g2_font_10x20_t_cyrillic);  //ok
-  lcd()->setColorIndex(black);
-  lcd()->setCursor(30, 151); 
-  lcd()->print("Мелодія");
-  drawTextFrame(/*index*/itemModeAlertSettingsMelody, /*text*/getMelodyName(modeAlertSettingsMelodyValue).c_str(), /*name*/"Обрати мелодію", /*editMode*/modeAlertSettingsEditMode, /*animate*/false, /*x*/30, /*y*/157, /*width*/308);
 
   drawStatusbar(363, 1, true);
   drawMenuLegend();
@@ -83,6 +57,36 @@ void ModeAlertSettingsMenuLoop(){
     draw_ic16_plus(lx(), ly1(), black);
     draw_ic16_minus(lx(), ly3(), black);
   }
+
+  
+  drawMenuItem(itemModeAlertSettingsBack, draw_ic24_back, "Назад", firstDraw, 30, 32);
+  lcd()->setFont(u8g2_font_10x20_t_cyrillic);  //ok
+  lcd()->setColorIndex(black);
+  lcd()->setCursor(189, 57); 
+  lcd()->print("Активний");
+  if(getAlertEnabled(modeAlertSettingsIndex))
+    drawMenuItem(itemModeAlertSettingsEnabled, draw_ic24_check, "Вимкнути", firstDraw, 277, 32);
+  else
+    drawMenuItem(itemModeAlertSettingsEnabled, draw_ic24_empty, "Увімкнути", firstDraw, 277, 32);
+
+  lcd()->setFont(u8g2_font_10x20_t_cyrillic);  //ok
+  lcd()->setColorIndex(black);
+  lcd()->setCursor(30, 113); 
+  lcd()->print("Час");
+  drawNumberFrame(/*index*/itemModeAlertSettingsHour, /*number*/modeAlertSettingsHourValue, /*name*/"Обрати годину", /*editMode*/modeAlertSettingsEditMode, /*animate*/firstDraw, /*x*/68, /*y*/87, /*Width*/82);
+  lcd()->setFont(u8g2_font_inr24_t_cyrillic);  //ok
+  lcd()->setColorIndex(black);
+  lcd()->setCursor(152, 116); 
+  lcd()->print(":");
+  drawNumberFrame(/*index*/itemModeAlertSettingsMinute, /*number*/modeAlertSettingsMinuteValue, /*name*/"Обрати хвилину", /*editMode*/modeAlertSettingsEditMode, /*animate*/firstDraw, /*x*/173, /*y*/87, /*Width*/82);
+
+  lcd()->setFont(u8g2_font_10x20_t_cyrillic);  //ok
+  lcd()->setColorIndex(black);
+  lcd()->setCursor(30, 151); 
+  lcd()->print("Мелодія");
+  drawTextFrame(/*index*/itemModeAlertSettingsMelody, /*text*/getMelodyName(modeAlertSettingsMelodyValue).c_str(), /*name*/"Обрати мелодію", /*editMode*/modeAlertSettingsEditMode, /*animate*/firstDraw, /*x*/30, /*y*/157, /*width*/308);
+
+  
   lcd()->sendBuffer();
 }
 

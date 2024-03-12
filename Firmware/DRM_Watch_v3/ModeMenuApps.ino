@@ -8,6 +8,7 @@ const int itemModeAppsCalendar=6;
 const int itemModeAppsDebug=7;
 
 void setModeAppsMenu(){
+  clearScreenAnimation();
   Serial.println(F("Set mode: Apps Menu"));
   modeSetup = setModeAppsMenu;
   modeLoop = ModeAppsMenuLoop;
@@ -36,20 +37,21 @@ void ModeAppsMenuLoop(){
   lcd()->setCursor(5, 18); 
   lcd()->print("Програми");
   
-  drawMenuItem(itemModeAppsBack, draw_ic24_back, "Назад", false);
-  drawMenuItem(itemModeAppsStopwatch, draw_ic24_stopwatch, "Секундомір", false);
-  drawMenuItem(itemModeAppsMusic, draw_ic24_music, "Мелодії", false);
-  drawMenuItem(itemModeAppsAlarm, draw_ic24_alarm, "Будильник", false);
-  drawMenuItem(itemModeAppsMeow, draw_ic24_meow, "Meow", false);
-  drawMenuItem(itemModeAppsLife, draw_ic24_life, "Клітковий автомат \"Життя\"", false);
-  drawMenuItem(itemModeAppsCalendar, draw_ic24_calendar, "Календар", false);
-  drawMenuItem(itemModeAppsDebug, draw_ic24_bug, "Інженерне меню", false);
+  drawStatusbar(363, 1, true);
+  drawMenuLegend();
+  
+  drawMenuItem(itemModeAppsBack,       draw_ic24_back,       "Назад",                         firstDraw);
+  drawMenuItem(itemModeAppsStopwatch,  draw_ic24_stopwatch,  "Секундомір",                    firstDraw);
+  drawMenuItem(itemModeAppsMusic,      draw_ic24_music,      "Мелодії",                       firstDraw);
+  drawMenuItem(itemModeAppsAlarm,      draw_ic24_alarm,      "Будильник",                     firstDraw);
+  drawMenuItem(itemModeAppsMeow,       draw_ic24_meow,       "Meow",                          firstDraw);
+  drawMenuItem(itemModeAppsLife,       draw_ic24_life,       "Клітковий автомат \"Життя\"",   firstDraw);
+  drawMenuItem(itemModeAppsCalendar,   draw_ic24_calendar,   "Календар",                      firstDraw);
+  drawMenuItem(itemModeAppsDebug,      draw_ic24_bug,        "Інженерне меню",                firstDraw);
   
   
   
 
-  drawStatusbar(363, 1, true);
-  drawMenuLegend();
   lcd()->sendBuffer();
 }
 

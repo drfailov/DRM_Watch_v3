@@ -172,10 +172,27 @@ Changelog:
 2024-03-07 v0.35 main menu elem size
 2024-03-07 v0.35 Added settings category: Time
 2024-03-07 v0.35 Added settings category: Display
-2024-03-07 v0.35 Settings redesigh
+2024-03-07 v0.35 Settings redesign
+2024-03-13 v0.36 set random seed before fill Life screen
+2024-03-13 v0.36 Increased screen frequency
+2024-03-13 v0.36 Added in amination for main menu
+2024-03-13 v0.36 Fixed time offset when working on internal RTC
+2024-03-13 v0.36 Added in amination for apps menu
+2024-03-13 v0.36 Added out amination for all menus
+2024-03-13 v0.36 Added in amination for settings menu
+2024-03-13 v0.36 Added in amination for melodies menu
+2024-03-13 v0.36 Added in amination for calendar
+
+
+
+
 
 
 ==== todo:
+Опція обрати мову прямо в меню
+Додати анімацію тексту
+Налаштування анімації - анімація входу - увімкнути чи ні
+Налаштування анімації - анімація виходу - обрати
 menu showing all parameters on screen
 multi alerts
 select watchfaces
