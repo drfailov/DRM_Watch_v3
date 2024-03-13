@@ -116,7 +116,7 @@ bool melodyPlayerPlayMelody(const int* melody) {
       }
       if(n < 0){
         long timeMs = -n;
-        if(timeMs < 150){
+        if(timeMs < 90){
           delay(timeMs);
         }
         else{

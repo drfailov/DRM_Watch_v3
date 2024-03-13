@@ -47,6 +47,8 @@ U8G2_LS027B7DH01_400X240_F_4W_HW_SPI* lcd(){
 void clearScreenAnimation(){
   if(esp_sleep_get_wakeup_cause() == ESP_SLEEP_WAKEUP_TIMER)/*periodical wakeup*/
     return;
+  if(millis()<1000)
+    return;
   firstDraw = true;
 
   //clearScreenAnimationWhiteLeftToRight();
@@ -101,10 +103,14 @@ void drawMessage(String text){
 
   lcd()->setColorIndex(black);
   lcd()->setFont(u8g2_font_10x20_t_cyrillic);
-  lcd()->setCursor(x+45, y+39); lcd()->print(text);
-
+  lcd()->setCursor(x+45, y+39); 
+  for(int i=0; i<text.length(); i++){
+    lcd()->print(text.charAt(i));
+    if(i%3==2)
+      lcd()->sendBuffer();
+  }  
   lcd()->sendBuffer();
-  delay(100);
+  delay(200);
 }
 
 void drawMessage(String text, String text2){
