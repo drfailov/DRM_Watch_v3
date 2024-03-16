@@ -28,4 +28,11 @@ void drawWatchfaceLife(bool firstDraw){
   lcd()->print(buffer); 
   
   drawStatusbar(395, 214, false);
+
+  float centerX = 120;
+  float centerY = 120;
+  float clockRadius = 80;
+  if(firstDraw)
+    animateClock(/*centerX*/centerX, /*centerY*/centerY, /*clockRadius*/clockRadius, /*hour*/h, /*minute*/m);
+  drawClock(/*centerX*/centerX, /*centerY*/centerY, /*clockRadius*/clockRadius, /*hour*/h, /*minute*/m);
 }

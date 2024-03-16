@@ -1,7 +1,7 @@
 RTC_DATA_ATTR byte screenBuffer[BUFF_W*BUFF_H/8]; 
 
 void randScreenBuffer(){
-  randomSeed(analogRead(0));
+  randomSeed(readSensUsbRaw());
   for(int i=0; i<BUFF_W*BUFF_H/8; i++)
     screenBuffer[i] = rand()%255;
 }
