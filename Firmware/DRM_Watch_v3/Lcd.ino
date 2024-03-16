@@ -52,17 +52,17 @@ void clearScreenAnimation(){
   firstDraw = true;
 
   //clearScreenAnimationWhiteLeftToRight();
-  //clearScreenAnimationCircleFromRight();
-  clearScreenAnimationWhiteFromRight();
+  clearScreenAnimationCircleFromRight();
+  //clearScreenAnimationWhiteFromRight();
 }
 
 void clearScreenAnimationCircleFromRight(){
   int curr = 0;
-  float targ = 50;
+  float targ = 80;
   while(targ < W){
     targ *=1.5;
     lcd()->setColorIndex(white);
-    for(; curr<targ; curr+=2){
+    for(; curr<targ; curr+=1){
       lcd()->drawCircle(/*x0*/400, /*y0*/H/2, /*rad*/curr, /*opt*/U8G2_DRAW_UPPER_LEFT|U8G2_DRAW_LOWER_LEFT);   //drawDisc     U8G2_DRAW_ALL
     }
     lcd()->setColorIndex(black);

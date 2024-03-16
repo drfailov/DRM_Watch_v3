@@ -30,7 +30,7 @@ void setScreenBuffer(int x, int y, bool val){
 void drawScreenBuffer(){
   drawScreenBuffer(0,0,BUFF_W,BUFF_H);
 }
-void drawScreenBuffer(int xstart, int ystart, int xend, int yend){
+void drawScreenBuffer(int xstart, int ystart, int xend, int yend){ //IN BUFFER COORDS
   if(xstart < 0) xstart=0;
   if(ystart < 0) ystart=0;
   if(xend >= BUFF_W) xend=BUFF_W-1;

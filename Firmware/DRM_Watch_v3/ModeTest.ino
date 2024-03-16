@@ -23,7 +23,7 @@ void modeTestLoop(){
   lcd()->drawBox(0, 0, 400, 240);
   
   lcd()->setColorIndex(black);
-  lcd()->setFont(u8g2_font_unifont_t_cyrillic);
+  lcd()->setFont(u8g2_font_unifont_t_cyrillic); //smalll
 
   int y=2;
   int x=5;
