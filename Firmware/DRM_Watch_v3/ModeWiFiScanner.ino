@@ -139,7 +139,7 @@ void modeWiFiScannerButtonCenter(){
 }
 
 bool tryConnectWifi(String ssid, String password, Runnable onConnected, Runnable onFailed){
-  drawMessage("Спроба з'єднання..", ssid + " " + password);
+  drawMessage("Спроба з'єднання..", ssid + " " + password, true);
   WiFi.begin(ssid, password);
   for (long timeStarted = millis(); WiFi.status() != WL_CONNECTED ;) {
     delay(900);
@@ -174,7 +174,7 @@ bool connectToKnownWifi(){
     if(index != -1 && tryConnectWifi(name, wifiSlotPassword(index),0,0))
         return true;
   }
-  drawMessage("Відомих мереж не знайдено.", "Додайте одну з доступних мереж.");
+  drawMessage("Відомих мереж не знайдено.", "Додайте одну з доступних мереж.", true);
   delay(2000);
   wifiOff();
   return false;

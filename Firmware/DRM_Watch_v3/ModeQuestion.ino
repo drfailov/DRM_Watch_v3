@@ -18,6 +18,7 @@ void questionModeSet(String _text1, String _text2, Runnable _onYes, Runnable _on
   enableAutoSleep = false; 
   autoReturnTime = autoReturnDefaultTime;
   autoSleepTime = autoSleepDefaultTime;
+  firstDraw = true;
 
   questionModeText1 = _text1;
   questionModeText2 = _text2;
@@ -29,7 +30,7 @@ void questionModeLoop(){
   draw_ic16_check(lx(), ly1(), black);
   draw_ic16_empty(lx(), ly2(), black);
   draw_ic16_cancel(lx(), ly3(), black);
-  drawQuestion(questionModeText1, questionModeText2);
+  drawQuestion(questionModeText1, questionModeText2, firstDraw);
 
 }
 

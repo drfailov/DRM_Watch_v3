@@ -1,10 +1,9 @@
 const int itemModeSettingsBack=0;
 const int itemModeSettingsCategoryTime=1;
 const int itemModeSettingsCategoryDisplay=2;
-const int itemModeSettingsSavedNetworks=3;
-const int itemModeSettingsButtonSound=4;
-const int itemModeSettingsMute=5;
-const int itemModeSettingsReboot=6;
+const int itemModeSettingsCategoryWiFi=3;
+const int itemModeSettingsCategorySound=4;
+const int itemModeSettingsReboot=5;
 
 void setModeSettingsMenu(){
   clearScreenAnimation();
@@ -23,7 +22,7 @@ void setModeSettingsMenu(){
   autoReturnTime = autoReturnDefaultTime;
   autoSleepTime = autoSleepDefaultTime;
   selected = 0;
-  items = 7;
+  items = 6;
 }
 
 
@@ -42,11 +41,9 @@ void modeSettingsMenuLoop(){
   drawListItem(itemModeSettingsBack, draw_ic24_back, "Назад", "Повернутись до головного меню", firstDraw);
   drawListItem(itemModeSettingsCategoryTime, draw_ic24_clock, "Налаштування часу", "Налаштування що стосуються часу", firstDraw);
   drawListItem(itemModeSettingsCategoryDisplay, draw_ic24_display, "Налаштування дисплея", "Налаштування що стосуються дисплея", firstDraw);
-  drawListItem(itemModeSettingsSavedNetworks, draw_ic24_wifi_3, "Список збережениx мереж Wi-Fi", "Мережі для доступу до Інтернет", firstDraw); /*draw_ic24_saved*/
+  drawListItem(itemModeSettingsCategoryWiFi, draw_ic24_wifi_3, "Налаштування Wi-Fi", "Мережі для доступу до Інтернет", firstDraw); /*draw_ic24_saved*/
+  drawListItem(itemModeSettingsCategorySound, draw_ic24_sound_on, "Налаштування звуку", "Налаштування що стосуються звуку", firstDraw);
   drawListItem(itemModeSettingsReboot, draw_ic24_reboot, "Перезавантажити", "Перезавантажити годинник", firstDraw);
-  if(getMuteEnabled()) drawListItem(itemModeSettingsMute, draw_ic24_sound_mute, "Тихий режим", "Зараз звук вимкнено", firstDraw);
-  else drawListItem(itemModeSettingsMute, draw_ic24_sound_on, "Тихий режим", "Зараз звук увімкнено", firstDraw);
-  drawListItem(itemModeSettingsButtonSound, draw_ic24_buttonsound, "Звук кнопок", "Обрати звук кнопок", firstDraw);
   
 
   lcd()->sendBuffer();
@@ -65,47 +62,16 @@ void modeSettingsMenuButtonCenter(){
     setModeMenuSettingsDisplay();
     return;
   }
-  if(selected==itemModeSettingsSavedNetworks){
+  if(selected==itemModeSettingsCategoryWiFi){
     setModeSavedWiFiList();
     return;
   }
-  // if(selected==itemModeSettingsSynchronizeTime){
-  //   timeSync();
-  //   return;
-  // }
-  // if(selected==itemModeSettingsSynchronizeTimeEnable){
-  //   saveTimeSyncEnabled(!getTimeSyncEnabled());
-  //   return;
-  // }
-  // if(selected==itemModeSettingsSetTime){
-  //   drawMessage("В процесі розробки.");
-  //   return;
-  // }
-  // if(selected==itemModeSettingsSetTimeZone){
-  //   ();
-  //   return;
-  // }
+  if(selected==itemModeSettingsCategorySound){
+    setModeMenuSettingsSound();
+    return;
+  }
   if(selected==itemModeSettingsReboot){
-    modeButtonUpLong();
+    modeButtonUpLong(); //since this var is not set, it will reboot system
     return;
   }
-  // if(selected==itemModeSettingsInvert){
-  //   saveInversionValue(!getInversionValue());
-  //   black = getBlackValue();
-  //   white = getWhiteValue();
-  //   return;
-  // }
-  if(selected==itemModeSettingsMute){
-    saveMuteEnabled(!getMuteEnabled());
-    return;
-  }
-  if(selected == itemModeSettingsButtonSound){
-    int sound = getButtonSound();
-    saveButtonSound(sound+1);
-    delay(500);
-    buttonBeep();
-    return;
-  }
-  
-  
 }

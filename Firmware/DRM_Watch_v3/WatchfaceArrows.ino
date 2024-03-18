@@ -22,17 +22,20 @@ void drawWatchfaceArrows(bool firstDraw){
   drawClock(/*centerX*/centerX, /*centerY*/centerY, /*clockRadius*/clockRadius, /*hour*/h, /*minute*/m);
 }
 
-
-RTC_DATA_ATTR float ch = 0;
-RTC_DATA_ATTR float cm = 0;
-const float coef = 0.3;
-
 void animateClock(int centerX, int centerY, float clockRadius, float h, float m){
-  ch = 0;
-  cm = 0;
-  for(int i=0; i<5; i++){
-    drawClock(/*centerX*/centerX, /*centerY*/centerY, /*clockRadius*/clockRadius, /*hour*/h, /*minute*/m);
-    lcd()->sendBuffer();
+  float ch = 0;
+  float cm = 0;
+  float hour12 = fmod(h,12);
+  const float coef = 0.28;
+  for(int i=0; i<14; i++){
+    float dh = hour12-ch;
+    float dm = m-cm;
+    ch+=dh*coef;
+    cm+=dm*coef;
+    if(i>4){ //пропустити кілька кроків анімації щоб вона виглядала більш ефектно
+      drawClock(/*centerX*/centerX, /*centerY*/centerY, /*clockRadius*/clockRadius, /*hour*/ch, /*minute*/cm);
+      lcd()->sendBuffer();
+    }
   }
 }
 
@@ -41,12 +44,6 @@ void drawClock(int centerX, int centerY, float clockRadius, float h, float m) {
   float hour12 = fmod(h,12);
   float hourIncludingMinutes = hour12+((m) / 60.0);
   h=hourIncludingMinutes;
-  
-  //Робота згладжування
-  float dh = h-ch;
-  float dm = m-cm;
-  ch+=dh*coef;
-  cm+=dm*coef;
 
   //фон
   lcd()->setColorIndex(white);
@@ -109,14 +106,14 @@ void drawClock(int centerX, int centerY, float clockRadius, float h, float m) {
   lcd()->drawDisc(centerX, centerY, 7);
 
   // Малюємо стрілку годин
-  float hourAngleRad = map(ch, 0, 12, PI/2, PI/2 - 2*PI);
+  float hourAngleRad = map(h, 0, 12, PI/2, PI/2 - 2*PI);
   int handHSize = (clockRadius-20) * 0.65;
   int hourX = centerX + handHSize * cos(hourAngleRad);
   int hourY = centerY - handHSize * sin(hourAngleRad);
   drawArrow(centerX, centerY, hourX, hourY, clockRadius*0.037);
   
   // Малюємо стрілку хвилин
-  float minuteAngleRad = map(cm, 0, 60, PI/2, PI/2 - 2*PI);
+  float minuteAngleRad = map(m, 0, 60, PI/2, PI/2 - 2*PI);
   int handMSize = (clockRadius-20) * 0.91;
   int minuteX = centerX + handMSize * cos(minuteAngleRad);
   int minuteY = centerY - handMSize * sin(minuteAngleRad);
@@ -125,7 +122,7 @@ void drawClock(int centerX, int centerY, float clockRadius, float h, float m) {
 
 void drawArrow(float centerX, float centerY, float toX, float toY, float thickness){//draw arrow and with thickness (how many layers to add over this line )
   float dmid = thickness+10;
-  float dwing = thickness+3;
+  float dwing = thickness+2;
   float dx = toX-centerX;
   float dy = toY-centerY;
   float d = sqrt(dx*dx+dy*dy);

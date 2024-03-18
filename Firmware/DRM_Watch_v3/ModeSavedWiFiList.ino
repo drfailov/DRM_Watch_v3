@@ -78,7 +78,7 @@ void modeSavedWiFiListOnNetworkConnected(){
   String ssid = modeWiFiScannerGetSelectedNetworkName();
   String password = getKeybordResult();
   int slot = ModeSavedWiFiListSelectedSlot;
-  drawMessage("Збереження...", ssid + " " + password);
+  drawMessage("Збереження...", ssid + " " + password, true);
   delay(500);
   if(wifiSlotSave(slot, ssid, password)){
     drawMessage("Збережено.");

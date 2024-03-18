@@ -47,7 +47,7 @@ void ModeMenuSettingsDisplayButtonCenter(){
       setModeSettingsMenu();
   }
   if(selected == ModeMenuSettingsDisplayItemSelectWatchface){
-    drawMessage("В процесі розробки.");
+    setModeSetWatchface();
     return;
   }
   if(selected == ModeMenuSettingsDisplayItemInvertDisplay){

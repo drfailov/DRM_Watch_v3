@@ -34,6 +34,18 @@ RTC Source info:
 https://www.esp32.com/viewtopic.php?f=19&t=31371&hilit=esp32+lib+builder#p108261
 
 
+SLM Printing
+https://jlc3dp.com/3d-printing-quote
+Material: 316L
+Difference between model and actual: 0.3mm each side
+Model inner size: 63.03 mm
+Actual inner size: 62.40 mm
+
+
+LCD size datasheet:62.8 mm
+Fixed size: 63.53mm
+I know from previous orders that there's some thin features in my model and accept risks that thin parts can be distorted. My previous order was excellent.	
+
 
 
 Changelog:
@@ -184,19 +196,21 @@ Changelog:
 2024-03-12 v0.36 Added in amination for calendar
 2024-03-13 v0.37 Fixed animation
 2024-03-13 v0.37 Додати анімацію тексту
-2024-03-13 v1.38 Змінив номер версії просто тому що так краще зрозуміла суть.
-2024-03-13 v1.38 Додано циферблат зі стрілками
-2024-03-13 v1.38 Покращено циферблат зі стрілками
-2024-03-13 v1.38 Покращено циферблат зі стрілками на циферблат "життя"
-
-
+2024-03-16 v1.38 Змінив номер версії просто тому що так краще зрозуміла суть.
+2024-03-16 v1.38 Додано циферблат зі стрілками
+2024-03-16 v1.38 Покращено циферблат зі стрілками
+2024-03-16 v1.38 Покращено циферблат зі стрілками на циферблат "життя"
+2024-03-18 v1.39 Виправлено: Через анімацію циферблат показує неправильний час
+2024-03-18 v1.39 Виправлено: відтворення музики починається без анімації
+2024-03-18 v1.39 Додано анімацію при відображення питання
+2024-03-18 v1.39 Додано розділ налаштування звуку
+2024-03-18 v1.39 Додано Опцію обрати циферблат
 
 
 
 
 ==== todo:
 Опція обрати мову прямо в меню
-
 Налаштування анімації - анімація входу - увімкнути чи ні
 Налаштування анімації - анімація виходу - обрати
 menu showing all parameters on screen
@@ -205,11 +219,9 @@ time setting
 setting tone of all sounds
 game ant
 game pong
-round clock
 auto-finding when Life is cycled and restart automatically
-відтворення музики починається без анімації
 Додати налаштування вмісту циферблатів (чи відображати статусбар, чи відображати день тижня, т.д.)
-Додаи Опцію обрати циферблат
 
+add dji logo
 
 

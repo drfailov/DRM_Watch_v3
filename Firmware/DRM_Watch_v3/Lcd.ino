@@ -106,7 +106,7 @@ void drawMessage(String text){
   lcd()->setCursor(x+45, y+39); 
   for(int i=0; i<text.length(); i++){
     lcd()->print(text.charAt(i));
-    if(i%3==2)
+    if(i%3==1)
       lcd()->sendBuffer();
   }  
   lcd()->sendBuffer();
@@ -114,6 +114,9 @@ void drawMessage(String text){
 }
 
 void drawMessage(String text, String text2){
+  drawMessage(text, text2, false);
+}
+void drawMessage(String text, String text2, bool animate){
   Serial.println(text);
   Serial.println(text2);
   int x = 15;
@@ -126,17 +129,45 @@ void drawMessage(String text, String text2){
   lcd()->drawFrame(/*x*/x, /*y*/y, /*w*/width, /*h*/height);
   lcd()->drawFrame(/*x*/x+1, /*y*/y+1, /*w*/width-2, /*h*/height-2);
   draw_ic24_about(x+10, y+22, black);
-
   lcd()->setColorIndex(black);
-  lcd()->setFont(u8g2_font_unifont_t_cyrillic);  //ok
-  lcd()->setCursor(x+45, y+49); lcd()->print(text2);
-  lcd()->setFont(u8g2_font_10x20_t_cyrillic);
-  lcd()->setCursor(x+45, y+29); lcd()->print(text);
 
-  lcd()->sendBuffer();
-  delay(100);
+  lcd()->setFont(u8g2_font_10x20_t_cyrillic);
+  lcd()->setCursor(x+45, y+29); 
+  if(animate){
+    for(int i=0; i<text.length(); i++){
+      lcd()->print(text.charAt(i));
+      if(i%3==1)
+        lcd()->sendBuffer();
+    }
+  }
+  else{
+    lcd()->print(text);
+  }
+  
+  lcd()->setFont(u8g2_font_unifont_t_cyrillic);  //ok
+  lcd()->setCursor(x+45, y+49);
+  if(animate){
+    for(int i=0; i<text2.length(); i++){
+      lcd()->print(text2.charAt(i));
+      if(i%3==1)
+        lcd()->sendBuffer();
+    }
+  }
+  else{
+    lcd()->print(text2);
+  }
+  
+  if(animate){
+    lcd()->sendBuffer();
+    delay(300);
+  }
 }
+
 void drawQuestion(String text, String text2){
+  drawQuestion(text, text2, false);
+}
+
+void drawQuestion(String text, String text2, bool animate){
   Serial.println(text);
   Serial.println(text2);
   int x = 15;
@@ -151,13 +182,32 @@ void drawQuestion(String text, String text2){
   draw_ic24_question(x+10, y+22, black);
 
   lcd()->setColorIndex(black);
-  lcd()->setFont(u8g2_font_unifont_t_cyrillic);  //ok
-  lcd()->setCursor(x+45, y+49); lcd()->print(text2);
+
   lcd()->setFont(u8g2_font_10x20_t_cyrillic);
-  lcd()->setCursor(x+45, y+29); lcd()->print(text);
+  lcd()->setCursor(x+45, y+29); 
+  if(animate){
+    for(int i=0; i<text.length(); i++){
+      lcd()->print(text.charAt(i));
+      if(i%3==1)
+        lcd()->sendBuffer();
+    }
+  }
+  else
+    lcd()->print(text);
+  
+  lcd()->setFont(u8g2_font_unifont_t_cyrillic);  //ok
+  lcd()->setCursor(x+45, y+49); 
+  if(animate){
+    for(int i=0; i<text2.length(); i++){
+      lcd()->print(text2.charAt(i));
+      if(i%3==1)
+        lcd()->sendBuffer();
+    }
+  }
+  else
+    lcd()->print(text2);
 
   lcd()->sendBuffer();
-  delay(100);
 }
 
 void displayPrintSecondsAsTime(unsigned long dd){

@@ -74,6 +74,7 @@ void melodyPlayerSetMelodyName(String _name){
 //return true if was played completely or false if interrupted
 bool melodyPlayerPlayMelody(const int* melody) {
   Serial.println(F("Set mode: PlayMelody"));
+  clearScreenAnimation();
   melodyPlayerPlayStarted = millis();
   modeLoop = melodyPlayerDrawScreen;
   modeButtonUp = 0;

@@ -63,7 +63,7 @@ const int BUFF_SCALE = 2;  //screenBuffer  //2 is 3KB out of 8KB RTC Memory
 const int BUFF_W = W/BUFF_SCALE;   //screenBuffer
 const int BUFF_H = H/BUFF_SCALE;   //screenBuffer
 bool firstDraw = false;  //used to animate first frame of any mode. Resets on clearScreenAnimation.
-String version = "v1.38";        //================================== <<<<< VERSION
+String version = "v1.39";        //================================== <<<<< VERSION
 bool black = 1;
 bool white = 0;
 
@@ -165,7 +165,7 @@ void loop(void) {
 
   buttonsLoop();
   if(modeLoop != 0){
-     //unsigned long millisStarted = millis();
+     //unsigned long millisStarted = millis();  //routine needed to measure performance
     modeLoop();    //125ms 1MHz SPI  |   63ms  3MHz SPI
     firstDraw = false;
     // unsigned long millisEnd = millis();

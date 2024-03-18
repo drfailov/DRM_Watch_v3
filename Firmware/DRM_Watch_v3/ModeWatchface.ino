@@ -1,3 +1,30 @@
+struct Watchface {             
+  String name;   
+  WatchfaceDrawable watchface;         
+  Watchface(String _name, WatchfaceDrawable _wf):name(_name), watchface(_wf) {}
+};    
+
+Watchface watchfaces[]={
+  {"Life", drawWatchfaceLife},
+  {"Arrows", drawWatchfaceArrows},
+  {"Big", drawWatchfaceBig}
+};
+
+int getWatchfaceCount(){
+   return sizeof(watchfaces)/sizeof(watchfaces[0]);
+}
+
+String getWatchfaceName(int index){
+   return watchfaces[index].name;
+}
+
+WatchfaceDrawable getWatchfaceDrawable(int index){
+   return watchfaces[index].watchface;
+}
+
+
+
+
 void setModeWatchface(){
   clearScreenAnimation();
   Serial.println(F("Set mode: Watchface"));
@@ -21,8 +48,9 @@ void modeWatchfaceLoop(){
     loopTimeAutoSync();  
 
   //drawWatchfaceBig(firstDraw);
-  drawWatchfaceLife(firstDraw);  
+  //drawWatchfaceLife(firstDraw);  
   //drawWatchfaceArrows(firstDraw);
+  getWatchfaceDrawable(getWatchface())(firstDraw);
 
   if(esp_sleep_get_wakeup_cause() != ESP_SLEEP_WAKEUP_TIMER) //if wake by timer, don't refresh display to keep image static, image will refresh when go to lock screen and drawing lock icon
     lcd()->sendBuffer();

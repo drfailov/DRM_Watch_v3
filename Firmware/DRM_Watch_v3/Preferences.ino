@@ -151,6 +151,17 @@ bool saveButtonSound(int value){
   return preferencesObject.putInt("ButtonSound", value%totalSounds);
 }
 
+//----------------------//---------------------- WATCHFACE -----------------//----------------------//----------------------//----------------------//----------------------
+
+
+int getWatchface(){
+  return preferencesObject.getInt("Watchface" , 0);
+}
+bool saveWatchface(int value){
+  int total = getWatchfaceCount();
+  return preferencesObject.putInt("Watchface", value%total);
+}
+
 //----------------------//---------------------- ALERT -----------------//----------------------//----------------------//----------------------//----------------------
 /*  bool alertIsEnabled = eepromReadAlertEnabled();
     byte alertLastRunDay = eepromReadAlertLastDayRun();
