@@ -143,22 +143,35 @@ void drawDate(int x, int y){
   lcd()->setFont(u8g2_font_10x20_t_cyrillic);  //ok
   lcd()->setColorIndex(black);
   lcd()->setCursor(x, y); 
-  lcd()->print(rtcGetDay());
-  switch(rtcGetMonth()){
-    case 0: lcd()->print(" Січ "); break;
-    case 1: lcd()->print(" Лют "); break;
-    case 2: lcd()->print(" Бер "); break;
-    case 3: lcd()->print(" Кві "); break;
-    case 4: lcd()->print(" Тра "); break;
-    case 5: lcd()->print(" Чер "); break;
-    case 6: lcd()->print(" Лип "); break;
-    case 7: lcd()->print(" Сер "); break;
-    case 8: lcd()->print(" Вер "); break;
-    case 9: lcd()->print(" Жов "); break;
-    case 10:lcd()->print(" Лис "); break;
-    case 11:lcd()->print(" Гру "); break;
-  }
+  int day = rtcGetDay();
+  if(day<10) lcd()->print("0");
+  lcd()->print(day);
+  int month = rtcGetMonth()+1; //(rtcGetSecond()%12)+1; //for debug
+  lcd()->print(".");
+  if(month<10) lcd()->print("0");
+  lcd()->print(month);
+  lcd()->print(".");
   lcd()->print(rtcGetYear());
+
+  switch(month){
+    case 1: strcpy(buffer, "Січень"); break;
+    case 2: strcpy(buffer, "Лютий"); break;
+    case 3: strcpy(buffer, "Березень"); break;
+    case 4: strcpy(buffer, "Квітень"); break;
+    case 5: strcpy(buffer, "Травень"); break;
+    case 6: strcpy(buffer, "Червень"); break;
+    case 7: strcpy(buffer, "Липень"); break;
+    case 8: strcpy(buffer, "Серпень"); break;
+    case 9: strcpy(buffer, "Вересень"); break;
+    case 10: strcpy(buffer, "Жовтень"); break;
+    case 11:strcpy(buffer, "Листопад"); break;
+    case 12:strcpy(buffer, "Грудень"); break;
+  }
+  lcd()->setFont(u8g2_font_unifont_t_cyrillic);  //ok
+  int tw = lcd()->getUTF8Width(buffer);
+  lcd()->setCursor(x+44 - tw/2, y+13); 
+  lcd()->print(buffer);
+
 }
 
 

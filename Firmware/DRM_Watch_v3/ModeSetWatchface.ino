@@ -32,7 +32,7 @@ void ModeSetWatchfaceLoop(){
 
 void ModeSetWatchfaceButtonUp(){
   int index = getWatchface();
-  index ++;
+  index++;
   saveWatchface(index);
 }
 
@@ -42,8 +42,9 @@ void ModeSetWatchfaceButtonCenter(){
 
 void ModeSetWatchfaceButtonDown(){
   int index = getWatchface();
-  index --;
-  if(index<0) index=0;
+  int total = getWatchfaceCount();
+  index--;
+  if(index<0) index=total-1;
   saveWatchface(index);
 }
 

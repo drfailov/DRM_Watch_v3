@@ -69,7 +69,6 @@ void clearScreenAnimationCircleFromRight(){
     lcd()->drawCircle(/*x0*/400, /*y0*/H/2, /*rad*/curr+2, /*opt*/U8G2_DRAW_UPPER_LEFT|U8G2_DRAW_LOWER_LEFT);   //drawDisc     U8G2_DRAW_ALL
     lcd()->sendBuffer();
   }
-  
 }
 void clearScreenAnimationWhiteFromRight(){
   lcd()->setColorIndex(white);
