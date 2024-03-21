@@ -20,7 +20,7 @@ ESP32-S2 based watch with SHARP Memory LCD.
 - Meow function, can be accessed from menu;
 - Stopwatch, can be accessed from menu;
 - Alert, can be accessed from menu;
-
+- Calendar
 - Low power consumption, while screen is always showing time;
 - Charging over USB, battery status indication;
 - Easy to get components needed to assemble;
@@ -64,6 +64,9 @@ Add melody array to MelodyPlayer.ini file and add melody to melodies array.
 
 ## Known libraries conflicts:
 Temperature measurement is hanging system if after Wi-Fi usage it were not initialized.
+
+##Steel Marking Process:
+https://youtube.com/shorts/PZIMB8fdEP8?si=xofTaj4oOFBRnQQU
 
 
 ## References

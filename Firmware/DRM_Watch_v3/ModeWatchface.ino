@@ -129,7 +129,7 @@ int drawStatusbar(int x, int y, bool drawTime){
   if(esp_sleep_get_wakeup_cause() != ESP_SLEEP_WAKEUP_TIMER){
     int timeToExit = -1;
     if(enableAutoReturn && !dontSleep)
-      timeToExit = autoReturnTime-sinceLastAction();
+      timeToExit = autoReturnTime-sinceLastAction(); 
     int timeToSleep = -1;
     int _autoSleepTime = isFlashlightOn()?autoSleepDefaultTimeWhenFlashlightOn:autoSleepTime;
     if(enableAutoSleep && !dontSleep && !isChargerConnected() ) 

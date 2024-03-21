@@ -71,7 +71,13 @@ void modeSettingsMenuButtonCenter(){
     return;
   }
   if(selected==itemModeSettingsReboot){
-    modeButtonUpLong(); //since this var is not set, it will reboot system
+    //modeButtonUpLong(); //since this var is not set, it will reboot system
+    Wire.flush();
+    delay(50);
+    Wire.end();
+    delay(50);
+    esp_restart();
+    delay(50);
     return;
   }
 }

@@ -26,13 +26,17 @@ void drawWatchfaceLife(bool firstDraw){
   int width = lcd()->getStrWidth(buffer);
   lcd()->setCursor(x_del+((W-x_del)-width)/2, 140);
   lcd()->print(buffer); 
+
+  draw_ic28_dji(x_del+((W-x_del)-48)/2, 175, black);
   
   drawStatusbar(395, 214, false);
 
   float centerX = 120;
   float centerY = 120;
-  float clockRadius = 80;
+  float clockRadius = 90;
   if(firstDraw)
     animateClock(/*centerX*/centerX, /*centerY*/centerY, /*clockRadius*/clockRadius, /*hour*/h, /*minute*/m);
   drawClock(/*centerX*/centerX, /*centerY*/centerY, /*clockRadius*/clockRadius, /*hour*/h, /*minute*/m);
+
+  
 }

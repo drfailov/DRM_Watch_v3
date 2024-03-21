@@ -11,11 +11,30 @@ void IRAM_ATTR Timer_ISR()
 {
   for(int i=0; i<LED_CNT; i++){
     float dv = ledTarget[i]-ledActual[i];
-    ledActual[i] += dv*led_coef;
+    if(abs(dv)<2)
+      ledActual[i]=ledTarget[i];
+    else
+      ledActual[i] += dv*led_coef;
+    
+    
   }
   analogWrite(LED_TOP_PIN, (int)ledActual[LED_TOP]); 
   analogWrite(LED_BOTTOM_PIN, (int)ledActual[LED_BOTTOM]); 
   analogWrite(LED_STATUS_PIN, (int)ledActual[LED_STATUS]);   
+
+  unsigned long warningTime = 10;//s
+  if(isFlasthilghTopOn()){
+    if(!dontSleep && sinceLastAction()>autoSleepDefaultTimeWhenFlashlightOn-(warningTime*1000))
+      ledFlashlightDimTop();
+    else 
+      ledFlashlightOnTop();
+  }
+  if(isFlasthilghBottomOn()){
+    if(!dontSleep && sinceLastAction()>autoSleepDefaultTimeWhenFlashlightOn-(warningTime*1000))
+      ledFlashlightDimBottom();
+    else 
+      ledFlashlightOnBottom();
+  }
 }
 
 void initLed(){
@@ -47,8 +66,12 @@ void ledFlashlightOnTop(){ ledTarget[LED_TOP] = 255; }
 void ledFlashlightOnBottom(){ ledTarget[LED_BOTTOM] = 255; }
 void ledStatusOn(){ ledTarget[LED_STATUS] = 255; }
 
-void ledFlashlightOffTop(){ ledTarget[LED_TOP] = (esp_sleep_get_wakeup_cause() == ESP_SLEEP_WAKEUP_TIMER || isOff())?0:7;}
-void ledFlashlightOffBottom(){ ledTarget[LED_BOTTOM] = (esp_sleep_get_wakeup_cause() == ESP_SLEEP_WAKEUP_TIMER || isOff())?0:2;}
+void ledFlashlightDimTop(){ ledTarget[LED_TOP] = 50; }
+void ledFlashlightDimBottom(){ ledTarget[LED_BOTTOM] = 50; }
+void ledStatusDim(){ ledTarget[LED_STATUS] = 50; }
+
+void ledFlashlightOffTop(){ ledTarget[LED_TOP] = (esp_sleep_get_wakeup_cause() == ESP_SLEEP_WAKEUP_TIMER || isOff())?0:1;}
+void ledFlashlightOffBottom(){ ledTarget[LED_BOTTOM] = (esp_sleep_get_wakeup_cause() == ESP_SLEEP_WAKEUP_TIMER || isOff())?0:0;}
 void ledFlashlightOffAll(){ ledFlashlightOffBottom(); ledFlashlightOffTop();}
 void ledStatusOff(){ ledTarget[LED_STATUS] = 0; }
 

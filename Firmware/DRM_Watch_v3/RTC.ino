@@ -14,6 +14,7 @@ void initRtc(){
   //rtc_clk_apb_freq_update
   Serial.print(F("DS3231M..."));
   //according to documentation, ESP32 has already timeout value 50ms
+  //Wire.
   //Wire.setWireTimeout(3000, true); //timeout value in uSec - SBWire uses 100 uSec, so 1000 should be OK
   rtcReady = DS3231M.begin();
   DS3231M.pinSquareWave();  // Make INT/SQW pin toggle at 1Hz
