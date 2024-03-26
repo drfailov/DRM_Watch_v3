@@ -28,6 +28,18 @@ Icons used as reference:
  
 
 
+Known Pins reserved on ESP32-S2:
+GPIO 7: SPI SCK
+GPIO 11: SPI MOSI
+GPIO 17: stays HIGH after FW update
+GPIO 26: Internal Flash drive, ESP not starting if connect smth here
+GPIO 27: Internal Flash drive, ESP not starting if connect smth here
+GPIO 28: Internal Flash drive, ESP not starting if connect smth here
+GPIO 29: Internal Flash drive, ESP not starting if connect smth here
+GPIO 30: Internal Flash drive, ESP not starting if connect smth here
+GPIO 31: Internal Flash drive, ESP not starting if connect smth here
+GPIO 32: Internal Flash drive, ESP not starting if connect smth here
+
 
 
 RTC Source info:
@@ -219,6 +231,20 @@ Changelog:
 2024-03-23 v1.42 Додано мелодії: Popcorn
 2024-03-23 v1.43 Додано мелодії: Jojo
 2024-03-23 v1.43 Додано мелодії: Carol Of The Bells
+2024-03-26 v1.44 Анімація перед ребутом
+2024-03-26 v1.44 Послідовність мелодій відсортована за алфавітом
+2024-03-26 v1.44 Перейменовано: Carol of the bells - Щедрик
+2024-03-26 v1.44 Виправлено цетруванння тексту на екрані відтворення мелодії
+2024-03-26 v1.44 Додано розділ з налаштуванням вмісту циферблату
+2024-03-26 v1.44 Додано опцію налаштувати відображення статус-бару
+2024-03-26 v1.44 Додано опцію налаштувати відображення стрілочного годинника
+2024-03-26 v1.44 Додано опцію налаштувати відображення цифрового годинника
+2024-03-26 v1.44 Додано опцію налаштувати відображення дати
+2024-03-26 v1.44 Додано опцію налаштувати відображення дня тижня
+2024-03-26 v1.44 Додано опцію налаштувати відображення місяця
+2024-03-26 v1.44 Додано опцію налаштувати відображення лого
+2024-03-26 v1.44 Додано опцію налаштувати відображення фону
+2024-03-26 v1.44 Прибрано зайвий циферблат, перейменовано цифеоблати
 
 
 ==== todo:
@@ -232,7 +258,14 @@ setting tone of all sounds
 game ant
 game pong
 auto-finding when Life is cycled and restart automatically
-Додати налаштування вмісту циферблатів (чи відображати статусбар, чи відображати день тижня, т.д.)
 Додати маленький календар на циферблат
+Налаштування дій кнопок на циферблаті
+Відображати поточний день в календарі
+Малюючи статусбар - підкладати під нього білий фон
+Малюючи темтературу - підкладати під нього білий фон
+Малюючи день тижня - підкладати під нього білий фон
+Малюючи дату - підкладати під нього білий фон
+
+
 
 

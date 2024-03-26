@@ -72,6 +72,7 @@ void modeSettingsMenuButtonCenter(){
   }
   if(selected==itemModeSettingsReboot){
     //modeButtonUpLong(); //since this var is not set, it will reboot system
+    clearScreenAnimation();
     Wire.flush();
     delay(50);
     Wire.end();

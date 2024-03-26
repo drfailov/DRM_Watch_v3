@@ -161,6 +161,66 @@ bool saveWatchface(int value){
   int total = getWatchfaceCount();
   return preferencesObject.putInt("Watchface", value%total);
 }
+bool getWatchfaceStatusbarEnabled(){//123456789012345   max length = 15
+  return preferencesObject.getInt(   "wtfStatusbarEn", 1)==1;
+}
+bool saveWatchfaceStatusbarEnabled(bool value){
+  return preferencesObject.putInt("wtfStatusbarEn", value?1:0);
+}
+bool getWatchfaceAnalogEnabled(){     //123456789012345   max length = 15
+  return preferencesObject.getInt(     "wtfAnalogEn", 1)==1;
+}
+bool saveWatchfaceAnalogEnabled(bool value){
+  return preferencesObject.putInt("wtfAnalogEn", value?1:0);
+}
+bool getWatchfaceDigitalEnabled(){     //123456789012345   max length = 15
+  return preferencesObject.getInt(      "wtfDigitalEn", 1)==1;
+}
+bool saveWatchfaceDigitalEnabled(bool value){
+  return preferencesObject.putInt("wtfDigitalEn", value?1:0);
+}
+bool getWatchfaceTemperatureEnabled(){     //123456789012345   max length = 15
+  return preferencesObject.getInt(          "wtfTempEn", 1)==1;
+}
+bool saveWatchfaceTemperatureEnabled(bool value){
+  return preferencesObject.putInt("wtfTempEn", value?1:0);
+}
+bool getWatchfaceDayOfWeekEnabled(){     //123456789012345   max length = 15
+  return preferencesObject.getInt(        "wtfDayOfWeekEn", 1)==1;
+}
+bool saveWatchfaceDayOfWeekEnabled(bool value){
+  return preferencesObject.putInt("wtfDayOfWeekEn", value?1:0);
+}
+bool getWatchfaceDateEnabled(){     //123456789012345   max length = 15
+  return preferencesObject.getInt("wtfDateEn", 1)==1;
+}
+bool saveWatchfaceDateEnabled(bool value){
+  return preferencesObject.putInt("wtfDateEn", value?1:0);
+}
+bool getWatchfaceMonthEnabled(){     //123456789012345   max length = 15
+  return preferencesObject.getInt("wtfMonthEn", 1)==1;
+}
+bool saveWatchfaceMonthEnabled(bool value){
+  return preferencesObject.putInt("wtfMonthEn", value?1:0);
+}
+bool getWatchfaceDjiLogoEnabled(){     //123456789012345   max length = 15
+  return preferencesObject.getInt("wtfDjiEn", 1)==1;
+}
+bool saveWatchfaceDjiLogoEnabled(bool value){
+  return preferencesObject.putInt("wtfDjiEn", value?1:0);
+}
+bool getWatchfaceLifeBackgroundEnabled(){     //123456789012345   max length = 15
+  return preferencesObject.getInt("wtfLifeEn", 1)==1;
+}
+bool saveWatchfaceLifeBackgroundEnabled(bool value){
+  return preferencesObject.putInt("wtfLifeEn", value?1:0);
+}
+bool getWatchfaceCalendarEnabled(){     //123456789012345   max length = 15
+  return preferencesObject.getInt(       "wtfCalendarEn", 1)==1;
+}
+bool saveWatchfaceCalendarEnabled(bool value){
+  return preferencesObject.putInt("wtfCalendarEn", value?1:0);
+}
 
 //----------------------//---------------------- ALERT -----------------//----------------------//----------------------//----------------------//----------------------
 /*  bool alertIsEnabled = eepromReadAlertEnabled();

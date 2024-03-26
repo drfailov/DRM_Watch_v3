@@ -154,25 +154,26 @@ void drawDate(int x, int y){
   lcd()->print(".");
   lcd()->print(rtcGetYear());
 
-  switch(month){
-    case 1: strcpy(buffer, "Січень"); break;
-    case 2: strcpy(buffer, "Лютий"); break;
-    case 3: strcpy(buffer, "Березень"); break;
-    case 4: strcpy(buffer, "Квітень"); break;
-    case 5: strcpy(buffer, "Травень"); break;
-    case 6: strcpy(buffer, "Червень"); break;
-    case 7: strcpy(buffer, "Липень"); break;
-    case 8: strcpy(buffer, "Серпень"); break;
-    case 9: strcpy(buffer, "Вересень"); break;
-    case 10: strcpy(buffer, "Жовтень"); break;
-    case 11:strcpy(buffer, "Листопад"); break;
-    case 12:strcpy(buffer, "Грудень"); break;
+  if(getWatchfaceMonthEnabled()){
+    switch(month){
+      case 1: strcpy(buffer, "Січень"); break;
+      case 2: strcpy(buffer, "Лютий"); break;
+      case 3: strcpy(buffer, "Березень"); break;
+      case 4: strcpy(buffer, "Квітень"); break;
+      case 5: strcpy(buffer, "Травень"); break;
+      case 6: strcpy(buffer, "Червень"); break;
+      case 7: strcpy(buffer, "Липень"); break;
+      case 8: strcpy(buffer, "Серпень"); break;
+      case 9: strcpy(buffer, "Вересень"); break;
+      case 10: strcpy(buffer, "Жовтень"); break;
+      case 11:strcpy(buffer, "Листопад"); break;
+      case 12:strcpy(buffer, "Грудень"); break;
+    }
+    lcd()->setFont(u8g2_font_unifont_t_cyrillic);  //ok
+    int tw = lcd()->getUTF8Width(buffer);
+    lcd()->setCursor(x+44 - tw/2, y+13); 
+    lcd()->print(buffer);
   }
-  lcd()->setFont(u8g2_font_unifont_t_cyrillic);  //ok
-  int tw = lcd()->getUTF8Width(buffer);
-  lcd()->setCursor(x+44 - tw/2, y+13); 
-  lcd()->print(buffer);
-
 }
 
 

@@ -31,29 +31,29 @@ struct Melody {
   Melody(String _name, const byte* _data):name(_name), data((const int*)_data) {}
 };    
 
-Melody melodies[]={
-  {"Blinding Lights", blindinglights},
-  {"Entertainer", entertainer},
+Melody melodies[]={   //відсортовано по алфавіту
   {"Badinerie", badinerie},
-  {"Nokia Tune", nokiaTune},
-  {"Groovy Blue", groovyBlue},
-  {"Nyan Cat", nyancat},
-  {"Ukraine", ukraine},
-  {"Was Woller Wir Trinken", wasWollenWirTrinken},
+  {"Blinding Lights", blindinglights},
   {"Blue", blue},
-  {"Toreador", toreador},
-  {"Swimming", swimming},
-  {"Mario", mario},
-  {"Trance", trance},
+  {"Crazy Frog", crazyfrog},
+  {"Entertainer", entertainer},
+  {"Espionage", espionage},
+  {"Groovy Blue", groovyBlue},
+  {"GTA", gta},
+  {"Jojo", jojo},
+  {"Nokia Tune", nokiaTune},
+  {"Nyan Cat", nyancat},
+  {"Popcorn", popcorn},
+  {"Roll On", rollon},
   {"Shape of my heart", shapeofmyheart},
   {"Still Alive", stillalive},
-  {"Crazy Frog", crazyfrog},
-  {"Espionage", espionage},
-  {"Roll On", rollon},
-  {"GTA", gta},
-  {"Popcorn", popcorn},
-  {"Jojo", jojo},
-  {"Carol Of The Bells", carol}
+  {"Swimming", swimming},
+  {"Toreador", toreador},
+  {"Trance", trance},
+  {"Was Woller Wir Trinken", wasWollenWirTrinken},
+  {"Гімн України", ukraine},
+  {"Маріо", mario},
+  {"Щедрик", carol}
 };
 
 int getMelodyCount(){
@@ -178,7 +178,7 @@ void melodyPlayerDrawScreen() {
     lcd()->print(sec);
     lcd()->print("s");
 
-    int width = lcd()->getStrWidth(melodyPlayerMelodyName.c_str());
+    int width = lcd()->getUTF8Width(melodyPlayerMelodyName.c_str());
     lcd()->setCursor(200-width/2, 230); 
     lcd()->print(melodyPlayerMelodyName);
   }

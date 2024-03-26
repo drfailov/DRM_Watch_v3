@@ -1,26 +1,3 @@
-void drawWatchfaceArrows(bool firstDraw){  
-  //Serial.println("clear screen...");
-  //lcd()->setColorIndex(white);
-  //lcd()->drawBox(0, 0, 400, 240);
-
-  if(firstDraw && millis()>2000)
-    randScreenBuffer();
-  lifeStep();
-  drawScreenBuffer();
-
-  lcd()->setColorIndex(white);
-  lcd()->drawBox(0, 215, 400, 25);
-  drawStatusbar(395, 214, false);
-
-  float h = rtcGetHour();
-  float m = rtcGetMinute();
-  float clockRadius = ((float)H)*0.35;
-  int centerX = W/2;
-  int centerY = H/2-10;
-  if(firstDraw)
-    animateClock(/*centerX*/centerX, /*centerY*/centerY, /*clockRadius*/clockRadius, /*hour*/h, /*minute*/m);
-  drawClock(/*centerX*/centerX, /*centerY*/centerY, /*clockRadius*/clockRadius, /*hour*/h, /*minute*/m);
-}
 
 void animateClock(int centerX, int centerY, float clockRadius, float h, float m){
   float ch = 0;

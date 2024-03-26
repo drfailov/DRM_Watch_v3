@@ -127,10 +127,10 @@ void drawTextFrame(byte index, const char* text, const char* name, bool editMode
   const int height=42;
   int textMargin = 4;
   lcd()->setFont(u8g2_font_inr24_t_cyrillic);  //ok
-  int textwidth = lcd()->getStrWidth(text);
+  int textwidth = lcd()->getUTF8Width(text);
   if(textwidth > width*0.7f)
     lcd()->setFont(u8g2_font_10x20_t_cyrillic);  //ok
-  textwidth = lcd()->getStrWidth(text);  
+  textwidth = lcd()->getUTF8Width(text);  
   int textHeight = lcd() -> getAscent();
   int textOffsetX = (width - textwidth) / 2;
   int textOffsetY = textHeight + (height - textHeight) / 2;
