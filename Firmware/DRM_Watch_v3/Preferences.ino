@@ -268,6 +268,9 @@ int getAlertMelody(int index){             //123456789012345
 bool saveAlertMelody(int index, int value){
   return preferencesObject.putInt((String("alertMelody")+index).c_str(), value);
 }
+String getAlertName(int index){
+  return preferencesObject.getString((String("alert")+index+"Name").c_str(), (String("Будильник ")+index));
+}
 
   
 //----------------------//----------------------//----------------------//----------------------//----------------------//----------------------//----------------------

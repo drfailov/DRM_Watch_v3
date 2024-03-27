@@ -9,6 +9,7 @@ const int itemModeAlertSettingsEnabled=1;
 const int itemModeAlertSettingsHour=2;
 const int itemModeAlertSettingsMinute=3;
 const int itemModeAlertSettingsMelody=4;
+const int itemModeAlertSettingsName=5;
 
 void setModeAlertSettingsMenu(){
   clearScreenAnimation();
@@ -27,7 +28,7 @@ void setModeAlertSettingsMenu(){
   autoReturnTime = autoReturnDefaultTime;
   autoSleepTime = autoSleepDefaultTime;
   selected = 0;
-  items = 5;
+  items = 6;
   modeAlertSettingsHourValue = getAlertHour(modeAlertSettingsIndex);
   modeAlertSettingsMinuteValue = getAlertMinute(modeAlertSettingsIndex);
   modeAlertSettingsMelodyValue = getAlertMelody(modeAlertSettingsIndex);
@@ -48,8 +49,8 @@ void ModeAlertSettingsMenuLoop(){
   lcd()->setFont(u8g2_font_10x20_t_cyrillic);  //ok
   lcd()->setColorIndex(black);
   lcd()->setCursor(5, 18); 
-  lcd()->print("Будильник ");
-  lcd()->print(modeAlertSettingsIndex);
+
+  lcd()->print(getAlertName(modeAlertSettingsIndex));
 
   drawStatusbar(363, 1, true);
   drawMenuLegend();
@@ -59,32 +60,39 @@ void ModeAlertSettingsMenuLoop(){
   }
 
   
-  drawMenuItem(itemModeAlertSettingsBack, draw_ic24_back, "Назад", firstDraw, 30, 32);
+  drawMenuItem(itemModeAlertSettingsBack, draw_ic24_back, "Назад", firstDraw, 10, 26);
   lcd()->setFont(u8g2_font_10x20_t_cyrillic);  //ok
   lcd()->setColorIndex(black);
   lcd()->setCursor(189, 57); 
   lcd()->print("Активний");
   if(getAlertEnabled(modeAlertSettingsIndex))
-    drawMenuItem(itemModeAlertSettingsEnabled, draw_ic24_check2, "Вимкнути", firstDraw, 277, 32);
+    drawMenuItem(itemModeAlertSettingsEnabled, draw_ic24_check2, "Вимкнути", firstDraw, 277, 26);
   else
-    drawMenuItem(itemModeAlertSettingsEnabled, draw_ic24_cancel, "Увімкнути", firstDraw, 277, 32);
+    drawMenuItem(itemModeAlertSettingsEnabled, draw_ic24_cancel, "Увімкнути", firstDraw, 277, 26);
 
   lcd()->setFont(u8g2_font_10x20_t_cyrillic);  //ok
   lcd()->setColorIndex(black);
-  lcd()->setCursor(30, 113); 
+  lcd()->setCursor(50, 108); 
   lcd()->print("Час");
-  drawNumberFrame(/*index*/itemModeAlertSettingsHour, /*number*/modeAlertSettingsHourValue, /*name*/"Обрати годину", /*editMode*/modeAlertSettingsEditMode, /*animate*/firstDraw, /*x*/68, /*y*/87, /*Width*/82);
+  drawNumberFrame(/*index*/itemModeAlertSettingsHour, /*number*/modeAlertSettingsHourValue, /*name*/"Обрати годину", /*editMode*/modeAlertSettingsEditMode, /*animate*/firstDraw, /*x*/88, /*y*/81, /*Width*/82);
   lcd()->setFont(u8g2_font_inr24_t_cyrillic);  //ok
   lcd()->setColorIndex(black);
-  lcd()->setCursor(152, 116); 
+  lcd()->setCursor(172, 111); 
   lcd()->print(":");
-  drawNumberFrame(/*index*/itemModeAlertSettingsMinute, /*number*/modeAlertSettingsMinuteValue, /*name*/"Обрати хвилину", /*editMode*/modeAlertSettingsEditMode, /*animate*/firstDraw, /*x*/173, /*y*/87, /*Width*/82);
+  drawNumberFrame(/*index*/itemModeAlertSettingsMinute, /*number*/modeAlertSettingsMinuteValue, /*name*/"Обрати хвилину", /*editMode*/modeAlertSettingsEditMode, /*animate*/firstDraw, /*x*/193, /*y*/81, /*Width*/82);
 
   lcd()->setFont(u8g2_font_10x20_t_cyrillic);  //ok
   lcd()->setColorIndex(black);
-  lcd()->setCursor(30, 151); 
+  lcd()->setCursor(8, 154); 
   lcd()->print("Мелодія");
-  drawTextFrame(/*index*/itemModeAlertSettingsMelody, /*text*/getMelodyName(modeAlertSettingsMelodyValue).c_str(), /*name*/"Обрати мелодію", /*editMode*/modeAlertSettingsEditMode, /*animate*/firstDraw, /*x*/30, /*y*/157, /*width*/308);
+  drawTextFrame(/*index*/itemModeAlertSettingsMelody, /*text*/getMelodyName(modeAlertSettingsMelodyValue).c_str(), /*name*/"Обрати мелодію", /*editMode*/modeAlertSettingsEditMode, /*animate*/firstDraw, /*x*/88, /*y*/127, /*width*/265);
+  
+
+  lcd()->setFont(u8g2_font_10x20_t_cyrillic);  //ok
+  lcd()->setColorIndex(black);
+  lcd()->setCursor(28, 199); 
+  lcd()->print("Назва");
+  drawTextFrame(/*index*/itemModeAlertSettingsName, /*text*/getAlertName(modeAlertSettingsIndex).c_str(), /*name*/"Назва будильника", /*editMode*/modeAlertSettingsEditMode, /*animate*/firstDraw, /*x*/88, /*y*/173, /*width*/265);
 
   
   lcd()->sendBuffer();
@@ -138,6 +146,10 @@ void ModeAlertSettingsMenuButtonCenter(){
     modeAlertSettingsEditMode = !modeAlertSettingsEditMode;
     if(!modeAlertSettingsEditMode)
       saveAlertMelody(modeAlertSettingsIndex, modeAlertSettingsMelodyValue);
+    return;
+  }
+  if(selected==itemModeAlertSettingsName){
+    //open keyboard
     return;
   }
 }

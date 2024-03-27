@@ -28,7 +28,7 @@ Icons used as reference:
  
 
 
-Known Pins reserved on ESP32-S2:
+Known Pins reserved on ESP32-S2 (Lolin S2 Mini):
 GPIO 7: SPI SCK
 GPIO 11: SPI MOSI
 GPIO 17: stays HIGH after FW update
@@ -39,6 +39,55 @@ GPIO 29: Internal Flash drive, ESP not starting if connect smth here
 GPIO 30: Internal Flash drive, ESP not starting if connect smth here
 GPIO 31: Internal Flash drive, ESP not starting if connect smth here
 GPIO 32: Internal Flash drive, ESP not starting if connect smth here
+TX = 39;
+RX = 37;
+
+SDA = 33;
+SCL = 35;
+
+SS    = 12;
+MOSI  = 11;
+MISO  = 9;
+SCK   = 7;
+
+A0 = 1;
+A1 = 2;
+A2 = 3;
+A3 = 4;
+A4 = 5;
+A5 = 6;
+A6 = 7;
+A7 = 8;
+A8 = 9;
+A9 = 10;
+A10 = 11;
+A11 = 12;
+A12 = 13;
+A13 = 14;
+A14 = 15;
+A15 = 16;
+A16 = 17;
+A17 = 18;
+A18 = 19;
+A19 = 20;
+
+T1 = 1;
+T2 = 2;
+T3 = 3;
+T4 = 4;
+T5 = 5;
+T6 = 6;
+T7 = 7;
+T8 = 8;
+T9 = 9;
+T10 = 10;
+T11 = 11;
+T12 = 12;
+T13 = 13;
+T14 = 14;
+
+DAC1 = 17;
+DAC2 = 18;
 
 
 
@@ -257,6 +306,7 @@ Changelog:
 2024-03-27 v2.00 В календарі тепер поточна дата підсвічується
 2024-03-27 v2.00 Виправлено відображення назви будильника по центру екрана
 2024-03-27 v2.00 Додано календар на циферблат
+2024-03-27 v2.01 У будильника тепер є назва, яку можна побачити на екрані редагування будильника
 
 ==== todo:
 
@@ -264,6 +314,9 @@ Changelog:
 Налаштування анімації - анімація входу - увімкнути чи ні
 Налаштування анімації - анімація виходу - обрати
 menu showing all parameters on screen
+Timer
+Ukrainian keyboard
+Alert Names
 multi alerts
 setting tone of all sounds
 game ant
