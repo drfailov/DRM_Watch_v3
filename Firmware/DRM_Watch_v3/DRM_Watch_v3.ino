@@ -63,20 +63,21 @@
 const int BUFF_SCALE = 2;  //screenBuffer  //2 is 3KB out of 8KB RTC Memory
 const int BUFF_W = W/BUFF_SCALE;   //screenBuffer
 const int BUFF_H = H/BUFF_SCALE;   //screenBuffer
-bool firstDraw = false;  //used to animate first frame of any mode. Resets on clearScreenAnimation.
+
 String version = "v2.00";          //================================== <<<<< VERSION
 bool black = 1;
 bool white = 0;
 
 bool dontSleep = false;
-const int autoReturnDefaultTime = 120000;//ms
+const int autoReturnDefaultTime = 180000;//ms
 const int autoSleepDefaultTime = 15000;//ms
-const int autoSleepDefaultTimeWhenFlashlightOn = 300000;//ms
+const int autoSleepDefaultTimeWhenFlashlightOn = 360000;//ms
 bool enableAutoReturn = false; //is set when new mode selected
 bool enableAutoSleep = false; //is set when new mode selected
 int autoReturnTime = autoReturnDefaultTime;//ms
 int autoSleepTime = autoSleepDefaultTime;//ms
 
+bool firstDraw = false;  //global for menus, used to animate first frame of any mode. Resets on clearScreenAnimation.
 int items = 0;    //global for menus
 int selected = 0; //global for menus
 int roundness = 4; //global for menus

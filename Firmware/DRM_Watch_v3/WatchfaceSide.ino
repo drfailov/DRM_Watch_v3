@@ -57,6 +57,10 @@ void drawWatchfaceSide(bool firstDraw){
       animateClock(/*centerX*/centerX, /*centerY*/centerY, /*clockRadius*/clockRadius, /*hour*/h, /*minute*/m);
     drawClock(/*centerX*/centerX, /*centerY*/centerY, /*clockRadius*/clockRadius, /*hour*/h, /*minute*/m);
   }
+  else if(getWatchfaceCalendarEnabled()){
+    drawCalendar(/*x*/45, /*y*/68, /*month 01-12*/rtcGetMonth()+1, rtcGetYear(), /*compact*/true);
+  }
+  
   
   /*getWatchfaceCalendarEnabled*/
 }
