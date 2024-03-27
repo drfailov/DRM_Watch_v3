@@ -63,7 +63,7 @@ void ModeMenuSettingsTimeButtonCenter(){
     return;
   }
   if(selected==ModeMenuSettingsTimeItemSetTime){
-    drawMessage("В процесі розробки.");
+    setModeSetTimeMenu();
     return;
   }
   if(selected==ModeMenuSettingsTimeItemSetTimeZone){

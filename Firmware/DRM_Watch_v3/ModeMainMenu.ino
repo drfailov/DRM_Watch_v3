@@ -38,7 +38,7 @@ void modeMainMenuLoop(){
   drawMenuItem(itemBack,     draw_ic24_back,      "Назад",        /*animate*/firstDraw, /*x*/13,  /*y*/90, /*w*/77, /*h*/60);
   drawMenuItem(itemApps,     draw_ic24_apps,      "Програми",     /*animate*/firstDraw, /*x*/102, /*y*/90, /*w*/77, /*h*/60);
   drawMenuItem(itemSettings, draw_ic24_settings,  "Налаштування", /*animate*/firstDraw, /*x*/191, /*y*/90, /*w*/77, /*h*/60);
-  drawMenuItem(itemAbout,    draw_ic24_about,     "Про програму", /*animate*/firstDraw, /*x*/280, /*y*/90, /*w*/77, /*h*/60);
+  drawMenuItem(itemAbout,    draw_ic24_about,     "Про годинник", /*animate*/firstDraw, /*x*/280, /*y*/90, /*w*/77, /*h*/60);
 
   lcd()->sendBuffer(); 
 }
@@ -77,29 +77,35 @@ void modeMainMenuButtonDown(){
 
 
 void drawMenuItem(byte index, Drawable drawIcon, const char* name, bool animate){
-  drawMenuItem(index, drawIcon, name, animate, -1, -1, 62, 42);
+  drawMenuItem(index, drawIcon, name, animate, -1, -1, 75, 50);
 }
 void drawMenuItem(byte index, Drawable drawIcon, const char* name, bool animate, int x, int y){
-  drawMenuItem(index, drawIcon, name, animate, x, y, 62, 42);
+  drawMenuItem(index, drawIcon, name, animate, x, y, 75, 50);
 }
 
 void drawMenuItem(byte index, Drawable drawIcon, const char* name, bool animate, int x, int y, int width, int height){
   if(x == -1 || y == -1){
-    int lines = 2;
+    int lines = 3;
     int cols = 4;
     if(selected/(lines*cols) != index/(lines*cols)) return;
-    const int xOffset = 35;
-    const int yOffset = 60;
-    const int margin = 15;
+    const int xOffset = 15;
+    const int yOffset = 40;
+    const int margin = 8;
     x = xOffset + 6 + (width+margin) * (index%cols);
     y = yOffset + (height+margin) * ((index%(lines*cols))/cols);
   }  
-  lcd()->setColorIndex(black);
-  if(selected == index)
-    lcd()->drawBox(/*x*/x, /*y*/y, /*w*/width, /*h*/height);
+  
+  if(selected == index){
+    lcd()->setColorIndex(black);
+    lcd()->drawRBox(/*x*/x, /*y*/y, /*w*/width, /*h*/height, roundness);
+  }
   else{
-    lcd()->drawFrame(/*x*/x, /*y*/y, /*w*/width, /*h*/height);
-    lcd()->drawFrame(/*x*/x+1, /*y*/y+1, /*w*/width-2, /*h*/height-2);
+    lcd()->setColorIndex(black);
+    lcd()->drawRBox(/*x*/x, /*y*/y, /*w*/width, /*h*/height, roundness);
+    lcd()->setColorIndex(white);
+    lcd()->drawRBox(/*x*/x+frame, /*y*/y+frame, /*w*/width-frame*2, /*h*/height-frame*2, roundness);
+    //lcd()->drawFrame(/*x*/x, /*y*/y, /*w*/width, /*h*/height);
+    //lcd()->drawFrame(/*x*/x+1, /*y*/y+1, /*w*/width-2, /*h*/height-2);
   }
   int iconsize = 24;
   int iconx = x+(width-iconsize)/2;
@@ -109,6 +115,10 @@ void drawMenuItem(byte index, Drawable drawIcon, const char* name, bool animate,
     lcd()->setCursor(8, 232);
     lcd()->setColorIndex(black);
     lcd()->setFont(u8g2_font_10x20_t_cyrillic);  //ok
+    lcd()->print(selected+1);
+    lcd()->print("/");
+    lcd()->print(items);
+    lcd()->print(": ");
     lcd()->print(name);
   }
   if(animate)
@@ -137,17 +147,23 @@ void drawTextFrame(byte index, const char* text, const char* name, bool editMode
   int textX = x + textOffsetX;
   int textY = y + textOffsetY;
 
-  lcd()->setColorIndex(black);
   if(selected == index){
-    lcd()->drawBox(/*x*/x, /*y*/y, /*w*/width, /*h*/height);
+    lcd()->setColorIndex(black);
+    lcd()->drawRBox(/*x*/x, /*y*/y, /*w*/width, /*h*/height, roundness);
+    //lcd()->drawBox(/*x*/x, /*y*/y, /*w*/width, /*h*/height);
     if(editMode) {
       lcd()->setColorIndex(white);
-      lcd()->drawBox(/*x*/textX-textMargin, /*y*/textY-textMargin-textHeight, /*w*/textwidth + textMargin*2, /*h*/textHeight + textMargin*2);
+      lcd()->drawRBox(/*x*/textX-textMargin, /*y*/textY-textMargin-textHeight, /*w*/textwidth + textMargin*2, /*h*/textHeight + textMargin*2, roundness);
+      //lcd()->drawBox(/*x*/textX-textMargin, /*y*/textY-textMargin-textHeight, /*w*/textwidth + textMargin*2, /*h*/textHeight + textMargin*2);
     }
   }
   else{
-    lcd()->drawFrame(/*x*/x, /*y*/y, /*w*/width, /*h*/height);
-    lcd()->drawFrame(/*x*/x+1, /*y*/y+1, /*w*/width-2, /*h*/height-2);
+    lcd()->setColorIndex(black);
+    lcd()->drawRBox(/*x*/x, /*y*/y, /*w*/width, /*h*/height, roundness);
+    lcd()->setColorIndex(white);
+    lcd()->drawRBox(/*x*/x+frame, /*y*/y+frame, /*w*/width-frame*2, /*h*/height-frame*2, roundness);
+    //lcd()->drawFrame(/*x*/x, /*y*/y, /*w*/width, /*h*/height);
+    //lcd()->drawFrame(/*x*/x+1, /*y*/y+1, /*w*/width-2, /*h*/height-2);
   }
   lcd()->setColorIndex(selected == index?white:black);
   if(editMode) lcd()->setColorIndex(black);
@@ -176,12 +192,18 @@ void drawListItem(byte index, Drawable drawIcon, const char* name, const char* d
   int x = xOffset;
   int y = yOffset + (height+margin) * ((index%(lines)));
   
-  lcd()->setColorIndex(black);
-  if(selected == index)
-    lcd()->drawBox(/*x*/x, /*y*/y, /*w*/width, /*h*/height);
+  if(selected == index){
+    lcd()->setColorIndex(black);
+    lcd()->drawRBox(/*x*/x, /*y*/y, /*w*/width, /*h*/height, roundness);
+    //lcd()->drawBox(/*x*/x, /*y*/y, /*w*/width, /*h*/height);
+  }
   else{
-    lcd()->drawFrame(/*x*/x, /*y*/y, /*w*/width, /*h*/height);
-    lcd()->drawFrame(/*x*/x+1, /*y*/y+1, /*w*/width-2, /*h*/height-2);
+    lcd()->setColorIndex(black);
+    lcd()->drawRBox(/*x*/x, /*y*/y, /*w*/width, /*h*/height, roundness);
+    lcd()->setColorIndex(white);
+    lcd()->drawRBox(/*x*/x+frame, /*y*/y+frame, /*w*/width-frame*2, /*h*/height-frame*2, roundness);
+    //lcd()->drawFrame(/*x*/x, /*y*/y, /*w*/width, /*h*/height);
+    //lcd()->drawFrame(/*x*/x+1, /*y*/y+1, /*w*/width-2, /*h*/height-2);
   }
   drawIcon(x + 9, y+9, selected == index?white:black);
   

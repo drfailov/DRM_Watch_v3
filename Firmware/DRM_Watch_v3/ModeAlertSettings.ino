@@ -65,9 +65,9 @@ void ModeAlertSettingsMenuLoop(){
   lcd()->setCursor(189, 57); 
   lcd()->print("Активний");
   if(getAlertEnabled(modeAlertSettingsIndex))
-    drawMenuItem(itemModeAlertSettingsEnabled, draw_ic24_check, "Вимкнути", firstDraw, 277, 32);
+    drawMenuItem(itemModeAlertSettingsEnabled, draw_ic24_check2, "Вимкнути", firstDraw, 277, 32);
   else
-    drawMenuItem(itemModeAlertSettingsEnabled, draw_ic24_empty, "Увімкнути", firstDraw, 277, 32);
+    drawMenuItem(itemModeAlertSettingsEnabled, draw_ic24_cancel, "Увімкнути", firstDraw, 277, 32);
 
   lcd()->setFont(u8g2_font_10x20_t_cyrillic);  //ok
   lcd()->setColorIndex(black);

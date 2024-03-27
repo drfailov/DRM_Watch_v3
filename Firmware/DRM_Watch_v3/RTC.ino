@@ -69,6 +69,13 @@ unsigned long rtcGetEpoch(){
   }
   return _rtcInternalCorrected() -> getEpoch()+getTimeOffsetSec();
 }
+unsigned long rtcGetUtcEpoch(){
+  if(rtcReady){
+    DateTime datetime = DS3231M.now();
+    return datetime.unixtime();
+  }
+  return _rtcInternalCorrected() -> getEpoch();
+}
 int rtcGetHour(){
   unsigned long epoch = rtcGetEpoch();
   DateTime datetime = DateTime(epoch);
@@ -106,9 +113,19 @@ int rtcGetDayOfWeek(){
   return datetime.dayOfTheWeek();
 }
 
+void rtcSetUtcEpoch(unsigned long epoch){
+  if(rtcReady){
+    adjustExternalRtc(epoch);
+  }
+  _rtcInternal() -> setTime(epoch);
+  saveLastTimeSync(epoch);
+}
+
 void adjustExternalRtc(unsigned long epoch){
-  DateTime now = DateTime(epoch);
-  DS3231M.adjust(now);
+  if(rtcReady){
+    DateTime now = DateTime(epoch);
+    DS3231M.adjust(now);
+  }
 }
 String getRtcSrc(){
   if(rtcReady)

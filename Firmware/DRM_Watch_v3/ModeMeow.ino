@@ -48,9 +48,9 @@ void modeMeowLoop(){
 
   displayDrawVector(getPathZubat(), 110, 40, 2.0, 2, false, black);
 
-  drawMenuItem(itemModeMeowBack, draw_ic24_back, "Назад", firstDraw, 70, 160);
+  drawMenuItem(itemModeMeowBack, draw_ic24_back, "Назад", firstDraw, 50, 160);
   drawMenuItem(itemModeMeowToneUp, draw_ic24_arrow_up, "Збільшити тон", firstDraw, 140, 160);
-  drawMenuItem(itemModeMeowToneDown, draw_ic24_arrow_down, "Зменшити тон", firstDraw, 210, 160);
+  drawMenuItem(itemModeMeowToneDown, draw_ic24_arrow_down, "Зменшити тон", firstDraw, 230, 160);
 
   lcd()->sendBuffer();
   if(millis() - lastMeowEnd > meowPause){

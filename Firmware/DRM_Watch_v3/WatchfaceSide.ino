@@ -36,7 +36,7 @@ void drawWatchfaceSide(bool firstDraw){
 
   if(getWatchfaceDigitalEnabled()){
     lcd()->setColorIndex(black);
-    lcd()->setFont(u8g2_font_logisoso34_tn);//u8g2_font_inr24_t_cyrillic
+    lcd()->setFont(u8g2_font_logisoso38_tn);//u8g2_font_inr24_t_cyrillic
     sprintf(buffer, "%02d:%02d", h,m);
     int width = lcd()->getStrWidth(buffer);
     lcd()->setCursor(x_del+((W-x_del)-width)/2, 140);

@@ -64,7 +64,7 @@ const int BUFF_SCALE = 2;  //screenBuffer  //2 is 3KB out of 8KB RTC Memory
 const int BUFF_W = W/BUFF_SCALE;   //screenBuffer
 const int BUFF_H = H/BUFF_SCALE;   //screenBuffer
 bool firstDraw = false;  //used to animate first frame of any mode. Resets on clearScreenAnimation.
-String version = "v1.44";          //================================== <<<<< VERSION
+String version = "v2.00";          //================================== <<<<< VERSION
 bool black = 1;
 bool white = 0;
 
@@ -79,6 +79,8 @@ int autoSleepTime = autoSleepDefaultTime;//ms
 
 int items = 0;    //global for menus
 int selected = 0; //global for menus
+int roundness = 4; //global for menus
+int frame = 2; //global for menus
 
 typedef void (*Runnable)();
 typedef void (*WatchfaceDrawable)(bool firstDraw);
@@ -156,7 +158,7 @@ void loop(void) {
           saveAlertLastRunDay(alertIndex, day);
           long timeStarted = millis();
           long playTime = 180000;
-          sprintf(buffer, "Alert %d (%02d:%02d)", alertIndex, alertTimeHour, alertTimeMinute);
+          sprintf(buffer, "Будильник %d (%02d:%02d)", alertIndex, alertTimeHour, alertTimeMinute);
           melodyPlayerSetMelodyName(String(buffer));
           while (melodyPlayerPlayMelody(getMelodyData(alertMelodyIndex)) && millis() - timeStarted < playTime);
         }
