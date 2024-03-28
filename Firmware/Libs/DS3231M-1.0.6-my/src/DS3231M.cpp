@@ -51,7 +51,19 @@ static uint8_t conv2d(const char* p) {
   }                            // if-then character is in range
   return 10 * v + *++p - '0';  // shift MSB character over left and add 2nd character
 }  // of method conv2d
-DateTime::DateTime(uint32_t t) {
+DateTime::DateTime(uint32_t t){
+	/*!
+   @brief   Class Constructor (Overloaded)
+   @details Class Constructor for DateTime instantiates the class. This is an overloaded class
+            constructor so there are multiple definitions. This implementation ignores time
+            zones and DST changes. It also ignores leap seconds, see
+            http://en.wikipedia.org/wiki/Leap_second for details
+   @param[in] t Input time in seconds
+  */
+  set(t);
+}
+	
+void DateTime::set(uint32_t t) {
   /*!
    @brief   Class Constructor (Overloaded)
    @details Class Constructor for DateTime instantiates the class. This is an overloaded class
@@ -87,8 +99,7 @@ DateTime::DateTime(uint32_t t) {
   }  // of for-next each month
   d = days + 1;
 }  // of method DateTime()
-DateTime::DateTime(uint16_t year, uint8_t month, uint8_t day, uint8_t hour, uint8_t min,
-                   uint8_t sec) {
+DateTime::DateTime(uint16_t year, uint8_t month, uint8_t day, uint8_t hour, uint8_t min, uint8_t sec) {
   /*!
    @brief     Class Constructor (Overloaded)
    @details   Class Constructor for DateTime instantiates the class. This is an overloaded class
@@ -113,6 +124,33 @@ DateTime::DateTime(uint16_t year, uint8_t month, uint8_t day, uint8_t hour, uint
   mm   = min;
   ss   = sec;
 }  // of method DateTime()
+
+void DateTime::set(uint16_t year, uint8_t month, uint8_t day, uint8_t hour, uint8_t min, uint8_t sec) {
+  /*!
+   @brief     Class setter
+   @details   Class Constructor for DateTime instantiates the class. This is an overloaded class
+              constructor so there are multiple definitions. This implementation ignores time zones
+              and DST changes. It also ignores leapseconds, see
+              http://en.wikipedia.org/wiki/Leap_second for details
+   @param[in] year Year
+   @param[in] month Month
+   @param[in] day Day
+   @param[in] hour Hour
+   @param[in] min Minute
+   @param[in] sec Second
+
+  */
+  if (year >= 2000) {
+    year -= 2000;
+  }  // if-then year past 2000
+  yOff = year;
+  m    = month;
+  d    = day;
+  hh   = hour;
+  mm   = min;
+  ss   = sec;
+}  // of method DateTime()
+
 /*!
  @brief     Class Constructor (Overloaded)
  @details   Class Constructor for DateTime instantiates the class. This is an overloaded class
@@ -121,8 +159,7 @@ DateTime::DateTime(uint16_t year, uint8_t month, uint8_t day, uint8_t hour, uint
             http://en.wikipedia.org/wiki/Leap_second for details
  @param[in] copy DateTime class to instantiate class with
 */
-DateTime::DateTime(const DateTime& copy)
-    : yOff(copy.yOff), m(copy.m), d(copy.d), hh(copy.hh), mm(copy.mm), ss(copy.ss) {}
+DateTime::DateTime(const DateTime& copy) : yOff(copy.yOff), m(copy.m), d(copy.d), hh(copy.hh), mm(copy.mm), ss(copy.ss) {}
 DateTime::DateTime(const char* date, const char* time) {
   /*!
    @brief     Class Constructor (Overloaded)
@@ -186,7 +223,7 @@ DateTime::DateTime(const __FlashStringHelper* date, const __FlashStringHelper* t
 uint8_t DateTime::dayOfTheWeek() const {
   /*!
    @brief   Return the day-of-week
-   @details Monday = 1, Sunday = 7
+   @details Monday = 1, Sunday = 0
    @return  DOW with Monday-Sunday 1-7
   */
   uint16_t day = date2days(yOff, m, d);  // compute the number of days

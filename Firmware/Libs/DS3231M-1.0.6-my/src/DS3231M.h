@@ -125,11 +125,12 @@ const uint8_t  DS3231M_TEMPERATURE       = 0x11;       ///< DS3231 TEMPERATURE R
 class DateTime {
  public:
   DateTime(uint32_t t = 0);
-  DateTime(uint16_t year, uint8_t month, uint8_t day, uint8_t hour = 0, uint8_t min = 0,
-           uint8_t sec = 0);  //                                  //
+  DateTime(uint16_t year, uint8_t month, uint8_t day, uint8_t hour = 0, uint8_t min = 0, uint8_t sec = 0);  
   DateTime(const DateTime& copy);
   DateTime(const char* date, const char* time);
   DateTime(const __FlashStringHelper* date, const __FlashStringHelper* time);
+  void     set(uint16_t year, uint8_t month, uint8_t day, uint8_t hour = 0, uint8_t min = 0, uint8_t sec = 0);  
+  void     set(uint32_t t);  
   uint16_t year() const { return 2000 + yOff; }  ///< Return the year
   uint8_t  month() const { return m; }           ///< Return the month
   uint8_t  day() const { return d; }             ///< Return the day
