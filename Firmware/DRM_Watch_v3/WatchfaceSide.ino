@@ -47,7 +47,7 @@ void drawWatchfaceSide(bool firstDraw){
     draw_ic28_dji(x_del+((W-x_del)-48)/2, 175, black);
   
   if(getWatchfaceStatusbarEnabled())
-    drawStatusbar(395, 214, false);
+    drawStatusbar(395, 214, getWatchfaceStatusbarDigitalEnabled());
 
   if(getWatchfaceAnalogEnabled()){
     float centerX = 120;

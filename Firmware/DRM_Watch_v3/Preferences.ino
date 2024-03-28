@@ -179,6 +179,12 @@ bool getWatchfaceDigitalEnabled(){     //123456789012345   max length = 15
 bool saveWatchfaceDigitalEnabled(bool value){
   return preferencesObject.putInt("wtfDigitalEn", value?1:0);
 }
+bool getWatchfaceStatusbarDigitalEnabled(){     //123456789012345   max length = 15
+  return preferencesObject.getInt(               "wtfStDigitalEn", 0)==1;
+}
+bool saveWatchfaceStatusbarDigitalEnabled(bool value){
+  return preferencesObject.putInt("wtfStDigitalEn", value?1:0);
+}
 bool getWatchfaceTemperatureEnabled(){     //123456789012345   max length = 15
   return preferencesObject.getInt(          "wtfTempEn", 1)==1;
 }
@@ -198,13 +204,13 @@ bool saveWatchfaceDateEnabled(bool value){
   return preferencesObject.putInt("wtfDateEn", value?1:0);
 }
 bool getWatchfaceMonthEnabled(){     //123456789012345   max length = 15
-  return preferencesObject.getInt("wtfMonthEn", 1)==1;
+  return preferencesObject.getInt("wtfMonthEn", 0)==1;
 }
 bool saveWatchfaceMonthEnabled(bool value){
   return preferencesObject.putInt("wtfMonthEn", value?1:0);
 }
 bool getWatchfaceDjiLogoEnabled(){     //123456789012345   max length = 15
-  return preferencesObject.getInt("wtfDjiEn", 1)==1;
+  return preferencesObject.getInt("wtfDjiEn", 0)==1;
 }
 bool saveWatchfaceDjiLogoEnabled(bool value){
   return preferencesObject.putInt("wtfDjiEn", value?1:0);
@@ -216,7 +222,7 @@ bool saveWatchfaceLifeBackgroundEnabled(bool value){
   return preferencesObject.putInt("wtfLifeEn", value?1:0);
 }
 bool getWatchfaceCalendarEnabled(){     //123456789012345   max length = 15
-  return preferencesObject.getInt(       "wtfCalendarEn", 1)==1;
+  return preferencesObject.getInt(       "wtfCalendarEn", 0)==1;
 }
 bool saveWatchfaceCalendarEnabled(bool value){
   return preferencesObject.putInt("wtfCalendarEn", value?1:0);

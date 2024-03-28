@@ -22,19 +22,15 @@ void drawClock(int centerX, int centerY, float clockRadius, float h, float m) {
   float hourIncludingMinutes = hour12+((m) / 60.0);
   h=hourIncludingMinutes;
 
-  //фон
+  //фон+контур
+  float ringSize = max(clockRadius*0.05, 2.0);
+  lcd()->setColorIndex(white);
+  lcd()->drawDisc(centerX, centerY, clockRadius+ringSize*2);
+  lcd()->setColorIndex(black);
+  lcd()->drawDisc(centerX, centerY, clockRadius+ringSize);
   lcd()->setColorIndex(white);
   lcd()->drawDisc(centerX, centerY, clockRadius);
-
-  // Малюємо контур циферблату
-  float ringSize = max(clockRadius*0.05, 2.0);
-  lcd()->setColorIndex(black);
-  for(int i=0; i<ringSize; i++)
-    lcd()->drawCircle(centerX, centerY, clockRadius+i);
-  lcd()->setColorIndex(white);
-  for(int i=ringSize; i<ringSize*2; i++)
-    lcd()->drawCircle(centerX, centerY, clockRadius+i);
-
+  
   {// Малюємо шкалу з цифрами
     lcd()->setColorIndex(black);
     lcd()->setFont(u8g2_font_unifont_t_cyrillic); //smalll

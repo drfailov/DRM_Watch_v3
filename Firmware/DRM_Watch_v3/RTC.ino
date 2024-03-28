@@ -142,6 +142,8 @@ bool isExternalRtcActive(){
 }
 
 void drawDayOfWeek (int x, int y){
+  lcd()->setColorIndex(white);
+  lcd()->drawBox(x-3, y-16, 25, 20);
   lcd()->setFont(u8g2_font_10x20_t_cyrillic);  //ok
   lcd()->setColorIndex(black);
   lcd()->setCursor(x, y); 
@@ -158,6 +160,8 @@ void drawDayOfWeek (int x, int y){
 }
 
 void drawDate(int x, int y){
+  lcd()->setColorIndex(white);
+  lcd()->drawBox(x-3, y-16, 106, 20);
   lcd()->setFont(u8g2_font_10x20_t_cyrillic);  //ok
   lcd()->setColorIndex(black);
   lcd()->setCursor(x, y); 
@@ -188,7 +192,12 @@ void drawDate(int x, int y){
     }
     lcd()->setFont(u8g2_font_unifont_t_cyrillic);  //ok
     int tw = lcd()->getUTF8Width(buffer);
-    lcd()->setCursor(x+44 - tw/2, y+13); 
+    lcd()->setColorIndex(white);
+    int mx = x+44 - tw/2;
+    int my = y+13;
+    lcd()->drawBox(mx-3, my-12, tw+6, 16);
+    lcd()->setColorIndex(black);
+    lcd()->setCursor(mx, my); 
     lcd()->print(buffer);
   }
 }
@@ -229,6 +238,10 @@ void resetCpuTemperatureSensor(){ //need to reset after Wi-Fi using
 
 
 void drawTemperature(int x, int y){
+  
+  lcd()->setColorIndex(white);
+  lcd()->drawBox(x, y-1, 90, 24);
+
   lcd()->setFont(u8g2_font_10x20_t_cyrillic); 
   draw_ic24_temperature(x,y, black);
   lcd()->setCursor(x+24, y+18);

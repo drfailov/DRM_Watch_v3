@@ -9,6 +9,7 @@ const int ModeMenuSettingsWatchfaceContentItemShowCalendar = 7;
 const int ModeMenuSettingsWatchfaceContentItemShowTemperature = 8;
 const int ModeMenuSettingsWatchfaceContentItemShowMonth = 9;
 const int ModeMenuSettingsWatchfaceContentItemShowDjiLogo = 10;
+const int ModeMenuSettingsWatchfaceContentItemShowTimeInStatusbar = 11;
 
 void setModeMenuSettingsWatchfaceContent(){
   clearScreenAnimation();
@@ -27,7 +28,7 @@ void setModeMenuSettingsWatchfaceContent(){
   autoReturnTime = autoReturnDefaultTime;
   autoSleepTime = autoSleepDefaultTime;
   selected = 0;
-  items = 11;
+  items = 12;
 }
 
 
@@ -76,6 +77,9 @@ void ModeMenuSettingsWatchfaceContentLoop(){
   if(getWatchfaceCalendarEnabled()) drawListItem(ModeMenuSettingsWatchfaceContentItemShowCalendar, draw_ic24_check2, "Календар", "Зараз відображатиметься", firstDraw);
   else drawListItem(ModeMenuSettingsWatchfaceContentItemShowCalendar, draw_ic24_cancel, "Календар", "Зараз вимкнено", firstDraw);
 
+  if(getWatchfaceStatusbarDigitalEnabled()) drawListItem(ModeMenuSettingsWatchfaceContentItemShowTimeInStatusbar, draw_ic24_check2, "Час в статус-барі", "Зараз відображатиметься", firstDraw);
+  else drawListItem(ModeMenuSettingsWatchfaceContentItemShowTimeInStatusbar, draw_ic24_cancel, "Час в статус-барі", "Зараз вимкнено", firstDraw);
+
 
   lcd()->sendBuffer();
 }
@@ -122,6 +126,10 @@ void ModeMenuSettingsWatchfaceContentButtonCenter(){
   }
   if(selected==ModeMenuSettingsWatchfaceContentItemShowCalendar){
     saveWatchfaceCalendarEnabled(!getWatchfaceCalendarEnabled());
+    return;
+  }
+  if(selected==ModeMenuSettingsWatchfaceContentItemShowTimeInStatusbar){
+    saveWatchfaceStatusbarDigitalEnabled(!getWatchfaceStatusbarDigitalEnabled());
     return;
   }
 }

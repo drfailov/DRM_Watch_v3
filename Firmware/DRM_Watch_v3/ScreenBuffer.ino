@@ -3,7 +3,7 @@ RTC_DATA_ATTR byte screenBuffer[BUFF_W*BUFF_H/8];
 void randScreenBuffer(){
   //randomSeed(readSensUsbRaw());
   for(int i=0; i<BUFF_W*BUFF_H/8; i++)
-    screenBuffer[i] = micros()%2;//rand()%255;
+    screenBuffer[i] = (micros()+rand())%255;//rand()%255;
 }
 void zeroScreenBuffer(){
   for(int i=0; i<BUFF_W*BUFF_H/8; i++)

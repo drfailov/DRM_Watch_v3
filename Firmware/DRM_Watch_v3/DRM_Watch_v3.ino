@@ -64,7 +64,7 @@ const int BUFF_SCALE = 2;  //screenBuffer  //2 is 3KB out of 8KB RTC Memory
 const int BUFF_W = W/BUFF_SCALE;   //screenBuffer
 const int BUFF_H = H/BUFF_SCALE;   //screenBuffer
 
-String version = "v2.01";          //================================== <<<<< VERSION
+String version = "v2.02";          //================================== <<<<< VERSION
 bool black = 1;
 bool white = 0;
 
@@ -114,6 +114,10 @@ void setup(void) {
   initTime();
   
   if(esp_sleep_get_wakeup_cause() == 0){
+    if(isButtonDownPressed()){
+      setModeTest();
+      return;
+    }
     lcd()->setColorIndex(white);
     lcd()->drawBox(0, 0, 400, 240);
     lcd()->setFont(u8g2_font_10x20_t_cyrillic);  //ok
