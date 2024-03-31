@@ -14,8 +14,8 @@
  D32 - Used for flash communication
 */
 //#define HW_REV_1
-#define HW_REV_2
-//#define HW_REV_3
+//#define HW_REV_2
+#define HW_REV_3
 
 #ifdef HW_REV_1
 #define LCD_CLK 7
@@ -58,13 +58,32 @@
 #define RTC_SCL_PIN 35    
 #endif
 
+#ifdef HW_REV_3
+#define LCD_CLK 7
+#define LCD_SDA 11
+#define LCD_CS 5
+#define LCD_EN GPIO_NUM_6
+#define BACKLIGHT_EN GPIO_NUM_8
+#define BUT_UP GPIO_NUM_0 //Active LOW
+#define BUT_CENTER GPIO_NUM_1 //Active LOW
+#define BUT_DOWN GPIO_NUM_2 //Active LOW
+#define SENS_USB_PIN 3
+#define SENS_BATERY_PIN 4
+#define BUZZER_PIN 12
+#define LED_TOP_PIN GPIO_NUM_36      //NEW
+#define LED_BOTTOM_PIN GPIO_NUM_37   //NEW
+#define LED_STATUS_PIN GPIO_NUM_38   //NEW
+#define RTC_SDA_PIN 33    
+#define RTC_SCL_PIN 35    
+#endif
+
 #define W 400
 #define H 240
 const int BUFF_SCALE = 2;  //screenBuffer  //2 is 3KB out of 8KB RTC Memory
 const int BUFF_W = W/BUFF_SCALE;   //screenBuffer
 const int BUFF_H = H/BUFF_SCALE;   //screenBuffer
 
-String version = "v2.02";          //================================== <<<<< VERSION
+String version = "v2.03";          //================================== <<<<< VERSION
 bool black = 1;
 bool white = 0;
 
@@ -107,6 +126,12 @@ void setup(void) {
   buzzerInit();
   if(esp_sleep_get_wakeup_cause() == ESP_SLEEP_WAKEUP_EXT0/*By button*/) buttonBeep();
   lcdInit();
+
+  if(esp_sleep_get_wakeup_cause() != ESP_SLEEP_WAKEUP_TIMER && !isOff()){/*NOT periodical wakeup*/ //==================================== BACKLIGHT
+    pinMode(BACKLIGHT_EN, OUTPUT);
+    digitalWrite(BACKLIGHT_EN, HIGH);
+  }
+
   initButtons();
   initLed();
   if(esp_sleep_get_wakeup_cause() == 0) drawMessage("Init RTC...");
@@ -179,6 +204,16 @@ void loop(void) {
     // unsigned long millisEnd = millis();
     // Serial.print("Loop: "); Serial.print(millisEnd-millisStarted); Serial.println("ms.");
   }
+
+  
+  if(sinceLastAction() > 20000 && !dontSleep){ //==================================== BACKLIGHT
+    digitalWrite(BACKLIGHT_EN, LOW);
+    pinMode(BACKLIGHT_EN, INPUT);
+  }
+  else{
+    pinMode(BACKLIGHT_EN, OUTPUT);
+    digitalWrite(BACKLIGHT_EN, HIGH);
+  }
   
   if((enableAutoReturn || (!enableAutoSleep && batteryBars() <= 1)) && sinceLastAction() > autoReturnTime && !dontSleep) //auto go to watchface
     setModeWatchface();
@@ -210,6 +245,10 @@ void goToSleep(){
   draw_ic16_empty(lx(), ly3(), black);
   lcd()->sendBuffer();
   delay(20);
+
+  //==================================== BACKLIGHT
+  digitalWrite(BACKLIGHT_EN, LOW);
+  pinMode(BACKLIGHT_EN, INPUT);
   
   
   esp_sleep_enable_ext0_wakeup(BUT_CENTER, 0); //1 = High, 0 = Low

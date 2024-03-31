@@ -18,7 +18,7 @@ void lcdInit(){
     u8g2.begin();
   else
     u8g2.initInterface();
-  u8g2.setBusClock(3000000);   //1MHz is default, 2MHz is max recommended, 3.5MHz is still OK, 4MHz is glitchy, 5MHZ not working at all
+  u8g2.setBusClock(2300000);   //1MHz is default, 2MHz is max recommended, 3.5MHz is still OK, 4MHz is glitchy, 5MHZ not working at all
   u8g2.enableUTF8Print();  
   u8g2.setBitmapMode(0); //1-is transparent   0-not transparent
 }
@@ -61,7 +61,7 @@ void clearScreenAnimationCircleFromRight(){
   int curr = 0;
   float targ = 80;
   while(targ < W){
-    targ *=1.5;
+    targ *=1.6;
     lcd()->setColorIndex(white);
     for(; curr<targ; curr+=1){
       lcd()->drawCircle(/*x0*/400, /*y0*/H/2, /*rad*/curr, /*opt*/U8G2_DRAW_UPPER_LEFT|U8G2_DRAW_LOWER_LEFT);   //drawDisc     U8G2_DRAW_ALL
