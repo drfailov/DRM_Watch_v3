@@ -43,7 +43,7 @@
 
 
 ## Де брати комплектуючі
-<p align="center"> </p>
+
 
 ### Дисплей
 <p align="center"><img src="Photos/5a768_electronic_circuits_gI_0_MemoryLCDPress.jpg" width="200"/> </p>
@@ -94,6 +94,7 @@ https://dlnmh9ip6v2uc.cloudfront.net/datasheets/Prototyping/TP4056.pdf  <br>
 <img src="Photos/tp4056.png" width=50"/> 
 <img src="Photos/usb.png" width=50"/> 
 </p>
+
 Чіп: **TP4056**  <br>
 https://www.alibaba.com/product-detail/TC4056A-SOP-8-is-compatible-with_1600806443781.html  <br>
 Роз'єм: **TYPE-C-31-M-12**  <br>
@@ -102,30 +103,42 @@ https://jlcpcb.com/partdetail/Korean_HropartsElec-TYPE_C_31_M12/C165948  <br>
 
 ### Електролюмінесцентна панель
 <p align="center"><img src="Photos/el.png" width="200"/>  </p>
+
 Електролюмінесцентна панель (EL панель) є складовою частиною системи підсвітки. Це панель, що світиться під впливом високої напруги і частоти. Також їх називають світлоконденсаторами (LEC). Це просто цікаві факти щоб краще розуміти що воно таке.  <br>
 Фішка цього типу підсвітки в тому, що панель є дуже тонка, світить дуже рівномірно приємним синім кольором, а також її можна нарізати на фрагменти потрібної форми. Але після порізки складною є задача підключення до панелі. Я для підключення використовував одиночні жили дроти а також токопровідний клей.  <br>
 Мінуси: будучи розташована за дисплеєм який тут використовується, її ледь-ледь видно, але вночі цього достатньо. Також трохи пищить при роботі. А ще для її роботи потрібна досить складна схема драйвера.  <br>
 Раджу купувати синій колір, тому що EL панель натівно такого кольору, а в інші кольори її тупо фарбують, а фарба поглинає частину світла. Якщо прийшла пофарбована панель, її можна очистити від фарби лезом.  <br>
-Ось де я купував:
-https://www.aliexpress.us/item/1005003971896012.html
+Ось де я купував:  <br>
+https://www.aliexpress.us/item/1005003971896012.html  <br>
+
+
+### Драйвер електролюмінесцентної панелі
+<p align="center"><img src="Photos/h857.png" width="200"/>  </p>
+
+Модель: **Microchip HV857MG MSOP8**   <br>
+Датащит:
+https://ww1.microchip.com/downloads/aemDocuments/documents/APID/ProductDocuments/DataSheets/HV857-High-Voltage-Low-Noise-EL-Lamp-Driver-IC-Data-Sheet-DS20005683.pdf
+Я купував тут:  <br>
+https://www.aliexpress.us/item/1005005512523052.html  <br>
 
 
 
 ## Процес збірки та налагодження
-Мені дуже допомогла в пайці така прикольна паяльна станція:
 <p align="center"><img src="Photos/preheater.png" width=80"/> </p>
+Мені дуже допомогла в пайці така прикольна паяльна станція:
 https://www.aliexpress.us/item/1005005609080807.html
 
-На етапі налагодження може допомогти такий Breakout Board який підійде для ESP32-S2 (нагадую, там корпус QFN56)
+
 <p align="center"><img src="Photos/breakout.png" width=80"/> </p>
+На етапі налагодження може допомогти такий Breakout Board який підійде для ESP32-S2 (нагадую, там корпус QFN56)
 https://www.aliexpress.us/item/1005002805132028.html
 
 
-## Tools used:
-- KiCad 7
-- Arduino IDE 2.2.1
-- esp32 by Espressif v2.0.11, ESP32-S2 (Select "Lolin S2 Mini" board to flash successfully)
-- LCD Assistant
+## Інструменти, які я використовував при проектуванні:
+- Проектування плати та схеми: **KiCad 7**;
+- Програмування: **Arduino IDE 2.2.1**;
+- Розширення плати: **esp32 by Espressif v2.0.11, ESP32-S2** (В списку плат оберіть "Lolin S2 Mini");
+- Конвертування іконок: **Програма LCD Assistant**. (Виберіть Horizontal)
 
 
 
