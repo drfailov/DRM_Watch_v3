@@ -137,6 +137,7 @@ https://www.aliexpress.us/item/1005005512523052.html  <br>
 <img src="Photos/es1d.png" height=50"/> 
 <img src="Photos/l.png" height=50"/> 
 </p>
+
 Насправді я в цій мелочовці взагалі не шарю, причому навіть деякі елементи замовив не ті що треба було... Але у мене воно запрацювало. Тому я кладу тут ссилки на те що я конкретно замовляв.
 
 Модель: **Capacitor SMD 1206 10NF X7R 200V**   <br>
@@ -155,6 +156,7 @@ https://www.aliexpress.us/item/32981310345.html   <br>
 
 ### Клей для електролюмінесцентної панелі
 <p align="center"><img src="Photos/mechanic.png" height="200"/>  </p>
+
 Модель: **MECHANIC MCN-DJ002 Conductive Adhesive Glue Silver**   <br>
 https://www.aliexpress.us/item/1005002369819447.html   <br>
 
