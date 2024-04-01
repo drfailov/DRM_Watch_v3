@@ -46,7 +46,7 @@
 
 
 ### Дисплей
-<p align="center"><img src="Photos/5a768_electronic_circuits_gI_0_MemoryLCDPress.jpg" width="200"/> </p>
+<p align="center"><img src="Photos/5a768_electronic_circuits_gI_0_MemoryLCDPress.jpg" height="200"/> </p>
 
 Дисплей потрібен, щоб відображати інформацію користувачу:)  <br>
 Модель дисплея: **Sharp LS027B7DH01A**    <br>
@@ -54,7 +54,7 @@
 https://www.aliexpress.us/item/1005005611440829.html  <br>
 
 ### Буззер
-<p align="center"><img src="Photos/buzzer.png" width="200"/> </p>
+<p align="center"><img src="Photos/buzzer.png" height="200"/> </p>
 
 Буззер потрібен щоб пищати, грати мелодії.  <br>
 Модель: **Buzzer SMD 7525-3.6V-passive**. Я купував тут:    <br>
@@ -66,15 +66,15 @@ https://eu.mouser.com/ProductDetail/CUI-Devices/CMT-7525S-SMT-TR?qs=qCxwlXJ4fnw4
 
 
 ### ESP32
-<p align="center"><img src="Photos/1333_1.png" width="200"/> </p>
+<p align="center"><img src="Photos/1333_1.png" height="200"/> </p>
 
 Я розпаював на комплектуючі плати **Lolin S2 Mini**, ось ссилка де я купував:  <br>
 https://www.aliexpress.us/item/1005004438665554.html  <br>
   <br>
 Якщо немає бажання розпаювати Lolin S2 Mini, можна купити комплектуху окремо:  <br>
 <p align="center">
-<img src="Photos/esp32s2.png" width=50"/> 
-<img src="Photos/quartz.png" width=50"/> 
+<img src="Photos/esp32s2.png" height=50"/> 
+<img src="Photos/quartz.png" height=50"/> 
 </p>
 
 Чіп: **ESP32-S2, QFN56**  <br>
@@ -85,14 +85,14 @@ https://www.aliexpress.us/item/1005004689346275.html  <br>
 
 
 ### Модуль зарядки акумулятора
-<p align="center"><img src="Photos/large_AOC777-1.jpg" width="200"/>  </p>
+<p align="center"><img src="Photos/large_AOC777-1.jpg" height="200"/>  </p>
 
 Розпаявши такий модуль можна дістати чіп **TP4056** , який відоповідає за зарядку акума. Датащит:  <br>
 https://dlnmh9ip6v2uc.cloudfront.net/datasheets/Prototyping/TP4056.pdf  <br>
 Якщо нема бажання розпаювати модуль, можна знайти окремо:  <br>
 <p align="center">
-<img src="Photos/tp4056.png" width=50"/> 
-<img src="Photos/usb.png" width=50"/> 
+<img src="Photos/tp4056.png" height=50"/> 
+<img src="Photos/usb.png" height=50"/> 
 </p>
 
 Чіп: **TP4056**  <br>
@@ -102,7 +102,7 @@ https://jlcpcb.com/partdetail/Korean_HropartsElec-TYPE_C_31_M12/C165948  <br>
 
 
 ### Електролюмінесцентна панель
-<p align="center"><img src="Photos/el.png" width="200"/>  </p>
+<p align="center"><img src="Photos/el.png" height="200"/>  </p>
 
 Електролюмінесцентна панель (EL панель) є складовою частиною системи підсвітки. Це панель, що світиться під впливом високої напруги і частоти. Також їх називають світлоконденсаторами (LEC). Це просто цікаві факти щоб краще розуміти що воно таке.  <br>
 Фішка цього типу підсвітки в тому, що панель є дуже тонка, світить дуже рівномірно приємним синім кольором, а також її можна нарізати на фрагменти потрібної форми. Але після порізки складною є задача підключення до панелі. Я для підключення використовував одиночні жили дроти а також токопровідний клей.  <br>
@@ -113,23 +113,23 @@ https://www.aliexpress.us/item/1005003971896012.html  <br>
 
 
 ### Драйвер електролюмінесцентної панелі
-<p align="center"><img src="Photos/h857.png" width="200"/>  </p>
+<p align="center"><img src="Photos/h857.png" height="200"/>  </p>
 
 Модель: **Microchip HV857MG MSOP8**   <br>
-Датащит:
-https://ww1.microchip.com/downloads/aemDocuments/documents/APID/ProductDocuments/DataSheets/HV857-High-Voltage-Low-Noise-EL-Lamp-Driver-IC-Data-Sheet-DS20005683.pdf
+Датащит:   <br>
+https://ww1.microchip.com/downloads/aemDocuments/documents/APID/ProductDocuments/DataSheets/HV857-High-Voltage-Low-Noise-EL-Lamp-Driver-IC-Data-Sheet-DS20005683.pdf   <br>
 Я купував тут:  <br>
 https://www.aliexpress.us/item/1005005512523052.html  <br>
 
 
 
 ## Процес збірки та налагодження
-<p align="center"><img src="Photos/preheater.png" width=80"/> </p>
+<p align="center"><img src="Photos/preheater.png" height=80"/> </p>
 Мені дуже допомогла в пайці така прикольна паяльна станція:
 https://www.aliexpress.us/item/1005005609080807.html
 
 
-<p align="center"><img src="Photos/breakout.png" width=80"/> </p>
+<p align="center"><img src="Photos/breakout.png" height=80"/> </p>
 На етапі налагодження може допомогти такий Breakout Board який підійде для ESP32-S2 (нагадую, там корпус QFN56)
 https://www.aliexpress.us/item/1005002805132028.html
 
