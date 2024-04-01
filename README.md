@@ -53,6 +53,15 @@
 Він звісно недешений, але мені дуже подобається як він виглядає. Його можна купити готовим, я купував тут:   <br>
 https://www.aliexpress.us/item/1005005611440829.html  <br>
 
+
+### Конектор дисплея
+<p align="center"><img src="Photos/fpc.png" height="200"/> </p>
+
+Для підключення цього дисплея.  <br>
+Модель: **FPC 10pin 0.5mm pitch** Я купував тут:    <br>
+https://www.aliexpress.us/item/1005002288363000.html   <br>
+
+
 ### Буззер
 <p align="center"><img src="Photos/buzzer.png" height="200"/> </p>
 
@@ -60,9 +69,6 @@ https://www.aliexpress.us/item/1005005611440829.html  <br>
 Модель: **Buzzer SMD 7525-3.6V-passive**. Я купував тут:    <br>
 https://www.aliexpress.us/item/1005003620083880.html   <br>
 https://eu.mouser.com/ProductDetail/CUI-Devices/CMT-7525S-SMT-TR?qs=qCxwlXJ4fnw4ZHFvNib47A%3D%3D
-
-
-### Конектор дисплея
 
 
 ### ESP32
