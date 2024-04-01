@@ -47,19 +47,17 @@
 
 ### Дисплей
 <p align="center"><img src="Photos/5a768_electronic_circuits_gI_0_MemoryLCDPress.jpg" width="200"/> </p>
-Дисплей потрібен, щоб відображати інформацію користувачу:)
-Модель дисплея: Sharp LS027B7DH01A 
-Він звісно недешений, але мені дуже подобається як він виглядає
-Його можна купити готовим, я купував тут: 
-(посилання актуальне станом на 2024-04) https://www.aliexpress.us/item/1005005611440829.html
+Дисплей потрібен, щоб відображати інформацію користувачу:)  <br>
+Модель дисплея: ** Sharp LS027B7DH01A **    <br>
+Він звісно недешений, але мені дуже подобається як він виглядає. Його можна купити готовим, я купував тут:   <br>
+https://www.aliexpress.us/item/1005005611440829.html
 
 ### Буззер
 <p align="center"><img src="Photos/buzzer.png" width="200"/> </p>
-Буззер потрібен щоб пищати, грати мелодії.  
-Модель: Buzzer SMD 7525-3.6V-passive  
-Я купував тут:  
-(посилання актуальне станом на 2024-04) https://www.aliexpress.us/item/1005003620083880.html
-(посилання актуальне станом на 2024-04) https://eu.mouser.com/ProductDetail/CUI-Devices/CMT-7525S-SMT-TR?qs=qCxwlXJ4fnw4ZHFvNib47A%3D%3D
+Буззер потрібен щоб пищати, грати мелодії.    <br>
+Модель: ** Buzzer SMD 7525-3.6V-passive ** . Я купував тут:    <br>
+https://www.aliexpress.us/item/1005003620083880.html
+https://eu.mouser.com/ProductDetail/CUI-Devices/CMT-7525S-SMT-TR?qs=qCxwlXJ4fnw4ZHFvNib47A%3D%3D
 
 
 ### Конектор дисплея
@@ -67,18 +65,18 @@
 
 ### ESP32
 <p align="center"><img src="Photos/1333_1.png" width="200"/> </p>
-Я розпаював на комплектуючі плати **Lolin S2 Mini**, ось ссилка де я купував:  <br>
-(посилання актуальне станом на 2024-04) https://www.aliexpress.us/item/1005004438665554.html  <br>
+Я розпаював на комплектуючі плати ** Lolin S2 Mini **, ось ссилка де я купував:  <br>
+https://www.aliexpress.us/item/1005004438665554.html  <br>
   <br>
 Якщо немає бажання розпаювати Lolin S2 Mini, можна купити комплектуху окремо:  <br>
 <p align="center">
-<img src="Photos/esp32s2.png" width=80"/> 
-<img src="Photos/quartz.png" width=80"/> 
+<img src="Photos/esp32s2.png" width=50"/> 
+<img src="Photos/quartz.png" width=50"/> 
 </p>
-Чіп: **ESP32-S2, QFN56**  <br>
+Чіп: ** ESP32-S2, QFN56 **  <br>
 https://www.tme.eu/en/details/esp32s2/iot-wifi-bluetooth-modules/espressif/esp32-s2/   <br>
 https://eu.mouser.com/ProductDetail/Espressif-Systems/ESP32-S2?qs=GBLSl2Akirtmlui%2FgtDaSQ%3D%3D   <br>
-Кварц: **SMD 3225 4pin 40MHz**:  <br>
+Кварц: ** SMD 3225 4pin 40MHz **:  <br>
 https://www.aliexpress.us/item/1005004689346275.html  <br>
 
 
