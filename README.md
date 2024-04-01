@@ -57,9 +57,10 @@ https://www.aliexpress.us/item/1005005611440829.html  <br>
 ### Конектор дисплея
 <p align="center"><img src="Photos/fpc.png" height="200"/> </p>
 
-Для підключення цього дисплея.  <br>
+Для підключення цього дисплея. Я купував модулем, але можна пошукати і роз'єм окремо.  <br>
 Модель: **FPC 10pin 0.5mm pitch** Я купував тут:    <br>
 https://www.aliexpress.us/item/1005002288363000.html   <br>
+https://www.aliexpress.us/item/10000348360254.html   <br>
 
 
 ### Буззер
@@ -126,6 +127,36 @@ https://www.aliexpress.us/item/1005003971896012.html  <br>
 https://ww1.microchip.com/downloads/aemDocuments/documents/APID/ProductDocuments/DataSheets/HV857-High-Voltage-Low-Noise-EL-Lamp-Driver-IC-Data-Sheet-DS20005683.pdf   <br>
 Я купував тут:  <br>
 https://www.aliexpress.us/item/1005005512523052.html  <br>
+
+
+
+### Обвязка драйвера електролюмінесцентної панелі
+<p align="center">
+<img src="Photos/capacitor.png" height=50"/> 
+<img src="Photos/capacitorset.png" height=50"/> 
+<img src="Photos/es1d.png" height=50"/> 
+<img src="Photos/l.png" height=50"/> 
+</p>
+Насправді я в цій мелочовці взагалі не шарю, причому навіть деякі елементи замовив не ті що треба було... Але у мене воно запрацювало. Тому я кладу тут ссилки на те що я конкретно замовляв.
+
+Модель: **Capacitor SMD 1206 10NF X7R 200V**   <br>
+https://www.aliexpress.us/item/1005004628006766.html   <br>
+
+Модель: **1206 320PCS 16Value**   <br>
+https://www.aliexpress.us/item/1005006124283234.html   <br>
+
+Модель: **Diode ES1D**   <br>
+https://www.aliexpress.us/item/1005005254835443.html   <br>
+
+Модель: **SMD Inductor 1210 3225 22UH**   <br>
+https://www.aliexpress.us/item/32981310345.html   <br>
+
+
+
+### Клей для електролюмінесцентної панелі
+<p align="center"><img src="Photos/mechanic.png" height="200"/>  </p>
+Модель: **MECHANIC MCN-DJ002 Conductive Adhesive Glue Silver**   <br>
+https://www.aliexpress.us/item/1005002369819447.html   <br>
 
 
 

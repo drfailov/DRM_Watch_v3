@@ -4976,7 +4976,7 @@
   (symbol (lib_id "Project-Lib:ESP32-S2") (at 179.07 110.49 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 29510199-ba49-47d0-9479-245b2f73ac96)
-    (property "Reference" "U?" (at 181.2641 153.67 0)
+    (property "Reference" "U1" (at 181.2641 153.67 0)
       (effects (font (size 1.27 1.27)) (justify left) hide)
     )
     (property "Value" "ESP32-S2" (at 181.2641 156.21 0)
@@ -5054,7 +5054,7 @@
     (instances
       (project "DRM_Watch_V3"
         (path "/d50c768c-843d-4a19-b0bf-8bd21b6b9231"
-          (reference "U?") (unit 1)
+          (reference "U1") (unit 1)
         )
       )
     )
@@ -5177,6 +5177,9 @@
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Datasheet" "~" (at 281.94 254 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Model" "Capacitor SMD 1206 10NF X7R 200V" (at 281.94 254 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (pin "2" (uuid c5341f35-eebc-49d7-9c0e-3bcc594c0b3b))
@@ -5495,7 +5498,7 @@
   (symbol (lib_id "Project-Lib:HV857") (at 255.27 236.22 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 4e69b618-7289-40e6-8eb6-3db668929df7)
-    (property "Reference" "U?" (at 255.27 248.92 0)
+    (property "Reference" "U5" (at 255.27 248.92 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "Microchip HV857" (at 255.27 236.22 0)
@@ -5527,7 +5530,7 @@
     (instances
       (project "DRM_Watch_V3"
         (path "/d50c768c-843d-4a19-b0bf-8bd21b6b9231"
-          (reference "U?") (unit 1)
+          (reference "U5") (unit 1)
         )
       )
     )
@@ -7038,12 +7041,12 @@
   )
 
   (symbol (lib_id "Project-Lib:687110149022") (at 368.3 205.74 0) (mirror x) (unit 1)
-    (in_bom no) (on_board yes) (dnp no)
+    (in_bom yes) (on_board yes) (dnp no)
     (uuid aa79a48f-1bd1-4546-9a30-fe108ed8897f)
     (property "Reference" "J2" (at 368.3 208.28 0)
       (effects (font (size 1.27 1.27)) (justify left) hide)
     )
-    (property "Value" "687110149022" (at 368.3 205.74 0)
+    (property "Value" "FPC 10pin 0.5mm pitch" (at 368.3 205.74 0)
       (effects (font (size 1.27 1.27)) (justify left) hide)
     )
     (property "Footprint" "Project-Lib:687110149022" (at 368.3 205.74 0)
@@ -7108,6 +7111,9 @@
     )
     (property "pin10 desc" "LCD GNDA" (at 358.14 217.17 0)
       (effects (font (size 1 1)))
+    )
+    (property "Link" "https://www.aliexpress.us/item/10000348360254.html" (at 368.3 205.74 0)
+      (effects (font (size 1.27 1.27)) hide)
     )
     (pin "2" (uuid 57d4d12c-8ebe-4d4e-8f3e-c01f138541c2))
     (pin "6" (uuid c5052a15-802b-411e-a2bf-37dbc997c4ea))
