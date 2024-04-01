@@ -48,15 +48,15 @@
 ### Дисплей
 <p align="center"><img src="Photos/5a768_electronic_circuits_gI_0_MemoryLCDPress.jpg" width="200"/> </p>
 Дисплей потрібен, щоб відображати інформацію користувачу:)  <br>
-Модель дисплея: ** Sharp LS027B7DH01A **    <br>
+Модель дисплея: __ Sharp LS027B7DH01A __    <br>
 Він звісно недешений, але мені дуже подобається як він виглядає. Його можна купити готовим, я купував тут:   <br>
-https://www.aliexpress.us/item/1005005611440829.html
+https://www.aliexpress.us/item/1005005611440829.html  <br>
 
 ### Буззер
 <p align="center"><img src="Photos/buzzer.png" width="200"/> </p>
 Буззер потрібен щоб пищати, грати мелодії.    <br>
 Модель: ** Buzzer SMD 7525-3.6V-passive ** . Я купував тут:    <br>
-https://www.aliexpress.us/item/1005003620083880.html
+https://www.aliexpress.us/item/1005003620083880.html   <br>
 https://eu.mouser.com/ProductDetail/CUI-Devices/CMT-7525S-SMT-TR?qs=qCxwlXJ4fnw4ZHFvNib47A%3D%3D
 
 
