@@ -56,8 +56,8 @@ https://www.aliexpress.us/item/1005005611440829.html  <br>
 ### Буззер
 <p align="center"><img src="Photos/buzzer.png" width="200"/> </p>
 
-Буззер потрібен щоб пищати, грати мелодії.    <br>
-Модель: ** Buzzer SMD 7525-3.6V-passive ** . Я купував тут:    <br>
+Буззер потрібен щоб пищати, грати мелодії.  <br>
+Модель: **Buzzer SMD 7525-3.6V-passive**. Я купував тут:    <br>
 https://www.aliexpress.us/item/1005003620083880.html   <br>
 https://eu.mouser.com/ProductDetail/CUI-Devices/CMT-7525S-SMT-TR?qs=qCxwlXJ4fnw4ZHFvNib47A%3D%3D
 
@@ -68,7 +68,7 @@ https://eu.mouser.com/ProductDetail/CUI-Devices/CMT-7525S-SMT-TR?qs=qCxwlXJ4fnw4
 ### ESP32
 <p align="center"><img src="Photos/1333_1.png" width="200"/> </p>
 
-Я розпаював на комплектуючі плати ** Lolin S2 Mini **, ось ссилка де я купував:  <br>
+Я розпаював на комплектуючі плати **Lolin S2 Mini**, ось ссилка де я купував:  <br>
 https://www.aliexpress.us/item/1005004438665554.html  <br>
   <br>
 Якщо немає бажання розпаювати Lolin S2 Mini, можна купити комплектуху окремо:  <br>
