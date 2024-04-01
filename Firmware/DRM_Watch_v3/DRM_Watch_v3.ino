@@ -206,13 +206,15 @@ void loop(void) {
   }
 
   
-  if(sinceLastAction() > 20000 && !dontSleep){ //==================================== BACKLIGHT
-    digitalWrite(BACKLIGHT_EN, LOW);
-    pinMode(BACKLIGHT_EN, INPUT);
-  }
-  else{
-    pinMode(BACKLIGHT_EN, OUTPUT);
-    digitalWrite(BACKLIGHT_EN, HIGH);
+  if(esp_sleep_get_wakeup_cause() != ESP_SLEEP_WAKEUP_TIMER && !isOff()){/*NOT periodical wakeup*/ //==================================== BACKLIGHT
+    if(sinceLastAction() > 20000 && !dontSleep){ //==================================== BACKLIGHT
+      digitalWrite(BACKLIGHT_EN, LOW);
+      pinMode(BACKLIGHT_EN, INPUT);
+    }
+    else{
+      pinMode(BACKLIGHT_EN, OUTPUT);
+      digitalWrite(BACKLIGHT_EN, HIGH);
+    }
   }
   
   if((enableAutoReturn || (!enableAutoSleep && batteryBars() <= 1)) && sinceLastAction() > autoReturnTime && !dontSleep) //auto go to watchface
