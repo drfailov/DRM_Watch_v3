@@ -48,7 +48,7 @@
 ### Дисплей
 <p align="center"><img src="Photos/5a768_electronic_circuits_gI_0_MemoryLCDPress.jpg" width="200"/> </p>
 Дисплей потрібен, щоб відображати інформацію користувачу:)  <br>
-Модель дисплея: __ Sharp LS027B7DH01A __    <br>
+Модель дисплея: **Sharp LS027B7DH01A**    <br>
 Він звісно недешений, але мені дуже подобається як він виглядає. Його можна купити готовим, я купував тут:   <br>
 https://www.aliexpress.us/item/1005005611440829.html  <br>
 
