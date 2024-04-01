@@ -1,6 +1,7 @@
 
 <!-- For new line: \ -->
 <!-- Picture: <img src="Photos/" width="300"/>  -->
+<!-- New Line: "  <br>"  -->
 
 # Про проект DRM Watch v3
 Наручний годинник на базі ESP32-S2 та SHARP Memory LCD.
@@ -66,13 +67,13 @@
 
 ### ESP32
 <p align="center"><img src="Photos/1333_1.png" width="200"/> </p>
-Я розпаював на комплектуючі плати Lolin S2 Mini, ось ссилка де я купував:
-(посилання актуальне станом на 2024-04) https://www.aliexpress.us/item/1005004438665554.html
-
-Якщо немає бажання розпаювати, можна купити комплектуху окремо:
-Чіп: ESP32-S2, QFN56
-(посилання актуальне станом на 2024-04) https://www.tme.eu/en/details/esp32s2/iot-wifi-bluetooth-modules/espressif/esp32-s2/
-(посилання актуальне станом на 2024-04) https://eu.mouser.com/ProductDetail/Espressif-Systems/ESP32-S2?qs=GBLSl2Akirtmlui%2FgtDaSQ%3D%3D
+Я розпаював на комплектуючі плати Lolin S2 Mini, ось ссилка де я купував:  <br>
+(посилання актуальне станом на 2024-04) https://www.aliexpress.us/item/1005004438665554.html  <br>
+  <br>
+Якщо немає бажання розпаювати, можна купити комплектуху окремо:  <br>
+Чіп: ESP32-S2, QFN56  <br>
+(посилання актуальне станом на 2024-04) https://www.tme.eu/en/details/esp32s2/iot-wifi-bluetooth-modules/espressif/esp32-s2/   <br>
+(посилання актуальне станом на 2024-04) https://eu.mouser.com/ProductDetail/Espressif-Systems/ESP32-S2?qs=GBLSl2Akirtmlui%2FgtDaSQ%3D%3D   <br>
 
 Кварц: SMD 3225 4pin 40MHz:
 <p align="center"><img src="Photos/quartz.png" width=80"/> </p>
