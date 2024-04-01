@@ -54,8 +54,8 @@
 
 ### Буззер
 <p align="center"><img src="Photos/buzzer.jpg" width="200"/> </p>
-Буззер потрібен щоб пищати, грати мелодії.
-Модель: Buzzer SMD 7525-3.6V-passive
+Буззер потрібен щоб пищати, грати мелодії.  
+Модель: Buzzer SMD 7525-3.6V-passive  
 Я купував тут:  
 (посилання актуальне станом на 2024-04) https://www.aliexpress.us/item/1005003620083880.html
 (посилання актуальне станом на 2024-04) https://eu.mouser.com/ProductDetail/CUI-Devices/CMT-7525S-SMT-TR?qs=qCxwlXJ4fnw4ZHFvNib47A%3D%3D
