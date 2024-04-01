@@ -76,10 +76,10 @@ https://www.aliexpress.us/item/1005004438665554.html  <br>
 <img src="Photos/esp32s2.png" width=50"/> 
 <img src="Photos/quartz.png" width=50"/> 
 </p>
-Чіп: ** ESP32-S2, QFN56 **  <br>
+Чіп: **ESP32-S2, QFN56**  <br>
 https://www.tme.eu/en/details/esp32s2/iot-wifi-bluetooth-modules/espressif/esp32-s2/   <br>
 https://eu.mouser.com/ProductDetail/Espressif-Systems/ESP32-S2?qs=GBLSl2Akirtmlui%2FgtDaSQ%3D%3D   <br>
-Кварц: ** SMD 3225 4pin 40MHz **:  <br>
+Кварц: **SMD 3225 4pin 40MHz**:  <br>
 https://www.aliexpress.us/item/1005004689346275.html  <br>
 
 
