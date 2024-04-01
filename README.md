@@ -76,6 +76,7 @@ https://www.aliexpress.us/item/1005004438665554.html  <br>
 <img src="Photos/esp32s2.png" width=50"/> 
 <img src="Photos/quartz.png" width=50"/> 
 </p>
+
 Чіп: **ESP32-S2, QFN56**  <br>
 https://www.tme.eu/en/details/esp32s2/iot-wifi-bluetooth-modules/espressif/esp32-s2/   <br>
 https://eu.mouser.com/ProductDetail/Espressif-Systems/ESP32-S2?qs=GBLSl2Akirtmlui%2FgtDaSQ%3D%3D   <br>
@@ -83,8 +84,21 @@ https://eu.mouser.com/ProductDetail/Espressif-Systems/ESP32-S2?qs=GBLSl2Akirtmlu
 https://www.aliexpress.us/item/1005004689346275.html  <br>
 
 
-### TP4056
+### Модуль зарядки акумулятора
 <p align="center"><img src="Photos/large_AOC777-1.jpg" width="200"/>  </p>
+
+Розпаявши такий модуль можна дістати чіп **TP4056** , який відоповідає за зарядку акума. Датащит:  <br>
+https://dlnmh9ip6v2uc.cloudfront.net/datasheets/Prototyping/TP4056.pdf  <br>
+Якщо нема бажання розпаювати модуль, можна знайти окремо:  <br>
+<p align="center">
+<img src="Photos/tp4056.png" width=50"/> 
+<img src="Photos/usb.png" width=50"/> 
+</p>
+Чіп: **TP4056**  <br>
+https://www.alibaba.com/product-detail/TC4056A-SOP-8-is-compatible-with_1600806443781.html  <br>
+Роз'єм: **TYPE-C-31-M-12**  <br>
+https://jlcpcb.com/partdetail/Korean_HropartsElec-TYPE_C_31_M12/C165948  <br>
+
 
 ### Електролюмінесцентна панель
 <p align="center"><img src="Photos/el.png" width="200"/>  </p>
