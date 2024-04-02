@@ -4,6 +4,11 @@
 <!-- New Line: "  <br>"  -->
 
 # Про проект DRM Watch v3
+
+<p align="center">
+<img src="Photos/DRM_welcome.jpg" width="500"/>
+</p>
+
 Наручний годинник на базі ESP32-S2 та SHARP Memory LCD.  <br>
 А все починалось з того, що мені сподобався дисплей...  <br>
 Тут можна знайти інфу і інструкції щоб зібрати собі такий годинник.  <br>
@@ -11,11 +16,6 @@
   <br>
 
 
-<p align="center">
-<img src="Photos/cad-angle2.png" width="200"/>
-<img src="Photos/DRM_zb2.png" width="100"/>
-<img src="Photos/2022-03-01 Promo DRM Watch.png" width="100"/>
-</p>
 
 <p align="center">
 <img src="Photos/cad-angle.png" width="200"/>
@@ -59,7 +59,7 @@
 
 
 ## Де брати комплектуючі
-
+Готових в продажу не існує, тому якщо є бажання отримати такий годинник, можна зібрати самому.
 
 ### Дисплей
 <p align="center"><img src="Photos/5a768_electronic_circuits_gI_0_MemoryLCDPress.jpg" height="200"/> </p>
