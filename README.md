@@ -11,7 +11,18 @@
   <br>
 
 
-<p align="center"><img src="Photos/DRM_zb2.png" width="100"/></p>
+<p align="center">
+<img src="Photos/cad-angle2.png" width="200"/>
+<img src="Photos/DRM_zb2.png" width="100"/>
+<img src="Photos/2022-03-01 Promo DRM Watch.png" width="100"/>
+</p>
+
+<p align="center">
+<img src="Photos/cad-angle.png" width="200"/>
+<img src="Photos/cad-front.png" width="200"/>
+<img src="Photos/cad-side.png" width="200"/>
+</p>
+
 <p align="center">
 <img src="Photos/photo_2024-02-04_23-56-24.jpg" width="200"/>
 <img src="Photos/photo_2024-02-04_16-33-34.jpg" width="200"/>
@@ -22,6 +33,8 @@
 ## Особливості годинника
 - Стабільно працює і підходить для щоденного користування.
 - Дисплей завжди показує час;
+- Є дуже тускла але дуже приємна нічна підсвітка дисплея;
+- Є ліхтарик, білий яскравий та червоний нічний;
 - Акумулятора вистачає на понад 20днів;
 - Зручні меню, звідки можна отримати доступ до всіх функцій;
 - Наявність Wi-Fi, можна зберегти до 8 мереж в пам'яті;
@@ -95,8 +108,12 @@ https://www.aliexpress.us/item/1005004689346275.html  <br>
 
 
 ### Модуль зарядки акумулятора
-<p align="center"><img src="Photos/large_AOC777-1.jpg" height="200"/>  </p>
+<p align="center">
+<img src="Photos/large_AOC777-1.jpg" height="200"/>  
+</p>
 
+Щоб була можливість заряджати акумулятор. Причому якщо акума не буде - годинник не працюватиме навіть на зарядці.   <br>
+Тому якщо потрібно обійти модуль зарядки, можна замкнути перемичку біля мікросхеми заряду на платі (вона вона розташована біля самого краю плати) - вона подасть напряму напругу з USB порта замість напруги батареї. Основне не залишити перемичку зі вставленим акумом, щоб не отримати фаєр-шоу)))   <br>
 Розпаявши такий модуль можна дістати чіп **TP4056** , який відоповідає за зарядку акума. Датащит:  <br>
 https://dlnmh9ip6v2uc.cloudfront.net/datasheets/Prototyping/TP4056.pdf  <br>
 Якщо нема бажання розпаювати модуль, можна знайти окремо:  <br>
@@ -114,6 +131,7 @@ https://jlcpcb.com/partdetail/Korean_HropartsElec-TYPE_C_31_M12/C165948  <br>
 ### Електролюмінесцентна панель
 <p align="center"><img src="Photos/el.png" height="200"/>  </p>
 
+Цей елемент можна ставити або не ставити за бажанням, залежно від того чи потрібна вам нічна підсвітна екрана.   <br>
 Електролюмінесцентна панель (EL панель) є складовою частиною системи підсвітки. Це панель, що світиться під впливом високої напруги і частоти. Також їх називають світлоконденсаторами (LEC). Це просто цікаві факти щоб краще розуміти що воно таке.  <br>
 Фішка цього типу підсвітки в тому, що панель є дуже тонка, світить дуже рівномірно приємним синім кольором, а також її можна нарізати на фрагменти потрібної форми. Але після порізки складною є задача підключення до панелі. Я для підключення використовував одиночні жили дроти а також токопровідний клей.  <br>
 Мінуси: будучи розташована за дисплеєм який тут використовується, її ледь-ледь видно, але вночі цього достатньо. Також трохи пищить при роботі. А ще для її роботи потрібна досить складна схема драйвера.  <br>
@@ -125,6 +143,9 @@ https://www.aliexpress.us/item/1005003971896012.html  <br>
 ### Драйвер електролюмінесцентної панелі
 <p align="center"><img src="Photos/h857.png" height="200"/>  </p>
 
+Цей елемент можна ставити або не ставити за бажанням, залежно від того чи потрібна вам нічна підсвітна екрана.   <br>
+Це та мікросхема, яка і формує змінну високу напругу для електролюмінесцентної панелі.   <br>
+Схему її підключення я не розумію, просто зібрав по схемі і воно запрацювало))   <br>
 Модель: **Microchip HV857MG MSOP8**   <br>
 Датащит:   <br>
 https://ww1.microchip.com/downloads/aemDocuments/documents/APID/ProductDocuments/DataSheets/HV857-High-Voltage-Low-Noise-EL-Lamp-Driver-IC-Data-Sheet-DS20005683.pdf   <br>
@@ -140,7 +161,8 @@ https://www.aliexpress.us/item/1005005512523052.html  <br>
 <img src="Photos/l.png" height=50"/> 
 </p>
 
-Насправді я в цій мелочовці взагалі не шарю, причому навіть деякі елементи замовив не ті що треба було... Але у мене воно запрацювало. Тому я кладу тут ссилки на те що я конкретно замовляв.
+Цей елемент можна ставити або не ставити за бажанням, залежно від того чи потрібна вам нічна підсвітка екрана.   <br>
+Насправді я в цій мелочовці взагалі не шарю, причому навіть деякі елементи замовив не ті що треба було... Але у мене воно запрацювало. Тому я кладу тут ссилки на те що я конкретно замовляв.   <br>
 
 Модель: **Capacitor SMD 1206 10NF X7R 200V**   <br>
 https://www.aliexpress.us/item/1005004628006766.html   <br>
@@ -158,6 +180,7 @@ https://www.aliexpress.us/item/32981310345.html   <br>
 ### Клей для електролюмінесцентної панелі
 <p align="center"><img src="Photos/mechanic.png" height="200"/>  </p>
 
+Цей елемент можна ставити або не ставити за бажанням, залежно від того чи потрібна вам нічна підсвітка екрана.   <br>
 Модель: **MECHANIC MCN-DJ002 Conductive Adhesive Glue Silver**   <br>
 https://www.aliexpress.us/item/1005002369819447.html   <br>
 
@@ -165,15 +188,47 @@ https://www.aliexpress.us/item/1005002369819447.html   <br>
 ### SMD Резистори
 <p align="center"><img src="Photos/resistors.png" height="200"/>  </p>
 
-Я робив плату під резистори SMD 0603 (переважно), їх я брав з такого набору:
-https://www.aliexpress.us/item/1005002364437129.html
+Я робив плату під резистори **SMD 0603** (переважно), їх я брав з такого набору:   <br>
+https://www.aliexpress.us/item/1005002364437129.html   <br>
 
 
 ### RTC модуль
-<p align="center"><img src="Photos/rtc.png" height="200"/>  </p>
+<p align="center">
+<img src="Photos/rtc.png" height="200"/>   
+<img src="Photos/rtcchip.png" height="200"/>  
+</p>
+
+Використовується мікросхема **Analog Devices DS3231**, я її купував в складі такого модуля:   <br>
+https://www.aliexpress.us/item/32822420722.html   <br>
+Але можна також знайти мікросхеми окремо. Ось ще трохи інфи по ним:   <br>
+https://octopart.com/ds3231-maxim+integrated-14739425
+https://www.analog.com/en/products/ds3231.html   <br>
+https://www.analog.com/media/en/technical-documentation/data-sheets/DS3231.pdf   <br>
 
 
-https://www.aliexpress.us/item/32822420722.html
+### Світлодіод ліхтарика
+<p align="center">
+<img src="Photos/020led.png" height="200"/>  
+<img src="Photos/lcd-backlight.png" height="200"/>  
+</p>
+
+Ці світлодіоди я діставав виключно з підсвітки старих телефонів, бо їх дисплеїв у мене багато.   <br>
+Але я знайшов їх типорозмір щоб можна було замовити окремо: **020 SMD Side View LED White 6000K**.   <br>
+Знайшов що тут можна замовити:  <br>
+https://www.aliexpress.us/item/32419907074.html   <br>
+
+
+### Кнопки
+<p align="center"><img src="Photos/buttons.png" height="200"/>  </p>
+
+Я так і не знайшов як їх можна назвати, тому шукаємо по фото і цьому тексту: **2*4*3.5mm Micro SMD Tact Switch Side Button**
+https://www.aliexpress.us/item/32880903601.html    <br>
+
+
+## Корпус
+<p align="center"><img src="Photos/case-front.png" height="200"/>  </p>
+<p align="center"><img src="Photos/case-back.png" height="200"/>  </p>
+<p align="center"><img src="Photos/case-buttons.png" height="200"/>  </p>
 
 
 
