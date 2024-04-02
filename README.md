@@ -6,6 +6,9 @@
 # Про проект DRM Watch v3
 Наручний годинник на базі ESP32-S2 та SHARP Memory LCD.
 А все починалось з того, що мені сподобався дисплей...
+Тут можна знайти інфу і інструкції щоб зібрати собі такий годинник.
+Посилання що наведено в цьому тексті є актуальними станом на 2024-04. Якщо якісь товари будуть вже не актуальні, то шукайте за фотками))
+
 
 
 <p align="center"><img src="Photos/DRM_zb2.png" width="100"/></p>
@@ -129,7 +132,6 @@ https://ww1.microchip.com/downloads/aemDocuments/documents/APID/ProductDocuments
 https://www.aliexpress.us/item/1005005512523052.html  <br>
 
 
-
 ### Обвязка драйвера електролюмінесцентної панелі
 <p align="center">
 <img src="Photos/capacitor.png" height=50"/> 
@@ -153,12 +155,25 @@ https://www.aliexpress.us/item/1005005254835443.html   <br>
 https://www.aliexpress.us/item/32981310345.html   <br>
 
 
-
 ### Клей для електролюмінесцентної панелі
 <p align="center"><img src="Photos/mechanic.png" height="200"/>  </p>
 
 Модель: **MECHANIC MCN-DJ002 Conductive Adhesive Glue Silver**   <br>
 https://www.aliexpress.us/item/1005002369819447.html   <br>
+
+
+### SMD Резистори
+<p align="center"><img src="Photos/resistors.png" height="200"/>  </p>
+
+Я робив плату під резистори SMD 0603 (переважно), їх я брав з такого набору:
+https://www.aliexpress.us/item/1005002364437129.html
+
+
+### RTC модуль
+<p align="center"><img src="Photos/rtc.png" height="200"/>  </p>
+
+
+https://www.aliexpress.us/item/32822420722.html
 
 
 

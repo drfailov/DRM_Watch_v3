@@ -6925,6 +6925,9 @@
     (property "Datasheet" "~" (at 201.93 233.68 0)
       (effects (font (size 1.27 1.27)) hide)
     )
+    (property "Link" "https://www.aliexpress.us/item/1005002364437129.html" (at 201.93 233.68 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
     (pin "1" (uuid 4fa959e9-4055-456d-bce2-a3bdac4ce405))
     (pin "2" (uuid 4ad6fb18-f279-4f32-b1bf-6c17d3951e4a))
     (instances
