@@ -192,6 +192,13 @@ https://www.aliexpress.us/item/1005002369819447.html   <br>
 https://www.aliexpress.us/item/1005002364437129.html   <br>
 
 
+### SMD Конденсатори
+<p align="center"><img src="Photos/capacitorset.png" height="200"/>  </p>
+
+Я робив плату під конденсатори **SMD 0603** (переважно), їх я брав з такого набору:   <br>
+https://www.aliexpress.us/item/1005006124283234.html   <br>
+
+
 ### RTC модуль
 <p align="center">
 <img src="Photos/rtc.png" height="200"/>   
@@ -221,14 +228,36 @@ https://www.aliexpress.us/item/32419907074.html   <br>
 ### Кнопки
 <p align="center"><img src="Photos/buttons.png" height="200"/>  </p>
 
-Я так і не знайшов як їх можна назвати, тому шукаємо по фото і цьому тексту: **2*4*3.5mm Micro SMD Tact Switch Side Button**
+Я так і не знайшов як їх можна назвати, тому шукаємо по фото і цьому тексту: **2*4*3.5mm Micro SMD Tact Switch Side Button**  <br>
 https://www.aliexpress.us/item/32880903601.html    <br>
+
+
+### Місця для гвинтів
+
+Такі можна знайти на материнці DJI Mavic 3. Під гвинт М1.2  <br>
+Щось схоже:  <br>
+Обирати SMTSO-M1.2-2  <br>
+https://www.aliexpress.com/i/1005005125674149.html  <br>
+
+https://www.swaco.com/SMTSO-M1.2-2ET-PEM-ReelFast  <br>
+
+SMTSO-M1.2-2ET  <br>
+https://eu.mouser.com/ProductDetail/PEM/SMTSO-M1.2-2ET?qs=l4Gc20tDgJKS2GEfMx1Yrw%3D%3D  <br>
 
 
 ## Корпус
 <p align="center"><img src="Photos/case-front.png" height="200"/>  </p>
 <p align="center"><img src="Photos/case-back.png" height="200"/>  </p>
 <p align="center"><img src="Photos/case-buttons.png" height="200"/>  </p>
+
+## Плата
+<p align="center"><img src="Photos/board1.png" height="200"/>  </p>
+<p align="center">
+<img src="Photos/board2.png" height="100"/>  
+<img src="Photos/board3.png" height="100"/>  
+<img src="Photos/board4.png" height="100"/>  
+<img src="Photos/board5.png" height="100"/>  
+</p>
 
 
 
