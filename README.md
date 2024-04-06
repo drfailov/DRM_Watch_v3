@@ -290,6 +290,7 @@ https://www.aliexpress.us/item/1005002369819447.html   <br>
 Там одразу має бути видно як виглядатиме плата.   <br>
 Якщо потрібно щось поміняти - ставимо KiKad, відкриваєм проект `\Board\_DRM_Watch_v3` і можна міняти.   <br>
 Експортувати Gerber на Drl можна в редакторі плат KiKad.  <br>
+Також в схемі в проекті я до кожного елемента пододавав інфу про те де його можна замовити (якщо знаю звісно)  <br>
 
 
 
@@ -339,6 +340,9 @@ https://youtube.com/shorts/PZIMB8fdEP8?si=xofTaj4oOFBRnQQU
 
 - Big repository of phone melodies where I found some melodies
 http://onj3.andrelouis.com/phonetones/unzipped/
+
+- Vibration implementation
+https://makeabilitylab.github.io/physcomp/advancedio/vibromotor.html
 
 
 
