@@ -23,29 +23,45 @@ void modeAboutLoop(){
   lcd()->drawBox(0, 0, 400, 240);
   lcd()->setFont(u8g2_font_10x20_t_cyrillic);  //ok
   lcd()->setColorIndex(black);
-  lcd()->setCursor(5, 17);  lcd()->print("Made by Dr.Failov");
+  lcd()->setCursor(5, 17);  lcd()->print("Розробник: Dr.Failov");
   drawStatusbar(395, 1, true);
   lcd()->setColorIndex(black);
   lcd()->setCursor(5, 234);  lcd()->print(version);
-  lcd()->setCursor(135, 234);  lcd()->print("Made in Ukraine");
+  #ifdef HW_REV_1
+  lcd()->setCursor(5, 216);  lcd()->print("HW:Rev1");
+  #endif
+  #ifdef HW_REV_2
+  lcd()->setCursor(5, 216);  lcd()->print("HW:Rev2");
+  #endif
+  #ifdef HW_REV_3
+  lcd()->setCursor(5, 216);  lcd()->print("HW:Rev3");
+  #endif
+  #ifdef HW_REV_4
+  lcd()->setCursor(5, 216);  lcd()->print("HW:Rev4");
+  #endif
+  lcd()->setCursor(115, 234);  lcd()->print("Зроблено в Україні");
   lcd()->setCursor(355, 234);  lcd()->print("2024");
 
-  if(modeAboutCounter == 0){
+  if(modeAboutCounter == 0){   //initial draw with animation
     displayDrawVector(getPathZubat(), 40, 60, 3.0, 3, 3, black);
     displayDrawVector(getPathDrmWatch(), 190, 60, 3.0, 2, 3, black);
+    lcd()->setCursor(340, 164); lcd()->setFont(u8g2_font_logisoso38_tn);  lcd()->print("3");
   }
-  else if(modeAboutCounter < 10){
+  else if(modeAboutCounter < 10){  //hold without animatioon for 10 frames
     displayDrawVector(getPathZubat(), 40, 60, 3.0, 3, 0, black);
     displayDrawVector(getPathDrmWatch(), 190, 60, 3.0, 2, 0, black);
+    lcd()->setCursor(340, 164); lcd()->setFont(u8g2_font_logisoso38_tn);  lcd()->print("3");
   }
-  else if(modeAboutCounter%2==0){
+  else if(modeAboutCounter%2==0){  //draw and animate erasing
     displayDrawVector(getPathZubat(), 40, 60, 3.0, 3, 0, black);
     displayDrawVector(getPathDrmWatch(), 190, 60, 3.0, 2, 0, black);
+    lcd()->setCursor(340, 164); lcd()->setFont(u8g2_font_logisoso38_tn);  lcd()->print("3");
     displayDrawVector(getPathDrmWatch(), 190, 60, 3.0, 2, 5, white);
   }
-  else{
+  else{     //animate appearing
     displayDrawVector(getPathZubat(), 40, 60, 3.0, 3, 0, black);
     displayDrawVector(getPathDrmWatch(), 190, 60, 3.0, 2, 3, black);
+    lcd()->setCursor(340, 164); lcd()->setFont(u8g2_font_logisoso38_tn);  lcd()->print("3");
     lcd()->sendBuffer();
     for(unsigned long started = millis(); millis()-started<300; ) if(isAnyButtonPressed()) break;
   }

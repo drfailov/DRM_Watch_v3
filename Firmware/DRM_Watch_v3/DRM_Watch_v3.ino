@@ -83,7 +83,7 @@ const int BUFF_SCALE = 2;  //screenBuffer  //2 is 3KB out of 8KB RTC Memory
 const int BUFF_W = W/BUFF_SCALE;   //screenBuffer
 const int BUFF_H = H/BUFF_SCALE;   //screenBuffer
 
-String version = "v2.04";          //================================== <<<<< VERSION
+String version = "FW:v2.04";          //================================== <<<<< VERSION
 bool black = 1;
 bool white = 0;
 
@@ -142,7 +142,7 @@ void setup(void) {
     lcd()->drawBox(0, 0, 400, 240);
     lcd()->setFont(u8g2_font_10x20_t_cyrillic);  //ok
     lcd()->setColorIndex(black);
-    lcd()->setCursor(345, 234); 
+    lcd()->setCursor(316, 234); 
     lcd()->print(version);
     int x=130;
     displayDrawVector(getPathZubat(), x, 60, 3.0, 3, 0, black);
@@ -156,6 +156,7 @@ void setup(void) {
       lcd()->sendBuffer();
     }
     displayDrawVector(getPathDrmWatch(), 190, 60, 3.0, 2, 3, black);
+    lcd()->setCursor(340, 164); lcd()->setFont(u8g2_font_logisoso38_tn);  lcd()->print("3");
     lcd()->sendBuffer();
     delay(300);
     firstDraw = true;
