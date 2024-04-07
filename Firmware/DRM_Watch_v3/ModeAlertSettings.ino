@@ -165,3 +165,30 @@ void resetAlertMetadata(int index){
   else
     saveAlertLastRunDay(index, 0);
 }
+
+
+void alertLoop(){
+  for(int alertIndex=0; alertIndex<getAlertsNumber(); alertIndex++){ //Обработка будильника 
+    //play melody and mark this day as playen if:  alert enabled, in this day was not playen, this is right time to play
+    bool alertIsEnabled = getAlertEnabled(alertIndex);
+    int alertLastRunDay = getAlertLastRunDay(alertIndex);
+    int alertTimeHour = getAlertHour(alertIndex);
+    int alertTimeMinute = getAlertMinute(alertIndex);
+    int alertMelodyIndex = getAlertMelody(alertIndex);
+    int hour = rtcGetHour();
+    int minute = rtcGetMinute();
+    int day = rtcGetDay();
+    if (alertIsEnabled) {
+      if (alertLastRunDay != day) {
+        if ((hour == alertTimeHour && minute >= alertTimeMinute) || (hour > alertTimeHour)) {
+          saveAlertLastRunDay(alertIndex, day);
+          long timeStarted = millis();
+          long playTime = 180000;
+          sprintf(buffer, (getAlertName(alertIndex)+" (%02d:%02d)").c_str(), alertTimeHour, alertTimeMinute);
+          melodyPlayerSetMelodyName(String(buffer));
+          while (melodyPlayerPlayMelody(getMelodyData(alertMelodyIndex)) && millis() - timeStarted < playTime);
+        }
+      }
+    }
+  }
+}

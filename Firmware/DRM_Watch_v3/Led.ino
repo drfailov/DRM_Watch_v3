@@ -22,7 +22,7 @@ void IRAM_ATTR Timer_ISR()
   analogWrite(LED_BOTTOM_PIN, (int)ledActual[LED_BOTTOM]); 
   analogWrite(LED_STATUS_PIN, (int)ledActual[LED_STATUS]);   
 
-  unsigned long warningTime = 10;//s
+  unsigned long warningTime = 20;//s
   if(isFlasthilghTopOn()){
     if(!dontSleep && sinceLastAction()>autoSleepDefaultTimeWhenFlashlightOn-(warningTime*1000))
       ledFlashlightDimTop();
@@ -77,6 +77,14 @@ void ledStatusOff(){ ledTarget[LED_STATUS] = 0; }
 
 void ledFlashlightToggleTop(){ if(isFlasthilghTopOn()) ledFlashlightOffTop(); else ledFlashlightOnTop();}
 void ledFlashlightToggleBottom(){ if(isFlasthilghBottomOn()) ledFlashlightOffBottom(); else ledFlashlightOnBottom();}
-
+void ledStatusBlink(int times, int speedMs){
+  for(int i=0; i<times; i++){
+    ledStatusOn();
+    delay(speedMs);
+    ledStatusOff();
+    if(i<times-1)
+      delay(speedMs*2);
+  }
+}
 
 

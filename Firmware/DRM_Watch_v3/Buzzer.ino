@@ -66,10 +66,11 @@ void buttonBeep(){
     }
     if(sound == 3){
       buzzer.tone(2000, 15);
-      buzzer.tone(3000, 50);
+      buzzer.tone(3000, 40);
     }
     if(sound == 4){
-      buzzer.tone(2000, 10);
+      buzzer.tone(2000, 5);
+      buzzer.tone(1500, 5);
     }
   }
     

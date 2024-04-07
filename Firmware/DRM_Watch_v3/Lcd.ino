@@ -90,6 +90,7 @@ void clearScreenAnimationWhiteLeftToRight(){
 
 void drawMessage(String text){
   Serial.println(text);
+  ledStatusBlink(/*times*/1, /*speedMs*/100);
   int x = 15;
   int y = 79;
   int width = 345;
@@ -119,6 +120,7 @@ void drawMessage(String text, String text2){
 void drawMessage(String text, String text2, bool animate){
   Serial.println(text);
   Serial.println(text2);
+  ledStatusBlink(/*times*/1, /*speedMs*/100);
   int x = 15;
   int y = 79;
   int width = 345;

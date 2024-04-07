@@ -126,15 +126,10 @@ void setup(void) {
   buzzerInit();
   if(esp_sleep_get_wakeup_cause() == ESP_SLEEP_WAKEUP_EXT0/*By button*/) buttonBeep();
   lcdInit();
-
-  if(esp_sleep_get_wakeup_cause() != ESP_SLEEP_WAKEUP_TIMER && !isOff()){/*NOT periodical wakeup*/ //==================================== BACKLIGHT
-    pinMode(BACKLIGHT_EN, OUTPUT);
-    digitalWrite(BACKLIGHT_EN, HIGH);
-  }
-
+  backlightInit();
   initButtons();
   initLed();
-  if(esp_sleep_get_wakeup_cause() == 0) drawMessage("Init RTC...");
+  if(esp_sleep_get_wakeup_cause() == 0) drawMessage("Ініціалізація RTC...");
   initRtc();
   initTime();
   
@@ -172,49 +167,15 @@ void setup(void) {
 }
 
 void loop(void) {
-  for(int alertIndex=0; alertIndex<getAlertsNumber(); alertIndex++){ //Обработка будильника 
-    //play melody and mark this day as playen if:  alert enabled, in this day was not playen, this is right time to play
-    bool alertIsEnabled = getAlertEnabled(alertIndex);
-    int alertLastRunDay = getAlertLastRunDay(alertIndex);
-    int alertTimeHour = getAlertHour(alertIndex);
-    int alertTimeMinute = getAlertMinute(alertIndex);
-    int alertMelodyIndex = getAlertMelody(alertIndex);
-    int hour = rtcGetHour();
-    int minute = rtcGetMinute();
-    int day = rtcGetDay();
-    if (alertIsEnabled) {
-      if (alertLastRunDay != day) {
-        if ((hour == alertTimeHour && minute >= alertTimeMinute) || (hour > alertTimeHour)) {
-          saveAlertLastRunDay(alertIndex, day);
-          long timeStarted = millis();
-          long playTime = 180000;
-          sprintf(buffer, (getAlertName(alertIndex)+" (%02d:%02d)").c_str(), alertTimeHour, alertTimeMinute);
-          melodyPlayerSetMelodyName(String(buffer));
-          while (melodyPlayerPlayMelody(getMelodyData(alertMelodyIndex)) && millis() - timeStarted < playTime);
-        }
-      }
-    }
-  }
-
+  alertLoop();
   buttonsLoop();
+  backlightLoop();
   if(modeLoop != 0){
      //unsigned long millisStarted = millis();  //routine needed to measure performance
     modeLoop();    //125ms 1MHz SPI  |   63ms  3MHz SPI
     firstDraw = false;
     // unsigned long millisEnd = millis();
     // Serial.print("Loop: "); Serial.print(millisEnd-millisStarted); Serial.println("ms.");
-  }
-
-  
-  if(esp_sleep_get_wakeup_cause() != ESP_SLEEP_WAKEUP_TIMER && !isOff()){/*NOT periodical wakeup*/ //==================================== BACKLIGHT
-    if(sinceLastAction() > 20000 && !dontSleep){ //==================================== BACKLIGHT
-      digitalWrite(BACKLIGHT_EN, LOW);
-      pinMode(BACKLIGHT_EN, INPUT);
-    }
-    else{
-      pinMode(BACKLIGHT_EN, OUTPUT);
-      digitalWrite(BACKLIGHT_EN, HIGH);
-    }
   }
   
   if((enableAutoReturn || (!enableAutoSleep && batteryBars() <= 1)) && sinceLastAction() > autoReturnTime && !dontSleep) //auto go to watchface

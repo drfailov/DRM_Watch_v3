@@ -47,6 +47,7 @@ bool isAnyButtonPressed(){
 
 void registerAction(){
   lastActionTime=millis();
+  backlightOn();
 }
 
 int sinceLastAction(){
@@ -63,21 +64,21 @@ void processButton(gpio_num_t pin, Runnable *onPressed, Runnable *onLongPressed)
   if(buttonReady[pin] && isPressed(pin)){
     for(unsigned long pressStarted = millis(); isPressed(pin);){  
       if((*onPressed) != 0 && lastActionTime < pressStarted){//first click
-        lastActionTime = millis();
+        registerAction();
         buttonBeep();
         (*onPressed)();
         if(modeLoop != 0) modeLoop();
         firstDraw = false;
       }
       else if((*onPressed) != 0 && (*onLongPressed) == 0 && lastActionTime >= pressStarted && millis()-pressStarted>firstClickDelay && millis()-lastActionTime>nextClickDelay){//next clicks while user holding button
-        lastActionTime = millis();
+        registerAction();
         buttonBeep();
         (*onPressed)();
         if(modeLoop != 0) modeLoop();
         firstDraw = false;
       }
       else if((*onLongPressed) != 0 && millis()-pressStarted>firstClickDelay){
-        lastActionTime = millis();
+        registerAction();
         buttonLongBeep();
         (*onLongPressed)();
         if(modeLoop != 0) modeLoop();
