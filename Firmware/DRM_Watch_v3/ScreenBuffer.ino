@@ -36,8 +36,8 @@ void drawScreenBuffer(int xstart, int ystart, int xend, int yend){ //IN BUFFER C
   if(xend >= BUFF_W) xend=BUFF_W-1;
   if(yend >= BUFF_H) yend=BUFF_H-1;
 
-  for(int y=ystart; y<yend; y++){
-    for(int x=xstart; x<xend; x++){
+  for(int y=ystart; y<=yend; y++){
+    for(int x=xstart; x<=xend; x++){
       lcd()->setColorIndex(getScreenBuffer(x,y)?black:white);
       lcd()->drawBox(x*BUFF_SCALE, y*BUFF_SCALE, BUFF_SCALE, BUFF_SCALE);
     }
