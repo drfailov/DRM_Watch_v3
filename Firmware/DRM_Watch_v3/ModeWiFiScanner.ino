@@ -94,6 +94,11 @@ void modeWiFiScannerLoop(){
   }
   else if(modeWiFiScannerState == modeWiFiScannerStateSettingUpNoNetworks){
     drawMessage("Мереж не знайдено.");
+    delay(1000);
+    if(modeWiFiScannerOnCancel != 0)
+        modeWiFiScannerOnCancel();
+      else
+        setModeMainMenu();
   }
   else if(modeWiFiScannerState == modeWiFiScannerStateSettingUpSelectingNetwork){
     drawListItem(0, draw_ic24_back, "Повернутись", "Назад", false); 

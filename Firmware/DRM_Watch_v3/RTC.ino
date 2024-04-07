@@ -245,6 +245,6 @@ void drawTemperature(int x, int y){
   lcd()->setFont(u8g2_font_10x20_t_cyrillic); 
   draw_ic24_temperature(x,y, black);
   lcd()->setCursor(x+24, y+18);
-  lcd()->print(temperature());
+  lcd()->print(temperature(),1);
   lcd()->print("°C");
 }
