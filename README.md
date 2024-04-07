@@ -296,13 +296,18 @@ https://www.aliexpress.us/item/1005002369819447.html   <br>
 
 ## Процес збірки та налагодження
 <p align="center"><img src="Photos/preheater.png" height=80"/> </p>
-Мені дуже допомогла в пайці така прикольна паяльна станція:
-https://www.aliexpress.us/item/1005005609080807.html
+
+Мені дуже допомогла в пайці така прикольна паяльна станція:  <br>
+https://www.aliexpress.us/item/1005005609080807.html  <br>
 
 
 <p align="center"><img src="Photos/breakout.png" height=80"/> </p>
-На етапі налагодження може допомогти такий Breakout Board який підійде для ESP32-S2 (нагадую, там корпус QFN56)
-https://www.aliexpress.us/item/1005002805132028.html
+
+На етапі налагодження може допомогти такий **QFN56 Breakout Board** який підійде для ESP32-S2 (нагадую, там корпус QFN56)  <br>
+https://www.aliexpress.us/item/1005002805132028.html  <br>
+
+**Uretan 71**  <br>
+Для покриття плат лаком я використовував таку штуку як **Uretan 71**. Наносив за допомогою маленького пензля в два шари.   <br>
 
 
 ## Інструменти, які я використовував при проектуванні:

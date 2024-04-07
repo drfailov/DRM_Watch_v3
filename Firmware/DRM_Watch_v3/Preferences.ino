@@ -144,10 +144,10 @@ bool saveMuteEnabled(bool value){
 
 
 int getButtonSound(){
-  return preferencesObject.getInt("ButtonSound" , 0);
+  return preferencesObject.getInt("ButtonSound" , 1);
 }
 bool saveButtonSound(int value){
-  int totalSounds = 4;
+  int totalSounds = buttonBeepCnt();
   return preferencesObject.putInt("ButtonSound", value%totalSounds);
 }
 
