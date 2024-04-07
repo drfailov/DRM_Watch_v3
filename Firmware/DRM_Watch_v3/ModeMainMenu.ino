@@ -104,8 +104,6 @@ void drawMenuItem(byte index, Drawable drawIcon, const char* name, bool animate,
     lcd()->drawRBox(/*x*/x, /*y*/y, /*w*/width, /*h*/height, roundness);
     lcd()->setColorIndex(white);
     lcd()->drawRBox(/*x*/x+frame, /*y*/y+frame, /*w*/width-frame*2, /*h*/height-frame*2, roundness);
-    //lcd()->drawFrame(/*x*/x, /*y*/y, /*w*/width, /*h*/height);
-    //lcd()->drawFrame(/*x*/x+1, /*y*/y+1, /*w*/width-2, /*h*/height-2);
   }
   int iconsize = 24;
   int iconx = x+(width-iconsize)/2;
@@ -162,8 +160,6 @@ void drawTextFrame(byte index, const char* text, const char* name, bool editMode
     lcd()->drawRBox(/*x*/x, /*y*/y, /*w*/width, /*h*/height, roundness);
     lcd()->setColorIndex(white);
     lcd()->drawRBox(/*x*/x+frame, /*y*/y+frame, /*w*/width-frame*2, /*h*/height-frame*2, roundness);
-    //lcd()->drawFrame(/*x*/x, /*y*/y, /*w*/width, /*h*/height);
-    //lcd()->drawFrame(/*x*/x+1, /*y*/y+1, /*w*/width-2, /*h*/height-2);
   }
   lcd()->setColorIndex(selected == index?white:black);
   if(editMode) lcd()->setColorIndex(black);
@@ -202,8 +198,6 @@ void drawListItem(byte index, Drawable drawIcon, const char* name, const char* d
     lcd()->drawRBox(/*x*/x, /*y*/y, /*w*/width, /*h*/height, roundness);
     lcd()->setColorIndex(white);
     lcd()->drawRBox(/*x*/x+frame, /*y*/y+frame, /*w*/width-frame*2, /*h*/height-frame*2, roundness);
-    //lcd()->drawFrame(/*x*/x, /*y*/y, /*w*/width, /*h*/height);
-    //lcd()->drawFrame(/*x*/x+1, /*y*/y+1, /*w*/width-2, /*h*/height-2);
   }
   drawIcon(x + 9, y+9, selected == index?white:black);
   

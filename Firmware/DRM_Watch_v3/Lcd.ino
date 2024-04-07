@@ -95,11 +95,10 @@ void drawMessage(String text){
   int y = 79;
   int width = 345;
   int height = 70;
-  lcd()->setColorIndex(white);
-  lcd()->drawBox(/*x*/x+1, /*y*/y+1, /*w*/width-2, /*h*/height-2);
   lcd()->setColorIndex(black);
-  lcd()->drawFrame(/*x*/x, /*y*/y, /*w*/width, /*h*/height);
-  lcd()->drawFrame(/*x*/x+1, /*y*/y+1, /*w*/width-2, /*h*/height-2);
+  lcd()->drawRBox(/*x*/x, /*y*/y, /*w*/width, /*h*/height, roundness);
+  lcd()->setColorIndex(white);
+  lcd()->drawRBox(/*x*/x+frame, /*y*/y+frame, /*w*/width-frame*2, /*h*/height-frame*2, roundness);
   draw_ic24_about(x+10, y+22, black);
 
   lcd()->setColorIndex(black);
@@ -125,11 +124,17 @@ void drawMessage(String text, String text2, bool animate){
   int y = 79;
   int width = 345;
   int height = 70;
-  lcd()->setColorIndex(white);
-  lcd()->drawBox(/*x*/x+1, /*y*/y+1, /*w*/width-2, /*h*/height-2);
+  // lcd()->setColorIndex(white);
+  // lcd()->drawBox(/*x*/x+1, /*y*/y+1, /*w*/width-2, /*h*/height-2);
+  // lcd()->setColorIndex(black);
+  // lcd()->drawFrame(/*x*/x, /*y*/y, /*w*/width, /*h*/height);
+  // lcd()->drawFrame(/*x*/x+1, /*y*/y+1, /*w*/width-2, /*h*/height-2);
+  
   lcd()->setColorIndex(black);
-  lcd()->drawFrame(/*x*/x, /*y*/y, /*w*/width, /*h*/height);
-  lcd()->drawFrame(/*x*/x+1, /*y*/y+1, /*w*/width-2, /*h*/height-2);
+  lcd()->drawRBox(/*x*/x, /*y*/y, /*w*/width, /*h*/height, roundness);
+  lcd()->setColorIndex(white);
+  lcd()->drawRBox(/*x*/x+frame, /*y*/y+frame, /*w*/width-frame*2, /*h*/height-frame*2, roundness);
+
   draw_ic24_about(x+10, y+22, black);
   lcd()->setColorIndex(black);
 
@@ -176,11 +181,17 @@ void drawQuestion(String text, String text2, bool animate){
   int y = 79;
   int width = 345;
   int height = 70;
-  lcd()->setColorIndex(white);
-  lcd()->drawBox(/*x*/x+1, /*y*/y+1, /*w*/width-2, /*h*/height-2);
+  // lcd()->setColorIndex(white);
+  // lcd()->drawBox(/*x*/x+1, /*y*/y+1, /*w*/width-2, /*h*/height-2);
+  // lcd()->setColorIndex(black);
+  // lcd()->drawFrame(/*x*/x, /*y*/y, /*w*/width, /*h*/height);
+  // lcd()->drawFrame(/*x*/x+1, /*y*/y+1, /*w*/width-2, /*h*/height-2);
+  
   lcd()->setColorIndex(black);
-  lcd()->drawFrame(/*x*/x, /*y*/y, /*w*/width, /*h*/height);
-  lcd()->drawFrame(/*x*/x+1, /*y*/y+1, /*w*/width-2, /*h*/height-2);
+  lcd()->drawRBox(/*x*/x, /*y*/y, /*w*/width, /*h*/height, roundness);
+  lcd()->setColorIndex(white);
+  lcd()->drawRBox(/*x*/x+frame, /*y*/y+frame, /*w*/width-frame*2, /*h*/height-frame*2, roundness);
+
   draw_ic24_question(x+10, y+22, black);
 
   lcd()->setColorIndex(black);
