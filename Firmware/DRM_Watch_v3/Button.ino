@@ -47,7 +47,9 @@ bool isAnyButtonPressed(){
 
 void registerAction(){
   lastActionTime=millis();
-  backlightOn();
+  if(esp_sleep_get_wakeup_cause() != ESP_SLEEP_WAKEUP_TIMER && !isOff()){/*NOT periodical wakeup*/ //==================================== BACKLIGHT
+    backlightOn();
+  }
 }
 
 int sinceLastAction(){
