@@ -149,9 +149,16 @@ void ModeAlertSettingsMenuButtonCenter(){
     return;
   }
   if(selected==itemModeAlertSettingsName){
-    //open keyboard
+    //todo open keyboard
+    setModeKeyboard("Ім'я будильника", ModeAlertSettingsMenuNameSelected, setModeAlertSettingsMenu); //then String password = getKeybordResult();
+    setKeybordText(getAlertName(modeAlertSettingsIndex));
     return;
   }
+}
+void ModeAlertSettingsMenuNameSelected(){
+  String newName = getKeybordResult();
+  saveAlertName(modeAlertSettingsIndex, newName);
+  setModeAlertSettingsMenu();
 }
 //fix alarm, предотвращение включения будильника сразу в момент установки
 void resetAlertMetadata(int index){
@@ -185,7 +192,7 @@ void alertLoop(){
           long timeStarted = millis();
           long playTime = 180000;
           sprintf(buffer, (getAlertName(alertIndex)+" (%02d:%02d)").c_str(), alertTimeHour, alertTimeMinute);
-          melodyPlayerSetMelodyName(String(buffer));
+          melodyPlayerSetMelodyName(String(buffer));  //to draw on screen
           while (melodyPlayerPlayMelody(getMelodyData(alertMelodyIndex)) && millis() - timeStarted < playTime);
         }
       }

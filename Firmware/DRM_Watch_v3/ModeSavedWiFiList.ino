@@ -65,7 +65,7 @@ void modeSavedWiFiListOnDeleteNetwork(){
 }
 
 void modeSavedWiFiListOnNetworkNameSelected(){
-  setModeKeyboard(String("Пароль:")+modeWiFiScannerGetSelectedNetworkName(), modeSavedWiFiListOnNetworkPasswordSelected, setModeSavedWiFiList);
+  setModeKeyboard(String("Пароль:")+modeWiFiScannerGetSelectedNetworkName(), modeSavedWiFiListOnNetworkPasswordSelected, setModeSavedWiFiList); //then String password = getKeybordResult();
 }
 
 void modeSavedWiFiListOnNetworkPasswordSelected(){

@@ -277,6 +277,10 @@ bool saveAlertMelody(int index, int value){
 String getAlertName(int index){
   return preferencesObject.getString((String("alert")+index+"Name").c_str(), (String("Будильник ")+index));
 }
+bool saveAlertName(int index, String newname){ 
+  int savedName = preferencesObject.putString((String("alert")+index+"Name").c_str(), newname);
+  return savedName>0;
+}
 
   
 //----------------------//----------------------//----------------------//----------------------//----------------------//----------------------//----------------------

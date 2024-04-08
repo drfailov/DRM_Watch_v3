@@ -79,7 +79,7 @@ void processButton(gpio_num_t pin, Runnable *onPressed, Runnable *onLongPressed)
         if(modeLoop != 0) modeLoop();
         firstDraw = false;
       }
-      else if((*onLongPressed) != 0 && millis()-pressStarted>firstClickDelay){
+      else if((*onLongPressed) != 0 && millis()-pressStarted>firstClickDelay){  //long click
         registerAction();
         buttonLongBeep();
         (*onLongPressed)();

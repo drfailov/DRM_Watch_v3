@@ -91,6 +91,9 @@ void setModeKeyboard(String title, Runnable onDone, Runnable onCancel){
 String getKeybordResult(){
   return text;
 }
+void setKeybordText(String _text){
+  text = _text;
+}
 
 void setModeKeyboard(){
   clearScreenAnimation();
