@@ -121,6 +121,14 @@ void setModeKeyboard(){
 void modeKeyboardLoop(){  
   lcd()->setColorIndex(white);
   lcd()->drawBox(0, 0, 400, 240);
+  
+  drawStatusbar(363, 1, false);
+  lcd()->setColorIndex(black);
+  lcd()->drawLine(369, 0, 369, 260);
+  lcd()->drawLine(370, 0, 370, 260);
+  draw_ic16_arrow_right(lx(), ly1(), black);
+  draw_ic16_check(lx(), ly2(), black);
+  draw_ic16_arrow_down(lx(), ly3(), black);
 
   lcd()->setFont(u8g2_font_10x20_t_cyrillic);  //ok
   lcd()->setCursor(5, 18); 
@@ -166,13 +174,6 @@ void modeKeyboardLoop(){
 
   
   
-  drawStatusbar(363, 1, false);
-  lcd()->setColorIndex(black);
-  lcd()->drawLine(369, 0, 369, 260);
-  lcd()->drawLine(370, 0, 370, 260);
-  draw_ic16_arrow_right(lx(), ly1(), black);
-  draw_ic16_check(lx(), ly2(), black);
-  draw_ic16_arrow_down(lx(), ly3(), black);
   
   lcd()->sendBuffer();
 }

@@ -38,12 +38,12 @@ void modeSettingsMenuLoop(){
   drawStatusbar(363, 1, true);  
   drawMenuLegend();
 
-  drawListItem(itemModeSettingsBack, draw_ic24_back, "Назад", "Повернутись до головного меню", firstDraw);
-  drawListItem(itemModeSettingsCategoryTime, draw_ic24_clock, "Налаштування часу", "Налаштування що стосуються часу", firstDraw);
-  drawListItem(itemModeSettingsCategoryDisplay, draw_ic24_display, "Налаштування дисплея", "Налаштування що стосуються дисплея", firstDraw);
-  drawListItem(itemModeSettingsCategoryWiFi, draw_ic24_wifi_3, "Налаштування Wi-Fi", "Мережі для доступу до Інтернет", firstDraw); /*draw_ic24_saved*/
-  drawListItem(itemModeSettingsCategorySound, draw_ic24_sound_on, "Налаштування звуку", "Налаштування що стосуються звуку", firstDraw);
-  drawListItem(itemModeSettingsReboot, draw_ic24_reboot, "Перезавантажити", "Перезавантажити годинник", firstDraw);
+  drawListItem(itemModeSettingsBack,                 draw_ic24_back,       "Назад",                 "Повернутись до головного меню",         firstDraw);
+  drawListItem(itemModeSettingsCategoryTime,         draw_ic24_clock,      "Налаштування часу",     "Налаштування що стосуються часу",       firstDraw);
+  drawListItem(itemModeSettingsCategoryDisplay,      draw_ic24_display,    "Налаштування дисплея",  "Налаштування що стосуються дисплея",    firstDraw);
+  drawListItem(itemModeSettingsCategoryWiFi,         draw_ic24_wifi_3,     "Налаштування Wi-Fi",    "Мережі для доступу до Інтернет",        firstDraw); /*draw_ic24_saved*/
+  drawListItem(itemModeSettingsCategorySound,        draw_ic24_sound_on,   "Налаштування звуку",    "Налаштування що стосуються звуку",      firstDraw);
+  drawListItem(itemModeSettingsReboot,               draw_ic24_reboot,     "Перезавантажити",       "Перезавантажити годинник",              firstDraw);
   
 
   lcd()->sendBuffer();

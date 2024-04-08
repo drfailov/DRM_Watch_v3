@@ -61,7 +61,7 @@ void ModeAppsMenuButtonCenter(){
     return;
   }
   if(selected == itemModeAppsAlarm){
-    setModeAlertSettingsMenu();
+    setModeAlertsList();
     return;
   }
   if(selected==itemModeAppsMusic){

@@ -12,6 +12,9 @@ const int itemModeAlertSettingsMelody=4;
 const int itemModeAlertSettingsName=5;
 
 void setModeAlertSettingsMenu(){
+  setModeAlertSettingsMenu(modeAlertSettingsIndex);
+}
+void setModeAlertSettingsMenu(int alertIndex){
   clearScreenAnimation();
   Serial.println(F("Set mode: Alert settings Menu"));
   modeSetup = setModeAlertSettingsMenu;
@@ -29,6 +32,7 @@ void setModeAlertSettingsMenu(){
   autoSleepTime = autoSleepDefaultTime;
   selected = 0;
   items = 6;
+  modeAlertSettingsIndex = alertIndex;
   modeAlertSettingsHourValue = getAlertHour(modeAlertSettingsIndex);
   modeAlertSettingsMinuteValue = getAlertMinute(modeAlertSettingsIndex);
   modeAlertSettingsMelodyValue = getAlertMelody(modeAlertSettingsIndex);
@@ -49,8 +53,8 @@ void ModeAlertSettingsMenuLoop(){
   lcd()->setFont(u8g2_font_10x20_t_cyrillic);  //ok
   lcd()->setColorIndex(black);
   lcd()->setCursor(5, 18); 
-
-  lcd()->print(getAlertName(modeAlertSettingsIndex));
+  lcd()->print("Будильник "); 
+  lcd()->print(modeAlertSettingsIndex);
 
   drawStatusbar(363, 1, true);
   drawMenuLegend();
@@ -66,9 +70,9 @@ void ModeAlertSettingsMenuLoop(){
   lcd()->setCursor(189, 57); 
   lcd()->print("Активний");
   if(getAlertEnabled(modeAlertSettingsIndex))
-    drawMenuItem(itemModeAlertSettingsEnabled, draw_ic24_check2, "Вимкнути", firstDraw, 277, 26);
+    drawMenuItem(itemModeAlertSettingsEnabled, draw_ic24_check2, "Вимкнути", firstDraw, 277, 26);  //draw_ic24_cancel   draw_ic24_check2
   else
-    drawMenuItem(itemModeAlertSettingsEnabled, draw_ic24_cancel, "Увімкнути", firstDraw, 277, 26);
+    drawMenuItem(itemModeAlertSettingsEnabled, draw_ic24_cancel, "Увімкнути", firstDraw, 277, 26);  //draw_ic24_cancel   draw_ic24_check2
 
   lcd()->setFont(u8g2_font_10x20_t_cyrillic);  //ok
   lcd()->setColorIndex(black);
@@ -118,7 +122,7 @@ void ModeAlertSettingsMenuButtonDown(){
 }
 void ModeAlertSettingsMenuButtonCenter(){
   if(selected == itemModeAlertSettingsBack){
-    setModeAppsMenu();
+    setModeAlertsList();//setModeAppsMenu();
     return;
   }
   if(selected == itemModeAlertSettingsEnabled){

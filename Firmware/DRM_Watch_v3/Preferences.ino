@@ -236,7 +236,7 @@ bool saveWatchfaceCalendarEnabled(bool value){
     byte alertMelodyIndex = eepromReadAlertMelodyIndex();*/
 
 int getAlertsNumber(){
-  return 1;
+  return 6;
 }
 bool getAnyAlertEnabled(){
   for(int i=0; i<getAlertsNumber(); i++)

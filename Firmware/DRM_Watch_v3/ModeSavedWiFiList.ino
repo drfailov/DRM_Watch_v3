@@ -89,7 +89,7 @@ void modeSavedWiFiListOnNetworkConnected(){
 }
 
 void modeSavedWiFiListOnNetworkFailed(){
-  setModeSavedWiFiList();
+  //setModeSavedWiFiList();
 }
 
 

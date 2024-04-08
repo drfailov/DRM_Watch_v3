@@ -39,9 +39,8 @@ void ModeMenuSettingsTimeLoop(){
   drawStatusbar(363, 1, true);
 
   drawListItem(ModeMenuSettingsTimeItemBack, draw_ic24_back, "Повернутись", "В меню налаштувань", firstDraw); //
-  drawListItem(ModeMenuSettingsTimeItemSyncTime, draw_ic24_sync, "Синхронізувати час", "Через збережену Wi-Fi мережу", firstDraw); //
-  if(getTimeSyncEnabled()) drawListItem(ModeMenuSettingsTimeItemAutoSyncEnabled, draw_ic24_check, "Автосинхронізація часу", "Зараз увімкнена", firstDraw); 
-  else  drawListItem(ModeMenuSettingsTimeItemAutoSyncEnabled, draw_ic24_cancel, "Автосинхронізація часу", "Зараз вимкнена", firstDraw);
+  drawListItem(ModeMenuSettingsTimeItemSyncTime, draw_ic24_sync, "Синхронізувати час зараз", "Через збережену Wi-Fi мережу", firstDraw); //
+  drawListCheckbox(ModeMenuSettingsTimeItemAutoSyncEnabled, draw_ic24_sync, "Автосинхронізація часу", "Синхронізувати без команди", getTimeSyncEnabled(), firstDraw);
   drawListItem(ModeMenuSettingsTimeItemSetTime, draw_ic24_clock, "Встановити час", "Встановити поточний час вручну", firstDraw);
   drawListItem(ModeMenuSettingsTimeItemSetTimeZone, draw_ic24_timezone, "Встановити часовий пояс", "Встановити зміщення відносно UTC", firstDraw);
   

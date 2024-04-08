@@ -37,10 +37,8 @@ void ModeMenuSettingsSoundLoop(){
   drawStatusbar(363, 1, true);
 
   drawListItem(ModeMenuSettingsSoundItemBack, draw_ic24_back, "Повернутись", "В меню налаштувань", firstDraw); //
-  drawListItem(itemModeSettingsButtonSound, draw_ic24_buttonsound, "Звук кнопок", "Обрати звук кнопок", firstDraw);
-  if(getMuteEnabled()) drawListItem(itemModeSettingsMute, draw_ic24_sound_mute, "Тихий режим", "Зараз звук вимкнено", firstDraw);
-  else drawListItem(itemModeSettingsMute, draw_ic24_sound_on, "Тихий режим", "Зараз звук увімкнено", firstDraw);
-
+  drawListValue(itemModeSettingsButtonSound, draw_ic24_buttonsound, "Звук кнопок", "Обрати звук кнопок", getButtonSound(), firstDraw);
+  drawListCheckbox(itemModeSettingsMute, draw_ic24_sound_mute, "Тихий режим", "Вимкнути все окрім мелодій", getMuteEnabled(), firstDraw);
   lcd()->sendBuffer();
 }
 
