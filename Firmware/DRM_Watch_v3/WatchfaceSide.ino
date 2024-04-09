@@ -33,6 +33,7 @@ void drawWatchfaceSide(bool firstDraw){
 
   int h = rtcGetHour();
   int m = rtcGetMinute();
+  int s = rtcGetSecond();
 
   if(getWatchfaceDigitalEnabled()){
     lcd()->setColorIndex(black);
@@ -41,6 +42,12 @@ void drawWatchfaceSide(bool firstDraw){
     int width = lcd()->getStrWidth(buffer);
     lcd()->setCursor(x_del+((W-x_del)-width)/2, 140);
     lcd()->print(buffer); 
+
+    if(isAwake()){
+      lcd()->setFont(u8g2_font_10x20_t_cyrillic);  //ok
+      lcd()->print(s); 
+    }
+    
   }
 
   if(getWatchfaceDjiLogoEnabled())

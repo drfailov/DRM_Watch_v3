@@ -63,6 +63,8 @@ int sinceLastAction(){
 void processButton(gpio_num_t pin, Runnable *onPressed, Runnable *onLongPressed){
   if(!isPressed(pin))
     buttonReady[pin] = true;
+  if((*onPressed) == 0 && (*onLongPressed) == 0)
+    return;
   if(buttonReady[pin] && isPressed(pin)){
     for(unsigned long pressStarted = millis(); isPressed(pin);){  
       if((*onPressed) != 0 && lastActionTime < pressStarted){//first click

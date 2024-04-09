@@ -83,18 +83,9 @@ const int BUFF_SCALE = 2;  //screenBuffer  //2 is 3KB out of 8KB RTC Memory
 const int BUFF_W = W/BUFF_SCALE;   //screenBuffer
 const int BUFF_H = H/BUFF_SCALE;   //screenBuffer
 
-String version = "FW:v2.05";          //================================== <<<<< VERSION
+String version = "FW:v2.06";          //================================== <<<<< VERSION
 bool black = 1;
 bool white = 0;
-
-bool dontSleep = false;
-const int autoReturnDefaultTime = 180000;//ms
-const int autoSleepDefaultTime = 15000;//ms
-const int autoSleepDefaultTimeWhenFlashlightOn = 360000;//ms
-bool enableAutoReturn = false; //is set when new mode selected
-bool enableAutoSleep = false; //is set when new mode selected
-int autoReturnTime = autoReturnDefaultTime;//ms
-int autoSleepTime = autoSleepDefaultTime;//ms
 
 bool firstDraw = false;  //global for menus, used to animate first frame of any mode. Resets on clearScreenAnimation.
 int items = 0;    //global for menus
@@ -178,51 +169,13 @@ void loop(void) {
     // unsigned long millisEnd = millis();
     // Serial.print("Loop: "); Serial.print(millisEnd-millisStarted); Serial.println("ms.");
   }
-  
-  if((enableAutoReturn || (!enableAutoSleep && batteryBars() <= 1)) && sinceLastAction() > autoReturnTime && !dontSleep) //auto go to watchface
-    setModeWatchface();
-  
-  int _autoSleepTime = isFlashlightOn()?autoSleepDefaultTimeWhenFlashlightOn:autoSleepTime;
-  if(enableAutoSleep && !isChargerConnected() && sinceLastAction() > _autoSleepTime && !dontSleep) //auto go to sleep
-    goToSleep();
-
-  if(esp_sleep_get_wakeup_cause() == ESP_SLEEP_WAKEUP_TIMER)/*periodical wakeup*/
-    goToSleep();
+  autoSleepLoop();
 }
 
 
 
 
 
-
-void goToSleep(){
-  /*
-  Battery Capacity: 250mA
-  Deep sleep mode: 0.081mA  (Time = 250/0.081 = 3086h = 128d = 4.2month)
-  Active mode: 40mA (Time = 250/40 = 6.25h)
-  Music mode: 97mA  (Time = 250/97 = 2.57h)
-  */
-  lcd()->setColorIndex(0);
-  
-  draw_ic16_empty(lx(), ly1(), black);
-  draw_ic16_unlock(lx(), ly2(), black);
-  draw_ic16_empty(lx(), ly3(), black);
-  lcd()->sendBuffer();
-  delay(20);
-
-  //==================================== BACKLIGHT
-  digitalWrite(BACKLIGHT_EN, LOW);
-  pinMode(BACKLIGHT_EN, INPUT);
-  
-  
-  esp_sleep_enable_ext0_wakeup(BUT_CENTER, 0); //1 = High, 0 = Low
-  
-  if(isOff())
-    esp_sleep_enable_timer_wakeup(600 * 1000000ULL);
-  else
-    esp_sleep_enable_timer_wakeup(55 * 1000000ULL);
-  esp_deep_sleep_start();
-}
 
 void doNothing(){} //to use as reference in modes for buttons
 

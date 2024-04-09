@@ -46,7 +46,7 @@ U8G2_LS027B7DH01_400X240_F_4W_HW_SPI* lcd(){
 }
 
 void clearScreenAnimation(){
-  if(esp_sleep_get_wakeup_cause() == ESP_SLEEP_WAKEUP_TIMER)/*periodical wakeup*/
+  if(!isAwake())/*periodical wakeup*/
     return;
   if(millis()<1000)
     return;

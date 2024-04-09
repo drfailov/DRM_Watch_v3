@@ -136,21 +136,9 @@ int drawStatusbar(int x, int y, bool drawTime, bool simulate){ //simulate is dra
     x-=interval;
   }
   
-
-  if(esp_sleep_get_wakeup_cause() != ESP_SLEEP_WAKEUP_TIMER){
-    int timeToExit = -1;
-    if(enableAutoReturn && !dontSleep)
-      timeToExit = autoReturnTime-sinceLastAction(); 
-    int timeToSleep = -1;
-    int _autoSleepTime = isFlashlightOn()?autoSleepDefaultTimeWhenFlashlightOn:autoSleepTime;
-    if(enableAutoSleep && !dontSleep && !isChargerConnected() ) 
-      timeToSleep = _autoSleepTime-sinceLastAction();
-    int timeToAction = -1;
-    if(timeToExit != -1)
-      timeToAction = timeToExit;
-    if(timeToSleep != -1 && (timeToSleep < timeToAction || timeToAction == -1))
-      timeToAction = timeToSleep;
-    if(timeToAction != -1 && timeToAction < 46000) {
+  if(isAwake()){
+    long timeToAction = timeToAutoAction();
+    if(timeToAction < 46000) {
       long s = timeToAction/1000;
       String text = String("")+s;
       lcd()->setColorIndex(black);
