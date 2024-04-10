@@ -4,8 +4,9 @@ const int itemModeAppsMusic=2;
 const int itemModeAppsAlarm=3;
 const int itemModeAppsMeow=4;
 const int itemModeAppsLife=5;
-const int itemModeAppsCalendar=6;
-const int itemModeAppsDebug=7;
+const int itemModeAppsRandom=6;
+const int itemModeAppsCalendar=7;
+const int itemModeAppsDebug=8;
 
 void setModeAppsMenu(){
   clearScreenAnimation();
@@ -24,7 +25,7 @@ void setModeAppsMenu(){
   autoReturnTime = autoReturnDefaultTime;
   autoSleepTime = autoSleepDefaultTime;
   selected = 0;
-  items = 8;
+  items = 9;
 }
 
 
@@ -46,6 +47,7 @@ void ModeAppsMenuLoop(){
   drawMenuItem(itemModeAppsAlarm,      draw_ic24_alarm,      "Будильник",                     firstDraw);
   drawMenuItem(itemModeAppsMeow,       draw_ic24_meow,       "Meow",                          firstDraw);
   drawMenuItem(itemModeAppsLife,       draw_ic24_life,       "Клітковий автомат \"Життя\"",   firstDraw);
+  drawMenuItem(itemModeAppsRandom,     draw_ic24_random,     "Випадковий шум",                firstDraw);
   drawMenuItem(itemModeAppsCalendar,   draw_ic24_calendar,   "Календар",                      firstDraw);
   drawMenuItem(itemModeAppsDebug,      draw_ic24_bug,        "Інженерне меню",                firstDraw);
   
@@ -89,5 +91,9 @@ void ModeAppsMenuButtonCenter(){
     setModeLife();
     return;
   }
-  
+  if(selected == itemModeAppsRandom){
+    setModeRandom();
+    return;
+  }
+  //
 }
