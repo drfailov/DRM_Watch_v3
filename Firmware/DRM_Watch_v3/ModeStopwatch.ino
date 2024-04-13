@@ -9,9 +9,9 @@ void setModeStopwatch(){
   Serial.println(F("Set mode: Stopwatch"));
   modeSetup = setModeStopwatch;
   modeLoop = modeStopwatchLoop;
-  modeButtonUp = modeMainMenuButtonUp;
+  modeButtonUp = modeStopwatchButtonUp;
   modeButtonCenter = modeStopwatchButtonCenter;
-  modeButtonDown = modeMainMenuButtonDown;
+  modeButtonDown = modeStopwatchButtonDown;
   modeButtonUpLong = 0;
   modeButtonCenterLong = 0;
   modeButtonDownLong = 0;
@@ -35,7 +35,16 @@ void modeStopwatchLoop(){
   lcd()->print("Секундомір");
   drawStatusbar(363, 1, true);  
 
-  drawMenuLegend();
+  //drawMenuLegend();
+  
+  lcd()->setColorIndex(black);
+  lcd()->drawBox(369, 0, 2, 260);  //draw_ic16_repeat  draw_ic16_arrow_right  draw_ic16_back
+  if(isStopwatchRunning())
+    draw_ic16_pause(lx(), ly1(), black); 
+  else
+    draw_ic16_arrow_right(lx(), ly1(), black); 
+  draw_ic16_back(lx(), ly2(), black);
+  draw_ic16_repeat(lx(), ly3(), black);
   
   unsigned long now = rtcGetEpoch();
   unsigned long start = getStopwatchStartedTime();
@@ -57,37 +66,39 @@ void modeStopwatchLoop(){
 
 
   
-  drawMenuItem(itemModeAppsBack, draw_ic24_back, "Назад", firstDraw, 50, 140);
-  if(isStopwatchRunning())
-    drawMenuItem(itemModeStopwatchStartStop, draw_ic24_pause, "Пауза", firstDraw, 140, 140);
-  else
-    drawMenuItem(itemModeStopwatchStartStop, draw_ic24_arrow_right, "Запустити", firstDraw, 140, 140);
-  drawMenuItem(itemModeStopwatchReset, draw_ic24_reboot, "Скинути", firstDraw, 230, 140);
+  //drawMenuItem(itemModeAppsBack, draw_ic24_back, "Назад", firstDraw, 50, 140);
+
+  // if(isStopwatchRunning())
+  //   drawMenuItem(itemModeStopwatchStartStop, draw_ic24_pause, "Пауза", firstDraw, 140, 140);
+  // else
+  //   drawMenuItem(itemModeStopwatchStartStop, draw_ic24_arrow_right, "Запустити", firstDraw, 140, 140);
+  // drawMenuItem(itemModeStopwatchReset, draw_ic24_reboot, "Скинути", firstDraw, 230, 140);
 
   lcd()->sendBuffer();
 }
 
 void modeStopwatchButtonCenter(){
-  if(selected == itemModeStopwatchBack){
-    setModeAppsMenu();
+  setModeAppsMenu(); 
+}
+
+void modeStopwatchButtonUp(){
+  if(isStopwatchRunning()){ //do PAUSE
+    saveStopwatchFinishedTime(rtcGetEpoch());
   }
-  if(selected == itemModeStopwatchStartStop){
-    if(isStopwatchRunning()){ //do PAUSE
-      saveStopwatchFinishedTime(rtcGetEpoch());
-    }
-    else{ //do RESUME
-      unsigned long now = rtcGetEpoch();
-      unsigned long stopwatchStarted = getStopwatchStartedTime();
-      unsigned long stopwatchFinished = getStopwatchFinishedTime();
-      unsigned long dt = stopwatchFinished - stopwatchStarted;
-      unsigned long newStartedTime = now - dt;
-      saveStopwatchStartedTime(newStartedTime);
-      saveStopwatchFinishedTime(0);
-      modeStopwatchStartedMillis = millis();
-    }
+  else{ //do RESUME
+    unsigned long now = rtcGetEpoch();
+    unsigned long stopwatchStarted = getStopwatchStartedTime();
+    unsigned long stopwatchFinished = getStopwatchFinishedTime();
+    unsigned long dt = stopwatchFinished - stopwatchStarted;
+    unsigned long newStartedTime = now - dt;
+    saveStopwatchStartedTime(newStartedTime);
+    saveStopwatchFinishedTime(0);
+    modeStopwatchStartedMillis = millis();
   }
-  if(selected == itemModeStopwatchReset){
-    if(isStopwatchRunning()){
+} 
+
+void modeStopwatchButtonDown(){ 
+  if(isStopwatchRunning()){  //do RESET
       unsigned long now = rtcGetEpoch();
       saveStopwatchStartedTime(now);
     }
@@ -95,5 +106,4 @@ void modeStopwatchButtonCenter(){
       saveStopwatchStartedTime(0);
       saveStopwatchFinishedTime(0);
     }
-  }  
 }
