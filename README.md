@@ -260,13 +260,23 @@ https://www.aliexpress.us/item/32981310345.html   <br>
 ### Клей для електролюмінесцентної панелі
 <p align="center"><img src="Photos/mechanic.png" height="200"/>  </p>
 
+
 Цей елемент можна ставити або не ставити за бажанням, залежно від того чи потрібна вам нічна підсвітка екрана.   <br>
 Модель: **MECHANIC MCN-DJ002 Conductive Adhesive Glue Silver**   <br>
 https://www.aliexpress.us/item/1005002369819447.html   <br>
 
 
 ### Ремінець
-Можна купити на алі, вибір великий. Потрібні стандартні ремінці **шириною 20мм**.
+<p align="center"><img src="Photos/band.png" height="200"/>  </p>
+<p align="center"><img src="Photos/pin.png" height="200"/>  </p>
+<p align="center"><img src="Photos/pin-hole.png" height="200"/>  </p>
+
+Можна купити на алі, вибір великий. Потрібні стандартні ремінці **шириною 20мм**.   <br>
+До прикладу, можна замовити тут:   <br>
+https://www.aliexpress.us/item/1005005890436737.html   <br>
+
+До ремінців як правило йдуть в комплекті і піни для встановлення, але якщо його в комплекті нема, можна замовити окремо:   <br>
+https://www.aliexpress.us/item/1005006026719458.html   <br>
 
 
 ## Корпус
@@ -319,6 +329,8 @@ https://www.aliexpress.us/item/1005005609080807.html  <br>
 
 На етапі налагодження може допомогти такий **QFN56 Breakout Board** який підійде для ESP32-S2 (нагадую, там корпус QFN56)  <br>
 https://www.aliexpress.us/item/1005002805132028.html  <br>
+
+<p align="center"><img src="Photos/urethan.png" height=80"/> </p>
 
 **Uretan 71**  <br>
 Для покриття плат лаком я використовував таку штуку як **Uretan 71**. Наносив за допомогою маленького пензля в два шари.   <br>
