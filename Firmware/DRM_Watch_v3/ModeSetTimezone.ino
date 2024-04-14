@@ -1,8 +1,8 @@
-int modeSetTimezoneIndex = 0;
-bool modeSetTimezoneEditMode = false;
+//int modeSetTimezoneIndex = 0;
+//bool modeSetTimezoneEditMode = false;
 
-const int itemmodeSetTimezoneBack=0;
-const int itemmodeSetTimezoneHour=1;
+//const int itemmodeSetTimezoneBack=0;
+//const int itemmodeSetTimezoneHour=1;
 
 void setmodeSetTimezoneMenu(){
   clearScreenAnimation();
@@ -36,17 +36,19 @@ void modeSetTimezoneMenuLoop(){
 
   drawStatusbar(363, 1, true);
   drawMenuLegend();
-  if(modeSetTimezoneEditMode){
-    draw_ic16_plus(lx(), ly1(), black);
-    draw_ic16_minus(lx(), ly3(), black);
-  }
+  draw_ic16_back(lx(), ly2(), black);
+  // if(modeSetTimezoneEditMode){
+  //   draw_ic16_plus(lx(), ly1(), black);
+  //   draw_ic16_minus(lx(), ly3(), black);
+  // }
   
-  drawMenuItem(itemmodeSetTimezoneBack, draw_ic24_back, "Назад", firstDraw, 30, 32);
+  //drawMenuItem(itemmodeSetTimezoneBack, draw_ic24_back, "Назад", firstDraw, 30, 32);
 
-  lcd()->setFont(u8g2_font_10x20_t_cyrillic);  //ok
-  lcd()->setColorIndex(black);
-  lcd()->setCursor(30, 113); 
-  lcd()->print("Час");
+  //lcd()->setFont(u8g2_font_10x20_t_cyrillic);  //ok
+  //lcd()->setColorIndex(black);
+  //lcd()->setCursor(30, 113); 
+  //lcd()->print("Час");
+  
   long offset = getTimeOffsetSec();
   long hours = offset/(60*60);
   offset -= hours*(60*60);
@@ -56,32 +58,34 @@ void modeSetTimezoneMenuLoop(){
   text += hours;
   text += ":";
   text += minutes;
-  drawTextFrame(/*index*/itemmodeSetTimezoneHour, /*text*/text.c_str(), /*name*/"Обрати часовий пояс", /*editMode*/modeSetTimezoneEditMode, /*animate*/firstDraw, /*x*/30, /*y*/145, /*width*/308);
+  drawTextFrame(/*index*/0, /*text*/text.c_str(), /*name*/"Обрати часовий пояс", /*editMode*/false, /*animate*/firstDraw, /*x*/30, /*y*/95, /*width*/308);
   
   lcd()->sendBuffer();
 }
 
 void modeSetTimezoneMenuButtonUp(){
-  if(!modeSetTimezoneEditMode){
-    modeMainMenuButtonUp();
-    return;
-  }
-  if(selected == itemmodeSetTimezoneHour) saveTimeOffsetSec(getTimeOffsetSec()+60*30);
+  // if(!modeSetTimezoneEditMode){
+  //   modeMainMenuButtonUp();
+  //   return;
+  // }
+  // if(selected == itemmodeSetTimezoneHour) 
+  saveTimeOffsetSec(getTimeOffsetSec()+60*30);
 }
 void modeSetTimezoneMenuButtonDown(){
-  if(!modeSetTimezoneEditMode){
-    modeMainMenuButtonDown();
-    return;
-  }
-  if(selected == itemmodeSetTimezoneHour) saveTimeOffsetSec(getTimeOffsetSec()-60*30);
+  // if(!modeSetTimezoneEditMode){
+  //   modeMainMenuButtonDown();
+  //   return;
+  // }
+  // if(selected == itemmodeSetTimezoneHour) 
+  saveTimeOffsetSec(getTimeOffsetSec()-60*30);
 }
 void modeSetTimezoneMenuButtonCenter(){
-  if(selected == itemmodeSetTimezoneBack){
+  //if(selected == itemmodeSetTimezoneBack){
     setModeMenuSettingsTime();
-    return;
-  }
-  if(selected==itemmodeSetTimezoneHour){
-    modeSetTimezoneEditMode = !modeSetTimezoneEditMode;
-    return;
-  }
+//    return;
+  //}
+  // if(selected==itemmodeSetTimezoneHour){
+  //   modeSetTimezoneEditMode = !modeSetTimezoneEditMode;
+  //   return;
+  // }
 }

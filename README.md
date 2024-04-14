@@ -322,7 +322,7 @@ https://www.aliexpress.us/item/1005002805132028.html  <br>
 
 
 ## Прошивка
-Прошивка написана в **Arduino IDE 2.2.1** з використанням розширення плат **esp32 by Espressif v2.0.11, ESP32-S2**, компілювати треба під плату **Lolin S2 Mini**.   <br>
+Прошивка написана в **Arduino IDE 2.2.1** з використанням розширення плат **esp32 by Espressif v2.0.14, ESP32-S2**, компілювати треба під плату **Lolin S2 Mini**.   <br>
 Кожен режим в прошивці (поточний екран, mode) - це комплект функцій які займаються відмальовуванням екрану та обробкою кнопок. Кожен режим може робити по суті що завгодно.   <br>
 Основний спосіб навігації в прошивці це `Runnable modeSetup, modeLoop, modeButtonUp, modeButtonCenter, modeButtonDown, modeButtonUpLong, modeButtonCenterLong, modeButtonDownLong`.    <br>
 Ці змінні в кожен момент часу містять посилання на функції які відповідають поточному режиму (екрану). 
