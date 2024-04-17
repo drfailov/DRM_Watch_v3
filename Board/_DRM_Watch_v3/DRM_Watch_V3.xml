@@ -2,7 +2,7 @@
 <export version="E">
   <design>
     <source>C:\Data\Projects\2023-10-05 SHARP MEMORY LCD\Git\DRM_Watch_v3\Board\_DRM_Watch_v3\DRM_Watch_V3.kicad_sch</source>
-    <date>17/04/2024 00:23:02</date>
+    <date>18/04/2024 00:04:51</date>
     <tool>Eeschema 7.0.9</tool>
     <sheet number="1" name="/" tstamps="/">
       <title_block>
@@ -28,12 +28,14 @@
       <value>0.1uF</value>
       <footprint>Project-Lib:C_0805_2012Metric</footprint>
       <fields>
+        <field name="Description">Unpolarized capacitor</field>
         <field name="Link">https://www.aliexpress.us/item/1005006124283234.html</field>
         <field name="Role">Voltage stabilizer capacitor for 3v3</field>
       </fields>
       <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
       <property name="Link" value="https://www.aliexpress.us/item/1005006124283234.html"/>
       <property name="Role" value="Voltage stabilizer capacitor for 3v3"/>
+      <property name="Description" value="Unpolarized capacitor"/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="DRM_Watch_V3.kicad_sch"/>
       <property name="ki_description" value="Unpolarized capacitor"/>
@@ -83,12 +85,14 @@
       <value>0.1uF</value>
       <footprint>Project-Lib:C_0603_1608Metric</footprint>
       <fields>
+        <field name="Description">Unpolarized capacitor</field>
         <field name="Link">https://www.aliexpress.us/item/1005006124283234.html</field>
         <field name="Role">Voltage stabilizer capacitor for 3v3</field>
       </fields>
       <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
       <property name="Link" value="https://www.aliexpress.us/item/1005006124283234.html"/>
       <property name="Role" value="Voltage stabilizer capacitor for 3v3"/>
+      <property name="Description" value="Unpolarized capacitor"/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="DRM_Watch_V3.kicad_sch"/>
       <property name="ki_description" value="Unpolarized capacitor"/>
@@ -100,12 +104,14 @@
       <value>0.1uF</value>
       <footprint>Project-Lib:C_0603_1608Metric</footprint>
       <fields>
+        <field name="Description">Unpolarized capacitor</field>
         <field name="Link">https://www.aliexpress.us/item/1005006124283234.html</field>
         <field name="Role">Voltage stabilizer capacitor for 3v3</field>
       </fields>
       <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
       <property name="Link" value="https://www.aliexpress.us/item/1005006124283234.html"/>
       <property name="Role" value="Voltage stabilizer capacitor for 3v3"/>
+      <property name="Description" value="Unpolarized capacitor"/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="DRM_Watch_V3.kicad_sch"/>
       <property name="ki_description" value="Unpolarized capacitor"/>
@@ -117,12 +123,14 @@
       <value>0.1uF</value>
       <footprint>Project-Lib:C_0603_1608Metric</footprint>
       <fields>
+        <field name="Description">Unpolarized capacitor</field>
         <field name="Link">https://www.aliexpress.us/item/1005006124283234.html</field>
         <field name="Role">Voltage stabilizer capacitor for 3v3</field>
       </fields>
       <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
       <property name="Link" value="https://www.aliexpress.us/item/1005006124283234.html"/>
       <property name="Role" value="Voltage stabilizer capacitor for 3v3"/>
+      <property name="Description" value="Unpolarized capacitor"/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="DRM_Watch_V3.kicad_sch"/>
       <property name="ki_description" value="Unpolarized capacitor"/>
@@ -134,12 +142,14 @@
       <value>1uF</value>
       <footprint>Project-Lib:C_0603_1608Metric</footprint>
       <fields>
+        <field name="Description">Unpolarized capacitor</field>
         <field name="Link">https://www.aliexpress.us/item/1005006124283234.html</field>
         <field name="Role">Voltage stabilizer capacitor for VDD_SPI</field>
       </fields>
       <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
       <property name="Link" value="https://www.aliexpress.us/item/1005006124283234.html"/>
       <property name="Role" value="Voltage stabilizer capacitor for VDD_SPI"/>
+      <property name="Description" value="Unpolarized capacitor"/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="DRM_Watch_V3.kicad_sch"/>
       <property name="ki_description" value="Unpolarized capacitor"/>
@@ -151,12 +161,14 @@
       <value>0.1uF</value>
       <footprint>Project-Lib:C_0603_1608Metric</footprint>
       <fields>
+        <field name="Description">Unpolarized capacitor</field>
         <field name="Link">https://www.aliexpress.us/item/1005006124283234.html</field>
         <field name="Role">Voltage stabilizer capacitor for VDD_SPI</field>
       </fields>
       <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
       <property name="Link" value="https://www.aliexpress.us/item/1005006124283234.html"/>
       <property name="Role" value="Voltage stabilizer capacitor for VDD_SPI"/>
+      <property name="Description" value="Unpolarized capacitor"/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="DRM_Watch_V3.kicad_sch"/>
       <property name="ki_description" value="Unpolarized capacitor"/>
@@ -168,12 +180,14 @@
       <value>1uF</value>
       <footprint>Project-Lib:C_0805_2012Metric</footprint>
       <fields>
+        <field name="Description">Unpolarized capacitor</field>
         <field name="Link">https://www.aliexpress.us/item/1005006124283234.html</field>
         <field name="Role">Voltage stabilizer capacitor for VBAT</field>
       </fields>
       <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
       <property name="Link" value="https://www.aliexpress.us/item/1005006124283234.html"/>
       <property name="Role" value="Voltage stabilizer capacitor for VBAT"/>
+      <property name="Description" value="Unpolarized capacitor"/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="DRM_Watch_V3.kicad_sch"/>
       <property name="ki_description" value="Unpolarized capacitor"/>
@@ -185,12 +199,14 @@
       <value>1uF</value>
       <footprint>Project-Lib:C_0805_2012Metric</footprint>
       <fields>
+        <field name="Description">Unpolarized capacitor</field>
         <field name="Link">https://www.aliexpress.us/item/1005006124283234.html</field>
         <field name="Role">Voltage stabilizer capacitor for 3v3</field>
       </fields>
       <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
       <property name="Link" value="https://www.aliexpress.us/item/1005006124283234.html"/>
       <property name="Role" value="Voltage stabilizer capacitor for 3v3"/>
+      <property name="Description" value="Unpolarized capacitor"/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="DRM_Watch_V3.kicad_sch"/>
       <property name="ki_description" value="Unpolarized capacitor"/>
@@ -246,6 +262,7 @@
       <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
       <property name="Link" value="https://www.aliexpress.us/item/1005006124283234.html"/>
       <property name="Role" value="Capacitor to antenna"/>
+      <property name="Description" value=""/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="DRM_Watch_V3.kicad_sch"/>
       <property name="ki_description" value="Unpolarized capacitor"/>
@@ -263,6 +280,7 @@
       <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
       <property name="Link" value="https://www.aliexpress.us/item/1005006124283234.html"/>
       <property name="Role" value="Voltage stabilizer capacitor for EN pin"/>
+      <property name="Description" value=""/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="DRM_Watch_V3.kicad_sch"/>
       <property name="ki_description" value="Unpolarized capacitor"/>
@@ -346,10 +364,12 @@
       <value>1uF</value>
       <footprint>Project-Lib:C_0805_2012Metric</footprint>
       <fields>
+        <field name="Description">Unpolarized capacitor</field>
         <field name="Link">https://www.aliexpress.us/item/1005006124283234.html</field>
       </fields>
       <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
       <property name="Link" value="https://www.aliexpress.us/item/1005006124283234.html"/>
+      <property name="Description" value="Unpolarized capacitor"/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="DRM_Watch_V3.kicad_sch"/>
       <property name="ki_description" value="Unpolarized capacitor"/>
@@ -357,16 +377,35 @@
       <sheetpath names="/" tstamps="/"/>
       <tstamps>fc1e3867-009f-4298-bf6f-7be1dea1a060</tstamps>
     </comp>
+    <comp ref="D1">
+      <value>LED RED</value>
+      <footprint>Project-Lib:HOLE_LED_0805_2012Metric</footprint>
+      <fields>
+        <field name="Description">SMD 0805 LED Color RED</field>
+        <field name="Role">LED TOP</field>
+      </fields>
+      <libsource lib="Device" part="LED" description="Light emitting diode"/>
+      <property name="Role" value="LED TOP"/>
+      <property name="Description" value="SMD 0805 LED Color RED"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="DRM_Watch_V3.kicad_sch"/>
+      <property name="ki_description" value="Light emitting diode"/>
+      <property name="ki_keywords" value="LED diode"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>9f3edb61-e180-4054-8df4-7d8120984a26</tstamps>
+    </comp>
     <comp ref="D2">
       <value>020 SMD Side View LED White 6000K</value>
       <footprint>Project-Lib:SMD-LED-Side-View</footprint>
       <fields>
+        <field name="Description">SMD 020 Side View bright LED</field>
         <field name="Link">https://www.aliexpress.us/item/32419907074.html</field>
         <field name="Role">Flashlight, Led bottom</field>
       </fields>
       <libsource lib="Device" part="LED" description="Light emitting diode"/>
       <property name="Role" value="Flashlight, Led bottom"/>
       <property name="Link" value="https://www.aliexpress.us/item/32419907074.html"/>
+      <property name="Description" value="SMD 020 Side View bright LED"/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="DRM_Watch_V3.kicad_sch"/>
       <property name="ki_description" value="Light emitting diode"/>
@@ -384,6 +423,7 @@
       <libsource lib="Device" part="LED" description="Light emitting diode"/>
       <property name="Link" value="https://www.aliexpress.us/item/4000936781234.html"/>
       <property name="Role" value="LED STBY"/>
+      <property name="Description" value=""/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="DRM_Watch_V3.kicad_sch"/>
       <property name="ki_description" value="Light emitting diode"/>
@@ -401,12 +441,30 @@
       <libsource lib="Device" part="LED" description="Light emitting diode"/>
       <property name="Role" value="LED CHARGE"/>
       <property name="Link" value="https://www.aliexpress.us/item/4000936781234.html"/>
+      <property name="Description" value=""/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="DRM_Watch_V3.kicad_sch"/>
       <property name="ki_description" value="Light emitting diode"/>
       <property name="ki_keywords" value="LED diode"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>7e161b7a-e421-4d24-8244-225bffbabc62</tstamps>
+    </comp>
+    <comp ref="D5">
+      <value>LED BLUE</value>
+      <footprint>Project-Lib:HOLE_LED_0805_2012Metric</footprint>
+      <fields>
+        <field name="Description">SMD 0805 Blue LED</field>
+        <field name="Role">LED STATUS</field>
+      </fields>
+      <libsource lib="Device" part="LED" description="Light emitting diode"/>
+      <property name="Role" value="LED STATUS"/>
+      <property name="Description" value="SMD 0805 Blue LED"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="DRM_Watch_V3.kicad_sch"/>
+      <property name="ki_description" value="Light emitting diode"/>
+      <property name="ki_keywords" value="LED diode"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>935c7621-1852-4ed5-ac43-241b958648c6</tstamps>
     </comp>
     <comp ref="D6">
       <value>US1D</value>
@@ -455,12 +513,14 @@
         <field name="Link">https://jlcpcb.com/partdetail/Korean_HropartsElec-TYPE_C_31_M12/C165948</field>
         <field name="Link2">https://www.snapeda.com/parts/TYPE-C-31-M-12/HRO+Electronics+Co.%252C+Ltd./view-part/?ref=snap</field>
         <field name="Manufacturer">HRO Electronics Co., Ltd.</field>
+        <field name="Role">USB Port for charging and update</field>
       </fields>
       <libsource lib="Project-Lib" part="TYPE-C-31-M-12" description=""/>
       <property name="Link2" value="https://www.snapeda.com/parts/TYPE-C-31-M-12/HRO+Electronics+Co.%252C+Ltd./view-part/?ref=snap"/>
       <property name="Manufacturer" value="HRO Electronics Co., Ltd."/>
       <property name="Link" value="https://jlcpcb.com/partdetail/Korean_HropartsElec-TYPE_C_31_M12/C165948"/>
       <property name="Description" value="USB Type-C Connector"/>
+      <property name="Role" value="USB Port for charging and update"/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="DRM_Watch_V3.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
@@ -529,12 +589,14 @@
       <footprint>Project-Lib:m1.2-screw-mount</footprint>
       <datasheet>https://www.swaco.com/SMTSO-M1.2-2ET-PEM-ReelFast</datasheet>
       <fields>
+        <field name="Description">Surface mount spacers with thread</field>
         <field name="Link">https://www.aliexpress.com/i/1005005125674149.html   (SMTSO-M1.2-2)</field>
         <field name="Role">Screw mount for back case</field>
       </fields>
       <libsource lib="Project-Lib" part="screwMount" description=""/>
       <property name="Link" value="https://www.aliexpress.com/i/1005005125674149.html   (SMTSO-M1.2-2)"/>
       <property name="Role" value="Screw mount for back case"/>
+      <property name="Description" value="Surface mount spacers with thread"/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="DRM_Watch_V3.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
@@ -545,12 +607,14 @@
       <footprint>Project-Lib:m1.2-screw-mount</footprint>
       <datasheet>https://www.swaco.com/SMTSO-M1.2-2ET-PEM-ReelFast</datasheet>
       <fields>
+        <field name="Description">Surface mount spacers with thread</field>
         <field name="Link">https://www.aliexpress.com/i/1005005125674149.html   (SMTSO-M1.2-2)</field>
         <field name="Role">Screw mount for back case</field>
       </fields>
       <libsource lib="Project-Lib" part="screwMount" description=""/>
       <property name="Link" value="https://www.aliexpress.com/i/1005005125674149.html   (SMTSO-M1.2-2)"/>
       <property name="Role" value="Screw mount for back case"/>
+      <property name="Description" value="Surface mount spacers with thread"/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="DRM_Watch_V3.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
@@ -561,12 +625,14 @@
       <footprint>Project-Lib:m1.2-screw-mount</footprint>
       <datasheet>https://www.swaco.com/SMTSO-M1.2-2ET-PEM-ReelFast</datasheet>
       <fields>
+        <field name="Description">Surface mount spacers with thread</field>
         <field name="Link">https://www.aliexpress.com/i/1005005125674149.html   (SMTSO-M1.2-2)</field>
         <field name="Role">Screw mount for back case</field>
       </fields>
       <libsource lib="Project-Lib" part="screwMount" description=""/>
       <property name="Link" value="https://www.aliexpress.com/i/1005005125674149.html   (SMTSO-M1.2-2)"/>
       <property name="Role" value="Screw mount for back case"/>
+      <property name="Description" value="Surface mount spacers with thread"/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="DRM_Watch_V3.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
@@ -577,6 +643,7 @@
       <footprint>Project-Lib:SOT95P240X111-3N</footprint>
       <datasheet>https://www.rcscomponents.kiev.ua/datasheets/2n7002lt1g.pdf</datasheet>
       <fields>
+        <field name="Description">2N7002 N-Channel MOSFET, SOT-23-3 Package</field>
         <field name="Link">https://www.aliexpress.us/item/1005003909614901.html</field>
         <field name="Link2">https://www.aliexpress.us/item/1005003079655220.html</field>
         <field name="Manufacturer">ON Semiconductor</field>
@@ -587,19 +654,44 @@
       <property name="Role" value="Driving MOSFET for buzzer"/>
       <property name="Link" value="https://www.aliexpress.us/item/1005003909614901.html"/>
       <property name="Link2" value="https://www.aliexpress.us/item/1005003079655220.html"/>
+      <property name="Description" value="2N7002 N-Channel MOSFET, SOT-23-3 Package"/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="DRM_Watch_V3.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>f313305d-950d-461f-83d4-305b9db1641c</tstamps>
     </comp>
+    <comp ref="Q2">
+      <value>2N7002LT1G (SOT-23-3)</value>
+      <footprint>Project-Lib:SOT95P240X111-3N</footprint>
+      <datasheet>https://www.rcscomponents.kiev.ua/datasheets/2n7002lt1g.pdf</datasheet>
+      <fields>
+        <field name="Description">2N7002 N-Channel MOSFET, SOT-23-3 Package</field>
+        <field name="Link">https://www.aliexpress.us/item/1005003909614901.html</field>
+        <field name="Link2">https://www.aliexpress.us/item/1005003079655220.html</field>
+        <field name="Manufacturer">ON Semiconductor</field>
+        <field name="Role">Driving MOSFET for Vibro</field>
+      </fields>
+      <libsource lib="Project-Lib" part="2N7002LT1G" description=""/>
+      <property name="Description" value="2N7002 N-Channel MOSFET, SOT-23-3 Package"/>
+      <property name="Manufacturer" value="ON Semiconductor"/>
+      <property name="Link" value="https://www.aliexpress.us/item/1005003909614901.html"/>
+      <property name="Link2" value="https://www.aliexpress.us/item/1005003079655220.html"/>
+      <property name="Role" value="Driving MOSFET for Vibro"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="DRM_Watch_V3.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>e1993d7b-141a-4ce9-9d56-82f545f26a0c</tstamps>
+    </comp>
     <comp ref="R1">
       <value>1K</value>
       <footprint>Project-Lib:R_0603_1608Metric</footprint>
       <fields>
+        <field name="Description">SMD Resistor</field>
         <field name="Role">Pull-down for buzzer signal</field>
       </fields>
       <libsource lib="Device" part="R" description="Resistor"/>
       <property name="Role" value="Pull-down for buzzer signal"/>
+      <property name="Description" value="SMD Resistor"/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="DRM_Watch_V3.kicad_sch"/>
       <property name="ki_description" value="Resistor"/>
@@ -610,7 +702,13 @@
     <comp ref="R2">
       <value>5.1K</value>
       <footprint>Project-Lib:R_0603_1608Metric</footprint>
+      <fields>
+        <field name="Description">SMD Resistor</field>
+        <field name="Role">USB Type-C CC Line terminator</field>
+      </fields>
       <libsource lib="Device" part="R" description="Resistor"/>
+      <property name="Description" value="SMD Resistor"/>
+      <property name="Role" value="USB Type-C CC Line terminator"/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="DRM_Watch_V3.kicad_sch"/>
       <property name="ki_description" value="Resistor"/>
@@ -621,7 +719,13 @@
     <comp ref="R3">
       <value>5.1K</value>
       <footprint>Project-Lib:R_0603_1608Metric</footprint>
+      <fields>
+        <field name="Description">SMD Resistor</field>
+        <field name="Role">USB Type-C CC Line terminator</field>
+      </fields>
       <libsource lib="Device" part="R" description="Resistor"/>
+      <property name="Description" value="SMD Resistor"/>
+      <property name="Role" value="USB Type-C CC Line terminator"/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="DRM_Watch_V3.kicad_sch"/>
       <property name="ki_description" value="Resistor"/>
@@ -633,12 +737,14 @@
       <value>R22</value>
       <footprint>Project-Lib:R_0603_1608Metric</footprint>
       <fields>
+        <field name="Description">SMD Resistor</field>
         <field name="Link">https://www.aliexpress.us/item/1005002364437129.html</field>
         <field name="Role">Current-limiting ressitor for buzzer</field>
       </fields>
       <libsource lib="Device" part="R" description="Resistor"/>
       <property name="Link" value="https://www.aliexpress.us/item/1005002364437129.html"/>
       <property name="Role" value="Current-limiting ressitor for buzzer"/>
+      <property name="Description" value="SMD Resistor"/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="DRM_Watch_V3.kicad_sch"/>
       <property name="ki_description" value="Resistor"/>
@@ -649,7 +755,13 @@
     <comp ref="R5">
       <value>R22</value>
       <footprint>Project-Lib:R_0603_1608Metric</footprint>
+      <fields>
+        <field name="Description">SMD 0603 Resistor</field>
+        <field name="Role">Current limiting resistor for LED</field>
+      </fields>
       <libsource lib="Device" part="R" description="Resistor"/>
+      <property name="Description" value="SMD 0603 Resistor"/>
+      <property name="Role" value="Current limiting resistor for LED"/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="DRM_Watch_V3.kicad_sch"/>
       <property name="ki_description" value="Resistor"/>
@@ -660,7 +772,13 @@
     <comp ref="R6">
       <value>R22</value>
       <footprint>Project-Lib:R_0603_1608Metric</footprint>
+      <fields>
+        <field name="Description">SMD 0603 Resistor</field>
+        <field name="Role">Current limiting resistor for LED</field>
+      </fields>
       <libsource lib="Device" part="R" description="Resistor"/>
+      <property name="Description" value="SMD 0603 Resistor"/>
+      <property name="Role" value="Current limiting resistor for LED"/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="DRM_Watch_V3.kicad_sch"/>
       <property name="ki_description" value="Resistor"/>
@@ -672,10 +790,12 @@
       <value>1K</value>
       <footprint>Project-Lib:R_0603_1608Metric</footprint>
       <fields>
+        <field name="Description">SMD Resistor</field>
         <field name="Role">Current-limit resistor for LED STBY</field>
       </fields>
       <libsource lib="Device" part="R" description="Resistor"/>
       <property name="Role" value="Current-limit resistor for LED STBY"/>
+      <property name="Description" value="SMD Resistor"/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="DRM_Watch_V3.kicad_sch"/>
       <property name="ki_description" value="Resistor"/>
@@ -687,10 +807,12 @@
       <value>1K</value>
       <footprint>Project-Lib:R_0603_1608Metric</footprint>
       <fields>
+        <field name="Description">SMD Resistor</field>
         <field name="Role">Current limiting resistor for LED CHG</field>
       </fields>
       <libsource lib="Device" part="R" description="Resistor"/>
       <property name="Role" value="Current limiting resistor for LED CHG"/>
+      <property name="Description" value="SMD Resistor"/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="DRM_Watch_V3.kicad_sch"/>
       <property name="ki_description" value="Resistor"/>
@@ -702,10 +824,12 @@
       <value>10K</value>
       <footprint>Project-Lib:R_0603_1608Metric</footprint>
       <fields>
+        <field name="Description">SMD Resistor</field>
         <field name="Role">Current setting resistor more 1K=1A, 10K=100mA</field>
       </fields>
       <libsource lib="Device" part="R" description="Resistor"/>
       <property name="Role" value="Current setting resistor more 1K=1A, 10K=100mA"/>
+      <property name="Description" value="SMD Resistor"/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="DRM_Watch_V3.kicad_sch"/>
       <property name="ki_description" value="Resistor"/>
@@ -716,7 +840,13 @@
     <comp ref="R10">
       <value>R22</value>
       <footprint>Project-Lib:R_0603_1608Metric</footprint>
+      <fields>
+        <field name="Description">SMD 0603 Resistor</field>
+        <field name="Role">Current limiting resistor for LED</field>
+      </fields>
       <libsource lib="Device" part="R" description="Resistor"/>
+      <property name="Description" value="SMD 0603 Resistor"/>
+      <property name="Role" value="Current limiting resistor for LED"/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="DRM_Watch_V3.kicad_sch"/>
       <property name="ki_description" value="Resistor"/>
@@ -728,10 +858,12 @@
       <value>100K</value>
       <footprint>Project-Lib:R_0603_1608Metric</footprint>
       <fields>
+        <field name="Description">SMD Resistor</field>
         <field name="Role">Part of voltage divider for battery</field>
       </fields>
       <libsource lib="Device" part="R" description="Resistor"/>
       <property name="Role" value="Part of voltage divider for battery"/>
+      <property name="Description" value="SMD Resistor"/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="DRM_Watch_V3.kicad_sch"/>
       <property name="ki_description" value="Resistor"/>
@@ -743,10 +875,12 @@
       <value>100K</value>
       <footprint>Project-Lib:R_0603_1608Metric</footprint>
       <fields>
+        <field name="Description">SMD Resistor</field>
         <field name="Role">Part of voltage divider for battery</field>
       </fields>
       <libsource lib="Device" part="R" description="Resistor"/>
       <property name="Role" value="Part of voltage divider for battery"/>
+      <property name="Description" value="SMD Resistor"/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="DRM_Watch_V3.kicad_sch"/>
       <property name="ki_description" value="Resistor"/>
@@ -758,10 +892,12 @@
       <value>100K</value>
       <footprint>Project-Lib:R_0603_1608Metric</footprint>
       <fields>
+        <field name="Description">SMD Resistor</field>
         <field name="Role">Part of voltage divider for USB</field>
       </fields>
       <libsource lib="Device" part="R" description="Resistor"/>
       <property name="Role" value="Part of voltage divider for USB"/>
+      <property name="Description" value="SMD Resistor"/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="DRM_Watch_V3.kicad_sch"/>
       <property name="ki_description" value="Resistor"/>
@@ -773,10 +909,12 @@
       <value>100K</value>
       <footprint>Project-Lib:R_0603_1608Metric</footprint>
       <fields>
+        <field name="Description">SMD Resistor</field>
         <field name="Role">Part of voltage divider for USB</field>
       </fields>
       <libsource lib="Device" part="R" description="Resistor"/>
       <property name="Role" value="Part of voltage divider for USB"/>
+      <property name="Description" value="SMD Resistor"/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="DRM_Watch_V3.kicad_sch"/>
       <property name="ki_description" value="Resistor"/>
@@ -788,10 +926,12 @@
       <value>0 ohm</value>
       <footprint>Project-Lib:R_0603_1608Metric</footprint>
       <fields>
+        <field name="Description">SMD Resistor</field>
         <field name="Role">Resistor to antenna</field>
       </fields>
       <libsource lib="Device" part="R" description="Resistor"/>
       <property name="Role" value="Resistor to antenna"/>
+      <property name="Description" value="SMD Resistor"/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="DRM_Watch_V3.kicad_sch"/>
       <property name="ki_description" value="Resistor"/>
@@ -803,12 +943,14 @@
       <value>10K</value>
       <footprint>Project-Lib:R_0603_1608Metric</footprint>
       <fields>
+        <field name="Description">SMD Resistor</field>
         <field name="Link">https://www.aliexpress.us/item/1005002364437129.html</field>
         <field name="Role">Pull-Up for ENABLE pin of ESP32</field>
       </fields>
       <libsource lib="Device" part="R" description="Resistor"/>
       <property name="Link" value="https://www.aliexpress.us/item/1005002364437129.html"/>
       <property name="Role" value="Pull-Up for ENABLE pin of ESP32"/>
+      <property name="Description" value="SMD Resistor"/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="DRM_Watch_V3.kicad_sch"/>
       <property name="ki_description" value="Resistor"/>
@@ -819,7 +961,13 @@
     <comp ref="R17">
       <value>560K</value>
       <footprint>Project-Lib:R_0603_1608Metric</footprint>
+      <fields>
+        <field name="Description">SMD Resistor</field>
+        <field name="Role">Complementary part for EL Driver IC</field>
+      </fields>
       <libsource lib="Device" part="R" description="Resistor"/>
+      <property name="Description" value="SMD Resistor"/>
+      <property name="Role" value="Complementary part for EL Driver IC"/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="DRM_Watch_V3.kicad_sch"/>
       <property name="ki_description" value="Resistor"/>
@@ -830,7 +978,13 @@
     <comp ref="R18">
       <value>2M</value>
       <footprint>Project-Lib:R_0603_1608Metric</footprint>
+      <fields>
+        <field name="Description">SMD Resistor</field>
+        <field name="Role">Complementary part for EL Driver IC</field>
+      </fields>
       <libsource lib="Device" part="R" description="Resistor"/>
+      <property name="Description" value="SMD Resistor"/>
+      <property name="Role" value="Complementary part for EL Driver IC"/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="DRM_Watch_V3.kicad_sch"/>
       <property name="ki_description" value="Resistor"/>
@@ -892,7 +1046,11 @@
     <comp ref="R22">
       <value>1K</value>
       <footprint>Project-Lib:R_0603_1608Metric</footprint>
+      <fields>
+        <field name="Description">SMD Resistor</field>
+      </fields>
       <libsource lib="Device" part="R" description="Resistor"/>
+      <property name="Description" value="SMD Resistor"/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="DRM_Watch_V3.kicad_sch"/>
       <property name="ki_description" value="Resistor"/>
@@ -904,10 +1062,12 @@
       <value>R22</value>
       <footprint>Project-Lib:R_0603_1608Metric</footprint>
       <fields>
+        <field name="Description">SMD Resistor</field>
         <field name="Link">https://www.aliexpress.us/item/1005002364437129.html</field>
       </fields>
       <libsource lib="Device" part="R" description="Resistor"/>
       <property name="Link" value="https://www.aliexpress.us/item/1005002364437129.html"/>
+      <property name="Description" value="SMD Resistor"/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="DRM_Watch_V3.kicad_sch"/>
       <property name="ki_description" value="Resistor"/>
@@ -919,12 +1079,14 @@
       <value>2*4*3.5mm Micro SMD Tact Switch Side Button</value>
       <footprint>Project-Lib:SW_TL3330AF130QG</footprint>
       <fields>
+        <field name="Description">SMD Side Tactile Button</field>
         <field name="Link">https://www.aliexpress.us/item/32880903601.html</field>
         <field name="Role">TOP</field>
       </fields>
       <libsource lib="Project-Lib" part="TL3330AF130QG" description=""/>
       <property name="Role" value="TOP"/>
       <property name="Link" value="https://www.aliexpress.us/item/32880903601.html"/>
+      <property name="Description" value="SMD Side Tactile Button"/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="DRM_Watch_V3.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
@@ -934,12 +1096,14 @@
       <value>2*4*3.5mm Micro SMD Tact Switch Side Button</value>
       <footprint>Project-Lib:SW_TL3330AF130QG</footprint>
       <fields>
+        <field name="Description">SMD Side Tactile Button</field>
         <field name="Link">https://www.aliexpress.us/item/32880903601.html</field>
         <field name="Role">CENTER</field>
       </fields>
       <libsource lib="Project-Lib" part="TL3330AF130QG" description=""/>
       <property name="Role" value="CENTER"/>
       <property name="Link" value="https://www.aliexpress.us/item/32880903601.html"/>
+      <property name="Description" value="SMD Side Tactile Button"/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="DRM_Watch_V3.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
@@ -949,12 +1113,14 @@
       <value>2*4*3.5mm Micro SMD Tact Switch Side Button</value>
       <footprint>Project-Lib:SW_TL3330AF130QG</footprint>
       <fields>
+        <field name="Description">SMD Side Tactile Button</field>
         <field name="Link">https://www.aliexpress.us/item/32880903601.html</field>
         <field name="Role">RESET</field>
       </fields>
       <libsource lib="Project-Lib" part="TL3330AF130QG" description=""/>
       <property name="Role" value="RESET"/>
       <property name="Link" value="https://www.aliexpress.us/item/32880903601.html"/>
+      <property name="Description" value="SMD Side Tactile Button"/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="DRM_Watch_V3.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
@@ -964,12 +1130,14 @@
       <value>2*4*3.5mm Micro SMD Tact Switch Side Button</value>
       <footprint>Project-Lib:SW_TL3330AF130QG</footprint>
       <fields>
+        <field name="Description">SMD Side Tactile Button</field>
         <field name="Link">https://www.aliexpress.us/item/32880903601.html</field>
         <field name="Role">BOTTOM</field>
       </fields>
       <libsource lib="Project-Lib" part="TL3330AF130QG" description=""/>
       <property name="Role" value="BOTTOM"/>
       <property name="Link" value="https://www.aliexpress.us/item/32880903601.html"/>
+      <property name="Description" value="SMD Side Tactile Button"/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="DRM_Watch_V3.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
@@ -980,6 +1148,7 @@
       <footprint>Project-Lib:QFN-56-1EP_7x7mm_P0.4mm_EP4x4mm_ThermalVias</footprint>
       <datasheet>https://www.espressif.com/sites/default/files/documentation/esp32-s2_datasheet_en.pdf</datasheet>
       <fields>
+        <field name="Description">ESP32-S2 Programmable Microcontroller Chip</field>
         <field name="Link">https://www.tme.eu/en/details/esp32s2/iot-wifi-bluetooth-modules/espressif/esp32-s2/</field>
         <field name="Manufacturer">Espressif</field>
         <field name="Role">Main controller</field>
@@ -988,6 +1157,7 @@
       <property name="Link" value="https://www.tme.eu/en/details/esp32s2/iot-wifi-bluetooth-modules/espressif/esp32-s2/"/>
       <property name="Manufacturer" value="Espressif"/>
       <property name="Role" value="Main controller"/>
+      <property name="Description" value="ESP32-S2 Programmable Microcontroller Chip"/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="DRM_Watch_V3.kicad_sch"/>
       <property name="ki_description" value="ESP32-S2 family is a highly-integrated, low-power, 2.4GHz Wi-Fi System-on-Chip (SoC) solution."/>
@@ -999,12 +1169,14 @@
       <footprint>Project-Lib:ME6211 SOT-23-5</footprint>
       <datasheet>https://pdf1.alldatasheet.com/datasheet-pdf/download/1138839/ETC2/ME6211.html</datasheet>
       <fields>
+        <field name="Description">3.3V Step-Down DC-DC Voltage Converter</field>
         <field name="Link">https://www.aliexpress.us/item/1005006036398325.html</field>
         <field name="Role">Step-down voltage converter</field>
       </fields>
       <libsource lib="Project-Lib" part="LDO_ME6211" description=""/>
       <property name="Link" value="https://www.aliexpress.us/item/1005006036398325.html"/>
       <property name="Role" value="Step-down voltage converter"/>
+      <property name="Description" value="3.3V Step-Down DC-DC Voltage Converter"/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="DRM_Watch_V3.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
@@ -1015,6 +1187,7 @@
       <footprint>Project-Lib:SO08</footprint>
       <datasheet>https://dlnmh9ip6v2uc.cloudfront.net/datasheets/Prototyping/TP4056.pdf</datasheet>
       <fields>
+        <field name="Description">Battery charging TP4056 IC</field>
         <field name="Link">https://www.alibaba.com/product-detail/TC4056A-SOP-8-is-compatible-with_1600806443781.html</field>
         <field name="Manufacturer">Texas Instruments</field>
         <field name="Role">Battery charger</field>
@@ -1023,6 +1196,7 @@
       <property name="Manufacturer" value="Texas Instruments"/>
       <property name="Link" value="https://www.alibaba.com/product-detail/TC4056A-SOP-8-is-compatible-with_1600806443781.html"/>
       <property name="Role" value="Battery charger"/>
+      <property name="Description" value="Battery charging TP4056 IC"/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="DRM_Watch_V3.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
@@ -1053,14 +1227,18 @@
       <footprint>Project-Lib:HV857</footprint>
       <datasheet>https://ww1.microchip.com/downloads/aemDocuments/documents/APID/ProductDocuments/DataSheets/HV857-High-Voltage-Low-Noise-EL-Lamp-Driver-IC-Data-Sheet-DS20005683.pdf</datasheet>
       <fields>
+        <field name="Description">EL Lamp Driver chip</field>
         <field name="Link">https://www.aliexpress.us/item/1005005512523052.html</field>
         <field name="Link2">https://www.microchip.com/en-us/product/hv857</field>
         <field name="Manufacturer">microchip</field>
+        <field name="Role">EL Backlight driver IC</field>
       </fields>
       <libsource lib="Project-Lib" part="HV857" description=""/>
       <property name="Manufacturer" value="microchip"/>
       <property name="Link" value="https://www.aliexpress.us/item/1005005512523052.html"/>
       <property name="Link2" value="https://www.microchip.com/en-us/product/hv857"/>
+      <property name="Description" value="EL Lamp Driver chip"/>
+      <property name="Role" value="EL Backlight driver IC"/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="DRM_Watch_V3.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
@@ -1589,7 +1767,9 @@ N-Channel 60 V 115mA (Tc) 225mW (Ta) Surface Mount SOT-23-3 (TO-236)
       <node ref="C7" pin="2" pintype="passive"/>
       <node ref="C8" pin="2" pintype="passive"/>
       <node ref="C9" pin="2" pintype="passive"/>
+      <node ref="D1" pin="1" pinfunction="K" pintype="passive"/>
       <node ref="D2" pin="1" pinfunction="K" pintype="passive"/>
+      <node ref="D5" pin="1" pinfunction="K" pintype="passive"/>
       <node ref="J1" pin="A1_B12" pinfunction="GND" pintype="power_in"/>
       <node ref="J1" pin="B1_A12" pinfunction="GND" pintype="power_in"/>
       <node ref="J1" pin="S1" pinfunction="SHIELD" pintype="passive"/>
@@ -1604,6 +1784,7 @@ N-Channel 60 V 115mA (Tc) 225mW (Ta) Surface Mount SOT-23-3 (TO-236)
       <node ref="M2" pin="1" pintype="passive"/>
       <node ref="M3" pin="1" pintype="passive"/>
       <node ref="Q1" pin="2" pintype="passive"/>
+      <node ref="Q2" pin="2" pintype="passive"/>
       <node ref="R1" pin="2" pintype="passive"/>
       <node ref="R12" pin="2" pintype="passive"/>
       <node ref="R14" pin="2" pintype="passive"/>
@@ -1642,6 +1823,7 @@ N-Channel 60 V 115mA (Tc) 225mW (Ta) Surface Mount SOT-23-3 (TO-236)
       <node ref="R15" pin="1" pintype="passive"/>
     </net>
     <net code="4" name="Net-(D1-A)">
+      <node ref="D1" pin="2" pinfunction="A" pintype="passive"/>
       <node ref="R5" pin="1" pintype="passive"/>
     </net>
     <net code="5" name="Net-(D2-A)">
@@ -1665,6 +1847,7 @@ N-Channel 60 V 115mA (Tc) 225mW (Ta) Surface Mount SOT-23-3 (TO-236)
       <node ref="U3" pin="7" pinfunction="CHRGE" pintype="bidirectional"/>
     </net>
     <net code="10" name="Net-(D5-A)">
+      <node ref="D5" pin="2" pinfunction="A" pintype="passive"/>
       <node ref="R10" pin="1" pintype="passive"/>
     </net>
     <net code="11" name="Net-(D6-A)">
@@ -1680,6 +1863,7 @@ N-Channel 60 V 115mA (Tc) 225mW (Ta) Surface Mount SOT-23-3 (TO-236)
     <net code="13" name="Net-(D7-A)">
       <node ref="C19" pin="1" pintype="passive"/>
       <node ref="D7" pin="2" pinfunction="A" pintype="passive"/>
+      <node ref="Q2" pin="3" pintype="passive"/>
     </net>
     <net code="14" name="Net-(D7-K)">
       <node ref="C19" pin="2" pintype="passive"/>
@@ -1765,6 +1949,7 @@ N-Channel 60 V 115mA (Tc) 225mW (Ta) Surface Mount SOT-23-3 (TO-236)
       <node ref="U1" pin="13" pinfunction="GPIO8/ADC1_CH7" pintype="bidirectional"/>
     </net>
     <net code="33" name="Net-(U1-GPIO9{slash}ADC1_CH8)">
+      <node ref="Q2" pin="1" pintype="passive"/>
       <node ref="R22" pin="1" pintype="passive"/>
       <node ref="U1" pin="14" pinfunction="GPIO9/ADC1_CH8" pintype="bidirectional"/>
     </net>
