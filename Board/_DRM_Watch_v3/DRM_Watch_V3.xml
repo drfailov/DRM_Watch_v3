@@ -2,7 +2,7 @@
 <export version="E">
   <design>
     <source>C:\Data\Projects\2023-10-05 SHARP MEMORY LCD\Git\DRM_Watch_v3\Board\_DRM_Watch_v3\DRM_Watch_V3.kicad_sch</source>
-    <date>18/04/2024 00:04:51</date>
+    <date>18/04/2024 23:02:24</date>
     <tool>Eeschema 7.0.9</tool>
     <sheet number="1" name="/" tstamps="/">
       <title_block>
@@ -256,13 +256,14 @@
       <value>10pF</value>
       <footprint>Project-Lib:C_0603_1608Metric</footprint>
       <fields>
+        <field name="Description">Unpolarized capacitor</field>
         <field name="Link">https://www.aliexpress.us/item/1005006124283234.html</field>
         <field name="Role">Capacitor to antenna</field>
       </fields>
       <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
       <property name="Link" value="https://www.aliexpress.us/item/1005006124283234.html"/>
       <property name="Role" value="Capacitor to antenna"/>
-      <property name="Description" value=""/>
+      <property name="Description" value="Unpolarized capacitor"/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="DRM_Watch_V3.kicad_sch"/>
       <property name="ki_description" value="Unpolarized capacitor"/>
@@ -274,13 +275,14 @@
       <value>1uF</value>
       <footprint>Project-Lib:C_0603_1608Metric</footprint>
       <fields>
+        <field name="Description">Unpolarized Capacitor</field>
         <field name="Link">https://www.aliexpress.us/item/1005006124283234.html</field>
         <field name="Role">Voltage stabilizer capacitor for EN pin</field>
       </fields>
       <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
       <property name="Link" value="https://www.aliexpress.us/item/1005006124283234.html"/>
       <property name="Role" value="Voltage stabilizer capacitor for EN pin"/>
-      <property name="Description" value=""/>
+      <property name="Description" value="Unpolarized Capacitor"/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="DRM_Watch_V3.kicad_sch"/>
       <property name="ki_description" value="Unpolarized capacitor"/>
@@ -417,13 +419,14 @@
       <value>LED BLUE</value>
       <footprint>Project-Lib:HOLE_LED_0805_2012Metric</footprint>
       <fields>
+        <field name="Description">SMD 0805 Blue LED</field>
         <field name="Link">https://www.aliexpress.us/item/4000936781234.html</field>
         <field name="Role">LED STBY</field>
       </fields>
       <libsource lib="Device" part="LED" description="Light emitting diode"/>
       <property name="Link" value="https://www.aliexpress.us/item/4000936781234.html"/>
       <property name="Role" value="LED STBY"/>
-      <property name="Description" value=""/>
+      <property name="Description" value="SMD 0805 Blue LED"/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="DRM_Watch_V3.kicad_sch"/>
       <property name="ki_description" value="Light emitting diode"/>
@@ -435,13 +438,14 @@
       <value>LED RED</value>
       <footprint>Project-Lib:HOLE_LED_0805_2012Metric</footprint>
       <fields>
+        <field name="Description">SMD 0805 Red LED</field>
         <field name="Link">https://www.aliexpress.us/item/4000936781234.html</field>
         <field name="Role">LED CHARGE</field>
       </fields>
       <libsource lib="Device" part="LED" description="Light emitting diode"/>
       <property name="Role" value="LED CHARGE"/>
       <property name="Link" value="https://www.aliexpress.us/item/4000936781234.html"/>
-      <property name="Description" value=""/>
+      <property name="Description" value="SMD 0805 Red LED"/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="DRM_Watch_V3.kicad_sch"/>
       <property name="ki_description" value="Light emitting diode"/>
@@ -493,10 +497,12 @@
       <fields>
         <field name="Description">SMD schottky diode</field>
         <field name="Link">https://www.aliexpress.us/item/1005005254835443.html</field>
+        <field name="Role">Catch for backdrop of vibro</field>
       </fields>
       <libsource lib="Diode" part="US1D" description="200V, 1A, General Purpose Rectifier Diode, SMA(DO-214AC)"/>
       <property name="Link" value="https://www.aliexpress.us/item/1005005254835443.html"/>
       <property name="Description" value="SMD schottky diode"/>
+      <property name="Role" value="Catch for backdrop of vibro"/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="DRM_Watch_V3.kicad_sch"/>
       <property name="ki_description" value="200V, 1A, General Purpose Rectifier Diode, SMA(DO-214AC)"/>
@@ -1048,9 +1054,11 @@
       <footprint>Project-Lib:R_0603_1608Metric</footprint>
       <fields>
         <field name="Description">SMD Resistor</field>
+        <field name="Role">Step-Down for Vibro Signal</field>
       </fields>
       <libsource lib="Device" part="R" description="Resistor"/>
       <property name="Description" value="SMD Resistor"/>
+      <property name="Role" value="Step-Down for Vibro Signal"/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="DRM_Watch_V3.kicad_sch"/>
       <property name="ki_description" value="Resistor"/>
@@ -1064,10 +1072,12 @@
       <fields>
         <field name="Description">SMD Resistor</field>
         <field name="Link">https://www.aliexpress.us/item/1005002364437129.html</field>
+        <field name="Role">Current limit for vibro</field>
       </fields>
       <libsource lib="Device" part="R" description="Resistor"/>
       <property name="Link" value="https://www.aliexpress.us/item/1005002364437129.html"/>
       <property name="Description" value="SMD Resistor"/>
+      <property name="Role" value="Current limit for vibro"/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="DRM_Watch_V3.kicad_sch"/>
       <property name="ki_description" value="Resistor"/>
