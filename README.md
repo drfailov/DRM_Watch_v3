@@ -6,7 +6,7 @@
 # Про проект DRM Watch 3
 
 <p align="center">
-<img src="Photos/DRM_welcome.jpg" width="600"/>
+<img src="Photos/DRM_welcome.jpg" width="700"/>
 </p>
 
 **DRM Watch 3** - це мій саморобний наручний годинник, в основі якого лежить дисплей Sharp Memory LCD, ESP32-S2 і бажання носити це на руці:)  <br>
@@ -28,7 +28,7 @@
 </p>
 
 <p align="center">
-<img src="Photos/DSC_3058.jpg" width="500"/>
+<img src="Photos/DSC_3058.jpg" width="600"/>
 </p>
 <p align="center">
 <img src="Photos/DSC_3069.jpg" width="200"/>
