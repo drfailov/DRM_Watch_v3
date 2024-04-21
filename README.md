@@ -91,7 +91,11 @@
 
 
 
-## Де брати комплектуючі
+
+
+
+
+# Де брати комплектуючі
 Готових годинників в продажу не існує, тому якщо є бажання отримати такий годинник, можна зібрати самому.
 
 ### Дисплей
@@ -367,9 +371,9 @@ https://www.aliexpress.us/item/1005006026719458.html   <br>
 
 
 
-## Процес збірки та налагодження
+# Процес збірки та налагодження
 
-### Підготовка електролюмінесцентної панелі
+## Підготовка електролюмінесцентної панелі
 <p align="center">
 <img src="Photos/el1.png" height=180"/> 
 <img src="Photos/el2.png" height=180"/> 
@@ -394,7 +398,7 @@ https://www.aliexpress.us/item/1005006026719458.html   <br>
 Якщо не працює - варіанти звісно два, або платою не генерується напруга або щось не так з панеллю.    <br>
 Плату перевірити легко - звичайним мульмиметром в режимі **вимірювання змінної напруги** поміряти між `EL1` та `EL2`. Має бути приблизно 90 вольт змінного струму.   <br> Якщо напруга є - проблема в панелі.
 
-### Інструменти та розхідники
+## Інструменти та розхідники
 <p align="center"><img src="Photos/preheater.png" height=180"/> </p>
 
 Мені дуже допомогла в пайці така прикольна паяльна станція:  <br>
@@ -421,7 +425,13 @@ https://www.aliexpress.us/item/1005002805132028.html  <br>
 
 
 
-## Прошивка
+
+
+
+
+
+
+# Прошивка
 Прошивка написана в **Arduino IDE 2.2.1** з використанням розширення плат **esp32 by Espressif v2.0.15, ESP32-S2**, компілювати треба під плату **Lolin S2 Mini**.   <br>
 Кожен режим в прошивці (поточний екран, mode) - це комплект функцій які займаються відмальовуванням екрану та обробкою кнопок. Кожен режим може робити по суті що завгодно.   <br>
 Основний спосіб навігації в прошивці це `Runnable modeSetup, modeLoop, modeButtonUp, modeButtonCenter, modeButtonDown, modeButtonUpLong, modeButtonCenterLong, modeButtonDownLong`.    <br>
@@ -483,7 +493,7 @@ https://www.youtube.com/watch?v=u_XPCM6kgQM
 https://youtube.com/shorts/PZIMB8fdEP8?si=xofTaj4oOFBRnQQU
 
 
-## References
+## Посилання на ресурси
 
 - Big repository of phone melodies where I found some melodies
 http://onj3.andrelouis.com/phonetones/unzipped/
