@@ -488,7 +488,7 @@ https://www.youtube.com/watch?v=u_XPCM6kgQM
 - Pin D31 - Used for flash communication
 - Pin D32 - Used for flash communication
 
-##Процес маркування металевого корпусу:
+## Процес маркування металевого корпусу:
 
 https://youtube.com/shorts/PZIMB8fdEP8?si=xofTaj4oOFBRnQQU
 
