@@ -20,7 +20,7 @@
   <br>
 
 
-
+## Фото
 <p align="center">
 <img src="Photos/cad-angle.png" width="200"/>
 <img src="Photos/cad-front.png" width="200"/>
@@ -77,6 +77,18 @@
 - Годинник **не можна мочити**. Захист від води тут майже відсутній і це призведе до поломки годинника. Від дрібного дощу або поту йому нічого не буде, а от залити при митті рук - може бути проблемою.
 - Годинник **слабко захищений від ударів**. Дисплей не захищений, тонкі рамки, тонкий корпус, годинник спроектований без великого запасу механічної міцності, так він  ще й досить габаритний. Тому вдарити його легко, і це скоріше за все призведе до розбитого дисплея. Протягом моїх місяців експлуатації проблем з пошкодженням годинника не було, але я користувався досить обережно.
 - Годинник варто **оберігати від впливу статики**. Є невеликий шанс вбити годинник якщо швидко змімати з себе светр) Тому або знімайте светр повільно, або зніміть перед цим годинник, або використовуйте светр який не електризується. Особливо ризикований момент - постановка на зарядку, тут може проскочити прямо через контроллер. Раджу перед тим як вставити кабель зарядки, доторкнутись до металевої частини корпусу зарядного пристрою - так ви розрядитесь через корпус, а не через годинник і все буде ок.
+
+
+
+## Короткий відео огляд годинника:
+[<p align="center"><img width="300px" src="Photos/Screenshot 2024-04-21 161551.png" /> </p>](https://www.youtube.com/watch?v=3oIwZVaCEvY) 
+<p align="center">https://www.youtube.com/watch?v=3oIwZVaCEvY </p>
+
+
+## Короткий відео огляд мелодій:
+[<p align="center"><img width="300px" src="Photos/Screenshot 2024-04-21 161739.png" /> </p>](https://www.youtube.com/watch?v=Ylm3CU0DTDE) 
+<p align="center">https://www.youtube.com/watch?v=Ylm3CU0DTDE </p>
+
 
 
 ## Де брати комплектуючі
@@ -419,7 +431,7 @@ https://www.aliexpress.us/item/1005002805132028.html  <br>
    <br>
 
 
-## Як додати іконку і використати її в меню
+### Як додати іконку і використати її в меню
 <p align="center"><img src="Photos/icons.png" height="200"/>  </p>
 
 **Загалом послідовність така:**
@@ -439,7 +451,7 @@ https://www.aliexpress.us/item/1005002805132028.html  <br>
 https://www.youtube.com/watch?v=P4BCf7cneI8   <br>
 
 
-## Як додати до прошивки свою мелодію:
+### Як додати до прошивки свою мелодію:
 <p align="center"><img src="Photos/melody.png" height="200"/>  </p>
 
 
@@ -460,10 +472,14 @@ https://www.youtube.com/watch?v=u_XPCM6kgQM
 - 19 - ідентифікатор кінця мелодії. Його треба ставити обов'язково бо система почне відтворювати сміття із оперативки.
 
 
-## Known libraries conflicts:
-Temperature measurement is hanging system if after Wi-Fi usage it were not initialized.
+### Відомі конфлікти між бібліотеками або пінами
+- Temperature measurement is hanging system if after Wi-Fi usage it were not initialized.
+- Pin D17 - Stays ON when firmware update
+- Pin D31 - Used for flash communication
+- Pin D32 - Used for flash communication
 
-##Steel Marking Process:
+##Процес маркування металевого корпусу:
+
 https://youtube.com/shorts/PZIMB8fdEP8?si=xofTaj4oOFBRnQQU
 
 
