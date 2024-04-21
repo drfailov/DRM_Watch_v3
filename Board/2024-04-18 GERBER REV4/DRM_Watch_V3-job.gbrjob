@@ -5,7 +5,7 @@
       "Application": "Pcbnew",
       "Version": "7.0.9"
     },
-    "CreationDate": "2024-04-18T22:58:55+03:00"
+    "CreationDate": "2024-04-19T00:42:06+03:00"
   },
   "GeneralSpecs": {
     "ProjectId": {
@@ -76,6 +76,11 @@
     {
       "Path": "DRM_Watch_V3-Edge_Cuts.gbr",
       "FileFunction": "Profile",
+      "FilePolarity": "Positive"
+    },
+    {
+      "Path": "DRM_Watch_V3-F_Fab.gbr",
+      "FileFunction": "AssemblyDrawing,Top",
       "FilePolarity": "Positive"
     }
   ],
