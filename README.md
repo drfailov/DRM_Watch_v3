@@ -28,10 +28,10 @@
 </p>
 
 <p align="center">
-<img src="Photos/DSC_3069.jpg" width="500"/>
+<img src="Photos/DSC_3058.jpg" width="500"/>
 </p>
 <p align="center">
-<img src="Photos/DSC_3058.jpg" width="200"/>
+<img src="Photos/DSC_3069.jpg" width="200"/>
 <img src="Photos/DSC_3055.jpg" width="200"/>
 <img src="Photos/DSC_3094.jpg" width="200"/>
 <img src="Photos/DSC_3077.jpg" width="200"/>
