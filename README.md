@@ -34,9 +34,13 @@
 <img src="Photos/DSC_3069.jpg" width="200"/>
 <img src="Photos/DSC_3055.jpg" width="200"/>
 <img src="Photos/DSC_3094.jpg" width="200"/>
+</p>
+<p align="center">
 <img src="Photos/DSC_3077.jpg" width="200"/>
 <img src="Photos/DSC_3101.jpg" width="200"/>
 <img src="Photos/DSC_3063.jpg" width="200"/>
+</p>
+<p align="center">
 <img src="Photos/DSC_3084.jpg" width="200"/>
 <img src="Photos/DSC_3097.jpg" width="200"/>
 <img src="Photos/DSC_3115.jpg" width="200"/>
