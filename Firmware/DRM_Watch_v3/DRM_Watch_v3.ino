@@ -83,7 +83,7 @@ const int BUFF_SCALE = 2;  //screenBuffer  //2 is 3KB out of 8KB RTC Memory
 const int BUFF_W = W/BUFF_SCALE;   //screenBuffer
 const int BUFF_H = H/BUFF_SCALE;   //screenBuffer
 
-String version = "FW:v2.09";          //================================== <<<<< VERSION
+String version = "FW:v2.10";          //================================== <<<<< VERSION
 bool black = 1;
 bool white = 0;
 
@@ -138,8 +138,10 @@ void setup(void) {
     int x=130;
     displayDrawVector(getPathZubat(), x, 60, 3.0, 3, 0, black);
     lcd()->sendBuffer();
-    ledSelftest();
-    playInit();
+    if(!isBatteryCritical()){
+      ledSelftest();
+      playInit();
+    }
     while(x>40){
       displayDrawVector(getPathZubat(), x, 60, 3.0, 3, 0, white);
       x-=15;

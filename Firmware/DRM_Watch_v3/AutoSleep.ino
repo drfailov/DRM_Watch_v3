@@ -77,14 +77,11 @@ void goToSleep(){
     delay(20);
   }
 
-  //==================================== BACKLIGHT
-  digitalWrite(BACKLIGHT_EN, LOW);
-  pinMode(BACKLIGHT_EN, INPUT);
-  
+  backlightOff();  
   
   esp_sleep_enable_ext0_wakeup(BUT_CENTER, 0); //1 = High, 0 = Low
   
-  if(isOff())
+  if(isOff() || isBatteryCritical())
     esp_sleep_enable_timer_wakeup(600 * 1000000ULL);
   else
     esp_sleep_enable_timer_wakeup(55 * 1000000ULL);

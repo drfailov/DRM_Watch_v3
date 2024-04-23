@@ -30,6 +30,33 @@ bool isStopwatchRunning(){
   return getStopwatchStartedTime() != 0 && getStopwatchFinishedTime() == 0;
 }
 
+int stopwatchHistorySlotCnt(){   
+  return 5;
+}
+
+bool stopwatchHistorySlotIsEmpty(int slot){ //1 ... stopwatchHistorySlotCnt
+  return stopwatchHistorySlotStart(slot) == 0;
+}
+
+unsigned long stopwatchHistorySlotStart(int slot){ //1 ... stopwatchHistorySlotCnt
+  return preferencesObject.getULong64((String("sws")+slot+"sta").c_str(), 0);
+}
+
+unsigned long stopwatchHistorySlotEnd(int slot){ //1 ... stopwatchHistorySlotCnt
+  return preferencesObject.getULong64((String("sws")+slot+"end").c_str(), 0);
+}
+
+bool saveStopwatchHistorySlotStart(int slot, unsigned long epoch){ //1 ... stopwatchHistorySlotCnt   
+  return preferencesObject.putULong64((String("sws")+slot+"sta").c_str(), epoch) > 0;
+}
+
+bool saveStopwatchHistorySlotEnd(int slot, unsigned long epoch){ //1 ... stopwatchHistorySlotCnt
+  return preferencesObject.putULong64((String("sws")+slot+"end").c_str(), epoch) > 0;
+}
+
+
+
+
 //----------------------//---------------------- SAVED WI-FI --------//----------------------//----------------------//----------------------//----------------------
 
 int wifiSlotCnt(){

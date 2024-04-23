@@ -39,7 +39,7 @@ void modeAboutLoop(){
   #ifdef HW_REV_4
   lcd()->setCursor(5, 216);  lcd()->print("HW:Rev4");
   #endif
-  lcd()->setCursor(115, 234);  lcd()->print("Зроблено в Україні");
+  lcd()->setCursor(105, 234);  lcd()->print("Розроблено в Україні");
   lcd()->setCursor(355, 234);  lcd()->print("2024");
 
   if(modeAboutCounter == 0){   //initial draw with animation

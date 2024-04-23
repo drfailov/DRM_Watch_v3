@@ -46,6 +46,10 @@ byte batteryBars(){
   return level;
 }
 
+bool isBatteryCritical(){
+  return batteryBars() == 0;
+}
+
 RTC_DATA_ATTR bool previousState = false;
 bool isChargerConnected(){
   bool result = readSensUsbRaw() > 4000;

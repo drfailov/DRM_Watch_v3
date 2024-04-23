@@ -159,6 +159,20 @@ void drawDayOfWeek (int x, int y){
   }
 }
 
+void printDate(unsigned long epoch){
+  DateTime datetime = DateTime(epoch);
+  int day = datetime.day();
+  int month = datetime.month(); //01-12
+  int year = datetime.year();
+  if(day<10) lcd()->print("0");
+  lcd()->print(day);
+  lcd()->print(".");
+  if(month<10) lcd()->print("0");
+  lcd()->print(month);
+  lcd()->print(".");
+  lcd()->print(year);
+}
+
 void drawDate(int x, int y){
   lcd()->setColorIndex(white);
   lcd()->drawBox(x-3, y-16, 106, 20);

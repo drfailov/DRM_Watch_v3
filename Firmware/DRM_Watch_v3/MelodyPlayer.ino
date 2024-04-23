@@ -86,6 +86,7 @@ void melodyPlayerSetMelodyName(String _name){
 bool melodyPlayerPlayMelody(const int* melody) {
   Serial.println(F("Set mode: PlayMelody"));
   clearScreenAnimation();
+  backlightOn();
   melodyPlayerPlayStarted = millis();
   modeLoop = melodyPlayerDrawScreen;
   modeButtonUp = 0;

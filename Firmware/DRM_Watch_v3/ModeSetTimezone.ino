@@ -38,8 +38,8 @@ void modeSetTimezoneMenuLoop(){
   drawMenuLegend();
   draw_ic16_back(lx(), ly2(), black);
   // if(modeSetTimezoneEditMode){
-  //   draw_ic16_plus(lx(), ly1(), black);
-  //   draw_ic16_minus(lx(), ly3(), black);
+     draw_ic16_plus(lx(), ly1(), black);
+     draw_ic16_minus(lx(), ly3(), black);
   // }
   
   //drawMenuItem(itemmodeSetTimezoneBack, draw_ic24_back, "Назад", firstDraw, 30, 32);

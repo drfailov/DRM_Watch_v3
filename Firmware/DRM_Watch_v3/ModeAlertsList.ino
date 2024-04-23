@@ -34,7 +34,16 @@ void modeAlertsListLoop(){
 
   drawListItem(0, draw_ic24_back, "Повернутись", "В меню програм", firstDraw); //
   for(int i=1; i<items; i++){
-      drawListCheckbox(i, draw_ic24_alarm, ((String("Будильник ")+(i-1)).c_str()), getAlertName(i-1).c_str(), getAlertEnabled(i-1), firstDraw); 
+    int h = getAlertHour(i-1);
+    int m = getAlertMinute(i-1);
+    sprintf(buffer, "%02d:%02d", h,m);
+    drawListCheckbox(
+      i, 
+      draw_ic24_alarm, 
+      ((String("") + (i-1) + ": " + getAlertName(i-1) ).c_str()), 
+      buffer, 
+      getAlertEnabled(i-1), 
+      firstDraw); 
   }
 
   lcd()->sendBuffer();
