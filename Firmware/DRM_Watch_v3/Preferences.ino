@@ -8,8 +8,30 @@ void initPreferences(){
   preferencesObject.begin("drm-watch-v3", false);
 }
 
+//----------------------//---------------------- TIMER ----------//----------------------//----------------------//----------------------//----------------------
+
+bool saveTimerStartedTime(unsigned long epoch){  //unsigned long    saveTimerStartedTime  saveTimerTime  getTimerStartedTime  getTimerTime  isTimerRunning
+  return preferencesObject.putULong64("timerSta", epoch) > 0;
+}
+
+bool saveTimerTime(unsigned long epoch){
+  return preferencesObject.putULong64("timerTime", epoch) > 0;
+}
+
+unsigned long getTimerStartedTime(){
+  return preferencesObject.getULong64("timerSta", 0);
+}
+
+unsigned long getTimerTime(){
+  return preferencesObject.getULong64("timerTime", 0);
+}
+
+bool isTimerRunning(){
+  return getTimerStartedTime() != 0;
+}
 
 //----------------------//---------------------- STOPWATCH ----------//----------------------//----------------------//----------------------//----------------------
+
 bool saveStopwatchStartedTime(unsigned long epoch){
   return preferencesObject.putULong64("stopwatch1", epoch) > 0;
 }
@@ -53,9 +75,6 @@ bool saveStopwatchHistorySlotStart(int slot, unsigned long epoch){ //1 ... stopw
 bool saveStopwatchHistorySlotEnd(int slot, unsigned long epoch){ //1 ... stopwatchHistorySlotCnt
   return preferencesObject.putULong64((String("sws")+slot+"end").c_str(), epoch) > 0;
 }
-
-
-
 
 //----------------------//---------------------- SAVED WI-FI --------//----------------------//----------------------//----------------------//----------------------
 

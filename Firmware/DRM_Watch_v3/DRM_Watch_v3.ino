@@ -1,3 +1,14 @@
+/*
+ *  Project     DRM Watch 3
+ *  @author     Dr.  Failov
+ *  @link       https://github.com/drfailov/DRM_Watch_v3
+ *  @license    GNU GENERAL PUBLIC LICENSE
+ *
+ *  
+ */
+
+
+
 #include <Arduino.h>
 #include <U8g2lib.h>
 #include <ESP32Time.h>
@@ -83,7 +94,7 @@ const int BUFF_SCALE = 2;  //screenBuffer  //2 is 3KB out of 8KB RTC Memory
 const int BUFF_W = W/BUFF_SCALE;   //screenBuffer
 const int BUFF_H = H/BUFF_SCALE;   //screenBuffer
 
-String version = "FW:v2.10";          //================================== <<<<< VERSION
+String version = "FW:v2.11";          //================================== <<<<< VERSION
 bool black = 1;
 bool white = 0;
 

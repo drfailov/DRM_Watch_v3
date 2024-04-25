@@ -120,6 +120,11 @@ int drawStatusbar(int x, int y, bool drawTime, bool simulate){ //simulate is dra
     if(!simulate)draw_ic16_stopwatch(x, y+4, black);
     x-=interval;
   }
+  if(isTimerRunning()){
+    x -= 16;
+    if(!simulate)draw_ic16_timer(x, y+4, black);
+    x-=interval;
+  }
   if(getAnyAlertEnabled()){
     x -= 16;
     if(!simulate)draw_ic16_alert(x, y+4, black);

@@ -1,12 +1,13 @@
 const int itemModeAppsBack=0;
-const int itemModeAppsStopwatch=1;
-const int itemModeAppsMusic=2;
-const int itemModeAppsAlarm=3;
-const int itemModeAppsMeow=4;
-const int itemModeAppsLife=5;
-const int itemModeAppsRandom=6;
-const int itemModeAppsCalendar=7;
-const int itemModeAppsDebug=8;
+const int itemModeAppsTimer=1;
+const int itemModeAppsStopwatch=2;
+const int itemModeAppsMusic=3;
+const int itemModeAppsAlarm=4;
+const int itemModeAppsMeow=5;
+const int itemModeAppsLife=6;
+const int itemModeAppsRandom=7;
+const int itemModeAppsCalendar=8;
+const int itemModeAppsDebug=9;
 
 void setModeAppsMenu(){
   clearScreenAnimation();
@@ -25,7 +26,7 @@ void setModeAppsMenu(){
   autoReturnTime = autoReturnDefaultTime;
   autoSleepTime = autoSleepDefaultTime;
   selected = 0;
-  items = 9;
+  items = 10;
 }
 
 
@@ -42,6 +43,7 @@ void ModeAppsMenuLoop(){
   drawMenuLegend();
   
   drawMenuItem(itemModeAppsBack,       draw_ic24_back,       "Назад",                         firstDraw);
+  drawMenuItem(itemModeAppsTimer,      draw_ic24_timer,      "Таймер",                         firstDraw);
   drawMenuItem(itemModeAppsStopwatch,  draw_ic24_stopwatch,  "Секундомір",                    firstDraw);
   drawMenuItem(itemModeAppsMusic,      draw_ic24_music,      "Мелодії",                       firstDraw);
   drawMenuItem(itemModeAppsAlarm,      draw_ic24_alarm,      "Будильник",                     firstDraw);
@@ -60,6 +62,10 @@ void ModeAppsMenuLoop(){
 void ModeAppsMenuButtonCenter(){
   if(selected == itemModeAppsBack){
     setModeMainMenu();
+    return;
+  }
+  if(selected == itemModeAppsTimer){
+    setModeTimer();
     return;
   }
   if(selected == itemModeAppsAlarm){
