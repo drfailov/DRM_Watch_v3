@@ -1,12 +1,12 @@
 const int itemModeAppsBack=0;
-const int itemModeAppsTimer=1;
-const int itemModeAppsStopwatch=2;
-const int itemModeAppsMusic=3;
-const int itemModeAppsAlarm=4;
-const int itemModeAppsMeow=5;
-const int itemModeAppsLife=6;
-const int itemModeAppsRandom=7;
-const int itemModeAppsCalendar=8;
+const int itemModeAppsAlarm=1;
+const int itemModeAppsTimer=2;
+const int itemModeAppsStopwatch=3;
+const int itemModeAppsCalendar=4;
+const int itemModeAppsMusic=5;
+const int itemModeAppsMeow=6;
+const int itemModeAppsLife=7;
+const int itemModeAppsRandom=8;
 const int itemModeAppsDebug=9;
 
 void setModeAppsMenu(){
@@ -43,14 +43,14 @@ void ModeAppsMenuLoop(){
   drawMenuLegend();
   
   drawMenuItem(itemModeAppsBack,       draw_ic24_back,       "Назад",                         firstDraw);
-  drawMenuItem(itemModeAppsTimer,      draw_ic24_timer,      "Таймер",                         firstDraw);
-  drawMenuItem(itemModeAppsStopwatch,  draw_ic24_stopwatch,  "Секундомір",                    firstDraw);
-  drawMenuItem(itemModeAppsMusic,      draw_ic24_music,      "Мелодії",                       firstDraw);
   drawMenuItem(itemModeAppsAlarm,      draw_ic24_alarm,      "Будильник",                     firstDraw);
+  drawMenuItem(itemModeAppsTimer,      draw_ic24_timer,      "Таймер",                        firstDraw);
+  drawMenuItem(itemModeAppsStopwatch,  draw_ic24_stopwatch,  "Секундомір",                    firstDraw);
+  drawMenuItem(itemModeAppsCalendar,   draw_ic24_calendar,   "Календар",                      firstDraw);
+  drawMenuItem(itemModeAppsMusic,      draw_ic24_music,      "Мелодії",                       firstDraw);
   drawMenuItem(itemModeAppsMeow,       draw_ic24_meow,       "Meow",                          firstDraw);
   drawMenuItem(itemModeAppsLife,       draw_ic24_life,       "Клітковий автомат \"Життя\"",   firstDraw);
   drawMenuItem(itemModeAppsRandom,     draw_ic24_random,     "Випадковий шум",                firstDraw);
-  drawMenuItem(itemModeAppsCalendar,   draw_ic24_calendar,   "Календар",                      firstDraw);
   drawMenuItem(itemModeAppsDebug,      draw_ic24_bug,        "Інженерне меню",                firstDraw);
   
   

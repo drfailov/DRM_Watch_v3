@@ -75,7 +75,6 @@ const int* getMelodyData(int index){
 
 
 bool melodyPlayerLoopMelody = false;   
-bool melodyPlayerCont = true;
 String melodyPlayerMelodyName;
 unsigned long melodyPlayerPlayStarted = 0;
 
@@ -84,7 +83,7 @@ void melodyPlayerSetMelodyName(String _name){
 }
 //return true if was played completely or false if interrupted
 bool melodyPlayerPlayMelody(const int* melody) {
-  Serial.println(F("Set mode: PlayMelody"));
+  Serial.println(F("Open: PlayMelody"));
   clearScreenAnimation();
   backlightOn();
   melodyPlayerPlayStarted = millis();
@@ -92,11 +91,10 @@ bool melodyPlayerPlayMelody(const int* melody) {
   modeButtonUp = 0;
   modeButtonCenter = 0;
   modeButtonDown = 0;
-  modeButtonUpLong = melodyPlayerButtonUp;
+  modeButtonUpLong = 0;
   modeButtonCenterLong = 0;
-  modeButtonDownLong = melodyPlayerButtonDown;
+  modeButtonDownLong = 0;
   enableAutoReturn = false;
-  melodyPlayerCont = true;
   melodyPlayerLoopMelody = false;
   
   int length = melodyPlayerGetLength(melody);
@@ -105,7 +103,7 @@ bool melodyPlayerPlayMelody(const int* melody) {
   {//analyze melody
     long noteSum = 0;
     long noteCnt = 0;
-    for (int i = 1; i < length - 1 && melodyPlayerCont; i++) {
+    for (int i = 1; i < length-1; i++) {
       int n = (melody[i]);
       if (n > 0){
         noteSum += n;
@@ -117,7 +115,7 @@ bool melodyPlayerPlayMelody(const int* melody) {
   }
   do{
     melodyPlayerDrawScreen();
-    for (int i = 0; i < length - 1 && melodyPlayerCont; i++) {
+    for (int i = 0; i < length-1; i++) {
       int n = (melody[i]);
       
       if(n > 0){
@@ -133,18 +131,18 @@ bool melodyPlayerPlayMelody(const int* melody) {
           delay(timeMs);
         }
         else{
-          long noteStarted = millis();
-          while(millis() - noteStarted < timeMs){
+          for(unsigned long noteStarted = millis(); millis() - noteStarted < timeMs; ) {
             if((millis() - noteStarted)+150 < timeMs){
-              buttonsLoop();
+              if(isButtonCenterPressed()){buttonBeep(); modeSetup(); return false;}
+              if(isButtonDownPressed()){buttonBeep(); melodyPlayerLoopMelody = !melodyPlayerLoopMelody;drawMessage(melodyPlayerLoopMelody?"Повтор увімкнено":"Вимкнено повтор");}
               melodyPlayerDrawScreen();
             }
           }
         }
         ledFlashlightOffAll();
         buzNoTone();
-        //delay(13);
-        buttonsLoop();
+        if(isButtonCenterPressed()){buttonBeep(); modeSetup(); return false;}
+        if(isButtonDownPressed()){buttonBeep(); melodyPlayerLoopMelody = !melodyPlayerLoopMelody;drawMessage(melodyPlayerLoopMelody?"Повтор увімкнено":"Вимкнено повтор");}
       }
        
     }
@@ -153,7 +151,7 @@ bool melodyPlayerPlayMelody(const int* melody) {
     delay(500);
   }while(melodyPlayerLoopMelody);
   modeSetup();
-  return melodyPlayerCont;
+  return true;
 }
 
 void melodyPlayerDrawScreen() {
@@ -171,41 +169,25 @@ void melodyPlayerDrawScreen() {
     draw_ic16_repeat(x-16, 5, black);
   
 
-  if(melodyPlayerCont){
-    displayDrawVector(getPathZubat(), 130, 45, 3.0, 3, false, black);
-    
-    lcd()->setCursor(5, 230); 
-    int sec = (millis()-melodyPlayerPlayStarted)/1000;
-    if(sec < 10)
-      lcd()->print("0");
-    lcd()->print(sec);
-    lcd()->print("s");
+  displayDrawVector(getPathZubat(), 130, 45, 3.0, 3, false, black);
+  
+  lcd()->setCursor(5, 230); 
+  int sec = (millis()-melodyPlayerPlayStarted)/1000;
+  if(sec < 10)
+    lcd()->print("0");
+  lcd()->print(sec);
+  lcd()->print("s");
 
-    int width = lcd()->getUTF8Width(melodyPlayerMelodyName.c_str());
-    lcd()->setCursor(200-width/2, 230); 
-    lcd()->print(melodyPlayerMelodyName);
-  }
-  else{
-    lcd()->setCursor(150, 120); 
-    lcd()->setColorIndex(black);
-    lcd()->print("Зупинка...");
-  }
+  int width = lcd()->getUTF8Width(melodyPlayerMelodyName.c_str());
+  lcd()->setCursor(200-width/2, 230); 
+  lcd()->print(melodyPlayerMelodyName);
 
 
 
   lcd()->drawBox(369, 0, 2, 260);  //draw_ic16_repeat  draw_ic16_arrow_right  draw_ic16_back
-  draw_ic16_back(lx(), ly1(), black);
+  draw_ic16_back(lx(), ly2(), black);
   draw_ic16_repeat(lx(), ly3(), black);
   lcd()->sendBuffer();
-}
-
-
-void melodyPlayerButtonUp(){
-  melodyPlayerCont = false;
-  melodyPlayerLoopMelody = false;
-}
-void melodyPlayerButtonDown(){
-  melodyPlayerLoopMelody = !melodyPlayerLoopMelody;
 }
 
 void printBits(byte myByte) {

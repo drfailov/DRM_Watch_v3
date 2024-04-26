@@ -321,7 +321,7 @@ bool saveAlertMelody(int index, int value){
   return preferencesObject.putInt((String("alertMelody")+index).c_str(), value);
 }
 String getAlertName(int index){
-  return preferencesObject.getString((String("alert")+index+"Name").c_str(), (String("Будильник ")+index));
+  return preferencesObject.getString((String("alert")+index+"Name").c_str(), (String("Alert ")+index));
 }
 bool saveAlertName(int index, String newname){ 
   int savedName = preferencesObject.putString((String("alert")+index+"Name").c_str(), newname);
