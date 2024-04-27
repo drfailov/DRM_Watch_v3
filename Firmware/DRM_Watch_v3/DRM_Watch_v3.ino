@@ -59,9 +59,9 @@
 #define SENS_USB_PIN 3
 #define SENS_BATERY_PIN 4
 #define BUZZER_PIN 12
-#define LED_TOP_PIN GPIO_NUM_36      //NEW
-#define LED_BOTTOM_PIN GPIO_NUM_37   //NEW
-#define LED_STATUS_PIN GPIO_NUM_38   //NEW
+#define LED_TOP_PIN GPIO_NUM_36     
+#define LED_BOTTOM_PIN GPIO_NUM_37  
+#define LED_STATUS_PIN GPIO_NUM_38  
 #define TOUCH1_PIN 8
 #define TOUCH2_PIN 9
 #define TOUCH3_PIN 10
@@ -81,9 +81,9 @@
 #define SENS_USB_PIN 3
 #define SENS_BATERY_PIN 4
 #define BUZZER_PIN 12
-#define LED_TOP_PIN GPIO_NUM_36      //NEW
-#define LED_BOTTOM_PIN GPIO_NUM_37   //NEW
-#define LED_STATUS_PIN GPIO_NUM_38   //NEW
+#define LED_TOP_PIN GPIO_NUM_36     
+#define LED_BOTTOM_PIN GPIO_NUM_37  
+#define LED_STATUS_PIN GPIO_NUM_38  
 #define RTC_SDA_PIN 33    
 #define RTC_SCL_PIN 35    
 #endif
@@ -94,7 +94,7 @@ const int BUFF_SCALE = 2;  //screenBuffer  //2 is 3KB out of 8KB RTC Memory
 const int BUFF_W = W/BUFF_SCALE;   //screenBuffer
 const int BUFF_H = H/BUFF_SCALE;   //screenBuffer
 
-String version = "FW:v2.12";          //================================== <<<<< VERSION
+String version = "FW:v2.13";          //================================== <<<<< VERSION
 bool black = 1;
 bool white = 0;
 

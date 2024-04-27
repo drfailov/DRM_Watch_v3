@@ -25,6 +25,17 @@ Icons used as reference:
 <a href="https://www.flaticon.com/free-icons/alert" title="alert icons">Alert icons created by Freepik - Flaticon</a>
 <a href="https://www.flaticon.com/free-icons/calendar" title="calendar icons">Calendar icons created by Hilmy Abiyyu A. - Flaticon</a>
 <a href="https://www.flaticon.com/free-icons/capture" title="capture icons">Capture icons created by Pixel perfect - Flaticon</a>
+ <a href="https://www.flaticon.com/free-icons/7-days" title="7 days icons">7 days icons created by Freepik - Flaticon</a>
+ <a href="https://www.flaticon.com/free-icons/calendar" title="calendar icons">Calendar icons created by Icon mania - Flaticon</a>
+ <a href="https://www.flaticon.com/free-icons/digital-clock" title="digital clock icons">Digital clock icons created by Flipicon - Flaticon</a>
+ <a href="https://www.flaticon.com/free-icons/checklist" title="checklist icons">Checklist icons created by Graphics Plazza - Flaticon</a>
+ <a href="https://www.flaticon.com/free-icons/midnight" title="midnight icons">Midnight icons created by Freepik - Flaticon</a>
+	
+ 
+ 
+ 
+ 
+ 
  
 
 
@@ -413,7 +424,7 @@ Changelog:
 2024-04-26 v2.12 На екрані відтворення мелодій  проведено невелику оптимізацію
 2024-04-26 v2.12 Змінено стандартну назву будильників, щоб не було проблем з юнікодом
 2024-04-26 v2.12 Змінено порядок кнопок на екрані програм
-
+2024-04-27 v2.13 Почато переписування екрану з вмістом циферблату
 
 
 ==== todo:
@@ -447,3 +458,11 @@ Changelog:
 - Мелодія політ шмеля
 - back to future мелодія
 
+
+Іконка: 
+цифровий годинник
+температура
+день тижня
+чекліст
+діджиай
+час в статусбарі
