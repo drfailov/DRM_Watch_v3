@@ -213,5 +213,6 @@ void timerAlert(){
   }
   buzNoTone(); 
   //backlightOff();
+  clearScreenAnimation();
   modeSetup(); 
 }

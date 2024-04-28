@@ -6,7 +6,7 @@ const int itemAbout=3;
 void setModeMainMenu(){
   clearScreenAnimation();
   Serial.println(F("Set mode: Main Menu"));
-  modeSetup = setModeTest;
+  modeSetup = setModeMainMenu;
   modeLoop = modeMainMenuLoop;
   modeButtonUp = modeMainMenuButtonUp;
   modeButtonCenter = modeMainMenuButtonCenter;
