@@ -1,5 +1,6 @@
 #include <WiFi.h>
 #include "time.h"
+#include <Arduino.h>
 
 //const long  gmtOffset_sec = 7200;
 //const int   daylightOffset_sec = 3600;
@@ -8,18 +9,6 @@ const char* ntpServer = "time.windows.com";
 const char* ntpServer1 = "pool.ntp.org"; 
 const char* ntpServer2 = "time.google.com"; 
 
-
-// void setModeTimeSync(){
-//   Serial.println(F("Set mode: TimeSync"));
-//   modeSetup = setModeTimeSync;
-//   modeLoop = modeTimeSyncLoop;
-//   modeButtonUp = doNothing;
-//   modeButtonCenter = modeTimeSyncButtonCenter;
-//   modeButtonDown = doNothing;
-//   //modeButtonUpLong = modeWatchfaceButtonUp;
-//   //modeButtonCenterLong = modeWatchfaceButtonUp;
-//   //modeButtonDownLong = modeWatchfaceButtonUp;
-// }
 void initTime(){
   //src: https://gist.github.com/alwynallan/24d96091655391107939 
   //setTimezone("EET-2EEST,M3.5.0/3,M10.5.0/4"); //kyiv

@@ -216,6 +216,17 @@ void drawDate(int x, int y){
   }
 }
 
+unsigned long hoursFromSec(unsigned long seconds){ //how mahy hours in seconds
+  unsigned long sphour = (60*60);
+  return seconds / sphour;
+}
+unsigned long minutesFromSec(unsigned long seconds){ //how mahy minutes in seconds (excluding hours)
+  unsigned long sphour = (60*60);
+  unsigned long minutesPart = seconds%sphour;
+  unsigned long spminute = 60;
+  return minutesPart / spminute;
+}
+
 
 float temperature(){
   if(rtcReady)

@@ -179,7 +179,7 @@ void timerAlert(){
   unsigned long started = rtcGetEpoch();
   unsigned long timerTime = getTimerTime();
   unsigned long endTime = started+60*2; //2min
-  int freq = 1700;
+  int freq = 1900;
   while(rtcGetEpoch() < endTime){
     
     lcd()->setColorIndex(white);
@@ -191,6 +191,7 @@ void timerAlert(){
 
     
     lcd()->setCursor(100, 230); 
+    lcd()->setFont(u8g2_font_10x20_t_cyrillic);
     lcd()->print("Таймер (");
     displayPrintSecondsAsTime(timerTime);
     lcd()->print(")");

@@ -74,6 +74,7 @@ void switchDontSleep(){
     buttonLongBeep();
 }
 
+
 int drawStatusbar(int x, int y, bool drawTime){
   return drawStatusbar(x,y,drawTime,false);
 }
@@ -115,14 +116,44 @@ int drawStatusbar(int x, int y, bool drawTime, bool simulate){ //simulate is dra
     if(!simulate)draw_ic16_coffee(x, y+4, black);
     x-=interval;
   }
-  if(isStopwatchRunning()){
-    x -= 16;
-    if(!simulate)draw_ic16_stopwatch(x, y+4, black);
+  if(isTimerRunning()){ //draw timer remaining
+    unsigned long startedTime = getTimerStartedTime();
+    unsigned long now = rtcGetEpoch();
+    unsigned long timerTime = getTimerTime();
+    unsigned long remainingTime = startedTime+timerTime-now;
+    if(startedTime+timerTime<now) remainingTime = 0;
+    unsigned long h = hoursFromSec(remainingTime);
+    unsigned long m = minutesFromSec(remainingTime);
+    lcd()->setColorIndex(black);
+    lcd()->setFont(u8g2_font_unifont_t_cyrillic);
+    sprintf(buffer, "%02d:%02d", h,m);
+    int width = lcd()->getStrWidth(buffer);
+    x-=width;
+    lcd()->setCursor(x, y+17); 
+    if(!simulate)lcd()->print(buffer);
+    
+    x -= 15;
+    if(!simulate)draw_ic16_timer(x, y+4, black);
     x-=interval;
   }
-  if(isTimerRunning()){
+  if(isStopwatchRunning()){
+    unsigned long now = rtcGetEpoch();
+    unsigned long start = getStopwatchStartedTime();
+    unsigned long end = getStopwatchFinishedTime();
+    if(start != 0 && end == 0) end = now;
+    unsigned long dd = end-start;
+    unsigned long h = hoursFromSec(dd);
+    unsigned long m = minutesFromSec(dd);
+    lcd()->setColorIndex(black);
+    lcd()->setFont(u8g2_font_unifont_t_cyrillic);
+    sprintf(buffer, "%02d:%02d", h,m);
+    int width = lcd()->getStrWidth(buffer);
+    x-=width;
+    lcd()->setCursor(x, y+17); 
+    if(!simulate)lcd()->print(buffer);
+
     x -= 16;
-    if(!simulate)draw_ic16_timer(x, y+4, black);
+    if(!simulate)draw_ic16_stopwatch(x, y+4, black);
     x-=interval;
   }
   if(getAnyAlertEnabled()){

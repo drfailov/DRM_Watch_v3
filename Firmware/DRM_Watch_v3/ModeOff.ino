@@ -1,3 +1,4 @@
+
 RTC_DATA_ATTR bool deviceOff = false;
 
 void setModeOff(){
