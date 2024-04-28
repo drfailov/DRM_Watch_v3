@@ -38,9 +38,11 @@ void modeOffLoop(){
       lcd()->drawBox(0, 0, 400, 240);
       lcd()->setColorIndex(black);
       lcd()->setFont(u8g2_font_10x20_t_cyrillic);
-      lcd()->setCursor(80, 125); 
+      lcd()->setCursor(90, 105); 
       lcd()->enableUTF8Print();  
       lcd()->print("Тримайте щоб увімкнути");
+
+      drawBattery(190, 130);
       lcd()->sendBuffer();
     }
     if(!isButtonCenterPressed()){

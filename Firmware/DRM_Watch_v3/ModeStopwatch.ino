@@ -122,15 +122,16 @@ void modeStopwatchButtonDown(){
   }
 
   if(isStopwatchRunning()){  //save history and do RESET
-      unsigned long now = rtcGetEpoch();
-      saveStopwatchHistorySlotStart(1, getStopwatchStartedTime());
-      saveStopwatchHistorySlotEnd(1, now);
-      saveStopwatchStartedTime(now);
-    }
-    else{   //save history and clear values
-      saveStopwatchHistorySlotStart(1, getStopwatchStartedTime());
-      saveStopwatchHistorySlotEnd(1, getStopwatchFinishedTime());
-      saveStopwatchStartedTime(0);
-      saveStopwatchFinishedTime(0);
-    }
+    unsigned long now = rtcGetEpoch();
+    saveStopwatchHistorySlotStart(1, getStopwatchStartedTime());
+    saveStopwatchHistorySlotEnd(1, now);
+    //saveStopwatchStartedTime(now);
+  }
+  else
+  {   //save history and clear values
+    saveStopwatchHistorySlotStart(1, getStopwatchStartedTime());
+    saveStopwatchHistorySlotEnd(1, getStopwatchFinishedTime());
+  }
+  saveStopwatchStartedTime(0);
+  saveStopwatchFinishedTime(0);
 }

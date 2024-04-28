@@ -178,7 +178,7 @@ void timerAlert(){
   backlightOn();
   unsigned long started = rtcGetEpoch();
   unsigned long timerTime = getTimerTime();
-  unsigned long endTime = started+30;//60*2;
+  unsigned long endTime = started+60*2; //2min
   int freq = 1700;
   while(rtcGetEpoch() < endTime){
     
