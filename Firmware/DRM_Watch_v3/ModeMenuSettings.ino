@@ -4,6 +4,7 @@ const int itemModeSettingsCategoryDisplay=2;
 const int itemModeSettingsCategoryWiFi=3;
 const int itemModeSettingsCategorySound=4;
 const int itemModeSettingsReboot=5;
+const int itemModeSettingsShutdown=6;
 
 void setModeSettingsMenu(){
   clearScreenAnimation();
@@ -22,7 +23,7 @@ void setModeSettingsMenu(){
   autoReturnTime = autoReturnDefaultTime;
   autoSleepTime = autoSleepDefaultTime;
   selected = 0;
-  items = 6;
+  items = 7;
 }
 
 
@@ -44,6 +45,8 @@ void modeSettingsMenuLoop(){
   drawListItem(itemModeSettingsCategoryWiFi,         draw_ic24_wifi_3,     "Налаштування Wi-Fi",    "Мережі для доступу до Інтернет",        firstDraw); /*draw_ic24_saved*/
   drawListItem(itemModeSettingsCategorySound,        draw_ic24_sound_on,   "Налаштування звуку",    "Налаштування що стосуються звуку",      firstDraw);
   drawListItem(itemModeSettingsReboot,               draw_ic24_reboot,     "Перезавантажити",       "Перезавантажити годинник",              firstDraw);
+  drawListItem(itemModeSettingsShutdown,             draw_ic24_shutdown,   "Вимкнути",              "Вимкнути годинник",                     firstDraw);
+  
   
 
   lcd()->sendBuffer();
@@ -81,4 +84,10 @@ void modeSettingsMenuButtonCenter(){
     delay(50);
     return;
   }
+  if(selected == itemModeSettingsShutdown){
+    setModeOff();
+    return;
+  }
+
+
 }

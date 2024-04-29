@@ -3,13 +3,17 @@ const int ModeMenuSettingsWatchfaceContentItemShowStatusbar = 1;
 const int ModeMenuSettingsWatchfaceContentItemShowAnalog = 2;
 const int ModeMenuSettingsWatchfaceContentItemShowDigital = 3;
 const int ModeMenuSettingsWatchfaceContentItemShowDate = 4;
-const int ModeMenuSettingsWatchfaceContentItemShowDayOfWeek = 5;
-const int ModeMenuSettingsWatchfaceContentItemShowLifeBackgound = 6;
-const int ModeMenuSettingsWatchfaceContentItemShowCalendar = 7;
-const int ModeMenuSettingsWatchfaceContentItemShowTemperature = 8;
-const int ModeMenuSettingsWatchfaceContentItemShowMonth = 9;
-const int ModeMenuSettingsWatchfaceContentItemShowDjiLogo = 10;
-const int ModeMenuSettingsWatchfaceContentItemShowTimeInStatusbar = 11;
+const int ModeMenuSettingsWatchfaceContentItemShowMonth = 5;
+const int ModeMenuSettingsWatchfaceContentItemShowDayOfWeek = 6;
+const int ModeMenuSettingsWatchfaceContentItemShowLifeBackgound = 7;
+const int ModeMenuSettingsWatchfaceContentItemShowRandomBackgound = 8;
+const int ModeMenuSettingsWatchfaceContentItemShowAntBackgound = 9;
+const int ModeMenuSettingsWatchfaceContentItemShowDotsBackgound = 10;
+const int ModeMenuSettingsWatchfaceContentItemShowCalendar = 11;
+const int ModeMenuSettingsWatchfaceContentItemShowTemperature = 12;
+const int ModeMenuSettingsWatchfaceContentItemShowDjiLogo = 13;
+const int ModeMenuSettingsWatchfaceContentItemShowTimeInStatusbar = 14;
+const int ModeMenuSettingsWatchfaceContentItemShowLegend = 15;
 
 void setModeMenuSettingsWatchfaceContent(){
   clearScreenAnimation();
@@ -49,20 +53,19 @@ void ModeMenuSettingsWatchfaceContentLoop(){
 
   drawListCheckbox(ModeMenuSettingsWatchfaceContentItemShowStatusbar, draw_ic24_battery50, "Статус-бар", "Значки статусу годинника", getWatchfaceStatusbarEnabled(), firstDraw);
   drawListCheckbox(ModeMenuSettingsWatchfaceContentItemShowAnalog, draw_ic24_clock, "Час стрілками", "Класичний годинник", getWatchfaceAnalogEnabled(), firstDraw);
-  drawListCheckbox(ModeMenuSettingsWatchfaceContentItemShowDigital, draw_ic24_watchface, "Час цифрами", "Цифровий годинник", getWatchfaceDigitalEnabled(), firstDraw);
-  drawListCheckbox(ModeMenuSettingsWatchfaceContentItemShowTemperature, draw_ic24_clock, "Температура", "Температура мікросхеми RTC", getWatchfaceTemperatureEnabled(), firstDraw);
-  drawListCheckbox(ModeMenuSettingsWatchfaceContentItemShowDayOfWeek, draw_ic24_clock, "День тижня", "Який зараз день тижня", getWatchfaceDayOfWeekEnabled(), firstDraw);
-  drawListCheckbox(ModeMenuSettingsWatchfaceContentItemShowDate, draw_ic24_calendar, "Поточна дата", "Яка зараз дата", getWatchfaceDateEnabled(), firstDraw);
-  drawListCheckbox(ModeMenuSettingsWatchfaceContentItemShowMonth, draw_ic24_calendar, "Назва місяця", "Назва місяця під датою", getWatchfaceMonthEnabled(), firstDraw);
-  drawListCheckbox(ModeMenuSettingsWatchfaceContentItemShowDjiLogo, draw_ic24_about, "Лого DJI", "Назва місяця під датою", getWatchfaceDjiLogoEnabled(), firstDraw);
-  drawListCheckbox(ModeMenuSettingsWatchfaceContentItemShowLifeBackgound, draw_ic24_life, "Фон \"Життя\"", "Назва місяця під датою", getWatchfaceLifeBackgroundEnabled(), firstDraw);
-  drawListCheckbox(ModeMenuSettingsWatchfaceContentItemShowCalendar, draw_ic24_calendar, "Календар", "Назва місяця під датою", getWatchfaceCalendarEnabled(), firstDraw);
-  drawListCheckbox(ModeMenuSettingsWatchfaceContentItemShowTimeInStatusbar, draw_ic24_clock, "Час в статус-барі", "Назва місяця під датою", getWatchfaceStatusbarDigitalEnabled(), firstDraw);
-
-  drawListCheckbox(ModeMenuSettingsWatchfaceContentItemShowTimeInStatusbar, draw_ic24_about, "Легента кнопок", "Легенда кнопок", getWatchfaceStatusbarDigitalEnabled(), firstDraw);
-  drawListCheckbox(ModeMenuSettingsWatchfaceContentItemShowTimeInStatusbar, draw_ic24_random, "Фон \"Шум\"", "Легенда кнопок", getWatchfaceStatusbarDigitalEnabled(), firstDraw);
-  drawListCheckbox(ModeMenuSettingsWatchfaceContentItemShowTimeInStatusbar, draw_ic24_clock, "Фон \"Мураха\"", "Легенда кнопок", getWatchfaceStatusbarDigitalEnabled(), firstDraw);
-  drawListCheckbox(ModeMenuSettingsWatchfaceContentItemShowTimeInStatusbar, draw_ic24_clock, "Фон \"Точки\"", "Легенда кнопок", getWatchfaceStatusbarDigitalEnabled(), firstDraw);
+  drawListCheckbox(ModeMenuSettingsWatchfaceContentItemShowDigital, draw_ic24_digitalclock, "Час цифрами", "Цифровий годинник", getWatchfaceDigitalEnabled(), firstDraw);
+  drawListCheckbox(ModeMenuSettingsWatchfaceContentItemShowTemperature, draw_ic24_temperature, "Температура", "Температура мікросхеми RTC", getWatchfaceTemperatureEnabled(), firstDraw);
+  drawListCheckbox(ModeMenuSettingsWatchfaceContentItemShowDayOfWeek, draw_ic24_weekday, "День тижня", "Який зараз день тижня", getWatchfaceDayOfWeekEnabled(), firstDraw);
+  drawListCheckbox(ModeMenuSettingsWatchfaceContentItemShowDate, draw_ic24_date, "Поточна дата", "Яка зараз дата", getWatchfaceDateEnabled(), firstDraw);
+  drawListCheckbox(ModeMenuSettingsWatchfaceContentItemShowMonth, draw_ic24_date, "Назва місяця", "Назва місяця під датою", getWatchfaceMonthEnabled(), firstDraw);
+  drawListCheckbox(ModeMenuSettingsWatchfaceContentItemShowDjiLogo, draw_ic24_dji, "Лого DJI", "У мене всюди їх лого, навіть тут", getWatchfaceDjiLogoEnabled(), firstDraw);
+  drawListCheckbox(ModeMenuSettingsWatchfaceContentItemShowLifeBackgound, draw_ic24_life, "Фон \"Життя\"", "Convey's Game Of Life", getWatchfaceLifeBackgroundEnabled(), firstDraw);
+  drawListCheckbox(ModeMenuSettingsWatchfaceContentItemShowRandomBackgound, draw_ic24_random, "Фон \"Шум\"", "Випадковий шум на фоні", getWatchfaceRandomBackgroundEnabled(), firstDraw);
+  drawListCheckbox(ModeMenuSettingsWatchfaceContentItemShowAntBackgound, draw_ic24_ant, "Фон \"Мураха\"", "Мураха Ленгтона на фоні", getWatchfaceAntBackgroundEnabled(), firstDraw);
+  drawListCheckbox(ModeMenuSettingsWatchfaceContentItemShowDotsBackgound, draw_ic24_random, "Фон \"Точки\"", "Щокадру додається 1 точка на фоні", getWatchfaceDotsBackgroundEnabled(), firstDraw);
+  drawListCheckbox(ModeMenuSettingsWatchfaceContentItemShowCalendar, draw_ic24_calendar, "Календар", "На поточний місяць", getWatchfaceCalendarEnabled(), firstDraw);
+  drawListCheckbox(ModeMenuSettingsWatchfaceContentItemShowTimeInStatusbar, draw_ic24_digitalclock2, "Час в статус-барі", "Серед інконок статусу ще й час", getWatchfaceStatusbarDigitalEnabled(), firstDraw);
+  drawListCheckbox(ModeMenuSettingsWatchfaceContentItemShowLegend, draw_ic24_about, "Легента кнопок", "Значки що роблять кнопки", getWatchfaceLegendEnabled(), firstDraw);
 
 
   lcd()->sendBuffer();
@@ -114,6 +117,22 @@ void ModeMenuSettingsWatchfaceContentButtonCenter(){
   }
   if(selected==ModeMenuSettingsWatchfaceContentItemShowTimeInStatusbar){
     saveWatchfaceStatusbarDigitalEnabled(!getWatchfaceStatusbarDigitalEnabled());
+    return;
+  }
+  if(selected==ModeMenuSettingsWatchfaceContentItemShowAntBackgound){
+    saveWatchfaceAntBackgroundEnabled(!getWatchfaceAntBackgroundEnabled());
+    return;
+  }
+  if(selected==ModeMenuSettingsWatchfaceContentItemShowRandomBackgound){
+    saveWatchfaceRandomBackgroundEnabled(!getWatchfaceRandomBackgroundEnabled());
+    return;
+  }
+  if(selected==ModeMenuSettingsWatchfaceContentItemShowDotsBackgound){
+    saveWatchfaceDotsBackgroundEnabled(!getWatchfaceDotsBackgroundEnabled());
+    return;
+  }
+  if(selected==ModeMenuSettingsWatchfaceContentItemShowLegend){
+    saveWatchfaceLegendEnabled(!getWatchfaceLegendEnabled());
     return;
   }
 }

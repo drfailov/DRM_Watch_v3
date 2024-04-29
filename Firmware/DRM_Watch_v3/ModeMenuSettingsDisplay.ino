@@ -38,7 +38,7 @@ void ModeMenuSettingsDisplayLoop(){
 
   drawListItem(ModeMenuSettingsDisplayItemBack, draw_ic24_back, "Повернутись", "В меню налаштувань", firstDraw); //
   drawListItem(ModeMenuSettingsDisplayItemSelectWatchface, draw_ic24_watchface, "Обрати циферблат", "Дизайн відображення часу", firstDraw); //
-  drawListItem(ModeMenuSettingsDisplayItemSelectWatchfaceContent, draw_ic24_watchface, "Вміст циферблату", "Чи показувати елементи циферблатів", firstDraw); //
+  drawListItem(ModeMenuSettingsDisplayItemSelectWatchfaceContent, draw_ic24_checklist, "Вміст циферблату", "Чи показувати елементи циферблатів", firstDraw); //
   drawListCheckbox(ModeMenuSettingsDisplayItemInvertDisplay, draw_ic24_invert, "Інвертувати екран", "Поміняти місцями чорне i біле", getInversionValue(), firstDraw); //
 
   lcd()->sendBuffer();

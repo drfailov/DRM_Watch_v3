@@ -25,13 +25,13 @@ Icons used as reference:
 <a href="https://www.flaticon.com/free-icons/alert" title="alert icons">Alert icons created by Freepik - Flaticon</a>
 <a href="https://www.flaticon.com/free-icons/calendar" title="calendar icons">Calendar icons created by Hilmy Abiyyu A. - Flaticon</a>
 <a href="https://www.flaticon.com/free-icons/capture" title="capture icons">Capture icons created by Pixel perfect - Flaticon</a>
- <a href="https://www.flaticon.com/free-icons/7-days" title="7 days icons">7 days icons created by Freepik - Flaticon</a>
- <a href="https://www.flaticon.com/free-icons/calendar" title="calendar icons">Calendar icons created by Icon mania - Flaticon</a>
- <a href="https://www.flaticon.com/free-icons/digital-clock" title="digital clock icons">Digital clock icons created by Flipicon - Flaticon</a>
- <a href="https://www.flaticon.com/free-icons/checklist" title="checklist icons">Checklist icons created by Graphics Plazza - Flaticon</a>
- <a href="https://www.flaticon.com/free-icons/midnight" title="midnight icons">Midnight icons created by Freepik - Flaticon</a>
-	
- 
+<a href="https://www.flaticon.com/free-icons/7-days" title="7 days icons">7 days icons created by Freepik - Flaticon</a>
+<a href="https://www.flaticon.com/free-icons/calendar" title="calendar icons">Calendar icons created by Icon mania - Flaticon</a>
+<a href="https://www.flaticon.com/free-icons/digital-clock" title="digital clock icons">Digital clock icons created by Flipicon - Flaticon</a>
+<a href="https://www.flaticon.com/free-icons/checklist" title="checklist icons">Checklist icons created by Graphics Plazza - Flaticon</a>
+<a href="https://www.flaticon.com/free-icons/midnight" title="midnight icons">Midnight icons created by Freepik - Flaticon</a>
+<a href="https://www.flaticon.com/free-icons/ant" title="ant icons">Ant icons created by Freepik - Flaticon</a>	
+<a href="https://www.flaticon.com/free-icons/power" title="power icons">Power icons created by Dave Gandy - Flaticon</a>
  
  
  
@@ -432,6 +432,23 @@ Changelog:
 2024-04-27 v2.14 Стан секундоміра відображається в статусному рядку
 2024-04-27 v2.14 Виправлено баг: після виходу з таймера з головного меню запускався тестовий режим
 2024-04-27 v2.14 Виправлено баг: після виходу з таймера якщо відключено звук кнопок, тоді годинник неперерно пищав поки не піде в сон
+2024-04-29 v2.15 До системи додано іконку: - цифровий годинник   ic24_digitalclock
+2024-04-29 v2.15 До системи додано іконку: - Дата                ic24_date
+2024-04-29 v2.15 До системи додано іконку: - день тижня          ic24_weekday
+2024-04-29 v2.15 До системи додано іконку: - чекліст             ic24_checklist
+2024-04-29 v2.15 До системи додано іконку: - діджиай             ic24_dji
+2024-04-29 v2.15 До системи додано іконку: - час в статусбарі    ic24_digitalclock2
+2024-04-29 v2.15 До системи додано іконку: - мураха              ic24_ant
+2024-04-29 v2.15 До системи додано іконку: - Вимкнення           ic24_shutdown
+2024-04-29 v2.15 В меню налаштувань доодано кнопку вимкнення годинника 
+2024-04-29 v2.15 Додано параметр: ShowAntBackgound     
+2024-04-29 v2.15 Додано параметр: ShowRandomBackgound  
+2024-04-29 v2.15 Додано параметр: ShowDotsBackgound    
+2024-04-29 v2.15 Додано параметр: ShowLegend           
+2024-04-29 v2.15 Переписано екран вмісту циферблату - тепер там галочки і іконки
+2024-04-29 v2.15 Реалізовано: - фон де кожен кадр - випадковий шум
+
+
 
 
 
@@ -447,17 +464,13 @@ Changelog:
 - game pong
 - auto-finding when Life is cycled and restart automatically
 - Налаштування дій кнопок на циферблаті
-- фон де кожен кадр - випадковий шум
 - Фон мураха
 - Налаштування підсвітки, таймер та можливість вимкнути
 - Аналізатор кривої розряду
 - Налаштування частоти SPI
 - Налаштування інтервалу сну
 - Записник-емулятор флешки
-- Вміст циферблату перевести на галочки
 - esp-now messenger?
-
- 
 
 Малодії:
 - Шра перстолів
@@ -465,12 +478,3 @@ Changelog:
 - Sleigh ride мелодія
 - Мелодія політ шмеля
 - back to future мелодія
-
-
-Іконка: 
-цифровий годинник
-температура
-день тижня
-чекліст
-діджиай
-час в статусбарі

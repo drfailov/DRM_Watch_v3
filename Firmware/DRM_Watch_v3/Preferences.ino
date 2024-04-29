@@ -267,11 +267,35 @@ bool getWatchfaceLifeBackgroundEnabled(){     //123456789012345   max length = 1
 bool saveWatchfaceLifeBackgroundEnabled(bool value){
   return preferencesObject.putInt("wtfLifeEn", value?1:0);
 }
+bool getWatchfaceAntBackgroundEnabled(){     //123456789012345   max length = 15
+  return preferencesObject.getInt("wtfAntEn", 0)==1;
+}
+bool saveWatchfaceAntBackgroundEnabled(bool value){
+  return preferencesObject.putInt("wtfAntEn", value?1:0);
+}
+bool getWatchfaceRandomBackgroundEnabled(){     //123456789012345   max length = 15
+  return preferencesObject.getInt("wtfRndEn", 0)==1;
+}
+bool saveWatchfaceRandomBackgroundEnabled(bool value){
+  return preferencesObject.putInt("wtfRndEn", value?1:0);
+}
+bool getWatchfaceDotsBackgroundEnabled(){     //123456789012345   max length = 15
+  return preferencesObject.getInt("wtfDotEn", 0)==1;
+}
+bool saveWatchfaceDotsBackgroundEnabled(bool value){
+  return preferencesObject.putInt("wtfDotEn", value?1:0);
+}
 bool getWatchfaceCalendarEnabled(){     //123456789012345   max length = 15
   return preferencesObject.getInt(       "wtfCalendarEn", 0)==1;
 }
 bool saveWatchfaceCalendarEnabled(bool value){
   return preferencesObject.putInt("wtfCalendarEn", value?1:0);
+}
+bool getWatchfaceLegendEnabled(){     //123456789012345   max length = 15
+  return preferencesObject.getInt(       "wtfLegendEn", 0)==1;
+}
+bool saveWatchfaceLegendEnabled(bool value){
+  return preferencesObject.putInt("wtfLegendEn", value?1:0);
 }
 
 //----------------------//---------------------- ALERT -----------------//----------------------//----------------------//----------------------//----------------------
