@@ -6,6 +6,10 @@ void drawWatchfaceFullscreen(bool firstDraw){
     lifeStep();
     drawScreenBuffer();
   }
+  else if(getWatchfaceRandomBackgroundEnabled()){
+    randScreenBuffer();
+    drawScreenBuffer();
+  }
   else{
     lcd()->setColorIndex(white);
     lcd()->drawBox(0, 0, 400, 240);
