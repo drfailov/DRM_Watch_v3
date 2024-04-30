@@ -36,10 +36,15 @@ void drawScreenBuffer(int xstart, int ystart, int xend, int yend){ //IN BUFFER C
   if(xend >= BUFF_W) xend=BUFF_W-1;
   if(yend >= BUFF_H) yend=BUFF_H-1;
 
+  lcd()->setColorIndex(white);
+  lcd()->drawBox(xstart*BUFF_SCALE, ystart*BUFF_SCALE, (xend-xstart)*BUFF_SCALE, (yend-xstart)*BUFF_SCALE);
+  lcd()->setColorIndex(black);
   for(int y=ystart; y<=yend; y++){
     for(int x=xstart; x<=xend; x++){
-      lcd()->setColorIndex(getScreenBuffer(x,y)?black:white);
-      lcd()->drawBox(x*BUFF_SCALE, y*BUFF_SCALE, BUFF_SCALE, BUFF_SCALE);
+      bool value = getScreenBuffer(x,y);
+      if(value){
+        lcd()->drawBox(x*BUFF_SCALE, y*BUFF_SCALE, BUFF_SCALE, BUFF_SCALE);
+      }
     }
   }
 }

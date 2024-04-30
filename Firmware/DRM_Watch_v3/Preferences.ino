@@ -186,6 +186,15 @@ bool saveMuteEnabled(bool value){
   return preferencesObject.putInt((String("soundMute")).c_str(), value?1:0);
 }
 
+//----------------------//---------------------- ANT SPEED -----------------//----------------------//----------------------//----------------------//----------------------
+
+int getAntSpeed(){  //getAntSpeed   saveAntSpeed
+  return preferencesObject.getInt("AntSpeed" , 50);
+}
+bool saveAntSpeed(int value){
+  return preferencesObject.putInt("AntSpeed", value);
+}
+
 //----------------------//---------------------- BUTTON SOUND -----------------//----------------------//----------------------//----------------------//----------------------
 
 

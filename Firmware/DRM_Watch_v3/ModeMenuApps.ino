@@ -7,7 +7,8 @@ const int itemModeAppsMusic=5;
 const int itemModeAppsMeow=6;
 const int itemModeAppsLife=7;
 const int itemModeAppsRandom=8;
-const int itemModeAppsDebug=9;
+const int itemModeAppsAnt=9;
+const int itemModeAppsDebug=10;
 
 void setModeAppsMenu(){
   clearScreenAnimation();
@@ -26,7 +27,7 @@ void setModeAppsMenu(){
   autoReturnTime = autoReturnDefaultTime;
   autoSleepTime = autoSleepDefaultTime;
   selected = 0;
-  items = 10;
+  items = 11;
 }
 
 
@@ -51,6 +52,7 @@ void ModeAppsMenuLoop(){
   drawMenuItem(itemModeAppsMeow,       draw_ic24_meow,       "Meow",                          firstDraw);
   drawMenuItem(itemModeAppsLife,       draw_ic24_life,       "Клітковий автомат \"Життя\"",   firstDraw);
   drawMenuItem(itemModeAppsRandom,     draw_ic24_random,     "Випадковий шум",                firstDraw);
+  drawMenuItem(itemModeAppsAnt,        draw_ic24_ant,        "Мураха Ленгтона",               firstDraw);
   drawMenuItem(itemModeAppsDebug,      draw_ic24_bug,        "Інженерне меню",                firstDraw);
   
   
@@ -95,6 +97,10 @@ void ModeAppsMenuButtonCenter(){
   }
   if(selected == itemModeAppsLife){
     setModeLife();
+    return;
+  }
+  if(selected == itemModeAppsAnt){
+    setModeAnt();
     return;
   }
   if(selected == itemModeAppsRandom){
