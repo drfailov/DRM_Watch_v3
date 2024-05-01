@@ -34,6 +34,11 @@ Icons used as reference:
 <a href="https://www.flaticon.com/free-icons/power" title="power icons">Power icons created by Dave Gandy - Flaticon</a>
  
  
+Jingle Bells: https://onlinesequencer.net/3729549#
+Maxwell The Cat: https://onlinesequencer.net/3225610
+Harry Potter: https://onlinesequencer.net/3977257
+1GameOf Thrones: https://onlinesequencer.net/3977277
+ 
  
  
  
@@ -449,7 +454,10 @@ Changelog:
 2024-04-29 v2.15 Реалізовано: - фон де кожен кадр - випадковий шум
 2024-04-30 v2.16 Оптимізовано: малювання буфера екрану
 2024-04-30 v2.16 Реалізовано: Мураха Ленгтона
-
+2024-04-30 v2.17 Додано мелодію: Maxwell The Cat
+2024-04-30 v2.17 Додано мелодію: Jingle Bells
+2024-04-30 v2.17 Додано мелодію: GameOfThrones
+2024-04-30 v2.17 Додано мелодію: HarryPotter
 
 
 
@@ -480,8 +488,7 @@ Changelog:
 
 
 Малодії:
-- Шра перстолів
-- гарі потер мелодії
+- Star Wars
 - Sleigh ride мелодія
 - Мелодія політ шмеля
-- back to future мелодія
+
