@@ -1,5 +1,4 @@
 #include <ToneESP32.h>
-#pragma once
 
 
 ToneESP32 buzzer(BUZZER_PIN, /*BUZZER_CHANNEL*/0);

@@ -458,13 +458,15 @@ Changelog:
 2024-04-30 v2.17 Додано мелодію: Jingle Bells
 2024-04-30 v2.17 Додано мелодію: GameOfThrones
 2024-04-30 v2.17 Додано мелодію: HarryPotter
+2024-04-30 v2.18 Почата реалізація вогню (https://github.com/BOOtak/dct3ngine/blob/master/src/games/perlin_test)
+
 
 
 
 
 
 ==== todo:
-- https://github.com/BOOtak/dct3ngine/blob/master/src/games/perlin_test
+
 - https://github.com/spacehuhntech/esp8266_deauther
 - setting tone of all sounds
 - Фон де додаються випадкові точки щокадру
@@ -491,4 +493,7 @@ Changelog:
 - Star Wars
 - Sleigh ride мелодія
 - Мелодія політ шмеля
+
+
+
 
