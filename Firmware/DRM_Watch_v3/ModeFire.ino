@@ -160,11 +160,6 @@ int fix_sin(int deg)
     return fix_cos(FIX(90) - deg);
 }
 
-
-
-
-
-
 Point randomGradient(int ix, int iy)
 {
     // No precomputed gradients mean this works for any number of grid coordinates
@@ -296,52 +291,32 @@ void setModeFire(){
 }
 
 void modeFireLoop(){
-  //lcd()->setColorIndex(white);
-  //lcd()->drawBox(0, 0, 400, 240);
-  //lcd()->setColorIndex(black);
-  unsigned long millisStarted = millis();
+  //unsigned long millisStarted = millis();
   fireStep();
-  unsigned long millisEnd = millis();
-  Serial.print("Fire step: "); Serial.print(millisEnd-millisStarted); Serial.println("ms.");
+  //unsigned long millisEnd = millis();
+  //Serial.print("Fire step: "); Serial.print(millisEnd-millisStarted); Serial.println("ms.");
   drawScreenBuffer();
   lcd()->sendBuffer();
 }
+
 void fireStep(){
   zeroScreenBuffer();
   dy_low += ONE / 6;
   dy_high += ONE / 4;
   int cell_size = 32; //16
   int one_over_screen_height = FIX_DIV(ONE, FIX(BUFF_H));
-  for (int j = 0; j < BUFF_H; j+=1)
-  {
-    for (int i = 0; i < BUFF_W - 1; i+=1)
-    {
-      if (i + j & 1)
-      {
+  for (int j = 0; j < BUFF_H; j+=1) {
+    for (int i = 0; i < BUFF_W - 1; i+=1) {
+      if (i + j & 1) {
           int val_low = perlin(FIX(i) / cell_size, FIX(j) / cell_size + dy_low, angle, 0);
           int mul = FIX_MUL(FIX(j), one_over_screen_height);
           val_low = FIX_MUL(val_low, mul);
-
           int val_high = perlin(FIX(i) / cell_size * 2, FIX(j) / cell_size * 2 + dy_high, angle, 1);
-
           int res = (val_low + val_high / 2) * 2 / 3;
           if (res > 350)
-          {
-              //draw_pixel(i, j);
-              //lcd()->drawPixel(i, j);
               setScreenBuffer(i, j, true);
-          }
           if (res > 450)
-          {
-              setScreenBuffer(i, j, true);
               setScreenBuffer(i+1, j, true);
-
-              //lcd()->drawPixel(i, j);
-              //lcd()->drawPixel(i + 1, j);
-              
-              //draw_pixel(i, j);
-              //draw_pixel(i + 1, j);
-          }
       }
     }
   }

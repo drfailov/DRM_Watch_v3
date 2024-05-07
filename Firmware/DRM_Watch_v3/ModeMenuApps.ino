@@ -53,8 +53,8 @@ void ModeAppsMenuLoop(){
   drawMenuItem(itemModeAppsMeow,       draw_ic24_meow,       "Meow",                          firstDraw);
   drawMenuItem(itemModeAppsLife,       draw_ic24_life,       "Клітковий автомат \"Життя\"",   firstDraw);
   drawMenuItem(itemModeAppsRandom,     draw_ic24_random,     "Випадковий шум",                firstDraw);
-  drawMenuItem(itemModeAppsAnt,        draw_ic24_ant,        "Мураха Ленгтона",               firstDraw);
-  drawMenuItem(itemModeAppsFire,       draw_ic24_ant,        "Вогонь",                        firstDraw);
+  drawMenuItem(itemModeAppsAnt,        draw_ic24_ant2,       "Мураха Ленгтона",               firstDraw);
+  drawMenuItem(itemModeAppsFire,       draw_ic24_fire,       "Вогонь",                        firstDraw);
   drawMenuItem(itemModeAppsDebug,      draw_ic24_bug,        "Інженерне меню",                firstDraw);
   
   

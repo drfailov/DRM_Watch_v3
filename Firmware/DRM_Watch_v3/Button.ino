@@ -8,6 +8,8 @@ bool buttonReady[3] = {false,false,false}; //size need to fit max pin number use
 
   
 void initButtons(){
+  if(!isAwake())
+    return;
   pinMode(BUT_UP, INPUT_PULLUP);
   pinMode(BUT_CENTER, INPUT_PULLUP);
   pinMode(BUT_DOWN, INPUT_PULLUP);
@@ -16,6 +18,8 @@ void initButtons(){
 
 
 void buttonsLoop(){
+  if(!isAwake())
+    return;
   processButton(BUT_UP, &modeButtonUp, &modeButtonUpLong);
   processButton(BUT_CENTER, &modeButtonCenter, &modeButtonCenterLong);
   processButton(BUT_DOWN, &modeButtonDown, &modeButtonDownLong);

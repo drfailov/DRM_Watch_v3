@@ -32,14 +32,23 @@ Icons used as reference:
 <a href="https://www.flaticon.com/free-icons/midnight" title="midnight icons">Midnight icons created by Freepik - Flaticon</a>
 <a href="https://www.flaticon.com/free-icons/ant" title="ant icons">Ant icons created by Freepik - Flaticon</a>	
 <a href="https://www.flaticon.com/free-icons/power" title="power icons">Power icons created by Dave Gandy - Flaticon</a>
+ <a href="https://www.flaticon.com/free-icons/fire" title="fire icons">Fire icons created by alkhalifi design - Flaticon</a>
+ <a href="https://www.flaticon.com/free-icons/bubble" title="bubble icons">Bubble icons created by Freepik - Flaticon</a>
+ <a href="https://www.flaticon.com/free-icons/flashlight" title="flashlight icons">Flashlight icons created by Anggara - Flaticon</a>
+ <a href="https://www.flaticon.com/free-icons/external-link" title="external link icons">External link icons created by Bharat Icons - Flaticon</a>
+ <a href="https://www.flaticon.com/free-icons/animation" title="animation icons">Animation icons created by Dwi ridwanto - Flaticon</a>
+ <a href="https://www.flaticon.com/free-icons/ringtone" title="ringtone icons">Ringtone icons created by AbtoCreative - Flaticon</a>
+ <a href="https://www.flaticon.com/free-icons/car-lights" title="car lights icons">Car lights icons created by Smashicons - Flaticon</a>
+ 
  
  
 Jingle Bells: https://onlinesequencer.net/3729549#
 Maxwell The Cat: https://onlinesequencer.net/3225610
 Harry Potter: https://onlinesequencer.net/3977257
-1GameOf Thrones: https://onlinesequencer.net/3977277
- 
- 
+GameOf Thrones: https://onlinesequencer.net/3977277
+Believer: https://onlinesequencer.net/3600147
+X-Files: https://onlinesequencer.net/3756521
+Sleigh Ride: https://onlinesequencer.net/3988270 
  
  
 
@@ -459,39 +468,45 @@ Changelog:
 2024-04-30 v2.17 Додано мелодію: GameOfThrones
 2024-04-30 v2.17 Додано мелодію: HarryPotter
 2024-04-30 v2.18 Почата реалізація вогню (https://github.com/BOOtak/dct3ngine/blob/master/src/games/perlin_test)
-
-
-
+2024-05-07 v2.19  Додано мелодію: Believer
+2024-05-07 v2.19  Додано мелодію: X-Files
+2024-05-07 v2.19  Додано мелодію: Sleigh Ride
+2024-05-07 v2.19  Додано іконку: ic24_ant2
+2024-05-07 v2.19  Додано іконку: ic24_bubbles
+2024-05-07 v2.19  Додано іконку: ic24_fire
+2024-05-07 v2.19  Додано іконку: ic24_flashlight2
+2024-05-07 v2.19  Додано іконку: ic24_shortcut
+2024-05-07 v2.19  Додано іконку: ic24_animation
+2024-05-07 v2.19  Додано іконку: ic24_backlight
+2024-05-07 v2.19  Додано іконку: ic24_pixels	
 
 
 
 ==== todo:
-
 - https://github.com/spacehuhntech/esp8266_deauther
 - setting tone of all sounds
-- Фон де додаються випадкові точки щокадру
+- Фон де додаються випадкові точки щокадру  (ic24_pixels)
 - Опція обрати мову прямо в меню
-- Налаштування анімації - анімація входу - увімкнути чи ні
-- Налаштування анімації - анімація виходу - обрати
+- Налаштування анімації - анімація входу - увімкнути чи ні   (ic24_animation)
+- Налаштування анімації - анімація виходу - обрати   (ic24_animation)
 - menu showing all parameters on screen
 - game pong
 - auto-finding when Life is cycled and restart automatically
-- Налаштування дій кнопок на циферблаті
-- Фон мураха
-- Налаштування підсвітки, таймер та можливість вимкнути
+- Налаштування дій кнопок на циферблаті   (ic24_shortcut)
+- Фон мураха   (ic24_ant2)
+- Налаштування підсвітки, таймер та можливість вимкнути   (ic24_backlight)
 - Аналізатор кривої розряду
 - Налаштування частоти SPI
 - Налаштування інтервалу сну
 - Записник-емулятор флешки
 - esp-now messenger?
-- Ліхтарик як окрема програма
-- Режим роботи ліхтарика - тиснемо раз - нічний. Другий - денний.
+- Ліхтарик як окрема програма  (ic24_flashlight2)
+- Режим роботи ліхтарика - тиснемо раз - нічний. Другий - денний.   (ic24_flashlight2)
 - Щоб кнопки можна було затискати окремо від того щоб спрацювало натиснення
-
-
+- Додати вогонь як фон (ic24_fire)
+- Лава-лампа (ic24_bubbles)
 Малодії:
 - Star Wars
-- Sleigh ride мелодія
 - Мелодія політ шмеля
 
 
