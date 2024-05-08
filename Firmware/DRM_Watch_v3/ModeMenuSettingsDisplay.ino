@@ -2,6 +2,7 @@ const int ModeMenuSettingsDisplayItemBack = 0;
 const int ModeMenuSettingsDisplayItemSelectWatchface = 1;
 const int ModeMenuSettingsDisplayItemSelectWatchfaceContent = 2;
 const int ModeMenuSettingsDisplayItemInvertDisplay = 3;
+const int ModeMenuSettingsDisplayItemInAnimation = 4;
 
 void setModeMenuSettingsDisplay(){
   clearScreenAnimation();
@@ -20,7 +21,7 @@ void setModeMenuSettingsDisplay(){
   autoReturnTime = autoReturnDefaultTime;
   autoSleepTime = autoSleepDefaultTime;
   selected = 0;
-  items = 4;
+  items = 5;
 }
 
 
@@ -40,6 +41,7 @@ void ModeMenuSettingsDisplayLoop(){
   drawListItem(ModeMenuSettingsDisplayItemSelectWatchface, draw_ic24_watchface, "Обрати циферблат", "Дизайн відображення часу", firstDraw); //
   drawListItem(ModeMenuSettingsDisplayItemSelectWatchfaceContent, draw_ic24_checklist, "Вміст циферблату", "Чи показувати елементи циферблатів", firstDraw); //
   drawListCheckbox(ModeMenuSettingsDisplayItemInvertDisplay, draw_ic24_invert, "Інвертувати екран", "Поміняти місцями чорне i біле", getInversionValue(), firstDraw); //
+  drawListCheckbox(ModeMenuSettingsDisplayItemInAnimation, draw_ic24_animation, "Анімація входу в меню", "Поступова поява елементів меню", getEnterAnimationValue(), firstDraw); //
 
   lcd()->sendBuffer();
 }
@@ -60,6 +62,10 @@ void ModeMenuSettingsDisplayButtonCenter(){
     saveInversionValue(!getInversionValue());
     black = getBlackValue();
     white = getWhiteValue();
+    return;
+  }  
+  if(selected == ModeMenuSettingsDisplayItemInAnimation){
+    saveEnterAnimationValue(!getEnterAnimationValue());
     return;
   }  
 }

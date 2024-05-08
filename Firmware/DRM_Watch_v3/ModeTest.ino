@@ -30,10 +30,10 @@ void modeTestLoop(){
   int interval = 13;
 
   y+=interval; lcd()->setCursor(x, y); lcd()->print("Internal RTC: "); lcd()->print(_rtcInternal()->getTime("%d %b %Y %H:%M:%S"));  lcd()->print(" ("); lcd()->print(_rtcInternal()->getEpoch());   lcd()->print(")");
-  y+=interval; lcd()->setCursor(x, y); lcd()->print("Corr Int RTC: "); lcd()->print(_rtcInternalCorrected()->getTime("%d %b %Y %H:%M:%S"));  lcd()->print("  ("); lcd()->print(_rtcInternalCorrected()->getEpoch()); lcd()->print(")");
-  y+=interval; lcd()->setCursor(x, y); lcd()->print("Correcton: "); lcd()->print(getTimeCoef()*(rtcGetUtcEpoch()-getLastTimeSync())); lcd()->print("s,  Time coef: "); lcd()->print(String(getTimeCoef(), 8));   
+  //y+=interval; lcd()->setCursor(x, y); lcd()->print("Corr Int RTC: "); lcd()->print(_rtcInternalCorrected()->getTime("%d %b %Y %H:%M:%S"));  lcd()->print("  ("); lcd()->print(_rtcInternalCorrected()->getEpoch()); lcd()->print(")");
+  //y+=interval; lcd()->setCursor(x, y); lcd()->print("Correcton: "); lcd()->print(getTimeCoef()*(rtcGetUtcEpoch()-getLastTimeSync())); lcd()->print("s,  Time coef: "); lcd()->print(String(getTimeCoef(), 8));   
   y+=interval; lcd()->setCursor(x, y); lcd()->print("External RTC: "); printRtcGetTimeRaw();   
-  y+=interval; lcd()->setCursor(x, y); lcd()->print("SinceLastSync:"); displayPrintSecondsAsTime(rtcGetUtcEpoch()-getLastTimeSync());  lcd()->print(" Last sync:"); lcd()->print(getLastTimeSync());   
+  y+=interval; lcd()->setCursor(x, y); lcd()->print("SinceLastSync :"); displayPrintSecondsAsTime(rtcGetUtcEpoch()-getLastTimeSync());  lcd()->print(" Last sync:"); lcd()->print(getLastTimeSync());   
   y+=interval; lcd()->setCursor(x, y); lcd()->print("RTC CLK SRC: "); lcd()->print(getRtcSrc());
 
   y+=interval; lcd()->setCursor(x, y); lcd()->print("Wakeup_reason: "); wakeup_reason();

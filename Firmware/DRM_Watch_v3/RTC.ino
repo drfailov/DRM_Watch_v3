@@ -25,21 +25,21 @@ void initRtc(){
 ESP32Time* _rtcInternal(){
   return &rtcInternal;
 }
-ESP32Time* _rtcInternalCorrected(){
-  unsigned long lastSyncTime = getLastTimeSync(); //s
-  unsigned long measuredTime = _rtcInternal()->getEpoch(); //s
-  bool lastSyncValid = lastSyncTime > 1609459200;  // 1st Jan 2021 00:00:00;
-  bool measuredTimeValid = measuredTime > lastSyncTime;
-  if(!lastSyncValid || !measuredTimeValid)
-    return &rtcInternal;
-  double coefficient = getTimeCoef();
-  unsigned long sinceLastSync = measuredTime-lastSyncTime;  //s
-  double sinceLastSyncDouble = sinceLastSync;
-  double correctionDouble = sinceLastSyncDouble*coefficient;
-  double correction = correctionDouble;
-  rtcInternalCorrected.offset = correction;
-  return &rtcInternalCorrected;
-}
+// ESP32Time* _rtcInternalCorrected(){
+//   unsigned long lastSyncTime = getLastTimeSync(); //s
+//   unsigned long measuredTime = _rtcInternal()->getEpoch(); //s
+//   bool lastSyncValid = lastSyncTime > 1609459200;  // 1st Jan 2021 00:00:00;
+//   bool measuredTimeValid = measuredTime > lastSyncTime;
+//   if(!lastSyncValid || !measuredTimeValid)
+//     return &rtcInternal;
+//   double coefficient = getTimeCoef();
+//   unsigned long sinceLastSync = measuredTime-lastSyncTime;  //s
+//   double sinceLastSyncDouble = sinceLastSync;
+//   double correctionDouble = sinceLastSyncDouble*coefficient;
+//   double correction = correctionDouble;
+//   rtcInternalCorrected.offset = correction;
+//   return &rtcInternalCorrected;
+// }
 
 void printRtcGetTimeRaw(){
   //"%d %b %Y %H:%M:%S"
@@ -67,14 +67,14 @@ unsigned long rtcGetEpoch(){
     DateTime datetime = DS3231M.now() + ts;
     return datetime.unixtime();
   }
-  return _rtcInternalCorrected() -> getEpoch()+getTimeOffsetSec();
+  return _rtcInternal() -> getEpoch()+getTimeOffsetSec();
 }
 unsigned long rtcGetUtcEpoch(){
   if(rtcReady){
     DateTime datetime = DS3231M.now();
     return datetime.unixtime();
   }
-  return _rtcInternalCorrected() -> getEpoch();
+  return _rtcInternal() -> getEpoch();
 }
 int rtcGetHour(){
   unsigned long epoch = rtcGetEpoch();

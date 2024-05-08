@@ -18,8 +18,8 @@ void initButtons(){
 
 
 void buttonsLoop(){
-  if(!isAwake())
-    return;
+  // if(!isAwake())
+  //   return;
   processButton(BUT_UP, &modeButtonUp, &modeButtonUpLong);
   processButton(BUT_CENTER, &modeButtonCenter, &modeButtonCenterLong);
   processButton(BUT_DOWN, &modeButtonDown, &modeButtonDownLong);

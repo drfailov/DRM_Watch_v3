@@ -50,7 +50,7 @@ void clearScreenAnimation(){
     return;
   if(millis()<1000)
     return;
-  firstDraw = true;
+  firstDraw = getEnterAnimationValue();
 
   //clearScreenAnimationWhiteLeftToRight();
   clearScreenAnimationCircleFromRight();

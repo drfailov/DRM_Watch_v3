@@ -1,5 +1,5 @@
 byte batteryCalibrationCnt = 4;
-float batteryCalibration[][2] = { 
+float batteryCalibration[][2] = {    //raw analog reading to voltage in mv
   {0, 0}, //{mv, raw}
   {3000, 4650}, //{mv, raw}
   {4200, 6550}, //{mv, raw}
@@ -31,9 +31,11 @@ void drawBattery(int x, int y){
 }
 
 
-
+RTC_DATA_ATTR float previousVoltage = 3600; //mv
 float readSensBatteryVoltage(){
-  return linearInterpolate((int)readSensBatteryRaw(), batteryCalibration, batteryCalibrationCnt);
+  float currentVoltage = linearInterpolate((int)readSensBatteryRaw(), batteryCalibration, batteryCalibrationCnt);
+  previousVoltage += (currentVoltage-previousVoltage) * 0.1;  //smoothing to prevent jumps
+  return previousVoltage;
 }
 
 byte batteryBars(){
@@ -52,7 +54,7 @@ bool isBatteryCritical(){
 
 RTC_DATA_ATTR bool previousState = false;
 bool isChargerConnected(){
-  bool result = readSensUsbRaw() > 4000;
+  bool result = readSensUsbRaw() > 7000; //of 8096
   if(!result && previousState)
     onChargerDisconnected();
   if(result && !previousState)

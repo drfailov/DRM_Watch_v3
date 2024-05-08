@@ -140,12 +140,12 @@ bool saveLastTimeSync(unsigned long epoch){
 unsigned long getLastTimeSync(){
   return preferencesObject.getULong64("lastTimeSync1", 0);
 }
-bool saveTimeCoef(double coef){
-  return preferencesObject.putDouble("timeCorrection1", coef) > 0;
-}
-double getTimeCoef(){
-  return preferencesObject.getDouble("timeCorrection1", 0);
-}
+// bool saveTimeCoef(double coef){
+//   return preferencesObject.putDouble("timeCorrection1", coef) > 0;
+// }
+// double getTimeCoef(){
+//   return preferencesObject.getDouble("timeCorrection1", 0);
+// }
 
 //----------------------//---------------------- DISPLAY COLORS -------//----------------------//----------------------//----------------------//----------------------
 
@@ -160,6 +160,13 @@ bool getInversionValue(){
 }
 void saveInversionValue(bool value){
   preferencesObject.putInt("screenInverse", value?1:0);
+}
+
+bool getEnterAnimationValue(){
+  return preferencesObject.getInt("screenInAnim", 1)==1;
+}
+void saveEnterAnimationValue(bool value){
+  preferencesObject.putInt("screenInAnim", value?1:0);
 }
 
 //----------------------//---------------------- LAST CHARGED ------------//----------------------//----------------------//----------------------//----------------------
@@ -287,6 +294,18 @@ bool getWatchfaceRandomBackgroundEnabled(){     //123456789012345   max length =
 }
 bool saveWatchfaceRandomBackgroundEnabled(bool value){
   return preferencesObject.putInt("wtfRndEn", value?1:0);
+}
+bool getWatchfaceFireBackgroundEnabled(){     //123456789012345   max length = 15
+  return preferencesObject.getInt("wtfFireEn", 0)==1;
+}
+bool saveWatchfaceFireBackgroundEnabled(bool value){
+  return preferencesObject.putInt("wtfFireEn", value?1:0);
+}
+bool getWatchfaceLavaBackgroundEnabled(){     //123456789012345   max length = 15
+  return preferencesObject.getInt("wtfLavaEn", 0)==1;
+}
+bool saveWatchfaceLavaBackgroundEnabled(bool value){
+  return preferencesObject.putInt("wtfLavaEn", value?1:0);
 }
 bool getWatchfaceDotsBackgroundEnabled(){     //123456789012345   max length = 15
   return preferencesObject.getInt("wtfDotEn", 0)==1;

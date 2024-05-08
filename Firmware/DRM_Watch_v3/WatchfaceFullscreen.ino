@@ -6,6 +6,10 @@ void drawWatchfaceFullscreen(bool firstDraw){
     lifeStep();
     drawScreenBuffer();
   }
+  if(getWatchfaceFireBackgroundEnabled()){
+    fireStep();
+    drawScreenBuffer();
+  }
   else if(getWatchfaceRandomBackgroundEnabled()){
     randScreenBuffer();
     drawScreenBuffer();
