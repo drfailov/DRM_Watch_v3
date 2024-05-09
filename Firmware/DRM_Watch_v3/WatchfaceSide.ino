@@ -7,8 +7,12 @@ void drawWatchfaceSide(bool firstDraw){
     lifeStep();
     drawScreenBuffer(0,0,x_del/BUFF_SCALE,BUFF_H);
   }
-  if(getWatchfaceFireBackgroundEnabled()){
-    fireStep();
+  else if(getWatchfaceFireBackgroundEnabled()){
+    fireStep(x_del/BUFF_SCALE + 1);
+    drawScreenBuffer(0,0,x_del/BUFF_SCALE,BUFF_H);
+  }
+  else if(getWatchfaceLavaBackgroundEnabled()){
+    lavaStep(x_del/BUFF_SCALE + 1);
     drawScreenBuffer(0,0,x_del/BUFF_SCALE,BUFF_H);
   }
   else if(getWatchfaceRandomBackgroundEnabled()){

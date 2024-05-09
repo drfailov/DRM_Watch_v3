@@ -9,7 +9,8 @@ const int itemModeAppsLife=7;
 const int itemModeAppsRandom=8;
 const int itemModeAppsAnt=9;
 const int itemModeAppsFire=10;
-const int itemModeAppsDebug=11;
+const int itemModeAppsLava=11;
+const int itemModeAppsDebug=12;
 
 void setModeAppsMenu(){
   clearScreenAnimation();
@@ -28,7 +29,7 @@ void setModeAppsMenu(){
   autoReturnTime = autoReturnDefaultTime;
   autoSleepTime = autoSleepDefaultTime;
   selected = 0;
-  items = 12;
+  items = 13;
 }
 
 
@@ -55,6 +56,7 @@ void ModeAppsMenuLoop(){
   drawMenuItem(itemModeAppsRandom,     draw_ic24_random,     "Випадковий шум",                firstDraw);
   drawMenuItem(itemModeAppsAnt,        draw_ic24_ant2,       "Мураха Ленгтона",               firstDraw);
   drawMenuItem(itemModeAppsFire,       draw_ic24_fire,       "Вогонь",                        firstDraw);
+  drawMenuItem(itemModeAppsLava,       draw_ic24_bubbles,    "Лава Лампа",                    firstDraw);
   drawMenuItem(itemModeAppsDebug,      draw_ic24_bug,        "Інженерне меню",                firstDraw);
   
   
@@ -107,6 +109,10 @@ void ModeAppsMenuButtonCenter(){
   }
   if(selected == itemModeAppsFire){
     setModeFire();
+    return;
+  }
+  if(selected == itemModeAppsLava){
+    setModeLava();
     return;
   }
   if(selected == itemModeAppsRandom){

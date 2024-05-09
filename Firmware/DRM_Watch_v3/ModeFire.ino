@@ -1,3 +1,8 @@
+/*
+Код написано на базі роботи Кирила Лейфера, ось його репозиторій:
+https://github.com/BOOtak/dct3ngine/blob/master/src/games/perlin_test
+*/
+
 #define ONE 0x400
 #define FRAC_BITS 10
 #define FRAC_MASK 0x000003FF
@@ -10,21 +15,65 @@
 
 #define TO_INT(X) ((X) >> FRAC_BITS)
 #define FIX(X) ((int)((X) << FRAC_BITS))
-
+#define correct_angle(a) ((long long)a * ONE / (1 << 30))
 
 int randoms = 0;
 int rotations = 0;
 int gradients = 0;
 int interpolations = 0;
-
-
 static int x0_cache[2];
 static int y0_cache[2];
 static Point grid_cache[2][2][2];
+int dy_low = FIX(0);
+int dy_high = FIX(0);
+int angle = FIX(0);
 
+RTC_DATA_ATTR int R_randoms = 0;
+RTC_DATA_ATTR int R_rotations = 0;
+RTC_DATA_ATTR int R_gradients = 0;
+RTC_DATA_ATTR int R_interpolations = 0;
+RTC_DATA_ATTR static int R_x0_cache[2];
+RTC_DATA_ATTR static int R_y0_cache[2];
+RTC_DATA_ATTR static Point R_grid_cache[2][2][2];
+RTC_DATA_ATTR int R_dy_low = FIX(0);
+RTC_DATA_ATTR int R_dy_high = FIX(0);
+RTC_DATA_ATTR int R_angle = FIX(0);
 
+void fireBackupToRtc(){
+  for(int i=0; i<2; i++)
+    R_x0_cache[i] = x0_cache[i];
+  for(int i=0; i<2; i++)
+    R_y0_cache[i] = y0_cache[i];
+  for(int i=0; i<2; i++)
+    for(int j=0; j<2; j++)
+      for(int k=0; k<2; k++)
+        R_grid_cache[i][j][k] = grid_cache[i][j][k];
+  R_randoms = randoms;
+  R_rotations = rotations;
+  R_gradients = gradients;
+  R_interpolations = interpolations;
+  R_dy_low = dy_low;
+  R_dy_high = dy_high;
+  R_angle = angle;
+}
+void fireRestoreFromRtc(){
+  for(int i=0; i<2; i++)
+    x0_cache[i] = R_x0_cache[i];
+  for(int i=0; i<2; i++)
+    y0_cache[i] = R_y0_cache[i];
+  for(int i=0; i<2; i++)
+    for(int j=0; j<2; j++)
+      for(int k=0; k<2; k++)
+        grid_cache[i][j][k] = R_grid_cache[i][j][k];
+  randoms = R_randoms;
+  rotations = R_rotations;
+  gradients = R_gradients;
+  interpolations = R_interpolations;
+  dy_low = R_dy_low;
+  dy_high = R_dy_high;
+  angle = R_angle;
+}
 
-#define correct_angle(a) ((long long)a * ONE / (1 << 30))
 
 static const int costable[] = {
     correct_angle(1073741824),
@@ -266,12 +315,6 @@ int perlin(int x, int y, int angle, int cache_idx)
 }
 
 
-
-int dy_low = FIX(0);
-int dy_high = FIX(0);
-int angle = FIX(0);
-
-
 void setModeFire(){
   clearScreenAnimation();
   Serial.println(F("Set mode: Fire"));
@@ -291,22 +334,27 @@ void setModeFire(){
 }
 
 void modeFireLoop(){
-  //unsigned long millisStarted = millis();
+  unsigned long millisStarted = millis();
   fireStep();
-  //unsigned long millisEnd = millis();
-  //Serial.print("Fire step: "); Serial.print(millisEnd-millisStarted); Serial.println("ms.");
+  //lavaStep();
+  unsigned long millisEnd = millis();
+  Serial.print("Fire step: "); Serial.print(millisEnd-millisStarted); Serial.println(" ms.");
   drawScreenBuffer();
   lcd()->sendBuffer();
 }
 
 void fireStep(){
+  fireStep(BUFF_W);
+}
+void fireStep(int w){  //process not full but left part to W (BUFFER COORDINATES!)
   zeroScreenBuffer();
+  fireRestoreFromRtc();
   dy_low += ONE / 6;
   dy_high += ONE / 4;
   int cell_size = 32; //16
   int one_over_screen_height = FIX_DIV(ONE, FIX(BUFF_H));
   for (int j = 0; j < BUFF_H; j+=1) {
-    for (int i = 0; i < BUFF_W - 1; i+=1) {
+    for (int i = 0; i < w - 1; i+=1) {
       if (i + j & 1) {
           int val_low = perlin(FIX(i) / cell_size, FIX(j) / cell_size + dy_low, angle, 0);
           int mul = FIX_MUL(FIX(j), one_over_screen_height);
@@ -320,6 +368,61 @@ void fireStep(){
       }
     }
   }
+  fireBackupToRtc();
+}
+
+
+void setModeLava(){
+  clearScreenAnimation();
+  Serial.println(F("Set mode: Lava"));
+  modeSetup = setModeLava;
+  modeLoop = modeLavaLoop;
+  modeButtonUp = ModeFireButtonUp;
+  modeButtonCenter = ModeFireButtonCenter;
+  modeButtonDown = ModeFireButtonDown;
+  modeButtonUpLong = 0;
+  modeButtonCenterLong = 0;
+  modeButtonDownLong = 0;
+  registerAction();
+  enableAutoReturn = false;
+  enableAutoSleep = false; 
+  autoReturnTime = autoReturnDefaultTime;
+  autoSleepTime = autoSleepDefaultTime;
+}
+
+void modeLavaLoop(){
+  unsigned long millisStarted = millis();
+  //fireStep();
+  lavaStep();
+  unsigned long millisEnd = millis();
+  Serial.print("Fire step: "); Serial.print(millisEnd-millisStarted); Serial.println(" ms.");
+  drawScreenBuffer();
+  lcd()->sendBuffer();
+}
+
+void lavaStep(){
+  lavaStep(BUFF_W);
+}
+void lavaStep(int w){  //process not full but left part to W (BUFFER COORDINATES!)
+  zeroScreenBuffer();
+  fireRestoreFromRtc();
+  dy_low += ONE / 30;
+  //dy_high += ONE / 40;
+  int cell_size = 32; //16
+  angle -= FIX(8);
+  int one_over_screen_height = FIX_DIV(ONE, FIX(BUFF_H));
+  for (int j = 0; j < BUFF_H; j+=1) {
+    for (int i = 0; i < w - 1; i+=1) {
+      if (i + j & 1) {
+          int res = perlin(FIX(i) / cell_size, FIX(j) / cell_size + dy_low, angle, 0);
+          if (res > 500)
+              setScreenBuffer(i, j, true);
+          if (res > 600)
+              setScreenBuffer(i+1, j, true);
+      }
+    }
+  }
+  fireBackupToRtc();
 }
 
 
