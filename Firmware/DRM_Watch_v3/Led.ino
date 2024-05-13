@@ -38,25 +38,23 @@ void IRAM_ATTR Timer_ISR()
 }
 
 void initLed(){
-  if(esp_sleep_get_wakeup_cause() != ESP_SLEEP_WAKEUP_TIMER && !isOff()){/*NOT periodical wakeup*/
-    pinMode(LED_TOP_PIN, OUTPUT);
-    pinMode(LED_BOTTOM_PIN, OUTPUT);
-    pinMode(LED_STATUS_PIN, OUTPUT);
-    ledFlashlightOffAll();
-    Timer_Cfg = timerBegin(0, 80, true);
-    timerAttachInterrupt(Timer_Cfg, &Timer_ISR, true);
-    timerAlarmWrite(Timer_Cfg, 3000, true);
-    timerAlarmEnable(Timer_Cfg);
-  }
+  pinMode(LED_TOP_PIN, OUTPUT);
+  pinMode(LED_BOTTOM_PIN, OUTPUT);
+  pinMode(LED_STATUS_PIN, OUTPUT);
+  ledFlashlightOffAll();
+  Timer_Cfg = timerBegin(0, 80, true);
+  timerAttachInterrupt(Timer_Cfg, &Timer_ISR, true);
+  timerAlarmWrite(Timer_Cfg, 3000, true);
+  timerAlarmEnable(Timer_Cfg);
 }
 
 void ledSelftest(){
-    ledFlashlightOnTop(); delay(50);
-    ledFlashlightOnBottom(); delay(50);
-    ledStatusOn(); delay(50);
-    ledFlashlightOffTop(); delay(50);
-    ledFlashlightOffBottom(); delay(50);
-    ledStatusOff(); delay(50);
+  ledFlashlightOnTop(); delay(50);
+  ledFlashlightOnBottom(); delay(50);
+  ledStatusOn(); delay(50);
+  ledFlashlightOffTop(); delay(50);
+  ledFlashlightOffBottom(); delay(50);
+  ledStatusOff(); delay(50);
 }
 
 bool isFlasthilghTopOn(){ return ledTarget[LED_TOP] > 20; }
