@@ -87,9 +87,6 @@ void modeTimerLoop(){
     draw_ic16_plus(lx(), ly1(), black);
     draw_ic16_minus(lx(), ly3(), black);
   }
-  
-
-  
   lcd()->sendBuffer();
 }
 
@@ -102,12 +99,6 @@ void modeTimerButtonUp(){
     timerTime += timerStep();
     saveTimerTime(timerTime);
   }
-  // if(!modeSetTimezoneEditMode){
-  //   modeMainMenuButtonUp();
-  //   return;
-  // }
-  // if(selected == itemmodeSetTimezoneHour) 
-  //saveTimeOffsetSec(getTimeOffsetSec()+60*30);
 }
 void modeTimerButtonDown(){
   if(isTimerRunning()){
@@ -122,12 +113,6 @@ void modeTimerButtonDown(){
       timerTime = 0;
     saveTimerTime(timerTime);
   }
-  // if(!modeSetTimezoneEditMode){
-  //   modeMainMenuButtonDown();
-  //   return;
-  // }
-  // if(selected == itemmodeSetTimezoneHour) 
-  ///saveTimeOffsetSec(getTimeOffsetSec()-60*30);
 }
 void modeTimerButtonCenter(){
   if(isTimerRunning()){
@@ -141,14 +126,11 @@ void modeTimerButtonCenter(){
       saveTimerStartedTime(rtcGetEpoch());//start
     }
   }
-  //if(selected == itemmodeSetTimezoneBack){
-    
-//    return;
-  //}
-  // if(selected==itemmodeSetTimezoneHour){
-  //   modeSetTimezoneEditMode = !modeSetTimezoneEditMode;
-  //   return;
-  // }
+}
+
+void setTimerToMinutes(int minutes){
+  saveTimerTime(60*minutes);
+  saveTimerStartedTime(rtcGetEpoch());//start
 }
 
 void timerLoop(){
@@ -163,6 +145,7 @@ void timerLoop(){
     }
   }
 }
+
 int timerStep(){
   unsigned long timerTime = getTimerTime();
   if(timerTime >= 3*60*60) /*3h*/ return 60*60; /*1h*/
@@ -171,6 +154,8 @@ int timerStep(){
   if(timerTime >= 5*60) /*5m*/ return 60; /*1m*/
   return 30; /*30s*/
 }
+
+
 
 void timerAlert(){
   Serial.println(F("Open: timerAlert"));

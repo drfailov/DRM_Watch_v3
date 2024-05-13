@@ -147,14 +147,14 @@ bool melodyPlayerPlayMelody(const int* melody, bool alarm) {
         else{
           for(unsigned long noteStarted = millis(); millis() - noteStarted < timeMs; ) {
             if((millis() - noteStarted)+150 < timeMs){
-              if(melodyPlayerProcessButtons(alarm)) return false;
+              if(melodyPlayerProcessButtons(alarm)) {ledFlashlightOffAll(); return false; }
               melodyPlayerDrawScreen(alarm);
             }
           }
         }
         ledFlashlightOffAll();
         buzNoTone();
-        if(melodyPlayerProcessButtons(alarm)) return false;
+        if(melodyPlayerProcessButtons(alarm)) {ledFlashlightOffAll(); return false;}
       }
        
     }
@@ -167,11 +167,14 @@ bool melodyPlayerPlayMelody(const int* melody, bool alarm) {
 }
 
 bool melodyPlayerProcessButtons(bool alarm){
+  if(isButtonCenterPressed()){buttonBeep(); modeSetup(); return true;}
   if(alarm){
-    if(isButtonCenterPressed()){buttonBeep(); modeSetup(); return true;}
+    if(!isTimerRunning()){  
+      if(isButtonUpPressed()){buttonBeep(); modeSetup(); setTimerToMinutes(10); drawMessage("Відкладено на 10 хвилин"); return true;}
+      if(isButtonDownPressed()){buttonBeep(); modeSetup(); setTimerToMinutes(5); drawMessage("Відкладено на 5 хвилин"); return true;}
+    }
   }
   else{
-    if(isButtonCenterPressed()){buttonBeep(); modeSetup(); return true;}
     if(isButtonDownPressed()){buttonBeep(); melodyPlayerLoopMelody = !melodyPlayerLoopMelody;drawMessage(melodyPlayerLoopMelody?"Повтор увімкнено":"Вимкнено повтор");}
   }
   return false;
@@ -214,13 +217,11 @@ void melodyPlayerDrawScreen(bool alarm) {
   lcd()->drawBox(369, 0, 2, 260);  //draw_ic16_repeat  draw_ic16_arrow_right  draw_ic16_back
   if(alarm){
     draw_ic16_back(lx(), ly2(), black);
-    
-    lcd()->setFont(u8g2_font_unifont_t_cyrillic); //smalll 
-    lcd()->setCursor(lx()-5, ly1()+8); lcd()->print("+10");
-    
-    lcd()->setFont(u8g2_font_unifont_t_cyrillic); //smalll 
-    lcd()->setCursor(lx()-1, ly3()+8); lcd()->print("+5");
-    
+    if(!isTimerRunning()){  
+      lcd()->setFont(u8g2_font_unifont_t_cyrillic); //smalll 
+      lcd()->setCursor(lx()-5, ly1()+16); lcd()->print("+10");
+      lcd()->setCursor(lx()-1, ly3()+16); lcd()->print("+5");
+    }
   }
   else{
     draw_ic16_back(lx(), ly2(), black);

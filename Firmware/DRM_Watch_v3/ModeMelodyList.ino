@@ -48,7 +48,7 @@ void ModeMelodyListMenuButtonCenter(){
   }
   else{
     melodyPlayerSetMelodyName(getMelodyName(selected-1));
-    melodyPlayerPlayMelody(getMelodyData(selected-1), true);
+    melodyPlayerPlayMelody(getMelodyData(selected-1), false);
     return;
   }
   
