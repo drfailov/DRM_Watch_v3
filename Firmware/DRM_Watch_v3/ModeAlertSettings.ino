@@ -197,7 +197,7 @@ void alertLoop(){
           long playTime = 180000;
           sprintf(buffer, (getAlertName(alertIndex)+" (%02d:%02d)").c_str(), alertTimeHour, alertTimeMinute);
           melodyPlayerSetMelodyName(String(buffer));  //to draw on screen
-          while (melodyPlayerPlayMelody(getMelodyData(alertMelodyIndex)) && millis() - timeStarted < playTime);
+          while (melodyPlayerPlayMelody(getMelodyData(alertMelodyIndex), true) && millis() - timeStarted < playTime);
         }
       }
     }

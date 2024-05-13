@@ -96,12 +96,12 @@ void melodyPlayerSetMelodyName(String _name){
   melodyPlayerMelodyName=_name;
 }
 //return true if was played completely or false if interrupted
-bool melodyPlayerPlayMelody(const int* melody) {
+bool melodyPlayerPlayMelody(const int* melody, bool alarm) {
   Serial.println(F("Open: PlayMelody"));
   clearScreenAnimation();
   backlightOn();
   melodyPlayerPlayStarted = millis();
-  modeLoop = melodyPlayerDrawScreen;
+  //modeLoop = melodyPlayerDrawScreen;
   modeButtonUp = 0;
   modeButtonCenter = 0;
   modeButtonDown = 0;
@@ -128,7 +128,7 @@ bool melodyPlayerPlayMelody(const int* melody) {
     Serial.print("frequencyThreshold="); Serial.println(prequencyThreshold);
   }
   do{
-    melodyPlayerDrawScreen();
+    melodyPlayerDrawScreen(alarm);
     for (int i = 0; i < length-1; i++) {
       int n = (melody[i]);
       
@@ -147,16 +147,14 @@ bool melodyPlayerPlayMelody(const int* melody) {
         else{
           for(unsigned long noteStarted = millis(); millis() - noteStarted < timeMs; ) {
             if((millis() - noteStarted)+150 < timeMs){
-              if(isButtonCenterPressed()){buttonBeep(); modeSetup(); return false;}
-              if(isButtonDownPressed()){buttonBeep(); melodyPlayerLoopMelody = !melodyPlayerLoopMelody;drawMessage(melodyPlayerLoopMelody?"Повтор увімкнено":"Вимкнено повтор");}
-              melodyPlayerDrawScreen();
+              if(melodyPlayerProcessButtons(alarm)) return false;
+              melodyPlayerDrawScreen(alarm);
             }
           }
         }
         ledFlashlightOffAll();
         buzNoTone();
-        if(isButtonCenterPressed()){buttonBeep(); modeSetup(); return false;}
-        if(isButtonDownPressed()){buttonBeep(); melodyPlayerLoopMelody = !melodyPlayerLoopMelody;drawMessage(melodyPlayerLoopMelody?"Повтор увімкнено":"Вимкнено повтор");}
+        if(melodyPlayerProcessButtons(alarm)) return false;
       }
        
     }
@@ -168,7 +166,18 @@ bool melodyPlayerPlayMelody(const int* melody) {
   return true;
 }
 
-void melodyPlayerDrawScreen() {
+bool melodyPlayerProcessButtons(bool alarm){
+  if(alarm){
+    if(isButtonCenterPressed()){buttonBeep(); modeSetup(); return true;}
+  }
+  else{
+    if(isButtonCenterPressed()){buttonBeep(); modeSetup(); return true;}
+    if(isButtonDownPressed()){buttonBeep(); melodyPlayerLoopMelody = !melodyPlayerLoopMelody;drawMessage(melodyPlayerLoopMelody?"Повтор увімкнено":"Вимкнено повтор");}
+  }
+  return false;
+}
+
+void melodyPlayerDrawScreen(bool alarm) {
 
   lcd()->setColorIndex(white);
   lcd()->drawBox(0, 0, 400, 240);
@@ -176,15 +185,19 @@ void melodyPlayerDrawScreen() {
   lcd()->setFont(u8g2_font_10x20_t_cyrillic);  //ok
   lcd()->setCursor(5, 18); 
   lcd()->setColorIndex(black);
-  lcd()->print("Плеєр");
+  if(alarm)
+    lcd()->print("Будильник");
+  else
+    lcd()->print("Плеєр");
   
-  int x = drawStatusbar(363, 1, true);
-  if(melodyPlayerLoopMelody)
+  int x = drawStatusbar(363, 1, true); 
+  if(melodyPlayerLoopMelody)      //draw repeat icon next to statusbar
     draw_ic16_repeat(x-16, 5, black);
   
 
   displayDrawVector(getPathZubat(), 130, 45, 3.0, 3, false, black);
   
+  lcd()->setFont(u8g2_font_10x20_t_cyrillic);  //ok
   lcd()->setCursor(5, 230); 
   int sec = (millis()-melodyPlayerPlayStarted)/1000;
   if(sec < 10)
@@ -199,8 +212,20 @@ void melodyPlayerDrawScreen() {
 
 
   lcd()->drawBox(369, 0, 2, 260);  //draw_ic16_repeat  draw_ic16_arrow_right  draw_ic16_back
-  draw_ic16_back(lx(), ly2(), black);
-  draw_ic16_repeat(lx(), ly3(), black);
+  if(alarm){
+    draw_ic16_back(lx(), ly2(), black);
+    
+    lcd()->setFont(u8g2_font_unifont_t_cyrillic); //smalll 
+    lcd()->setCursor(lx()-5, ly1()+8); lcd()->print("+10");
+    
+    lcd()->setFont(u8g2_font_unifont_t_cyrillic); //smalll 
+    lcd()->setCursor(lx()-1, ly3()+8); lcd()->print("+5");
+    
+  }
+  else{
+    draw_ic16_back(lx(), ly2(), black);
+    draw_ic16_repeat(lx(), ly3(), black);
+  }
   lcd()->sendBuffer();
 }
 

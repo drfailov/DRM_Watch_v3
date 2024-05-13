@@ -16,7 +16,41 @@ void animateClock(int centerX, int centerY, float clockRadius, float h, float m)
   }
 }
 
+// void drawClock() {
+//   int minute = rtcGetMinute();
+//   int hour = rtcGetHour();
+
+//   // Центр годинника
+//   int centerX = 120;  // Зміщений центр для відображення тільки на лівій половині
+//   int centerY = 200;  // Центр висоти дисплею
+//   int radius = 90;
+
+//   // Малювання цифр годин
+//   for (int h = 1; h <= 12; h++) {
+//     float angle = PI / 6 * (h - 3);  // 30 градусів на годину, -3 для коректного вирівнювання (12 година зверху)
+//     int numX = centerX + (radius + 10) * cos(angle);
+//     int numY = centerY + (radius + 10) * sin(angle);
+//     lcd()->setCursor(numX - 5, numY + 5);  // Зміщення для центрування тексту
+//     lcd()->setFont(u8g2_font_6x10_tf);  // Встановлення шрифту
+//     lcd()->print(h);
+//   }
+
+//   // Визначення кутів для стрілок
+//   float minuteAngle = 6 * minute;  // 6 градусів на хвилину
+//   float hourAngle = 30 * (hour % 12) + minute / 2;  // 30 градусів на годину + 0.5 градуса за кожну хвилину
+
+//   // Малювання стрілок
+//   lcd()->drawLine(centerX, centerY, centerX + radius * sin(minuteAngle * PI / 180), centerY - radius * cos(minuteAngle * PI / 180));
+//   lcd()->drawLine(centerX, centerY, centerX + (radius - 20) * sin(hourAngle * PI / 180), centerY - (radius - 20) * cos(hourAngle * PI / 180));
+
+//   // Малювання кола годинника
+//   lcd()->drawCircle(centerX, centerY, radius);
+// }
+
+
 void drawClock(int centerX, int centerY, float clockRadius, float h, float m) {
+  // drawClock();
+  // return;
   //додати корекцію годинникової стрілки щоб вона враховувала хвилини
   float hour12 = fmod(h,12);
   float hourIncludingMinutes = hour12+((m) / 60.0);
