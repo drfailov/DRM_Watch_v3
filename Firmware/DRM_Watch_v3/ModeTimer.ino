@@ -20,7 +20,6 @@ void setModeTimer(){
   autoSleepTime = autoSleepDefaultTime;
 }
 
- //unsigned long    saveTimerStartedTime  saveTimerTime  getTimerStartedTime  getTimerTime  isTimerRunning
 void modeTimerLoop(){
   lcd()->setColorIndex(white);
   lcd()->drawBox(0, 0, 400, 240);
@@ -31,30 +30,6 @@ void modeTimerLoop(){
   lcd()->print("Таймер");
 
   drawStatusbar(363, 1, true);
-  //drawMenuLegend();
-  //draw_ic16_back(lx(), ly2(), black);
-  // if(modeSetTimezoneEditMode){
-     //draw_ic16_plus(lx(), ly1(), black);
-     //draw_ic16_minus(lx(), ly3(), black);
-  // }
-  
-  //drawMenuItem(itemmodeSetTimezoneBack, draw_ic24_back, "Назад", firstDraw, 30, 32);
-
-  //lcd()->setFont(u8g2_font_10x20_t_cyrillic);  //ok
-  //lcd()->setColorIndex(black);
-  //lcd()->setCursor(30, 113); 
-  //lcd()->print("Час");
-  
-  //long offset = getTimeOffsetSec();
-  //long hours = offset/(60*60);
-  //offset -= hours*(60*60);
-  //long minutes = offset/60;
-  //String text = "UTC ";
-  //text += hours>=0?"+":"";
-  //text += hours;
-  //text += ":";
-  //text += minutes;
-  //drawTextFrame(/*index*/0, /*text*/text.c_str(), /*name*/"Час таймера", /*editMode*/false, /*animate*/firstDraw, /*x*/30, /*y*/95, /*width*/308);
   unsigned long startedTime = getTimerStartedTime();
   unsigned long now = rtcGetEpoch();
   unsigned long timerTime = getTimerTime();
@@ -102,8 +77,7 @@ void modeTimerButtonUp(){
 }
 void modeTimerButtonDown(){
   if(isTimerRunning()){
-    saveTimerStartedTime(0); //reset
-    saveTimerTime(0);
+    resetTimer();
   }
   else{
     unsigned long timerTime = getTimerTime();
@@ -132,6 +106,10 @@ void setTimerToMinutes(int minutes){
   saveTimerTime(60*minutes);
   saveTimerStartedTime(rtcGetEpoch());//start
 }
+void resetTimer(){
+  saveTimerStartedTime(0); //reset
+  saveTimerTime(0);
+}
 
 void timerLoop(){
   if(isTimerRunning()){
@@ -140,8 +118,6 @@ void timerLoop(){
     unsigned long timerTime = getTimerTime();
     if(now >= startedTime+timerTime){
       timerAlert();
-      saveTimerStartedTime(0); //reset
-      saveTimerTime(0);
     }
   }
 }
@@ -184,20 +160,31 @@ void timerAlert(){
 
     lcd()->drawBox(369, 0, 2, 260);  //draw_ic16_repeat  draw_ic16_arrow_right  draw_ic16_back
     draw_ic16_back(lx(), ly2(), black);
+    lcd()->setFont(u8g2_font_unifont_t_cyrillic); //smalll 
+    lcd()->setCursor(lx()-5, ly1()+16); lcd()->print("+10");
+    lcd()->setCursor(lx()-1, ly3()+16); lcd()->print("+5");
 
     lcd()->sendBuffer();
 
 
     for(int i=0; i<4; i++){
       buzTone(freq);
-      for(long st=millis(); millis()<st+50;)if(isButtonCenterPressed()){buttonBeep(); modeSetup(); return;}
+      for(long st=millis(); millis()<st+50;) if(timerAlertCheckButtons()) return;
       buzNoTone(); 
-      for(long st=millis(); millis()<st+70;)if(isButtonCenterPressed()){buttonBeep(); modeSetup(); return;}
+      for(long st=millis(); millis()<st+70;) if(timerAlertCheckButtons()) return;
     }
-    for(long st=millis(); millis()<st+500;)if(isButtonCenterPressed()){buttonBeep(); modeSetup(); return;}
+    for(long st=millis(); millis()<st+500;) if(timerAlertCheckButtons()) return;
   }
   buzNoTone(); 
   //backlightOff();
+  resetTimer();
   clearScreenAnimation();
   modeSetup(); 
+}
+
+bool timerAlertCheckButtons(){
+  if(isButtonCenterPressed()){buttonBeep(); modeSetup(); resetTimer(); return true;}
+  if(isButtonUpPressed()){buttonBeep(); modeSetup(); setTimerToMinutes(10); drawMessage("Відкладено на 10 хвилин"); return true;}
+  if(isButtonDownPressed()){buttonBeep(); modeSetup(); setTimerToMinutes(5); drawMessage("Відкладено на 5 хвилин"); return true;}
+  return false;
 }
