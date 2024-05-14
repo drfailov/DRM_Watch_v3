@@ -2,14 +2,10 @@ const int longClickDelay = 700;//ms
 const int firstClickDelay = 500;//ms 
 const int nextClickDelay = 60;//ms 
 
-
 unsigned long lastActionTime = 0;
-bool buttonReady[3] = {false,false,false}; //size need to fit max pin number used as button!!   
 
   
 void initButtons(){
-  // if(!isAwake())
-  //   return;
   pinMode(BUT_UP, INPUT_PULLUP);
   pinMode(BUT_CENTER, INPUT_PULLUP);
   pinMode(BUT_DOWN, INPUT_PULLUP);
@@ -18,8 +14,6 @@ void initButtons(){
 
 
 void buttonsLoop(){
-  // if(!isAwake())
-  //   return;
   processButton(BUT_UP, &modeButtonUp, &modeButtonUpLong);
   processButton(BUT_CENTER, &modeButtonCenter, &modeButtonCenterLong);
   processButton(BUT_DOWN, &modeButtonDown, &modeButtonDownLong);
@@ -63,39 +57,50 @@ int sinceLastAction(){
 
 //----------------------//----------------------//----------------------//----------------------//----------------------//----------------------//----------------------
 
+bool buttonReady[3] = {false,false,false}; //size need to fit max pin number used as button!!   
+#define doClick() {registerAction();  buttonBeep();      if((*onPressed) != 0)(*onPressed)();          if(modeLoop != 0) modeLoop();  firstDraw = false;  Serial.println("CLICK");}
+#define doLong()  {registerAction();  buttonLongBeep();  if((*onLongPressed) != 0)(*onLongPressed)();  if(modeLoop != 0) modeLoop();  firstDraw = false;  Serial.println("LONG"); }
+#define longDefined ((*onLongPressed)!=0)
 
 void processButton(gpio_num_t pin, Runnable *onPressed, Runnable *onLongPressed){
   if(!isPressed(pin))
     buttonReady[pin] = true;
   if((*onPressed) == 0 && (*onLongPressed) == 0)
     return;
-  if(buttonReady[pin] && isPressed(pin)){
-    for(unsigned long pressStarted = millis(); isPressed(pin);){  
-      if((*onPressed) != 0 && lastActionTime < pressStarted){//first click
-        registerAction();
-        buttonBeep();
-        (*onPressed)();
-        if(modeLoop != 0) modeLoop();
-        firstDraw = false;
+  if(!buttonReady[pin] || !isPressed(pin))
+    return;
+  unsigned long pressStarted = millis();
+  unsigned long lastAction = 0;
+  
+  if(!longDefined){ //process pattern for multiple presses at once
+    doClick();  //first click
+    while(isPressed(pin)){
+      if(lastAction==0 && millis()-pressStarted>firstClickDelay && !longDefined){  //user pressed button and hold it long
+        doClick();
+        lastAction=millis();
       }
-      else if((*onPressed) != 0 && (*onLongPressed) == 0 && lastActionTime >= pressStarted && millis()-pressStarted>firstClickDelay && millis()-lastActionTime>nextClickDelay){//next clicks while user holding button
-        registerAction();
-        buttonBeep();
-        (*onPressed)();
-        if(modeLoop != 0) modeLoop();
-        firstDraw = false;
+      else if(lastAction!=0 && millis()-lastAction>nextClickDelay && !longDefined){  //user pressed button and hold it more long
+        doClick();
+        lastAction=millis();
       }
-      else if((*onLongPressed) != 0 && millis()-pressStarted>firstClickDelay){  //long click
-        registerAction();
-        buttonLongBeep();
-        (*onLongPressed)();
-        if(modeLoop != 0) modeLoop();
-        firstDraw = false;
+    }
+  }
+  else if(longDefined){   //process pattern for long press button
+    while(true){
+      if(isPressed(pin)){
+        if(lastAction==0 && millis()-pressStarted>longClickDelay){  //user pressed button and hold it long
+          doLong();
+          lastAction=millis();
+        }
+      }
+      else{
+        if(lastAction==0)
+          doClick();
         break;
       }
     }
-    buttonReady[pin] = false;
   }
+  buttonReady[pin] = false;
 }
 
 
