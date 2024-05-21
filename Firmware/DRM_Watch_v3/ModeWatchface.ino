@@ -182,36 +182,33 @@ int drawStatusbar(int x, int y, bool drawTime, bool simulate){ //simulate is dra
   
   if(isAwake()){
     long timeToAction = timeToAutoAction();
+    long s = timeToAction/1000;
     if(timeToAction < 60000) {
-
-      //draw_ic16_watchface
-
-
-      long s = timeToAction/1000;
-      //String text = String("")+s;
-
-
-      lcd()->setColorIndex(black);
-      lcd()->setFont(u8g2_font_unifont_t_cyrillic);
-      sprintf(buffer, "%02ds", s);
-      int width = lcd()->getStrWidth(buffer);
-      x-=width;
-      lcd()->setCursor(x, y+17); 
-      if(!simulate)lcd()->print(buffer);
-
-      x -= 16;
-      if(!simulate)draw_ic16_watchface(x, y+4, black);
-      x-=interval;
-      // lcd()->setColorIndex(black);
-      // lcd()->setFont(u8g2_font_unifont_t_cyrillic);
-      // int width = lcd()->getStrWidth(text.c_str());
-      // int margin = 4;
-      // x -= width+margin*2;
-      // if(!simulate)lcd()->drawRBox(/*x*/x, /*y*/y+4, /*w*/width+margin*2, /*h*/ 16, /*r*/3);
-      // lcd()->setColorIndex(white);
-      // lcd()->setCursor(x+margin, y+17); 
-      // if(!simulate)lcd()->print(text);
-      // x-=interval;
+      if(enableAutoSleep){  //Якщо цей режим спить - показувати таймер до сну
+        String text = String("")+s;
+        lcd()->setColorIndex(black);
+        lcd()->setFont(u8g2_font_unifont_t_cyrillic);
+        int width = lcd()->getStrWidth(text.c_str());
+        int margin = 4;
+        x -= width+margin*2;
+        if(!simulate)lcd()->drawRBox(/*x*/x, /*y*/y+4, /*w*/width+margin*2, /*h*/ 16, /*r*/3);
+        lcd()->setColorIndex(white);
+        lcd()->setCursor(x+margin, y+17); 
+        if(!simulate)lcd()->print(text);
+        x-=interval;
+      }
+      else{    // Якщо цей режим НЕ спить - показувати таймер до повернення на циферблат
+        lcd()->setColorIndex(black);
+        lcd()->setFont(u8g2_font_unifont_t_cyrillic);
+        sprintf(buffer, "%02ds", s);
+        int width = lcd()->getStrWidth(buffer);
+        x-=width;
+        lcd()->setCursor(x, y+17); 
+        if(!simulate)lcd()->print(buffer);
+        x -= 16;
+        if(!simulate)draw_ic16_watchface(x, y+4, black);
+        x-=interval;
+      }
     }
   }
 

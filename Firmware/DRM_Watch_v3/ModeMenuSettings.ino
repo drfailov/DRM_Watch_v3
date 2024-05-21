@@ -89,6 +89,12 @@ void modeSettingsMenuButtonCenter(){
     setModeOff();
     return;
   }
+  if(selected == itemModeSettingsAbout){
+    modeAboutSetup();
+    return;
+  }
+
+  
 
 
 }
