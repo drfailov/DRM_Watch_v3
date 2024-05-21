@@ -41,7 +41,8 @@ void modeStopwatchLoop(){
     draw_ic16_pause(lx(), ly1(), black); 
   else
     draw_ic16_arrow_right(lx(), ly1(), black); 
-  draw_ic16_back(lx(), ly2(), black);
+  //draw_ic16_back(lx(), ly2(), black);
+  draw_ic16_watchface(lx(), ly2(), black);
   draw_ic16_repeat(lx(), ly3(), black);
   
   {
@@ -88,7 +89,8 @@ void modeStopwatchLoop(){
 }
 
 void modeStopwatchButtonCenter(){
-  setModeAppsMenu(); 
+  //setModeAppsMenu(); 
+  setModeWatchface();
 }
 
 void modeStopwatchButtonUp(){

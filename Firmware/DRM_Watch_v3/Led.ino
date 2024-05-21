@@ -75,8 +75,24 @@ void ledFlashlightOffBottom(){ ledTarget[LED_BOTTOM] = (esp_sleep_get_wakeup_cau
 void ledFlashlightOffAll(){ ledFlashlightOffBottom(); ledFlashlightOffTop();}
 void ledStatusOff(){ ledTarget[LED_STATUS] = 0; }
 
+
 void ledFlashlightToggleTop(){ if(isFlasthilghTopOn()) ledFlashlightOffTop(); else ledFlashlightOnTop();}
 void ledFlashlightToggleBottom(){ if(isFlasthilghBottomOn()) ledFlashlightOffBottom(); else ledFlashlightOnBottom();}
+
+unsigned long lastFlashlightToggle = 0;
+void ledFlashlightToggle(){
+  bool quick = millis()-lastFlashlightToggle < 3000;
+  if(!isFlashlightOn()){    //all off  -> ON red
+    ledFlashlightOnTop();
+  }
+  else if(isFlasthilghTopOn() && !isFlasthilghBottomOn() && quick){ //only red and quick  -> ON white
+    ledFlashlightOnBottom();
+  }
+  else{  //other -> OFF all
+    ledFlashlightOffAll();
+  }
+  lastFlashlightToggle = millis();
+}
 void ledStatusBlink(int times, int speedMs){
   for(int i=0; i<times; i++){
     ledStatusOn();

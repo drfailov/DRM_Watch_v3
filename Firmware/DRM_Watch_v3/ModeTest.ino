@@ -57,6 +57,7 @@ void modeTestLoop(){
   //void setBusClock(uint32_t clock_speed);
   
   //draw_ic24_lock(lx(), ly1(), black);
+  draw_ic16_coffee(lx(), ly1(), black);
   draw_ic16_back(lx(), ly2(), black);
 
 if(esp_sleep_get_wakeup_cause() != ESP_SLEEP_WAKEUP_TIMER) //if wake by timer, don't refresh display to keep image static, image will refresh when go to lock screen and drawing lock icon
@@ -65,6 +66,7 @@ if(esp_sleep_get_wakeup_cause() != ESP_SLEEP_WAKEUP_TIMER) //if wake by timer, d
 
 void modeTestButtonUp(){
   //goToSleep();
+  switchDontSleep();
 }
 
 void modeTestButtonCenter(){

@@ -32,8 +32,8 @@ void setModeWatchface(){
   modeButtonUp = modeWatchfaceButtonUp;
   modeButtonCenter = modeWatchfaceButtonCenter;
   modeButtonDown = modeWatchfaceButtonDown;
-  modeButtonUpLong = switchDontSleep;
-  modeButtonCenterLong = setModeOff;
+  modeButtonUpLong = modeWatchfaceButtonUpLong;
+  modeButtonCenterLong = modeWatchfaceButtonCenterLong;
   modeButtonDownLong = 0;
   enableAutoReturn = false;
   enableAutoSleep = true; 
@@ -57,15 +57,23 @@ void modeWatchfaceLoop(){
 }
 
 void modeWatchfaceButtonUp(){
-  ledFlashlightToggleTop();
+  //ledFlashlightToggleTop();
+  setModeStopwatch();
+}
+void modeWatchfaceButtonUpLong(){
+  setModeTimer();
 }
 
 void modeWatchfaceButtonCenter(){
-  ledFlashlightToggleBottom();
+  //ledFlashlightToggleBottom();
+  ledFlashlightToggle();
+}
+void modeWatchfaceButtonCenterLong(){
+  setModeOff();
 }
 
 void modeWatchfaceButtonDown(){
-  setModeMainMenu();
+  setModeAppsMenu();
 }
 
 void switchDontSleep(){
@@ -174,19 +182,36 @@ int drawStatusbar(int x, int y, bool drawTime, bool simulate){ //simulate is dra
   
   if(isAwake()){
     long timeToAction = timeToAutoAction();
-    if(timeToAction < 46000) {
+    if(timeToAction < 60000) {
+
+      //draw_ic16_watchface
+
+
       long s = timeToAction/1000;
-      String text = String("")+s;
+      //String text = String("")+s;
+
+
       lcd()->setColorIndex(black);
       lcd()->setFont(u8g2_font_unifont_t_cyrillic);
-      int width = lcd()->getStrWidth(text.c_str());
-      int margin = 4;
-      x -= width+margin*2;
-      if(!simulate)lcd()->drawRBox(/*x*/x, /*y*/y+4, /*w*/width+margin*2, /*h*/ 16, /*r*/3);
-      lcd()->setColorIndex(white);
-      lcd()->setCursor(x+margin, y+17); 
-      if(!simulate)lcd()->print(text);
+      sprintf(buffer, "%02ds", s);
+      int width = lcd()->getStrWidth(buffer);
+      x-=width;
+      lcd()->setCursor(x, y+17); 
+      if(!simulate)lcd()->print(buffer);
+
+      x -= 16;
+      if(!simulate)draw_ic16_watchface(x, y+4, black);
       x-=interval;
+      // lcd()->setColorIndex(black);
+      // lcd()->setFont(u8g2_font_unifont_t_cyrillic);
+      // int width = lcd()->getStrWidth(text.c_str());
+      // int margin = 4;
+      // x -= width+margin*2;
+      // if(!simulate)lcd()->drawRBox(/*x*/x, /*y*/y+4, /*w*/width+margin*2, /*h*/ 16, /*r*/3);
+      // lcd()->setColorIndex(white);
+      // lcd()->setCursor(x+margin, y+17); 
+      // if(!simulate)lcd()->print(text);
+      // x-=interval;
     }
   }
 

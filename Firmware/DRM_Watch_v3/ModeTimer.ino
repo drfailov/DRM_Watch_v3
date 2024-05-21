@@ -49,12 +49,14 @@ void modeTimerLoop(){
   
   
   if(isTimerRunning()){
-    draw_ic16_back(lx(), ly2(), black);
+    //draw_ic16_back(lx(), ly2(), black);
+    draw_ic16_watchface(lx(), ly2(), black);
     draw_ic16_repeat(lx(), ly3(), black);
   }
   else{
     if(getTimerTime() == 0){
-      draw_ic16_back(lx(), ly2(), black);
+      //draw_ic16_back(lx(), ly2(), black);
+      draw_ic16_watchface(lx(), ly2(), black);
     }
     else{
       draw_ic16_arrow_right(lx(), ly2(), black);
@@ -90,11 +92,13 @@ void modeTimerButtonDown(){
 }
 void modeTimerButtonCenter(){
   if(isTimerRunning()){
-    setModeAppsMenu(); //exit
+    //setModeAppsMenu(); //exit
+    setModeWatchface();
   }
   else{
     if(getTimerTime() == 0){
-      setModeAppsMenu(); //exit
+      //setModeAppsMenu(); //exit
+      setModeWatchface();
     }
     else{
       saveTimerStartedTime(rtcGetEpoch());//start
@@ -160,6 +164,7 @@ void timerAlert(){
 
     lcd()->drawBox(369, 0, 2, 260);  //draw_ic16_repeat  draw_ic16_arrow_right  draw_ic16_back
     draw_ic16_back(lx(), ly2(), black);
+    //draw_ic16_watchface(lx(), ly2(), black);
     lcd()->setFont(u8g2_font_unifont_t_cyrillic); //smalll 
     lcd()->setCursor(lx()-5, ly1()+16); lcd()->print("+10");
     lcd()->setCursor(lx()-1, ly3()+16); lcd()->print("+5");

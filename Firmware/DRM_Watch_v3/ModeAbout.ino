@@ -70,5 +70,5 @@ void modeAboutLoop(){
 }
 
 void modeAboutButton(){
-  setModeMainMenu();
+  setModeSettingsMenu();
 }

@@ -187,7 +187,6 @@ void modeKeyboardButtonCenter(){
   for(int i=0; i<cntKeys(); i++)
     if(keys[i].col == selectedCol && keys[i].row == selectedRow && keys[i].onClick != 0)
       keys[i].onClick();
-  //setModeMainMenu();
 }
 
 void modeKeyboardButtonDown(){

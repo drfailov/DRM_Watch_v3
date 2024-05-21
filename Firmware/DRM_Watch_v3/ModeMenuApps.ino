@@ -1,16 +1,19 @@
 const int itemModeAppsBack=0;
 const int itemModeAppsAlarm=1;
-const int itemModeAppsTimer=2;
-const int itemModeAppsStopwatch=3;
-const int itemModeAppsCalendar=4;
-const int itemModeAppsMusic=5;
-const int itemModeAppsMeow=6;
-const int itemModeAppsLife=7;
-const int itemModeAppsRandom=8;
-const int itemModeAppsAnt=9;
-const int itemModeAppsFire=10;
-const int itemModeAppsLava=11;
-const int itemModeAppsDebug=12;
+const int itemModeAppsCalendar=2;
+const int itemModeAppsSettings=3;
+const int itemModeAppsMusic=4;
+const int itemModeAppsTimer=5;
+const int itemModeAppsStopwatch=6;
+const int itemModeAppsFlashlight=7;
+const int itemModeAppsDebug=8;
+const int itemModeAppsMeow=9;
+const int itemModeAppsLife=10;
+const int itemModeAppsFire=11;
+const int itemModeAppsLava=12;
+const int itemModeAppsRandom=13;
+const int itemModeAppsAnt=14;
+
 
 void setModeAppsMenu(){
   clearScreenAnimation();
@@ -29,7 +32,7 @@ void setModeAppsMenu(){
   autoReturnTime = autoReturnDefaultTime;
   autoSleepTime = autoSleepDefaultTime;
   selected = 0;
-  items = 13;
+  items = 15;
 }
 
 
@@ -45,29 +48,28 @@ void ModeAppsMenuLoop(){
   drawStatusbar(363, 1, true);
   drawMenuLegend();
   
-  drawMenuItem(itemModeAppsBack,       draw_ic24_back,       "Назад",                         firstDraw);
-  drawMenuItem(itemModeAppsAlarm,      draw_ic24_alarm,      "Будильник",                     firstDraw);
-  drawMenuItem(itemModeAppsTimer,      draw_ic24_timer,      "Таймер",                        firstDraw);
-  drawMenuItem(itemModeAppsStopwatch,  draw_ic24_stopwatch,  "Секундомір",                    firstDraw);
-  drawMenuItem(itemModeAppsCalendar,   draw_ic24_calendar,   "Календар",                      firstDraw);
-  drawMenuItem(itemModeAppsMusic,      draw_ic24_music,      "Мелодії",                       firstDraw);
-  drawMenuItem(itemModeAppsMeow,       draw_ic24_meow,       "Meow",                          firstDraw);
-  drawMenuItem(itemModeAppsLife,       draw_ic24_life,       "Клітковий автомат \"Життя\"",   firstDraw);
-  drawMenuItem(itemModeAppsRandom,     draw_ic24_random,     "Випадковий шум",                firstDraw);
-  drawMenuItem(itemModeAppsAnt,        draw_ic24_ant2,       "Мураха Ленгтона",               firstDraw);
+  drawMenuItem(itemModeAppsBack,       draw_ic24_back,       "Вийти",                         false);
+  drawMenuItem(itemModeAppsAlarm,      draw_ic24_alarm,      "Будильник",                     false);
+  drawMenuItem(itemModeAppsCalendar,   draw_ic24_calendar,   "Календар",                      false);
+  drawMenuItem(itemModeAppsSettings,   draw_ic24_settings,   "Налаштування",                  firstDraw);
+  drawMenuItem(itemModeAppsMusic,      draw_ic24_music,      "Мелодії",                       false);
+  drawMenuItem(itemModeAppsTimer,      draw_ic24_timer,      "Таймер",                        false);
+  drawMenuItem(itemModeAppsStopwatch,  draw_ic24_stopwatch,  "Секундомір",                    false);
+  drawMenuItem(itemModeAppsFlashlight, draw_ic24_flashlight2,"Ліхтарик",                      firstDraw);
+  drawMenuItem(itemModeAppsDebug,      draw_ic24_bug,        "Інженерне меню",                false);
+  drawMenuItem(itemModeAppsMeow,       draw_ic24_meow,       "Meow",                          false);
+  drawMenuItem(itemModeAppsLife,       draw_ic24_life,       "Клітковий автомат \"Життя\"",   false);
   drawMenuItem(itemModeAppsFire,       draw_ic24_fire,       "Вогонь",                        firstDraw);
-  drawMenuItem(itemModeAppsLava,       draw_ic24_bubbles,    "Лава Лампа",                    firstDraw);
-  drawMenuItem(itemModeAppsDebug,      draw_ic24_bug,        "Інженерне меню",                firstDraw);
+  drawMenuItem(itemModeAppsLava,       draw_ic24_bubbles,    "Лава Лампа",                    false);
+  drawMenuItem(itemModeAppsRandom,     draw_ic24_random,     "Випадковий шум",                false);
+  drawMenuItem(itemModeAppsAnt,        draw_ic24_ant2,       "Мураха Ленгтона",               false);
   
-  
-  
-
   lcd()->sendBuffer();
 }
 
 void ModeAppsMenuButtonCenter(){
   if(selected == itemModeAppsBack){
-    setModeMainMenu();
+    setModeWatchface();
     return;
   }
   if(selected == itemModeAppsTimer){
@@ -119,5 +121,14 @@ void ModeAppsMenuButtonCenter(){
     setModeRandom();
     return;
   }
+  if(selected == itemModeAppsSettings){
+    setModeSettingsMenu();
+    return;
+  }
+  if(selected == itemModeAppsFlashlight){
+    ledFlashlightToggle();
+    return;
+  }
+  
   //
 }

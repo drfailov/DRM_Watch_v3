@@ -98,7 +98,7 @@ void modeWiFiScannerLoop(){
     if(modeWiFiScannerOnCancel != 0)
         modeWiFiScannerOnCancel();
       else
-        setModeMainMenu();
+        setModeSavedWiFiList();
   }
   else if(modeWiFiScannerState == modeWiFiScannerStateSettingUpSelectingNetwork){
     drawListItem(0, draw_ic24_back, "Повернутись", "Назад", false); 
@@ -126,14 +126,14 @@ void modeWiFiScannerButtonCenter(){
       if(modeWiFiScannerOnCancel != 0)
         modeWiFiScannerOnCancel();
       else
-        setModeMainMenu();
+        setModeSavedWiFiList();
   }
   if(modeWiFiScannerState == modeWiFiScannerStateSettingUpSelectingNetwork){
     if(selected == 0){
       if(modeWiFiScannerOnCancel != 0)
         modeWiFiScannerOnCancel();
       else
-        setModeMainMenu();
+        setModeSavedWiFiList();
     }
     else{
       modeWiFiScannerSelectedNetwork = WiFi.SSID(selected-1);
