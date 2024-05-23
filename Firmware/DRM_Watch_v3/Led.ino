@@ -4,10 +4,10 @@ const int LED_STATUS = 2;
 const int LED_CNT = 3;
 float ledActual[LED_CNT];
 float ledTarget[LED_CNT];
-hw_timer_t *Timer_Cfg;
+hw_timer_t *Led_Timer_Cfg;
 float led_coef = 0.03;
 
-void IRAM_ATTR Timer_ISR()
+void IRAM_ATTR Led_ISR()
 {
   for(int i=0; i<LED_CNT; i++){
     float dv = ledTarget[i]-ledActual[i];
@@ -42,10 +42,10 @@ void initLed(){
   pinMode(LED_BOTTOM_PIN, OUTPUT);
   pinMode(LED_STATUS_PIN, OUTPUT);
   ledFlashlightOffAll();
-  Timer_Cfg = timerBegin(0, 80, true);
-  timerAttachInterrupt(Timer_Cfg, &Timer_ISR, true);
-  timerAlarmWrite(Timer_Cfg, 3000, true);
-  timerAlarmEnable(Timer_Cfg);
+  Led_Timer_Cfg = timerBegin(0, 80, true);  //// Timer0, делитель 80 (для 1MHz тактової частоти), лічильник вгору
+  timerAttachInterrupt(Led_Timer_Cfg, &Led_ISR, true);
+  timerAlarmWrite(Led_Timer_Cfg, 3000, true);
+  timerAlarmEnable(Led_Timer_Cfg);
 }
 
 void ledSelftest(){
