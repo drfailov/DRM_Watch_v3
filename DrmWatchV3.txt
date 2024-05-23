@@ -49,6 +49,7 @@ GameOf Thrones: https://onlinesequencer.net/3977277
 Believer: https://onlinesequencer.net/3600147
 X-Files: https://onlinesequencer.net/3756521
 Sleigh Ride: https://onlinesequencer.net/3988270 
+Кабак: https://onlinesequencer.net/4021427
  
  
 
@@ -524,6 +525,7 @@ Changelog:
 2024-05-21 v2.24  На середню ліхтарик та вимкнення
 2024-05-21 v2.24  Оновлено порядок програм в меню
 2024-05-23 v2.25  Додано таймер який в фоні моніторить стан кнопок. Це покращує якість їх роботи.
+2024-05-23 v2.25  Додано мелодію: Sobak
 
 
 
