@@ -1,0 +1,44 @@
+﻿###################################
+# Syntax Coloring Map for library #
+###################################
+
+################################
+# Classes/Datatypes (KEYWORD1) #
+################################
+DS3231M	KEYWORD1
+DateTime	KEYWORD1
+TimeSpan	KEYWORD1
+
+####################################
+# Methods and Functions (KEYWORD2) #
+####################################
+begin	KEYWORD2
+adjust	KEYWORD2
+now	KEYWORD2
+temperature	KEYWORD2
+isStopped	KEYWORD2
+setAlarm	KEYWORD2
+isAlarm	KEYWORD2
+clearAlarm	KEYWORD2
+kHz32	KEYWORD2
+getAgingOffset	KEYWORD2
+setAgingOffset	KEYWORD2
+weekdayRead	KEYWORD2
+weekdayWrite	KEYWORD2
+pinAlarm	KEYWORD2
+pinSquareWave	KEYWORD2
+
+########################
+# Constants (LITERAL1) #
+########################
+everySecond	LITERAL1
+secondsMatch	LITERAL1
+secondsMinutesMatch	LITERAL1
+secondsMinutesHoursMatch	LITERAL1
+secondsMinutesHoursDateMatch	LITERAL1
+secondsMinutesHoursDayMatch	LITERAL1
+everyMinute	LITERAL1
+minutesMatch	LITERAL1
+minutesHoursMatch	LITERAL1
+minutesHoursDateMatch	LITERAL1
+minutesHoursDayMatch	LITERAL1
