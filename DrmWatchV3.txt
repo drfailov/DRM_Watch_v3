@@ -528,6 +528,8 @@ Changelog:
 2024-05-23 v2.25  Додано мелодію: Sobak
 2024-05-23 v2.26  Почато перенос проекту на PlatformIO
 2024-05-23 v2.26  Трохи наведено лад у файлах проекту
+2024-05-27 v2.26  Триває перенос проекту на PlatformIO
+2024-05-27 v2.26  Доповнено документацію
 
 
 
@@ -557,7 +559,7 @@ Changelog:
 Малодії:
 - Star Wars
 - Мелодія політ шмеля
-
-
+- Another Love https://onlinesequencer.net/3779810    https://onlinesequencer.net/3591566   https://onlinesequencer.net/2084958
+  
 
 
