@@ -1,6 +1,12 @@
 #ifndef MODEKEYBOARD_H
 #define MODEKEYBOARD_H
 
+
+#include "Global.h"
+#include "AutoSleep.h"
+#include "Button.h"
+
+
 struct Key {
     int row;
     int col;

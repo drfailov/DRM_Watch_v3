@@ -1,3 +1,11 @@
+#ifndef MODEWATCHFACE_H
+#define MODEWATCHFACE_H
+
+
+#include "Global.h"
+#include "AutoSleep.h"
+#include "Button.h"
+
 struct Watchface {             
   String name;   
   WatchfaceDrawable watchface;         
@@ -215,3 +223,6 @@ int drawStatusbar(int x, int y, bool drawTime, bool simulate){ //simulate is dra
 
   return x;
 }
+
+
+#endif

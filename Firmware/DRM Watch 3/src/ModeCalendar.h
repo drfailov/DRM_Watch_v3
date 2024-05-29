@@ -1,6 +1,15 @@
 #ifndef MODECALENDAR_H
 #define MODECALENDAR_H
 
+#include "Lcd.h"
+#include "Global.h"
+#include "AutoSleep.h"
+#include "Button.h"
+#include "RTC.h"
+#include "ModeWatchface.h"
+#include "ModeMenuApps.h"
+#include "Icons.h"
+
 #include <time.h>
 int year = 0;
 int monthToDraw = 0;/*01-12*/

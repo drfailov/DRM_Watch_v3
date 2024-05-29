@@ -1,6 +1,13 @@
+#ifndef RTC_H
+#define RTC_H
+
+String getRtcSrc();
+
 #include "soc/rtc.h"
 #include "driver/temp_sensor.h"
 #include <DS3231M.h>
+#include <ESP32Time.h>
+
 
 bool rtcReady = false;
 DS3231M_Class DS3231M;     //external RTC
@@ -273,3 +280,6 @@ void drawTemperature(int x, int y){
   lcd()->print(temperature(),1);
   lcd()->print("°C");
 }
+
+
+#endif

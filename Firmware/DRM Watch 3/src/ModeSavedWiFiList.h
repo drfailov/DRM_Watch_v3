@@ -1,3 +1,12 @@
+#ifndef MODESAVEDWIFILIST_H
+#define MODESAVEDWIFILIST_H
+
+#include "Global.h"
+#include "AutoSleep.h"
+#include "Button.h"
+#include "ModeMainMenu.h"
+
+
 int ModeSavedWiFiListSelectedSlot = 0;
 
 void setModeSavedWiFiList(){
@@ -93,3 +102,4 @@ void modeSavedWiFiListOnNetworkFailed(){
 }
 
 
+#endif

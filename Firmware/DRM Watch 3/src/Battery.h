@@ -1,6 +1,9 @@
 #ifndef BATTERY_H
 #define BATTERY_H
 
+#include "Icons.h"
+#include <Arduino.h>
+
 byte batteryCalibrationCnt = 4;
 float batteryCalibration[][2] = {    //raw analog reading to voltage in mv
   {0, 0}, //{mv, raw}

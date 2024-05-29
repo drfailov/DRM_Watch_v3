@@ -1,6 +1,17 @@
+#ifndef TIMESYNC_H
+#define TIMESYNC_H
+
+
+void timeSync();
+void setTimezone(String timezone);
+
+
 #include <WiFi.h>
 #include "time.h"
 #include <Arduino.h>
+#include "Preferences.h"
+#include "RTC.h"
+#include "Lcd.h"
 
 //const long  gmtOffset_sec = 7200;
 //const int   daylightOffset_sec = 3600;
@@ -129,3 +140,6 @@ void printLocalTime()
 void modeTimeSyncButtonCenter(){
   setModeWatchface();
 }
+
+
+#endif

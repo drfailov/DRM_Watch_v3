@@ -1,6 +1,13 @@
 #ifndef MODEMAINMENU_H
 #define MODEMAINMENU_H
 
+
+#include "Global.h"
+#include "AutoSleep.h"
+#include "Button.h"
+#include "ModeMenuSettings.h"
+#include "ModeAbout.h"
+
 const int itemBack=0;
 const int itemApps=1;
 const int itemSettings=2;

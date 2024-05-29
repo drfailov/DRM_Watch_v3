@@ -1,3 +1,12 @@
+#ifndef MODEQUESTION_H
+#define MODEQUESTION_H
+
+
+
+#include "Global.h"
+#include "AutoSleep.h"
+#include "Button.h"
+
 Runnable questionModeOnYes = 0;
 Runnable questionModeOnNo = 0;
 String questionModeText1 = "";
@@ -44,3 +53,7 @@ void questionModeOnButtonDown(){
   if(questionModeOnNo != 0)
     questionModeOnNo();
 }
+
+
+
+#endif

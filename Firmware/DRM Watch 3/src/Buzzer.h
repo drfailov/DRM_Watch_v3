@@ -2,6 +2,8 @@
 #define BUZZER_H
 
 #include <ToneESP32.h>
+#include <Arduino.h>
+#include "Preferences.h"
 
 
 ToneESP32 buzzer(BUZZER_PIN, /*BUZZER_CHANNEL*/0);

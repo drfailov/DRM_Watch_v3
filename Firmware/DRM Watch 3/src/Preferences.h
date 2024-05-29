@@ -1,3 +1,7 @@
+#ifndef MYYPREFERENCES_H
+#define MYYPREFERENCES_H
+
+
 #include <Preferences.h>
 
 //   max name len: 15
@@ -388,3 +392,6 @@ bool saveAlertName(int index, String newname){
 int getPreferencesFreeSpace(){
   return preferencesObject.freeEntries();
 }
+
+
+#endif

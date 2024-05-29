@@ -1,6 +1,9 @@
 #ifndef BACKLIGHT_H
 #define BACKLIGHT_H
 
+#include <Arduino.h>
+
+
 unsigned long backlightEnabledTime = 0;
 unsigned long backlightTimeoutMs = 25000;
 

@@ -1,3 +1,17 @@
+#ifndef MODEMENUSETTINGTIME_H
+#define MODEMENUSETTINGTIME_H
+
+#include "Global.h"
+#include "AutoSleep.h"
+#include "Button.h"
+#include "Icons.h"
+#include "ModeMainMenu.h"
+#include "TimeSync.h"
+#include "Preferences.h"
+#include "ModeSetTime.h"
+#include "ModeSetTimezone.h"
+
+
 const int ModeMenuSettingsTimeItemBack = 0;
 const int ModeMenuSettingsTimeItemSyncTime = 1;
 const int ModeMenuSettingsTimeItemAutoSyncEnabled = 2;
@@ -77,3 +91,4 @@ void ModeMenuSettingsTimeButtonCenter(){
 }
 
 
+#endif

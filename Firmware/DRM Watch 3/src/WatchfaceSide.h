@@ -1,3 +1,13 @@
+#ifndef WATCHFACESIDE_H
+#define WATCHFACESIDE_H
+
+#include "Preferences.h"
+#include <Arduino.h>
+#include "ScreenBuffer.h"
+#include "ModeLife.h"
+#include "ModeCalendar.h"
+#include "AnalogClock.h"
+
 void drawWatchfaceSide(bool firstDraw){
   int x_del = 240;
 
@@ -83,3 +93,6 @@ void drawWatchfaceSide(bool firstDraw){
   
   /*getWatchfaceCalendarEnabled*/
 }
+
+
+#endif

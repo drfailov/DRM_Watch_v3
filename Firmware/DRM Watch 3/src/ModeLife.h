@@ -1,6 +1,11 @@
 #ifndef MODELIFE_H
 #define MODELIFE_H
 
+#include "Global.h"
+#include "AutoSleep.h"
+#include "Button.h"
+#include "ScreenBuffer.h"
+#include "ModeMenuApps.h"
 
 void setModeLife(){
   clearScreenAnimation();

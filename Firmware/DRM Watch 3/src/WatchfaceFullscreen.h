@@ -1,3 +1,14 @@
+#ifndef WATCHFACEFULLSCREEN_H
+#define WATCHFACEFULLSCREEN_H
+
+#include "Preferences.h"
+#include <Arduino.h>
+#include "ScreenBuffer.h"
+#include "ModeLife.h"
+#include "ModeCalendar.h"
+#include "AnalogClock.h"
+
+
 void drawWatchfaceFullscreen(bool firstDraw){
 
   if(getWatchfaceLifeBackgroundEnabled()){
@@ -69,3 +80,6 @@ void drawWatchfaceFullscreen(bool firstDraw){
     drawStatusbar(395, 214, getWatchfaceStatusbarDigitalEnabled());
   }
 }
+
+
+#endif

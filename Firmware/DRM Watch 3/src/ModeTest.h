@@ -1,3 +1,9 @@
+#ifndef MODETEST_H
+#define MODETEST_H
+
+#include "Global.h"
+#include "AutoSleep.h"
+#include "Button.h"
 
 
 void setModeTest(){
@@ -107,3 +113,6 @@ void wakeup_reason() {
       break;
   }
 }
+
+
+#endif

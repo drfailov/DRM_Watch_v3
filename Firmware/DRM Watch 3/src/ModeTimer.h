@@ -1,3 +1,14 @@
+#ifndef MODETIMER_H
+#define MODETIMER_H
+
+/*PROTOTYPES*/
+void modeTimerLoop();
+void setModeTimer();
+
+#include "Global.h"
+#include "AutoSleep.h"
+#include "Button.h"
+
 #include <Arduino.h>
 void modeTimerButtonUp();
 
@@ -193,3 +204,6 @@ bool timerAlertCheckButtons(){
   if(isButtonDownPressed()){buttonBeep(); modeSetup(); setTimerToMinutes(5); drawMessage("Відкладено на 5 хвилин"); return true;}
   return false;
 }
+
+
+#endif

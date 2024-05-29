@@ -1,3 +1,13 @@
+#ifndef MODEMEOW_H
+#define MODEMEOW_H
+
+
+#include "Global.h"
+#include "AutoSleep.h"
+#include "Button.h"
+#include "ModeMainMenu.h"
+
+
 const int itemModeMeowBack=0;
 const int itemModeMeowToneUp=1;
 const int itemModeMeowToneDown=2;
@@ -100,3 +110,4 @@ void meow(){
   buzNoTone();
 }
 
+#endif

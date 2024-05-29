@@ -1,6 +1,16 @@
 #ifndef MODEALERTSETTINGS_H
 #define MODEALERTSETTINGS_H
 
+#include "Lcd.h"
+#include "Global.h"
+#include "AutoSleep.h"
+#include "Button.h"
+#include "ModeMainMenu.h"
+#include "ModeAlertsList.h"
+#include "ModeKeyboard.h"
+#include "MelodyPlayer.h"
+#include "Preferences.h"
+
 int modeAlertSettingsIndex = 0;
 int modeAlertSettingsHourValue = 0;
 int modeAlertSettingsMinuteValue = 0;

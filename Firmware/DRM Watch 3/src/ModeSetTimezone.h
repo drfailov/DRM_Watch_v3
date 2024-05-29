@@ -1,3 +1,13 @@
+#ifndef MODESETTIMEZONE_H
+#define MODESETTIMEZONE_H
+
+#include "Global.h"
+#include "AutoSleep.h"
+#include "Button.h"
+#include "ModeMainMenu.h"
+#include "Preferences.h"
+#include "ModeMenuSettingsTime.h"
+
 //int modeSetTimezoneIndex = 0;
 //bool modeSetTimezoneEditMode = false;
 
@@ -89,3 +99,6 @@ void modeSetTimezoneMenuButtonCenter(){
   //   return;
   // }
 }
+
+
+#endif

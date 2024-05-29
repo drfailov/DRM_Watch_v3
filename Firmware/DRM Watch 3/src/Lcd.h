@@ -3,6 +3,7 @@
 
 
 #include <U8g2lib.h>
+#include "Global.h"
 
 #include "driver/rtc_io.h"
 //RTC_DATA_ATTR 

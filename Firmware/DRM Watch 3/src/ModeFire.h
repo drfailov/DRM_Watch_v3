@@ -6,6 +6,14 @@
 https://github.com/BOOtak/dct3ngine/blob/master/src/games/perlin_test
 */
 
+
+
+#include "Global.h"
+#include "AutoSleep.h"
+#include "Button.h"
+#include "ScreenBuffer.h"
+#include "ModeMenuApps.h"
+
 #define ONE 0x400
 #define FRAC_BITS 10
 #define FRAC_MASK 0x000003FF

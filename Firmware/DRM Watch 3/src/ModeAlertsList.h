@@ -1,6 +1,12 @@
 #ifndef MODEALERTLIST_H
 #define MODEALERTLIST_H
 
+#include "Lcd.h"
+#include "Global.h"
+#include "AutoSleep.h"
+#include "Button.h"
+#include "ModeMenuApps.h"
+
 
 void setModeAlertsList(){
   clearScreenAnimation();

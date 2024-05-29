@@ -1,3 +1,12 @@
+#ifndef MODEWIFISCANNER_H
+#define MODEWIFISCANNER_H
+
+
+#include "Global.h"
+#include "AutoSleep.h"
+#include "Button.h"
+#include "ModeMainMenu.h"
+
 #include <WiFi.h>
 
 String modeWiFiScannerSelectedNetwork = "";
@@ -217,3 +226,6 @@ const char* encryprionType(int i){
       return ("unknown");
   }
 }
+
+
+#endif

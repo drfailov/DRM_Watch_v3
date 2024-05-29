@@ -1,3 +1,13 @@
+#ifndef MODEMENUSETTINGWATCHFACECONTENT_H
+#define MODEMENUSETTINGWATCHFACECONTENT_H
+
+
+#include "Global.h"
+#include "AutoSleep.h"
+#include "Button.h"
+#include "ModeMainMenu.h"
+
+
 const int ModeMenuSettingsWatchfaceContentItemBack = 0;
 const int ModeMenuSettingsWatchfaceContentItemShowStatusbar = 1;
 const int ModeMenuSettingsWatchfaceContentItemShowAnalog = 2;
@@ -153,3 +163,4 @@ void ModeMenuSettingsWatchfaceContentButtonCenter(){
 
 
 
+#endif

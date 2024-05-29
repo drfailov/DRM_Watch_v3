@@ -1,6 +1,8 @@
 #ifndef BUTTON_H
 #define BUTTON_H
 
+#include <Arduino.h>
+#include "Global.h"
 
 const int longClickDelay = 700;//ms 
 const int firstClickDelay = 500;//ms 

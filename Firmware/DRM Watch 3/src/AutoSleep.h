@@ -1,6 +1,9 @@
 #ifndef AUTOSLEEP_H
 #define AUTOSLEEP_H
 
+#include "Lcd.h"
+#include "ModeOff.h"
+
 #define NO_SLEEP 99999999
 
 bool dontSleep = false;

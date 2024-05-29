@@ -1,3 +1,11 @@
+#ifndef MODERANDOMNOIZE_H
+#define MODERANDOMNOIZE_H
+
+
+#include "Global.h"
+#include "AutoSleep.h"
+#include "Button.h"
+
 
 void setModeRandom(){
   clearScreenAnimation();
@@ -43,3 +51,4 @@ void ModeRandomButtonDown(){
 
 
 
+#endif

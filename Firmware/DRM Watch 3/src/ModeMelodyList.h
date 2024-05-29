@@ -1,6 +1,14 @@
 #ifndef MODEMELODYLIST_H
 #define MODEMELODYLIST_H
 
+
+#include "Global.h"
+#include "AutoSleep.h"
+#include "Button.h"
+#include "ModeMainMenu.h"
+#include "ModeMenuApps.h"
+#include "MelodyPlayer.h"
+
 const int itemModeMelodyListBack=0;
 
 void setModeMelodyListMenu(){

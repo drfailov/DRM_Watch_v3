@@ -1,3 +1,10 @@
+#ifndef MODESETWATCHFACE_H
+#define MODESETWATCHFACE_H
+
+#include "Global.h"
+#include "AutoSleep.h"
+#include "Button.h"
+
 void setModeSetWatchface(){
   clearScreenAnimation();
   Serial.println(F("Set mode: SetWatchface"));
@@ -50,3 +57,5 @@ void ModeSetWatchfaceButtonDown(){
 
 
 //----------------------//----------------------//----------------------//----------------------//----------------------//----------------------//----------------------
+
+#endif

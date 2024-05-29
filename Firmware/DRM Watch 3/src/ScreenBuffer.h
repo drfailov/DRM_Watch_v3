@@ -1,3 +1,10 @@
+#ifndef SCREENBUFFER_H
+#define SCREENBUFFER_H
+
+#include <Arduino.h>
+#include "Global.h"
+#include "Lcd.h"
+
 RTC_DATA_ATTR byte screenBuffer[BUFF_W*BUFF_H/8]; 
 
 void randScreenBuffer(){
@@ -27,9 +34,6 @@ void setScreenBuffer(int x, int y, bool val){
   bitWrite(cell, bitIndex, val);
   screenBuffer[cellIndex] = cell;
 }
-void drawScreenBuffer(){
-  drawScreenBuffer(0,0,BUFF_W,BUFF_H);
-}
 void drawScreenBuffer(int xstart, int ystart, int xend, int yend){ //IN BUFFER COORDS
   if(xstart < 0) xstart=0;
   if(ystart < 0) ystart=0;
@@ -48,3 +52,9 @@ void drawScreenBuffer(int xstart, int ystart, int xend, int yend){ //IN BUFFER C
     }
   }
 }
+void drawScreenBuffer(){
+  drawScreenBuffer(0,0,BUFF_W,BUFF_H);
+}
+
+
+#endif

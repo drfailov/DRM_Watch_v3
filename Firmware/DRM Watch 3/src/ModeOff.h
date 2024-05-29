@@ -1,3 +1,10 @@
+#ifndef MODEOFF_H
+#define MODEOFF_H
+
+
+#include "Global.h"
+#include "AutoSleep.h"
+#include "Button.h"
 
 RTC_DATA_ATTR bool deviceOff = false;
 
@@ -67,3 +74,6 @@ void turnOn(){
   deviceOff = false;
   ESP.restart();
 }
+
+
+#endif

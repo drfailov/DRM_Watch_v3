@@ -1,3 +1,13 @@
+#ifndef MODESETTIME_H
+#define MODESETTIME_H
+
+#include "Global.h"
+#include "AutoSleep.h"
+#include "Button.h"
+#include "ModeMainMenu.h"
+#include "ModeWatchface.h"
+#include "RTC.h"
+
 int modeSetTimeMenuIndex = 0;
 bool modeSetTimeMenuEditMode = false;
 
@@ -124,3 +134,6 @@ void ModeSetTimeMenuButtonDown(){
     epoch -= 1;
   rtcSetUtcEpoch(epoch);
 }
+
+
+#endif

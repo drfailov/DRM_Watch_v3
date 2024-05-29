@@ -1,6 +1,20 @@
 #ifndef MODEABOUT_H
 #define MODEABOUT_H
 
+/*PROTOTYPES*/
+void modeAboutSetup();
+void modeAboutLoop();
+void modeAboutButton();
+
+
+#include "Lcd.h"
+#include "Global.h"
+#include "AutoSleep.h"
+#include "Button.h"
+#include "ModeWatchface.h"
+#include "Icons.h"
+#include "ModeMenuSettings.h"
+
 
 int modeAboutCounter = 0;
 void modeAboutSetup(){

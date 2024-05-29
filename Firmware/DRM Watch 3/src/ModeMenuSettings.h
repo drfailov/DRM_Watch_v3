@@ -2,6 +2,10 @@
 #define MODEMENUSETTINGS_H
 
 
+#include "Global.h"
+#include "AutoSleep.h"
+#include "Button.h"
+
 const int itemModeSettingsBack=0;
 const int itemModeSettingsCategoryTime=1;
 const int itemModeSettingsCategoryDisplay=2;

@@ -1,3 +1,10 @@
+#ifndef MODESTOPWATCH_H
+#define MODESTOPWATCH_H
+
+#include "Global.h"
+#include "AutoSleep.h"
+#include "Button.h"
+
 const int itemModeStopwatchBack=0;
 const int itemModeStopwatchStartStop=1;
 const int itemModeStopwatchReset=2;
@@ -137,3 +144,6 @@ void modeStopwatchButtonDown(){
   saveStopwatchStartedTime(0);
   saveStopwatchFinishedTime(0);
 }
+
+
+#endif

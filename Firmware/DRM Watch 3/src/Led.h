@@ -1,6 +1,8 @@
 #ifndef LED_H
 #define LCD_H
 
+#include <Arduino.h>
+#include "Global.h"
 
 const int LED_TOP = 0;
 const int LED_BOTTOM = 1;

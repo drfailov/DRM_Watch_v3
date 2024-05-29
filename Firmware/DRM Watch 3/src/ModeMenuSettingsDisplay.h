@@ -7,6 +7,10 @@
 #include "Button.h"
 #include "Icons.h"
 #include "ModeMenuSettings.h"
+#include "ModeMenuSettingsWatchfaceContent.h"
+#include "ModeSetWatchface.h"
+#include "ModeMainMenu.h"
+#include "Preferences.h"
 
 const int ModeMenuSettingsDisplayItemBack = 0;
 const int ModeMenuSettingsDisplayItemSelectWatchface = 1;
@@ -47,7 +51,7 @@ void ModeMenuSettingsDisplayLoop(){
   drawMenuLegend();
   drawStatusbar(363, 1, true);
 
-  drawListItem(ModeMenuSettingsDisplayItemBack, draw_ic24_back, "Повернутись", "В меню налаштувань", firstDraw); //
+  drawListItem(ModeMenuSettingsDisplayItemBack, draw_ic24_back, "Повернутись", "B меню налаштувань", firstDraw); //
   drawListItem(ModeMenuSettingsDisplayItemSelectWatchface, draw_ic24_watchface, "Обрати циферблат", "Дизайн відображення часу", firstDraw); //
   drawListItem(ModeMenuSettingsDisplayItemSelectWatchfaceContent, draw_ic24_checklist, "Вміст циферблату", "Чи показувати елементи циферблатів", firstDraw); //
   drawListCheckbox(ModeMenuSettingsDisplayItemInvertDisplay, draw_ic24_invert, "Інвертувати екран", "Поміняти місцями чорне i біле", getInversionValue(), firstDraw); //

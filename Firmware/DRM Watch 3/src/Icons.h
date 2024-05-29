@@ -1,6 +1,8 @@
 #ifndef ICONS_H
 #define ICONS_H
 
+#include "Lcd.h"
+
 int lx(){return 378;}
 int ly1(){return 50;}
 int ly2(){return 120;}

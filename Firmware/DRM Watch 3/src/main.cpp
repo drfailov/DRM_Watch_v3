@@ -9,6 +9,19 @@
 
 
 #include "Global.h"
+#include "Preferences.h"
+#include "Battery.h"
+#include "Buzzer.h"
+#include "RTC.h"
+#include "Led.h"
+#include "Lcd.h"
+#include "TimeSync.h"
+#include "Backlight.h"
+#include "Button.h"
+#include "ModeTest.h"
+#include "ModeAlertSettings.h"
+#include "ModeTimer.h"
+#include "ModeWatchface.h"
 
 #include <Arduino.h>
 

@@ -1,6 +1,14 @@
 #ifndef MODEANT_H
 #define MODEANT_H
 
+#include "Lcd.h"
+#include "Global.h"
+#include "AutoSleep.h"
+#include "Button.h"
+#include "ScreenBuffer.h"
+#include "Preferences.h"
+#include "ModeMenuApps.h"
+
 RTC_DATA_ATTR int antX = 0; // BUFFER COORDINATES!!!
 RTC_DATA_ATTR int antY = 0;  // BUFFER COORDINATES!!!
 RTC_DATA_ATTR int antDir = 0;  //0 1 2 3

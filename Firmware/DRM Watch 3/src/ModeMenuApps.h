@@ -1,8 +1,18 @@
 #ifndef MODEMENUAPPS_H
 #define MODEMENUAPPS_H
 
-#include"Icons.h"
-#include"Lcd.h"
+
+#include "Global.h"
+#include "AutoSleep.h"
+#include "Button.h"
+#include "Icons.h"
+#include "Lcd.h"
+#include "ModeFire.h"
+#include "ModeMenuSettings.h"
+#include "ModeStopwatch.h"
+#include "ModeTimer.h"
+#include "ModeLife.h"
+#include "ModeRandomNoize.h"
 
 const int itemModeAppsBack=0;
 const int itemModeAppsAlarm=1;
