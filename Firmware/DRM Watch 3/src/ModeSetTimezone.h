@@ -5,7 +5,7 @@
 #include "AutoSleep.h"
 #include "Button.h"
 #include "ModeMainMenu.h"
-#include "Preferences.h"
+#include "DrmPreferences.h"
 #include "ModeMenuSettingsTime.h"
 
 //int modeSetTimezoneIndex = 0;

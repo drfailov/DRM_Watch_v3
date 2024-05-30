@@ -1,6 +1,9 @@
 #ifndef MODEMENUAPPS_H
 #define MODEMENUAPPS_H
 
+/*PROTOTYPES*/
+void ModeAppsMenuLoop();
+void ModeAppsMenuButtonCenter();
 
 #include "Global.h"
 #include "AutoSleep.h"
@@ -13,6 +16,11 @@
 #include "ModeTimer.h"
 #include "ModeLife.h"
 #include "ModeRandomNoize.h"
+#include "ModeAlertsList.h"
+#include "ModeMelodyList.h"
+#include "ModeMeow.h"
+#include "ModeCalendar.h"
+#include "ModeAnt.h"
 
 const int itemModeAppsBack=0;
 const int itemModeAppsAlarm=1;
@@ -78,7 +86,7 @@ void ModeAppsMenuLoop(){
   drawMenuItem(itemModeAppsFire,       draw_ic24_fire,       "Вогонь",                        firstDraw);
   drawMenuItem(itemModeAppsLava,       draw_ic24_bubbles,    "Лава Лампа",                    false);
   drawMenuItem(itemModeAppsRandom,     draw_ic24_random,     "Випадковий шум",                false);
-  drawMenuItem(itemModeAppsAnt,        draw_ic24_ant2,       "Мураха Ленгтона",               false);
+  drawMenuItem(itemModeAppsAnt,        draw_ic24_ant2,       "Mypaxa Ленгтона",               false);
   
   lcd()->sendBuffer();
 }

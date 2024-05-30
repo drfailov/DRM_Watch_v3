@@ -1,6 +1,16 @@
 #ifndef MODEALERTSETTINGS_H
 #define MODEALERTSETTINGS_H
 
+void ModeAlertSettingsMenuLoop();
+void ModeAlertSettingsMenuButtonUp();
+void ModeAlertSettingsMenuButtonCenter();
+void ModeAlertSettingsMenuButtonDown();
+void resetAlertMetadata(int index);
+void setModeAlertSettingsMenu(int alertIndex);
+void setModeAlertSettingsMenu();
+
+
+
 #include "Lcd.h"
 #include "Global.h"
 #include "AutoSleep.h"
@@ -9,7 +19,7 @@
 #include "ModeAlertsList.h"
 #include "ModeKeyboard.h"
 #include "MelodyPlayer.h"
-#include "Preferences.h"
+#include "DrmPreferences.h"
 
 int modeAlertSettingsIndex = 0;
 int modeAlertSettingsHourValue = 0;
@@ -24,9 +34,6 @@ const int itemModeAlertSettingsMinute=3;
 const int itemModeAlertSettingsMelody=4;
 const int itemModeAlertSettingsName=5;
 
-void setModeAlertSettingsMenu(){
-  setModeAlertSettingsMenu(modeAlertSettingsIndex);
-}
 void setModeAlertSettingsMenu(int alertIndex){
   clearScreenAnimation();
   Serial.println(F("Set mode: Alert settings Menu"));
@@ -51,6 +58,9 @@ void setModeAlertSettingsMenu(int alertIndex){
   modeAlertSettingsMelodyValue = getAlertMelody(modeAlertSettingsIndex);
 }
 
+void setModeAlertSettingsMenu(){
+  setModeAlertSettingsMenu(modeAlertSettingsIndex);
+}
 
 void ModeAlertSettingsMenuLoop(){
   if(modeAlertSettingsHourValue < 0) modeAlertSettingsHourValue = 23;

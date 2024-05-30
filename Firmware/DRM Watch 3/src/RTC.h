@@ -158,10 +158,10 @@ void drawDayOfWeek (int x, int y){
     case 0: lcd()->print("Нд"); break;
     case 1: lcd()->print("Пн"); break;
     case 2: lcd()->print("Вт"); break;
-    case 3: lcd()->print("Ср"); break;
+    case 3: lcd()->print("Cp"); break;
     case 4: lcd()->print("Чт"); break;
     case 5: lcd()->print("Пт"); break;
-    case 6: lcd()->print("Сб"); break;
+    case 6: lcd()->print("Cб"); break;
     case 7: lcd()->print("Нд"); break;
   }
 }

@@ -1,11 +1,16 @@
 #ifndef MODEALERTLIST_H
 #define MODEALERTLIST_H
 
+void modeAlertsListLoop();
+void modeAlertsListButtonCenter();
+
+
 #include "Lcd.h"
 #include "Global.h"
 #include "AutoSleep.h"
 #include "Button.h"
 #include "ModeMenuApps.h"
+#include "ModeAlertSettings.h"
 
 
 void setModeAlertsList(){

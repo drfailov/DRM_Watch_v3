@@ -1,8 +1,11 @@
 #ifndef AUTOSLEEP_H
 #define AUTOSLEEP_H
 
-#include "Lcd.h"
-#include "ModeOff.h"
+/*PROTOTYPES*/
+long autoReturnTimeMs();
+void goToSleep();
+long autoSleepTimeMs();
+
 
 #define NO_SLEEP 99999999
 
@@ -14,6 +17,14 @@ bool enableAutoReturn = false; //is set when new mode selected
 bool enableAutoSleep = false; //is set when new mode selected
 int autoReturnTime = autoReturnDefaultTime;//ms
 int autoSleepTime = autoSleepDefaultTime;//ms
+
+
+#include "Lcd.h"
+#include "ModeOff.h"
+#include "ModeWatchface.h"
+#include "AutoSleep.h"
+#include "Battery.h"
+#include "Backlight.h"
 
 
 void autoSleepLoop(){

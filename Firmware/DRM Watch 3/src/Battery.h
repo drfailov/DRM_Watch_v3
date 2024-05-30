@@ -1,7 +1,21 @@
 #ifndef BATTERY_H
 #define BATTERY_H
 
+/*PROTOTYPES*/
+float linearInterpolate(float raw, float calibrationData[][2], byte tableLength);
+bool isChargerConnected();
+void onChargerDisconnected();
+void onChargerConnected();
+int analogSmoothRead(int pin);
+int readSensUsbRaw();
+int readSensBatteryRaw();
+void drawBattery(int x, int y);
+float readSensBatteryVoltage();
+byte batteryBars();
+
+
 #include "Icons.h"
+#include "Buzzer.h"
 #include <Arduino.h>
 
 byte batteryCalibrationCnt = 4;

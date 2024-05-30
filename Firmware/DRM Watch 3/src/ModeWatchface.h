@@ -1,10 +1,19 @@
 #ifndef MODEWATCHFACE_H
 #define MODEWATCHFACE_H
 
+/*PROTOTYPES*/
+void modeWatchfaceLoop();
+void modeWatchfaceButtonUp();
+void modeWatchfaceButtonCenter();
+void modeWatchfaceButtonDown();
+void modeWatchfaceButtonUpLong();
+void modeWatchfaceButtonCenterLong();
 
 #include "Global.h"
 #include "AutoSleep.h"
 #include "Button.h"
+#include "WatchfaceFullscreen.h"
+#include "WatchfaceSide.h"
 
 struct Watchface {             
   String name;   

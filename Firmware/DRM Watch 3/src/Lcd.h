@@ -1,9 +1,23 @@
 #ifndef LCD_H
 #define LCD_H
 
-
 #include <U8g2lib.h>
+
+U8G2_LS027B7DH01_400X240_F_4W_HW_SPI* lcd();
+void lcdPowerOn();
+void lcdPowerOff();
+void clearScreenAnimationCircleFromRight();
+
 #include "Global.h"
+#include "ModeOff.h"
+#include "AutoSleep.h"
+#include "DrmPreferences.h"
+#include "Led.h"
+#include "Button.h"
+#include "Icons.h"
+
+
+
 
 #include "driver/rtc_io.h"
 //RTC_DATA_ATTR 
@@ -177,9 +191,6 @@ void drawMessage(String text, String text2, bool animate){
   }
 }
 
-void drawQuestion(String text, String text2){
-  drawQuestion(text, text2, false);
-}
 
 void drawQuestion(String text, String text2, bool animate){
   Serial.println(text);
@@ -228,6 +239,11 @@ void drawQuestion(String text, String text2, bool animate){
     lcd()->print(text2);
 
   lcd()->sendBuffer();
+}
+
+
+void drawQuestion(String text, String text2){
+  drawQuestion(text, text2, false);
 }
 
 void displayPrintSecondsAsTime(unsigned long dd){

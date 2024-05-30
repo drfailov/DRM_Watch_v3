@@ -1,8 +1,19 @@
 #ifndef MYYPREFERENCES_H
 #define MYYPREFERENCES_H
 
+/*PROTOTYPES*/
+bool getMuteEnabled();
+bool saveMuteEnabled(bool value);
+int getButtonSound();
+bool getTimeSyncEnabled();
+long getTimeOffsetSec();
+bool saveLastChargedTime();
+bool saveLastChargedTime(unsigned long epoch);
 
 #include <Preferences.h>
+#include "Buzzer.h"
+#include "ModeWatchface.h"
+#include "Rtc.h"
 
 //   max name len: 15
 
@@ -60,13 +71,13 @@ int stopwatchHistorySlotCnt(){
   return 5;
 }
 
+unsigned long stopwatchHistorySlotStart(int slot){ //1 ... stopwatchHistorySlotCnt
+  return preferencesObject.getULong64((String("sws")+slot+"sta").c_str(), 0);
+}
 bool stopwatchHistorySlotIsEmpty(int slot){ //1 ... stopwatchHistorySlotCnt
   return stopwatchHistorySlotStart(slot) == 0;
 }
 
-unsigned long stopwatchHistorySlotStart(int slot){ //1 ... stopwatchHistorySlotCnt
-  return preferencesObject.getULong64((String("sws")+slot+"sta").c_str(), 0);
-}
 
 unsigned long stopwatchHistorySlotEnd(int slot){ //1 ... stopwatchHistorySlotCnt
   return preferencesObject.getULong64((String("sws")+slot+"end").c_str(), 0);
@@ -86,12 +97,12 @@ int wifiSlotCnt(){
   return 7;
 }
 
-bool wifiSlotIsEmpty(int slot){ //1 ... wifiSlotCnt
-  return wifiSlotName(slot).equals("-empty-");
-}
-
 String wifiSlotName(int slot){ //1 ... wifiSlotCnt
   return preferencesObject.getString((String("ws")+slot+"n").c_str(), "-empty-");
+}
+
+bool wifiSlotIsEmpty(int slot){ //1 ... wifiSlotCnt
+  return wifiSlotName(slot).equals("-empty-");
 }
 
 String wifiSlotPassword(int slot){ //1 ... wifiSlotCnt
@@ -153,14 +164,14 @@ unsigned long getLastTimeSync(){
 
 //----------------------//---------------------- DISPLAY COLORS -------//----------------------//----------------------//----------------------//----------------------
 
+bool getInversionValue(){
+  return preferencesObject.getInt("screenInverse", 0)==1;
+}
 bool getWhiteValue(){
   return !getInversionValue();
 }
 bool getBlackValue(){
   return getInversionValue();
-}
-bool getInversionValue(){
-  return preferencesObject.getInt("screenInverse", 0)==1;
 }
 void saveInversionValue(bool value){
   preferencesObject.putInt("screenInverse", value?1:0);
@@ -340,17 +351,17 @@ bool saveWatchfaceLegendEnabled(bool value){
 int getAlertsNumber(){
   return 6;
 }
-bool getAnyAlertEnabled(){
-  for(int i=0; i<getAlertsNumber(); i++)
-    if(getAlertEnabled(i))
-      return true;
-  return false;
-}
 bool getAlertEnabled(int index){         //123456789012345
   return preferencesObject.getInt((String("alertEnabled")+index).c_str() , 0)==1;
 }
 bool saveAlertEnabled(int index, bool value){
   return preferencesObject.putInt((String("alertEnabled")+index).c_str(), value?1:0);
+}
+bool getAnyAlertEnabled(){
+  for(int i=0; i<getAlertsNumber(); i++)
+    if(getAlertEnabled(i))
+      return true;
+  return false;
 }
 int getAlertLastRunDay(int index){       //123456789012345
   return preferencesObject.getInt((String("alertLRD")+index).c_str() , 0);

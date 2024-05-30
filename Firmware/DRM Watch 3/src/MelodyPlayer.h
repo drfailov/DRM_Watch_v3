@@ -4,6 +4,7 @@
 /*PROTOTYPPES*/
 int melodyPlayerGetLength(const int* melody);
 bool melodyPlayerProcessButtons(bool alarm);
+void melodyPlayerDrawScreen(bool alarm);
 
 #include "Lcd.h"
 #include "Led.h"

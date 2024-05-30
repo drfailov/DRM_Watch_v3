@@ -4,13 +4,14 @@
 /*PROTOTYPES*/
 void modeTimerLoop();
 void setModeTimer();
+void modeTimerButtonUp();
+void modeTimerButtonCenter();
+void modeTimerButtonDown();
 
 #include "Global.h"
 #include "AutoSleep.h"
 #include "Button.h"
-
 #include <Arduino.h>
-void modeTimerButtonUp();
 
 
 void setModeTimer(){

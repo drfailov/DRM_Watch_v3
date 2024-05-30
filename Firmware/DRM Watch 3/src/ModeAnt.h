@@ -1,12 +1,19 @@
 #ifndef MODEANT_H
 #define MODEANT_H
 
+/*PROTOTYPES*/
+void ModeAntLoop();
+void ModeAntButtonUp();
+void ModeAntButtonCenter();
+void ModeAntButtonDown();
+void antSpawn();
+
 #include "Lcd.h"
 #include "Global.h"
 #include "AutoSleep.h"
 #include "Button.h"
 #include "ScreenBuffer.h"
-#include "Preferences.h"
+#include "DrmPreferences.h"
 #include "ModeMenuApps.h"
 
 RTC_DATA_ATTR int antX = 0; // BUFFER COORDINATES!!!

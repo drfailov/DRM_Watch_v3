@@ -2,16 +2,18 @@
 #define TIMESYNC_H
 
 
+/*PROTOTYPES*/
 void timeSync();
 void setTimezone(String timezone);
-
+void printLocalTime();
 
 #include <WiFi.h>
 #include "time.h"
 #include <Arduino.h>
-#include "Preferences.h"
+#include "DrmPreferences.h"
 #include "RTC.h"
 #include "Lcd.h"
+#include "ModeWiFiScanner.h"
 
 //const long  gmtOffset_sec = 7200;
 //const int   daylightOffset_sec = 3600;
@@ -66,7 +68,7 @@ void setTimezone(String timezone){
 void timeSync(){
   saveLastTryTimeSync(_rtcInternal()->getEpoch());
   if(connectToKnownWifi()){
-    drawMessage("Збір даних...");
+    drawMessage("Збip даних...");
     //unsigned long lastSyncTime = getLastTimeSync(); //s
     //unsigned long measuredTime = _rtcInternal()->getEpoch(); //s
     unsigned long syncStartedMillis = millis();     //millis

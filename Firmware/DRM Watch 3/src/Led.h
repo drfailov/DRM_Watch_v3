@@ -1,5 +1,24 @@
 #ifndef LED_H
-#define LCD_H
+#define LED_H
+
+/*PROTOTYPES*/
+bool isFlasthilghTopOn();
+bool isFlasthilghBottomOn();
+bool isStatusLedOn();
+bool isFlashlightOn();
+void ledFlashlightOnTop();
+void ledFlashlightOnBottom();
+void ledStatusOn();
+void ledFlashlightOffTop();
+void ledFlashlightOffBottom();
+void ledFlashlightDimTop();
+void ledFlashlightDimBottom();
+void ledFlashlightOffAll();
+void ledStatusOff();
+void ledFlashlightToggleTop();
+void ledFlashlightToggleBottom();
+void ledFlashlightToggle();
+void ledStatusBlink(int times, int speedMs);
 
 #include <Arduino.h>
 #include "Global.h"
@@ -62,6 +81,8 @@ void ledSelftest(){
   ledFlashlightOffBottom(); delay(50);
   ledStatusOff(); delay(50);
 }
+
+
 
 bool isFlasthilghTopOn(){ return ledTarget[LED_TOP] > 20; }
 bool isFlasthilghBottomOn(){ return ledTarget[LED_BOTTOM] > 20;}

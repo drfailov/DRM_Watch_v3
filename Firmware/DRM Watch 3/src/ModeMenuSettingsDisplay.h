@@ -10,7 +10,7 @@
 #include "ModeMenuSettingsWatchfaceContent.h"
 #include "ModeSetWatchface.h"
 #include "ModeMainMenu.h"
-#include "Preferences.h"
+#include "DrmPreferences.h"
 
 const int ModeMenuSettingsDisplayItemBack = 0;
 const int ModeMenuSettingsDisplayItemSelectWatchface = 1;

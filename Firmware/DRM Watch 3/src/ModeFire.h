@@ -7,6 +7,16 @@ https://github.com/BOOtak/dct3ngine/blob/master/src/games/perlin_test
 */
 
 
+void modeFireLoop();
+void ModeFireButtonUp();
+void ModeFireButtonCenter();
+void ModeFireButtonDown();
+void lavaStep();
+void lavaStep(int w);
+void fireStep();
+void fireStep(int w);
+
+
 
 #include "Global.h"
 #include "AutoSleep.h"

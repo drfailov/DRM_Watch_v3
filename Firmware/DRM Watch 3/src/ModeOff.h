@@ -1,10 +1,13 @@
 #ifndef MODEOFF_H
 #define MODEOFF_H
 
+bool isOff();
+void modeOffLoop();
 
 #include "Global.h"
 #include "AutoSleep.h"
 #include "Button.h"
+#include "Lcd.h"
 
 RTC_DATA_ATTR bool deviceOff = false;
 

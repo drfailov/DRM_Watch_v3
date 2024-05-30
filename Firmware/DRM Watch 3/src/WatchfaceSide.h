@@ -1,7 +1,7 @@
 #ifndef WATCHFACESIDE_H
 #define WATCHFACESIDE_H
 
-#include "Preferences.h"
+#include "DrmPreferences.h"
 #include <Arduino.h>
 #include "ScreenBuffer.h"
 #include "ModeLife.h"

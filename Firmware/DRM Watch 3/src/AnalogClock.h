@@ -1,7 +1,12 @@
 #ifndef ANALOGCLOCK_H
 #define ANALOGCLOCK_H
 
+/*PROTOTYPES*/
+void drawClock(int centerX, int centerY, float clockRadius, float h, float m);
+
 #include "Lcd.h"
+
+
 
 
 void animateClock(int centerX, int centerY, float clockRadius, float h, float m){

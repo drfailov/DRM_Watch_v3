@@ -1,6 +1,13 @@
 #ifndef MODETEST_H
 #define MODETEST_H
 
+void modeTestLoop();
+void modeTestButtonUp();
+void modeTestButtonCenter();
+void modeTestButtonDown();
+
+
+#include <Arduino.h>
 #include "Global.h"
 #include "AutoSleep.h"
 #include "Button.h"

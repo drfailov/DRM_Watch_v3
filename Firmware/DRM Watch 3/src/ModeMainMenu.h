@@ -1,11 +1,26 @@
 #ifndef MODEMAINMENU_H
 #define MODEMAINMENU_H
 
+/*PROTOTYPES*/
+void drawMenuLegend();
+void modeMainMenuLoop();
+void modeMainMenuButtonUp();
+void modeMainMenuButtonCenter();
+void modeMainMenuButtonDown();
+void drawMenuItem(byte index, Drawable drawIcon, const char* name, bool animate, int x, int y, int width, int height);
+void drawMenuItem(byte index, Drawable drawIcon, const char* name, bool animate, int x, int y);
+void drawMenuItem(byte index, Drawable drawIcon, const char* name, bool animate);
+void drawTextFrame(byte index, const char* text, const char* name, bool editMode, bool animate, int x, int y, int width);
+void drawListItem(byte index, Drawable drawIcon, const char* name, const char* description, bool animate);
+void drawListCheckbox(byte index, Drawable drawIcon, const char* name, const char* description, bool value, bool animate);
+void drawListValue(byte index, Drawable drawIcon, const char* name, const char* description, int value, bool animate);
+
 
 #include "Global.h"
 #include "AutoSleep.h"
 #include "Button.h"
 #include "ModeMenuSettings.h"
+#include "ModeMenuApps.h"
 #include "ModeAbout.h"
 
 const int itemBack=0;

@@ -1,6 +1,17 @@
 #ifndef MODEKEYBOARD_H
 #define MODEKEYBOARD_H
 
+/*PROTOTYPES*/
+void addLetter();
+void backspace();
+void modeKeyboardCancel();
+void modeKeyboardDone();
+int cntKeys();
+void modeKeyboardButtonUp();
+void modeKeyboardButtonCenter();
+void modeKeyboardButtonDown();
+int drawKey(int index, int startX);
+
 
 #include "Global.h"
 #include "AutoSleep.h"

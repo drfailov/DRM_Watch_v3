@@ -1,7 +1,7 @@
 #ifndef WATCHFACEFULLSCREEN_H
 #define WATCHFACEFULLSCREEN_H
 
-#include "Preferences.h"
+#include "DrmPreferences.h"
 #include <Arduino.h>
 #include "ScreenBuffer.h"
 #include "ModeLife.h"

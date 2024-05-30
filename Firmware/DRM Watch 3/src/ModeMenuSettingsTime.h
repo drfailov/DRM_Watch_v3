@@ -7,7 +7,7 @@
 #include "Icons.h"
 #include "ModeMainMenu.h"
 #include "TimeSync.h"
-#include "Preferences.h"
+#include "DrmPreferences.h"
 #include "ModeSetTime.h"
 #include "ModeSetTimezone.h"
 

@@ -1,8 +1,15 @@
 #ifndef BUTTON_H
 #define BUTTON_H
 
+void checkReady(gpio_num_t pin);
+void processButton(gpio_num_t pin, Runnable *onPressed, Runnable *onLongPressed);
+
 #include <Arduino.h>
 #include "Global.h"
+#include "ModeOff.h"
+#include "Backlight.h"
+#include "Buzzer.h"
+
 
 const int longClickDelay = 700;//ms 
 const int firstClickDelay = 500;//ms 

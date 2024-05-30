@@ -1,7 +1,11 @@
 #ifndef BACKLIGHT_H
 #define BACKLIGHT_H
 
+void backlightOn();
+void backlightOff();
+
 #include <Arduino.h>
+#include "AutoSleep.h"
 
 
 unsigned long backlightEnabledTime = 0;

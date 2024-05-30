@@ -1,9 +1,20 @@
 #ifndef BUZZER_H
 #define BUZZER_H
 
+/*PROTOTYPES*/
+void buzNoTone();
+void buzTone(int _freq);
+void buzTone(int _freq, int duration);
+void buzPlayChargerConnectedTone();
+void buzPlayChargerDisconnectedTone();
+void playInit();
+
+
 #include <ToneESP32.h>
 #include <Arduino.h>
-#include "Preferences.h"
+#include "DrmPreferences.h"
+#include "ModeOff.h"
+#include "Led.h"
 
 
 ToneESP32 buzzer(BUZZER_PIN, /*BUZZER_CHANNEL*/0);

@@ -1,10 +1,21 @@
 #ifndef MODEMENUSETTINGS_H
 #define MODEMENUSETTINGS_H
 
+/*PROTOTYPES*/
+void modeSettingsMenuLoop();
+void modeMainMenuButtonUp();
+void modeSettingsMenuButtonCenter();
+void modeMainMenuButtonDown();
+
 
 #include "Global.h"
 #include "AutoSleep.h"
 #include "Button.h"
+#include "ModeMenuApps.h"
+#include "ModeMenuSettingsDisplay.h"
+#include "ModeMenuSettingsTime.h"
+#include "ModeMenuSettingsSound.h"
+#include "ModeSavedWiFiList.h"
 
 const int itemModeSettingsBack=0;
 const int itemModeSettingsCategoryTime=1;
