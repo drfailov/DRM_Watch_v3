@@ -1,5 +1,14 @@
 #ifndef MODESTOPWATCH_H
 #define MODESTOPWATCH_H
+//CTRL+K CTRL+0    (COLLAPSE)                 //CTRL+K   CTRL+J  (EXPAND)
+
+
+void setModeStopwatch();
+void modeStopwatchButtonUp();
+void modeStopwatchButtonCenter();
+void modeStopwatchLoop();
+void modeStopwatchButtonDown();
+
 
 #include "Global.h"
 #include "AutoSleep.h"

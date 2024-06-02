@@ -1,8 +1,10 @@
 #ifndef MODEOFF_H
 #define MODEOFF_H
 
+void setModeOff();
 bool isOff();
 void modeOffLoop();
+void turnOn();
 
 #include "Global.h"
 #include "AutoSleep.h"

@@ -2,13 +2,80 @@
 #define MYYPREFERENCES_H
 
 /*PROTOTYPES*/
+//timer
+bool saveTimerStartedTime(unsigned long epoch);
+bool saveTimerTime(unsigned long epoch);
+unsigned long getTimerStartedTime();
+unsigned long getTimerTime();
+bool isTimerRunning();
+//lcd
+bool getInversionValue();
+bool getWhiteValue();
+bool getBlackValue();
+void saveInversionValue(bool value);
+void saveEnterAnimationValue(bool value);
+//sound
 bool getMuteEnabled();
 bool saveMuteEnabled(bool value);
 int getButtonSound();
+
+
 bool getTimeSyncEnabled();
 long getTimeOffsetSec();
 bool saveLastChargedTime();
 bool saveLastChargedTime(unsigned long epoch);
+
+//stopwatch
+bool saveStopwatchStartedTime(unsigned long epoch);
+bool saveStopwatchFinishedTime(unsigned long epoch);
+unsigned long getStopwatchStartedTime();
+unsigned long getStopwatchFinishedTime();
+bool isStopwatchRunning();
+int stopwatchHistorySlotCnt();
+unsigned long stopwatchHistorySlotStart(int slot);
+bool stopwatchHistorySlotIsEmpty(int slot);
+unsigned long stopwatchHistorySlotEnd(int slot);
+bool saveStopwatchHistorySlotStart(int slot, unsigned long epoch);
+bool saveStopwatchHistorySlotEnd(int slot, unsigned long epoch);
+
+//watchface
+int getWatchface();
+bool saveWatchface(int value);
+bool getWatchfaceStatusbarEnabled();
+bool saveWatchfaceStatusbarEnabled(bool value);
+bool getWatchfaceAnalogEnabled();
+bool saveWatchfaceAnalogEnabled(bool value);
+bool getWatchfaceDigitalEnabled();
+bool saveWatchfaceDigitalEnabled(bool value);
+bool getWatchfaceStatusbarDigitalEnabled();
+bool saveWatchfaceStatusbarDigitalEnabled(bool value);
+bool getWatchfaceTemperatureEnabled();
+bool saveWatchfaceTemperatureEnabled(bool value);
+bool getWatchfaceDayOfWeekEnabled();
+bool saveWatchfaceDayOfWeekEnabled(bool value);
+bool getWatchfaceDateEnabled();
+bool saveWatchfaceDateEnabled(bool value);
+bool getWatchfaceMonthEnabled();
+bool saveWatchfaceMonthEnabled(bool value);
+bool getWatchfaceDjiLogoEnabled();
+bool saveWatchfaceDjiLogoEnabled(bool value);
+bool getWatchfaceLifeBackgroundEnabled();
+bool saveWatchfaceLifeBackgroundEnabled(bool value);
+bool getWatchfaceAntBackgroundEnabled();
+bool saveWatchfaceAntBackgroundEnabled(bool value);
+bool getWatchfaceRandomBackgroundEnabled();
+bool saveWatchfaceRandomBackgroundEnabled(bool value);
+bool getWatchfaceFireBackgroundEnabled();
+bool saveWatchfaceFireBackgroundEnabled(bool value);
+bool getWatchfaceLavaBackgroundEnabled();
+bool saveWatchfaceLavaBackgroundEnabled(bool value);
+bool getWatchfaceDotsBackgroundEnabled();
+bool saveWatchfaceDotsBackgroundEnabled(bool value);
+bool getWatchfaceCalendarEnabled();
+bool saveWatchfaceCalendarEnabled(bool value);
+bool getWatchfaceLegendEnabled();
+bool saveWatchfaceLegendEnabled(bool value);
+
 
 #include <Preferences.h>
 #include "Buzzer.h"
@@ -77,7 +144,6 @@ unsigned long stopwatchHistorySlotStart(int slot){ //1 ... stopwatchHistorySlotC
 bool stopwatchHistorySlotIsEmpty(int slot){ //1 ... stopwatchHistorySlotCnt
   return stopwatchHistorySlotStart(slot) == 0;
 }
-
 
 unsigned long stopwatchHistorySlotEnd(int slot){ //1 ... stopwatchHistorySlotCnt
   return preferencesObject.getULong64((String("sws")+slot+"end").c_str(), 0);

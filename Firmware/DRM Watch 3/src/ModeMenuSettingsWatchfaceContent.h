@@ -1,6 +1,9 @@
 #ifndef MODEMENUSETTINGWATCHFACECONTENT_H
 #define MODEMENUSETTINGWATCHFACECONTENT_H
 
+void setModeMenuSettingsWatchfaceContent();
+void ModeMenuSettingsWatchfaceContentLoop();
+void ModeMenuSettingsWatchfaceContentButtonCenter();
 
 #include "Global.h"
 #include "AutoSleep.h"

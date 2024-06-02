@@ -2,6 +2,12 @@
 #define MODEWATCHFACE_H
 
 /*PROTOTYPES*/
+int getWatchfaceCount();
+String getWatchfaceName(int index);
+WatchfaceDrawable getWatchfaceDrawable(int index);
+int drawStatusbar(int x, int y, bool drawTime);
+
+void setModeWatchface();
 void modeWatchfaceLoop();
 void modeWatchfaceButtonUp();
 void modeWatchfaceButtonCenter();

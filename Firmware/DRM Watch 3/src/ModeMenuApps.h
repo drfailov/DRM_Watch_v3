@@ -2,6 +2,7 @@
 #define MODEMENUAPPS_H
 
 /*PROTOTYPES*/
+void setModeAppsMenu();
 void ModeAppsMenuLoop();
 void ModeAppsMenuButtonCenter();
 
