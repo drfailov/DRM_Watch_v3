@@ -100,14 +100,14 @@
 
 ## Основний екран, циферблат
 <p align="center"> 
-<img src="Photos/photo_2_2024-06-02_22-49-14.jpg" height=200"/> 
-<img src="Photos/photo_51_2024-06-02_22-49-14.jpg" height=200"/> 
-<img src="Photos/photo_52_2024-06-02_22-49-14.jpg" height=200"/> 
-<img src="Photos/photo_50_2024-06-02_22-49-14.jpg" height=200"/> 
-<img src="Photos/photo_46_2024-06-02_22-49-14.jpg" height=200"/> 
-<img src="Photos/photo_44_2024-06-02_22-49-14.jpg" height=200"/> 
-<img src="Photos/photo_22_2024-06-02_22-49-14.jpg" height=200"/> 
-<img src="Photos/photo_17_2024-06-02_22-49-14.jpg" height=200"/>
+<img src="Photos/photo_2_2024-06-02_22-49-14.jpg" height=300"/> 
+<img src="Photos/photo_51_2024-06-02_22-49-14.jpg" height=300"/> 
+<img src="Photos/photo_52_2024-06-02_22-49-14.jpg" height=300"/> 
+<img src="Photos/photo_50_2024-06-02_22-49-14.jpg" height=300"/> 
+<img src="Photos/photo_46_2024-06-02_22-49-14.jpg" height=300"/> 
+<img src="Photos/photo_44_2024-06-02_22-49-14.jpg" height=300"/> 
+<img src="Photos/photo_22_2024-06-02_22-49-14.jpg" height=300"/> 
+<img src="Photos/photo_17_2024-06-02_22-49-14.jpg" height=300"/>
 </p>
 
 Тут відображаєтья час. Це основний екран годинника, на нього переходят більшість екранів по таймеру бездіяльності. На цьому екрані годинник заходить в сон і спить, просинаючись раз в хвилину щоб намалювати час.     <br> 
@@ -121,7 +121,7 @@
 ## Програми
 
 <p align="center"> 
-<img src="Photos/photo_3_2024-06-02_22-49-14.jpg" height=200"/> 
+<img src="Photos/photo_3_2024-06-02_22-49-14.jpg" height=300"/> 
 </p>
 
 Звідси можна запустити функції які не є налаштуваннями. Будильники, секундоміри, ігри, розваги, тощо.     <br>  
@@ -131,8 +131,8 @@
 ## Програми -> Будильник
 
 <p align="center"> 
-<img src="Photos/photo_4_2024-06-02_22-49-14.jpg" height=200"/> 
-<img src="Photos/photo_12_2024-06-02_22-49-14.jpg" height=200"/> 
+<img src="Photos/photo_4_2024-06-02_22-49-14.jpg" height=300"/> 
+<img src="Photos/photo_12_2024-06-02_22-49-14.jpg" height=300"/> 
 </p>
 
 Будильник запускає відтворення заданої мелодії в заданий час дня.
@@ -145,7 +145,7 @@
 ## Програми -> Календар
 
 <p align="center"> 
-<img src="Photos/photo_14_2024-06-02_22-49-14.jpg" height=200"/> 
+<img src="Photos/photo_14_2024-06-02_22-49-14.jpg" height=300"/> 
 </p>
 
 Показує календар на місяць.     <br>  
@@ -155,7 +155,7 @@
 
 ## Програми -> Таймер
 <p align="center"> 
-<img src="Photos/photo_32_2024-06-02_22-49-14.jpg" height=200"/> 
+<img src="Photos/photo_32_2024-06-02_22-49-14.jpg" height=300"/> 
 </p>
 
 Таймер веде відлік заданого часу від моменту запуску. Коли час спливає, запускається звуковий сигнал.      <br>
@@ -168,7 +168,7 @@
 
 ## Програми -> Секундомір
 <p align="center"> 
-<img src="Photos/photo_33_2024-06-02_22-49-14.jpg" height=200"/> 
+<img src="Photos/photo_33_2024-06-02_22-49-14.jpg" height=300"/> 
 </p>
 
 Веде відлік часу від моменту запуску.       <br> 
@@ -183,7 +183,7 @@
 
 ## Програми -> Вогонь
 <p align="center"> 
-<img src="Photos/photo_40_2024-06-02_22-49-14.jpg" height=200"/> 
+<img src="Photos/photo_40_2024-06-02_22-49-14.jpg" height=300"/> 
 </p>
 
 Режим повноекранної анімації вогню. Красиво. В основі лежить шум Перліна.    <br>
@@ -194,7 +194,7 @@
 
 ## Програми -> Лава
 <p align="center"> 
-<img src="Photos/photo_25_2024-06-02_22-49-14.jpg" height=200"/> 
+<img src="Photos/photo_25_2024-06-02_22-49-14.jpg" height=300"/> 
 </p>
 
 Режим повноекранної анімації лави. Красиво. В основі лежить шум Перліна.    <br>
