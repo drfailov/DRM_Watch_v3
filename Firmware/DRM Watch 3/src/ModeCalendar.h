@@ -1,6 +1,12 @@
 #ifndef MODECALENDAR_H
 #define MODECALENDAR_H
 
+void setModeCalendar();
+void ModeCalendarLoop();
+void ModeCalendarButtonUp();
+void ModeCalendarButtonCenter();
+void ModeCalendarButtonDown();
+
 #include "Lcd.h"
 #include "Global.h"
 #include "AutoSleep.h"

@@ -1,6 +1,10 @@
 #ifndef MODEMENUSETTINGSSOUND_H
 #define MODEMENUSETTINGSSOUND_H
 
+void setModeMenuSettingsSound();
+void ModeMenuSettingsSoundLoop();
+void ModeMenuSettingsSoundButtonCenter();
+
 #include "Global.h"
 #include "Lcd.h"
 #include "Button.h"
@@ -32,7 +36,6 @@ void setModeMenuSettingsSound(){
   selected = 0;
   items = 3;
 }
-
 
 void ModeMenuSettingsSoundLoop(){
   lcd()->setColorIndex(white);

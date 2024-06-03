@@ -7,7 +7,10 @@ https://github.com/BOOtak/dct3ngine/blob/master/src/games/perlin_test
 */
 
 
+void setModeFire();
+void setModeLava();
 void modeFireLoop();
+void modeLavaLoop();
 void ModeFireButtonUp();
 void ModeFireButtonCenter();
 void ModeFireButtonDown();

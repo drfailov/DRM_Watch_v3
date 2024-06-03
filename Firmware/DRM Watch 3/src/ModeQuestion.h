@@ -1,7 +1,10 @@
 #ifndef MODEQUESTION_H
 #define MODEQUESTION_H
 
-
+void questionModeSet(String _text1, String _text2, Runnable _onYes, Runnable _onNo);
+void questionModeLoop();
+void questionModeOnButtonUp();
+void questionModeOnButtonDown();
 
 #include "Global.h"
 #include "AutoSleep.h"

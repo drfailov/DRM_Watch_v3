@@ -7,6 +7,8 @@ U8G2_LS027B7DH01_400X240_F_4W_HW_SPI* lcd();
 void lcdPowerOn();
 void lcdPowerOff();
 void clearScreenAnimationCircleFromRight();
+void drawMessage(String text, String text2, bool animate);
+void drawMessage(String text, String text2);
 
 #include "Global.h"
 #include "ModeOff.h"

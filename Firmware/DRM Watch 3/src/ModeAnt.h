@@ -7,6 +7,7 @@ void ModeAntButtonUp();
 void ModeAntButtonCenter();
 void ModeAntButtonDown();
 void antSpawn();
+void antStep();
 
 #include "Lcd.h"
 #include "Global.h"

@@ -2,6 +2,7 @@
 #define MODEMENUSETTINGS_H
 
 /*PROTOTYPES*/
+void setModeSettingsMenu();
 void modeSettingsMenuLoop();
 void modeMainMenuButtonUp();
 void modeSettingsMenuButtonCenter();

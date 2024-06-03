@@ -1,6 +1,13 @@
 #ifndef MODESETTIMEZONE_H
 #define MODESETTIMEZONE_H
 
+/*PROTOTYPES*/
+void setmodeSetTimezoneMenu();
+void modeSetTimezoneMenuLoop();
+void modeSetTimezoneMenuButtonUp();
+void modeSetTimezoneMenuButtonCenter();
+void modeSetTimezoneMenuButtonDown();
+
 #include "Global.h"
 #include "AutoSleep.h"
 #include "Button.h"

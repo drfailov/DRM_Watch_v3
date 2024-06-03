@@ -1,9 +1,9 @@
 #ifndef MODEALERTLIST_H
 #define MODEALERTLIST_H
 
+void setModeAlertsList();
 void modeAlertsListLoop();
 void modeAlertsListButtonCenter();
-
 
 #include "Lcd.h"
 #include "Global.h"

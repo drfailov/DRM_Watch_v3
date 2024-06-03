@@ -1,6 +1,10 @@
 #ifndef MODEMENUSETTINGTIME_H
 #define MODEMENUSETTINGTIME_H
 
+void setModeMenuSettingsTime();
+void ModeMenuSettingsTimeLoop();
+void ModeMenuSettingsTimeButtonCenter();
+
 #include "Global.h"
 #include "AutoSleep.h"
 #include "Button.h"

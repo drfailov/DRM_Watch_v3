@@ -1,10 +1,23 @@
 #ifndef MODESAVEDWIFILIST_H
 #define MODESAVEDWIFILIST_H
 
+void setModeSavedWiFiList();
+void modeSavedWiFiListLoop();
+void modeSavedWiFiListButtonCenter();
+void modeSavedWiFiListOnDeleteNetwork();
+void modeSavedWiFiListOnNetworkNameSelected();
+void modeSavedWiFiListOnNetworkPasswordSelected();
+void modeSavedWiFiListOnNetworkConnected();
+void modeSavedWiFiListOnNetworkFailed();
+
+
 #include "Global.h"
 #include "AutoSleep.h"
 #include "Button.h"
 #include "ModeMainMenu.h"
+#include "ModeKeyboard.h"
+#include "ModeWiFiScanner.h"
+#include "ModeQuestion.h"
 
 
 int ModeSavedWiFiListSelectedSlot = 0;
@@ -28,7 +41,6 @@ void setModeSavedWiFiList(){
   selected = 0;
   items = wifiSlotCnt()+1;
 }
-
 
 void modeSavedWiFiListLoop(){
   lcd()->setColorIndex(white);

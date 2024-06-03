@@ -1,12 +1,18 @@
 #ifndef RTC_H
 #define RTC_H
 
+/*PROTOTYPES*/
 String getRtcSrc();
+void adjustExternalRtc(unsigned long epoch);
+float rtcChipTemperature();
+float cpuTemperature();
 
 #include "soc/rtc.h"
 #include "driver/temp_sensor.h"
+#include "DrmPreferences.h"
 #include <DS3231M.h>
 #include <ESP32Time.h>
+
 
 
 bool rtcReady = false;

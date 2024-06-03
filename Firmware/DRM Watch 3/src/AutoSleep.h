@@ -5,6 +5,8 @@
 long autoReturnTimeMs();
 void goToSleep();
 long autoSleepTimeMs();
+bool isAwake();
+long timeToAutoAction();
 
 
 #define NO_SLEEP 99999999

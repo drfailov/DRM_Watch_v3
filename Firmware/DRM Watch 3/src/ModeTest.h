@@ -1,16 +1,21 @@
 #ifndef MODETEST_H
 #define MODETEST_H
 
+/*PROTOTYPES*/
+void setModeTest();
 void modeTestLoop();
 void modeTestButtonUp();
 void modeTestButtonCenter();
 void modeTestButtonDown();
+void wakeup_reason();
 
 
 #include <Arduino.h>
 #include "Global.h"
 #include "AutoSleep.h"
 #include "Button.h"
+#include "Battery.h"
+#include "DrmPreferences.h"
 
 
 void setModeTest(){

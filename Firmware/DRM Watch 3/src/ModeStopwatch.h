@@ -2,7 +2,7 @@
 #define MODESTOPWATCH_H
 //CTRL+K CTRL+0    (COLLAPSE)                 //CTRL+K   CTRL+J  (EXPAND)
 
-
+/*PROTOTYPES*/
 void setModeStopwatch();
 void modeStopwatchButtonUp();
 void modeStopwatchButtonCenter();

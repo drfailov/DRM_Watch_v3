@@ -7,6 +7,10 @@ void setModeTimer();
 void modeTimerButtonUp();
 void modeTimerButtonCenter();
 void modeTimerButtonDown();
+int timerStep();
+void timerAlert();
+void resetTimer();
+bool timerAlertCheckButtons();
 
 #include "Global.h"
 #include "AutoSleep.h"

@@ -2,6 +2,7 @@
 #define MYYPREFERENCES_H
 
 /*PROTOTYPES*/
+int getPreferencesFreeSpace();
 //timer
 bool saveTimerStartedTime(unsigned long epoch);
 bool saveTimerTime(unsigned long epoch);
@@ -14,17 +15,47 @@ bool getWhiteValue();
 bool getBlackValue();
 void saveInversionValue(bool value);
 void saveEnterAnimationValue(bool value);
+bool getEnterAnimationValue();
 //sound
 bool getMuteEnabled();
 bool saveMuteEnabled(bool value);
 int getButtonSound();
-
-
+bool saveButtonSound(int value);
+//SAVED WI-FI
+int wifiSlotCnt();
+String wifiSlotName(int slot);
+bool wifiSlotIsEmpty(int slot);
+String wifiSlotPassword(int slot);
+int getWifiSavedIndex(String name);
+bool wifiSlotSave(int slot, String ssid, String password);
+bool wifiSlotClear(int slot);
+//alert
+int getAlertsNumber();
+bool getAlertEnabled(int index);
+bool saveAlertEnabled(int index, bool value);
+bool getAnyAlertEnabled();
+int getAlertLastRunDay(int index);
+bool saveAlertLastRunDay(int index, int value);
+int getAlertHour(int index);
+bool saveAlertHour(int index, int value);
+int getAlertMinute(int index);
+bool saveAlertMinute(int index, int value);
+int getAlertMelody(int index);
+bool saveAlertMelody(int index, int value);
+String getAlertName(int index);
+bool saveAlertName(int index, String newname);
+//timesync
+unsigned long getLastTimeSync();
 bool getTimeSyncEnabled();
+bool saveTimeSyncEnabled(bool value);
 long getTimeOffsetSec();
+bool saveTimeOffsetSec(long value);
 bool saveLastChargedTime();
 bool saveLastChargedTime(unsigned long epoch);
-
+unsigned long getTimeSinceLastCharged();
+unsigned long getLastTryTimeSync();
+bool saveLastTryTimeSync(unsigned long epoch);
+bool saveLastTimeSync(unsigned long epoch);
 //stopwatch
 bool saveStopwatchStartedTime(unsigned long epoch);
 bool saveStopwatchFinishedTime(unsigned long epoch);
@@ -37,7 +68,6 @@ bool stopwatchHistorySlotIsEmpty(int slot);
 unsigned long stopwatchHistorySlotEnd(int slot);
 bool saveStopwatchHistorySlotStart(int slot, unsigned long epoch);
 bool saveStopwatchHistorySlotEnd(int slot, unsigned long epoch);
-
 //watchface
 int getWatchface();
 bool saveWatchface(int value);
@@ -75,6 +105,9 @@ bool getWatchfaceCalendarEnabled();
 bool saveWatchfaceCalendarEnabled(bool value);
 bool getWatchfaceLegendEnabled();
 bool saveWatchfaceLegendEnabled(bool value);
+//ant
+int getAntSpeed();
+bool saveAntSpeed(int value);
 
 
 #include <Preferences.h>
@@ -242,7 +275,6 @@ bool getBlackValue(){
 void saveInversionValue(bool value){
   preferencesObject.putInt("screenInverse", value?1:0);
 }
-
 bool getEnterAnimationValue(){
   return preferencesObject.getInt("screenInAnim", 1)==1;
 }

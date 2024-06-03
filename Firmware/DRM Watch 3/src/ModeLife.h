@@ -1,6 +1,13 @@
 #ifndef MODELIFE_H
 #define MODELIFE_H
 
+void setModeLife();
+void ModeLifeLoop();
+void ModeLifeButtonUp();
+void ModeLifeButtonCenter();
+void ModeLifeButtonDown();
+void lifeStep();
+
 #include "Global.h"
 #include "AutoSleep.h"
 #include "Button.h"

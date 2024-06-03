@@ -1,6 +1,12 @@
 #ifndef MODESETWATCHFACE_H
 #define MODESETWATCHFACE_H
 
+void setModeSetWatchface();
+void ModeSetWatchfaceLoop();
+void ModeSetWatchfaceButtonUp();
+void ModeSetWatchfaceButtonCenter();
+void ModeSetWatchfaceButtonDown();
+
 #include "Global.h"
 #include "AutoSleep.h"
 #include "Button.h"

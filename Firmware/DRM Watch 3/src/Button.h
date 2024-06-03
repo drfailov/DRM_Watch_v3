@@ -3,6 +3,7 @@
 
 void checkReady(gpio_num_t pin);
 void processButton(gpio_num_t pin, Runnable *onPressed, Runnable *onLongPressed);
+int sinceLastAction();
 
 #include <Arduino.h>
 #include "Global.h"

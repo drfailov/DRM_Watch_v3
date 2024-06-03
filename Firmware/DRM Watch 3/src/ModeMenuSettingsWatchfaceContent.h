@@ -76,12 +76,12 @@ void ModeMenuSettingsWatchfaceContentLoop(){
   drawListCheckbox(ModeMenuSettingsWatchfaceContentItemShowDjiLogo,           draw_ic24_dji,             "Лого DJI", "У мене всюди їх лого, навіть тут", getWatchfaceDjiLogoEnabled(), firstDraw);
   drawListCheckbox(ModeMenuSettingsWatchfaceContentItemShowLifeBackgound,     draw_ic24_life,            "Фон \"Життя\"", "Convey's Game Of Life", getWatchfaceLifeBackgroundEnabled(), firstDraw);
   drawListCheckbox(ModeMenuSettingsWatchfaceContentItemShowRandomBackgound,   draw_ic24_random,          "Фон \"Шум\"", "Випадковий шум на фоні", getWatchfaceRandomBackgroundEnabled(), firstDraw);
-  drawListCheckbox(ModeMenuSettingsWatchfaceContentItemShowAntBackgound,      draw_ic24_ant2,            "Фон \"Мураха\"", "Мураха Ленгтона на фоні", getWatchfaceAntBackgroundEnabled(), firstDraw);
+  drawListCheckbox(ModeMenuSettingsWatchfaceContentItemShowAntBackgound,      draw_ic24_ant2,            "Фон \"Mypaxa\"", "Мураха Ленгтона на фоні", getWatchfaceAntBackgroundEnabled(), firstDraw);
   drawListCheckbox(ModeMenuSettingsWatchfaceContentItemShowDotsBackgound,     draw_ic24_pixels,          "Фон \"Точки\"", "Щокадру додається 1 точка на фоні", getWatchfaceDotsBackgroundEnabled(), firstDraw);
   drawListCheckbox(ModeMenuSettingsWatchfaceContentItemShowFireBackgound,     draw_ic24_fire,            "Фон \"Вогонь\"", "Красива симуляція вогню", getWatchfaceFireBackgroundEnabled(), firstDraw);
   drawListCheckbox(ModeMenuSettingsWatchfaceContentItemShowLavaBackgound,     draw_ic24_bubbles,         "Фон \"Лава\"", "Симуляція лава-лампи", getWatchfaceLavaBackgroundEnabled(), firstDraw);
-  drawListCheckbox(ModeMenuSettingsWatchfaceContentItemShowCalendar,          draw_ic24_calendar,        "Календар", "На поточний місяць", getWatchfaceCalendarEnabled(), firstDraw);
-  drawListCheckbox(ModeMenuSettingsWatchfaceContentItemShowTimeInStatusbar,   draw_ic24_digitalclock2,   "Час в статус-барі", "Серед інконок статусу ще й час", getWatchfaceStatusbarDigitalEnabled(), firstDraw);
+  drawListCheckbox(ModeMenuSettingsWatchfaceContentItemShowCalendar,          draw_ic24_calendar,        "Календар", "Ha поточний місяць", getWatchfaceCalendarEnabled(), firstDraw);
+  drawListCheckbox(ModeMenuSettingsWatchfaceContentItemShowTimeInStatusbar,   draw_ic24_digitalclock2,   "Час в статус-бapi", "Серед інконок статусу ще й час", getWatchfaceStatusbarDigitalEnabled(), firstDraw);
   drawListCheckbox(ModeMenuSettingsWatchfaceContentItemShowLegend,            draw_ic24_about,           "Легента кнопок", "Значки що роблять кнопки", getWatchfaceLegendEnabled(), firstDraw);
 
 

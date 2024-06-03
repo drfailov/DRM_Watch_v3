@@ -13,7 +13,6 @@ void drawBattery(int x, int y);
 float readSensBatteryVoltage();
 byte batteryBars();
 
-
 #include "Icons.h"
 #include "Buzzer.h"
 #include <Arduino.h>

@@ -22,6 +22,7 @@ void ledStatusBlink(int times, int speedMs);
 
 #include <Arduino.h>
 #include "Global.h"
+#include "Button.h"
 
 const int LED_TOP = 0;
 const int LED_BOTTOM = 1;
@@ -30,7 +31,7 @@ const int LED_CNT = 3;
 float ledActual[LED_CNT];
 float ledTarget[LED_CNT];
 hw_timer_t *Led_Timer_Cfg;
-float led_coef = 0.03;
+float led_coef = 0.07;
 
 void IRAM_ATTR Led_ISR()
 {

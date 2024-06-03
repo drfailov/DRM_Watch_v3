@@ -1,6 +1,11 @@
 #ifndef MODERANDOMNOIZE_H
 #define MODERANDOMNOIZE_H
 
+void setModeRandom();
+void ModeRandomLoop();
+void ModeRandomButtonUp();
+void ModeRandomButtonCenter();
+void ModeRandomButtonDown();
 
 #include "Global.h"
 #include "AutoSleep.h"

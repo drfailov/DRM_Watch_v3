@@ -1,6 +1,10 @@
 #ifndef MODEMENUSETTINGSDISPLAY_H
 #define MODEMENUSETTINGSDISPLAY_H
 
+void setModeMenuSettingsDisplay();
+void ModeMenuSettingsDisplayLoop();
+void ModeMenuSettingsDisplayButtonCenter();
+
 #include "Lcd.h"
 #include "Global.h"
 #include "AutoSleep.h"

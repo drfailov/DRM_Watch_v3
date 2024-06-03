@@ -22,6 +22,7 @@ void ModeAppsMenuButtonCenter();
 #include "ModeMeow.h"
 #include "ModeCalendar.h"
 #include "ModeAnt.h"
+#include "ModeTest.h"
 
 const int itemModeAppsBack=0;
 const int itemModeAppsAlarm=1;

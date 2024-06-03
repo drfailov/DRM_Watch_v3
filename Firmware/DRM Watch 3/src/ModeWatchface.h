@@ -6,7 +6,7 @@ int getWatchfaceCount();
 String getWatchfaceName(int index);
 WatchfaceDrawable getWatchfaceDrawable(int index);
 int drawStatusbar(int x, int y, bool drawTime);
-
+int drawStatusbar(int x, int y, bool drawTime, bool simulate);
 void setModeWatchface();
 void modeWatchfaceLoop();
 void modeWatchfaceButtonUp();
@@ -14,12 +14,15 @@ void modeWatchfaceButtonCenter();
 void modeWatchfaceButtonDown();
 void modeWatchfaceButtonUpLong();
 void modeWatchfaceButtonCenterLong();
+void switchDontSleep();
 
 #include "Global.h"
 #include "AutoSleep.h"
 #include "Button.h"
 #include "WatchfaceFullscreen.h"
 #include "WatchfaceSide.h"
+#include "Lcd.h"
+#include "Battery.h"
 
 struct Watchface {             
   String name;   

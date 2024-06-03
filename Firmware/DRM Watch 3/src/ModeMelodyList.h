@@ -1,6 +1,9 @@
 #ifndef MODEMELODYLIST_H
 #define MODEMELODYLIST_H
 
+void setModeMelodyListMenu();
+void ModeMelodyListMenuLoop();
+void ModeMelodyListMenuButtonCenter();
 
 #include "Global.h"
 #include "AutoSleep.h"

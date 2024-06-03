@@ -8,6 +8,7 @@ void ModeAlertSettingsMenuButtonDown();
 void resetAlertMetadata(int index);
 void setModeAlertSettingsMenu(int alertIndex);
 void setModeAlertSettingsMenu();
+void ModeAlertSettingsMenuNameSelected();
 
 
 

@@ -1,11 +1,22 @@
 #ifndef MODEWIFISCANNER_H
 #define MODEWIFISCANNER_H
 
+/*PROTOTYPES*/
+void setModeWiFiScanner(Runnable onSelected, Runnable onCancel);
+void setModeWiFiScanner();
+void setModeWiFiScanner_();
+void modeWiFiScannerLoop();
+void modeWiFiScannerButtonCenter();
+void wifiOff();
+const char* encryprionType(int i);
+String modeWiFiScannerGetSelectedNetworkName();
+bool tryConnectWifi(String ssid, String password, Runnable onConnected, Runnable onFailed);
 
 #include "Global.h"
 #include "AutoSleep.h"
 #include "Button.h"
 #include "ModeMainMenu.h"
+#include "ModeSavedWiFiList.h"
 
 #include <WiFi.h>
 
@@ -179,7 +190,7 @@ bool connectToKnownWifi(){
   WiFi.mode(WIFI_STA);
   WiFi.disconnect();
   delay(100);
-  drawMessage("Cканування...");
+  drawMessage("Cкaнyвaння...");
   int n = WiFi.scanNetworks();
   drawMessage("Пошук знайомих мереж...");
   for(int i=0; i<n; i++){

@@ -8,6 +8,8 @@ void buzTone(int _freq, int duration);
 void buzPlayChargerConnectedTone();
 void buzPlayChargerDisconnectedTone();
 void playInit();
+void buttonBeep();
+void buttonLongBeep();
 
 
 #include <ToneESP32.h>

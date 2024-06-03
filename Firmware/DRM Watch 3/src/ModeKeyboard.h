@@ -4,9 +4,13 @@
 /*PROTOTYPES*/
 void addLetter();
 void backspace();
+void shift();
 void modeKeyboardCancel();
 void modeKeyboardDone();
 int cntKeys();
+void setModeKeyboard(String title, Runnable onDone, Runnable onCancel);
+void setModeKeyboard();
+void modeKeyboardLoop();
 void modeKeyboardButtonUp();
 void modeKeyboardButtonCenter();
 void modeKeyboardButtonDown();

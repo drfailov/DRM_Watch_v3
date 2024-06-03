@@ -3,6 +3,8 @@
 
 /*PROTOTYPES*/
 void drawClock(int centerX, int centerY, float clockRadius, float h, float m);
+void drawThickLine(float centerX, float centerY, float toX, float toY, float thickness);
+void drawArrow(float centerX, float centerY, float toX, float toY, float thickness);
 
 #include "Lcd.h"
 

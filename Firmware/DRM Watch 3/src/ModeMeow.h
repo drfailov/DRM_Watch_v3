@@ -1,6 +1,10 @@
 #ifndef MODEMEOW_H
 #define MODEMEOW_H
 
+void setModeMeow();
+void modeMeowLoop();
+void modeMeowButtonCenter();
+void meow();
 
 #include "Global.h"
 #include "AutoSleep.h"
