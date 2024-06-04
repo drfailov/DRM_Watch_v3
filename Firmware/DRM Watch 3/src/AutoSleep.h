@@ -7,6 +7,7 @@ void goToSleep();
 long autoSleepTimeMs();
 bool isAwake();
 long timeToAutoAction();
+bool isDontSleep();
 
 
 #define NO_SLEEP 99999999
@@ -105,6 +106,10 @@ void goToSleep(){
   else
     esp_sleep_enable_timer_wakeup(55 * 1000000ULL);
   esp_deep_sleep_start();
+}
+
+bool isDontSleep(){
+  return dontSleep || (!enableAutoReturn && !enableAutoSleep);
 }
 
 

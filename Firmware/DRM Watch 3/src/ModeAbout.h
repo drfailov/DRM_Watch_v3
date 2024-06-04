@@ -45,6 +45,7 @@ void modeAboutLoop(){
   drawStatusbar(395, 1, true);
   lcd()->setColorIndex(black);
   lcd()->setCursor(5, 234);  lcd()->print(version);
+  draw_ic33_qrcodex1(355, 180, black);
   #ifdef HW_REV_1
   lcd()->setCursor(5, 216);  lcd()->print("HW:Rev1");
   #endif

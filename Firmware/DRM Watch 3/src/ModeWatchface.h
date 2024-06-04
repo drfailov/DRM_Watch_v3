@@ -145,7 +145,7 @@ int drawStatusbar(int x, int y, bool drawTime, bool simulate){ //simulate is dra
     if(!simulate)draw_ic16_flashlight(x, y+4, black);
     x-=interval;
   }
-  if(dontSleep){
+  if(isDontSleep()){
     x -= 16;
     if(!simulate)draw_ic16_coffee(x, y+4, black);
     x-=interval;

@@ -23,6 +23,7 @@ void ModeAppsMenuButtonCenter();
 #include "ModeCalendar.h"
 #include "ModeAnt.h"
 #include "ModeTest.h"
+#include "ModeSerialLog.h"
 
 const int itemModeAppsBack=0;
 const int itemModeAppsAlarm=1;
@@ -33,12 +34,13 @@ const int itemModeAppsTimer=5;
 const int itemModeAppsStopwatch=6;
 const int itemModeAppsFlashlight=7;
 const int itemModeAppsDebug=8;
-const int itemModeAppsMeow=9;
-const int itemModeAppsLife=10;
-const int itemModeAppsFire=11;
-const int itemModeAppsLava=12;
-const int itemModeAppsRandom=13;
-const int itemModeAppsAnt=14;
+const int itemModeAppsSerialLog=9;
+const int itemModeAppsMeow=10;
+const int itemModeAppsLife=11;
+const int itemModeAppsFire=12;
+const int itemModeAppsLava=13;
+const int itemModeAppsRandom=14;
+const int itemModeAppsAnt=15;
 
 
 void setModeAppsMenu(){
@@ -58,7 +60,7 @@ void setModeAppsMenu(){
   autoReturnTime = autoReturnDefaultTime;
   autoSleepTime = autoSleepDefaultTime;
   selected = 0;
-  items = 15;
+  items = 16;
 }
 
 
@@ -83,12 +85,13 @@ void ModeAppsMenuLoop(){
   drawMenuItem(itemModeAppsStopwatch,  draw_ic24_stopwatch,  "Секундомір",                    false);
   drawMenuItem(itemModeAppsFlashlight, draw_ic24_flashlight2,"Ліхтарик",                      firstDraw);
   drawMenuItem(itemModeAppsDebug,      draw_ic24_bug,        "Інженерне меню",                false);
+  drawMenuItem(itemModeAppsSerialLog,  draw_ic24_bug,        "Лог UART",                      false);
   drawMenuItem(itemModeAppsMeow,       draw_ic24_meow,       "Meow",                          false);
-  drawMenuItem(itemModeAppsLife,       draw_ic24_life,       "Клітковий автомат \"Життя\"",   false);
-  drawMenuItem(itemModeAppsFire,       draw_ic24_fire,       "Вогонь",                        firstDraw);
+  drawMenuItem(itemModeAppsLife,       draw_ic24_life,       "Клітковий автомат \"Життя\"",   firstDraw);
+  drawMenuItem(itemModeAppsFire,       draw_ic24_fire,       "Вогонь",                        false);
   drawMenuItem(itemModeAppsLava,       draw_ic24_bubbles,    "Лава Лампа",                    false);
   drawMenuItem(itemModeAppsRandom,     draw_ic24_random,     "Випадковий шум",                false);
-  drawMenuItem(itemModeAppsAnt,        draw_ic24_ant2,       "Mypaxa Ленгтона",               false);
+  drawMenuItem(itemModeAppsAnt,        draw_ic24_ant2,       "Mypaxa Ленгтона",               firstDraw);
   
   lcd()->sendBuffer();
 }
@@ -125,6 +128,10 @@ void ModeAppsMenuButtonCenter(){
   }
   if(selected == itemModeAppsDebug){
     setModeTest();
+    return;
+  }
+  if(selected == itemModeAppsSerialLog){
+    setmodeSerialLog();
     return;
   }
   if(selected == itemModeAppsLife){
