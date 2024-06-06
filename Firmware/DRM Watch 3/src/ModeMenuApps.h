@@ -85,7 +85,7 @@ void ModeAppsMenuLoop(){
   drawMenuItem(itemModeAppsStopwatch,  draw_ic24_stopwatch,  "Секундомір",                    false);
   drawMenuItem(itemModeAppsFlashlight, draw_ic24_flashlight2,"Ліхтарик",                      firstDraw);
   drawMenuItem(itemModeAppsDebug,      draw_ic24_bug,        "Інженерне меню",                false);
-  drawMenuItem(itemModeAppsSerialLog,  draw_ic24_bug,        "Лог UART",                      false);
+  drawMenuItem(itemModeAppsSerialLog,  draw_ic24_terminal,   "Лог UART",                      false);
   drawMenuItem(itemModeAppsMeow,       draw_ic24_meow,       "Meow",                          false);
   drawMenuItem(itemModeAppsLife,       draw_ic24_life,       "Клітковий автомат \"Життя\"",   firstDraw);
   drawMenuItem(itemModeAppsFire,       draw_ic24_fire,       "Вогонь",                        false);
