@@ -47,9 +47,9 @@ void ModeMelodyListMenuLoop(){
   drawStatusbar(363, 1, true);
   drawMenuLegend();
   
-  drawMenuItem(itemModeMelodyListBack, draw_ic24_back, "Назад", firstDraw);
+  drawMenuItem(itemModeMelodyListBack, draw_ic24_back, "Назад", false);
   for(int i=0; i<getMelodyCount(); i++){
-    drawMenuItem(i+1, draw_ic24_music, getMelodyName(i).c_str(), firstDraw);
+    drawMenuItem(i+1, draw_ic24_music, getMelodyName(i).c_str(), firstDraw?(i+2)%4==0:false);
   }
 
   lcd()->sendBuffer();

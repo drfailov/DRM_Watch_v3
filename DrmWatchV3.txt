@@ -52,7 +52,8 @@ Believer: https://onlinesequencer.net/3600147
 X-Files: https://onlinesequencer.net/3756521
 Sleigh Ride: https://onlinesequencer.net/3988270 
 Кабак: https://onlinesequencer.net/4021427
- 
+Козацький марш: https://musescore.com/user/12233501/scores/5940733#comment-8527279
+Польська коровка: https://onlinesequencer.net/3400246#
  
 
 
@@ -548,7 +549,9 @@ Changelog:
 2024-06-06 v2.28  Доповнено документацію
 2024-06-16 v2.29  Додано мелодію: Tony Igy Astronomia
 2024-06-16 v2.29  Реалізовано: Автоматично відкладати будильник і таймер якшщо він не був зупинений користувачем
-
+2024-06-16 v2.29  Додано мелодію: Козацький марш 
+2024-06-16 v2.29  Додано мелодію: Польська Корівка 
+2024-06-16 v2.29  Оновлено правила анімації на екрані мелодій
 
 
 ==== todo:
@@ -590,6 +593,6 @@ Changelog:
 - Мелодія політ шмеля
 - Another Love https://onlinesequencer.net/3779810    https://onlinesequencer.net/3591566   https://onlinesequencer.net/2084958
 - На свою голову  
-- Козацький марш мелодія
+
 - Польська коробка трек
 
