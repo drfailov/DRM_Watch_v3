@@ -8,7 +8,7 @@ void modeTimerButtonUp();
 void modeTimerButtonCenter();
 void modeTimerButtonDown();
 int timerStep();
-void timerAlert();
+bool timerAlert();
 void resetTimer();
 bool timerAlertCheckButtons();
 
@@ -137,7 +137,10 @@ void timerLoop(){
     unsigned long now = rtcGetEpoch();
     unsigned long timerTime = getTimerTime();
     if(now >= startedTime+timerTime){
-      timerAlert();
+      bool alertResult = timerAlert();  //return true if was played completely or false if interrupted
+      //schedule timer if alert was missed          
+      if(alertResult && !isTimerRunning())
+        setTimerToMinutes(10);
     }
   }
 }
@@ -152,8 +155,8 @@ int timerStep(){
 }
 
 
-
-void timerAlert(){
+//return true if was played completely or false if interrupted
+bool timerAlert(){
   Serial.println(F("Open: timerAlert"));
   clearScreenAnimation();
   backlightOn();
@@ -190,17 +193,18 @@ void timerAlert(){
 
     for(int i=0; i<4; i++){
       buzTone(freq);
-      for(long st=millis(); millis()<st+50;) if(timerAlertCheckButtons()) return;
+      for(long st=millis(); millis()<st+50;) if(timerAlertCheckButtons()){ clearScreenAnimation(); return false;}
       buzNoTone(); 
-      for(long st=millis(); millis()<st+70;) if(timerAlertCheckButtons()) return;
+      for(long st=millis(); millis()<st+70;) if(timerAlertCheckButtons()){ clearScreenAnimation(); return false;}
     }
-    for(long st=millis(); millis()<st+500;) if(timerAlertCheckButtons()) return;
+    for(long st=millis(); millis()<st+500;) if(timerAlertCheckButtons()){ clearScreenAnimation();  return false;}
   }
   buzNoTone(); 
   //backlightOff();
   resetTimer();
   clearScreenAnimation();
   modeSetup(); 
+  return true;
 }
 
 bool timerAlertCheckButtons(){

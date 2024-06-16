@@ -89,7 +89,7 @@ struct Point{
 const int BUFF_SCALE = 2;  //screenBuffer  //2 is 3KB out of 8KB RTC Memory
 const int BUFF_W = W/BUFF_SCALE;   //screenBuffer
 const int BUFF_H = H/BUFF_SCALE;   //screenBuffer
-
+  
 String version = "FW:v2.29";          //================================== <<<<< VERSION
 bool black = 1;
 bool white = 0;

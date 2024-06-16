@@ -221,7 +221,13 @@ void alertLoop(){
           long playTime = 180000;
           sprintf(buffer, (getAlertName(alertIndex)+" (%02d:%02d)").c_str(), alertTimeHour, alertTimeMinute);
           melodyPlayerSetMelodyName(String(buffer));  //to draw on screen
-          while (melodyPlayerPlayMelody(getMelodyData(alertMelodyIndex), true) && millis() - timeStarted < playTime);
+          bool melodyPlayerResult = true;
+          while (melodyPlayerResult && millis() - timeStarted < playTime){
+            melodyPlayerResult = melodyPlayerPlayMelody(getMelodyData(alertMelodyIndex), true);  //return true if was played completely or false if interrupted
+          }
+          //schedule timer if alert was missed          
+          if(melodyPlayerResult && !isTimerRunning())
+            setTimerToMinutes(10);
         }
       }
     }
