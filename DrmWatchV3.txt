@@ -54,7 +54,7 @@ Sleigh Ride: https://onlinesequencer.net/3988270
 Кабак: https://onlinesequencer.net/4021427
 Козацький марш: https://musescore.com/user/12233501/scores/5940733#comment-8527279
 Польська коровка: https://onlinesequencer.net/4060224
- 
+Crab Rave: https://onlinesequencer.net/4060258
 
 
 Known Pins reserved on ESP32-S2 (Lolin S2 Mini):
@@ -552,7 +552,7 @@ Changelog:
 2024-06-16 v2.29  Додано мелодію: Козацький марш 
 2024-06-16 v2.29  Додано мелодію: Польська Корівка 
 2024-06-16 v2.29  Оновлено правила анімації на екрані мелодій
-
+2024-06-16 v2.29  Додано мелодію: Crab Rave
 
 ==== todo:
 - https://github.com/spacehuhntech/esp8266_deauther
@@ -577,7 +577,6 @@ Changelog:
 - Tetris Game
 - Перед вимкненням по таймеру щоб ліхтар мигав щосекунди
 - Якщо вимкнено анімацію входу в меню - тоді "життя" на циферблаті не працює
-
 - Збільшувати інтервал оновлення екрана якщо годинник розряджений
 - Провести ьести і вирішитм проблему зі станом глибокого розряду
 - 4100Hz кнопки
@@ -593,6 +592,5 @@ Changelog:
 - Мелодія політ шмеля
 - Another Love https://onlinesequencer.net/3779810    https://onlinesequencer.net/3591566   https://onlinesequencer.net/2084958
 - На свою голову  
-
 - Польська коробка трек
 
