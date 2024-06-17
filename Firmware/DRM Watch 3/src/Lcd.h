@@ -41,7 +41,7 @@ void lcdInit(){
     u8g2.begin();
   else
     u8g2.initInterface();
-  u8g2.setBusClock(2000000);   //1MHz is default, 2MHz is max recommended, 3.5MHz is still OK, 4MHz is glitchy, 5MHZ not working at all
+  u8g2.setBusClock(getLcdSpiSpeed());  
   u8g2.enableUTF8Print();  
   u8g2.setBitmapMode(0); //1-is transparent   0-not transparent
 }

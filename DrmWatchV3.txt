@@ -40,7 +40,7 @@ Icons used as reference:
  <a href="https://www.flaticon.com/free-icons/ringtone" title="ringtone icons">Ringtone icons created by AbtoCreative - Flaticon</a>
  <a href="https://www.flaticon.com/free-icons/car-lights" title="car lights icons">Car lights icons created by Smashicons - Flaticon</a>
  <a href="https://www.flaticon.com/free-icons/terminal" title="terminal icons">Terminal icons created by Bharat Icons - Flaticon</a>
- 
+ <a href="https://www.flaticon.com/free-icons/cardiac" title="cardiac icons">Cardiac icons created by Freepik - Flaticon</a>
  
  
  
@@ -554,6 +554,11 @@ Changelog:
 2024-06-16 v2.29  Оновлено правила анімації на екрані мелодій
 2024-06-16 v2.29  Доповнено документацію
 2024-06-16 v2.29  Додано мелодію: Crab Rave
+2024-06-17 v2.30  Виправлено: Якщо вийти з мелодії на ноті, вона залипає
+2024-06-17 v2.30  Реалізовано: налаштування частоти SPI дисплея
+2024-06-17 v2.30  Реалізовано: 4100Hz кнопки
+ 
+ 
 
 ==== todo:
 - https://github.com/spacehuhntech/esp8266_deauther
@@ -567,31 +572,25 @@ Changelog:
 - Фон мураха   (ic24_ant2)
 - Налаштування підсвітки, таймер та можливість вимкнути   (ic24_backlight)
 - Аналізатор кривої розряду
-- Налаштування частоти SPI
 - Налаштування інтервалу сну
 - Записник-емулятор флешки
 - esp-now messenger?
 - doom-nano
 - Log screen
-- COM термінал (писати на екран що приходить по юарту)
 - LCD Test mode
 - Tetris Game
 - Перед вимкненням по таймеру щоб ліхтар мигав щосекунди
 - Якщо вимкнено анімацію входу в меню - тоді "життя" на циферблаті не працює
 - Збільшувати інтервал оновлення екрана якщо годинник розряджений
 - Провести ьести і вирішитм проблему зі станом глибокого розряду
-- 4100Hz кнопки
 - Додати в доки: Як зібрати прошивку
 - Показувати чи не показувати легенду на циферблаті
 - Гра з динозавриком зубатом
-
-
-
 
 Малодії:
 - Star Wars
 - Мелодія політ шмеля
 - Another Love https://onlinesequencer.net/3779810    https://onlinesequencer.net/3591566   https://onlinesequencer.net/2084958
 - На свою голову  
-- Польська коробка трек
+- Рідна мати моя
 

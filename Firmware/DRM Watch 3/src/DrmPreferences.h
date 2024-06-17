@@ -16,6 +16,9 @@ bool getBlackValue();
 void saveInversionValue(bool value);
 void saveEnterAnimationValue(bool value);
 bool getEnterAnimationValue();
+unsigned long getLcdSpiSpeed();
+bool saveLcdSpiSpeed(unsigned long spiSpeed);
+
 //sound
 bool getMuteEnabled();
 bool saveMuteEnabled(bool value);
@@ -46,6 +49,7 @@ String getAlertName(int index);
 bool saveAlertName(int index, String newname);
 //timesync
 unsigned long getLastTimeSync();
+bool saveLastTimeSync(unsigned long epoch);
 bool getTimeSyncEnabled();
 bool saveTimeSyncEnabled(bool value);
 long getTimeOffsetSec();
@@ -55,7 +59,6 @@ bool saveLastChargedTime(unsigned long epoch);
 unsigned long getTimeSinceLastCharged();
 unsigned long getLastTryTimeSync();
 bool saveLastTryTimeSync(unsigned long epoch);
-bool saveLastTimeSync(unsigned long epoch);
 //stopwatch
 bool saveStopwatchStartedTime(unsigned long epoch);
 bool saveStopwatchFinishedTime(unsigned long epoch);
@@ -280,6 +283,12 @@ bool getEnterAnimationValue(){
 }
 void saveEnterAnimationValue(bool value){
   preferencesObject.putInt("screenInAnim", value?1:0);
+}
+unsigned long getLcdSpiSpeed(){
+  return preferencesObject.getULong64("spiSpeed", 2000000);   //1MHz is default, 2MHz is max recommended, 3.5MHz is still OK, 4MHz is glitchy, 5MHZ not working at all
+}
+bool saveLcdSpiSpeed(unsigned long spiSpeed){
+  return preferencesObject.putULong64("spiSpeed", spiSpeed) > 0;
 }
 
 //----------------------//---------------------- LAST CHARGED ------------//----------------------//----------------------//----------------------//----------------------

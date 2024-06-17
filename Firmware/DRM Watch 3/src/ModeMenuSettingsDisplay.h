@@ -12,15 +12,18 @@ void ModeMenuSettingsDisplayButtonCenter();
 #include "Icons.h"
 #include "ModeMenuSettings.h"
 #include "ModeMenuSettingsWatchfaceContent.h"
+#include "ModeSetLcdFrequency.h"
 #include "ModeSetWatchface.h"
 #include "ModeMainMenu.h"
 #include "DrmPreferences.h"
 
+
 const int ModeMenuSettingsDisplayItemBack = 0;
 const int ModeMenuSettingsDisplayItemSelectWatchface = 1;
 const int ModeMenuSettingsDisplayItemSelectWatchfaceContent = 2;
-const int ModeMenuSettingsDisplayItemInvertDisplay = 3;
-const int ModeMenuSettingsDisplayItemInAnimation = 4;
+const int ModeMenuSettingsDisplayItemLcdFrequency = 3;
+const int ModeMenuSettingsDisplayItemInvertDisplay = 4;
+const int ModeMenuSettingsDisplayItemInAnimation = 5;
 
 void setModeMenuSettingsDisplay(){
   clearScreenAnimation();
@@ -58,6 +61,7 @@ void ModeMenuSettingsDisplayLoop(){
   drawListItem(ModeMenuSettingsDisplayItemBack, draw_ic24_back, "Повернутись", "B меню налаштувань", firstDraw); //
   drawListItem(ModeMenuSettingsDisplayItemSelectWatchface, draw_ic24_watchface, "Обрати циферблат", "Дизайн відображення часу", firstDraw); //
   drawListItem(ModeMenuSettingsDisplayItemSelectWatchfaceContent, draw_ic24_checklist, "Вміст циферблату", "Чи показувати елементи циферблатів", firstDraw); //
+  drawListItem(ModeMenuSettingsDisplayItemLcdFrequency, draw_ic24_frequency, "Частота SPI", "Частота комунікації з дисплеєм", firstDraw); //
   drawListCheckbox(ModeMenuSettingsDisplayItemInvertDisplay, draw_ic24_invert, "Інвертувати екран", "Поміняти місцями чорне i біле", getInversionValue(), firstDraw); //
   drawListCheckbox(ModeMenuSettingsDisplayItemInAnimation, draw_ic24_animation, "Анімація входу в меню", "Поступова поява елементів меню", getEnterAnimationValue(), firstDraw); //
 
@@ -74,6 +78,10 @@ void ModeMenuSettingsDisplayButtonCenter(){
   }
   if(selected == ModeMenuSettingsDisplayItemSelectWatchfaceContent){
     setModeMenuSettingsWatchfaceContent();
+    return;
+  }
+  if(selected == ModeMenuSettingsDisplayItemLcdFrequency){
+    setmodeSetLcdFrequencyMenu();
     return;
   }
   if(selected == ModeMenuSettingsDisplayItemInvertDisplay){

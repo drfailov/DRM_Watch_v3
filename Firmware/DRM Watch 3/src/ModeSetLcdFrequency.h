@@ -1,0 +1,126 @@
+#ifndef modeSetLcdFrequency_H
+#define modeSetLcdFrequency_H
+
+/*PROTOTYPES*/
+void setmodeSetLcdFrequencyMenu();
+void modeSetLcdFrequencyMenuLoop();
+void modeSetLcdFrequencyMenuButtonUp();
+void modeSetLcdFrequencyMenuButtonCenter();
+void modeSetLcdFrequencyMenuButtonDown();
+
+#include "Global.h"
+#include "AutoSleep.h"
+#include "Button.h"
+#include "ModeMainMenu.h"
+#include "DrmPreferences.h"
+#include "ModeMenuSettingsTime.h"
+
+//int modeSetLcdFrequencyIndex = 0;
+//bool modeSetLcdFrequencyEditMode = false;
+
+//const int itemmodeSetLcdFrequencyBack=0;
+//const int itemmodeSetLcdFrequencyHour=1;
+
+void setmodeSetLcdFrequencyMenu(){
+  clearScreenAnimation();
+  Serial.println(F("Set mode: set LCD Frequency"));
+  modeSetup = setmodeSetLcdFrequencyMenu;
+  modeLoop = modeSetLcdFrequencyMenuLoop;
+  modeButtonUp = modeSetLcdFrequencyMenuButtonUp;
+  modeButtonCenter = modeSetLcdFrequencyMenuButtonCenter;
+  modeButtonDown = modeSetLcdFrequencyMenuButtonDown;
+  modeButtonUpLong = 0;
+  modeButtonCenterLong = 0;
+  modeButtonDownLong = 0;
+  registerAction();
+  enableAutoReturn = true;
+  enableAutoSleep = false; 
+  autoReturnTime = autoReturnDefaultTime;
+  autoSleepTime = autoSleepDefaultTime;
+  selected = 0;
+  items = 2;
+}
+
+
+void modeSetLcdFrequencyMenuLoop(){
+  lcd()->setColorIndex(white);
+  lcd()->drawBox(0, 0, 400, 240);
+
+  lcd()->setFont(u8g2_font_10x20_t_cyrillic);  //ok
+  lcd()->setColorIndex(black);
+  lcd()->setCursor(5, 18); 
+  lcd()->print("Частота SPI дисплея");
+
+  drawStatusbar(363, 1, true);
+  drawMenuLegend();
+  draw_ic16_back(lx(), ly2(), black);
+  // if(modeSetLcdFrequencyEditMode){
+     draw_ic16_plus(lx(), ly1(), black);
+     draw_ic16_minus(lx(), ly3(), black);
+  // }
+  
+  //drawMenuItem(itemmodeSetLcdFrequencyBack, draw_ic24_back, "Назад", firstDraw, 30, 32);
+
+  //lcd()->setFont(u8g2_font_10x20_t_cyrillic);  //ok
+  //lcd()->setColorIndex(black);
+  //lcd()->setCursor(30, 113); 
+  //lcd()->print("Час");
+  
+  unsigned long frequency = getLcdSpiSpeed();
+  //long hours = offset/(60*60);
+  //offset -= hours*(60*60);
+  //long minutes = offset/60;
+  String text = "";
+  text += frequency;
+  text += " Hz";
+  drawTextFrame(/*index*/0, /*text*/text.c_str(), /*name*/"Обрати частоту SPI дисплея", /*editMode*/false, /*animate*/firstDraw, /*x*/30, /*y*/35, /*width*/308);
+  lcd()->setFont(u8g2_font_10x20_t_cyrillic);
+  int y=90; int h = 17;
+  lcd()->setCursor(10, y+=h); lcd()->print("За замовчуванням: 2 000 000 Hz.");
+  lcd()->setCursor(10, y+=h); lcd()->print("Чим більша частота SPI, тим швидше");
+  lcd()->setCursor(10, y+=h); lcd()->print("працюватиме годинник.");
+  lcd()->setCursor(10, y+=h); lcd()->print("Оптимальне значення індивідуальне.");
+  lcd()->setCursor(10, y+=h); lcd()->print("Забагато-пошкодження зображення.");
+  lcd()->setCursor(10, y+=h); lcd()->print("Замало-повільна робота годинника.");
+  lcd()->sendBuffer();
+}
+
+void modeSetLcdFrequencyMenuButtonUp(){
+  // if(!modeSetLcdFrequencyEditMode){
+  //   modeMainMenuButtonUp();
+  //   return;
+  // }
+  // if(selected == itemmodeSetLcdFrequencyHour) 
+  //saveTimeOffsetSec(getTimeOffsetSec()+60*30);
+  
+  if(getLcdSpiSpeed() > 9000000)
+    return;
+
+  saveLcdSpiSpeed(getLcdSpiSpeed()+10000);
+  lcd()-> setBusClock(getLcdSpiSpeed());
+}
+void modeSetLcdFrequencyMenuButtonDown(){
+  // if(!modeSetLcdFrequencyEditMode){
+  //   modeMainMenuButtonDown();
+  //   return;
+  // }
+  // if(selected == itemmodeSetLcdFrequencyHour) 
+  //saveTimeOffsetSec(getTimeOffsetSec()-60*30);
+  if(getLcdSpiSpeed() < 30000)
+    return;
+  saveLcdSpiSpeed(getLcdSpiSpeed()-10000);
+  lcd()-> setBusClock(getLcdSpiSpeed());
+}
+void modeSetLcdFrequencyMenuButtonCenter(){
+  //if(selected == itemmodeSetLcdFrequencyBack){
+    setModeMenuSettingsDisplay();
+//    return;
+  //}
+  // if(selected==itemmodeSetLcdFrequencyHour){
+  //   modeSetLcdFrequencyEditMode = !modeSetLcdFrequencyEditMode;
+  //   return;
+  // }
+}
+
+
+#endif
