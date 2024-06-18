@@ -42,7 +42,7 @@ void setModeMenuSettingsDisplay(){
   autoReturnTime = autoReturnDefaultTime;
   autoSleepTime = autoSleepDefaultTime;
   selected = 0;
-  items = 5;
+  items = 6;
 }
 
 

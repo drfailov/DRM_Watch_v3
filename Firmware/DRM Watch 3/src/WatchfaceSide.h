@@ -11,22 +11,32 @@
 void drawWatchfaceSide(bool firstDraw){
   int x_del = 240;
 
-  if(getWatchfaceLifeBackgroundEnabled()){
+  if(getWatchfaceLifeBackgroundEnabled()){       //LIFE
     if(firstDraw && millis()>2000)
       randScreenBuffer();
     lifeStep();
     drawScreenBuffer(0,0,x_del/BUFF_SCALE,BUFF_H);
   }
-  else if(getWatchfaceFireBackgroundEnabled()){
+  else if(getWatchfaceFireBackgroundEnabled()){    //FIRE
     fireStep(x_del/BUFF_SCALE + 1);
     drawScreenBuffer(0,0,x_del/BUFF_SCALE,BUFF_H);
   }
-  else if(getWatchfaceLavaBackgroundEnabled()){
+  else if(getWatchfaceLavaBackgroundEnabled()){    //LAVA
     lavaStep(x_del/BUFF_SCALE + 1);
     drawScreenBuffer(0,0,x_del/BUFF_SCALE,BUFF_H);
   }
-  else if(getWatchfaceRandomBackgroundEnabled()){
+  else if(getWatchfaceRandomBackgroundEnabled()){    //RANDOM
     randScreenBuffer();
+    drawScreenBuffer(0,0,x_del/BUFF_SCALE,BUFF_H);
+  }
+  else if(getWatchfaceAntBackgroundEnabled()){    //ANT
+    if(firstDraw && millis()>2000)
+      antSpawn();
+    int speed = getAntSpeed();
+    if(speed < 1) speed = 1;
+    if(speed > 9999) speed = 9999;
+    for(int i=0; i<speed; i++)
+      antStep();
     drawScreenBuffer(0,0,x_del/BUFF_SCALE,BUFF_H);
   }
   else{

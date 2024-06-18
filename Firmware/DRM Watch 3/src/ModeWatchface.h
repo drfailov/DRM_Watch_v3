@@ -83,7 +83,6 @@ void modeWatchfaceLoop(){
 }
 
 void modeWatchfaceButtonUp(){
-  //ledFlashlightToggleTop();
   setModeStopwatch();
 }
 void modeWatchfaceButtonUpLong(){
@@ -91,7 +90,6 @@ void modeWatchfaceButtonUpLong(){
 }
 
 void modeWatchfaceButtonCenter(){
-  //ledFlashlightToggleBottom();
   ledFlashlightToggle();
 }
 void modeWatchfaceButtonCenterLong(){

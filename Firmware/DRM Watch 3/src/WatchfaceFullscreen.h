@@ -29,6 +29,16 @@ void drawWatchfaceFullscreen(bool firstDraw){
     randScreenBuffer();
     drawScreenBuffer();
   }
+  else if(getWatchfaceAntBackgroundEnabled()){    //ANT
+    if(firstDraw && millis()>2000)
+      antSpawn();
+    int speed = getAntSpeed();
+    if(speed < 1) speed = 1;
+    if(speed > 9999) speed = 9999;
+    for(int i=0; i<speed; i++)
+      antStep();
+    drawScreenBuffer();
+  }
   else{
     lcd()->setColorIndex(white);
     lcd()->drawBox(0, 0, 400, 240);
