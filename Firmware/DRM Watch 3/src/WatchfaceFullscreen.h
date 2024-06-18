@@ -29,6 +29,12 @@ void drawWatchfaceFullscreen(bool firstDraw){
     randScreenBuffer();
     drawScreenBuffer();
   }
+  else if(getWatchfaceDotsBackgroundEnabled()){  //DOTS
+    if(firstDraw && millis()>2000)
+      zeroScreenBuffer();
+    dotsStep();
+    drawScreenBuffer();
+  }
   else if(getWatchfaceAntBackgroundEnabled()){    //ANT
     if(firstDraw && millis()>2000)
       antSpawn();

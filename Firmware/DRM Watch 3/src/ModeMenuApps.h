@@ -23,6 +23,7 @@ void ModeAppsMenuButtonCenter();
 #include "ModeCalendar.h"
 #include "ModeAnt.h"
 #include "ModeTest.h"
+#include "ModeDots.h"
 #include "ModeSerialLog.h"
 
 const int itemModeAppsBack=0;
@@ -41,6 +42,7 @@ const int itemModeAppsFire=12;
 const int itemModeAppsLava=13;
 const int itemModeAppsRandom=14;
 const int itemModeAppsAnt=15;
+const int itemModeAppsDots=16;
 
 
 void setModeAppsMenu(){
@@ -60,7 +62,7 @@ void setModeAppsMenu(){
   autoReturnTime = autoReturnDefaultTime;
   autoSleepTime = autoSleepDefaultTime;
   selected = 0;
-  items = 16;
+  items = 17;
 }
 
 
@@ -92,6 +94,7 @@ void ModeAppsMenuLoop(){
   drawMenuItem(itemModeAppsLava,       draw_ic24_bubbles,    "Лава Лампа",                    false);
   drawMenuItem(itemModeAppsRandom,     draw_ic24_random,     "Випадковий шум",                false);
   drawMenuItem(itemModeAppsAnt,        draw_ic24_ant2,       "Mypaxa Ленгтона",               firstDraw);
+  drawMenuItem(itemModeAppsDots,       draw_ic24_pixels,     "Точки",                         false);
   
   lcd()->sendBuffer();
 }
@@ -160,6 +163,10 @@ void ModeAppsMenuButtonCenter(){
   }
   if(selected == itemModeAppsFlashlight){
     ledFlashlightToggle();
+    return;
+  }
+  if(selected == itemModeAppsDots){
+    setModeDots();
     return;
   }
   

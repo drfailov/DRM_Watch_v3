@@ -29,6 +29,12 @@ void drawWatchfaceSide(bool firstDraw){
     randScreenBuffer();
     drawScreenBuffer(0,0,x_del/BUFF_SCALE,BUFF_H);
   }
+  else if(getWatchfaceDotsBackgroundEnabled()){  //DOTS
+    if(firstDraw && millis()>2000)
+      zeroScreenBuffer();
+    dotsStep();
+    drawScreenBuffer(0,0,x_del/BUFF_SCALE,BUFF_H);
+  }
   else if(getWatchfaceAntBackgroundEnabled()){    //ANT
     if(firstDraw && millis()>2000)
       antSpawn();

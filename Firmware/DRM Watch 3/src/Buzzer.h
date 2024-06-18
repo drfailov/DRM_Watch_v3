@@ -69,7 +69,7 @@ void buzPlayChargerDisconnectedTone(){
   }
 }
 
-int buttonBeepCnt(){return 6;}
+int buttonBeepCnt(){return 7;}
 void buttonBeep(){
   if(getMuteEnabled()){
     buzNoTone();
@@ -97,6 +97,9 @@ void buttonBeep(){
     }
     if(sound == 5){
       buzzer.tone(4100, 10);
+    }
+    if(sound == 6){
+      buzzer.tone(1000, 70);
     }
   }
     
