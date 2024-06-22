@@ -46,11 +46,15 @@ void setup(void) {
   backlightInit();
   initButtons();
   initLed();
-  if(esp_sleep_get_wakeup_cause() == 0) drawMessage("Ініціалізація RTC...");
+  if(isBatteryCritical()){  //if deelpy discharged - go to sleep to let it charge
+    setModeOff();
+    return;
+  }
+  if(esp_sleep_get_wakeup_cause() == 0 && !isOff()) drawMessage("Ініціалізація RTC...");
   initRtc();
   initTime();
-  
-  if(esp_sleep_get_wakeup_cause() == 0){
+
+  if(esp_sleep_get_wakeup_cause() == 0){  //normal wakeup with animation and sound
     if(isButtonDownPressed()){
       setModeTest();
       return;
@@ -81,7 +85,7 @@ void setup(void) {
     firstDraw = true;
     setModeWatchface();
   }
-  else{
+  else{   //wakeup only to draw next frame
     modeSetup();
   }
 }

@@ -7236,7 +7236,7 @@
     (property "Reference" "R9" (at 29.21 139.7 0)
       (effects (font (size 1.27 1.27) bold) (justify left))
     )
-    (property "Value" "10K" (at 29.21 142.24 0)
+    (property "Value" "2K" (at 29.21 142.24 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Footprint" "Project-Lib:R_0603_1608Metric" (at 24.892 140.97 90)

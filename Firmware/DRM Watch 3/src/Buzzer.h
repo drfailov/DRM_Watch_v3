@@ -24,7 +24,7 @@ ToneESP32 buzzer(BUZZER_PIN, /*BUZZER_CHANNEL*/0);
 
 void buzzerInit(){
   if(getMuteEnabled()) return;
-  if(esp_sleep_get_wakeup_cause() == 0 && !isBatteryCritical()){ //reboot manually
+  if(esp_sleep_get_wakeup_cause() == 0 && !isBatteryCritical() && !isOff()){ //reboot manually
     buzzer.tone(3000, 50);
     buzzer.tone(2800, 50);
   }

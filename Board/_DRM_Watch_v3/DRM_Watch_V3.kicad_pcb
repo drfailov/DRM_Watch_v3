@@ -859,7 +859,7 @@
         (effects (font (size 0.1 0.1) (thickness 0.025)))
       (tstamp 066dd6fc-a1e4-4007-a851-fce1a0b74da8)
     )
-    (fp_text value "10K" (at 1.143 0.508 -90 unlocked) (layer "F.Fab")
+    (fp_text value "2K" (at 1.143 0.508 -90 unlocked) (layer "F.Fab")
         (effects (font (size 0.2 0.2) (thickness 0.025)) (justify right bottom))
       (tstamp d62ade72-12fe-4b9e-b5e6-30a6e5af2bc7)
     )

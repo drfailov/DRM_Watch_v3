@@ -11,20 +11,13 @@ void turnOn();
 #include "Button.h"
 #include "Lcd.h"
 
-RTC_DATA_ATTR bool deviceOff = false;
 
 void setModeOff(){
-  if(!isOff()){
-    clearScreenAnimation();
-    drawMessage("Вимкнення...");
-    delay(500);
-    lcd()->setColorIndex(white);
-    lcd()->drawBox(0, 0, 400, 240);
-    lcd()->sendBuffer();
-    delay(10);
-    lcdPowerOff();  
-  }
-  deviceOff = true;
+  lcd()->setColorIndex(white);
+  lcd()->drawBox(0, 0, 400, 240);
+  lcd()->sendBuffer();
+  delay(10);
+  lcdPowerOff();  
   modeSetup = setModeOff;
   modeLoop = modeOffLoop;
   modeButtonUp = 0;
@@ -76,7 +69,6 @@ bool isOff(){
 }
 
 void turnOn(){
-  deviceOff = false;
   ESP.restart();
 }
 

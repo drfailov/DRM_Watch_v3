@@ -93,6 +93,11 @@ void modeWatchfaceButtonCenter(){
   ledFlashlightToggle();
 }
 void modeWatchfaceButtonCenterLong(){
+  if(!isOff()){
+    clearScreenAnimation();
+    drawMessage("Вимкнення...");
+    delay(500);
+  }
   setModeOff();
 }
 

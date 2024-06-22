@@ -50,16 +50,22 @@ void IRAM_ATTR Led_ISR()
 
   unsigned long warningTime = 20;//s
   if(isFlasthilghTopOn()){
-    if(!dontSleep && sinceLastAction()>autoSleepDefaultTimeWhenFlashlightOn-(warningTime*1000))
-      ledFlashlightDimTop();
-    else 
+    if(!dontSleep && sinceLastAction()>autoSleepDefaultTimeWhenFlashlightOn-(warningTime*1000)){ //now is moment to warn user about flashlight will turn off soom
+      if(millis()%2000>1000) ledFlashlightDimTop();   //blink light to warn user
+      else ledFlashlightOnTop();
+    }
+    else {
       ledFlashlightOnTop();
+    }
   }
   if(isFlasthilghBottomOn()){
-    if(!dontSleep && sinceLastAction()>autoSleepDefaultTimeWhenFlashlightOn-(warningTime*1000))
-      ledFlashlightDimBottom();
-    else 
+    if(!dontSleep && sinceLastAction()>autoSleepDefaultTimeWhenFlashlightOn-(warningTime*1000)){ //now is moment to warn user about flashlight will turn off soom
+      if(millis()%2000>1000) ledFlashlightDimBottom();   //blink light to warn user
+      else ledFlashlightOnBottom();
+    }
+    else {
       ledFlashlightOnBottom();
+    }
   }
 }
 

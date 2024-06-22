@@ -39,7 +39,7 @@ void ModeDotsLoop(){
 }
 
 void dotsStep(){
-  for(int i=0; i<3; i++)
+  for(int i=0; i<10; i++)
     setScreenBuffer(rand()%BUFF_W, rand()%BUFF_H, true);
 }
 

@@ -106,6 +106,11 @@ void modeSettingsMenuButtonCenter(){
     return;
   }
   if(selected == itemModeSettingsShutdown){
+    if(!isOff()){
+      clearScreenAnimation();
+      drawMessage("Вимкнення...");
+      delay(500);
+    }
     setModeOff();
     return;
   }
