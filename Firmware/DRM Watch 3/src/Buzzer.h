@@ -25,29 +25,22 @@ ToneESP32 buzzer(BUZZER_PIN, /*BUZZER_CHANNEL*/0);
 void buzzerInit(){
   if(getMuteEnabled()) return;
   if(esp_sleep_get_wakeup_cause() == 0 && !isBatteryCritical() && !isOff()){ //reboot manually
-    buzzer.tone(3000, 50);
-    buzzer.tone(2800, 50);
+    buzTone(3000, 50);
+    buzTone(2800, 50);
   }
 }
-int freq = 0;
-void buzTone(int _freq){
-  freq=_freq;
+void buzTone(int freq){
+  float coef = getSoundCoef();
+  freq *= coef;
   buzzer.tone(freq);
 }
-void buzDownFreq(){
-  freq --;
-  buzTone(freq);
-}
-int buzGetFreq(){
-  return freq;
-}
-void buzTone(int _freq, int duration){
-  freq=_freq;
+void buzTone(int freq, int duration){
+  float coef = getSoundCoef();
+  freq *= coef;
   buzzer.tone(freq, duration);
 }
 void buzNoTone(){
   buzzer.noTone(); 
-  freq = 0;
 }
 
 void buzPlayChargerConnectedTone(){
@@ -82,24 +75,24 @@ void buttonBeep(){
       buzNoTone();
     }
     if(sound == 1){
-      buzzer.tone(2000, 50);
+      buzTone(2000, 50);
     }
     if(sound == 2){
-      buzzer.tone(3000, 40);
+      buzTone(3000, 40);
     }
     if(sound == 3){
-      buzzer.tone(2000, 15);
-      buzzer.tone(3000, 40);
+      buzTone(2000, 15);
+      buzTone(3000, 40);
     }
     if(sound == 4){
-      buzzer.tone(2000, 5);
-      buzzer.tone(1500, 5);
+      buzTone(2000, 5);
+      buzTone(1500, 5);
     }
     if(sound == 5){
-      buzzer.tone(4100, 10);
+      buzTone(4100, 10);
     }
     if(sound == 6){
-      buzzer.tone(1000, 70);
+      buzTone(1000, 70);
     }
   }
     
@@ -107,7 +100,7 @@ void buttonBeep(){
 void buttonLongBeep(){
   if(getMuteEnabled()) return;
   if(!isOff())
-    buzzer.tone(2000, 150);
+    buzTone(2000, 150);
 }
 
 
@@ -115,15 +108,15 @@ void buttonLongBeep(){
 void playInit(){
   if(getMuteEnabled()) return;
   for(byte i=2; i<5; i++){
-    buzzer.tone(i*1000, 100);
-    buzzer.noTone(); 
+    buzTone(i*1000, 100);
+    buzNoTone(); 
     delay(100);
   }
   for(byte i=0; i<6; i++){
     ledFlashlightOnTop();
-    buzzer.tone(5000, 30);  
+    buzTone(5000, 30);  
     ledFlashlightOffTop();
-    buzzer.noTone(); 
+    buzNoTone(); 
     delay(30);
   }
 }

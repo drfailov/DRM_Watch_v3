@@ -11,11 +11,13 @@ void ModeMenuSettingsSoundButtonCenter();
 #include "Buzzer.h"
 #include "AutoSleep.h"
 #include "ModeMainMenu.h"
+#include "ModeSetSoundTone.h"
 #include "Icons.h"
 
 const int ModeMenuSettingsSoundItemBack = 0;
 const int itemModeSettingsButtonSound=1;
 const int itemModeSettingsMute=2;
+const int itemModeSettingsSoundTone=3;
 
 void setModeMenuSettingsSound(){
   clearScreenAnimation();
@@ -34,7 +36,7 @@ void setModeMenuSettingsSound(){
   autoReturnTime = autoReturnDefaultTime;
   autoSleepTime = autoSleepDefaultTime;
   selected = 0;
-  items = 3;
+  items = 4;
 }
 
 void ModeMenuSettingsSoundLoop(){
@@ -53,6 +55,7 @@ void ModeMenuSettingsSoundLoop(){
   drawListItem(ModeMenuSettingsSoundItemBack, draw_ic24_back, "Повернутись", "B меню налаштувань", firstDraw); //
   drawListValue(itemModeSettingsButtonSound, draw_ic24_buttonsound, "Звук кнопок", "Обрати звук кнопок", getButtonSound(), firstDraw);
   drawListCheckbox(itemModeSettingsMute, draw_ic24_sound_mute, "Тихий режим", "Вимкнути все окрім мелодій", getMuteEnabled(), firstDraw);
+  drawListItem(itemModeSettingsSoundTone, draw_ic24_sound_on, "Тон звуку", "Змінити тон всього звуку", firstDraw);
   lcd()->sendBuffer();
 }
 
@@ -62,6 +65,10 @@ void ModeMenuSettingsSoundButtonCenter(){
   }
   if(selected==itemModeSettingsMute){
     saveMuteEnabled(!getMuteEnabled());
+    return;
+  }
+  if(selected==itemModeSettingsSoundTone){
+    setmodeSetSoundToneMenu();
     return;
   }
   if(selected == itemModeSettingsButtonSound){

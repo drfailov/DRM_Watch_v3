@@ -24,6 +24,8 @@ bool getMuteEnabled();
 bool saveMuteEnabled(bool value);
 int getButtonSound();
 bool saveButtonSound(int value);
+bool saveSoundCoef(float coef);
+float getSoundCoef();
 //SAVED WI-FI
 int wifiSlotCnt();
 String wifiSlotName(int slot);
@@ -306,13 +308,32 @@ bool saveLastChargedTime(){
   return saveLastChargedTime(rtcGetEpoch());
 }
 
-//----------------------//---------------------- MUTE -----------------//----------------------//----------------------//----------------------//----------------------
+//----------------------//---------------------- SOUND -----------------//----------------------//----------------------//----------------------//----------------------
 
 bool getMuteEnabled(){                   //123456789012345
   return preferencesObject.getInt((String("soundMute")).c_str() , 0)==1;
 }
 bool saveMuteEnabled(bool value){
   return preferencesObject.putInt((String("soundMute")).c_str(), value?1:0);
+}
+
+int getButtonSound(){
+  return preferencesObject.getInt("ButtonSound" , 1);
+}
+bool saveButtonSound(int value){
+  int totalSounds = buttonBeepCnt();
+  return preferencesObject.putInt("ButtonSound", value%totalSounds);
+}
+
+float soundCoefCache = -1;
+bool saveSoundCoef(float coef){
+  soundCoefCache = coef;
+  return preferencesObject.putFloat("soundCoef", coef) > 0;
+}
+float getSoundCoef(){
+  if(soundCoefCache == -1)
+    soundCoefCache = preferencesObject.getFloat("soundCoef", 1.0);
+  return soundCoefCache;
 }
 
 //----------------------//---------------------- ANT SPEED -----------------//----------------------//----------------------//----------------------//----------------------
@@ -324,16 +345,6 @@ bool saveAntSpeed(int value){
   return preferencesObject.putInt("AntSpeed", value);
 }
 
-//----------------------//---------------------- BUTTON SOUND -----------------//----------------------//----------------------//----------------------//----------------------
-
-
-int getButtonSound(){
-  return preferencesObject.getInt("ButtonSound" , 1);
-}
-bool saveButtonSound(int value){
-  int totalSounds = buttonBeepCnt();
-  return preferencesObject.putInt("ButtonSound", value%totalSounds);
-}
 
 //----------------------//---------------------- WATCHFACE -----------------//----------------------//----------------------//----------------------//----------------------
 
