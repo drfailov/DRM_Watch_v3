@@ -1,13 +1,48 @@
+Normal mode:
+USB\VID_303A&PID_80C2&REV_0100&MI_00
+
+Boot mode:
+USB\VID_303A&PID_0002&REV_0723&MI_00
+USB\VID_303A&PID_0002&REV_0723&MI_00
+
+ESP32, Boot Mode:
+USB\VID_10C4&PID_EA60&REV_0100
+
+
+
+Звіт з C#:
+Names:
+COM4
+COM19
+Descriptions:
+Silicon Labs CP210x USB to UART Bridge (COM19)
+Устройство с последовательным интерфейсом USB (COM4)
+IDs:
+USB\VID_10C4&PID_EA60\0001
+USB\VID_303A&PID_80C2&MI_00\7&2B9732AB&1&0000
+
+
+background:
+ECF0F1
+
+
+
+
+
+
+
+
+
+
+Команда прошивки
+
 esptool.exe --chip esp32-s2 --port "COM4" --baud "921600" --before default_reset --after hard_reset write_flash 0x0 "firmware_v2.33.bin"...
-
-
-
 esptool.exe --chip esp32-s2 --port "COM5" write_flash 0x0 "firmware_v2.33.bin"
-
-
-
-
-esptool.exe --chip esp32s2 --port "COM5" --baud 921600 --before default_reset --after hard_reset write_flash -z --flash_mode dio --flash_freq 80m --flash_size 4MB 0x1000 "C:\Data\Projects\2023-10-05 SHARP MEMORY LCD\Git\DRM_Watch_v3\Firmware\DRM Watch 3\.pio\build\lolin_s2_mini\bootloader.bin" 0x8000 "C:\Data\Projects\2023-10-05 SHARP MEMORY LCD\Git\DRM_Watch_v3\Firmware\DRM Watch 3\.pio\build\lolin_s2_mini\partitions.bin" 0xe000 "C:\Users\Dr. Failov\.platformio\packages\framework-arduinoespressif32\tools\partitions\boot_app0.bin" 0x10000 .pio\build\lolin_s2_mini\firmware.bin
+esptool.exe --chip esp32s2 --port "COM5" --baud 921600 --before default_reset --after hard_reset write_flash -z --flash_mode dio --flash_freq 80m 
+--flash_size 4MB 
+0x1000 "C:\Data\Projects\2023-10-05 SHARP MEMORY LCD\Git\DRM_Watch_v3\Firmware\DRM Watch 3\.pio\build\lolin_s2_mini\bootloader.bin" 
+0x8000 "C:\Data\Projects\2023-10-05 SHARP MEMORY LCD\Git\DRM_Watch_v3\Firmware\DRM Watch 3\.pio\build\lolin_s2_mini\partitions.bin" 
+0xe000 "C:\Users\Dr. Failov\.platformio\packages\framework-arduinoespressif32\tools\partitions\boot_app0.bin" 0x10000 .pio\build\lolin_s2_mini\firmware.bin
 
 ---------- WORKING ------------
 esptool.exe --chip esp32s2 --port "COM5" --baud 921600 --before default_reset --after hard_reset write_flash -z --flash_mode dio --flash_freq 80m --flash_size 4MB 0x1000 "bootloader.bin" 0x8000 "partitions.bin" 0xe000 "boot_app0.bin" 0x10000 "firmware.bin"
