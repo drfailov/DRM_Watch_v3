@@ -1,4 +1,4 @@
-22581174396264851
+22581195005369489
 Audio_Module
 Reverb_BTDR-1H
 Digital Reverberation Unit, http://www.belton.co.kr/inc/downfile.php?seq=17&file=pdf (footprint from http://www.uk-electronic.de/PDF/BTDR-1.pdf)
@@ -82481,7 +82481,7 @@ SOT TO_SOT_SMD
 5
 5
 Project-Lib
-OSC_XRCGB48M000F0Z00R0
+Oscilator
 
 
 0

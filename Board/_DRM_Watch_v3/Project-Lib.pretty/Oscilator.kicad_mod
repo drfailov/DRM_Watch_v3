@@ -1,11 +1,11 @@
-(footprint "OSC_XRCGB48M000F0Z00R0" (version 20221018) (generator pcbnew)
+(footprint "Oscilator" (version 20221018) (generator pcbnew)
   (layer "F.Cu")
   (attr smd)
   (fp_text reference "REF**" (at 0 0) (layer "F.Fab")
       (effects (font (size 0.15 0.15) (thickness 0.0375)))
     (tstamp 8d92b3e1-c56e-41ad-9f24-fb78e2b3366c)
   )
-  (fp_text value "OSC_XRCGB48M000F0Z00R0" (at 0 2.286 180) (layer "F.Fab") hide
+  (fp_text value "OSC" (at 0 2.286 180) (layer "F.Fab") hide
       (effects (font (size 0.15 0.15) (thickness 0.0375)))
     (tstamp 7cad3159-b599-4904-b027-ef97bf8b85f7)
   )
