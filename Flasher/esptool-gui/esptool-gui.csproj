@@ -33,7 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>icon256.ico</ApplicationIcon>
+    <ApplicationIcon>logo256.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -89,6 +89,15 @@
     <None Include="Resources\refresh-page-option.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="logo256.ico" />
+    <None Include="Resources\logout.png" />
+    <None Include="Resources\ic16_back.bmp" />
+    <None Include="Resources\maintenance.png" />
+    <None Include="Resources\boot-mode-success.png" />
+    <None Include="Resources\boot-mode-help_v2.png" />
+    <None Include="Resources\boot-mode-connected_v21.png" />
+    <None Include="Resources\boot-mode-connected_v2.png" />
+    <None Include="Resources\boot-mode-connected.png" />
     <None Include="Resources\list.png" />
     <None Include="Resources\loading-96p.gif" />
     <None Include="Resources\boot-mode-help.png" />

@@ -1266,15 +1266,15 @@
       (property "ki_description" "ESP32-S2 family is a highly-integrated, low-power, 2.4GHz Wi-Fi System-on-Chip (SoC) solution." (at 0 0 0)
         (effects (font (size 1.27 1.27)) hide)
       )
-      (symbol "ESP32-S2_0_0"
-        (text "ESP32-S2" (at 0 0 0)
-          (effects (font (size 2.54 2.54)))
-        )
-      )
       (symbol "ESP32-S2_0_1"
         (rectangle (start -35.56 40.64) (end 35.56 -40.64)
           (stroke (width 0) (type default))
           (fill (type background))
+        )
+      )
+      (symbol "ESP32-S2_1_0"
+        (text "ESP32-S2FN4R2" (at 0 0 0)
+          (effects (font (size 2.54 2.54)))
         )
       )
       (symbol "ESP32-S2_1_1"
@@ -5083,7 +5083,7 @@
     (property "Reference" "U1" (at 181.2641 153.67 0)
       (effects (font (size 1.27 1.27)) (justify left) hide)
     )
-    (property "Value" "ESP32-S2" (at 181.2641 156.21 0)
+    (property "Value" "ESP32-S2FN4R2" (at 181.2641 156.21 0)
       (effects (font (size 1.27 1.27)) (justify left) hide)
     )
     (property "Footprint" "Project-Lib:QFN-56-1EP_7x7mm_P0.4mm_EP4x4mm_ThermalVias" (at 179.07 165.1 0)
@@ -5101,7 +5101,7 @@
     (property "Role" "Main controller" (at 179.07 110.49 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (property "Description" "ESP32-S2 Programmable Microcontroller Chip" (at 179.07 110.49 0)
+    (property "Description" "ESP32-S2FN4R2 Programmable Microcontroller Chip" (at 179.07 110.49 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (pin "26" (uuid a9a996bb-bf82-486c-a3fb-f9aa9a4dc315))

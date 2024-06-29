@@ -63,6 +63,36 @@ namespace esptool_gui.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap boot_mode_connected {
+            get {
+                object obj = ResourceManager.GetObject("boot-mode-connected", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap boot_mode_connected_v2 {
+            get {
+                object obj = ResourceManager.GetObject("boot-mode-connected_v2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap boot_mode_connected_v21 {
+            get {
+                object obj = ResourceManager.GetObject("boot-mode-connected_v21", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap boot_mode_help {
             get {
                 object obj = ResourceManager.GetObject("boot-mode-help", resourceCulture);
@@ -73,9 +103,39 @@ namespace esptool_gui.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap boot_mode_help_v2 {
+            get {
+                object obj = ResourceManager.GetObject("boot-mode-help_v2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap boot_mode_success {
+            get {
+                object obj = ResourceManager.GetObject("boot-mode-success", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap BootMode {
             get {
                 object obj = ResourceManager.GetObject("BootMode", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ic16_back {
+            get {
+                object obj = ResourceManager.GetObject("ic16_back", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -106,6 +166,26 @@ namespace esptool_gui.Properties {
         internal static System.Drawing.Bitmap loading64 {
             get {
                 object obj = ResourceManager.GetObject("loading64", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap logout {
+            get {
+                object obj = ResourceManager.GetObject("logout", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap maintenance {
+            get {
+                object obj = ResourceManager.GetObject("maintenance", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

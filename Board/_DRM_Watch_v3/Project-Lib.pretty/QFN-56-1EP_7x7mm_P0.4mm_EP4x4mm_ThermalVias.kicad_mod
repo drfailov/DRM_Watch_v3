@@ -11,8 +11,8 @@
       (effects (font (size 0.1 0.1) (thickness 0.025)))
     (tstamp 0cace94f-d52c-4ca0-8fc7-b79d583dab8a)
   )
-  (fp_text user "ESP32-S2" (at 0 0 unlocked) (layer "F.Fab")
-      (effects (font (size 0.6 0.6) (thickness 0.15)))
+  (fp_text user "ESP32-S2FN4R2" (at 0 0 unlocked) (layer "F.Fab")
+      (effects (font (size 0.5 0.5) (thickness 0.125)))
     (tstamp 36db73ba-2ee3-4437-9d97-04c91f607338)
   )
   (fp_text user "${REFERENCE}" (at 0 -2.2098) (layer "F.Fab") hide

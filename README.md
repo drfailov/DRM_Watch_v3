@@ -659,10 +659,19 @@ https://www.aliexpress.us/item/1005002805132028.html  <br>
    <br>
    
    
-   
+
+### Як прошити годинник
+<p align="center">
+<img src="Photos/flasher-wait.png" height=180"/> 
+<img src="Photos/flasher-connected.png" height=180"/> 
+<img src="Photos/flasher-complete.png" height=180"/> 
+</p>
+Найпростіший спосіб - скористатись програмою флешером.  <br>
+В релізі можна знайти готову програму яка вже включає в себе файли з потрібною прошивкою.  <br>
+Потрібно тільки підключити годинник в режимі прошивки і далі слідувати інструкції.     <br>
    
 ### Як скомпілювати прошивку
-- Скачати **VSCode** (В у мене 1.89.1)
+- Скачати **VSCode** (У мене 1.89.1)
 https://code.visualstudio.com/docs/?dv=win64user
 - Встановити розширення **PlatformIO** (у мене Core 6.1.15·Home 3.4.4)   
 Extensions -> в пошук "PlatformIO IDE" -> Install

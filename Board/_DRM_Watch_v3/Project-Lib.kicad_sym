@@ -690,7 +690,7 @@
     (property "Reference" "U" (at -35.56 45.72 0)
       (effects (font (size 1.27 1.27)) (justify left) hide)
     )
-    (property "Value" "ESP32-S2" (at -35.56 43.18 0)
+    (property "Value" "ESP32-S2FN4R2" (at -35.56 43.18 0)
       (effects (font (size 1.27 1.27)) (justify left) hide)
     )
     (property "Footprint" "Project-Lib:QFN-56-1EP_7x7mm_P0.4mm_EP4x4mm_ThermalVias" (at 0 -54.61 0)
@@ -699,7 +699,7 @@
     (property "Datasheet" "https://www.espressif.com/sites/default/files/documentation/esp32-s2_datasheet_en.pdf" (at 0 -57.15 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (property "Link" "https://www.tme.eu/en/details/esp32s2/iot-wifi-bluetooth-modules/espressif/esp32-s2/" (at 0 0 0)
+    (property "Link" "https://www.tme.eu/ua/details/esp32s2fn4r2/moduli-iot-wifi-bluetooth/espressif/esp32-s2fn4r2" (at 0 0 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Manufacturer" "Espressif" (at 0 0 0)
@@ -708,15 +708,15 @@
     (property "ki_description" "ESP32-S2 family is a highly-integrated, low-power, 2.4GHz Wi-Fi System-on-Chip (SoC) solution." (at 0 0 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (symbol "ESP32-S2_0_0"
-      (text "ESP32-S2" (at 0 0 0)
-        (effects (font (size 2.54 2.54)))
-      )
-    )
     (symbol "ESP32-S2_0_1"
       (rectangle (start -35.56 40.64) (end 35.56 -40.64)
         (stroke (width 0) (type default))
         (fill (type background))
+      )
+    )
+    (symbol "ESP32-S2_1_0"
+      (text "ESP32-S2FN4R2" (at 0 0 0)
+        (effects (font (size 2.54 2.54)))
       )
     )
     (symbol "ESP32-S2_1_1"
