@@ -583,13 +583,14 @@ https://www.aliexpress.us/item/і232
 
 ## Плата
 <p align="center">
-<img src="Photos/board1.png" height="300"/>  
-<img src="Photos/board3.png" height="300"/>  
+<img src=""Board\Photos\v4.png" height="300"/>  
 </p>
 <p align="center">
-<img src="Photos/board2.png" height="150"/>  
-<img src="Photos/board4.png" height="150"/>  
-<img src="Photos/board5.png" height="150"/>  
+<img src="Photos/board1.png" height="100"/>  
+<img src="Photos/board3.png" height="100"/>  
+<img src="Photos/board2.png" height="100"/>  
+<img src="Photos/board4.png" height="100"/>  
+<img src="Photos/board5.png" height="100"/>  
 </p>
 
 Корпус спроектований під плату товщиною **0.8mm**. Колір плати можна обирати на свій смак, я обирав чорні.  <br>
@@ -604,10 +605,10 @@ https://www.aliexpress.us/item/і232
 додано елементи які відповідають за роботу вібро. Поки програмно він ніяк не задіяний, але хай буде.
 
 <br>
-Щоб замовити собі плату, можна скористатись файлами в папках GERBER. 
+Щоб замовити собі плату, можна скористатись файлами в папках GERBER. Знаходяться вони тут: `Board\Gerber OUTPUTs`
 Ці файли достатньо завантажити на сайт не виготовляють плати, я замовляв у **jlcpcb.com**. 
 Там одразу має бути видно як виглядатиме плата.   <br>
-Якщо потрібно щось поміняти - ставимо KiKad, відкриваєм проект `\Board\_DRM_Watch_v3` і можна міняти.   <br>
+Якщо потрібно щось поміняти - ставимо KiKad, відкриваєм проект `Board\KiCad Project\_DRM_Watch_v3\DRM_Watch_V3.kicad_pro` і можна міняти.   <br>
 Експортувати Gerber на Drl можна в редакторі плат KiKad.  <br>
 Також в схемі в проекті я до кожного елемента пододавав інфу про те де його можна замовити (якщо знаю звісно)  <br>
 
