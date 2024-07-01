@@ -583,7 +583,7 @@ https://www.aliexpress.us/item/і232
 
 ## Плата
 <p align="center">
-<img src=""Board/Photos/v4.png" height="330"/>  
+<img src="Board/Photos/v4.png" height="330"/>  
 </p>
 <p align="center">
 <img src="Photos/board1.png" height="100"/>  
