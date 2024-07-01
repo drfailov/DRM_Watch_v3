@@ -467,16 +467,23 @@ https://www.aliexpress.com/item/1005005579653583.html
 
 
 ### Гвинти для задньої кришки
-<p align="center"><img src="Photos/" height="200"/>  </p>
+<p align="center"><img src="Photos/screws-m14.png" height="200"/>  </p>
 
-Я їх брав з материнки мавіка 3.
-Тип: PH000, M1.4, 4mm
+Я їх брав з материнки мавіка 3.  <br>
+Тип: PH000, M1.4, 3mm  <br>  <br>
+Приклад де замовити:  <br>
+Обрати Size: M1.4 X 50pcs   Length: 3mm  <br>
+https://www.aliexpress.com/item/1005002364568213.html  <br>
 
 ### Гвинти для передньої кришки
-<p align="center"><img src="Photos/" height="200"/>  </p>
+<p align="center"><img src="Photos/screw-case.png" height="200"/>  </p>
 
-Я їх брав з Nokia 1280, вона скручена на такі.
-Тип: T5, 1.5mm по пластику 
+Я їх брав з Nokia 1280, вона скручена на такі.  <br>
+Тип: T5, 1.5mm по пластику   <br>
+
+Схожі можна замовити тут:  <br>
+В складі набору є гвинти 1.4мм, вони мають підійти.  <br>
+https://www.aliexpress.com/item/1005002324715062.html  <br>
 
 
 ### Електролюмінесцентна панель
@@ -554,7 +561,7 @@ https://www.aliexpress.us/item/1005006026719458.html   <br>
 
 
 ### Заглушка роз'єма USB
-<p align="center"><img src="Photos/mechan.png" height="200"/>  </p>
+<p align="center"><img src="Photos/dust-plug.png" height="200"/>  </p>
 
 Оскільки годинник використовується в умовах високої вологи та поту, нагальною є проблема 
 окислення роз'єма USB, що з часом призводить до того що роз'єм працює нестабільно, а годинник 
@@ -563,7 +570,7 @@ https://www.aliexpress.us/item/1005006026719458.html   <br>
 Лишається тільки не загубити її:)  <br>
 <br>
 Я їх купував тут:  <br>
-https://www.aliexpress.us/item/і232
+https://www.aliexpress.com/item/4000148621089.html
 
 
 ## Корпус
