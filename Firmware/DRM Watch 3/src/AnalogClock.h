@@ -5,6 +5,7 @@
 void drawClock(int centerX, int centerY, float clockRadius, float h, float m);
 void drawThickLine(float centerX, float centerY, float toX, float toY, float thickness);
 void drawArrow(float centerX, float centerY, float toX, float toY, float thickness);
+float map(float x, float in_min, float in_max, float out_min, float out_max);
 
 #include "Lcd.h"
 
@@ -61,12 +62,20 @@ void animateClock(int centerX, int centerY, float clockRadius, float h, float m)
 
 
 void drawClock(int centerX, int centerY, float clockRadius, float h, float m) {
+  bool debug = false;
+  if(debug){Serial.print("h=");Serial.print(h);}
+  if(debug){Serial.print("; m=");Serial.print(m);}
+  
+
   // drawClock();
   // return;
   //додати корекцію годинникової стрілки щоб вона враховувала хвилини
   float hour12 = fmod(h,12);
   float hourIncludingMinutes = hour12+((m) / 60.0);
   h=hourIncludingMinutes;
+  
+  if(debug){Serial.print("; hour12=");Serial.print(hour12);}
+  if(debug){Serial.print("; hourIncludingMinutes=");Serial.print(hourIncludingMinutes);}
 
   //фон+контур
   float ringSize = max(clockRadius*0.05, 2.0);
@@ -125,7 +134,14 @@ void drawClock(int centerX, int centerY, float clockRadius, float h, float m) {
   lcd()->drawDisc(centerX, centerY, 7);
 
   // Малюємо стрілку годин
-  float hourAngleRad = map(h, 0, 12, PI/2, PI/2 - 2*PI);
+  float angleStart = PI/2.0;
+  float angleEnd = PI/2.0 - 2.0*PI;
+  float hourAngleRad = map(h, 0, 12, angleStart, angleEnd);
+  
+  if(debug){Serial.print("; angleStart=");Serial.print(angleStart);}
+  if(debug){Serial.print("; angleEnd=");Serial.print(angleEnd);}
+  if(debug){Serial.print("; hourAngleRad=");Serial.print(hourAngleRad);}
+  if(debug){Serial.print("; h=");Serial.print(h);}
   int handHSize = (clockRadius-20) * 0.65;
   int hourX = centerX + handHSize * cos(hourAngleRad);
   int hourY = centerY - handHSize * sin(hourAngleRad);
@@ -137,6 +153,10 @@ void drawClock(int centerX, int centerY, float clockRadius, float h, float m) {
   int minuteX = centerX + handMSize * cos(minuteAngleRad);
   int minuteY = centerY - handMSize * sin(minuteAngleRad);
   drawArrow(centerX, centerY, minuteX, minuteY, clockRadius*0.022);
+  if(debug){Serial.print("; minuteAngleRad=");Serial.print(minuteAngleRad);}
+
+  
+  if(debug){Serial.println(";");}
 }
 
 void drawArrow(float centerX, float centerY, float toX, float toY, float thickness){//draw arrow and with thickness (how many layers to add over this line )

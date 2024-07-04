@@ -59,7 +59,7 @@ Sleigh Ride: https://onlinesequencer.net/3988270
 Польська коровка: https://onlinesequencer.net/4060224
 Crab Rave: https://onlinesequencer.net/4060258
 Angry birds: https://onlinesequencer.net/4070106
-
+Benny Hill Theme: https://onlinesequencer.net/4086342
 
 Known Pins reserved on ESP32-S2 (Lolin S2 Mini):
 GPIO 7: SPI SCK
@@ -594,16 +594,17 @@ Changelog:
 2024-07-01  Розкладено по папкам файли що стосуються плати
 2024-07-01  Трохи наведено лад в файлах
 2024-07-01  Додано ссилки і товари до документа readme
+2024-07-04 v2.34 Виправлено:   Час стрілками тупо не працює
+2024-07-04 v2.34 Додано мелодію: Benny Hill
+
 
 ==== todo:
 - https://github.com/spacehuhntech/esp8266_deauther
 - Опція обрати мову прямо в меню
 - Налаштування анімації - анімація виходу - обрати   (ic24_animation)
 - game pong
-- auto-finding when Life is cycled and restart automatically
 - Налаштування дій кнопок на циферблаті   (ic24_shortcut)
 - Налаштування підсвітки, таймер та можливість вимкнути   (ic24_backlight)
-- Аналізатор кривої розряду
 - Записник-емулятор флешки
 - esp-now messenger?
 - doom-nano
@@ -612,10 +613,6 @@ Changelog:
 - Провести ьести і вирішитм проблему зі станом глибокого розряду
 - Гра з динозавриком зубатом
 - Чомусь іноді не додає точки на фон "точки"
-Додати в доку заглушки ЮСБ
-Додати в доку гвинти
-
-
 
 
 Малодії:
@@ -624,9 +621,6 @@ Changelog:
 - Another Love https://onlinesequencer.net/3779810    https://onlinesequencer.net/3591566   https://onlinesequencer.net/2084958
 - На свою голову  
 - Рідна мати моя
-- Bad piggies: https://onlinesequencer.net/4066766 
-- Angry Birds: https://onlinesequencer.net/2460738
-- мелодія бенні мучі
 - Rickroll melody
 - 
 - 
