@@ -128,6 +128,10 @@ void ModeAppsMenuButtonCenter(){
     setmodeSerialLog();
     return;
   }
+  if(selected == itemModeAppsSettings){
+    setModeSettingsMenu();
+    return;
+  }
   if(selected == itemModeAppsBackgrounds){
     setModeBackgroundsMenu();
     return;

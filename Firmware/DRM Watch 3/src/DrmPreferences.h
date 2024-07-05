@@ -3,6 +3,9 @@
 
 /*PROTOTYPES*/
 int getPreferencesFreeSpace();
+//SHORTCUTS
+int getActionId(int eventId, int defaultActionId);
+bool saveActionId(int eventId, int actionId);
 //timer
 bool saveTimerStartedTime(unsigned long epoch);
 bool saveTimerTime(unsigned long epoch);
@@ -126,6 +129,14 @@ Preferences preferencesObject;
 
 void initPreferences(){
   preferencesObject.begin("drm-watch-v3", false);
+}
+
+//----------------------//---------------------- SHORTCUTS ----------//----------------------//----------------------//----------------------//----------------------
+int getActionId(int eventId, int defaultActionId){          //123456789012345
+  return preferencesObject.getInt((String("action")+eventId).c_str() , defaultActionId);
+}
+bool saveActionId(int eventId, int actionId){
+  return preferencesObject.putInt((String("action")+eventId).c_str(), actionId);
 }
 
 //----------------------//---------------------- TIMER ----------//----------------------//----------------------//----------------------//----------------------
