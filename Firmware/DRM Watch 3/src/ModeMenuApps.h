@@ -25,6 +25,7 @@ void ModeAppsMenuButtonCenter();
 #include "ModeTest.h"
 #include "ModeDots.h"
 #include "ModeSerialLog.h"
+#include "ModeMenuBackgrounds.h"
 
 const int itemModeAppsBack=0;
 const int itemModeAppsAlarm=1;
@@ -37,12 +38,7 @@ const int itemModeAppsFlashlight=7;
 const int itemModeAppsDebug=8;
 const int itemModeAppsSerialLog=9;
 const int itemModeAppsMeow=10;
-const int itemModeAppsLife=11;
-const int itemModeAppsFire=12;
-const int itemModeAppsLava=13;
-const int itemModeAppsRandom=14;
-const int itemModeAppsAnt=15;
-const int itemModeAppsDots=16;
+const int itemModeAppsBackgrounds=11;
 
 
 void setModeAppsMenu(){
@@ -62,7 +58,7 @@ void setModeAppsMenu(){
   autoReturnTime = autoReturnDefaultTime;
   autoSleepTime = autoSleepDefaultTime;
   selected = 0;
-  items = 17;
+  items = 12;
 }
 
 
@@ -89,12 +85,7 @@ void ModeAppsMenuLoop(){
   drawMenuItem(itemModeAppsDebug,      draw_ic24_bug,        "Інженерне меню",                false);
   drawMenuItem(itemModeAppsSerialLog,  draw_ic24_terminal,   "Лог UART",                      false);
   drawMenuItem(itemModeAppsMeow,       draw_ic24_meow,       "Meow",                          false);
-  drawMenuItem(itemModeAppsLife,       draw_ic24_life,       "Клітковий автомат \"Життя\"",   firstDraw);
-  drawMenuItem(itemModeAppsFire,       draw_ic24_fire,       "Вогонь",                        false);
-  drawMenuItem(itemModeAppsLava,       draw_ic24_bubbles,    "Лава Лампа",                    false);
-  drawMenuItem(itemModeAppsRandom,     draw_ic24_random,     "Випадковий шум",                false);
-  drawMenuItem(itemModeAppsAnt,        draw_ic24_ant2,       "Mypaxa Ленгтона",               firstDraw);
-  drawMenuItem(itemModeAppsDots,       draw_ic24_pixels,     "Точки",                         false);
+  drawMenuItem(itemModeAppsBackgrounds,draw_ic24_watchface,  "Заставки",                      firstDraw);
   
   lcd()->sendBuffer();
 }
@@ -137,36 +128,8 @@ void ModeAppsMenuButtonCenter(){
     setmodeSerialLog();
     return;
   }
-  if(selected == itemModeAppsLife){
-    setModeLife();
-    return;
-  }
-  if(selected == itemModeAppsAnt){
-    setModeAnt();
-    return;
-  }
-  if(selected == itemModeAppsFire){
-    setModeFire();
-    return;
-  }
-  if(selected == itemModeAppsLava){
-    setModeLava();
-    return;
-  }
-  if(selected == itemModeAppsRandom){
-    setModeRandom();
-    return;
-  }
-  if(selected == itemModeAppsSettings){
-    setModeSettingsMenu();
-    return;
-  }
-  if(selected == itemModeAppsFlashlight){
-    ledFlashlightToggle();
-    return;
-  }
-  if(selected == itemModeAppsDots){
-    setModeDots();
+  if(selected == itemModeAppsBackgrounds){
+    setModeBackgroundsMenu();
     return;
   }
   

@@ -13,6 +13,7 @@ void lifeStep();
 #include "Button.h"
 #include "ScreenBuffer.h"
 #include "ModeMenuApps.h"
+#include "ModeMenuBackgrounds.h"
 
 void setModeLife(){
   clearScreenAnimation();
@@ -43,15 +44,15 @@ void ModeLifeLoop(){
 }
 
 void ModeLifeButtonUp(){
-  setModeAppsMenu();
+  setModeBackgroundsMenu();
 }
 
 void ModeLifeButtonCenter(){
-  setModeAppsMenu();
+  setModeBackgroundsMenu();
 }
 
 void ModeLifeButtonDown(){
-  setModeAppsMenu();
+  setModeBackgroundsMenu();
 }
 
 

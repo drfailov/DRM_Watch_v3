@@ -26,6 +26,7 @@ void fireStep(int w);
 #include "Button.h"
 #include "ScreenBuffer.h"
 #include "ModeMenuApps.h"
+#include "ModeMenuBackgrounds.h"
 
 #define ONE 0x400
 #define FRAC_BITS 10
@@ -451,15 +452,15 @@ void lavaStep(int w){  //process not full but left part to W (BUFFER COORDINATES
 
 
 void ModeFireButtonUp(){
-  setModeAppsMenu();
+  setModeBackgroundsMenu();
 }
 
 void ModeFireButtonCenter(){
-  setModeAppsMenu();
+  setModeBackgroundsMenu();
 }
 
 void ModeFireButtonDown(){
-  setModeAppsMenu();
+  setModeBackgroundsMenu();
 }
 
 

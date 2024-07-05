@@ -11,6 +11,7 @@ void dotsStep();
 #include "Global.h"
 #include "AutoSleep.h"
 #include "Button.h"
+#include "ModeMenuBackgrounds.h"
 
 
 void setModeDots(){
@@ -44,15 +45,15 @@ void dotsStep(){
 }
 
 void ModeDotsButtonUp(){
-  setModeAppsMenu();
+  setModeBackgroundsMenu();
 }
 
 void ModeDotsButtonCenter(){
-  setModeAppsMenu();
+  setModeBackgroundsMenu();
 }
 
 void ModeDotsButtonDown(){
-  setModeAppsMenu();
+  setModeBackgroundsMenu();
 }
 
 

@@ -10,6 +10,7 @@ void ModeRandomButtonDown();
 #include "Global.h"
 #include "AutoSleep.h"
 #include "Button.h"
+#include "ModeMenuBackgrounds.h"
 
 
 void setModeRandom(){
@@ -41,15 +42,15 @@ void ModeRandomLoop(){
 }
 
 void ModeRandomButtonUp(){
-  setModeAppsMenu();
+  setModeBackgroundsMenu();
 }
 
 void ModeRandomButtonCenter(){
-  setModeAppsMenu();
+  setModeBackgroundsMenu();
 }
 
 void ModeRandomButtonDown(){
-  setModeAppsMenu();
+  setModeBackgroundsMenu();
 }
 
 

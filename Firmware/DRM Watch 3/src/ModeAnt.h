@@ -16,6 +16,7 @@ void antStep();
 #include "ScreenBuffer.h"
 #include "DrmPreferences.h"
 #include "ModeMenuApps.h"
+#include "ModeMenuBackgrounds.h"
 
 RTC_DATA_ATTR int antX = 0; // BUFFER COORDINATES!!!
 RTC_DATA_ATTR int antY = 0;  // BUFFER COORDINATES!!!
@@ -63,7 +64,7 @@ void ModeAntButtonUp(){
 }
 
 void ModeAntButtonCenter(){
-  setModeAppsMenu();
+  setModeBackgroundsMenu();
 }
 
 void ModeAntButtonDown(){
