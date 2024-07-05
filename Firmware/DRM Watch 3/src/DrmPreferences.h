@@ -6,6 +6,8 @@ int getPreferencesFreeSpace();
 //SHORTCUTS
 int getActionId(int eventId, int defaultActionId);
 bool saveActionId(int eventId, int actionId);
+int getActionArgument(int eventId);
+bool saveActionArgument(int eventId, int value);
 //timer
 bool saveTimerStartedTime(unsigned long epoch);
 bool saveTimerTime(unsigned long epoch);
@@ -137,6 +139,13 @@ int getActionId(int eventId, int defaultActionId){          //123456789012345
 }
 bool saveActionId(int eventId, int actionId){
   return preferencesObject.putInt((String("action")+eventId).c_str(), actionId);
+}
+
+int getActionArgument(int eventId){          //123456789012345
+  return preferencesObject.getInt((String("actArg")+eventId).c_str() , 0);
+}
+bool saveActionArgument(int eventId, int value){
+  return preferencesObject.putInt((String("actArg")+eventId).c_str(), value);
 }
 
 //----------------------//---------------------- TIMER ----------//----------------------//----------------------//----------------------//----------------------
