@@ -17,15 +17,17 @@ void modeMainMenuButtonDown();
 #include "ModeMenuSettingsTime.h"
 #include "ModeMenuSettingsSound.h"
 #include "ModeSavedWiFiList.h"
+#include "ShortcutManager.h"
 
 const int itemModeSettingsBack=0;
 const int itemModeSettingsCategoryTime=1;
 const int itemModeSettingsCategoryDisplay=2;
 const int itemModeSettingsCategoryWiFi=3;
 const int itemModeSettingsCategorySound=4;
-const int itemModeSettingsReboot=5;
-const int itemModeSettingsShutdown=6;
-const int itemModeSettingsAbout=7;
+const int itemModeSettingsCategoryShortcuts=5;
+const int itemModeSettingsReboot=6;
+const int itemModeSettingsShutdown=7;
+const int itemModeSettingsAbout=8;
 
 void setModeSettingsMenu(){
   clearScreenAnimation();
@@ -44,7 +46,7 @@ void setModeSettingsMenu(){
   autoReturnTime = autoReturnDefaultTime;
   autoSleepTime = autoSleepDefaultTime;
   selected = 0;
-  items = 8;
+  items = 9;
 }
 
 
@@ -63,8 +65,9 @@ void modeSettingsMenuLoop(){
   drawListItem(itemModeSettingsBack,                 draw_ic24_back,       "Назад",                 "Повернутись до меню програм",           firstDraw);
   drawListItem(itemModeSettingsCategoryTime,         draw_ic24_clock,      "Дата та час",           "Налаштування що стосуються часу",       firstDraw);
   drawListItem(itemModeSettingsCategoryDisplay,      draw_ic24_display,    "Дисплей",               "Параметри відображення",                firstDraw);
-  drawListItem(itemModeSettingsCategoryWiFi,         draw_ic24_wifi_3,     "Wi-Fi",                 "Мережі для доступу до Інтернет",        firstDraw); /*draw_ic24_saved*/
+  drawListItem(itemModeSettingsCategoryWiFi,         draw_ic24_wifi_3,     "Wi-Fi",                 "Мережі для доступу до Інтернет",        firstDraw);
   drawListItem(itemModeSettingsCategorySound,        draw_ic24_sound_on,   "Звук",                  "Налаштування що стосуються звуку",      firstDraw);
+  drawListItem(itemModeSettingsCategoryShortcuts,    draw_ic24_shortcut,   "Швидкий доступ",        "Встановити дії на кнопки",              firstDraw);
   drawListItem(itemModeSettingsReboot,               draw_ic24_reboot,     "Перезавантажити",       "Перезавантажити годинник",              firstDraw);
   drawListItem(itemModeSettingsShutdown,             draw_ic24_shutdown,   "Вимкнути",              "Вимкнути годинник",                     firstDraw);
   drawListItem(itemModeSettingsAbout   ,             draw_ic24_about,      "Про годинник",          "Інформація про розробника",             firstDraw);
@@ -94,24 +97,16 @@ void modeSettingsMenuButtonCenter(){
     setModeMenuSettingsSound();
     return;
   }
+  if(selected==itemModeSettingsCategoryShortcuts){
+    setModeShortcutListEventsMenu();
+    return;
+  }
   if(selected==itemModeSettingsReboot){
-    //modeButtonUpLong(); //since this var is not set, it will reboot system
-    clearScreenAnimation();
-    Wire.flush();
-    delay(50);
-    Wire.end();
-    delay(50);
-    esp_restart();
-    delay(50);
+    reboot();
     return;
   }
   if(selected == itemModeSettingsShutdown){
-    if(!isOff()){
-      clearScreenAnimation();
-      drawMessage("Вимкнення...");
-      delay(500);
-    }
-    setModeOff();
+    turnOff();
     return;
   }
   if(selected == itemModeSettingsAbout){
