@@ -31,15 +31,11 @@ int autoSleepTime = autoSleepDefaultTime;//ms
 
 
 void autoSleepLoop(){
-  
   if(sinceLastAction() > autoReturnTimeMs()) //auto go to watchface
     setModeWatchface();
   
   if(sinceLastAction() > autoSleepTimeMs())
     goToSleep();
-  // int _autoSleepTime = isFlashlightOn()?autoSleepDefaultTimeWhenFlashlightOn:autoSleepTime;
-  // if(enableAutoSleep && !isChargerConnected() && sinceLastAction() > _autoSleepTime && !dontSleep) //auto go to sleep
-  //   goToSleep();
 
   
   if(esp_sleep_get_wakeup_cause() == ESP_SLEEP_WAKEUP_TIMER)/*periodical wakeup*/
