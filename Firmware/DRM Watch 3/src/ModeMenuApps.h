@@ -112,6 +112,10 @@ void ModeAppsMenuButtonCenter(){
     setModeStopwatch();
     return;
   }
+  if(selected==itemModeAppsFlashlight){
+    ledFlashlightToggle();
+    return;
+  }
   if(selected==itemModeAppsMeow){
     setModeMeow();
     return;
