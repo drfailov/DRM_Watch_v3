@@ -142,8 +142,8 @@ void initPreferences()
 
 //----------------------//---------------------- BATTERY ----------//----------------------//----------------------//----------------------//----------------------
 void resetBatteryCalibrationData(){
-  saveBatteryMinVoltage(3500);
-  saveBatteryMaxVoltage(4000);
+  preferencesObject.remove("batteryMin");
+  preferencesObject.remove("batteryMax");
 }
 int getBatteryMinVoltage()
 { // 123456789012345
@@ -155,7 +155,7 @@ bool saveBatteryMinVoltage(int minVoltage)
 }
 int getBatteryMaxVoltage()
 {                               // 123456789012345
-  return preferencesObject.getInt("batteryMax", 4000);
+  return preferencesObject.getInt("batteryMax", 3900);
 }
 bool saveBatteryMaxVoltage(int minVoltage)
 {
