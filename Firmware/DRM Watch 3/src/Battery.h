@@ -50,20 +50,28 @@ void drawBattery(int x, int y){
 }
 
 
-RTC_DATA_ATTR float previousVoltage = 3600; //mv
 float readSensBatteryVoltage(){
   float currentVoltage = linearInterpolate((int)readSensBatteryRaw(), batteryCalibration, batteryCalibrationCnt);
-  previousVoltage += (currentVoltage-previousVoltage) * 0.1;  //smoothing to prevent jumps
-  return previousVoltage;
+  return currentVoltage;
 }
 
 byte batteryBars(){
+  bool charger = isChargerConnected();
   int voltage = readSensBatteryVoltage();
+  int max = getBatteryMaxVoltage();
+  int min = getBatteryMinVoltage();
+  int d=max-min;
+  if(voltage < min && !charger && voltage > 2500){
+    saveBatteryMinVoltage(min+(voltage-min)*0.05);  //3500+(2800-3500)*0.2 = 3500-700*0.2 = 3500-140 = 3360
+  }
+  if(voltage > max && !charger && voltage < 4300)
+    saveBatteryMaxVoltage(max+(voltage-max)*0.05);  //4000+(4200-4000)*0.2 = 4000+200*0.2 = 4000+40 = 4040
+  
   byte level = 0;
-  if (voltage >= 3350) level = 1;
-  if (voltage >= 3650) level = 2;
-  if (voltage >= 3850) level = 3;
-  if (voltage >= 3950) level = 4;
+  if (voltage >= min+d*0.43) level = 1;  //3350 = 2400+(4200-2500)*x
+  if (voltage >= min+d*0.63) level = 2;  //3650 = 2400+(4200-2500)*x 
+  if (voltage >= min+d*0.76) level = 3;  //3850 = 2400+(4200-2500)*x
+  if (voltage >= min+d*0.83) level = 4;  //3950 = 2400+(4200-2500)*x
   return level;
 }
 

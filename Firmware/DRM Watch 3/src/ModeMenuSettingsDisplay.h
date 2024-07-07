@@ -24,6 +24,7 @@ const int ModeMenuSettingsDisplayItemSelectWatchfaceContent = 2;
 const int ModeMenuSettingsDisplayItemLcdFrequency = 3;
 const int ModeMenuSettingsDisplayItemInvertDisplay = 4;
 const int ModeMenuSettingsDisplayItemInAnimation = 5;
+const int ModeMenuSettingsDisplayItemResetBatteryBars = 6;
 
 void setModeMenuSettingsDisplay(){
   clearScreenAnimation();
@@ -42,7 +43,7 @@ void setModeMenuSettingsDisplay(){
   autoReturnTime = autoReturnDefaultTime;
   autoSleepTime = autoSleepDefaultTime;
   selected = 0;
-  items = 6;
+  items = 7;
 }
 
 
@@ -64,7 +65,7 @@ void ModeMenuSettingsDisplayLoop(){
   drawListItem(ModeMenuSettingsDisplayItemLcdFrequency, draw_ic24_frequency, "Частота SPI", "Частота комунікації з дисплеєм", firstDraw); //
   drawListCheckbox(ModeMenuSettingsDisplayItemInvertDisplay, draw_ic24_invert, "Інвертувати екран", "Поміняти місцями чорне i біле", getInversionValue(), firstDraw); //
   drawListCheckbox(ModeMenuSettingsDisplayItemInAnimation, draw_ic24_animation, "Анімація входу в меню", "Поступова поява елементів меню", getEnterAnimationValue(), firstDraw); //
-
+  drawListItem(ModeMenuSettingsDisplayItemResetBatteryBars, draw_ic24_battery50, "Скинути калібровку батареї", "Якщо \"Палички\" неправильні", firstDraw); //
   lcd()->sendBuffer();
 }
 
@@ -92,6 +93,11 @@ void ModeMenuSettingsDisplayButtonCenter(){
   }  
   if(selected == ModeMenuSettingsDisplayItemInAnimation){
     saveEnterAnimationValue(!getEnterAnimationValue());
+    return;
+  }  
+  if(selected == ModeMenuSettingsDisplayItemResetBatteryBars){
+    resetBatteryCalibrationData();
+    drawMessage("Калібровку батареї скинуто", "Проведіть повний цикл для калібровки", true);
     return;
   }  
 }

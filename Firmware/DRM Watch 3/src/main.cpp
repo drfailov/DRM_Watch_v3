@@ -36,20 +36,20 @@
 
 void setup(void) {
   if(esp_sleep_get_wakeup_cause() != ESP_SLEEP_WAKEUP_TIMER && !isOff())/*NOT periodical wakeup*/
-    Serial.begin(115200);  
+    Serial.begin(115200);   
   initPreferences();
   black = getBlackValue(); //load from memory
   white = getWhiteValue(); //load from memory
+  if(readSensBatteryVoltage() < 3100){  //if deelpy discharged - go to sleep to let it charge
+    setModeOff();
+    return;
+  }
   buzzerInit();
   if(esp_sleep_get_wakeup_cause() == ESP_SLEEP_WAKEUP_EXT0/*By button*/) buttonBeep();
   lcdInit();
   backlightInit();
   initButtons();
   initLed();
-  if(isBatteryCritical()){  //if deelpy discharged - go to sleep to let it charge
-    setModeOff();
-    return;
-  }
   if(esp_sleep_get_wakeup_cause() == 0 && !isOff()) drawMessage("Ініціалізація RTC...");
   initRtc();
   initTime();
@@ -68,7 +68,7 @@ void setup(void) {
     int x=130;
     displayDrawVector(getPathZubat(), x, 60, 3.0, 3, 0, black);
     lcd()->sendBuffer();
-    if(!isBatteryCritical()){
+    if(readSensBatteryVoltage() > 3100){
       ledSelftest();
       playInit();
     }
