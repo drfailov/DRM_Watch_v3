@@ -33,7 +33,7 @@ const char* eventName[] = {
 #define ACTION_OPEN_APPS 14
 #define ACTION_SET_TIMER_TO 15
 const int actionCnt = 9;
-const char* actionName[] = {
+const char *actionName[] = {
     /* 0 */ "Нічого не робити",
     /* 1 */ "Відкрити таймер",           
     /* 2 */ "Відкрити секундомір",     
@@ -63,6 +63,8 @@ void ModeShortcutEventSettingsMenuButtonCenter();
 #include "DrmPreferences.h"
 #include "ModeStopwatch.h"
 #include "ModeTimer.h"
+#include "ModeListSelection.h"
+
 
 
 void runAction(int actionId)
@@ -233,7 +235,15 @@ void ModeShortcutEventSettingsMenuButtonCenter()
   }
   
   if(selected == itemModeShortcutEventSettingsAction){
-    setModeShortcutListEventsMenu();
+    /*
+    const char **actionN = actionName;
+    drawMessage(actionN[0], actionN[1], true);
+    */
+    ModeListSelection_List = actionName;
+    ModeListSelection_Name = eventName[ModeShortcutEventSettings_EventId];
+    ModeListSelection_Cnt = actionCnt;
+    ModeListSelection_Selected = getActionId(ModeShortcutEventSettings_EventId);
+    setModeListSelection();
     return;
   }
 }
