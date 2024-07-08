@@ -18,6 +18,21 @@ void wakeup_reason();
 #include "DrmPreferences.h"
 
 
+#include <WiFi.h>
+#include <esp_wifi.h>
+void printMacAddress(){
+  uint8_t baseMac[6];
+  esp_err_t ret = esp_wifi_get_mac(WIFI_IF_STA, baseMac);
+  if (ret == ESP_OK) {
+    sprintf(buffer, "%02x:%02x:%02x:%02x:%02x:%02x\n",
+                  baseMac[0], baseMac[1], baseMac[2],
+                  baseMac[3], baseMac[4], baseMac[5]);
+    lcd()->print(buffer);
+  } else {
+    lcd()->print("Failed to read MAC address");
+  }
+}
+
 void setModeTest(){
   clearScreenAnimation();
   Serial.println(F("Set mode: Test"));
@@ -34,6 +49,7 @@ void setModeTest(){
   enableAutoSleep = true; 
   autoReturnTime = autoReturnDefaultTime;
   autoSleepTime = autoSleepDefaultTime;
+  WiFi.mode(WIFI_STA);
 }
 
 void modeTestLoop(){ 
@@ -69,7 +85,7 @@ void modeTestLoop(){
   y+=interval; lcd()->setCursor(x, y); lcd()->print("Preferences remaining memory: "); lcd()->print(getPreferencesFreeSpace());
   y+=interval; lcd()->setCursor(x, y); lcd()->print("RAM State: "); lcd()->print(esp_get_free_heap_size());  lcd()->print(",  ");  lcd()->print(ESP.getFreeHeap()); //RAM diagnosis
 
-  y+=interval; lcd()->setCursor(x, y); lcd()->print("SPI Clock: "); lcd()->print(lcd()->getBusClock());
+  y+=interval; lcd()->setCursor(x, y); lcd()->print("MAC: "); printMacAddress();
   //uint32_t getBusClock(void);
   //void setBusClock(uint32_t clock_speed);
   
@@ -81,6 +97,7 @@ if(esp_sleep_get_wakeup_cause() != ESP_SLEEP_WAKEUP_TIMER) //if wake by timer, d
     lcd()->sendBuffer();
 }
 
+
 void modeTestButtonUp(){
   //goToSleep();
   switchDontSleep();
@@ -88,6 +105,7 @@ void modeTestButtonUp(){
 
 void modeTestButtonCenter(){
   setModeAppsMenu();
+  wifiOff();
 }
 
 void modeTestButtonDown(){
