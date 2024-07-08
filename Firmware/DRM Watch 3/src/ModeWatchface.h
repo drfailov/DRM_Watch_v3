@@ -14,7 +14,7 @@ void modeWatchfaceButtonCenter();
 void modeWatchfaceButtonDown();
 void modeWatchfaceButtonUpLong();
 void modeWatchfaceButtonCenterLong();
-void modeWatchfaceButtonDownLong();
+//void modeWatchfaceButtonDownLong();
 void switchDontSleep();
 
 #include "Global.h"
@@ -63,7 +63,7 @@ void setModeWatchface()
   modeButtonDown = modeWatchfaceButtonDown;
   modeButtonUpLong = modeWatchfaceButtonUpLong;
   modeButtonCenterLong = modeWatchfaceButtonCenterLong;
-  modeButtonDownLong = modeWatchfaceButtonDownLong;
+  modeButtonDownLong = 0;
   enableAutoReturn = false;
   enableAutoSleep = true;
   autoReturnTime = autoReturnDefaultTime;
@@ -105,12 +105,13 @@ void modeWatchfaceButtonCenterLong()
 
 void modeWatchfaceButtonDown()
 {
-  shortcutRun(EVENT_WF_BUT_DN_PRESS);
+  //shortcutRun(EVENT_WF_BUT_DN_PRESS);
+  setModeAppsMenu();
 }
-void modeWatchfaceButtonDownLong()
-{
-  shortcutRun(EVENT_WF_BUT_DN_LONG);
-}
+// void modeWatchfaceButtonDownLong()
+// {
+//   shortcutRun(EVENT_WF_BUT_DN_LONG);
+// }
 
 void switchDontSleep()
 {

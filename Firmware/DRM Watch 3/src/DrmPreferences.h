@@ -11,6 +11,7 @@ bool saveBatteryMaxVoltage(int minVoltage);
 void resetBatteryCalibrationData();
 // SHORTCUTS
 int getActionId(int eventId, int defaultActionId);
+int getActionId(int eventId);
 bool saveActionId(int eventId, int actionId);
 int getActionArgument(int eventId);
 bool saveActionArgument(int eventId, int value);
@@ -164,6 +165,11 @@ bool saveBatteryMaxVoltage(int minVoltage)
 //----------------------//---------------------- SHORTCUTS ----------//----------------------//----------------------//----------------------//----------------------
 int getActionId(int eventId, int defaultActionId)
 { // 123456789012345
+  return preferencesObject.getInt((String("action") + eventId).c_str(), defaultActionId);
+}
+int getActionId(int eventId)
+{ // 123456789012345
+  int defaultActionId = defaultAction(eventId);
   return preferencesObject.getInt((String("action") + eventId).c_str(), defaultActionId);
 }
 bool saveActionId(int eventId, int actionId)
