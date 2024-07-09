@@ -90,7 +90,7 @@ const int BUFF_SCALE = 2;  //screenBuffer  //2 is 3KB out of 8KB RTC Memory
 const int BUFF_W = W/BUFF_SCALE;   //screenBuffer
 const int BUFF_H = H/BUFF_SCALE;   //screenBuffer
   
-String version = "FW:v2.38";          //================================== <<<<< VERSION
+String version = "FW:v2.39";          //================================== <<<<< VERSION
 bool black = 1;
 bool white = 0;
 
@@ -103,6 +103,7 @@ int frame = 2; //global for menus
 typedef void (*Runnable)();
 typedef void (*WatchfaceDrawable)(bool firstDraw);
 typedef void (*Drawable)(int x,int y, bool color);
+typedef const char* (*Textable)(int index); //replacing arrays
 RTC_DATA_ATTR Runnable modeSetup;
 Runnable modeLoop = 0;
 Runnable modeButtonUp = 0;

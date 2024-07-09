@@ -5,6 +5,8 @@
 int melodyPlayerGetLength(const int* melody);
 bool melodyPlayerProcessButtons(bool alarm);
 void melodyPlayerDrawScreen(bool alarm);
+const char* getMelodyNameC(int index);
+String getMelodyName(int index);
 
 #include "Lcd.h"
 #include "Led.h"
@@ -111,11 +113,17 @@ int getMelodyCount(){
    return sizeof(melodies)/sizeof(melodies[0]);
 }
 
-String getMelodyName(int index){
+const char* getMelodyNameC(int index)
+{
+   return melodies[index].name.c_str();
+}
+String getMelodyName(int index)
+{
    return melodies[index].name;
 }
 
-const int* getMelodyData(int index){
+const int* getMelodyData(int index)
+{
    return melodies[index].data;
 }
 

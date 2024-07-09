@@ -4,12 +4,9 @@
 void setModeListSelection();
 void ModeListSelectionLoop();
 void ModeListSelectionButtonCenter();
-/*
-const char **actionN = actionName;
-drawMessage(actionN[0], actionN[1], true);
-*/
+
 const char *ModeListSelection_Name;      //fill this before call
-const char **ModeListSelection_List;    //fill this before call
+Textable ModeListSelection_Items;       //fill this before call
 int ModeListSelection_Selected;         //fill this before call
 int ModeListSelection_Cnt;              //fill this before call
 Runnable ModeListSelection_OnSelected;  //fill this before call
@@ -33,9 +30,9 @@ void drawListItem(byte index, Drawable drawIcon, const char* name, bool animate)
   int lines = 8;
   if(selected/(lines) != index/(lines)) return;
   const int xOffset = 10;
-  const int yOffset = 28;
+  const int yOffset = 26;
   const int width=345;
-  const int height=25;
+  const int height=26;
   const int margin = -2;
   int x = xOffset;
   int y = yOffset + (height+margin) * ((index%(lines)));
@@ -55,7 +52,7 @@ void drawListItem(byte index, Drawable drawIcon, const char* name, bool animate)
   
   lcd()->setFont(u8g2_font_10x20_t_cyrillic);  //ok
   lcd()->setColorIndex(selected == index?white:black);
-  lcd()->setCursor(x+30, y+17); lcd()->print(name);
+  lcd()->setCursor(x+30, y+18); lcd()->print(name);
   //lcd()->setFont(u8g2_font_unifont_t_cyrillic);  //ok
   if(selected == index){
     lcd()->setFont(u8g2_font_10x20_t_cyrillic);  //ok
@@ -105,19 +102,17 @@ void ModeListSelectionLoop(){
 
   drawMenuLegend();
   drawStatusbar(363, 1, true);
-  /*
-const char **actionN = actionName;
-drawMessage(actionN[0], actionN[1], true);
-*/
+
   for(int i=0; i<ModeListSelection_Cnt; i++)
-    drawListItem(i, draw_ic16_hashtag, ModeListSelection_List[i], firstDraw & i%2);
+    drawListItem(i, ModeListSelection_Selected==i?draw_ic16_check:draw_ic16_empty, ModeListSelection_Items(i), firstDraw&i%2);
 
   lcd()->sendBuffer();
 }
 
 void ModeListSelectionButtonCenter(){
-  if(selected == ModeListSelectionItemBack){
-      setModeSettingsMenu();
+  ModeListSelection_Selected = selected;
+  if(ModeListSelection_OnSelected != 0){
+      ModeListSelection_OnSelected();
   }
 }
 

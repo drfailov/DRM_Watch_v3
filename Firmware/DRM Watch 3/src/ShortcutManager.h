@@ -48,7 +48,7 @@ const char *actionName[] = {
 
 int defaultAction(int eventId);
 void shortcutRun(int eventId);
-void runAction(int actionId);
+void runAction(int actionId, int actionArgument);
 void setModeShortcutListEventsMenu();
 void ModeShortcutListEventsMenuLoop();
 void ModeShortcutListEventsMenuButtonCenter();
@@ -56,7 +56,9 @@ int ModeShortcutEventSettings_EventId = 0;
 void setModeShortcutEventSettingsMenu();
 void ModeShortcutEventSettingsMenuLoop();
 void ModeShortcutEventSettingsMenuButtonCenter();
-
+void onActionSelected();
+void onMelodySelected();
+const char* getActioNameC(int index);
 
 
 
@@ -64,28 +66,37 @@ void ModeShortcutEventSettingsMenuButtonCenter();
 #include "ModeStopwatch.h"
 #include "ModeTimer.h"
 #include "ModeListSelection.h"
+#include "MelodyPlayer.h"
 
 
 
-void runAction(int actionId)
+const char* getActioNameC(int index)
+{
+  return actionName[index];
+}
+void runAction(int actionId, int actionArgument)
 {
     switch (actionId)
     {
     case ACTION_OPEN_STOPWATCH:
-        setModeStopwatch();
-        break;
+      setModeStopwatch();
+      break;
     case ACTION_OPEN_TIMER:
-        setModeTimer();
-        break;
+      setModeTimer();
+      break;
     case ACTION_TURNOFF:
-        turnOff();
-        break;
+      turnOff();
+      break;
     case ACTION_TOGGLE_FLASHLIGHT:
-        ledFlashlightToggle();
-        break;
+      ledFlashlightToggle();
+      break;
     case ACTION_OPEN_APPS:
-        setModeAppsMenu();
-        break;
+      setModeAppsMenu();
+      break;
+    case ACTION_PLAY_MELODY:
+      melodyPlayerSetMelodyName(getMelodyName(actionArgument));  //to draw on screen
+      melodyPlayerPlayMelody(getMelodyData(actionArgument), false);
+      break;
     
     default:
         break;
@@ -95,7 +106,8 @@ void runAction(int actionId)
 void shortcutRun(int eventId)
 {
     int actionId = getActionId(eventId, defaultAction(eventId));
-    runAction(actionId);
+    int actionArgument = getActionArgument(eventId);
+    runAction(actionId, actionArgument);
 }
 
 int defaultAction(int eventId)
@@ -170,9 +182,12 @@ void ModeShortcutListEventsMenuButtonCenter(){
     setModeSettingsMenu();
     return;
   }
-  if(selected > 0 && selected <= eventCnt){
+  if(selected > 0 && selected < eventCnt){
     ModeShortcutEventSettings_EventId = selected;
     setModeShortcutEventSettingsMenu();
+  }
+  if(selected == eventCnt){
+    drawMessage("Цей пункт не змінити", "Зарезервовано на відкриття меню", true);
   }
 
 }
@@ -185,6 +200,7 @@ void ModeShortcutListEventsMenuButtonCenter(){
 
 const int itemModeShortcutEventSettingsBack=0;
 const int itemModeShortcutEventSettingsAction=1;
+const int itemModeShortcutEventSettingsArgument=2;
 
 void setModeShortcutEventSettingsMenu()
 {
@@ -204,7 +220,7 @@ void setModeShortcutEventSettingsMenu()
   autoReturnTime = autoReturnDefaultTime;
   autoSleepTime = autoSleepDefaultTime;
   selected = 0;
-  items = 2;
+  items = 3;
 }
 
 
@@ -221,8 +237,12 @@ void ModeShortcutEventSettingsMenuLoop()
   drawStatusbar(363, 1, true);  
   drawMenuLegend();
 
-  drawListItem(itemModeShortcutEventSettingsBack,    draw_ic24_back,       "Назад",   "Повернутись до списку подій",                   firstDraw);
-  drawListItem(itemModeShortcutEventSettingsAction,  draw_ic24_shortcut,   "Дія",     actionName[getActionId(ModeShortcutEventSettings_EventId)],   firstDraw);
+  drawListItem(itemModeShortcutEventSettingsBack,    draw_ic24_back,       "Назад",    "Повернутись до списку подій",                                        firstDraw);
+  drawListItem(itemModeShortcutEventSettingsAction,  draw_ic24_shortcut,   "Дія",      actionName[getActionId(ModeShortcutEventSettings_EventId)],           firstDraw);
+  if(getActionId(ModeShortcutEventSettings_EventId) == ACTION_PLAY_MELODY)
+    drawListItem(itemModeShortcutEventSettingsArgument,draw_ic24_music,   "Мелодія",   getMelodyName(getActionArgument(ModeShortcutEventSettings_EventId)).c_str(), firstDraw);
+  else
+    drawListItem(itemModeShortcutEventSettingsArgument,draw_ic24_settings,   "Аргумент", String(getActionArgument(ModeShortcutEventSettings_EventId)).c_str(), firstDraw);
 
   lcd()->sendBuffer();
 }
@@ -234,18 +254,37 @@ void ModeShortcutEventSettingsMenuButtonCenter()
     return;
   }
   
-  if(selected == itemModeShortcutEventSettingsAction){
-    /*
-    const char **actionN = actionName;
-    drawMessage(actionN[0], actionN[1], true);
-    */
-    ModeListSelection_List = actionName;
+  if(selected == itemModeShortcutEventSettingsAction)
+  {  //обрати дію
+    ModeListSelection_Items = getActioNameC;
     ModeListSelection_Name = eventName[ModeShortcutEventSettings_EventId];
     ModeListSelection_Cnt = actionCnt;
     ModeListSelection_Selected = getActionId(ModeShortcutEventSettings_EventId);
+    ModeListSelection_OnSelected = onActionSelected;
     setModeListSelection();
     return;
   }
+  if(selected == itemModeShortcutEventSettingsArgument && getActionId(ModeShortcutEventSettings_EventId) == ACTION_PLAY_MELODY)
+  {//обрати мелодію
+    ModeListSelection_Items = getMelodyNameC;
+    ModeListSelection_Name = "Обрати мелодію";
+    ModeListSelection_Cnt = getMelodyCount();
+    ModeListSelection_Selected = getActionArgument(ModeShortcutEventSettings_EventId);
+    ModeListSelection_OnSelected = onMelodySelected;
+    setModeListSelection();
+    return;
+  }
+}
+
+void onMelodySelected()//callback
+{
+  saveActionArgument(ModeShortcutEventSettings_EventId, ModeListSelection_Selected);
+  setModeShortcutEventSettingsMenu();
+}
+void onActionSelected()//callback
+{ 
+  saveActionId(ModeShortcutEventSettings_EventId, ModeListSelection_Selected);
+  setModeShortcutEventSettingsMenu();
 }
 
 // ================================== 222222222222 MODE EVENT SETTINGS    END
