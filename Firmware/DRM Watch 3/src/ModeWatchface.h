@@ -73,7 +73,7 @@ void setModeWatchface()
 
 void modeWatchfaceLoop()
 {
-  if (esp_sleep_get_wakeup_cause() == ESP_SLEEP_WAKEUP_TIMER) // make auto sync only when watch is sleeping and not interrupt user
+  if (!isAwake()) // make auto sync only when watch is sleeping and not interrupt user
     loopTimeAutoSync();
 
   // drawWatchfaceBig(firstDraw);
@@ -81,7 +81,7 @@ void modeWatchfaceLoop()
   // drawWatchfaceArrows(firstDraw);
   getWatchfaceDrawable(getWatchface())(firstDraw);
 
-  if (esp_sleep_get_wakeup_cause() != ESP_SLEEP_WAKEUP_TIMER) // if wake by timer, don't refresh display to keep image static, image will refresh when go to lock screen and drawing lock icon
+  if (isAwake()) // if wake by timer, don't refresh display to keep image static, image will refresh when go to lock screen and drawing lock icon
     lcd()->sendBuffer();
 }
 

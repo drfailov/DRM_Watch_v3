@@ -216,6 +216,7 @@ void alertLoop(){
     if (alertIsEnabled) {
       if (alertLastRunDay != day) {
         if ((hour == alertTimeHour && minute >= alertTimeMinute) || (hour > alertTimeHour)) {
+          wakeup();
           saveAlertLastRunDay(alertIndex, day);
           long timeStarted = millis();
           long playTime = 180000;

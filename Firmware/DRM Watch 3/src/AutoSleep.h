@@ -8,11 +8,13 @@ long autoSleepTimeMs();
 bool isAwake();
 long timeToAutoAction();
 bool isDontSleep();
+void wakeup();
 
 
 #define NO_SLEEP 99999999
 
-bool dontSleep = false;
+bool dontSleep = false;  //permanent
+bool wakeupFromSleep = false; //temporary
 const int autoReturnDefaultTime = 180000;//ms
 const int autoSleepDefaultTime = 15000;//ms
 const int autoSleepDefaultTimeWhenFlashlightOn = 360000;//ms
@@ -38,7 +40,7 @@ void autoSleepLoop(){
     goToSleep();
 
   
-  if(esp_sleep_get_wakeup_cause() == ESP_SLEEP_WAKEUP_TIMER)/*periodical wakeup*/
+  if(esp_sleep_get_wakeup_cause() == ESP_SLEEP_WAKEUP_TIMER && !wakeupFromSleep)/*periodical wakeup*/
     goToSleep();
 }
 
@@ -71,11 +73,18 @@ long timeToAutoAction(){
   return minTime - sinceLastAction();
 }
 
+//temporary dont go to sleep (wekeup for timer or alarm)
+void wakeup()
+{ 
+  wakeupFromSleep = true;
+}
+
 bool isAwake(){//return true only if not sleepong or about to sleep
-  if(esp_sleep_get_wakeup_cause() == ESP_SLEEP_WAKEUP_TIMER)/*periodical wakeup*/
+  if(esp_sleep_get_wakeup_cause() == ESP_SLEEP_WAKEUP_TIMER && !wakeupFromSleep)/*periodical wakeup*/
     return false;
   return sinceLastAction() < autoSleepTimeMs()-1000;
 }
+
 
 void goToSleep(){
   /*

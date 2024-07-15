@@ -2,17 +2,19 @@
 #define SHORTCUTMANAGER_H
 
 #define EVENT_NOTHING 0
-#define EVENT_WF_BUT_UP_PRESS 1
-#define EVENT_WF_BUT_UP_LONG 2
-#define EVENT_WF_BUT_CE_PRESS 3
-#define EVENT_WF_BUT_CE_LONG 4
-const int eventCnt = 5;
+#define EVENT_TIMER 1
+#define EVENT_WF_BUT_UP_PRESS 2
+#define EVENT_WF_BUT_UP_LONG 3
+#define EVENT_WF_BUT_CE_PRESS 4
+#define EVENT_WF_BUT_CE_LONG 5
+const int eventCnt = 6;
 const char* eventName[] = {
    /* 0 */ "---",
-   /* 1 */ "Кнопка вгору",           
-   /* 2 */ "Кнопка вгору довге",     
-   /* 3 */ "Центральна кнопка",      
-   /* 4 */ "Центральна кнопка довге"
+   /* 1 */ "Спрацювання таймера",
+   /* 2 */ "Кнопка вгору", 
+   /* 3 */ "Кнопка вгору довге",     
+   /* 4 */ "Центральна кнопка",      
+   /* 5 */ "Центральна кнопка довге"
 };
 
 #define ACTION_NOTHING 0
@@ -20,35 +22,37 @@ const char* eventName[] = {
 #define ACTION_OPEN_STOPWATCH 2
 #define ACTION_TOGGLE_FLASHLIGHT 3
 #define ACTION_TURNOFF 4
-
 #define ACTION_PLAY_MELODY 5
-#define ACTION_OPEN_ALARMS 6
-#define ACTION_OPEN_CALENDAR 7
-#define ACTION_OPEN_SETTING 8
-#define ACTION_TOGGLE_MUTE 9
-#define ACTION_TOGGLE_INVERSE 10
-#define ACTION_REBOOT 11
-#define ACTION_OPEN_ABOUT 12
-#define ACTION_SYNC_TIME 13
-#define ACTION_OPEN_APPS 14
-#define ACTION_SET_TIMER_TO 15
-const int actionCnt = 9;
+#define ACTION_PLAY_ALERT 6
+#define ACTION_OPEN_ALARMS 7
+#define ACTION_OPEN_CALENDAR 8
+#define ACTION_OPEN_SETTING 9
+
+#define ACTION_TOGGLE_MUTE 10
+#define ACTION_TOGGLE_INVERSE 11
+#define ACTION_REBOOT 12
+#define ACTION_OPEN_ABOUT 13
+#define ACTION_SYNC_TIME 14
+#define ACTION_OPEN_APPS 15
+#define ACTION_SET_TIMER_TO 16
+const int actionCnt = 10;
 const char *actionName[] = {
-    /* 0 */ "Нічого не робити",
-    /* 1 */ "Відкрити таймер",           
-    /* 2 */ "Відкрити секундомір",     
-    /* 3 */ "Перемкнути ліхтарик",      
-    /* 4 */ "Вимкнути годинник",
-    /* 5 */ "Зіграти мелодію",            
-    /* 6 */ "Відкрити будильники",            
-    /* 7 */ "Відкрити календар",
-    /* 8 */ "Відкрити налаштування"
+    /* 0 */ "Нічого не робити",       //+
+    /* 1 */ "Відкрити таймер",        //+   
+    /* 2 */ "Відкрити секундомір",    //+ 
+    /* 3 */ "Перемкнути ліхтарик",    //+     
+    /* 4 */ "Вимкнути годинник",      //+
+    /* 5 */ "Зіграти мелодію",        //+
+    /* 6 */ "Сповіщення мелодією",    //+
+    /* 7 */ "Відкрити будильники",    //+        
+    /* 8 */ "Відкрити календар",      //+
+    /* 9 */ "Відкрити налаштування"
 };
 
 
 int defaultAction(int eventId);
-void shortcutRun(int eventId);
-void runAction(int actionId, int actionArgument);
+bool shortcutRun(int eventId);
+bool runAction(int actionId, int actionArgument);
 void setModeShortcutListEventsMenu();
 void ModeShortcutListEventsMenuLoop();
 void ModeShortcutListEventsMenuButtonCenter();
@@ -67,6 +71,9 @@ const char* getActioNameC(int index);
 #include "ModeTimer.h"
 #include "ModeListSelection.h"
 #include "MelodyPlayer.h"
+#include "ModeAlertsList.h"
+#include "ModeCalendar.h"
+#include "ModeMenuSettings.h"
 
 
 
@@ -74,46 +81,68 @@ const char* getActioNameC(int index)
 {
   return actionName[index];
 }
-void runAction(int actionId, int actionArgument)
+bool runAction(int actionId, int actionArgument)
 {
     switch (actionId)
     {
     case ACTION_OPEN_STOPWATCH:
       setModeStopwatch();
-      break;
+      return false;
     case ACTION_OPEN_TIMER:
       setModeTimer();
-      break;
+      return false;
     case ACTION_TURNOFF:
       turnOff();
-      break;
+      return false;
     case ACTION_TOGGLE_FLASHLIGHT:
       ledFlashlightToggle();
-      break;
+      return false;
     case ACTION_OPEN_APPS:
       setModeAppsMenu();
-      break;
+      return false;
     case ACTION_PLAY_MELODY:
       melodyPlayerSetMelodyName(getMelodyName(actionArgument));  //to draw on screen
-      melodyPlayerPlayMelody(getMelodyData(actionArgument), false);
-      break;
-    
+      return melodyPlayerPlayMelody(getMelodyData(actionArgument), false);
+    case ACTION_PLAY_ALERT:
+    {
+      //return true if was played completely or false if interrupted
+      unsigned long started = rtcGetEpoch();
+      unsigned long endTime = started+60*2; //2min
+      while(rtcGetEpoch() < endTime)
+      {  
+        melodyPlayerSetMelodyName("Сповіщення: " + getMelodyName(actionArgument));  //to draw on screen
+        if(!melodyPlayerPlayMelody(getMelodyData(actionArgument), true)) //if interrupted
+          return false;
+      }
+      return true;
+    }
+    case ACTION_OPEN_ALARMS:
+      setModeAlertsList();
+      return false;
+    case ACTION_OPEN_CALENDAR:
+      setModeCalendar();
+      return false;
+    case ACTION_OPEN_SETTING:
+      setModeSettingsMenu();
+      return false;
     default:
-        break;
+        return false;
     }
 }
 
-void shortcutRun(int eventId)
+bool shortcutRun(int eventId)
 {
     int actionId = getActionId(eventId, defaultAction(eventId));
     int actionArgument = getActionArgument(eventId);
-    runAction(actionId, actionArgument);
+    return runAction(actionId, actionArgument);
 }
 
 int defaultAction(int eventId)
 {
     switch (eventId)
     {
+    case EVENT_TIMER:
+        return ACTION_PLAY_ALERT;
     case EVENT_WF_BUT_UP_PRESS:
         return ACTION_OPEN_STOPWATCH;
     case EVENT_WF_BUT_UP_LONG:
@@ -239,7 +268,7 @@ void ModeShortcutEventSettingsMenuLoop()
 
   drawListItem(itemModeShortcutEventSettingsBack,    draw_ic24_back,       "Назад",    "Повернутись до списку подій",                                        firstDraw);
   drawListItem(itemModeShortcutEventSettingsAction,  draw_ic24_shortcut,   "Дія",      actionName[getActionId(ModeShortcutEventSettings_EventId)],           firstDraw);
-  if(getActionId(ModeShortcutEventSettings_EventId) == ACTION_PLAY_MELODY)
+  if(getActionId(ModeShortcutEventSettings_EventId) == ACTION_PLAY_MELODY  || getActionId(ModeShortcutEventSettings_EventId) == ACTION_PLAY_ALERT)
     drawListItem(itemModeShortcutEventSettingsArgument,draw_ic24_music,   "Мелодія",   getMelodyName(getActionArgument(ModeShortcutEventSettings_EventId)).c_str(), firstDraw);
   else
     drawListItem(itemModeShortcutEventSettingsArgument,draw_ic24_settings,   "Аргумент", String(getActionArgument(ModeShortcutEventSettings_EventId)).c_str(), firstDraw);
@@ -264,7 +293,7 @@ void ModeShortcutEventSettingsMenuButtonCenter()
     setModeListSelection();
     return;
   }
-  if(selected == itemModeShortcutEventSettingsArgument && getActionId(ModeShortcutEventSettings_EventId) == ACTION_PLAY_MELODY)
+  if(selected == itemModeShortcutEventSettingsArgument && (getActionId(ModeShortcutEventSettings_EventId) == ACTION_PLAY_MELODY || getActionId(ModeShortcutEventSettings_EventId) == ACTION_PLAY_ALERT))
   {//обрати мелодію
     ModeListSelection_Items = getMelodyNameC;
     ModeListSelection_Name = "Обрати мелодію";

@@ -159,9 +159,14 @@ int timerStep(){
 bool timerAlert(){
   Serial.println(F("Open: timerAlert"));
   clearScreenAnimation();
+  wakeup();
   backlightOn();
+  
+  //unsigned long timerTime = getTimerTime();
+  resetTimer();
+  bool result = shortcutRun(EVENT_TIMER);
+  /*
   unsigned long started = rtcGetEpoch();
-  unsigned long timerTime = getTimerTime();
   unsigned long endTime = started+60*2; //2min
   int freq = 1900;
   while(rtcGetEpoch() < endTime){
@@ -200,11 +205,11 @@ bool timerAlert(){
     for(long st=millis(); millis()<st+500;) if(timerAlertCheckButtons()){ clearScreenAnimation();  return false;}
   }
   buzNoTone(); 
+  */
   //backlightOff();
-  resetTimer();
-  clearScreenAnimation();
+  //clearScreenAnimation();
   modeSetup(); 
-  return true;
+  return result;
 }
 
 bool timerAlertCheckButtons(){
