@@ -108,8 +108,12 @@ void goToSleep(){
   
   if(isOff() || isBatteryCritical())
     esp_sleep_enable_timer_wakeup(600 * 1000000ULL);
-  else
-    esp_sleep_enable_timer_wakeup(55 * 1000000ULL);
+  else{
+    int second = rtcGetSecond();
+    int timeToSleep = 60-second; //55
+    esp_sleep_enable_timer_wakeup(timeToSleep * 1000000ULL);
+  }
+    
   esp_deep_sleep_start();
 }
 

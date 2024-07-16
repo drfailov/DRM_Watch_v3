@@ -9,6 +9,7 @@ void resetAlertMetadata(int index);
 void setModeAlertSettingsMenu(int alertIndex);
 void setModeAlertSettingsMenu();
 void ModeAlertSettingsMenuNameSelected();
+void ModeAlertSettingsMenuMelodySelected();
 
 
 
@@ -171,10 +172,19 @@ void ModeAlertSettingsMenuButtonCenter(){
     return;
   }
   if(selected==itemModeAlertSettingsMelody){
-    modeAlertSettingsEditMode = !modeAlertSettingsEditMode;
-    if(!modeAlertSettingsEditMode)
-      saveAlertMelody(modeAlertSettingsIndex, modeAlertSettingsMelodyValue);
-    return;
+    {//обрати мелодію
+      ModeListSelection_Items = getMelodyNameC;
+      ModeListSelection_Name = "Обрати мелодію";
+      ModeListSelection_Cnt = getMelodyCount();
+      ModeListSelection_Selected = modeAlertSettingsMelodyValue;//getActionArgument(ModeShortcutEventSettings_EventId);
+      ModeListSelection_OnSelected = ModeAlertSettingsMenuMelodySelected;
+      setModeListSelection();
+      return;
+    }
+    //modeAlertSettingsEditMode = !modeAlertSettingsEditMode;
+    //if(!modeAlertSettingsEditMode)
+    //  saveAlertMelody(modeAlertSettingsIndex, modeAlertSettingsMelodyValue);
+    //return;
   }
   if(selected==itemModeAlertSettingsName){
     //todo open keyboard
@@ -182,6 +192,12 @@ void ModeAlertSettingsMenuButtonCenter(){
     setKeybordText(getAlertName(modeAlertSettingsIndex));
     return;
   }
+}
+void ModeAlertSettingsMenuMelodySelected(){
+  modeAlertSettingsMelodyValue = ModeListSelection_Selected;
+  saveAlertMelody(modeAlertSettingsIndex, modeAlertSettingsMelodyValue);
+  //saveActionArgument(ModeShortcutEventSettings_EventId, ModeListSelection_Selected);
+  setModeAlertSettingsMenu();
 }
 void ModeAlertSettingsMenuNameSelected(){
   String newName = getKeybordResult();
