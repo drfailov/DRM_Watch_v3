@@ -27,14 +27,16 @@ const convertMelody = (notes: Note[]) => {
     let freq = Math.round(Frequency(note.name).toFrequency());
 	let durationMs = Math.round(note.duration * 1000);
 	let timeMs = Math.round(note.time * 1000);
-	let prepause = timeMs - (lastTime + lastDuration);
-	if (lastTime != 0 && prepause > 15) {
-		code += `-${prepause}, `;
+	if(timeMs != lastTime){
+		let prepause = timeMs - (lastTime + lastDuration);
+		if (lastTime != 0 && prepause > 15) {
+			code += `-${prepause}, `;
+		}
+		//code += `(${prepause}), `;
+		code += `${freq}, -${durationMs}, `;
+		lastTime = timeMs;
+		lastDuration = durationMs;
 	}
-	//code += `(${prepause}), `;
-    code += `${freq}, -${durationMs}, `;
-	lastTime = timeMs;
-	lastDuration = durationMs;
   });
   
   code += `19};`;
