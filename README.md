@@ -769,9 +769,11 @@ https://www.youtube.com/watch?v=u_XPCM6kgQM
 - Pin D31 - Used for flash communication
 - Pin D32 - Used for flash communication
 
-## Процес маркування металевого корпусу:
+## Цікаві факти:
+- Щоб загнати в режим прошивки ESP32-S2 достатньо підключитись до неї по COM порту з баудом 1200.
+- Процес маркування металевого корпусу: https://youtube.com/shorts/PZIMB8fdEP8?si=xofTaj4oOFBRnQQU
 
-https://youtube.com/shorts/PZIMB8fdEP8?si=xofTaj4oOFBRnQQU
+
 
 
 ## Посилання на ресурси

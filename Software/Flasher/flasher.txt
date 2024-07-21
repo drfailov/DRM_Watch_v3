@@ -56,10 +56,28 @@ esptool.exe --chip esp32s2 --port "COM5" --baud 921600 --before default_reset --
 0xe000 "C:\Users\Dr. Failov\.platformio\packages\framework-arduinoespressif32\tools\partitions\boot_app0.bin" 
 0x10000 .pio\build\lolin_s2_mini\firmware.bin
 
+
+
+| Type | Sub |  Offset  |   Size   |       Label      |
+| ---- | --- | -------- | -------- | ---------------- |
+|  01  | 02  | 0x009000 | 0x005000 | nvs              |
+|  01  | 00  | 0x00E000 | 0x002000 | otadata          |
+|  00  | 10  | 0x010000 | 0x140000 | app0             |
+|  00  | 11  | 0x150000 | 0x140000 | app1             |
+|  01  | 82  | 0x290000 | 0x160000 | spiffs           |
+|  01  | 03  | 0x3F0000 | 0x010000 | coredump         |
+
+
+
 ---------- WORKING ------------
 esptool.exe --chip esp32s2 --port "COM5" --baud 921600 --before default_reset --after hard_reset write_flash -z --flash_mode dio --flash_freq 80m --flash_size 4MB 0x1000 "bootloader.bin" 0x8000 "partitions.bin" 0xe000 "boot_app0.bin" 0x10000 "firmware.bin"
 ---------- WORKING ------------
 
+
+
+TODO Reset to bootloader:
+Connect to COM on 1200. It will reset AND!!!! will reboot.
+Forcing reset using 1200bps open/close on port COM4
 
 Executing task in folder DRM Watch 3: C:\Users\Dr. Failov\.platformio\penv\Scripts\platformio.exe run --verbose --target upload --environment lolin_s2_mini 
 

@@ -26,19 +26,21 @@ void ModeAppsMenuButtonCenter();
 #include "ModeDots.h"
 #include "ModeSerialLog.h"
 #include "ModeMenuBackgrounds.h"
+#include "Notepad.h"
 
 const int itemModeAppsBack=0;
 const int itemModeAppsAlarm=1;
 const int itemModeAppsCalendar=2;
 const int itemModeAppsSettings=3;
 const int itemModeAppsMusic=4;
-const int itemModeAppsTimer=5;
-const int itemModeAppsStopwatch=6;
-const int itemModeAppsFlashlight=7;
-const int itemModeAppsDebug=8;
-const int itemModeAppsSerialLog=9;
-const int itemModeAppsMeow=10;
-const int itemModeAppsBackgrounds=11;
+const int itemModeAppsNotepad=5;
+const int itemModeAppsTimer=6;
+const int itemModeAppsStopwatch=7;
+const int itemModeAppsFlashlight=8;
+const int itemModeAppsDebug=9;
+const int itemModeAppsSerialLog=10;
+const int itemModeAppsMeow=11;
+const int itemModeAppsBackgrounds=12;
 
 
 void setModeAppsMenu(){
@@ -58,7 +60,7 @@ void setModeAppsMenu(){
   autoReturnTime = autoReturnDefaultTime;
   autoSleepTime = autoSleepDefaultTime;
   selected = 0;
-  items = 12;
+  items = 13;
 }
 
 
@@ -79,13 +81,14 @@ void ModeAppsMenuLoop(){
   drawMenuItem(itemModeAppsCalendar,   draw_ic24_calendar,   "Календар",                      false);
   drawMenuItem(itemModeAppsSettings,   draw_ic24_settings,   "Налаштування",                  firstDraw);
   drawMenuItem(itemModeAppsMusic,      draw_ic24_music,      "Мелодії",                       false);
+  drawMenuItem(itemModeAppsNotepad,    draw_ic24_apps,       "Нотатки",                       false);
   drawMenuItem(itemModeAppsTimer,      draw_ic24_timer,      "Таймер",                        false);
-  drawMenuItem(itemModeAppsStopwatch,  draw_ic24_stopwatch,  "Секундомір",                    false);
-  drawMenuItem(itemModeAppsFlashlight, draw_ic24_flashlight2,"Ліхтарик",                      firstDraw);
+  drawMenuItem(itemModeAppsStopwatch,  draw_ic24_stopwatch,  "Секундомір",                    firstDraw);
+  drawMenuItem(itemModeAppsFlashlight, draw_ic24_flashlight2,"Ліхтарик",                      false);
   drawMenuItem(itemModeAppsDebug,      draw_ic24_bug,        "Інженерне меню",                false);
   drawMenuItem(itemModeAppsSerialLog,  draw_ic24_terminal,   "Лог UART",                      false);
-  drawMenuItem(itemModeAppsMeow,       draw_ic24_meow,       "Meow",                          false);
-  drawMenuItem(itemModeAppsBackgrounds,draw_ic24_watchface,  "Заставки",                      firstDraw);
+  drawMenuItem(itemModeAppsMeow,       draw_ic24_meow,       "Meow",                          firstDraw);
+  drawMenuItem(itemModeAppsBackgrounds,draw_ic24_watchface,  "Заставки",                      false);
   
   lcd()->sendBuffer();
 }
@@ -138,6 +141,10 @@ void ModeAppsMenuButtonCenter(){
   }
   if(selected == itemModeAppsBackgrounds){
     setModeBackgroundsMenu();
+    return;
+  }
+  if(selected == itemModeAppsNotepad){
+    setmodeNotepad();
     return;
   }
   

@@ -288,11 +288,7 @@ void melodyPlayerDrawScreen(bool alarm) {
   lcd()->print(sec);
   lcd()->print("s");
 
-  int width = lcd()->getUTF8Width(melodyPlayerMelodyName.c_str());
-  lcd()->setCursor(200-width/2, 230); 
-  lcd()->print(melodyPlayerMelodyName);
-
-
+  drawCentered(melodyPlayerMelodyName, 200);
 
   lcd()->drawBox(369, 0, 2, 260);  //draw_ic16_repeat  draw_ic16_arrow_right  draw_ic16_back
   if(alarm){

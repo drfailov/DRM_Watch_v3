@@ -9,6 +9,10 @@ void lcdPowerOff();
 void clearScreenAnimationCircleFromRight();
 void drawMessage(String text, String text2, bool animate);
 void drawMessage(String text, String text2);
+void drawCentered(String str);
+void drawCentered(const char* str);
+void drawCentered(String str, int y);
+void drawCentered(const char* str, int y);
 
 #include "Global.h"
 #include "ModeOff.h"
@@ -109,6 +113,32 @@ void clearScreenAnimationWhiteLeftToRight(){
     lcd()->drawBox(/*x*/x, /*y*/0, /*w*/step, /*h*/H);
     lcd()->sendBuffer();
   }
+}
+
+
+
+
+void drawCentered(String str)
+{
+  drawCentered(str, H/2-10);
+}
+void drawCentered(const char* str)
+{
+  drawCentered(str, H/2-10);
+}
+void drawCentered(String str, int y)
+{
+  lcd()->setFont(u8g2_font_10x20_t_cyrillic);  //ok
+  int width = lcd()->getUTF8Width(str.c_str());
+  lcd()->setCursor((W-30-width)/2, y); 
+  lcd()->print(str);
+}
+void drawCentered(const char* str, int y)
+{
+  lcd()->setFont(u8g2_font_10x20_t_cyrillic);  //ok
+  int width = lcd()->getUTF8Width(str);
+  lcd()->setCursor((W-30-width)/2, y); 
+  lcd()->print(str);
 }
 
 void drawMessage(String text){
