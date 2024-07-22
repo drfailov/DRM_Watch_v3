@@ -91,7 +91,7 @@ void modeTestLoop(){
   
   draw_ic16_coffee(lx(), ly1(), black);
   draw_ic16_back(lx(), ly2(), black);
-  draw_ic16_hashtag(lx(), ly3(), black);
+  //draw_ic16_hashtag(lx(), ly3(), black);
 
 if(esp_sleep_get_wakeup_cause() != ESP_SLEEP_WAKEUP_TIMER) //if wake by timer, don't refresh display to keep image static, image will refresh when go to lock screen and drawing lock icon
     lcd()->sendBuffer();
@@ -109,19 +109,7 @@ void modeTestButtonCenter(){
 }
 
 void modeTestButtonDown(){
-  Serial.printf("ESP32 Partition table:\n\n");
-
-  Serial.printf("| Type | Sub |  Offset  |   Size   |       Label      |\n");
-  Serial.printf("| ---- | --- | -------- | -------- | ---------------- |\n");
   
-  esp_partition_iterator_t pi = esp_partition_find(ESP_PARTITION_TYPE_ANY, ESP_PARTITION_SUBTYPE_ANY, NULL);
-  if (pi != NULL) {
-    do {
-      const esp_partition_t* p = esp_partition_get(pi);
-      Serial.printf("|  %02x  | %02x  | 0x%06X | 0x%06X | %-16s |\r\n", 
-        p->type, p->subtype, p->address, p->size, p->label);
-    } while (pi = (esp_partition_next(pi)));
-  }
 }
 
 

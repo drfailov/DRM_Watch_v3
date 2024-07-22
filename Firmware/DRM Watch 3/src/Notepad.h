@@ -36,11 +36,11 @@ static const uint32_t DISK_SECTOR_COUNT = 2 * 500; //2*8 8KB is the smallest siz
 static const uint16_t DISK_SECTOR_SIZE = 512;    // Should be 512   (same as LBA)
 static const uint16_t DISC_SECTORS_PER_TABLE = 1; //each table sector can fit 170KB (340 sectors)
 bool showHelpText = true;
-uint32_t beginning = 1000;
 
 //https://github.com/espressif/esp-idf/blob/master/examples/storage/partition_api/partition_ops/main/main.c
 // Find the partition map in the partition table
 const esp_partition_t *spifsPartition;
+uint8_t pageBuffer[SPI_FLASH_SEC_SIZE];  //flsah can be written only by this blocks
 
 static uint8_t msc_disk[4][DISK_SECTOR_SIZE] =
 {
@@ -148,6 +148,7 @@ static uint8_t msc_disk[4][DISK_SECTOR_SIZE] =
 };
 
 static int32_t onWrite(uint32_t lba, uint32_t offset, uint8_t* buffer, uint32_t bufsize){
+  
   showHelpText = false;
   u8g2log.printf("\nMSC WR: lba: %u, offs: %u, bufsz: %u...", lba, offset, bufsize);
   //modeNotepadLoop();
@@ -155,7 +156,25 @@ static int32_t onWrite(uint32_t lba, uint32_t offset, uint8_t* buffer, uint32_t 
     u8g2log.printf("\nERR! NO PARTITION!");
     return 0;
   }
-  esp_err_t res = esp_partition_write(spifsPartition, beginning+lba*DISK_SECTOR_SIZE+offset, buffer, bufsize); //sizeof(store_data)
+  {
+    esp_err_t res = esp_partition_erase_range(spifsPartition, lba*DISK_SECTOR_SIZE+offset, bufsize);
+    switch(res){
+      case ESP_OK:
+        u8g2log.printf("OK,");
+        break;
+      case ESP_ERR_INVALID_ARG:
+        u8g2log.printf("ESP_ERR_INVALID_ARG,");
+        break;
+      case ESP_ERR_INVALID_SIZE:
+        u8g2log.printf("ESP_ERR_INVALID_SIZE,");
+        break;
+      default:
+        u8g2log.printf("ERR %d,", res);
+        break;
+    }
+  }
+  
+  esp_err_t res = esp_partition_write(spifsPartition, lba*DISK_SECTOR_SIZE+offset, buffer, bufsize); //sizeof(store_data)
   switch(res){
     case ESP_OK:
       u8g2log.printf("OK");
@@ -183,7 +202,7 @@ static int32_t onRead(uint32_t lba, uint32_t offset, void* buffer, uint32_t bufs
     u8g2log.printf("ERR! NO PARTITION!");
     return 0;
   }
-  esp_err_t res = esp_partition_read(spifsPartition, beginning+lba*DISK_SECTOR_SIZE+offset, buffer, bufsize);
+  esp_err_t res = esp_partition_read(spifsPartition, lba*DISK_SECTOR_SIZE+offset, buffer, bufsize);
   switch(res){
     case ESP_OK:
       u8g2log.printf("OK");
@@ -241,7 +260,7 @@ void setmodeNotepad(){
   MSC.begin(DISK_SECTOR_COUNT, DISK_SECTOR_SIZE);
 
   spifsPartition = esp_partition_find_first(ESP_PARTITION_TYPE_DATA, ESP_PARTITION_SUBTYPE_ANY, "spiffs");
-  //esp_partition_erase_range(partition, 0, partition->size)
+  //spifsPartition = esp_partition_find_first(ESP_PARTITION_TYPE_APP, ESP_PARTITION_SUBTYPE_ANY, "app1");
 }
 
 void modeNotepadLoop(){
@@ -251,15 +270,20 @@ void modeNotepadLoop(){
   lcd()->setFont(u8g2_font_10x20_t_cyrillic);  //ok
   lcd()->setColorIndex(black);
   lcd()->setCursor(5, 18); 
-  lcd()->print("Нотатки");
+  lcd()->print("Завантажити файли");
 
   drawStatusbar(363, 1, true);
 
   if(showHelpText){
     drawCentered("Підключіть до USB", 100);
     drawCentered("та закиньте текстові файли з компа", 140);
-    if(spifsPartition != NULL)
-      drawCentered(spifsPartition->label, 220);
+    if(spifsPartition != NULL){
+      drawCentered(spifsPartition->label, 200);
+      itoa(spifsPartition->size, buffer, 10);
+      drawCentered(buffer, 220);
+      itoa(SPI_FLASH_SEC_SIZE, buffer, 10);
+      drawCentered(buffer, 240);
+    }
     else
       drawCentered("Розділ не знайдено", 220);
   }
@@ -271,85 +295,115 @@ void modeNotepadLoop(){
 
   lcd()->setColorIndex(black);
   lcd()->drawBox(369, 0, 2, 260);  //draw_ic16_repeat  draw_ic16_arrow_right  draw_ic16_back
+  draw_ic16_hashtag(lx(), ly1(), black);
   draw_ic16_back(lx(), ly2(), black);
+  draw_ic16_warning(lx(), ly3(), black);
 
   lcd()->sendBuffer();
 }
 
+void showPartitions()
+{
+  showHelpText = false;
+  u8g2log.printf("\n======== ESP32 Partition table: =======\n\n");modeNotepadLoop();
+
+  u8g2log.printf("|Type|Sub| Offset |  Size  |  Label   |\n");modeNotepadLoop();
+  u8g2log.printf("|----|---|--------|--------|----------|\n");modeNotepadLoop();
+  
+  esp_partition_iterator_t pi = esp_partition_find(ESP_PARTITION_TYPE_ANY, ESP_PARTITION_SUBTYPE_ANY, NULL);
+  if (pi != NULL) {
+    do {
+      const esp_partition_t* p = esp_partition_get(pi);
+      u8g2log.printf("| %02x |%02x |0x%06X|0x%06X|%-10s|\r\n", 
+        p->type, p->subtype, p->address, p->size, p->label);
+      modeNotepadLoop();
+    } while (pi = (esp_partition_next(pi)));
+  }
+  u8g2log.printf("|----|---|--------|--------|----------|\n");modeNotepadLoop();
+}
 void initPartition()
 {
   showHelpText = false;
   if(spifsPartition == NULL ){
-    u8g2log.printf("ERR! NO PARTITION!");
+    u8g2log.printf("ERR! NO PARTITION!"); modeNotepadLoop();
     return;
   }
+  u8g2log.printf("Start\n"); modeNotepadLoop();
+
+  uint32_t imageSize = sizeof(msc_disk);
+  u8g2log.printf("imageSize: %d\n", imageSize); modeNotepadLoop();
+
+  u8g2log.printf("Clear buffer %d...", SPI_FLASH_SEC_SIZE);modeNotepadLoop();
+  for(int i=0; i<SPI_FLASH_SEC_SIZE; i++)
+      pageBuffer[i] = 0;
+  u8g2log.printf("OK\n");modeNotepadLoop();
+
+  u8g2log.printf("Prepare filesystem %d...",imageSize);modeNotepadLoop();
+  memcpy(pageBuffer, msc_disk, imageSize);
+  u8g2log.printf("OK\n");modeNotepadLoop();
+
   {
-    u8g2log.printf("\n\nClear all partition...");
-    modeNotepadLoop();
-    esp_err_t res = esp_partition_erase_range(spifsPartition, 0, spifsPartition->size);
+    u8g2log.printf("Clear region %d-%d...", 0, SPI_FLASH_SEC_SIZE); modeNotepadLoop();
+    esp_err_t res = esp_partition_erase_range(spifsPartition, 0, SPI_FLASH_SEC_SIZE);
     switch(res){
       case ESP_OK:
-        u8g2log.printf("OK");
+        u8g2log.printf("OK\n");modeNotepadLoop();
         break;
       case ESP_ERR_INVALID_ARG:
-        u8g2log.printf("ESP_ERR_INVALID_ARG");
+        u8g2log.printf("ESP_ERR_INVALID_ARG\n");modeNotepadLoop();
         break;
       case ESP_ERR_INVALID_SIZE:
-        u8g2log.printf("ESP_ERR_INVALID_SIZE");
+        u8g2log.printf("ESP_ERR_INVALID_SIZE\n");modeNotepadLoop();
         break;
       default:
-        u8g2log.printf("ERR %d", res);
+        u8g2log.printf("ERR %d\n", res);modeNotepadLoop();
         break;
     }
-    modeNotepadLoop();
   }
   {
-    u8g2log.printf("\n\nInit filesystem...");
-    modeNotepadLoop();
-    esp_err_t res = esp_partition_write(spifsPartition, beginning, msc_disk, sizeof(msc_disk)); 
+    u8g2log.printf("Copy filesystem...\n");modeNotepadLoop();
+    u8g2log.printf("Write %d bytes...", SPI_FLASH_SEC_SIZE);modeNotepadLoop();
+    esp_err_t res = esp_partition_write(spifsPartition, 0, pageBuffer, SPI_FLASH_SEC_SIZE); 
     switch(res){
       case ESP_OK:
-        u8g2log.printf("OK");
+        u8g2log.printf("OK\n");modeNotepadLoop();
         break;
       case ESP_ERR_INVALID_ARG:
-        u8g2log.printf("ESP_ERR_INVALID_ARG");
+        u8g2log.printf("ESP_ERR_INVALID_ARG\n");modeNotepadLoop();
         break;
       case ESP_ERR_INVALID_SIZE:
-        u8g2log.printf("ESP_ERR_INVALID_SIZE");
+        u8g2log.printf("ESP_ERR_INVALID_SIZE\n");modeNotepadLoop();
         break;
       default:
-        u8g2log.printf("ERR %d", res);
+        u8g2log.printf("ERR %d\n", res);modeNotepadLoop();
         break;
     }
-    modeNotepadLoop();
-    u8g2log.printf("\nWritten %d bytes", sizeof(msc_disk));    
-    modeNotepadLoop();
   }
   {
-    u8g2log.printf("\n\nCheck filesystem...");
-    modeNotepadLoop();
-    uint32_t bufsize = 32;
-    uint8_t tmp[bufsize];
-    for(uint32_t i=0; (i+bufsize)<sizeof(msc_disk); i+=bufsize){
-      esp_err_t res = esp_partition_read(spifsPartition, beginning+i, tmp, bufsize);
-      if(res == ESP_OK) {/*ok*/}
-      else if(res == ESP_ERR_INVALID_ARG){ u8g2log.printf("\nESP_ERR_INVALID_ARG"); break;}
-      else if(res == ESP_ERR_INVALID_SIZE){ u8g2log.printf("\nESP_ERR_INVALID_SIZE"); break;}
-      else { u8g2log.printf("\nERR %d", res);  break;}
-      
-      if(memcmp(tmp, msc_disk+i, bufsize) != 0){
-        u8g2log.printf("\nERR on: %d byte", i);
-        modeNotepadLoop();
+    u8g2log.printf("Check filesystem...\n"); modeNotepadLoop();
+    for(uint32_t offset=0; (offset+BUFFER_SIZE)<sizeof(msc_disk); offset+=BUFFER_SIZE){
+      u8g2log.printf("Check offset %d...", offset); modeNotepadLoop();
+      esp_err_t res = esp_partition_read(spifsPartition, offset, buffer, BUFFER_SIZE);
+      if(res == ESP_OK) {
+        if(memcmp(buffer, pageBuffer+offset, BUFFER_SIZE) != 0){
+          u8g2log.printf("FAIL!\n"); modeNotepadLoop();
+        }
+        else{
+          u8g2log.printf("OK!\n"); modeNotepadLoop();
+        }
       }
+      else if(res == ESP_ERR_INVALID_ARG){ u8g2log.printf("ESP_ERR_INVALID_ARG\n");modeNotepadLoop(); }
+      else if(res == ESP_ERR_INVALID_SIZE){ u8g2log.printf("\nESP_ERR_INVALID_SIZE\n");modeNotepadLoop(); }
+      else { u8g2log.printf("\nERR %d", res); modeNotepadLoop();}
+      
     }
-    u8g2log.printf("\nEND.");
-    modeNotepadLoop();
+    u8g2log.printf("== FINISHED. ==\n\n"); modeNotepadLoop();
   }
   
 }
 
 void modeNotepadButtonUp(){
-  
+  showPartitions();
 }
 
 void modeNotepadButtonDown(){
