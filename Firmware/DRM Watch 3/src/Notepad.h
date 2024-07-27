@@ -20,6 +20,15 @@ bool timerAlertCheckButtons();
 #include "USB.h"
 #include "USBMSC.h"
 
+
+/*
+Here's the point:
+MSC Is access memory by LBA num and Offset. 
+LBA=512bytes.
+but
+Flash chip is accessed by pages. And before every WRITE, there's necessary to CLEAR all corresponding page.
+Page = 4096 bytes.
+*/
 USBMSC MSC;
 
 #define FAT_U8(v) ((v) & 0xFF)
@@ -31,7 +40,7 @@ USBMSC MSC;
 #define FAT_TBL2B(l, h) FAT_U8(l), FAT_U8(((l >> 8) & 0xF) | ((h << 4) & 0xF0)), FAT_U8(h >> 4)
 
 #define README_CONTENTS "This is tinyusb's MassStorage Class demo.\r\n\r\nIf you find any bugs or get any questions, feel free to file an\r\nissue at github.com/hathach/tinyusb"
-static const uint32_t DISK_SECTOR_COUNT = 2 * 500; // 2*8 8KB is the smallest size that windows allow to mount
+static const uint32_t DISK_SECTOR_COUNT = 2 * 1400; // 2*8 8KB is the smallest size that windows allow to mount   max is 2814 in fact
 static const uint16_t DISK_SECTOR_SIZE = 512;      // Should be 512   (same as LBA)
 static const uint16_t DISC_SECTORS_PER_TABLE = 1;  // each table sector can fit 170KB (340 sectors)
 bool showHelpText = true;
@@ -145,23 +154,28 @@ static uint8_t msc_disk[4][DISK_SECTOR_SIZE] =
         //------------- Block3: Readme Content -------------//
         README_CONTENTS};
 
+uint8_t genTestData(uint32_t offset)
+{
+  return 50+offset&5;
+  //return ((offset * 2053ul) + 13849) % 256;
+}
 void writeFlash(uint32_t offset, uint8_t *buffer, uint32_t bufsize)
 {
-  int32_t pageOffset = offset % SPI_FLASH_SEC_SIZE;
+  uint32_t pageOffset = offset % SPI_FLASH_SEC_SIZE;
   u8g2log.printf("  pageOffset: %d\n", pageOffset);
-  //modeNotepadLoop();
-  int32_t pageStart = offset - pageOffset;
+  // modeNotepadLoop();
+  uint32_t pageStart = offset - pageOffset;
   u8g2log.printf("  pageStart: %d\n", pageStart);
-  //modeNotepadLoop();
-  int32_t endOfBuf = offset + bufsize;
+  // modeNotepadLoop();
+  uint32_t endOfBuf = offset + bufsize;
   u8g2log.printf("  endOfBuf: %d\n", endOfBuf);
-  //modeNotepadLoop();
-  int32_t endOfPage = pageStart + SPI_FLASH_SEC_SIZE;
+  // modeNotepadLoop();
+  uint32_t endOfPage = pageStart + SPI_FLASH_SEC_SIZE;
   u8g2log.printf("  endOfPage: %d\n", endOfPage);
-  //modeNotepadLoop();
-  int32_t bufSz = min(endOfBuf, endOfPage) - offset;
+  // modeNotepadLoop();
+  uint32_t bufSz = min(endOfBuf, endOfPage) - offset;
   u8g2log.printf("  bufSz: %d\n", bufSz);
-  //modeNotepadLoop();
+  // modeNotepadLoop();
 
   u8g2log.printf("  Read: %d-%d...", pageStart, endOfPage);
   res = esp_partition_read(spifsPartition, pageStart, pageBuffer, SPI_FLASH_SEC_SIZE);
@@ -173,12 +187,12 @@ void writeFlash(uint32_t offset, uint8_t *buffer, uint32_t bufsize)
     u8g2log.printf("ESP_ERR_INVALID_SIZE\n");
   else if (res == ESP_OK)
     u8g2log.printf("ERR %d\n", res);
-  //modeNotepadLoop();
+  // modeNotepadLoop();
 
   u8g2log.printf("  Modify : %d-%d...", offset, offset + bufSz);
-  memcpy(/*dst*/ pageBuffer, /*src*/ buffer, /*len*/ bufSz);
+  memcpy(/*dst*/ pageBuffer+pageOffset, /*src*/ buffer, /*len*/ bufSz);
   u8g2log.printf("OK\n");
-  //modeNotepadLoop();
+  // modeNotepadLoop();
 
   u8g2log.printf("  Erase: %d-%d...", pageStart, endOfPage);
   res = esp_partition_erase_range(spifsPartition, pageStart, SPI_FLASH_SEC_SIZE);
@@ -190,7 +204,7 @@ void writeFlash(uint32_t offset, uint8_t *buffer, uint32_t bufsize)
     u8g2log.printf("ESP_ERR_INVALID_SIZE\n");
   else if (res == ESP_OK)
     u8g2log.printf("ERR %d\n", res);
-  //modeNotepadLoop();
+  // modeNotepadLoop();
 
   u8g2log.printf("  Write: %d-%d...", pageStart, endOfPage);
   res = esp_partition_write(spifsPartition, pageStart, pageBuffer, SPI_FLASH_SEC_SIZE); // sizeof(store_data)
@@ -202,7 +216,7 @@ void writeFlash(uint32_t offset, uint8_t *buffer, uint32_t bufsize)
     u8g2log.printf("ESP_ERR_INVALID_SIZE\n");
   else if (res == ESP_OK)
     u8g2log.printf("ERR %d\n", res);
-  //modeNotepadLoop();
+  // modeNotepadLoop();
 
   if (endOfPage < endOfBuf) // write next page
     writeFlash(/*offset*/ offset + bufSz, /*buffer*/ buffer + bufSz, /*bufsize*/ bufsize - bufSz);
@@ -212,15 +226,15 @@ static int32_t onWrite(uint32_t lba, uint32_t lba_offset, uint8_t *buffer, uint3
 {
   showHelpText = false;
   u8g2log.printf("MSC WRT lba: %u, offs: %u, bufsz: %u:\n", lba, lba_offset, bufsize);
-  //modeNotepadLoop();
+  // modeNotepadLoop();
   if (spifsPartition == NULL)
   {
     u8g2log.printf("\nERR! NO PARTITION!");
     return 0;
   }
-  int32_t offset = lba * DISK_SECTOR_SIZE + lba_offset;
+  uint32_t offset = lba * DISK_SECTOR_SIZE + lba_offset;
   u8g2log.printf("  offset: %d\n", offset);
-  //modeNotepadLoop();
+  // modeNotepadLoop();
   writeFlash(offset, buffer, bufsize);
   return bufsize;
 }
@@ -277,8 +291,8 @@ void setmodeNotepad()
   u8g2log.begin(LOG_W, LOG_H, u8log_buffer);
   u8g2log.setLineHeightOffset(0);
 
-  MSC.vendorID("DrFailov");     // max 8 chars
-  MSC.productID("DRM Watch 3"); // max 16 chars
+  MSC.vendorID("DRM");     // max 8 chars
+  MSC.productID("Watch 3"); // max 16 chars
   MSC.productRevision("3.0");   // max 4 chars
   MSC.onStartStop(onStartStop);
   MSC.onRead(onRead);
@@ -357,6 +371,72 @@ void showPartitions()
   u8g2log.printf("|----|---|--------|--------|----------|\n");
   modeNotepadLoop();
 }
+
+void checkPartitionRead()
+{
+  showHelpText = false;
+  if (spifsPartition == NULL)
+  {
+    u8g2log.printf("ERR! NO PARTITION!");
+    modeNotepadLoop();
+    return;
+  }
+  u8g2log.printf("Start\n");
+  modeNotepadLoop();
+  uint8_t lbaBuffer[DISK_SECTOR_SIZE];
+  for (uint32_t lba = 0; lba  < DISK_SECTOR_COUNT; lba++)
+  {
+    uint32_t lbaStart = lba * DISK_SECTOR_SIZE;
+    uint32_t lbaEnd = lbaStart + DISK_SECTOR_SIZE;
+    u8g2log.printf(">Read: %d-%d...\n", lbaStart, lbaEnd);
+    onRead(lba, 0, lbaBuffer, DISK_SECTOR_SIZE);
+    u8g2log.printf("Check: %d-%d...", lbaStart, lbaEnd);
+    int errs = 0;
+    for (uint32_t i = 0; i < DISK_SECTOR_SIZE; i++)
+    {
+      uint32_t offset = lba * DISK_SECTOR_SIZE + i;
+      uint8_t expected = genTestData(offset);
+      uint8_t actual = lbaBuffer[i];
+      if(expected != actual)
+        errs ++; 
+    }
+    if(errs == 0)
+      u8g2log.printf("OK\n");
+    else 
+      u8g2log.printf("Errs:%d\n", errs);
+    modeNotepadLoop();
+  }
+  u8g2log.printf("== FINISHED. ==\n\n");
+}
+
+void checkPartitionWrite()
+{
+  showHelpText = false;
+  if (spifsPartition == NULL)
+  {
+    u8g2log.printf("ERR! NO PARTITION!");
+    modeNotepadLoop();
+    return;
+  }
+  u8g2log.printf("Start\n");
+  modeNotepadLoop();
+  uint8_t lbaBuffer[DISK_SECTOR_SIZE];
+  for (uint32_t lba = 0; lba  < DISK_SECTOR_COUNT; lba++)
+  {
+    uint32_t lbaStart = lba * DISK_SECTOR_SIZE;
+    uint32_t lbaEnd = lbaStart + DISK_SECTOR_SIZE;
+    u8g2log.printf(">Write: %d-%d...\n", lbaStart, lbaEnd);
+    for (uint32_t i = 0; i < DISK_SECTOR_SIZE; i++)
+    {
+      uint32_t offset = lba * DISK_SECTOR_SIZE + i;
+      uint8_t expected = genTestData(offset);
+      lbaBuffer[i] = expected;
+    }
+    onWrite(lba, 0, lbaBuffer, DISK_SECTOR_SIZE);
+    modeNotepadLoop();
+  }
+  u8g2log.printf("== FINISHED. ==\n\n");
+}
 void initPartition()
 {
   showHelpText = false;
@@ -380,7 +460,8 @@ void initPartition()
   u8g2log.printf("OK\n");
   modeNotepadLoop();
 
-  for(int offset = 0; (offset+SPI_FLASH_SEC_SIZE)<spifsPartition->size; offset += SPI_FLASH_SEC_SIZE){
+  for (int offset = 0; offset < DISK_SECTOR_COUNT * DISK_SECTOR_SIZE ; offset += SPI_FLASH_SEC_SIZE)
+  {
     u8g2log.printf("Clear page %d...", offset);
     modeNotepadLoop();
     res = esp_partition_erase_range(spifsPartition, offset, SPI_FLASH_SEC_SIZE);
@@ -405,7 +486,6 @@ void initPartition()
       u8g2log.printf("ERR %d\n", res);
     modeNotepadLoop();
   }
-  
 
   u8g2log.printf("Prepare filesystem %d...", imageSize);
   modeNotepadLoop();
@@ -413,7 +493,6 @@ void initPartition()
   u8g2log.printf("OK\n");
   modeNotepadLoop();
 
-  
   u8g2log.printf("Clear region %d-%d...", 0, SPI_FLASH_SEC_SIZE);
   modeNotepadLoop();
   res = esp_partition_erase_range(spifsPartition, 0, SPI_FLASH_SEC_SIZE);
@@ -426,7 +505,7 @@ void initPartition()
   else if (res == ESP_OK)
     u8g2log.printf("ERR %d\n", res);
   modeNotepadLoop();
-    
+
   u8g2log.printf("Copy filesystem...\n");
   modeNotepadLoop();
   u8g2log.printf("Write %d bytes...", SPI_FLASH_SEC_SIZE);
@@ -441,7 +520,7 @@ void initPartition()
   else if (res == ESP_OK)
     u8g2log.printf("ERR %d\n", res);
   modeNotepadLoop();
-    
+
   {
     u8g2log.printf("Check filesystem...\n");
     modeNotepadLoop();
@@ -486,11 +565,13 @@ void initPartition()
 
 void modeNotepadButtonUp()
 {
-  showPartitions();
+  checkPartitionRead();
+  //showPartitions();
 }
 
 void modeNotepadButtonDown()
 {
+  //checkPartitionWrite();
   initPartition();
 }
 
