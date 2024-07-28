@@ -26,21 +26,23 @@ void ModeAppsMenuButtonCenter();
 #include "ModeDots.h"
 #include "ModeSerialLog.h"
 #include "ModeMenuBackgrounds.h"
-#include "Notepad.h"
+#include "ModeFileManager.h"
+#include "ModeMemoryManager.h"
 
 const int itemModeAppsBack=0;
 const int itemModeAppsAlarm=1;
 const int itemModeAppsCalendar=2;
 const int itemModeAppsSettings=3;
 const int itemModeAppsMusic=4;
-const int itemModeAppsNotepad=5;
-const int itemModeAppsTimer=6;
-const int itemModeAppsStopwatch=7;
-const int itemModeAppsFlashlight=8;
-const int itemModeAppsDebug=9;
-const int itemModeAppsSerialLog=10;
-const int itemModeAppsMeow=11;
-const int itemModeAppsBackgrounds=12;
+const int itemModeAppsFileManager=5;
+const int itemModeAppsMemoryManager=6;
+const int itemModeAppsTimer=7;
+const int itemModeAppsStopwatch=8;
+const int itemModeAppsFlashlight=9;
+const int itemModeAppsDebug=10;
+const int itemModeAppsSerialLog=11;
+const int itemModeAppsMeow=12;
+const int itemModeAppsBackgrounds=13;
 
 
 void setModeAppsMenu(){
@@ -76,19 +78,20 @@ void ModeAppsMenuLoop(){
   drawStatusbar(363, 1, true);
   drawMenuLegend();
   
-  drawMenuItem(itemModeAppsBack,       draw_ic24_back,       "Вийти",                         false);
-  drawMenuItem(itemModeAppsAlarm,      draw_ic24_alarm,      "Будильник",                     false);
-  drawMenuItem(itemModeAppsCalendar,   draw_ic24_calendar,   "Календар",                      false);
-  drawMenuItem(itemModeAppsSettings,   draw_ic24_settings,   "Налаштування",                  firstDraw);
-  drawMenuItem(itemModeAppsMusic,      draw_ic24_music,      "Мелодії",                       false);
-  drawMenuItem(itemModeAppsNotepad,    draw_ic24_apps,       "Нотатки",                       false);
-  drawMenuItem(itemModeAppsTimer,      draw_ic24_timer,      "Таймер",                        false);
-  drawMenuItem(itemModeAppsStopwatch,  draw_ic24_stopwatch,  "Секундомір",                    firstDraw);
-  drawMenuItem(itemModeAppsFlashlight, draw_ic24_flashlight2,"Ліхтарик",                      false);
-  drawMenuItem(itemModeAppsDebug,      draw_ic24_bug,        "Інженерне меню",                false);
-  drawMenuItem(itemModeAppsSerialLog,  draw_ic24_terminal,   "Лог UART",                      false);
-  drawMenuItem(itemModeAppsMeow,       draw_ic24_meow,       "Meow",                          firstDraw);
-  drawMenuItem(itemModeAppsBackgrounds,draw_ic24_watchface,  "Заставки",                      false);
+  drawMenuItem(itemModeAppsBack,         draw_ic24_back,       "Вийти",                         false);
+  drawMenuItem(itemModeAppsAlarm,        draw_ic24_alarm,      "Будильник",                     false);
+  drawMenuItem(itemModeAppsCalendar,     draw_ic24_calendar,   "Календар",                      false);
+  drawMenuItem(itemModeAppsSettings,     draw_ic24_settings,   "Налаштування",                  firstDraw);
+  drawMenuItem(itemModeAppsMusic,        draw_ic24_music,      "Мелодії",                       false);
+  drawMenuItem(itemModeAppsFileManager,  draw_ic24_apps,       "Файли",                         false);
+  drawMenuItem(itemModeAppsMemoryManager,draw_ic24_settings,   "Пам'ять",                       false);
+  drawMenuItem(itemModeAppsTimer,        draw_ic24_timer,      "Таймер",                        firstDraw);
+  drawMenuItem(itemModeAppsStopwatch,    draw_ic24_stopwatch,  "Секундомір",                    false);
+  drawMenuItem(itemModeAppsFlashlight,   draw_ic24_flashlight2,"Ліхтарик",                      false);
+  drawMenuItem(itemModeAppsDebug,        draw_ic24_bug,        "Інженерне меню",                false);
+  drawMenuItem(itemModeAppsSerialLog,    draw_ic24_terminal,   "Лог UART",                      firstDraw);
+  drawMenuItem(itemModeAppsMeow,         draw_ic24_meow,       "Meow",                          false);
+  drawMenuItem(itemModeAppsBackgrounds,  draw_ic24_watchface,  "Заставки",                      false);
   
   lcd()->sendBuffer();
 }
@@ -143,8 +146,12 @@ void ModeAppsMenuButtonCenter(){
     setModeBackgroundsMenu();
     return;
   }
-  if(selected == itemModeAppsNotepad){
-    setmodeNotepad();
+  if(selected == itemModeAppsFileManager){
+    setmodeFileManager();
+    return;
+  }
+  if(selected == itemModeAppsMemoryManager){
+    setmodeMemoryManager();
     return;
   }
   
