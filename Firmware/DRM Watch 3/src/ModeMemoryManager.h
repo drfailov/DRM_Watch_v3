@@ -122,9 +122,9 @@ void modeMemoryManagerLoop()
   if(showMenu)
   {
     drawListItem(itemBack,                              draw_ic24_back,      "Назад",                 "До головного меню",      false);
-    drawListItem(modeMemoryManagerItemUpload,           draw_ic24_bubbles,   "Підключити до USB",     "Щоб закинути файли з компа",      false);
-    drawListItem(modeMemoryManagerItemShowPartitions,   draw_ic24_ant2,      "Показати карту розділів",     "Щоб закинути файли з компа",      false);
-    drawListItem(modeMemoryManagerItemFormatPartition,  draw_ic24_bubbles,   "Форматувати розділ",     "Щоб закинути файли з компа",      false);
+    drawListItem(modeMemoryManagerItemUpload,           draw_ic24_usb,       "Підключити до USB",     "Щоб закинути файли з компа",      false);
+    drawListItem(modeMemoryManagerItemShowPartitions,   draw_ic24_partitions,"Показати карту розділів",     "Щоб закинути файли з компа",      false);
+    drawListItem(modeMemoryManagerItemFormatPartition,  draw_ic24_clean,     "Форматувати розділ",     "Щоб закинути файли з компа",      false);
   }
   
   //if (showHelpText)

@@ -62,7 +62,7 @@ void setModeAppsMenu(){
   autoReturnTime = autoReturnDefaultTime;
   autoSleepTime = autoSleepDefaultTime;
   selected = 0;
-  items = 13;
+  items = 14;
 }
 
 
@@ -83,8 +83,8 @@ void ModeAppsMenuLoop(){
   drawMenuItem(itemModeAppsCalendar,     draw_ic24_calendar,   "Календар",                      false);
   drawMenuItem(itemModeAppsSettings,     draw_ic24_settings,   "Налаштування",                  firstDraw);
   drawMenuItem(itemModeAppsMusic,        draw_ic24_music,      "Мелодії",                       false);
-  drawMenuItem(itemModeAppsFileManager,  draw_ic24_apps,       "Файли",                         false);
-  drawMenuItem(itemModeAppsMemoryManager,draw_ic24_settings,   "Пам'ять",                       false);
+  drawMenuItem(itemModeAppsFileManager,  draw_ic24_folder,     "Файли",                         false);
+  drawMenuItem(itemModeAppsMemoryManager,draw_ic24_memory,     "Пам'ять",                       false);
   drawMenuItem(itemModeAppsTimer,        draw_ic24_timer,      "Таймер",                        firstDraw);
   drawMenuItem(itemModeAppsStopwatch,    draw_ic24_stopwatch,  "Секундомір",                    false);
   drawMenuItem(itemModeAppsFlashlight,   draw_ic24_flashlight2,"Ліхтарик",                      false);

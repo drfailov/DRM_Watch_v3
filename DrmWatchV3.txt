@@ -43,7 +43,15 @@ Icons used as reference:
  <a href="https://www.flaticon.com/free-icons/cardiac" title="cardiac icons">Cardiac icons created by Freepik - Flaticon</a>
  <a href="https://www.flaticon.com/free-icons/system-update" title="system update icons">System update icons created by Freepik - Flaticon</a>
  <a href="https://www.flaticon.com/free-icons/tick" title="tick icons">Tick icons created by Freepik - Flaticon</a>
- 
+ <a href="https://www.flaticon.com/free-icons/folder" title="folder icons">Folder icons created by Good Ware - Flaticon</a>
+ <a href="https://www.flaticon.com/free-icons/document" title="document icons">Document icons created by Freepik - Flaticon</a>
+ <a href="https://www.flaticon.com/free-icons/memory-card" title="memory card icons">Memory card icons created by Prosymbols - Flaticon</a>
+ <a href="https://www.flaticon.com/free-icons/pie-chart" title="pie chart icons">Pie chart icons created by Freepik - Flaticon</a>
+ <a href="https://www.flaticon.com/free-icons/usb" title="usb icons">Usb icons created by Those Icons - Flaticon</a>
+ <a href="https://www.flaticon.com/free-icons/clean" title="clean icons">Clean icons created by Freepik - Flaticon</a>
+ <a href="https://www.flaticon.com/free-icons/clear" title="clear icons">Clear icons created by LAFS - Flaticon</a>
+ <a href="https://www.flaticon.com/free-icons/breaking-the-rules" title="breaking the rules icons">Breaking the rules icons created by Us and Up - Flaticon</a>
+	
  
  
  
@@ -656,6 +664,7 @@ Changelog:
 2024-07-28 v2.46 Продовжена робота над записником: Почато впровадження FFat
 2024-07-28 v2.46 Продовжена робота над записником: Почато створення програми файлового менеджера
 2024-07-28 v2.46 Продовжена робота над записником: Почато створення програми менеджера пам'яті
+2024-07-29 v2.46 Продовжена робота над записником: Додано іконки
 
 
 ==== todo:
@@ -683,6 +692,8 @@ Changelog:
 - міжнародний час на цифкрблаті
 - Щоб на великому циіерблаті могли одночасно бути кілька "віджетів"
 - ESP32 Marauder
+- Фон заставка де текст Still Alive
+- Фон матриця
 
 
 
