@@ -54,10 +54,13 @@ WatchfaceDrawable getWatchfaceDrawable(int index)
 
 void setModeWatchface()
 {
+  if(modeExit != 0)
+    modeExit();
   clearScreenAnimation();
   Serial.println(F("Set mode: Watchface"));
   modeSetup = setModeWatchface;
   modeLoop = modeWatchfaceLoop;
+  modeExit = 0;
   modeButtonUp = modeWatchfaceButtonUp;
   modeButtonCenter = modeWatchfaceButtonCenter;
   modeButtonDown = modeWatchfaceButtonDown;

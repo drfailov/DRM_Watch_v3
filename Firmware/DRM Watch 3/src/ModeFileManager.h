@@ -7,6 +7,7 @@ https://github.com/Munsutari/esp32-s3-internal-flash-msc
 
 /*PROTOTYPES*/
 void modeFileManagerLoop();
+void modeFileManagerExit();
 void setmodeFileManager();
 void modeFileManagerButtonUp();
 void modeFileManagerButtonCenter();
@@ -19,18 +20,22 @@ void modeFileManagerButtonDown();
 #include <Arduino.h>
 #include "FFat.h"
 #include "FS.h"
+#include "ModeFileReaderText.h"
 
 // https://github.com/espressif/esp-idf/blob/master/examples/storage/partition_api/partition_ops/main/main.c
 //  Find the partition map in the partition table
 const char *modeFileManagerDir = "/";
-bool fatReady = false;
+bool modeFileManagerFatReady = false;
 
 void setmodeFileManager()
 {
+  if(modeExit != 0)
+    modeExit();
   clearScreenAnimation();
   Serial.println(F("Set mode: File Manager"));
   modeSetup = setmodeFileManager;
   modeLoop = modeFileManagerLoop;
+  modeExit = modeFileManagerExit;
   modeButtonUp = modeMainMenuButtonUp; // modeFileManagerButtonUp;
   modeButtonCenter = modeFileManagerButtonCenter;
   modeButtonDown = modeMainMenuButtonDown; // modeFileManagerButtonDown;
@@ -38,13 +43,13 @@ void setmodeFileManager()
   modeButtonCenterLong = 0;
   modeButtonDownLong = 0;
   registerAction();
-  enableAutoReturn = false;
+  enableAutoReturn = true;
   enableAutoSleep = false;
   autoReturnTime = autoReturnDefaultTime;
   autoSleepTime = autoSleepDefaultTime;
   
 
-  fatReady = FFat.begin();
+  modeFileManagerFatReady = FFat.begin();
   selected = 0;
 }
 
@@ -62,7 +67,7 @@ void modeFileManagerLoop()
 
   drawStatusbar(363, 1, true);
 
-  if (fatReady)
+  if (modeFileManagerFatReady)
   {
     fs::FS &fs = FFat;
     File dir = fs.open(F(modeFileManagerDir));
@@ -91,7 +96,10 @@ void modeFileManagerLoop()
         }
         else
         {
-          sprintf(buffer, "%d Байт", file.size());
+          if(strendswith(file.name(), ".txt"))
+            sprintf(buffer, "Текст %d Байт", file.size());
+          else
+            sprintf(buffer, "%d Байт", file.size());
           drawListItem(cnt,   draw_ic24_life,   file.name(),    buffer,      false);
         }
         file.close();
@@ -139,6 +147,10 @@ void modeFileManagerLoop()
 
   lcd()->sendBuffer();
 }
+void modeFileManagerExit(){
+  FFat.end();
+  modeExit = 0;
+}
 
 // const char* modeFileManagerMenuItems(int index){
 //   if(index == 0) return "Завантажити файли по USB";
@@ -170,10 +182,67 @@ void modeFileManagerLoop()
 // }
 void modeFileManagerButtonCenter()
 {
+  if(selected == 0){
+    FFat.end();
+    setModeAppsMenu(); // exit
+    return;
+  }
+  if (modeFileManagerFatReady)
+  {
+    fs::FS &fs = FFat;
+    File dir = fs.open(F(modeFileManagerDir));
+    if(dir != 0 && dir.isDirectory()){
+      for(int index=0; index<1000; index++){
+        File file = dir.openNextFile();
+        //dir.getNextFileName
+        if (!file) // no more files
+          break;
+        if(index == selected){
+          if(strendswith(file.name(), ".txt"))
+          {
+            //char *b = strdup(file.path());
+            // size_t len = strlen(file.path()); // Doesn't include null-terminator character
+            // char *b = new char[len+1];
+            // memcpy(b, file.path(), len); // Assumes plain ASCII string
+            // b[len] = '\0';
+            modeFileReaderTextPath = strdup(file.path());
+            file.close();
+            
+            setmodeFileReaderText();
+            break;
+          }
+        }
+        file.close();
+      }
+    }
+  }
+      // int cnt = 0;
+      // while (true)
+      // {
+        
+      //   Serial.println(file.name());
+      //   if (file.isDirectory())
+      //   {
+      //     drawListItem(cnt,   draw_ic24_apps,   file.name(),    "Папка",      false);
+      //   }
+      //   else
+      //   {
+      //     sprintf(buffer, "%d Байт", file.size());
+      //     drawListItem(cnt,   draw_ic24_life,   file.name(),    buffer,      false);
+      //   }
+        
+      //   cnt++;
+      // }
+      // items = cnt;
+    //}
+  // }
+  // else
+  // {
+  //   drawCentered("Файлова система пошкоджена", 100);
+  //   drawCentered(modeFileManagerDir, 150);
+  // }
   // MSC.end();
   // partition = NULL;
-  FFat.end();
-  setModeAppsMenu(); // exit
 }
 // void modeFileManagerButtonDown()
 // {

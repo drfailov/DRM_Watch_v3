@@ -46,6 +46,8 @@ const int itemModeAppsBackgrounds=13;
 
 
 void setModeAppsMenu(){
+  if(modeExit != 0)
+    modeExit();
   clearScreenAnimation();
   Serial.println(F("Set mode: Apps Menu"));
   modeSetup = setModeAppsMenu;

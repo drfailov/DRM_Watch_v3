@@ -12,6 +12,7 @@ const int modeMemoryManagerItemFormatPartition = 3;
 
 /*PROTOTYPES*/
 void modeMemoryManagerLoop();
+void modeMemoryManagerExit();
 void setmodeMemoryManager();
 void modeMemoryManagerButtonUp();
 void modeMemoryManagerButtonCenter();
@@ -58,10 +59,13 @@ static bool onStartStop(uint8_t power_condition, bool start, bool load_eject){
 
 void setmodeMemoryManager()
 {
+  if(modeExit != 0)
+    modeExit();
   clearScreenAnimation();
   Serial.println(F("Set mode: Notepad"));
   modeSetup = setmodeMemoryManager;
   modeLoop = modeMemoryManagerLoop;
+  modeExit = modeMemoryManagerExit;
   modeButtonUp = modeMemoryManagerButtonUp;
   modeButtonCenter = modeMemoryManagerButtonCenter;
   modeButtonDown = modeMemoryManagerButtonDown;
@@ -155,6 +159,11 @@ void modeMemoryManagerLoop()
 
   lcd()->sendBuffer();
 }
+void modeMemoryManagerExit()
+{
+  modeExit = 0;
+  MSC.end();
+}
 
 void showPartitions()
 {
@@ -214,7 +223,7 @@ void modeMemoryManagerButtonCenter()
 {
   if(showMenu){
     if(selected == itemBack){
-      MSC.end();
+      modeMemoryManagerExit();
       setModeAppsMenu();
       return;
     }

@@ -33,8 +33,9 @@ int autoSleepTime = autoSleepDefaultTime;//ms
 
 
 void autoSleepLoop(){
-  if(sinceLastAction() > autoReturnTimeMs()) //auto go to watchface
+  if(sinceLastAction() > autoReturnTimeMs()){ //auto go to watchface
     setModeWatchface();
+  }
   
   if(sinceLastAction() > autoSleepTimeMs())
     goToSleep();
