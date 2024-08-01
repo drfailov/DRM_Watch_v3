@@ -23,8 +23,11 @@ void modeFileReaderTextButtonDown();
 
 // https://github.com/espressif/esp-idf/blob/master/examples/storage/partition_api/partition_ops/main/main.c
 //  Find the partition map in the partition table
-char *modeFileReaderTextPath = "/";
+char *modeFileReaderTextPath = (char*)"/";
 bool modeFileReaderText_fatReady = false;
+uint8_t modeFileReaderText_page=0;
+const uint8_t modeFileReaderText_pageMax = 100;
+size_t modeFileReaderText_pages[modeFileReaderText_pageMax];
 
 void setmodeFileReaderText()
 {
@@ -35,14 +38,14 @@ void setmodeFileReaderText()
   modeSetup = setmodeFileReaderText;
   modeLoop = modeFileReaderTextLoop;
   modeExit = modeFileReaderTextExit;
-  modeButtonUp = modeMainMenuButtonUp; // modeFileReaderTextButtonUp;
+  modeButtonUp = modeFileReaderTextButtonUp; // modeFileReaderTextButtonUp;
   modeButtonCenter = modeFileReaderTextButtonCenter;
-  modeButtonDown = modeMainMenuButtonDown; // modeFileReaderTextButtonDown;
+  modeButtonDown = modeFileReaderTextButtonDown; // modeFileReaderTextButtonDown;
   modeButtonUpLong = 0;
   modeButtonCenterLong = 0;
   modeButtonDownLong = 0;
   registerAction();
-  enableAutoReturn = false;
+  enableAutoReturn = true;
   enableAutoSleep = false;
   autoReturnTime = autoReturnDefaultTime;
   autoSleepTime = autoSleepDefaultTime;
@@ -50,6 +53,7 @@ void setmodeFileReaderText()
 
   modeFileReaderText_fatReady = FFat.begin();
   selected = 0;
+  modeFileReaderText_page = 0;
 }
 
 void modeFileReaderTextLoop()
@@ -83,18 +87,43 @@ void modeFileReaderTextLoop()
     {
       lcd()->setFont(u8g2_font_10x20_t_cyrillic); // ok
       lcd()->setColorIndex(black);
-      lcd()->setCursor(5, 30);
+      lcd()->setCursor(380, 230);
+      lcd()->print(modeFileReaderText_page);
+
+      //lcd()->setFont(u8g2_font_10x20_t_cyrillic); // ok
+      lcd()->setFont(u8g2_font_unifont_t_cyrillic); //smalll
+      lcd()->setColorIndex(black);
+      int y=40;
+      lcd()->setCursor(5, y);
+      
+      for(int i=0; i<modeFileReaderText_pages[modeFileReaderText_page]; i++)
+      {
+        if(f.available())
+          f.read();
+      }
+
       while(f.available())
       {
-         lcd()->print((char)f.read());
+        char c = (char)f.read();
+        if(c == '\n' || lcd()->getCursorX() > 350)
+        {
+          y += 13;
+          lcd()->setCursor(5, y);
+        }
+        if(y > 238){
+          break;
+          
+        }
+        lcd()->print(c);
       }
+      modeFileReaderText_pages[modeFileReaderText_page+1] = f.position();
       f.close(); 
     }
   }
   else{
     drawCentered("Файлова система пошкоджена", 100);
     if(modeFileReaderTextPath != 0)
-    drawCentered(modeFileReaderTextPath, 150);
+      drawCentered(modeFileReaderTextPath, 150);
   }
   //     int cnt = 0;
   //     while (true)
@@ -186,12 +215,14 @@ void modeFileReaderTextExit(){
 
 //   }
 // }
-// void modeFileReaderTextButtonUp()
-// {
-//   //checkPartitionRead();
-//   //showPartitions();
-//   selected ++;
-// }
+void modeFileReaderTextButtonUp()
+{
+  if(modeFileReaderText_page > 0)
+    modeFileReaderText_page --;
+  //checkPartitionRead();
+  //showPartitions();
+  //selected ++;
+}
 void modeFileReaderTextButtonCenter()
 {
   // MSC.end();
@@ -200,17 +231,19 @@ void modeFileReaderTextButtonCenter()
   //setModeAppsMenu(); 
   setmodeFileManager(); // exit
 }
-// void modeFileReaderTextButtonDown()
-// {
-//   selected --;
-//   // ModeListSelection_Items = modeFileReaderTextMenuItems;
-//   // ModeListSelection_Name = "Меню нотаток";
-//   // ModeListSelection_Cnt = 5;
-//   // ModeListSelection_Selected = 0;//getActionArgument(ModeShortcutEventSettings_EventId);
-//   // ModeListSelection_OnSelected = modeFileReaderTextMenuSelected;
-//   // setModeListSelection();
-//   //checkPartitionWrite();
-//   //initPartition();
-// }
+void modeFileReaderTextButtonDown()
+{
+  if(modeFileReaderText_pages[modeFileReaderText_page+1] != modeFileReaderText_pages[modeFileReaderText_page] && modeFileReaderText_page < modeFileReaderText_pageMax-1)
+    modeFileReaderText_page ++;
+  //selected --;
+  // ModeListSelection_Items = modeFileReaderTextMenuItems;
+  // ModeListSelection_Name = "Меню нотаток";
+  // ModeListSelection_Cnt = 5;
+  // ModeListSelection_Selected = 0;//getActionArgument(ModeShortcutEventSettings_EventId);
+  // ModeListSelection_OnSelected = modeFileReaderTextMenuSelected;
+  // setModeListSelection();
+  //checkPartitionWrite();
+  //initPartition();
+}
 
 #endif
