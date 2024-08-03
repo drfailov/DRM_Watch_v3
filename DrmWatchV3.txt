@@ -71,6 +71,7 @@ Benny Hill Theme: https://onlinesequencer.net/4086342
 Rickroll melody  https://onlinesequencer.net/4103200	  https://onlinesequencer.net/4072609
 funkytown lipps inc  https://onlinesequencer.net/3105663	  https://onlinesequencer.net/4107482
 Собачий вальс  https://onlinesequencer.net/2643377   https://onlinesequencer.net/4107493
+На свою голову     https://onlinesequencer.net/4127721
 
 Known Pins reserved on ESP32-S2 (Lolin S2 Mini):
 GPIO 7: SPI SCK
@@ -669,7 +670,7 @@ Changelog:
 2024-07-30 FW:v3.0b2 функцію завершення режиму застосовано до кількох режимів
 2024-07-30 FW:v3.0b2 Почата робота над вікном відображення тексту
 2024-08-02 FW:v3.0b3 Виведення тексту, пагінація
-
+2024-08-02 FW:v3.0b4 Додана мелодія: На свою голову     https://onlinesequencer.net/4127721
 
 ==== todo:
 - https://github.com/spacehuhntech/esp8266_deauther
@@ -707,7 +708,7 @@ Changelog:
 - Star Wars
 - Мелодія політ шмеля
 - Another Love https://onlinesequencer.net/3779810    https://onlinesequencer.net/3591566   https://onlinesequencer.net/2084958
-- На свою голову  
+- На свою голову     https://onlinesequencer.net/4127721
 - Рідна мати моя  
 
 - 
