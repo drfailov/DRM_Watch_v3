@@ -672,7 +672,9 @@ Changelog:
 2024-08-02 FW:v3.0b3 Виведення тексту, пагінація
 2024-08-02 FW:v3.0b4 Додана мелодія: На свою голову     https://onlinesequencer.net/4127721
 2024-08-02 FW:v3.0b5 Трохи розкидав файли по папкам
-2024-08-02 FW:v3.0b5 Почав писати режим роботи з файлами
+2024-08-02 FW:v3.0b5 Додано окремий режим доступу по USB і він працює
+
+
 
 ==== todo:
 - https://github.com/spacehuhntech/esp8266_deauther
@@ -704,14 +706,16 @@ Changelog:
 - Фон з зірочками
 - фон з мікросхемами
 - Малювалка мишка https://www.youtube.com/watch?v=WPlPRkPx1_8&ab_channel=ThatProject
+- Кнопка "назад" в файловому менеджері
+- відкриття папок
+- Приховувати невідомі типи файлів
+
 
 
 Малодії:
 - Star Wars
 - Мелодія політ шмеля
 - Another Love https://onlinesequencer.net/3779810    https://onlinesequencer.net/3591566   https://onlinesequencer.net/2084958
-- На свою голову     https://onlinesequencer.net/4127721
 - Рідна мати моя  
-
 - 
 - 

@@ -140,6 +140,13 @@ void drawCentered(const char* str, int y)
   lcd()->setCursor((W-30-width)/2, y); 
   lcd()->print(str);
 }
+void drawCentered(const char* str, int x, int y)
+{
+  lcd()->setFont(u8g2_font_10x20_t_cyrillic);  //ok
+  int width = lcd()->getUTF8Width(str);
+  lcd()->setCursor(x-(width/2), y); 
+  lcd()->print(str);
+}
 
 void drawMessage(String text){
   Serial.println(text);

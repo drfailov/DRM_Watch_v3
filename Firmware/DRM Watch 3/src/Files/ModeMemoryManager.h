@@ -29,34 +29,34 @@ void modeMemoryManagerButtonDown();
 #include "USB.h"
 #include "USBMSC.h"
 
-USBMSC MSC;
+//USBMSC MSC;
 // Block size of flash memory (in bytes) (4KB)
 #define BLOCK_SIZE 4096  
 // https://github.com/espressif/esp-idf/blob/master/examples/storage/partition_api/partition_ops/main/main.c
 //  Find the partition map in the partition table
-const esp_partition_t *partition = NULL;
+//const esp_partition_t *partition = NULL;
 bool showMenu = true;
 bool showFormatting = false;
 bool showLog = true;
 bool showMsc = false;
 
-static int32_t onWrite(uint32_t lba, uint32_t offset, uint8_t* buffer, uint32_t bufsize){
-  ledStatusOn();
-  esp_partition_erase_range(partition, offset + (lba * BLOCK_SIZE), bufsize);
-  esp_partition_write(partition, offset + (lba * BLOCK_SIZE), (uint32_t*)buffer, bufsize);
-  return bufsize;
-}
+// static int32_t onWrite(uint32_t lba, uint32_t offset, uint8_t* buffer, uint32_t bufsize){
+//   ledStatusOn();
+//   esp_partition_erase_range(partition, offset + (lba * BLOCK_SIZE), bufsize);
+//   esp_partition_write(partition, offset + (lba * BLOCK_SIZE), (uint32_t*)buffer, bufsize);
+//   return bufsize;
+// }
 
-static int32_t onRead(uint32_t lba, uint32_t offset, void* buffer, uint32_t bufsize){
-  ledStatusOn();
-  esp_partition_read(partition, offset + (lba * BLOCK_SIZE), (uint32_t*)buffer, bufsize);
-  return bufsize;
-}
+// static int32_t onRead(uint32_t lba, uint32_t offset, void* buffer, uint32_t bufsize){
+//   ledStatusOn();
+//   esp_partition_read(partition, offset + (lba * BLOCK_SIZE), (uint32_t*)buffer, bufsize);
+//   return bufsize;
+// }
 
-static bool onStartStop(uint8_t power_condition, bool start, bool load_eject){
-  ledStatusOn();
-  return true;
-}
+// static bool onStartStop(uint8_t power_condition, bool start, bool load_eject){
+//   ledStatusOn();
+//   return true;
+// }
 
 void setmodeMemoryManager()
 {
@@ -83,23 +83,23 @@ void setmodeMemoryManager()
 
   //showHelpText = true;
 
-  u8g2log.begin(LOG_W, LOG_H, u8log_buffer);
-  u8g2log.setLineHeightOffset(0);
+  // u8g2log.begin(LOG_W, LOG_H, u8log_buffer);
+  // u8g2log.setLineHeightOffset(0);
   
   //partition = esp_partition_find_first(ESP_PARTITION_TYPE_DATA, ESP_PARTITION_SUBTYPE_ANY, "spiffs");
   //partition = esp_partition_find_first(ESP_PARTITION_TYPE_DATA, ESP_PARTITION_SUBTYPE_ANY, "spiffs");
   //partition = esp_partition_find_first(ESP_PARTITION_TYPE_DATA, ESP_PARTITION_SUBTYPE_DATA_FAT, NULL); //fatffs
   // partition = esp_partition_find_first(ESP_PARTITION_TYPE_APP, ESP_PARTITION_SUBTYPE_ANY, "app1");
-  partition = esp_partition_find_first(ESP_PARTITION_TYPE_DATA, ESP_PARTITION_SUBTYPE_DATA_FAT, NULL); //fatffs
+  //partition = esp_partition_find_first(ESP_PARTITION_TYPE_DATA, ESP_PARTITION_SUBTYPE_DATA_FAT, NULL); //fatffs
 
-  MSC.vendorID("DRM");     // max 8 chars
-  MSC.productID("Watch 3"); // max 16 chars
-  MSC.productRevision("3.0");   // max 4 chars
-  MSC.onStartStop(onStartStop);
-  MSC.onRead(onRead);
-  MSC.onWrite(onWrite);
-  MSC.mediaPresent(true);
-  MSC.begin(partition->size/BLOCK_SIZE, BLOCK_SIZE);
+  // MSC.vendorID("DRM");     // max 8 chars
+  // MSC.productID("Watch 3"); // max 16 chars
+  // MSC.productRevision("3.0");   // max 4 chars
+  // MSC.onStartStop(onStartStop);
+  // MSC.onRead(onRead);
+  // MSC.onWrite(onWrite);
+  // MSC.mediaPresent(true);
+  // MSC.begin(partition->size/BLOCK_SIZE, BLOCK_SIZE);
 }
 
 void modeMemoryManagerLoop()
@@ -162,8 +162,8 @@ void modeMemoryManagerLoop()
 }
 void modeMemoryManagerExit()
 {
-  modeExit = 0;
-  MSC.end();
+  // modeExit = 0;
+  // MSC.end();
 }
 
 void showPartitions()
