@@ -12,7 +12,7 @@ void ModeBackgroundsMenuButtonCenter();
 #include "Icons.h"
 #include "Lcd.h"
 #include "ModeFire.h"
-#include "ModeMenuSettings.h"
+#include "SettingsMenu/ModeMenuSettings.h"
 #include "ModeStopwatch.h"
 #include "ModeTimer.h"
 #include "ModeLife.h"

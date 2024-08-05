@@ -8,12 +8,11 @@ void modeSetLcdFrequencyMenuButtonUp();
 void modeSetLcdFrequencyMenuButtonCenter();
 void modeSetLcdFrequencyMenuButtonDown();
 
-#include "Global.h"
-#include "AutoSleep.h"
-#include "Button.h"
-#include "ModeMainMenu.h"
-#include "DrmPreferences.h"
-#include "ModeMenuSettingsTime.h"
+#include "../Global.h"
+#include "../AutoSleep.h"
+#include "../Button.h"
+#include "../ModeMainMenu.h"
+#include "../DrmPreferences.h"
 
 //int modeSetLcdFrequencyIndex = 0;
 //bool modeSetLcdFrequencyEditMode = false;

@@ -24,7 +24,7 @@ void switchDontSleep();
 #include "WatchfaceSide.h"
 #include "Lcd.h"
 #include "Battery.h"
-#include "ShortcutManager.h"
+#include "SettingsMenu/ShortcutManager.h"
 
 struct Watchface
 {

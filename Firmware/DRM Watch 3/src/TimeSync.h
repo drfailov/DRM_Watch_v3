@@ -13,7 +13,7 @@ void printLocalTime();
 #include "DrmPreferences.h"
 #include "RTC.h"
 #include "Lcd.h"
-#include "ModeWiFiScanner.h"
+#include "SettingsMenu/ModeWiFiScanner.h"
 
 //const long  gmtOffset_sec = 7200;
 //const int   daylightOffset_sec = 3600;

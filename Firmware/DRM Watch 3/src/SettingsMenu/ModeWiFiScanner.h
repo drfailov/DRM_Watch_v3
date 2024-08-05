@@ -12,10 +12,10 @@ const char* encryprionType(int i);
 String modeWiFiScannerGetSelectedNetworkName();
 bool tryConnectWifi(String ssid, String password, Runnable onConnected, Runnable onFailed);
 
-#include "Global.h"
-#include "AutoSleep.h"
-#include "Button.h"
-#include "ModeMainMenu.h"
+#include "../Global.h"
+#include "../AutoSleep.h"
+#include "../Button.h"
+#include "../ModeMainMenu.h"
 #include "ModeSavedWiFiList.h"
 
 #include <WiFi.h>

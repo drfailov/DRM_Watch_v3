@@ -5,13 +5,13 @@ void setModeMenuSettingsTime();
 void ModeMenuSettingsTimeLoop();
 void ModeMenuSettingsTimeButtonCenter();
 
-#include "Global.h"
-#include "AutoSleep.h"
-#include "Button.h"
-#include "Icons.h"
-#include "ModeMainMenu.h"
-#include "TimeSync.h"
-#include "DrmPreferences.h"
+#include "../Global.h"
+#include "../AutoSleep.h"
+#include "../Button.h"
+#include "../Icons.h"
+#include "../ModeMainMenu.h"
+#include "../TimeSync.h"
+#include "../DrmPreferences.h"
 #include "ModeSetTime.h"
 #include "ModeSetTimezone.h"
 

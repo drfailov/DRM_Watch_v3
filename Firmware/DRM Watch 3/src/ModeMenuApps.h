@@ -12,7 +12,7 @@ void ModeAppsMenuButtonCenter();
 #include "Icons.h"
 #include "Lcd.h"
 #include "ModeFire.h"
-#include "ModeMenuSettings.h"
+#include "SettingsMenu/ModeMenuSettings.h"
 #include "ModeStopwatch.h"
 #include "ModeTimer.h"
 #include "ModeLife.h"
@@ -26,8 +26,8 @@ void ModeAppsMenuButtonCenter();
 #include "ModeDots.h"
 #include "ModeSerialLog.h"
 #include "ModeMenuBackgrounds.h"
-#include "ModeFileManager.h"
-#include "ModeMemoryManager.h"
+#include "Files/ModeFileManager.h"
+#include "Files/ModeMemoryManager.h"
 
 const int itemModeAppsBack=0;
 const int itemModeAppsAlarm=1;

@@ -24,6 +24,7 @@ void modeMemoryManagerButtonDown();
 #include "AutoSleep.h"
 #include "Button.h"
 #include "ModeSerialLog.h"
+#include "ModeUsbMSC.h"
 #include <Arduino.h>
 #include "USB.h"
 #include "USBMSC.h"
@@ -225,6 +226,10 @@ void modeMemoryManagerButtonCenter()
     if(selected == itemBack){
       modeMemoryManagerExit();
       setModeAppsMenu();
+      return;
+    }
+    if(selected == modeMemoryManagerItemUpload){
+      setmodeUsbMsc();
       return;
     }
     if(selected == modeMemoryManagerItemFormatPartition){

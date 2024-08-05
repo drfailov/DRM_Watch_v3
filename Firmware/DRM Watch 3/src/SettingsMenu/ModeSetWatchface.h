@@ -7,9 +7,9 @@ void ModeSetWatchfaceButtonUp();
 void ModeSetWatchfaceButtonCenter();
 void ModeSetWatchfaceButtonDown();
 
-#include "Global.h"
-#include "AutoSleep.h"
-#include "Button.h"
+#include "../Global.h"
+#include "../AutoSleep.h"
+#include "../Button.h"
 
 void setModeSetWatchface(){
   clearScreenAnimation();

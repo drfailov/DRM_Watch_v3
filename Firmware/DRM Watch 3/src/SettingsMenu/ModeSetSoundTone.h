@@ -8,11 +8,11 @@ void modeSetSoundToneMenuButtonUp();
 void modeSetSoundToneMenuButtonCenter();
 void modeSetSoundToneMenuButtonDown();
 
-#include "Global.h"
-#include "AutoSleep.h"
-#include "Button.h"
-#include "ModeMainMenu.h"
-#include "DrmPreferences.h"
+#include "../Global.h"
+#include "../AutoSleep.h"
+#include "../Button.h"
+#include "../ModeMainMenu.h"
+#include "../DrmPreferences.h"
 #include "ModeMenuSettingsTime.h"
 
 //int modeSetSoundToneIndex = 0;

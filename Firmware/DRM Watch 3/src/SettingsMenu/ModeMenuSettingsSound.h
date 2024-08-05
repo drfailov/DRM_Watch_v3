@@ -5,14 +5,14 @@ void setModeMenuSettingsSound();
 void ModeMenuSettingsSoundLoop();
 void ModeMenuSettingsSoundButtonCenter();
 
-#include "Global.h"
-#include "Lcd.h"
-#include "Button.h"
-#include "Buzzer.h"
-#include "AutoSleep.h"
-#include "ModeMainMenu.h"
+#include "../Global.h"
+#include "../Lcd.h"
+#include "../Button.h"
+#include "../Buzzer.h"
+#include "../AutoSleep.h"
+#include "../ModeMainMenu.h"
 #include "ModeSetSoundTone.h"
-#include "Icons.h"
+#include "../Icons.h"
 
 const int ModeMenuSettingsSoundItemBack = 0;
 const int itemModeSettingsButtonSound=1;

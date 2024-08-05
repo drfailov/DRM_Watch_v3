@@ -5,10 +5,10 @@ void setModeMenuSettingsWatchfaceContent();
 void ModeMenuSettingsWatchfaceContentLoop();
 void ModeMenuSettingsWatchfaceContentButtonCenter();
 
-#include "Global.h"
-#include "AutoSleep.h"
-#include "Button.h"
-#include "ModeMainMenu.h"
+#include "../Global.h"
+#include "../AutoSleep.h"
+#include "../Button.h"
+#include "../ModeMainMenu.h"
 
 
 const int ModeMenuSettingsWatchfaceContentItemBack = 0;

@@ -8,12 +8,12 @@ void ModeSetTimeMenuButtonCenter();
 void ModeSetTimeMenuButtonDown();
 
 
-#include "Global.h"
-#include "AutoSleep.h"
-#include "Button.h"
-#include "ModeMainMenu.h"
-#include "ModeWatchface.h"
-#include "RTC.h"
+#include "../Global.h"
+#include "../AutoSleep.h"
+#include "../Button.h"
+#include "../ModeMainMenu.h"
+#include "../ModeWatchface.h"
+#include "../RTC.h"
 
 int modeSetTimeMenuIndex = 0;
 bool modeSetTimeMenuEditMode = false;

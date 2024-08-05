@@ -8,11 +8,11 @@ void modeSetTimezoneMenuButtonUp();
 void modeSetTimezoneMenuButtonCenter();
 void modeSetTimezoneMenuButtonDown();
 
-#include "Global.h"
-#include "AutoSleep.h"
-#include "Button.h"
-#include "ModeMainMenu.h"
-#include "DrmPreferences.h"
+#include "../Global.h"
+#include "../AutoSleep.h"
+#include "../Button.h"
+#include "../ModeMainMenu.h"
+#include "../DrmPreferences.h"
 #include "ModeMenuSettingsTime.h"
 
 //int modeSetTimezoneIndex = 0;

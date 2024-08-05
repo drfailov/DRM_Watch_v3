@@ -9,10 +9,10 @@ void modeSettingsMenuButtonCenter();
 void modeMainMenuButtonDown();
 
 
-#include "Global.h"
-#include "AutoSleep.h"
-#include "Button.h"
-#include "ModeMenuApps.h"
+#include "../Global.h"
+#include "../AutoSleep.h"
+#include "../Button.h"
+#include "../ModeMenuApps.h"
 #include "ModeMenuSettingsDisplay.h"
 #include "ModeMenuSettingsTime.h"
 #include "ModeMenuSettingsSound.h"

@@ -19,7 +19,7 @@ void drawListValue(byte index, Drawable drawIcon, const char* name, const char* 
 #include "Global.h"
 #include "AutoSleep.h"
 #include "Button.h"
-#include "ModeMenuSettings.h"
+#include "SettingsMenu/ModeMenuSettings.h"
 #include "ModeMenuApps.h"
 #include "ModeAbout.h"
 

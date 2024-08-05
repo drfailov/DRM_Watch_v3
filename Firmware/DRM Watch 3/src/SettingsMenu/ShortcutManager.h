@@ -66,13 +66,13 @@ const char* getActioNameC(int index);
 
 
 
-#include "DrmPreferences.h"
-#include "ModeStopwatch.h"
-#include "ModeTimer.h"
-#include "ModeListSelection.h"
-#include "MelodyPlayer.h"
-#include "ModeAlertsList.h"
-#include "ModeCalendar.h"
+#include "../DrmPreferences.h"
+#include "../ModeStopwatch.h"
+#include "../ModeTimer.h"
+#include "../ModeListSelection.h"
+#include "../MelodyPlayer.h"
+#include "../ModeAlertsList.h"
+#include "../ModeCalendar.h"
 #include "ModeMenuSettings.h"
 
 

@@ -13,7 +13,7 @@ void modeAboutButton();
 #include "Button.h"
 #include "ModeWatchface.h"
 #include "Icons.h"
-#include "ModeMenuSettings.h"
+#include "SettingsMenu/ModeMenuSettings.h"
 
 
 int modeAboutCounter = 0;

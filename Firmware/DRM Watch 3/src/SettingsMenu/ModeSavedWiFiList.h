@@ -11,13 +11,13 @@ void modeSavedWiFiListOnNetworkConnected();
 void modeSavedWiFiListOnNetworkFailed();
 
 
-#include "Global.h"
-#include "AutoSleep.h"
-#include "Button.h"
-#include "ModeMainMenu.h"
-#include "ModeKeyboard.h"
+#include "../Global.h"
+#include "../AutoSleep.h"
+#include "../Button.h"
+#include "../ModeMainMenu.h"
+#include "../ModeKeyboard.h"
 #include "ModeWiFiScanner.h"
-#include "ModeQuestion.h"
+#include "../ModeQuestion.h"
 
 
 int ModeSavedWiFiListSelectedSlot = 0;

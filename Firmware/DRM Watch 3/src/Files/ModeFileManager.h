@@ -14,9 +14,9 @@ void modeFileManagerButtonCenter();
 void modeFileManagerButtonDown();
 
 #include "Global.h"
-#include "AutoSleep.h"
-#include "Button.h"
-#include "ModeSerialLog.h"
+#include "../AutoSleep.h"
+#include "../Button.h"
+#include "../ModeSerialLog.h"
 #include <Arduino.h>
 #include "FFat.h"
 #include "FS.h"

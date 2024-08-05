@@ -5,17 +5,17 @@ void setModeMenuSettingsDisplay();
 void ModeMenuSettingsDisplayLoop();
 void ModeMenuSettingsDisplayButtonCenter();
 
-#include "Lcd.h"
-#include "Global.h"
-#include "AutoSleep.h"
-#include "Button.h"
-#include "Icons.h"
+#include "../Lcd.h"
+#include "../Global.h"
+#include "../AutoSleep.h"
+#include "../Button.h"
+#include "../Icons.h"
 #include "ModeMenuSettings.h"
 #include "ModeMenuSettingsWatchfaceContent.h"
 #include "ModeSetLcdFrequency.h"
 #include "ModeSetWatchface.h"
-#include "ModeMainMenu.h"
-#include "DrmPreferences.h"
+#include "../ModeMainMenu.h"
+#include "../DrmPreferences.h"
 
 
 const int ModeMenuSettingsDisplayItemBack = 0;
