@@ -31,28 +31,40 @@ void modeUsbMscButtonDown();
 USBMSC MSC;
 // Block size of flash memory (in bytes) (4KB)
 #define BLOCK_SIZE 4096  
+uint8_t page_buffer[BLOCK_SIZE];
 // https://github.com/espressif/esp-idf/blob/master/examples/storage/partition_api/partition_ops/main/main.c
 const esp_partition_t *modeUsbMsc_partition = NULL;
 uint32_t modeUsbMsc_bytesRead = 0;
 uint32_t modeUsbMsc_bytesWrite = 0;
+uint32_t modeUsbMsc_errorsWrite = 0;
 
 
 static int32_t modeUsbMsc_onWrite(uint32_t lba, uint32_t offset, uint8_t* buffer, uint32_t bufsize){
-  ledStatusOn();
-  modeUsbMsc_bytesWrite += bufsize;
-  esp_partition_erase_range(modeUsbMsc_partition, offset + (lba * BLOCK_SIZE), bufsize);
-  esp_partition_write(modeUsbMsc_partition, offset + (lba * BLOCK_SIZE), (uint32_t*)buffer, bufsize);
-  return bufsize;
+  for(int retries = 0; retries < 5; retries++){
+    ledStatusOn();
+    modeUsbMsc_bytesWrite += bufsize;
+    esp_partition_erase_range(modeUsbMsc_partition, offset + (lba * BLOCK_SIZE), bufsize);
+    esp_partition_write(modeUsbMsc_partition, offset + (lba * BLOCK_SIZE), buffer,      bufsize);
+    esp_partition_read (modeUsbMsc_partition, offset + (lba * BLOCK_SIZE), page_buffer, bufsize);
+    if(memcmp (buffer, page_buffer, bufsize) == 0)
+      return bufsize;
+    modeUsbMsc_errorsWrite ++;
+  }
+  return 0;
 }
 
 static int32_t modeUsbMsc_onRead(uint32_t lba, uint32_t offset, void* buffer, uint32_t bufsize){
   ledStatusOn();
   modeUsbMsc_bytesRead += bufsize;
-  esp_partition_read(modeUsbMsc_partition, offset + (lba * BLOCK_SIZE), (uint32_t*)buffer, bufsize);
+  esp_partition_read(modeUsbMsc_partition, offset + (lba * BLOCK_SIZE), buffer, bufsize);       //(uint32_t*)
   return bufsize;
 }
 
 static bool modeUsbMsc_onStartStop(uint8_t power_condition, bool start, bool load_eject){
+  if(load_eject){
+    setmodeMemoryManager();
+    return true;
+  }
   ledStatusOn();
   return true;
 }
@@ -80,10 +92,8 @@ void setmodeUsbMsc()
   modeUsbMsc_bytesRead = 0;
   modeUsbMsc_bytesWrite = 0;
   
-  //partition = esp_partition_find_first(ESP_PARTITION_TYPE_DATA, ESP_PARTITION_SUBTYPE_ANY, "spiffs");
   //modeUsbMsc_partition = esp_partition_find_first(ESP_PARTITION_TYPE_DATA, ESP_PARTITION_SUBTYPE_ANY, "spiffs");
-  //modeUsbMsc_partition = esp_partition_find_first(ESP_PARTITION_TYPE_DATA, ESP_PARTITION_SUBTYPE_DATA_FAT, NULL); //fatffs
-  // partition = esp_partition_find_first(ESP_PARTITION_TYPE_APP, ESP_PARTITION_SUBTYPE_ANY, "app1");
+  //modeUsbMsc_partition = esp_partition_find_first(ESP_PARTITION_TYPE_APP, ESP_PARTITION_SUBTYPE_ANY, "app1");
   modeUsbMsc_partition = esp_partition_find_first(ESP_PARTITION_TYPE_DATA, ESP_PARTITION_SUBTYPE_DATA_FAT, NULL); //fatffs
 
   if(modeUsbMsc_partition != NULL){
@@ -121,6 +131,10 @@ void modeUsbMscLoop()
     sprintf(buffer, "%dK байт", modeUsbMsc_bytesRead/1000);
     drawCentered(buffer, 90, 230);
     
+    if(modeUsbMsc_errorsWrite > 0){
+      sprintf(buffer, "Помилок запису: %d!", modeUsbMsc_errorsWrite);
+      drawCentered(buffer, 290, 150);
+    }
     draw_ic24_arrow_down(280, 170, black);
     drawCentered("Записано", 290, 210);
     sprintf(buffer, "%dK байт", modeUsbMsc_bytesWrite/1000);
@@ -149,8 +163,8 @@ void modeUsbMscButtonUp()
 }
 void modeUsbMscButtonCenter()
 {
-      setmodeMemoryManager();
-      return;
+  setmodeMemoryManager();
+  return;
 }
 void modeUsbMscButtonDown()
 {
