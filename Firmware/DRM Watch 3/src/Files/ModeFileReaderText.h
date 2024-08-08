@@ -76,7 +76,6 @@ void modeFileReaderTextLoop()
   {
     fs::FS &fs = FFat;
     File f = FFat.open(F(modeFileReaderTextPath), FILE_READ, false);
-    //File f = fs.open(F(modeFileReaderTextPath));
     Serial.println(f.name());
     if (!f)
     {

@@ -89,7 +89,7 @@ function parseFile(file: File) {
       currentMidi = midi;
       renderTracks();
       generateCode();
-      fileName = file.name.split(".")[0] + ".ino";
+      fileName = file.name.split(".")[0] + ".dwm";
       errorTxt.innerText = "";
     } catch (err) {
       renderError("Error in parsing " + err);
