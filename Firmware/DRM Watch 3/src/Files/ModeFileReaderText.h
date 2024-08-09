@@ -52,7 +52,6 @@ void setmodeFileReaderText()
   
 
   modeFileReaderText_fatReady = FFat.begin();
-  selected = 0;
   modeFileReaderText_page = 0;
 }
 
@@ -79,8 +78,8 @@ void modeFileReaderTextLoop()
     Serial.println(f.name());
     if (!f)
     {
-      drawCentered("Помилка відкриття файлу", 100);
-      //drawCentered(modeFileReaderTextDir, 150);
+      draw_ic24_bad_file(170, 90, black);
+      drawCentered("Помилка відкриття файлу", 150);
     }
     else
     {
@@ -124,63 +123,6 @@ void modeFileReaderTextLoop()
     if(modeFileReaderTextPath != 0)
       drawCentered(modeFileReaderTextPath, 150);
   }
-  //     int cnt = 0;
-  //     while (true)
-  //     {
-  //       File file = dir.openNextFile();
-  //       if (!file) // no more files
-  //         break;
-  //       Serial.println(file.name());
-  //       if (file.isDirectory())
-  //       {
-  //         drawListItem(cnt,   draw_ic24_apps,   file.name(),    "Папка",      false);
-  //       }
-  //       else
-  //       {
-  //         sprintf(buffer, "%d Байт", file.size());
-  //         drawListItem(cnt,   draw_ic24_life,   file.name(),    buffer,      false);
-  //       }
-  //       file.close();
-  //       cnt++;
-  //     }
-  //     items = cnt;
-  //   }
-  // }
-  // else
-  // {
-  //   drawCentered("Текстовий файл", 100);
-  //   drawCentered(modeFileReaderTextPath, 150);
-  // }
-
-  // if (showHelpText)
-  // {
-  //   // drawCentered("Підключіть до USB", 100);
-  //   // drawCentered("та закиньте текстові файли з компа", 140);
-  //   // if (partition != NULL)
-  //   // {
-  //   //   drawCentered(partition->label, 200);
-  //   //   itoa(partition->size, buffer, 10);
-  //   //   drawCentered(buffer, 220);
-  //   //   itoa(SPI_FLASH_SEC_SIZE, buffer, 10);
-  //   //   drawCentered(buffer, 240);
-  //   // }
-  //   // else
-  //   //   drawCentered("Розділ не знайдено", 220);
-  // }
-
-  // if(showLog) // DRAW LOG
-  // {
-  //   lcd()->setColorIndex(black);
-  //   lcd()->setFont(u8g2_font_unifont_t_cyrillic); // smalll
-  //   lcd()->drawLog(2, 39, u8g2log);
-  // }
-
-  // lcd()->setColorIndex(black);
-  // lcd()->drawBox(369, 0, 2, 260); // draw_ic16_repeat  draw_ic16_arrow_right  draw_ic16_back
-  // draw_ic16_hashtag(lx(), ly1(), black);
-  // draw_ic16_back(lx(), ly2(), black);
-  // draw_ic16_warning(lx(), ly3(), black);
-  // draw_ic16_menu(lx(), ly3(), black);
   drawMenuLegend();
 
   lcd()->sendBuffer();
@@ -192,57 +134,20 @@ void modeFileReaderTextExit(){
   modeExit = 0;
 }
 
-// const char* modeFileReaderTextMenuItems(int index){
-//   if(index == 0) return "Завантажити файли по USB";
-//   if(index == 1) return "Форматувати пам'ять";
-//   if(index == 2) return "Показати таблицю розділів";
-//   return "---";
-// }
-// void modeFileReaderTextMenuSelected(){
-//   int index = ModeListSelection_Selected;
-//   setmodeFileReaderText();
-//   if(index == 0)  //return "Завантажити файли по USB";
-//   {
-
-//   }
-//   if(index == 1) //return "Форматувати пам'ять";
-//   {
-
-//   }
-//   if(index == 2) //return "Показати таблицю розділів";
-//   {
-
-//   }
-// }
 void modeFileReaderTextButtonUp()
 {
   if(modeFileReaderText_page > 0)
     modeFileReaderText_page --;
-  //checkPartitionRead();
-  //showPartitions();
-  //selected ++;
 }
 void modeFileReaderTextButtonCenter()
 {
-  // MSC.end();
-  // partition = NULL;
   FFat.end();
-  //setModeAppsMenu(); 
   setmodeFileManager(); // exit
 }
 void modeFileReaderTextButtonDown()
 {
   if(modeFileReaderText_pages[modeFileReaderText_page+1] != modeFileReaderText_pages[modeFileReaderText_page] && modeFileReaderText_page < modeFileReaderText_pageMax-1)
     modeFileReaderText_page ++;
-  //selected --;
-  // ModeListSelection_Items = modeFileReaderTextMenuItems;
-  // ModeListSelection_Name = "Меню нотаток";
-  // ModeListSelection_Cnt = 5;
-  // ModeListSelection_Selected = 0;//getActionArgument(ModeShortcutEventSettings_EventId);
-  // ModeListSelection_OnSelected = modeFileReaderTextMenuSelected;
-  // setModeListSelection();
-  //checkPartitionWrite();
-  //initPartition();
 }
 
 #endif

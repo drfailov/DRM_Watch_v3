@@ -154,17 +154,18 @@ void melodyPlayerSetMelodyName(String _name){
 bool melodyPlayerPlayMelody(const int* melody, bool alarm) {
   Serial.println(F("Open: PlayMelody"));
   clearScreenAnimation();
+  while(isButtonCenterPressed()); 
   backlightOn();
   melodyPlayerPlayStarted = millis();
   //modeLoop = melodyPlayerDrawScreen;
-  modeButtonUp = 0;
-  modeButtonCenter = 0;
-  modeButtonDown = 0;
-  modeButtonUpLong = 0;
-  modeButtonCenterLong = 0;
-  modeButtonDownLong = 0;
-  enableAutoReturn = false;
-  melodyPlayerLoopMelody = false;
+  //modeButtonUp = 0;
+  //modeButtonCenter = 0;
+  //modeButtonDown = 0;
+  //modeButtonUpLong = 0;
+  //modeButtonCenterLong = 0;
+  //modeButtonDownLong = 0;
+  //enableAutoReturn = false;
+  //melodyPlayerLoopMelody = false;
   
   int length = melodyPlayerGetLength(melody);
   Serial.print("length="); Serial.println(length);
@@ -209,7 +210,7 @@ bool melodyPlayerPlayMelody(const int* melody, bool alarm) {
     }
     delay(500);
   }while(melodyPlayerLoopMelody);
-  if(!alarm) modeSetup();
+  //if(!alarm) modeSetup();
   return true;
 }
 
@@ -218,7 +219,8 @@ bool melodyPlayerProcessButtons(bool alarm){
   if(isButtonCenterPressed())
   {
     buttonBeep(); 
-    modeSetup(); 
+    //modeSetup(); 
+    clearScreenAnimation();
     ledFlashlightOffAll(); 
     while(isButtonCenterPressed()); 
     return true;
@@ -229,7 +231,8 @@ bool melodyPlayerProcessButtons(bool alarm){
       if(isButtonUpPressed())
       {
         buttonBeep(); 
-        modeSetup(); 
+        //modeSetup(); 
+        clearScreenAnimation();
         setTimerToMinutes(10); 
         drawMessage("Відкладено на 10 хвилин");  
         ledFlashlightOffAll(); 
@@ -240,7 +243,8 @@ bool melodyPlayerProcessButtons(bool alarm){
       if(isButtonDownPressed())
       {
         buttonBeep(); 
-        modeSetup(); 
+        //modeSetup(); 
+        clearScreenAnimation();
         setTimerToMinutes(5); 
         drawMessage("Відкладено на 5 хвилин");  
         ledFlashlightOffAll(); 

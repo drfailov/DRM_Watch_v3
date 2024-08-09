@@ -12,6 +12,8 @@ void setmodeFileManager();
 void modeFileManagerButtonUp();
 void modeFileManagerButtonCenter();
 void modeFileManagerButtonDown();
+void playDwmMelody(const char* path);
+
 
 #include "Global.h"
 #include "../AutoSleep.h"
@@ -49,8 +51,7 @@ void setmodeFileManager()
   autoSleepTime = autoSleepDefaultTime;
 
   modeFileManagerFatReady = FFat.begin();
-  // modeFileManagerFatReady = FFat.begin(false, "/ffat", 10U, "app1");
-  selected = 0;
+  
 }
 
 void modeFileManagerLoop()
@@ -62,10 +63,11 @@ void modeFileManagerLoop()
   lcd()->setFont(u8g2_font_10x20_t_cyrillic); // ok
   lcd()->setColorIndex(black);
   lcd()->setCursor(5, 18);
-  // lcd()->print("Файли: ");
+  lcd()->print("Файли: ");
   lcd()->print(modeFileManagerDir);
-
+  
   drawStatusbar(363, 1, true);
+
 
   if (modeFileManagerFatReady)
   {
@@ -76,8 +78,6 @@ void modeFileManagerLoop()
     {
       draw_ic24_bad_file(170, 90, black);
       drawCentered("Помилка відкриття папки", 150);
-      // drawCentered("Помилка відкриття папки", 100);
-      // drawCentered(modeFileManagerDir, 150);
       items = 1;
     }
     else if (!dir.isDirectory())
@@ -124,12 +124,14 @@ void modeFileManagerLoop()
       }
       items = cnt;
     }
+    //because often filenames is too long, have to clear space after filenames bar
+    lcd()->setColorIndex(white);
+    lcd()->drawBox(355, 50, 45, 210); 
   }
   else
   {
     draw_ic24_bad_file(170, 90, black);
     drawCentered("Файлова система пошкоджена", 150);
-    // drawCentered("Файлова система пошкоджена", 100);
     drawCentered(modeFileManagerDir, 170);
     items = 1;
   }
@@ -160,6 +162,7 @@ void modeFileManagerButtonCenter()
       else // is root
         *(lastSlash + 1) = '\0';
       clearScreenAnimation();
+      selected = 0;
     }
     return;
   }
@@ -191,37 +194,9 @@ void modeFileManagerButtonCenter()
           }
           if (!file.isDirectory() && strendswith(file.name(), ".dwm"))
           {
-            melodyPlayerSetMelodyName(String(strdup(file.name())));
-            int* tmp_melody = new int[2048];// dynamically allocate memory
-            tmp_melody[2047] = 19;
-            int buffer_index = 0;
-            int melody_index = 0;
-            //fs::FS &fs = FFat;
-            //File f = FFat.open(F(modeFileReaderTextPath), FILE_READ, false);
-            //Serial.println(f.name());
-            while(file.available())
-            {
-              char c = (char)file.read();
-              if(isdigit(c) || c=='-'){
-                buffer[buffer_index] = c;
-                buffer_index ++;
-              }
-              else{
-                if(buffer_index != 0){
-                  buffer[buffer_index]='\0';
-                  buffer_index = 0;
-                  tmp_melody[melody_index] = atoi(buffer);
-                  melody_index ++;
-                }
-              }
-            }
-            file.close(); 
-            tmp_melody[melody_index] = 19;
-
-            
-            melodyPlayerPlayMelody(/*const int* melody*/tmp_melody, /*bool alarm*/false); 
-            delete tmp_melody; // deallocate the memory
-            tmp_melody = nullptr; // set pointer to nullptr
+            const char* melodyPath = strdup(file.path());
+            file.close();
+            playDwmMelody(melodyPath);
             break;
           }
         }
@@ -230,17 +205,42 @@ void modeFileManagerButtonCenter()
     }
   }
 }
-// void modeFileManagerButtonDown()
-// {
-//   selected --;
-//   // ModeListSelection_Items = modeFileManagerMenuItems;
-//   // ModeListSelection_Name = "Меню нотаток";
-//   // ModeListSelection_Cnt = 5;
-//   // ModeListSelection_Selected = 0;//getActionArgument(ModeShortcutEventSettings_EventId);
-//   // ModeListSelection_OnSelected = modeFileManagerMenuSelected;
-//   // setModeListSelection();
-//   //checkPartitionWrite();
-//   //initPartition();
-// }
+
+void playDwmMelody(const char* path){
+  fs::FS &fs = FFat;
+  File file = FFat.open(F(path), FILE_READ, false);
+  if(file!=0){
+    melodyPlayerSetMelodyName(String(strdup(file.name())));
+    const int melody_max = 2048;
+    int* tmp_melody = new int[melody_max];// dynamically allocate memory
+    int buffer_index = 0;
+    int melody_index = 0;
+    while(file.available())
+    {
+      char c = (char)file.read();
+      if(isdigit(c) || c=='-'){
+        buffer[buffer_index] = c;
+        buffer_index ++;
+      }
+      else{
+        if(buffer_index != 0){
+          buffer[buffer_index]='\0';
+          buffer_index = 0;
+          tmp_melody[melody_index] = atoi(buffer);
+          melody_index ++;
+        }
+      }
+      if(melody_index >= melody_max)
+        break;
+    }
+    file.close(); 
+    tmp_melody[melody_index] = 19;
+    tmp_melody[melody_max-1] = 19;
+
+    melodyPlayerPlayMelody(/*const int* melody*/tmp_melody, /*bool alarm*/false); 
+    delete tmp_melody; // deallocate the memory
+    tmp_melody = nullptr; // set pointer to nullptr
+  }
+}
 
 #endif

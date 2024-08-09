@@ -150,6 +150,7 @@ void ModeAppsMenuButtonCenter(){
   }
   if(selected == itemModeAppsFileManager){
     setmodeFileManager();
+    selected = 0;
     return;
   }
   if(selected == itemModeAppsMemoryManager){

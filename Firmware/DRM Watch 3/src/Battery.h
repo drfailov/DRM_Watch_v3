@@ -49,10 +49,14 @@ void drawBattery(int x, int y){
   
 }
 
-
+RTC_DATA_ATTR float batterySmoothVoltage = -1;
 float readSensBatteryVoltage(){
   float currentVoltage = linearInterpolate((int)readSensBatteryRaw(), batteryCalibration, batteryCalibrationCnt);
-  return currentVoltage;
+  if(batterySmoothVoltage == -1)
+    batterySmoothVoltage = currentVoltage;
+  else
+    batterySmoothVoltage += (currentVoltage-batterySmoothVoltage)*0.1;
+  return batterySmoothVoltage;
 }
 
 byte batteryBars(){
