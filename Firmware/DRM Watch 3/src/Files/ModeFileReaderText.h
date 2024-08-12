@@ -119,9 +119,10 @@ void modeFileReaderTextLoop()
     }
   }
   else{
-    drawCentered("Файлова система пошкоджена", 100);
+    draw_ic24_bad_file(170, 90, black);
+    drawCentered("Файлова система пошкоджена", 150);
     if(modeFileReaderTextPath != 0)
-      drawCentered(modeFileReaderTextPath, 150);
+      drawCentered(modeFileReaderTextPath, 170);
   }
   drawMenuLegend();
 

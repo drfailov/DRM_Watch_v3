@@ -13,6 +13,7 @@ void drawCentered(String str);
 void drawCentered(const char* str);
 void drawCentered(String str, int y);
 void drawCentered(const char* str, int y);
+void print(char* arr, int length);
 
 #include "Global.h"
 #include "ModeOff.h"
@@ -117,7 +118,11 @@ void clearScreenAnimationWhiteLeftToRight(){
 
 
 
-
+void print(char* arr, int length)
+{
+  for(int i=0; i<length; i++) 
+    lcd()->print(arr[i]);
+}
 void drawCentered(String str)
 {
   drawCentered(str, H/2-10);

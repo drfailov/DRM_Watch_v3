@@ -23,6 +23,7 @@ void playDwmMelody(const char* path);
 #include "FFat.h"
 #include "FS.h"
 #include "ModeFileReaderText.h"
+#include "ModeFileReaderBmp.h"
 
 // https://github.com/espressif/esp-idf/blob/master/examples/storage/partition_api/partition_ops/main/main.c
 //  Find the partition map in the partition table
@@ -197,6 +198,13 @@ void modeFileManagerButtonCenter()
             const char* melodyPath = strdup(file.path());
             file.close();
             playDwmMelody(melodyPath);
+            break;
+          }
+          if (!file.isDirectory() && strendswith(file.name(), ".bmp"))
+          {
+            modeFileReaderBmpPath = strdup(file.path());
+            file.close();
+            setmodeFileReaderBmp();
             break;
           }
         }
