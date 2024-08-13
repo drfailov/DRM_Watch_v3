@@ -82,44 +82,134 @@ void modeFileReaderBmpLoop()
       
       //https://en.wikipedia.org/wiki/BMP_file_format#Bitmap_file_header
 
-      const int ID_OFFSET = 0x00;
-      const int ID_SIZE = 2; // bytes
-      char id[ID_SIZE];
-
-      const int BMP_SIZE_OFFSET = 0x02;
-      const int BMP_SIZE_SIZE = 4; // bytes
+      char id[2];
       uint32_t bmp_size = 0;
-
-      const int IMGDATA_OFFSET_OFFSET = 0x0A;
-      const int IMGDATA_OFFSET_SIZE = 4; // bytes
       uint32_t imgdata_offset = 0xFFFFFFFF;
+      uint32_t header_size = 0;
+      int32_t width = 0;
+      int32_t height = 0;
+      uint16_t bitsPerPixel = 0;
+      uint32_t compressionMethod = 0;
+
+      int32_t offset_x = 0;
+      int32_t offset_y = 0;
+      int32_t bmp_x = 0;
+      int32_t bmp_y = 0;
+
 
       while (f.available())
       {
         /*
         We're reading file linearly and when we're on offset of needed data, read it then continue reading linearly
         */
-        if (offset == ID_OFFSET)
+        if (offset == 0x00)
         {
-          f.read((uint8_t *)id, ID_SIZE);
-          offset += ID_SIZE;
-
+          f.read((uint8_t *)id, 2/*bytes*/);
+          offset += 2/*bytes*/;
           if (id[0] != 'B' || id[1] != 'M')
           { // BM is valid
             draw_ic24_bad_file(170, 90, black);
-            drawCentered("Невалідний формат!", 150);
+            drawCentered("Невалідний формат файлу!", 150);
+            drawCentered("Має бути BMP монохромний", 180);
             break;
           }
         }
-        else if (offset == BMP_SIZE_OFFSET)
+        else if (offset == 0x02) //bmp_size offset
         {
-          f.read((uint8_t *)&bmp_size, BMP_SIZE_SIZE);
-          offset += BMP_SIZE_SIZE;
+          f.read((uint8_t *)&bmp_size, 4 /*bytes*/);
+          offset += 4;
         }
-        else if (offset == IMGDATA_OFFSET_OFFSET)
+        else if (offset == 0x0A) //imgdata_offset_OFFSET
         {
-          f.read((uint8_t *)&imgdata_offset, IMGDATA_OFFSET_SIZE);
-          offset += IMGDATA_OFFSET_SIZE;
+          f.read((uint8_t *)&imgdata_offset, 4 /*bytes*/);
+          offset += 4;
+        }
+        else if (offset == 0x0E) //header_size_OFFSET
+        {
+          f.read((uint8_t *)&header_size, 4  /*bytes*/);
+          offset += 4;
+          if (header_size != 40)
+          { // should be 40
+            draw_ic24_bad_file(170, 90, black);
+            drawCentered("Невалідний тип заголовку!", 150);
+            drawCentered("Спробуй створити іншою програмою", 180);
+            break;
+          }
+        }
+        else if (offset == 0x12) //width
+        {
+          f.read((uint8_t *)&width,   4/*bytes*/);
+          offset += 4;
+          offset_x = (W-30-width)/2;
+          if (width == 0)
+          { // should be not 0
+            draw_ic24_bad_file(170, 90, black);
+            drawCentered("Некоректна ширина зображення!", 150);
+            drawCentered("Чомусь прописано 0 пікселів", 180);
+            break;
+          }
+        }
+        else if (offset == 0x16) //height
+        {
+          f.read((uint8_t *)&height, 4/*bytes*/);
+          offset += 4;
+          bmp_y = height-1;
+          offset_y = (H+20-height)/2;
+          if (height == 0)
+          { // should be not 0
+            draw_ic24_bad_file(170, 90, black);
+            drawCentered("Некоректна висота зображення!", 150);
+            drawCentered("Чомусь прописано 0 пікселів", 180);
+            break;
+          }
+        }
+        else if (offset == 0x1C) //bitsPerPixel
+        {
+          f.read((uint8_t *)&bitsPerPixel, 2/*bytes*/);
+          offset += 2;
+          if (bitsPerPixel != 1)
+          { // should be 1
+            draw_ic24_bad_file(170, 90, black);
+            drawCentered("Некоректний кольоровий формат!", 150);
+            drawCentered("Має бути монохромне зображення", 180);
+            break;
+          }
+        }
+        else if (offset == 0x1E) //compression method
+        {
+          f.read((uint8_t *)&compressionMethod, 4/*bytes*/);
+          offset += 4;
+          if (compressionMethod != 0)
+          { // should be 0
+            draw_ic24_bad_file(170, 90, black);
+            drawCentered("Файл стиснений!", 150);
+            drawCentered("Має бути без компресії", 180);
+            break;
+          }
+        }
+        else if (offset >= imgdata_offset) //actual image
+        {
+          uint32_t img_buffer = 0;
+          f.read((uint8_t *)&img_buffer, 4/*bytes*/);
+          offset += 4;
+          for (int j = 0;  j < 4;  j++)
+          {
+            for(int i=0; i<8; i++){
+              bool pixel =  0 != (img_buffer & (1 << (8*j+(7-i))));
+              if(!pixel){
+                int scr_x = offset_x+bmp_x;
+                int scr_y = offset_y+bmp_y;
+                if(scr_x < W && scr_y < H && bmp_y > 0 && bmp_x < width)
+                  lcd()->drawPixel(offset_x+bmp_x, offset_y+bmp_y);
+              }
+                
+              bmp_x ++;
+            }
+          }
+          if(bmp_x > width){
+            bmp_x = 0;
+            bmp_y --;
+          }   
         }
         else
         {
@@ -128,13 +218,13 @@ void modeFileReaderBmpLoop()
         }
       }
 
-      {  //DEBUG
+      if(false){  //DEBUG
         lcd()->setFont(u8g2_font_unifont_t_cyrillic); // smalll
         lcd()->setColorIndex(black);
         
         lcd()->setCursor(5, 40);
         lcd()->print("id=");
-        print(id, ID_SIZE);
+        print(id, 2);
 
         lcd()->setCursor(5, 55);
         lcd()->print("size=");
@@ -143,6 +233,26 @@ void modeFileReaderBmpLoop()
         lcd()->setCursor(5, 70);
         lcd()->print("imgdata_offset=");
         lcd()->print(imgdata_offset);
+
+        lcd()->setCursor(5, 85);
+        lcd()->print("header_size=");
+        lcd()->print(header_size);
+
+        lcd()->setCursor(5, 100);
+        lcd()->print("width=");
+        lcd()->print(width);
+
+        lcd()->setCursor(5, 115);
+        lcd()->print("height=");
+        lcd()->print(height);
+
+        lcd()->setCursor(5, 130);
+        lcd()->print("bitsPerPixel=");
+        lcd()->print(bitsPerPixel);
+
+        lcd()->setCursor(5, 145);
+        lcd()->print("compressionMethod=");
+        lcd()->print(compressionMethod);
       }
 
       f.close();
@@ -155,7 +265,9 @@ void modeFileReaderBmpLoop()
     if (modeFileReaderBmpPath != 0)
       drawCentered(modeFileReaderBmpPath, 170);
   }
-  drawMenuLegend();
+  lcd()->setColorIndex(black);
+  lcd()->drawBox(369, 0, 2, 260); // draw_ic16_repeat  draw_ic16_arrow_right  draw_ic16_back
+  draw_ic16_back(lx(), ly2(), black);
 
   lcd()->sendBuffer();
 }
