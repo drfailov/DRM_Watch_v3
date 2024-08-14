@@ -56,14 +56,14 @@ void modeFileReaderBmpLoop()
   lcd()->setColorIndex(white);
   lcd()->drawBox(0, 0, 400, 240);
 
-  lcd()->setFont(u8g2_font_10x20_t_cyrillic); // ok
+  //lcd()->setFont(u8g2_font_10x20_t_cyrillic); // ok
   lcd()->setColorIndex(black);
-  lcd()->setCursor(5, 18);
+  //lcd()->setCursor(5, 18);
   // lcd()->print(getFileNameFromPath(modeFileReaderBmpPath));
-  if (modeFileReaderBmpPath != 0)
-    lcd()->print((modeFileReaderBmpPath));
+  // if (modeFileReaderBmpPath != 0)
+  //  lcd()->print((modeFileReaderBmpPath));
 
-  drawStatusbar(363, 1, true);
+  //drawStatusbar(363, 1, true);
 
   if (modeFileReaderBmp_fatReady)
   {
@@ -77,7 +77,6 @@ void modeFileReaderBmpLoop()
     }
     else
     {
-
       uint32_t offset = 0;
       
       //https://en.wikipedia.org/wiki/BMP_file_format#Bitmap_file_header
@@ -140,7 +139,7 @@ void modeFileReaderBmpLoop()
         {
           f.read((uint8_t *)&width,   4/*bytes*/);
           offset += 4;
-          offset_x = (W-30-width)/2;
+          offset_x = (W-width)/2;
           if (width == 0)
           { // should be not 0
             draw_ic24_bad_file(170, 90, black);
@@ -154,7 +153,7 @@ void modeFileReaderBmpLoop()
           f.read((uint8_t *)&height, 4/*bytes*/);
           offset += 4;
           bmp_y = height-1;
-          offset_y = (H+20-height)/2;
+          offset_y = (H-height)/2;
           if (height == 0)
           { // should be not 0
             draw_ic24_bad_file(170, 90, black);
@@ -265,9 +264,9 @@ void modeFileReaderBmpLoop()
     if (modeFileReaderBmpPath != 0)
       drawCentered(modeFileReaderBmpPath, 170);
   }
-  lcd()->setColorIndex(black);
-  lcd()->drawBox(369, 0, 2, 260); // draw_ic16_repeat  draw_ic16_arrow_right  draw_ic16_back
-  draw_ic16_back(lx(), ly2(), black);
+  //lcd()->setColorIndex(black);
+  //lcd()->drawBox(369, 0, 2, 260); // draw_ic16_repeat  draw_ic16_arrow_right  draw_ic16_back
+  //draw_ic16_back(lx(), ly2(), black);
 
   lcd()->sendBuffer();
 }

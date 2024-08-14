@@ -46,7 +46,7 @@ void setmodeMemoryManager()
   modeButtonCenterLong = 0;
   modeButtonDownLong = 0;
   registerAction();
-  enableAutoReturn = false;
+  enableAutoReturn = true;
   enableAutoSleep = false;
   autoReturnTime = autoReturnDefaultTime;
   autoSleepTime = autoSleepDefaultTime;

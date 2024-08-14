@@ -51,7 +51,7 @@ Icons used as reference:
  <a href="https://www.flaticon.com/free-icons/clean" title="clean icons">Clean icons created by Freepik - Flaticon</a>
  <a href="https://www.flaticon.com/free-icons/clear" title="clear icons">Clear icons created by LAFS - Flaticon</a>
  <a href="https://www.flaticon.com/free-icons/breaking-the-rules" title="breaking the rules icons">Breaking the rules icons created by Us and Up - Flaticon</a>
-	
+ <a href="https://www.flaticon.com/free-icons/image-comics" title="Image Comics icons">Image Comics icons created by Bharat Icons - Flaticon</a>
  
  
  
@@ -688,6 +688,12 @@ Changelog:
 2024-08-12 FW:v3.01 Почав писати парсер BMP файла
 2024-08-13 FW:v3.01 Продовжив писати парсер BMP файла
 2024-08-13 FW:v3.01 Додав приклади файлів які читає годинник
+2024-08-14 FW:v3.02 Прибрано інтерфейс при перегляді зображень
+2024-08-14 FW:v3.02 Додано іконку зображення
+2024-08-14 FW:v3.02 Доповнено документацію
+2024-08-14 FW:v3.02 Додано автоматичний вихід з деяких екранів
+2024-08-14 FW:v3.02 Виправлено якісь незрозумілі помилки з зображенням
+2024-08-14 FW:v3.02 Додано зображення для прикладу
 
 
 
@@ -722,9 +728,6 @@ Changelog:
 - Фон з зірочками
 - фон з мікросхемами
 - Малювалка мишка https://www.youtube.com/watch?v=WPlPRkPx1_8&ab_channel=ThatProject
-- Кнопка "назад" в файловому менеджері
-- відкриття папок
-- Приховувати невідомі типи файлів
 - Тест поверхні флеш
 - швидкий доступ до функції "тихий режим"
 

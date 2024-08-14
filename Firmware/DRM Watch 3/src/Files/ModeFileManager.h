@@ -114,9 +114,14 @@ void modeFileManagerLoop()
             sprintf(buffer, "Мелодія, %d Байт", file.size());
             drawListItem(cnt, draw_ic24_music, file.name(), buffer, false);
           }
+          else if (strendswith(file.name(), ".bmp"))
+          {
+            sprintf(buffer, "Картинка, %d Байт", file.size());
+            drawListItem(cnt, draw_ic24_image, file.name(), buffer, false);
+          }
           else
           {
-            sprintf(buffer, "%d Байт", file.size());
+            sprintf(buffer, "Файл, %d Байт", file.size());
             drawListItem(cnt, draw_ic24_question, file.name(), buffer, false);
           }
         }
