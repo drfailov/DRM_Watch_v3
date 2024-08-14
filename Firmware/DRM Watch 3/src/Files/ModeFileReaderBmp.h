@@ -42,8 +42,8 @@ void setmodeFileReaderBmp()
   modeButtonCenterLong = 0;
   modeButtonDownLong = 0;
   registerAction();
-  enableAutoReturn = true;
-  enableAutoSleep = false;
+  enableAutoReturn = false;
+  enableAutoSleep = true;
   autoReturnTime = autoReturnDefaultTime;
   autoSleepTime = autoSleepDefaultTime;
 
