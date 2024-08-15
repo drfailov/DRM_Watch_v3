@@ -153,7 +153,7 @@ void drawCentered(const char* str, int x, int y)
   lcd()->print(str);
 }
 
-void drawMessage(String text){
+void drawMessageAnimated(String text){
   Serial.println(text);
   ledStatusBlink(/*times*/1, /*speedMs*/100);
   int x = 15;

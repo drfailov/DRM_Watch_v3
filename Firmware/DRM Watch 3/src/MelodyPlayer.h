@@ -234,7 +234,7 @@ bool melodyPlayerProcessButtons(bool alarm){
         //modeSetup(); 
         clearScreenAnimation();
         setTimerToMinutes(10); 
-        drawMessage("Відкладено на 10 хвилин");  
+        drawMessageAnimated("Відкладено на 10 хвилин");  
         ledFlashlightOffAll(); 
         buzNoTone();
         while(isButtonUpPressed()); 
@@ -246,7 +246,7 @@ bool melodyPlayerProcessButtons(bool alarm){
         //modeSetup(); 
         clearScreenAnimation();
         setTimerToMinutes(5); 
-        drawMessage("Відкладено на 5 хвилин");  
+        drawMessageAnimated("Відкладено на 5 хвилин");  
         ledFlashlightOffAll(); 
         buzNoTone();
         while(isButtonDownPressed()); 
@@ -259,7 +259,7 @@ bool melodyPlayerProcessButtons(bool alarm){
     {
       buttonBeep(); 
       melodyPlayerLoopMelody = !melodyPlayerLoopMelody; 
-      drawMessage(melodyPlayerLoopMelody?"Повтор увімкнено":"Вимкнено повтор");  
+      drawMessageAnimated(melodyPlayerLoopMelody?"Повтор увімкнено":"Вимкнено повтор");  
       while(isButtonDownPressed()); 
     }
   }

@@ -120,8 +120,8 @@ bool getWatchfaceDotsBackgroundEnabled();
 bool saveWatchfaceDotsBackgroundEnabled(bool value);
 bool getWatchfaceCalendarEnabled();
 bool saveWatchfaceCalendarEnabled(bool value);
-bool getWatchfaceLegendEnabled();
-bool saveWatchfaceLegendEnabled(bool value);
+bool getWatchfaceSinceChargedEnabled();
+bool saveWatchfaceSinceChargedEnabled(bool value);
 // ant
 int getAntSpeed();
 bool saveAntSpeed(int value);
@@ -594,13 +594,13 @@ bool saveWatchfaceCalendarEnabled(bool value)
 {
   return preferencesObject.putInt("wtfCalendarEn", value ? 1 : 0);
 }
-bool getWatchfaceLegendEnabled()
+bool getWatchfaceSinceChargedEnabled()
 { // 123456789012345   max length = 15
-  return preferencesObject.getInt("wtfLegendEn", 0) == 1;
+  return preferencesObject.getInt("wtfSCEn", 1) == 1;
 }
-bool saveWatchfaceLegendEnabled(bool value)
+bool saveWatchfaceSinceChargedEnabled(bool value)
 {
-  return preferencesObject.putInt("wtfLegendEn", value ? 1 : 0);
+  return preferencesObject.putInt("wtfSCEn", value ? 1 : 0);
 }
 
 //----------------------//---------------------- ALERT -----------------//----------------------//----------------------//----------------------//----------------------

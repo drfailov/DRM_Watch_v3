@@ -32,10 +32,11 @@ const char* eventName[] = {
 #define ACTION_TOGGLE_INVERSE 11
 #define ACTION_REBOOT 12
 #define ACTION_OPEN_ABOUT 13
+
 #define ACTION_SYNC_TIME 14
 #define ACTION_OPEN_APPS 15
 #define ACTION_SET_TIMER_TO 16
-const int actionCnt = 10;
+const int actionCnt = 14;
 const char *actionName[] = {
     /* 0 */ "Нічого не робити",       //+
     /* 1 */ "Відкрити таймер",        //+   
@@ -46,9 +47,12 @@ const char *actionName[] = {
     /* 6 */ "Сповіщення мелодією",    //+
     /* 7 */ "Відкрити будильники",    //+        
     /* 8 */ "Відкрити календар",      //+
-    /* 9 */ "Відкрити налаштування"
+    /* 9 */ "Відкрити налаштування",  //+
+    /*10 */ "Перемкнути тихий режим", //+
+    /*11 */ "Перемкнути інверсію",    //+
+    /*12 */ "Перезавантажити",        //+
+    /*13 */ "Відкрити \"Про годинник\""//+
 };
-
 
 int defaultAction(int eventId);
 bool shortcutRun(int eventId);
@@ -125,6 +129,20 @@ bool runAction(int actionId, int actionArgument)
     case ACTION_OPEN_SETTING:
       setModeSettingsMenu();
       return false;
+    case ACTION_TOGGLE_MUTE:
+      saveMuteEnabled(!getMuteEnabled());
+      return false;
+    case ACTION_TOGGLE_INVERSE:
+      saveInversionValue(!getInversionValue());
+      black = getBlackValue();
+      white = getWhiteValue();
+      return false;
+    case ACTION_REBOOT:
+      reboot();
+      return false;
+    case ACTION_OPEN_ABOUT:
+      modeAboutSetup();
+      return false;
     default:
         return false;
     }
@@ -151,8 +169,6 @@ int defaultAction(int eventId)
         return ACTION_TOGGLE_FLASHLIGHT;
     case EVENT_WF_BUT_CE_LONG:
         return ACTION_TURNOFF;
-    // case EVENT_WF_BUT_DN_PRESS:
-    //     return ACTION_OPEN_APPS;
     default:
         return ACTION_NOTHING;
     }

@@ -77,14 +77,14 @@ void modeWiFiScannerLoop(){
   drawMenuLegend();
   
   if(modeWiFiScannerState == modeWiFiScannerStatePreparing){
-    drawMessage("Підготовка...");
+    drawMessageAnimated("Підготовка...");
     if(millis()-modeWiFiScannerStateChangeTime > 500){
       modeWiFiScannerState = modeWiFiScannerStateSettingUp;
       modeWiFiScannerStateChangeTime = millis();
     }
   }
   else if(modeWiFiScannerState == modeWiFiScannerStateSettingUp){
-    drawMessage("Налаштування Wi-Fi...");
+    drawMessageAnimated("Налаштування Wi-Fi...");
     // Set WiFi to station mode and disconnect from an AP if it was previously connected.
     WiFi.mode(WIFI_STA);
     WiFi.disconnect();
@@ -92,14 +92,14 @@ void modeWiFiScannerLoop(){
     modeWiFiScannerStateChangeTime = millis();
   }
   else if(modeWiFiScannerState == modeWiFiScannerStateSettingUpDelay){
-    drawMessage("Підготовка сканування...");
+    drawMessageAnimated("Підготовка сканування...");
     if(millis()-modeWiFiScannerStateChangeTime > 500){
       modeWiFiScannerState = modeWiFiScannerStateSettingUpScanning;
       modeWiFiScannerStateChangeTime = millis();
     }
   }
   else if(modeWiFiScannerState == modeWiFiScannerStateSettingUpScanning){
-    drawMessage("Cканування...");
+    drawMessageAnimated("Cканування...");
     int n = WiFi.scanNetworks();
     if(n==0){
       modeWiFiScannerState = modeWiFiScannerStateSettingUpNoNetworks;
@@ -113,7 +113,7 @@ void modeWiFiScannerLoop(){
     }
   }
   else if(modeWiFiScannerState == modeWiFiScannerStateSettingUpNoNetworks){
-    drawMessage("Мереж не знайдено.");
+    drawMessageAnimated("Мереж не знайдено.");
     delay(1000);
     if(modeWiFiScannerOnCancel != 0)
         modeWiFiScannerOnCancel();
@@ -171,14 +171,14 @@ bool tryConnectWifi(String ssid, String password, Runnable onConnected, Runnable
     lcd()->print(".");
     lcd()->sendBuffer();
     if(millis()-timeStarted > 10000){
-      drawMessage("З'єднатись не вдалось.");
+      drawMessageAnimated("З'єднатись не вдалось.");
       delay(500);
       if(onFailed != 0)
         onFailed();
       return false;
     }
   }
-  drawMessage("Підключено.");
+  drawMessageAnimated("Підключено.");
   delay(500);
   if(onConnected != 0)
     onConnected();
@@ -186,13 +186,13 @@ bool tryConnectWifi(String ssid, String password, Runnable onConnected, Runnable
 }
 
 bool connectToKnownWifi(){
-  drawMessage("Налаштування Wi-Fi...");
+  drawMessageAnimated("Налаштування Wi-Fi...");
   WiFi.mode(WIFI_STA);
   WiFi.disconnect();
   delay(100);
-  drawMessage("Cкaнyвaння...");
+  drawMessageAnimated("Cкaнyвaння...");
   int n = WiFi.scanNetworks();
-  drawMessage("Пошук знайомих мереж...");
+  drawMessageAnimated("Пошук знайомих мереж...");
   for(int i=0; i<n; i++){
     String name = WiFi.SSID(i);
     int index = getWifiSavedIndex(name);
@@ -206,7 +206,7 @@ bool connectToKnownWifi(){
 }
 
 void wifiOff(){
-  drawMessage("Вимкнення Wi-Fi...");
+  drawMessageAnimated("Вимкнення Wi-Fi...");
   WiFi.disconnect(true);
   WiFi.mode(WIFI_OFF);
   resetCpuTemperatureSensor();

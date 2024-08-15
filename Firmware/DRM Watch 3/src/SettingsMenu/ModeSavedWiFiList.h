@@ -102,7 +102,7 @@ void modeSavedWiFiListOnNetworkConnected(){
   drawMessage("Збереження...", ssid + " " + password, true);
   delay(500);
   if(wifiSlotSave(slot, ssid, password)){
-    drawMessage("Збережено.");
+    drawMessageAnimated("Збережено.");
   }
   delay(500);
   wifiOff();

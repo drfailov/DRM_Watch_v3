@@ -27,7 +27,7 @@ void playDwmMelody(const char* path);
 
 // https://github.com/espressif/esp-idf/blob/master/examples/storage/partition_api/partition_ops/main/main.c
 //  Find the partition map in the partition table
-const char *modeFileManagerDir = "/";
+RTC_DATA_ATTR const char *modeFileManagerDir = "/";
 bool modeFileManagerFatReady = false;
 
 void setmodeFileManager()
@@ -132,7 +132,7 @@ void modeFileManagerLoop()
     }
     //because often filenames is too long, have to clear space after filenames bar
     lcd()->setColorIndex(white);
-    lcd()->drawBox(355, 50, 45, 210); 
+    lcd()->drawBox(355, 30, 45, 210); 
   }
   else
   {
@@ -247,10 +247,15 @@ void playDwmMelody(const char* path){
         break;
     }
     file.close(); 
-    tmp_melody[melody_index] = 19;
-    tmp_melody[melody_max-1] = 19;
+    if(melody_index > 0){
+      tmp_melody[melody_index] = 19;
+      tmp_melody[melody_max-1] = 19;
 
-    melodyPlayerPlayMelody(/*const int* melody*/tmp_melody, /*bool alarm*/false); 
+      melodyPlayerPlayMelody(/*const int* melody*/tmp_melody, /*bool alarm*/false); 
+    }
+    else{
+      drawMessageAnimated("Битий файл");
+    }
     delete tmp_melody; // deallocate the memory
     tmp_melody = nullptr; // set pointer to nullptr
   }

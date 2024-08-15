@@ -86,7 +86,7 @@ void turnOff()
   if (!isOff())
   {
     clearScreenAnimation();
-    drawMessage("Вимкнення...");
+    drawMessageAnimated("Вимкнення...");
     delay(500);
   }
   setModeOff();

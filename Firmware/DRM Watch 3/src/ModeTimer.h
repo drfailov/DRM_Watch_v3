@@ -214,8 +214,8 @@ bool timerAlert(){
 
 bool timerAlertCheckButtons(){
   if(isButtonCenterPressed()){buttonBeep(); modeSetup(); resetTimer(); return true;}
-  if(isButtonUpPressed()){buttonBeep(); modeSetup(); setTimerToMinutes(10); drawMessage("Відкладено на 10 хвилин"); return true;}
-  if(isButtonDownPressed()){buttonBeep(); modeSetup(); setTimerToMinutes(5); drawMessage("Відкладено на 5 хвилин"); return true;}
+  if(isButtonUpPressed()){buttonBeep(); modeSetup(); setTimerToMinutes(10); drawMessageAnimated("Відкладено на 10 хвилин"); return true;}
+  if(isButtonDownPressed()){buttonBeep(); modeSetup(); setTimerToMinutes(5); drawMessageAnimated("Відкладено на 5 хвилин"); return true;}
   return false;
 }
 

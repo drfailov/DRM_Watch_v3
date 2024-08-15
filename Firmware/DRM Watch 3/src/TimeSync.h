@@ -68,13 +68,13 @@ void setTimezone(String timezone){
 void timeSync(){
   saveLastTryTimeSync(_rtcInternal()->getEpoch());
   if(connectToKnownWifi()){
-    drawMessage("Збip даних...");
+    drawMessageAnimated("Збip даних...");
     //unsigned long lastSyncTime = getLastTimeSync(); //s
     //unsigned long measuredTime = _rtcInternal()->getEpoch(); //s
     unsigned long syncStartedMillis = millis();     //millis
-    drawMessage("Скидання часу...");
+    drawMessageAnimated("Скидання часу...");
     _rtcInternal()->setTime(0);
-    drawMessage("З'єднання з сервером...");
+    drawMessageAnimated("З'єднання з сервером...");
     configTime(0, 0, ntpServer, ntpServer1, ntpServer2);
     printLocalTime();
     delay(500);

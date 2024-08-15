@@ -23,7 +23,7 @@ void modeFileReaderBmpButtonDown();
 
 // https://github.com/espressif/esp-idf/blob/master/examples/storage/partition_api/partition_ops/main/main.c
 //  Find the partition map in the partition table
-char *modeFileReaderBmpPath = (char *)"/";
+RTC_DATA_ATTR char *modeFileReaderBmpPath = (char *)"/";
 bool modeFileReaderBmp_fatReady = false;
 
 void setmodeFileReaderBmp()
@@ -42,8 +42,8 @@ void setmodeFileReaderBmp()
   modeButtonCenterLong = 0;
   modeButtonDownLong = 0;
   registerAction();
-  enableAutoReturn = false;
-  enableAutoSleep = true;
+  enableAutoReturn = true;
+  enableAutoSleep = false;
   autoReturnTime = autoReturnDefaultTime;
   autoSleepTime = autoSleepDefaultTime;
 
@@ -153,7 +153,7 @@ void modeFileReaderBmpLoop()
           f.read((uint8_t *)&height, 4/*bytes*/);
           offset += 4;
           bmp_y = height-1;
-          offset_y = (H-height)/2;
+          offset_y = (H-height)/2 -1;
           if (height == 0)
           { // should be not 0
             draw_ic24_bad_file(170, 90, black);

@@ -50,7 +50,7 @@ void setup(void) {
   backlightInit();
   initButtons();
   initLed();
-  if(esp_sleep_get_wakeup_cause() == 0 && !isOff()) drawMessage("Ініціалізація RTC...");
+  if(esp_sleep_get_wakeup_cause() == 0 && !isOff()) drawMessageAnimated("Ініціалізація RTC...");
   initRtc();
   initTime();
 
