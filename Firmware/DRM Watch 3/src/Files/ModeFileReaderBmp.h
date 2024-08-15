@@ -153,7 +153,7 @@ void modeFileReaderBmpLoop()
           f.read((uint8_t *)&height, 4/*bytes*/);
           offset += 4;
           bmp_y = height-1;
-          offset_y = (H-height)/2 -1;
+          offset_y = (H-height)/2 ;
           if (height == 0)
           { // should be not 0
             draw_ic24_bad_file(170, 90, black);

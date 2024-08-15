@@ -28,7 +28,7 @@ const int ModeMenuSettingsWatchfaceContentItemShowCalendar = 13;
 const int ModeMenuSettingsWatchfaceContentItemShowTemperature = 14;
 const int ModeMenuSettingsWatchfaceContentItemShowDjiLogo = 15;
 const int ModeMenuSettingsWatchfaceContentItemShowTimeInStatusbar = 16;
-//const int ModeMenuSettingsWatchfaceContentItemShowLegend = 17;
+const int ModeMenuSettingsWatchfaceContentItemShowSinceCharged = 17;
 
 void setModeMenuSettingsWatchfaceContent(){
   clearScreenAnimation();
@@ -47,7 +47,7 @@ void setModeMenuSettingsWatchfaceContent(){
   autoReturnTime = autoReturnDefaultTime;
   autoSleepTime = autoSleepDefaultTime;
   selected = 0;
-  items = 17;
+  items = 18;
 }
 
 
@@ -82,7 +82,7 @@ void ModeMenuSettingsWatchfaceContentLoop(){
   drawListCheckbox(ModeMenuSettingsWatchfaceContentItemShowLavaBackgound,     draw_ic24_bubbles,         "Фон \"Лава\"", "Симуляція лава-лампи", getWatchfaceLavaBackgroundEnabled(), firstDraw);
   drawListCheckbox(ModeMenuSettingsWatchfaceContentItemShowCalendar,          draw_ic24_calendar,        "Календар", "Ha поточний місяць", getWatchfaceCalendarEnabled(), firstDraw);
   drawListCheckbox(ModeMenuSettingsWatchfaceContentItemShowTimeInStatusbar,   draw_ic24_digitalclock2,   "Час в статус-бapi", "Серед інконок статусу ще й час", getWatchfaceStatusbarDigitalEnabled(), firstDraw);
-  // drawListCheckbox(ModeMenuSettingsWatchfaceContentItemShowLegend,            draw_ic24_about,           "Легента кнопок", "Значки що роблять кнопки", getWatchfaceLegendEnabled(), firstDraw);
+  drawListCheckbox(ModeMenuSettingsWatchfaceContentItemShowSinceCharged,      draw_ic24_battery100,      "Днів від зарядки", "Скільки днів тримає заряд", getWatchfaceSinceChargedEnabled(), firstDraw);
 
 
   lcd()->sendBuffer();
@@ -156,10 +156,10 @@ void ModeMenuSettingsWatchfaceContentButtonCenter(){
     saveWatchfaceLavaBackgroundEnabled(!getWatchfaceLavaBackgroundEnabled());
     return;
   }
-  // if(selected==ModeMenuSettingsWatchfaceContentItemShowLegend){
-  //   saveWatchfaceLegendEnabled(!getWatchfaceLegendEnabled());
-  //   return;
-  // }
+  if(selected==ModeMenuSettingsWatchfaceContentItemShowSinceCharged){
+    saveWatchfaceSinceChargedEnabled(!getWatchfaceSinceChargedEnabled());
+    return;
+  }
 }
 
 
