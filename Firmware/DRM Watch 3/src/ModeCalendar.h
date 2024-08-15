@@ -52,8 +52,12 @@ void drawCalendar(int xoffset/*px*/, int ylegend/*px*/, int month /*01-12*/, int
   for(int DoW=0; DoW<7; DoW++){
     int x = xoffset + (DoW)*dayw; //center point of text
     int dayTextWidth = lcd()->getUTF8Width(days[DoW].c_str());
-    lcd()->setCursor(x-dayTextWidth/2, ylegend); 
-    lcd()->print(days[DoW]);
+    lcd()->drawUTF8(x-dayTextWidth/2, ylegend, days[DoW].c_str());
+    if(DoW > 4){ //highlight weekeng as bold text
+      lcd()->setFontMode(/*is_transparent*/ true);
+      lcd()->drawUTF8(1+x-dayTextWidth/2, ylegend, days[DoW].c_str());
+      lcd()->setFontMode(/*is_transparent*/ false);
+    }
   }
 
   //calendar
@@ -78,13 +82,21 @@ void drawCalendar(int xoffset/*px*/, int ylegend/*px*/, int month /*01-12*/, int
         lcd()->setColorIndex(black);
         lcd()->drawRBox(/*x*/x-dayFrameMargin-dayTextWidth/2, /*y*/y-dayFrameTextHeight-dayFrameMargin, /*w*/dayTextWidth + dayFrameMargin*2, /*h*/dayFrameTextHeight + dayFrameMargin*2, roundness);
         lcd()->setColorIndex(white);
-        lcd()->setCursor(x-dayTextWidth/2, y); 
-        lcd()->print(drawday);
+        lcd()->drawUTF8(x-dayTextWidth/2, y, buffer);
+        if(DoW > 5){ //highlight weekeng as bold text
+          lcd()->setFontMode(/*is_transparent*/ true);
+          lcd()->drawUTF8(1+x-dayTextWidth/2, y, buffer);
+          lcd()->setFontMode(/*is_transparent*/ false);
+        }
       }
       else{
         lcd()->setColorIndex(black);
-        lcd()->setCursor(x-dayTextWidth/2, y); 
-        lcd()->print(drawday);
+        lcd()->drawUTF8(x-dayTextWidth/2, y, buffer);
+        if(DoW > 5){ //highlight weekeng as bold text
+          lcd()->setFontMode(/*is_transparent*/ true);
+          lcd()->drawUTF8(1+x-dayTextWidth/2, y, buffer);
+          lcd()->setFontMode(/*is_transparent*/ false);
+        }
       }
       if(DoW == 7) {
         week++;
