@@ -28,9 +28,10 @@ bool getBlackValue();
 void saveInversionValue(bool value);
 void saveEnterAnimationValue(bool value);
 bool getEnterAnimationValue();
+void saveClearAnimationValue(int value);
+int getClearAnimation();
 unsigned long getLcdSpiSpeed();
 bool saveLcdSpiSpeed(unsigned long spiSpeed);
-
 // sound
 bool getMuteEnabled();
 bool saveMuteEnabled(bool value);
@@ -381,6 +382,14 @@ bool getEnterAnimationValue()
 void saveEnterAnimationValue(bool value)
 {
   preferencesObject.putInt("screenInAnim", value ? 1 : 0);
+}
+void saveClearAnimationValue(int value)
+{
+  preferencesObject.putInt("screenOutAnim", value);
+}
+int getClearAnimation()
+{
+  return preferencesObject.getInt("screenOutAnim", 3);
 }
 unsigned long getLcdSpiSpeed()
 {

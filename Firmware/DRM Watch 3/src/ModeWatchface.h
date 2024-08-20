@@ -154,25 +154,27 @@ int drawStatusbar(int x, int y, bool drawTime, bool simulate)
       lcd()->print(buffer);
     x -= interval;
   }
-  { // Serial.println("draw battery...");
+  
+  { 
     x -= 24;
     if (!simulate)
       drawBattery(x, y);
+    if(getWatchfaceSinceChargedEnabled()){
+      x -= 1;
+      unsigned long sinceChargedS = getTimeSinceLastCharged();
+      unsigned long sinceChargedD = sinceChargedS / (60*60*24);
+      sprintf(buffer, "%dd", sinceChargedD);
+      lcd()->setColorIndex(black);
+      lcd()->setFont(u8g2_font_unifont_t_cyrillic);
+      int width = lcd()->getStrWidth(buffer);
+      x -= width;
+      lcd()->setCursor(x, y + 17);
+      if (!simulate)
+        lcd()->print(buffer);
+    }
     x -= interval;
   }
-  if(getWatchfaceSinceChargedEnabled()){
-    unsigned long sinceChargedS = getTimeSinceLastCharged();
-    unsigned long sinceChargedD = sinceChargedS / (60*60*24);
-    sprintf(buffer, "%dd", sinceChargedD);
-    lcd()->setColorIndex(black);
-    lcd()->setFont(u8g2_font_unifont_t_cyrillic);
-    int width = lcd()->getStrWidth(buffer);
-    x -= width;
-    lcd()->setCursor(x, y + 17);
-    if (!simulate)
-      lcd()->print(buffer);
-    x -= interval;
-  }
+  
   if (isFlashlightOn())
   {
     x -= 16;

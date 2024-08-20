@@ -3,6 +3,7 @@
 
 void setModeMenuSettingsDisplay();
 void ModeMenuSettingsDisplayLoop();
+void ModeMenuSettingsDisplayExit();
 void ModeMenuSettingsDisplayButtonCenter();
 
 #include "../Lcd.h"
@@ -16,7 +17,7 @@ void ModeMenuSettingsDisplayButtonCenter();
 #include "ModeSetWatchface.h"
 #include "../ModeMainMenu.h"
 #include "../DrmPreferences.h"
-
+#include "../ModeListSelection.h"
 
 const int ModeMenuSettingsDisplayItemBack = 0;
 const int ModeMenuSettingsDisplayItemSelectWatchface = 1;
@@ -24,13 +25,45 @@ const int ModeMenuSettingsDisplayItemSelectWatchfaceContent = 2;
 const int ModeMenuSettingsDisplayItemLcdFrequency = 3;
 const int ModeMenuSettingsDisplayItemInvertDisplay = 4;
 const int ModeMenuSettingsDisplayItemInAnimation = 5;
-const int ModeMenuSettingsDisplayItemResetBatteryBars = 6;
+const int ModeMenuSettingsDisplayItemOutAnimation = 6;
+const int ModeMenuSettingsDisplayItemResetBatteryBars = 7;
 
-void setModeMenuSettingsDisplay(){
+int outAnimationOptionsCnt()
+{
+  return 6;
+}
+const char *outAnimationOptions(int index)
+{
+  if (index == 0)
+    return "Без анімації";
+  if (index == 1)
+    return "Заливка зліва направо";
+  if (index == 2)
+    return "Заливка справа наліво";
+  if (index == 3)
+    return "Коло справа наліво";
+  if (index == 4)
+    return "Глітч";
+  if (index == 5)
+    return "Шум";
+  
+  return "---";
+}
+void onOutAnimationSelected() // callback
+{
+  saveClearAnimationValue(ModeListSelection_Selected);
+  setModeMenuSettingsDisplay();
+}
+
+void setModeMenuSettingsDisplay()
+{
+  if(modeExit != 0)
+    modeExit();
   clearScreenAnimation();
   Serial.println(F("Set mode: ModeMenuSettingsDisplay"));
   modeSetup = setModeMenuSettingsDisplay;
   modeLoop = ModeMenuSettingsDisplayLoop;
+  modeExit = ModeMenuSettingsDisplayExit;
   modeButtonUp = modeMainMenuButtonUp;
   modeButtonCenter = ModeMenuSettingsDisplayButtonCenter;
   modeButtonDown = modeMainMenuButtonDown;
@@ -39,71 +72,89 @@ void setModeMenuSettingsDisplay(){
   modeButtonDownLong = 0;
   registerAction();
   enableAutoReturn = true;
-  enableAutoSleep = false; 
+  enableAutoSleep = false;
   autoReturnTime = autoReturnDefaultTime;
   autoSleepTime = autoSleepDefaultTime;
   selected = 0;
-  items = 7;
+  items = 8;
 }
 
-
-void ModeMenuSettingsDisplayLoop(){
+void ModeMenuSettingsDisplayExit(){
+  modeExit = 0;
+}
+void ModeMenuSettingsDisplayLoop()
+{
   lcd()->setColorIndex(white);
   lcd()->drawBox(0, 0, 400, 240);
 
-  lcd()->setFont(u8g2_font_10x20_t_cyrillic);  //ok
+  lcd()->setFont(u8g2_font_10x20_t_cyrillic); // ok
   lcd()->setColorIndex(black);
-  lcd()->setCursor(5, 18); 
+  lcd()->setCursor(5, 18);
   lcd()->print("Параметри дисплея");
 
   drawMenuLegend();
   drawStatusbar(363, 1, true);
 
-  drawListItem(ModeMenuSettingsDisplayItemBack, draw_ic24_back, "Повернутись", "B меню налаштувань", firstDraw); //
-  drawListItem(ModeMenuSettingsDisplayItemSelectWatchface, draw_ic24_watchface, "Обрати циферблат", "Дизайн відображення часу", firstDraw); //
-  drawListItem(ModeMenuSettingsDisplayItemSelectWatchfaceContent, draw_ic24_checklist, "Вміст циферблату", "Чи показувати елементи циферблатів", firstDraw); //
-  drawListItem(ModeMenuSettingsDisplayItemLcdFrequency, draw_ic24_frequency, "Частота SPI", "Частота комунікації з дисплеєм", firstDraw); //
-  drawListCheckbox(ModeMenuSettingsDisplayItemInvertDisplay, draw_ic24_invert, "Інвертувати екран", "Поміняти місцями чорне i біле", getInversionValue(), firstDraw); //
-  drawListCheckbox(ModeMenuSettingsDisplayItemInAnimation, draw_ic24_animation, "Анімація входу в меню", "Поступова поява елементів меню", getEnterAnimationValue(), firstDraw); //
-  drawListItem(ModeMenuSettingsDisplayItemResetBatteryBars, draw_ic24_battery50, "Скинути калібровку батареї", "Якщо \"Палички\" неправильні", firstDraw); //
+  drawListItem(ModeMenuSettingsDisplayItemBack,                     draw_ic24_back,       "Повернутись", "B меню налаштувань", firstDraw);                                                                 //
+  drawListItem(ModeMenuSettingsDisplayItemSelectWatchface,          draw_ic24_watchface,  "Обрати циферблат", "Дизайн відображення часу", firstDraw);                                      //
+  drawListItem(ModeMenuSettingsDisplayItemSelectWatchfaceContent,   draw_ic24_checklist,  "Вміст циферблату", "Чи показувати елементи циферблатів", firstDraw);                     //
+  drawListItem(ModeMenuSettingsDisplayItemLcdFrequency,             draw_ic24_frequency,  "Частота SPI", "Частота комунікації з дисплеєм", firstDraw);                                        //
+  drawListCheckbox(ModeMenuSettingsDisplayItemInvertDisplay,        draw_ic24_invert,     "Інвертувати екран", "Поміняти місцями чорне i біле", getInversionValue(), firstDraw);            //
+  drawListCheckbox(ModeMenuSettingsDisplayItemInAnimation,          draw_ic24_animation,  "Анімація входу в меню", "Поступова поява елементів меню", getEnterAnimationValue(), firstDraw); //
+  drawListItem(ModeMenuSettingsDisplayItemOutAnimation,             draw_ic24_animation,  "Анімація виходу з меню",      outAnimationOptions(getClearAnimation()),  firstDraw); //
+  drawListItem(ModeMenuSettingsDisplayItemResetBatteryBars,         draw_ic24_battery50,  "Скинути калібровку батареї", "Якщо \"Палички\" неправильні",             firstDraw);                       //
   lcd()->sendBuffer();
 }
 
-void ModeMenuSettingsDisplayButtonCenter(){
-  if(selected == ModeMenuSettingsDisplayItemBack){
-      setModeSettingsMenu();
+void ModeMenuSettingsDisplayButtonCenter()
+{
+  if (selected == ModeMenuSettingsDisplayItemBack)
+  {
+    setModeSettingsMenu();
   }
-  if(selected == ModeMenuSettingsDisplayItemSelectWatchface){
+  if (selected == ModeMenuSettingsDisplayItemSelectWatchface)
+  {
     setModeSetWatchface();
     return;
   }
-  if(selected == ModeMenuSettingsDisplayItemSelectWatchfaceContent){
+  if (selected == ModeMenuSettingsDisplayItemSelectWatchfaceContent)
+  {
     setModeMenuSettingsWatchfaceContent();
     return;
   }
-  if(selected == ModeMenuSettingsDisplayItemLcdFrequency){
+  if (selected == ModeMenuSettingsDisplayItemLcdFrequency)
+  {
     setmodeSetLcdFrequencyMenu();
     return;
   }
-  if(selected == ModeMenuSettingsDisplayItemInvertDisplay){
+  if (selected == ModeMenuSettingsDisplayItemInvertDisplay)
+  {
     saveInversionValue(!getInversionValue());
     black = getBlackValue();
     white = getWhiteValue();
     return;
-  }  
-  if(selected == ModeMenuSettingsDisplayItemInAnimation){
+  }
+  if (selected == ModeMenuSettingsDisplayItemInAnimation)
+  {
     saveEnterAnimationValue(!getEnterAnimationValue());
     return;
-  }  
-  if(selected == ModeMenuSettingsDisplayItemResetBatteryBars){
+  }
+  if (selected == ModeMenuSettingsDisplayItemOutAnimation)
+  {
+    ModeListSelection_Items = outAnimationOptions;
+    ModeListSelection_Name = "Обрати анімацію";
+    ModeListSelection_Cnt = outAnimationOptionsCnt();
+    ModeListSelection_Selected = getClearAnimation();
+    ModeListSelection_OnSelected = onOutAnimationSelected;
+    setModeListSelection();
+    return;
+  }
+  if (selected == ModeMenuSettingsDisplayItemResetBatteryBars)
+  {
     resetBatteryCalibrationData();
     drawMessage("Калібровку батареї скинуто", "Проведіть повний цикл для калібровки", true);
     return;
-  }  
+  }
 }
-
-
-
-
 
 #endif

@@ -18,6 +18,8 @@ void modeAboutButton();
 
 int modeAboutCounter = 0;
 void modeAboutSetup(){
+  if(modeExit != 0)
+    modeExit();
   clearScreenAnimation();
   Serial.println(F("Set mode: About"));
   modeSetup = modeAboutSetup;
@@ -43,6 +45,7 @@ void modeAboutLoop(){
   lcd()->setColorIndex(black);
   lcd()->setCursor(5, 17);  lcd()->print("Розробник: Dr.Failov");
   drawStatusbar(395, 1, true);
+  lcd()->setFont(u8g2_font_10x20_t_cyrillic);  //ok
   lcd()->setColorIndex(black);
   lcd()->setCursor(5, 234);  lcd()->print(version);
   draw_ic33_qrcodex1(355, 180, black);

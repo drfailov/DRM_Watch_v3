@@ -182,6 +182,8 @@ int defaultAction(int eventId)
 const int itemModeShortcutListEventsBack=0;
 
 void setModeShortcutListEventsMenu(){
+  if(modeExit != 0)
+    modeExit();
   clearScreenAnimation();
   Serial.println(F("Set mode: Shortcuts List Events"));
   modeSetup = setModeShortcutListEventsMenu;

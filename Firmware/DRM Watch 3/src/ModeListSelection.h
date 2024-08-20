@@ -71,6 +71,8 @@ void drawListItem(byte index, Drawable drawIcon, const char* name, bool animate)
 const int ModeListSelectionItemBack = 0;
 
 void setModeListSelection(){
+  if(modeExit != 0)
+    modeExit();
   clearScreenAnimation();
   Serial.println(F("Set mode: ModeListSelection"));
   modeSetup = setModeListSelection;
