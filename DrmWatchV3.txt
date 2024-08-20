@@ -72,6 +72,9 @@ Rickroll melody  https://onlinesequencer.net/4103200	  https://onlinesequencer.n
 funkytown lipps inc  https://onlinesequencer.net/3105663	  https://onlinesequencer.net/4107482
 Собачий вальс  https://onlinesequencer.net/2643377   https://onlinesequencer.net/4107493
 На свою голову     https://onlinesequencer.net/4127721
+Gendalf song (https://onlinesequencer.net/1858589,   https://onlinesequencer.net/4150306)
+Star Wars https://onlinesequencer.net/4150357
+
 
 Known Pins reserved on ESP32-S2 (Lolin S2 Mini):
 GPIO 7: SPI SCK
@@ -707,6 +710,8 @@ Changelog:
 2024-08-20 FW:v3.04 Виправлено: Екран про програму, не вказаний шрифт
 2024-08-20 FW:v3.04 Зменшено інтервал між акумом і днями роботи
 2024-08-20 FW:v3.04 Додана опція обрати тип анімації виходу з меню
+2024-08-20 FW:v3.04 Додана мелодія: Gandalf Sax
+2024-08-20 FW:v3.04 Додана мелодія: Imperial March
 
 
 ==== todo:
@@ -736,11 +741,7 @@ Changelog:
 - Запхати в інтерфейс зубата
 
 
-Малодії:
-- Star Wars
+Малодії
 - Мелодія політ шмеля
 - Another Love https://onlinesequencer.net/3779810    https://onlinesequencer.net/3591566   https://onlinesequencer.net/2084958
 - Рідна мати моя  
-- Mana mana
-- Stray game melody
-- Gendalf song
