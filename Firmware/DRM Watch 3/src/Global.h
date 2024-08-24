@@ -43,6 +43,7 @@ struct Point{
 #define TOUCH2_PIN 9
 #define TOUCH3_PIN 10
 #define CHARGER_EN_PIN 37  //OLD
+#define BACKLIGHT_EN GPIO_NUM_8  //NOT USED
 #endif
 
 #ifdef HW_REV_2
@@ -110,7 +111,7 @@ const int BUFF_SCALE = 2;  //screenBuffer  //2 is 3KB out of 8KB RTC Memory
 const int BUFF_W = W/BUFF_SCALE;   //screenBuffer
 const int BUFF_H = H/BUFF_SCALE;   //screenBuffer
   
-String version = "FW:v3.04";          //================================== <<<<< VERSION
+String version = "FW:v3.05";          //================================== <<<<< VERSION
 bool black = 1;
 bool white = 0;
 

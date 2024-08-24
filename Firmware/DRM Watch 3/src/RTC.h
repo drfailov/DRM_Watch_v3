@@ -14,45 +14,26 @@ float cpuTemperature();
 #include <ESP32Time.h>
 
 
-
+RTC_DATA_ATTR bool rtcChipFound = false;  //fills only on initial run (after reboot)
 bool rtcReady = false;
 DS3231M_Class DS3231M;     //external RTC
 ESP32Time rtcInternal;          //internal RTC
-ESP32Time rtcInternalCorrected; //internal RTC Corrected
 
 void initRtc(){
-  //rtc_clk_8m_enable(true, true);
-  //rtc_clk_slow_freq_set(RTC_SLOW_FREQ_8MD256);
-  //rtc_clk_freq_cal();
-  //rtc_clk_apb_freq_update
-  Serial.print(F("DS3231M..."));
-  //according to documentation, ESP32 has already timeout value 50ms
-  //Wire.begin();
-  //Wire.setWireTimeout(3000, true); //timeout value in uSec - SBWire uses 100 uSec, so 1000 should be OK
-  rtcReady = DS3231M.begin(I2C_FAST_MODE);  //I2C_STANDARD_MODE (400khz)     I2C_FAST_MODE   (100khz)
-  DS3231M.pinSquareWave();  // Make INT/SQW pin toggle at 1Hz
-  Serial.println(getRtcSrc());
-  Serial.print(F("RTC Chip Temp=")); Serial.println(rtcChipTemperature());
+  if(esp_sleep_get_wakeup_cause() == 0 || rtcChipFound){  //normal wakeup try init RTC
+    Serial.print(F("DS3231M..."));
+    rtcReady = DS3231M.begin(I2C_FAST_MODE);  //I2C_STANDARD_MODE (400khz)     I2C_FAST_MODE   (100khz)  //according to documentation, ESP32 has already timeout value 50ms
+    if(esp_sleep_get_wakeup_cause() == 0) //if initial initialization found chip, then consider it present.
+      rtcChipFound = rtcReady;
+    DS3231M.pinSquareWave();  // Make INT/SQW pin toggle at 1Hz
+    Serial.println(getRtcSrc());
+    Serial.print(F("RTC Chip Temp=")); Serial.println(rtcChipTemperature());
+  }
 }
 
 ESP32Time* _rtcInternal(){
   return &rtcInternal;
 }
-// ESP32Time* _rtcInternalCorrected(){
-//   unsigned long lastSyncTime = getLastTimeSync(); //s
-//   unsigned long measuredTime = _rtcInternal()->getEpoch(); //s
-//   bool lastSyncValid = lastSyncTime > 1609459200;  // 1st Jan 2021 00:00:00;
-//   bool measuredTimeValid = measuredTime > lastSyncTime;
-//   if(!lastSyncValid || !measuredTimeValid)
-//     return &rtcInternal;
-//   double coefficient = getTimeCoef();
-//   unsigned long sinceLastSync = measuredTime-lastSyncTime;  //s
-//   double sinceLastSyncDouble = sinceLastSync;
-//   double correctionDouble = sinceLastSyncDouble*coefficient;
-//   double correction = correctionDouble;
-//   rtcInternalCorrected.offset = correction;
-//   return &rtcInternalCorrected;
-// }
 
 void printRtcGetTimeRaw(){
   //"%d %b %Y %H:%M:%S"

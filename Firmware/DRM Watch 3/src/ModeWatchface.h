@@ -160,17 +160,18 @@ int drawStatusbar(int x, int y, bool drawTime, bool simulate)
     if (!simulate)
       drawBattery(x, y);
     if(getWatchfaceSinceChargedEnabled()){
-      x -= 1;
       unsigned long sinceChargedS = getTimeSinceLastCharged();
       unsigned long sinceChargedD = sinceChargedS / (60*60*24);
-      sprintf(buffer, "%dd", sinceChargedD);
-      lcd()->setColorIndex(black);
-      lcd()->setFont(u8g2_font_unifont_t_cyrillic);
-      int width = lcd()->getStrWidth(buffer);
-      x -= width;
-      lcd()->setCursor(x, y + 17);
-      if (!simulate)
-        lcd()->print(buffer);
+      if(sinceChargedD >= 0 && sinceChargedD < 100){
+        sprintf(buffer, "%dd", sinceChargedD);
+        lcd()->setColorIndex(black);
+        lcd()->setFont(u8g2_font_unifont_t_cyrillic);
+        int width = lcd()->getStrWidth(buffer) + 1;
+        x -= width;
+        lcd()->setCursor(x, y + 17);
+        if (!simulate)
+          lcd()->print(buffer);
+      }
     }
     x -= interval;
   }
