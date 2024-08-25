@@ -40,10 +40,11 @@ void drawCalendar(int xoffset/*px*/, int ylegend/*px*/, int month /*01-12*/, int
   
   //background
   lcd()->setColorIndex(white);
-  lcd()->drawRBox(/*x*/xoffset-frameMargin, /*y*/ylegend-frameMargin, /*w*/frameDoWs*dayw+frameMargin*2, /*h*/frameWeeks*dayh+frameMargin*2, roundness);
+  lcd()->drawRBox(/*x*/xoffset-frameMargin, /*y*/ylegend-frameMargin, /*w*/frameDoWs*dayw+frameMargin*2, /*h*/frameWeeks*dayh+frameMargin*2, roundness); //white background
   lcd()->setColorIndex(black);
-  lcd()->drawRFrame(/*x*/xoffset-frameMargin, /*y*/ylegend-frameMargin, /*w*/frameDoWs*dayw+frameMargin*2, /*h*/frameWeeks*dayh+frameMargin*2, roundness);
-  lcd()->drawLine(/*x*/xoffset-frameMargin, ylegend+legendToCalendarOffset-2,/*x*/xoffset+frameMargin+frameDoWs*dayw-1, ylegend+legendToCalendarOffset-2);
+  lcd()->drawRFrame(/*x*/xoffset-frameMargin, /*y*/ylegend-frameMargin, /*w*/frameDoWs*dayw+frameMargin*2, /*h*/frameWeeks*dayh+frameMargin*2, roundness); //black frame
+  lcd()->drawLine(/*x*/xoffset-frameMargin, yoffset-2,/*x*/xoffset+frameMargin+frameDoWs*dayw-1, ylegend+legendToCalendarOffset-2);  //top legend separator line
+  drawDashedLine(/*x1*/ xoffset+(dayw*4.5), /*y1*/ yoffset-2, /*x2*/ xoffset+(dayw*4.5), /*y2*/ ylegend-2+frameWeeks*dayh+frameMargin, 1); //weekend separator line
 
   //legend
   lcd()->setColorIndex(black);
@@ -78,9 +79,9 @@ void drawCalendar(int xoffset/*px*/, int ylegend/*px*/, int month /*01-12*/, int
       sprintf(buffer, "%d", drawday);
       int dayTextWidth = lcd()->getUTF8Width(buffer);
 
-      if(month == monthCurrent && drawday == dayCurrent){
+      if(month == monthCurrent && drawday == dayCurrent){ //highlight current day
         lcd()->setColorIndex(black);
-        lcd()->drawRBox(/*x*/x-dayFrameMargin-dayTextWidth/2, /*y*/y-dayFrameTextHeight-dayFrameMargin, /*w*/dayTextWidth + dayFrameMargin*2, /*h*/dayFrameTextHeight + dayFrameMargin*2, roundness);
+        lcd()->drawRBox(/*x*/x-dayFrameMargin-dayTextWidth/2, /*y*/y-dayFrameTextHeight-dayFrameMargin, /*w*/dayTextWidth + dayFrameMargin*2 + (DoW>5), /*h*/dayFrameTextHeight + dayFrameMargin*2, roundness);
         lcd()->setColorIndex(white);
         lcd()->drawUTF8(x-dayTextWidth/2, y, buffer);
         if(DoW > 5){ //highlight weekeng as bold text

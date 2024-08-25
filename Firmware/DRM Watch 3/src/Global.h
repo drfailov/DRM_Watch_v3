@@ -1,3 +1,8 @@
+/*
+CTRL+K CTRL+M  - fold
+CTRL+K CTRL+J  - unfold
+*/
+
 #ifndef GLOBAL_H
 #define GLOBAL_H
 
@@ -111,7 +116,7 @@ const int BUFF_SCALE = 2;  //screenBuffer  //2 is 3KB out of 8KB RTC Memory
 const int BUFF_W = W/BUFF_SCALE;   //screenBuffer
 const int BUFF_H = H/BUFF_SCALE;   //screenBuffer
   
-String version = "FW:v3.05";          //================================== <<<<< VERSION
+String version = "FW:v3.06";          //================================== <<<<< VERSION
 bool black = 1;
 bool white = 0;
 
