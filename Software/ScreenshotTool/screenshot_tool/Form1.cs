@@ -3,14 +3,18 @@ using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.Drawing.Imaging;
+using System.Globalization;
 using System.IO;
 using System.IO.Ports;
 using System.Linq;
 using System.Management;
+using System.Runtime.InteropServices.ComTypes;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows.Forms;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace esptool_gui
 {
@@ -21,6 +25,7 @@ namespace esptool_gui
         string selectedPort = "";
         int receivedBytes = 0;
         string buffer = "";
+        bool endReceiving = false;
         public Form1()
         {
             thisForm = this;
@@ -42,25 +47,27 @@ namespace esptool_gui
             while (sp.IsOpen && sp.BytesToRead > 0)
             {
                 string inp = sp.ReadExisting();
-                //char inbyte = (char)sp.ReadByte();
                 buffer += inp;
+                //parseString(inp);
                 receivedBytes+= inp.Length;
                 st++;
                 if(st %3 == 0)
                     updateCounters();
                 lastReceivedTime = Environment.TickCount;
-                //append(""+inbyte);
-                //log("Byte received: " + inbyte);
                 if (inp.Contains("};"))
-                    log("Done.");
-                    //disconnect();
-
+                {
+                    log("Отримано.");
+                    endReceiving = true;
+                }
             }
         }
         private void buttonFlash_Click(object sender, EventArgs e)
         {
+            receivedBytes = 0;
+            updateCounters();
             richTextBoxLog.Clear();
             buffer = "";
+            endReceiving = false;
 
             if (selectedPort.Equals(""))
             {
@@ -68,6 +75,8 @@ namespace esptool_gui
                 return;
             }
             buttonFlashEnable(false);
+            buttonSaveEnable(false);
+            pictureBox3.BackgroundImage = null;
             new Thread(() =>
             {
                 try
@@ -77,21 +86,71 @@ namespace esptool_gui
                         log("Вже підключено");
                         return;
                     }
-                    log("Connecting to port: " + selectedPort + "...");
-                    port = new SerialPort(selectedPort, 115200);
+                    log("Підключення до " + selectedPort + "...");
+                    port = new SerialPort(selectedPort, 115200, Parity.None, 8, StopBits.One);  //230400=8s  115200=8s  9600=8s
+                    port.ErrorReceived += Port_ErrorReceived;
                     port.DataReceived += DataReceivedHandler;
-                    port.DtrEnable = true;
-                    //port.RtsEnable = true;
+                    port.WriteTimeout = 10;
+                    port.ReadTimeout = 10;
                     port.Open();
-                    log("Connected: " + selectedPort);
+                    
+                    log("Підключено: " + selectedPort);
+                    log("Відкрито: " + port.IsOpen);
+                    port.DtrEnable = true;
                     Thread.Sleep(1000);
-                    send("<screenshot>");
-                    //log("Отримую дані...");
-                    //lastReceivedTime = Environment.TickCount;
-                    //while (Environment.TickCount - lastReceivedTime < 4000) ;
-                    //log("Дані більше не надходять.");
-                    //updateCounters();
-                    //disconnect();
+
+                    receivedBytes = 0;
+                    buffer = "";
+                    bool bufferParsed = false;
+                    for (int i=0; i<3 && receivedBytes < 55000; i++)
+                    {
+                        receivedBytes = 0;
+                        buffer = "";
+                        log("Запит скріншоту...");
+                        port.Write("<screenshot>");
+
+                        log("Отримую дані...");
+                        beginParse();
+                        lastReceivedTime = Environment.TickCount;
+                        int parsed = 0;
+                        while (true)
+                        {
+                            int bufferLen = buffer.Length;
+                            if (parsed < bufferLen)
+                            {
+                                parseString(buffer.Substring(parsed, bufferLen-parsed));
+                                parsed = bufferLen;
+                            }
+                            bufferParsed = parsed == buffer.Length;
+                            if (Environment.TickCount - lastReceivedTime > 4000 && bufferParsed)
+                                break;
+                            if (endReceiving && bufferParsed)
+                                break;
+                        }
+                        
+                        
+                    }
+                    updateCounters();
+                    buttonSaveEnable(endReceiving && bufferParsed);
+
+                    port.DtrEnable = false;
+                    log("Відключення: " + selectedPort);
+                    try { port.DiscardInBuffer(); } catch (Exception) { };
+                    try { port.Close(); } catch (Exception) { };
+                    try { port.Dispose(); } catch (Exception) { };
+                    log("Відключено.");
+
+                    //if (endReceiving)
+                    //{
+                    //    log("Парсінг...");
+                    //    beginParse();
+                    //    for(int i = 0;i<buffer.Length;i+=100)
+                    //    {
+                    //        log("Парсінг "+i+"...");
+                    //        parseString(buffer.Substring(i, Math.Min(buffer.Length-i,100)));
+                    //    }
+                        
+                    //}
                 }
                 catch(Exception ex)
                 {
@@ -100,40 +159,15 @@ namespace esptool_gui
                 }
                 finally
                 {
-                    //port = null;
+                    port = null;
                     buttonFlashEnable(true);
                 }
             }).Start();
-
-
         }
 
-
-        public void disconnect()
+        private void Port_ErrorReceived(object sender, SerialErrorReceivedEventArgs e)
         {
-            log("Disconnecting: " + selectedPort);
-            if (port != null)
-            {
-                try { port.DiscardInBuffer(); } catch (Exception) { };
-                try { port.Dispose(); } catch (Exception) { };
-                try { port.DiscardInBuffer(); } catch (Exception) { };
-                port = null;
-            }
-            log("Disconnected.");
-        }
-        public bool send(string text)
-        {
-            if (port != null && port.IsOpen)
-            {
-                log("|#| <-- " + text);
-                port.Write(text);
-                return true;
-            }
-            else
-            {
-                log("|X| <-- " + text);
-                return false;
-            }
+            log("Err: "+e.ToString());
         }
 
         string append(string text)
@@ -153,7 +187,14 @@ namespace esptool_gui
                 Invoke(new MethodInvoker(() => { updateCounters(); }));
                 return;
             }
-            labelReceived.Text = "Отримано :" + receivedBytes + " байт";
+            //labelReceived.Text = "Отримано: " + receivedBytes + " байт";
+
+            //labelParsedWidth.Text = "Ширина: " + parseWidth + "px";
+            //labelParsedHeight.Text = "Висота: " + parseHeight + "px";
+
+            //labelX.Text = "X: " +  parseX+ "px";
+            //labelY.Text = "Y: " +  parseY+ "px";
+            pictureBox3.Refresh();
             return;
         }
         string log(string text)
@@ -206,6 +247,23 @@ namespace esptool_gui
             try
             {
                 buttonFlash.Enabled = val;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("status: " + ex.ToString());
+            }
+        }
+        void buttonSaveEnable(bool val)
+        {
+
+            if (InvokeRequired)
+            {
+                Invoke(new MethodInvoker(() => { buttonSaveEnable(val); }));
+                return;
+            }
+            try
+            {
+                buttonSave.Enabled = val;
             }
             catch (Exception ex)
             {
@@ -267,7 +325,7 @@ namespace esptool_gui
                             stillConnected = true;
                     }
                     if (stillConnected)
-                        status("Підключено годинник в режимі прошивки: " + selectedPort);
+                        status("Підключено годинник: " + selectedPort);
                     else
                     {
                         // =========================================================================== DISCONNECTED ACTION
@@ -304,7 +362,7 @@ namespace esptool_gui
                     if (collection.Count == 0)
                         status("Не знайдено ніяких COM портів.");
                     else
-                        status("Знайдено " + collection.Count + " COM портів, але годинник в режимі прошивки не знайдено.");
+                        status("Знайдено " + collection.Count + " COM портів, але годинник не знайдено.");
                 }
             }
         }
@@ -335,5 +393,142 @@ namespace esptool_gui
         }
 
 
+        Bitmap sourceBitmap = null;
+        int parseWidth = 0;
+        int parseHeight = 0;
+        int parseX = 0;
+        int parseY = 0;
+        string parseBuffer = "";
+        bool parseWaitWidth = false;
+        bool parseWaitHeight = false;
+        private void beginParse()
+        {
+            sourceBitmap = null;
+            parseWidth = 0;
+            parseHeight = 0;
+            parseX = 0;
+            parseY = 0;
+            parseWaitWidth = false;
+            parseWaitHeight = false;
+        }
+        private void parseString(string str)
+        {
+            for(int i=0; i<str.Length; i++)
+            {
+                char c = str[i];
+                if(c == ' ' || c == '\n' || c == '{' || c == '}' || c == '\r' || c == ',')
+                { //process buffer
+                    if (parseBuffer.Equals("xbm_width"))
+                        parseWaitWidth = true;
+                    else if (parseBuffer.Equals("xbm_height"))
+                        parseWaitHeight = true;
+                    else if (parseWaitWidth)
+                    {
+                        if (Int32.TryParse(parseBuffer, out parseWidth))
+                            parseWaitWidth = false;
+                    }
+                    else if (parseWaitHeight)
+                    {
+                        if (Int32.TryParse(parseBuffer, out parseHeight))
+                            parseWaitHeight = false;
+                    }
+                    else if (parseBuffer.Trim().StartsWith("0x", StringComparison.CurrentCultureIgnoreCase)){
+                        byte pixel;
+                        bool parsedSuccessfully = byte.TryParse(parseBuffer.Trim().Substring(2), NumberStyles.HexNumber, CultureInfo.CurrentCulture, out pixel);
+                        if(parsedSuccessfully && sourceBitmap != null)
+                        {
+                            lock (sourceBitmap)
+                            {
+                                for (int b = 0; b < 8; b++)
+                                {
+                                    int numberRightposition = pixel >> b;
+                                    int bit = numberRightposition & 1;
+                                    if (parseX + b < parseWidth && parseY < parseHeight)
+                                        sourceBitmap.SetPixel(parseX + b, parseY, bit == 1 ? Color.White : Color.Black);
+                                }
+                            }
+                            parseX += 8;
+                        }
+                    }
+                    if(c == '\n' && !(parseY == 0 && parseX == 0))
+                    {
+                        parseY += 1;
+                        parseX = 0;
+                    }
+                    if (sourceBitmap == null && parseWidth > 20 && parseHeight > 20)
+                    {
+                        sourceBitmap = new Bitmap(parseWidth, parseHeight);
+                    }
+                    parseBuffer = "";
+                }
+                else
+                {
+                    parseBuffer += c;
+                }
+            }
+            updateCounters();
+        }
+
+        private void Form1_Paint(object sender, PaintEventArgs e)
+        {
+            //if (sourceBitmap != null)
+            //{
+            //    Graphics gForm = e.Graphics;
+            //    gForm.DrawImage(sourceBitmap, 0, 0, sourceBitmap.Width, sourceBitmap.Height);
+            //}
+        }
+
+        private void pictureBox3_Paint(object sender, PaintEventArgs e)
+        {
+
+            if (sourceBitmap != null)
+            {
+                Graphics gForm = e.Graphics;
+                Font font = new Font(FontFamily.GenericMonospace, 8);
+                Brush brush = new SolidBrush(Color.Black);
+                int x = 0;
+                int y = 0;
+                int w = 0;
+                int h = 0;
+                lock (sourceBitmap)
+                {
+                    w = sourceBitmap.Width;
+                    h = sourceBitmap.Height;
+                    x = pictureBox3.Location.X + (pictureBox3.Size.Width-w)/2;
+                    y = pictureBox3.Location.Y + (pictureBox3.Size.Height-h)/2;
+                    gForm.DrawImage(sourceBitmap, x, y, w, h);
+                }
+                int textX = x + w + 5;
+                int liheH = 15;
+                int textY = y;
+
+                gForm.DrawString("Отримано: " + receivedBytes + " байт", font, brush, textX, textY+=liheH);
+                gForm.DrawString("Ширина: " + parseWidth + "px", font, brush, textX, textY += liheH);
+                gForm.DrawString("Висота: " + parseHeight + "px", font, brush, textX, textY += liheH);
+                gForm.DrawString("X: " + parseX + "px", font, brush, textX, textY += liheH);
+                gForm.DrawString("Y: " + parseY + "px", font, brush, textX, textY += liheH);
+            }
+        }
+
+        private void panelFlashing_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void buttonSave_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+            saveFileDialog1.FileName = "DRM_Watch3_Screenshot_" + DateTime.Now.ToString("yyyyMMdd-HHmmss") + ".png";
+            saveFileDialog1.Filter = "PNG files (*.png)|*.png";
+            saveFileDialog1.FilterIndex = 2;
+            saveFileDialog1.RestoreDirectory = true;
+
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                log("Збереження в файл...");
+                sourceBitmap.Save(saveFileDialog1.FileName, ImageFormat.Png); // ImageFormat.Jpeg, etc
+                log("Готово.");
+            }
+        }
     }
 }

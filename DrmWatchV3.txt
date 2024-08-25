@@ -53,7 +53,7 @@ Icons used as reference:
  <a href="https://www.flaticon.com/free-icons/breaking-the-rules" title="breaking the rules icons">Breaking the rules icons created by Us and Up - Flaticon</a>
  <a href="https://www.flaticon.com/free-icons/image-comics" title="Image Comics icons">Image Comics icons created by Bharat Icons - Flaticon</a>
  <a href="https://www.flaticon.com/free-icons/screenshot" title="screenshot icons">Screenshot icons created by Freepik - Flaticon</a>
- 
+ <a href="https://www.flaticon.com/free-icons/save" title="save icons">Save icons created by Google - Flaticon</a>
  
  
  
@@ -728,6 +728,8 @@ Changelog:
 2024-08-24 FW:v3.06 Додано парсер команд по Serial
 2024-08-24 FW:v3.06 Додано команду Screenshot
 2024-08-24 FW:v3.06 Почата робота над програмою яка має робити скріншот на стороні ПК
+2024-08-24 FW:v3.06 Вирішено проблеми зі з'єднанням по Serial - воно було дуже ненадійне
+2024-08-24 FW:v3.06 Програма для створення скріншотів готова і скомпільована лежить в папці Software
 
 ==== todo:
 - https://github.com/spacehuhntech/esp8266_deauther

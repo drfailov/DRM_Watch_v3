@@ -9,9 +9,6 @@ void processCommand()
 {
   if (newData == true)
   {
-    Serial.print(F("Received: "));
-    Serial.println(receivedChars);
-
     // if (strstr(receivedChars, "max") == receivedChars) // starts with example
     // {
     //   voltage_max = atof(receivedChars + 3);
@@ -19,20 +16,20 @@ void processCommand()
     //   Serial.print(F("voltage_max = "));
     //   Serial.println(voltage_max);
     // }
-    
-    
-    
     if (strcmp(receivedChars, "screenshot") == 0)
     {
        lcd()->writeBufferXBM2(Serial);
+       Serial.flush();
     }
     else
     {
+      Serial.print(F("Received: "));
+      Serial.println(receivedChars);
+      drawMessageAnimated(String(receivedChars));
       Serial.println(F("-- Help begin: --"));
       Serial.println(F("<screenshot> - Send XBM screenshot"));
       Serial.println(F("-- Help end. --"));
     }
-
     newData = false;
   }
 }
@@ -44,7 +41,7 @@ void recvWithStartEndMarkers()
   char startMarker = '<';
   char endMarker = '>';
   char rc;
-
+  Serial.setTimeout(500);
   while (Serial.available() > 0 && newData == false)
   {
     rc = Serial.read();

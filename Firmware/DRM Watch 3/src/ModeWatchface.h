@@ -259,6 +259,21 @@ int drawStatusbar(int x, int y, bool drawTime, bool simulate)
       draw_ic16_warning(x, y + 4, black);
     x -= interval;
   }
+  if(Serial.available()>0){
+    lcd()->setColorIndex(black);
+    lcd()->setFont(u8g2_font_unifont_t_cyrillic);
+    sprintf(buffer, "%d", Serial.available());
+    int width = lcd()->getStrWidth(buffer);
+    x -= width;
+    lcd()->setCursor(x, y + 17);
+    if (!simulate)
+      lcd()->print(buffer);
+
+    x -= 16;
+    if (!simulate)
+      draw_ic16_hashtag(x, y + 4, black);
+    x -= interval;
+  }
 
   if (isAwake())
   {
