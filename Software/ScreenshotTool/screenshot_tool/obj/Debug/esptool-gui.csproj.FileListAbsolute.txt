@@ -1,0 +1,20 @@
+C:\Data\Projects\2024-02-14 ESPtool-GUI\esptool-gui\bin\Debug\esptool-gui.exe.config
+C:\Data\Projects\2024-02-14 ESPtool-GUI\esptool-gui\bin\Debug\esptool-gui.exe
+C:\Data\Projects\2024-02-14 ESPtool-GUI\esptool-gui\bin\Debug\esptool-gui.pdb
+C:\Data\Projects\2024-02-14 ESPtool-GUI\esptool-gui\obj\Debug\esptool-gui.csproj.AssemblyReference.cache
+C:\Data\Projects\2024-02-14 ESPtool-GUI\esptool-gui\obj\Debug\esptool_gui.Form1.resources
+C:\Data\Projects\2024-02-14 ESPtool-GUI\esptool-gui\obj\Debug\esptool_gui.Properties.Resources.resources
+C:\Data\Projects\2024-02-14 ESPtool-GUI\esptool-gui\obj\Debug\esptool-gui.csproj.GenerateResource.cache
+C:\Data\Projects\2024-02-14 ESPtool-GUI\esptool-gui\obj\Debug\esptool-gui.csproj.CoreCompileInputs.cache
+C:\Data\Projects\2024-02-14 ESPtool-GUI\esptool-gui\obj\Debug\esptool-gui.exe
+C:\Data\Projects\2024-02-14 ESPtool-GUI\esptool-gui\obj\Debug\esptool-gui.pdb
+C:\Data\Projects\2023-10-05 SHARP MEMORY LCD\Git\DRM_Watch_v3\Flasher\esptool-gui\bin\Debug\esptool-gui.exe.config
+C:\Data\Projects\2023-10-05 SHARP MEMORY LCD\Git\DRM_Watch_v3\Flasher\esptool-gui\bin\Debug\esptool-gui.exe
+C:\Data\Projects\2023-10-05 SHARP MEMORY LCD\Git\DRM_Watch_v3\Flasher\esptool-gui\bin\Debug\esptool-gui.pdb
+C:\Data\Projects\2023-10-05 SHARP MEMORY LCD\Git\DRM_Watch_v3\Flasher\esptool-gui\obj\Debug\esptool-gui.csproj.AssemblyReference.cache
+C:\Data\Projects\2023-10-05 SHARP MEMORY LCD\Git\DRM_Watch_v3\Flasher\esptool-gui\obj\Debug\esptool_gui.Form1.resources
+C:\Data\Projects\2023-10-05 SHARP MEMORY LCD\Git\DRM_Watch_v3\Flasher\esptool-gui\obj\Debug\esptool_gui.Properties.Resources.resources
+C:\Data\Projects\2023-10-05 SHARP MEMORY LCD\Git\DRM_Watch_v3\Flasher\esptool-gui\obj\Debug\esptool-gui.csproj.GenerateResource.cache
+C:\Data\Projects\2023-10-05 SHARP MEMORY LCD\Git\DRM_Watch_v3\Flasher\esptool-gui\obj\Debug\esptool-gui.csproj.CoreCompileInputs.cache
+C:\Data\Projects\2023-10-05 SHARP MEMORY LCD\Git\DRM_Watch_v3\Flasher\esptool-gui\obj\Debug\esptool-gui.exe
+C:\Data\Projects\2023-10-05 SHARP MEMORY LCD\Git\DRM_Watch_v3\Flasher\esptool-gui\obj\Debug\esptool-gui.pdb

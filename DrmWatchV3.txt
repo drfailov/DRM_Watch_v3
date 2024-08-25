@@ -52,6 +52,8 @@ Icons used as reference:
  <a href="https://www.flaticon.com/free-icons/clear" title="clear icons">Clear icons created by LAFS - Flaticon</a>
  <a href="https://www.flaticon.com/free-icons/breaking-the-rules" title="breaking the rules icons">Breaking the rules icons created by Us and Up - Flaticon</a>
  <a href="https://www.flaticon.com/free-icons/image-comics" title="Image Comics icons">Image Comics icons created by Bharat Icons - Flaticon</a>
+ <a href="https://www.flaticon.com/free-icons/screenshot" title="screenshot icons">Screenshot icons created by Freepik - Flaticon</a>
+ 
  
  
  
@@ -725,6 +727,7 @@ Changelog:
 2024-08-24 FW:v3.06 Рамка яка підсвічує поточний день в календарі робиться на 1 піксель ширше якщо підсвічує вихідний
 2024-08-24 FW:v3.06 Додано парсер команд по Serial
 2024-08-24 FW:v3.06 Додано команду Screenshot
+2024-08-24 FW:v3.06 Почата робота над програмою яка має робити скріншот на стороні ПК
 
 ==== todo:
 - https://github.com/spacehuhntech/esp8266_deauther
