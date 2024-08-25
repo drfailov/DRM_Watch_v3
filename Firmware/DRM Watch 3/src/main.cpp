@@ -22,6 +22,7 @@
 #include "ModeAlertSettings.h"
 #include "ModeTimer.h"
 #include "ModeWatchface.h"
+#include "SerialCommands.h"
 
 #include <Arduino.h>
 
@@ -95,6 +96,7 @@ void loop(void) {
   backlightLoop();
   alertLoop();
   timerLoop();
+  serialLoop();
   if(modeLoop != 0){
      //unsigned long millisStarted = millis();  //routine needed to measure performance
     modeLoop();    //125ms 1MHz SPI  |   63ms  3MHz SPI
