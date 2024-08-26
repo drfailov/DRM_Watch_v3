@@ -80,20 +80,20 @@ void ModeAppsMenuLoop(){
   drawStatusbar(363, 1, true);
   drawMenuLegend();
   
-  drawMenuItem(itemModeAppsBack,         draw_ic24_back,       "Вийти",                         false);
-  drawMenuItem(itemModeAppsAlarm,        draw_ic24_alarm,      "Будильник",                     false);
-  drawMenuItem(itemModeAppsCalendar,     draw_ic24_calendar,   "Календар",                      false);
-  drawMenuItem(itemModeAppsSettings,     draw_ic24_settings,   "Налаштування",                  firstDraw);
-  drawMenuItem(itemModeAppsMusic,        draw_ic24_music,      "Мелодії",                       false);
-  drawMenuItem(itemModeAppsFileManager,  draw_ic24_folder,     "Файли",                         false);
-  drawMenuItem(itemModeAppsMemoryManager,draw_ic24_memory,     "Пам'ять",                       false);
-  drawMenuItem(itemModeAppsTimer,        draw_ic24_timer,      "Таймер",                        firstDraw);
-  drawMenuItem(itemModeAppsStopwatch,    draw_ic24_stopwatch,  "Секундомір",                    false);
-  drawMenuItem(itemModeAppsFlashlight,   draw_ic24_flashlight2,"Ліхтарик",                      false);
-  drawMenuItem(itemModeAppsDebug,        draw_ic24_bug,        "Інженерне меню",                false);
-  drawMenuItem(itemModeAppsSerialLog,    draw_ic24_terminal,   "Лог UART",                      firstDraw);
-  drawMenuItem(itemModeAppsMeow,         draw_ic24_meow,       "Meow",                          false);
-  drawMenuItem(itemModeAppsBackgrounds,  draw_ic24_watchface,  "Заставки",                      false);
+  drawMenuItem(itemModeAppsBack,         draw_ic24_back,       L("Вийти", "Exit"),                         false);
+  drawMenuItem(itemModeAppsAlarm,        draw_ic24_alarm,      L("Будильник", "Alert"),                     false);
+  drawMenuItem(itemModeAppsCalendar,     draw_ic24_calendar,   L("Календар", "Calendar"),                      false);
+  drawMenuItem(itemModeAppsSettings,     draw_ic24_settings,   L("Налаштування", "Settings"),                  firstDraw);
+  drawMenuItem(itemModeAppsMusic,        draw_ic24_music,      L("Мелодії", "Melodies"),                       false);
+  drawMenuItem(itemModeAppsFileManager,  draw_ic24_folder,     L("Файли", "Files"),                         false);
+  drawMenuItem(itemModeAppsMemoryManager,draw_ic24_memory,     L("Пам'ять", "Memory"),                       false);
+  drawMenuItem(itemModeAppsTimer,        draw_ic24_timer,      L("Таймер", "Timer"),                        firstDraw);
+  drawMenuItem(itemModeAppsStopwatch,    draw_ic24_stopwatch,  L("Секундомір", "Stopwatch"),                    false);
+  drawMenuItem(itemModeAppsFlashlight,   draw_ic24_flashlight2,L("Ліхтарик", "Flashlight"),                      false);
+  drawMenuItem(itemModeAppsDebug,        draw_ic24_bug,        L("Інженерне меню", "Debug menu"),                false);
+  drawMenuItem(itemModeAppsSerialLog,    draw_ic24_terminal,   L("Лог UART", "UART Log"),                      firstDraw);
+  drawMenuItem(itemModeAppsMeow,         draw_ic24_meow,       L("Мявчання кошенят", "Meow"),                          false);
+  drawMenuItem(itemModeAppsBackgrounds,  draw_ic24_watchface,  L("Заставки", "Screensavers"),                      false);
   
   lcd()->sendBuffer();
 }

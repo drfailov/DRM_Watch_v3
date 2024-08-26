@@ -1,6 +1,9 @@
 #ifndef MYYPREFERENCES_H
 #define MYYPREFERENCES_H
 
+#define LANG_UA 0
+#define LANG_EN 1
+
 /*PROTOTYPES*/
 int getPreferencesFreeSpace();
 //BATTERY
@@ -25,6 +28,8 @@ bool isTimerRunning();
 bool getInversionValue();
 bool getWhiteValue();
 bool getBlackValue();
+void saveLangValue(int value);
+int getLang();
 void saveInversionValue(bool value);
 void saveEnterAnimationValue(bool value);
 bool getEnterAnimationValue();
@@ -357,7 +362,7 @@ unsigned long getLastTimeSync()
 //   return preferencesObject.getDouble("timeCorrection1", 0);
 // }
 
-//----------------------//---------------------- DISPLAY COLORS -------//----------------------//----------------------//----------------------//----------------------
+//----------------------//---------------------- DISPLAY -------//----------------------//----------------------//----------------------//----------------------
 
 bool getInversionValue()
 {
@@ -374,6 +379,14 @@ bool getBlackValue()
 void saveInversionValue(bool value)
 {
   preferencesObject.putInt("screenInverse", value ? 1 : 0);
+}
+void saveLangValue(int value)
+{
+  preferencesObject.putInt("lang", value);
+}
+int getLang()
+{
+  return preferencesObject.getInt("lang", LANG_UA);
 }
 bool getEnterAnimationValue()
 {

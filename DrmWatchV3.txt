@@ -54,7 +54,7 @@ Icons used as reference:
  <a href="https://www.flaticon.com/free-icons/image-comics" title="Image Comics icons">Image Comics icons created by Bharat Icons - Flaticon</a>
  <a href="https://www.flaticon.com/free-icons/screenshot" title="screenshot icons">Screenshot icons created by Freepik - Flaticon</a>
  <a href="https://www.flaticon.com/free-icons/save" title="save icons">Save icons created by Google - Flaticon</a>
- 
+ <a href="https://www.flaticon.com/free-icons/world" title="world icons">World icons created by Google - Flaticon</a>
  
  
 Jingle Bells: https://onlinesequencer.net/3729549#
@@ -733,7 +733,9 @@ Changelog:
 2024-08-26 FW:v3.07 По дефолту днів від зарядки не показувати
 2024-08-26 FW:v3.07 Змінено дизайн екрану підключення по USB
 2024-08-26 FW:v3.07 Додати на екран підключення по юсб попередження про не надійність
-
+2024-08-26 FW:v3.07 Реалізовано вибір мови в меню екрана
+2024-08-26 FW:v3.07 Почато переклад меню англійською
+2024-08-26 FW:v3.07 Перекладено екран налаштування дисплея
 
 
 ==== todo:
@@ -762,7 +764,7 @@ Changelog:
 - калібровка напруги батареї
 - Запхати в інтерфейс зубата
 - герб україни замість бокової частини
-
+- додати кеш мови для прискорення
 
 
 Малодії

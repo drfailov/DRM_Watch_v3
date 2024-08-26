@@ -22,6 +22,10 @@ void drawCentered(const char *str);
 void drawCentered(String str, int y);
 void drawCentered(const char *str, int y);
 void print(char *arr, int length);
+const char* L(const char* ua, const char* en);
+const char* langName(int lang);
+int langCnt();
+
 
 #include "Global.h"
 #include "ModeOff.h"
@@ -169,6 +173,37 @@ void clearScreenAnimationNoize()
     }
     lcd()->sendBuffer();
   }
+}
+
+const char* L(const char* ua, const char* en)
+{
+  switch (getLang())
+  {
+  case LANG_UA:
+    return ua;
+  case LANG_EN:
+    return en;
+  
+  default:
+    return ua;
+  }
+}
+const char* langName(int lang)
+{
+  switch (getLang())
+  {
+  case LANG_UA:
+    return "Українська";
+  case LANG_EN:
+    return "Engligh";
+  
+  default:
+    return "---";
+  }
+}
+int langCnt()
+{
+  return 2; //2 is [0,1]      4 is [0,1,2,3] ...
 }
 
 void print(char *arr, int length)
