@@ -122,23 +122,31 @@ void modeUsbMscLoop()
   drawStatusbar(363, 1, true);
 
   if(modeUsbMsc_partition != NULL){
-    draw_ic24_usb(180, 60, black);
-    drawCentered("Підключіть до USB", 110);
-    drawCentered("та закиньте файли з компа", 130);
 
-    draw_ic24_arrow_up(80, 170, black);
-    drawCentered("Прочитано", 90, 210);
+    draw_ic24_usb(180, 20, black);
+    drawCentered("Підключіть до USB", 60);
+    drawCentered("та закиньте файли з компа", 75);
+
+    draw_ic24_arrow_up(80, 100, black);
+    drawCentered("Прочитано", 90, 135);
     sprintf(buffer, "%dK байт", modeUsbMsc_bytesRead/1000);
-    drawCentered(buffer, 90, 230);
+    drawCentered(buffer, 90, 150);
     
-    if(modeUsbMsc_errorsWrite > 0){
-      sprintf(buffer, "Помилок запису: %d!", modeUsbMsc_errorsWrite);
-      drawCentered(buffer, 290, 150);
-    }
-    draw_ic24_arrow_down(280, 170, black);
-    drawCentered("Записано", 290, 210);
+    draw_ic24_arrow_down(280, 100, black);
+    drawCentered("Записано", 290, 135);
     sprintf(buffer, "%dK байт", modeUsbMsc_bytesWrite/1000);
-    drawCentered(buffer, 290, 230);
+    drawCentered(buffer, 290, 150);
+
+    if(modeUsbMsc_errorsWrite > 0)
+    {
+      sprintf(buffer, "Помилок запису: %d!", modeUsbMsc_errorsWrite);
+      drawCentered(buffer, 200, 170);
+    }
+
+    draw_ic16_warning(25, 206, black);
+    lcd()->drawUTF8(55, 202, "Увага! Ніколи не зберігайте");
+    lcd()->drawUTF8(55, 217, "на годиннику цінні файли!");
+    lcd()->drawUTF8(55, 232, "Буває, що файли втрачаються!");
   }
   else{
     draw_ic24_bad_file(170, 90, black);

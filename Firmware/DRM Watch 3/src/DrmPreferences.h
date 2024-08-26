@@ -605,7 +605,7 @@ bool saveWatchfaceCalendarEnabled(bool value)
 }
 bool getWatchfaceSinceChargedEnabled()
 { // 123456789012345   max length = 15
-  return preferencesObject.getInt("wtfSCEn", 1) == 1;
+  return preferencesObject.getInt("wtfSCEn", 0) == 1;
 }
 bool saveWatchfaceSinceChargedEnabled(bool value)
 {
