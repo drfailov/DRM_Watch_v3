@@ -92,8 +92,7 @@ void ModeAlertSettingsMenuLoop(){
   drawMenuItem(itemModeAlertSettingsBack, draw_ic24_back, L("Назад", "Back"), firstDraw, 10, 26);
   lcd()->setFont(u8g2_font_10x20_t_cyrillic);  //ok
   lcd()->setColorIndex(black);
-  lcd()->setCursor(189, 57); 
-  lcd()->print(L("Активний", "Active"));
+  drawCentered(L("Активний", "Active"), 230, 57);
   if(getAlertEnabled(modeAlertSettingsIndex))
     drawMenuItem(itemModeAlertSettingsEnabled, draw_ic24_check2, L("Вимкнути", "Disable"), firstDraw, 277, 26);  //draw_ic24_cancel   draw_ic24_check2
   else
@@ -101,8 +100,7 @@ void ModeAlertSettingsMenuLoop(){
 
   lcd()->setFont(u8g2_font_10x20_t_cyrillic);  //ok
   lcd()->setColorIndex(black);
-  lcd()->setCursor(50, 108); 
-  lcd()->print(L("Час", "Time"));
+  drawCentered(L("Час", "Time"), 45, 108);
   drawNumberFrame(/*index*/itemModeAlertSettingsHour, /*number*/modeAlertSettingsHourValue, /*name*/L("Обрати годину", "Select hour"), /*editMode*/modeAlertSettingsEditMode, /*animate*/firstDraw, /*x*/88, /*y*/81, /*Width*/82);
   lcd()->setFont(u8g2_font_inr24_t_cyrillic);  //ok
   lcd()->setColorIndex(black);
@@ -112,15 +110,13 @@ void ModeAlertSettingsMenuLoop(){
 
   lcd()->setFont(u8g2_font_10x20_t_cyrillic);  //ok
   lcd()->setColorIndex(black);
-  lcd()->setCursor(8, 154); 
-  lcd()->print(L("Мелодія", "Melody"));
+  drawCentered(L("Мелодія", "Melody"), 45, 154);
   drawTextFrame(/*index*/itemModeAlertSettingsMelody, /*text*/getMelodyName(modeAlertSettingsMelodyValue).c_str(), /*name*/L("Обрати мелодію", "Select melody"), /*editMode*/modeAlertSettingsEditMode, /*animate*/firstDraw, /*x*/88, /*y*/127, /*width*/265);
   
 
   lcd()->setFont(u8g2_font_10x20_t_cyrillic);  //ok
   lcd()->setColorIndex(black);
-  lcd()->setCursor(28, 199); 
-  lcd()->print(L("Назва", "Name"));
+  drawCentered(L("Назва", "Name"), 45, 199);
   drawTextFrame(/*index*/itemModeAlertSettingsName, /*text*/getAlertName(modeAlertSettingsIndex).c_str(), /*name*/L("Назва будильника", "Alert name"), /*editMode*/modeAlertSettingsEditMode, /*animate*/firstDraw, /*x*/88, /*y*/173, /*width*/265);
 
   

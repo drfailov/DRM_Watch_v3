@@ -19,9 +19,32 @@ void ModeCalendarButtonDown();
 #include <time.h>
 int year = 0;
 int monthToDraw = 0;/*01-12*/
-String days[7] = { "Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Нд" };
-String months[12] = { "Січень", "Лютий", "Березень", "Квітень", "Травень", "Червень", "Липень", "Серпень", "Вересень", "Жовтень", "Листопад", "Грудень"};
-tm _tm;
+const char* days(int d) {
+    if(d == 0) return L("Пн", "Mon"); 
+    if(d == 1) return L("Вт", "Tue");
+    if(d == 2) return L("Ср", "Wed");
+    if(d == 3) return L("Чт", "Thu");
+    if(d == 4) return L("Пт", "Fri");
+    if(d == 5) return L("Сб", "Sat");
+    if(d == 6) return L("Нд", "Sun"); 
+    return "---";
+};
+const char* months(int m){ 
+  if(m==0) return L("Січень", "January");
+  if(m==1) return L("Лютий", "February");
+  if(m==2) return L("Березень", "March");
+  if(m==3) return L("Квітень", "April");
+  if(m==4) return L("Травень", "May");
+  if(m==5) return L("Червень", "June");
+  if(m==6) return L("Липень", "July");
+  if(m==7) return L("Серпень", "August");
+  if(m==8) return L("Вересень", "September");
+  if(m==9) return L("Жовтень", "October");
+  if(m==10) return L("Листопад", "November");
+  if(m==11) return L("Грудень", "December");
+  return "---";
+}
+  tm _tm;
 
 
 
@@ -52,11 +75,11 @@ void drawCalendar(int xoffset/*px*/, int ylegend/*px*/, int month /*01-12*/, int
   else lcd()->setFont(u8g2_font_10x20_t_cyrillic);  //ok
   for(int DoW=0; DoW<7; DoW++){
     int x = xoffset + (DoW)*dayw; //center point of text
-    int dayTextWidth = lcd()->getUTF8Width(days[DoW].c_str());
-    lcd()->drawUTF8(x-dayTextWidth/2, ylegend, days[DoW].c_str());
+    int dayTextWidth = lcd()->getUTF8Width(days(DoW));
+    lcd()->drawUTF8(x-dayTextWidth/2, ylegend, days(DoW));
     if(DoW > 4){ //highlight weekeng as bold text
       lcd()->setFontMode(/*is_transparent*/ true);
-      lcd()->drawUTF8(1+x-dayTextWidth/2, ylegend, days[DoW].c_str());
+      lcd()->drawUTF8(1+x-dayTextWidth/2, ylegend, days(DoW));
       lcd()->setFontMode(/*is_transparent*/ false);
     }
   }
@@ -135,15 +158,11 @@ void ModeCalendarLoop(){
   lcd()->setColorIndex(black);
   lcd()->setFont(u8g2_font_10x20_t_cyrillic);  //ok
   lcd()->setCursor(5, 18); 
-  lcd()->print("Календар");
+  lcd()->print(L("Календар", "Calendar"));
 
-
-  int xheader = 100; //px
-  int yheader = 45; //px
   lcd()->setColorIndex(black);
-  lcd()->setCursor(xheader, yheader); 
-  lcd()->print("("); lcd()->print(monthToDraw); lcd()->print(") "); 
-  lcd()->print(months[monthToDraw-1]); lcd()->print(" ");  lcd()->print(year);
+  sprintf(buffer, "(%02d) %s %04d", monthToDraw, months(monthToDraw-1), year);
+  drawCentered(buffer, 45);
   
   lcd()->setColorIndex(black);
   lcd()->drawBox(369, 0, 2, 260);
