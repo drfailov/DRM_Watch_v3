@@ -78,7 +78,7 @@ void ModeAlertSettingsMenuLoop(){
   lcd()->setFont(u8g2_font_10x20_t_cyrillic);  //ok
   lcd()->setColorIndex(black);
   lcd()->setCursor(5, 18); 
-  lcd()->print("Будильник "); 
+  lcd()->print(L("Будильник ", "Alert ")); 
   lcd()->print(modeAlertSettingsIndex);
 
   drawStatusbar(363, 1, true);
@@ -89,39 +89,39 @@ void ModeAlertSettingsMenuLoop(){
   }
 
   
-  drawMenuItem(itemModeAlertSettingsBack, draw_ic24_back, "Назад", firstDraw, 10, 26);
+  drawMenuItem(itemModeAlertSettingsBack, draw_ic24_back, L("Назад", "Back"), firstDraw, 10, 26);
   lcd()->setFont(u8g2_font_10x20_t_cyrillic);  //ok
   lcd()->setColorIndex(black);
   lcd()->setCursor(189, 57); 
-  lcd()->print("Активний");
+  lcd()->print(L("Активний", "Active"));
   if(getAlertEnabled(modeAlertSettingsIndex))
-    drawMenuItem(itemModeAlertSettingsEnabled, draw_ic24_check2, "Вимкнути", firstDraw, 277, 26);  //draw_ic24_cancel   draw_ic24_check2
+    drawMenuItem(itemModeAlertSettingsEnabled, draw_ic24_check2, L("Вимкнути", "Disable"), firstDraw, 277, 26);  //draw_ic24_cancel   draw_ic24_check2
   else
-    drawMenuItem(itemModeAlertSettingsEnabled, draw_ic24_cancel, "Увімкнути", firstDraw, 277, 26);  //draw_ic24_cancel   draw_ic24_check2
+    drawMenuItem(itemModeAlertSettingsEnabled, draw_ic24_cancel, L("Увімкнути", "Enable"), firstDraw, 277, 26);  //draw_ic24_cancel   draw_ic24_check2
 
   lcd()->setFont(u8g2_font_10x20_t_cyrillic);  //ok
   lcd()->setColorIndex(black);
   lcd()->setCursor(50, 108); 
-  lcd()->print("Час");
-  drawNumberFrame(/*index*/itemModeAlertSettingsHour, /*number*/modeAlertSettingsHourValue, /*name*/"Обрати годину", /*editMode*/modeAlertSettingsEditMode, /*animate*/firstDraw, /*x*/88, /*y*/81, /*Width*/82);
+  lcd()->print(L("Час", "Time"));
+  drawNumberFrame(/*index*/itemModeAlertSettingsHour, /*number*/modeAlertSettingsHourValue, /*name*/L("Обрати годину", "Select hour"), /*editMode*/modeAlertSettingsEditMode, /*animate*/firstDraw, /*x*/88, /*y*/81, /*Width*/82);
   lcd()->setFont(u8g2_font_inr24_t_cyrillic);  //ok
   lcd()->setColorIndex(black);
   lcd()->setCursor(172, 111); 
   lcd()->print(":");
-  drawNumberFrame(/*index*/itemModeAlertSettingsMinute, /*number*/modeAlertSettingsMinuteValue, /*name*/"Обрати хвилину", /*editMode*/modeAlertSettingsEditMode, /*animate*/firstDraw, /*x*/193, /*y*/81, /*Width*/82);
+  drawNumberFrame(/*index*/itemModeAlertSettingsMinute, /*number*/modeAlertSettingsMinuteValue, /*name*/L("Обрати хвилину", "Select minute"), /*editMode*/modeAlertSettingsEditMode, /*animate*/firstDraw, /*x*/193, /*y*/81, /*Width*/82);
 
   lcd()->setFont(u8g2_font_10x20_t_cyrillic);  //ok
   lcd()->setColorIndex(black);
   lcd()->setCursor(8, 154); 
-  lcd()->print("Мелодія");
-  drawTextFrame(/*index*/itemModeAlertSettingsMelody, /*text*/getMelodyName(modeAlertSettingsMelodyValue).c_str(), /*name*/"Обрати мелодію", /*editMode*/modeAlertSettingsEditMode, /*animate*/firstDraw, /*x*/88, /*y*/127, /*width*/265);
+  lcd()->print(L("Мелодія", "Melody"));
+  drawTextFrame(/*index*/itemModeAlertSettingsMelody, /*text*/getMelodyName(modeAlertSettingsMelodyValue).c_str(), /*name*/L("Обрати мелодію", "Select melody"), /*editMode*/modeAlertSettingsEditMode, /*animate*/firstDraw, /*x*/88, /*y*/127, /*width*/265);
   
 
   lcd()->setFont(u8g2_font_10x20_t_cyrillic);  //ok
   lcd()->setColorIndex(black);
   lcd()->setCursor(28, 199); 
-  lcd()->print("Назва");
-  drawTextFrame(/*index*/itemModeAlertSettingsName, /*text*/getAlertName(modeAlertSettingsIndex).c_str(), /*name*/"Назва будильника", /*editMode*/modeAlertSettingsEditMode, /*animate*/firstDraw, /*x*/88, /*y*/173, /*width*/265);
+  lcd()->print(L("Назва", "Name"));
+  drawTextFrame(/*index*/itemModeAlertSettingsName, /*text*/getAlertName(modeAlertSettingsIndex).c_str(), /*name*/L("Назва будильника", "Alert name"), /*editMode*/modeAlertSettingsEditMode, /*animate*/firstDraw, /*x*/88, /*y*/173, /*width*/265);
 
   
   lcd()->sendBuffer();
@@ -174,7 +174,7 @@ void ModeAlertSettingsMenuButtonCenter(){
   if(selected==itemModeAlertSettingsMelody){
     {//обрати мелодію
       ModeListSelection_Items = getMelodyNameC;
-      ModeListSelection_Name = "Обрати мелодію";
+      ModeListSelection_Name = L("Обрати мелодію", "Select melody");
       ModeListSelection_Cnt = getMelodyCount();
       ModeListSelection_Selected = modeAlertSettingsMelodyValue;//getActionArgument(ModeShortcutEventSettings_EventId);
       ModeListSelection_OnSelected = ModeAlertSettingsMenuMelodySelected;
@@ -188,7 +188,7 @@ void ModeAlertSettingsMenuButtonCenter(){
   }
   if(selected==itemModeAlertSettingsName){
     //todo open keyboard
-    setModeKeyboard("Ім'я будильника", ModeAlertSettingsMenuNameSelected, setModeAlertSettingsMenu); //then String password = getKeybordResult();
+    setModeKeyboard(L("Ім'я будильника", "Alert name"), ModeAlertSettingsMenuNameSelected, setModeAlertSettingsMenu); //then String password = getKeybordResult();
     setKeybordText(getAlertName(modeAlertSettingsIndex));
     return;
   }
