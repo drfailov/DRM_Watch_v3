@@ -42,12 +42,12 @@ void modeAlertsListLoop(){
   lcd()->setFont(u8g2_font_10x20_t_cyrillic);  //ok
   lcd()->setColorIndex(black);
   lcd()->setCursor(5, 18); 
-  lcd()->print("Список будильників");
+  lcd()->print(L("Список будильників", "Alerts list"));
 
   drawMenuLegend();
   drawStatusbar(363, 1, true);
 
-  drawListItem(0, draw_ic24_back, "Повернутись", "В меню програм", firstDraw); //
+  drawListItem(0, draw_ic24_back, L("Повернутись", "Back"), L("В меню програм", "To apps menu"), firstDraw); //
   for(int i=1; i<items; i++){
     int h = getAlertHour(i-1);
     int m = getAlertMinute(i-1);
@@ -65,57 +65,13 @@ void modeAlertsListLoop(){
 }
 
 void modeAlertsListButtonCenter(){
-  //ModeAlertsListSelectedSlot = selected;
   if(selected == 0){
       setModeAppsMenu(); //setModeSettingsMenu();
   }
   else{
     setModeAlertSettingsMenu(selected-1);
   }
-  //  if(wifiSlotIsEmpty(selected)){
-  //   setModeWiFiScanner(modeAlertsListOnNetworkNameSelected, setModeAlertsList);
-  // }
-  // else{
-  //   //deleet
-  //   questionModeSet("Видалити мережу?", wifiSlotName(selected), modeAlertsListOnDeleteNetwork, setModeAlertsList);
-  // }
 }
-
-// void modeAlertsListOnDeleteNetwork(){
-//   wifiSlotClear(selected);
-//   setModeAlertsList();
-// }
-
-// void modeAlertsListOnNetworkNameSelected(){
-//   setModeKeyboard(String("Пароль:")+modeWiFiScannerGetSelectedNetworkName(), modeAlertsListOnNetworkPasswordSelected, setModeAlertsList); //then String password = getKeybordResult();
-// }
-
-// void modeAlertsListOnNetworkPasswordSelected(){
-//   String ssid = modeWiFiScannerGetSelectedNetworkName();
-//   String password = getKeybordResult();
-//   tryConnectWifi(ssid, password, modeAlertsListOnNetworkConnected, modeAlertsListOnNetworkFailed);
-// }
-
-// void modeAlertsListOnNetworkConnected(){
-//   String ssid = modeWiFiScannerGetSelectedNetworkName();
-//   String password = getKeybordResult();
-//   int slot = ModeAlertsListSelectedSlot;
-//   drawMessage("Збереження...", ssid + " " + password, true);
-//   delay(500);
-//   if(wifiSlotSave(slot, ssid, password)){
-//     drawMessage("Збережено.");
-//   }
-//   delay(500);
-//   wifiOff();
-//   setModeAlertsList();
-// }
-
-// void modeAlertsListOnNetworkFailed(){
-//   setModeAlertsList();
-// }
-
-
-
 
 
 #endif

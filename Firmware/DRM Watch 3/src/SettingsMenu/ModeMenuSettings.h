@@ -57,20 +57,20 @@ void modeSettingsMenuLoop(){
   lcd()->setFont(u8g2_font_10x20_t_cyrillic);  //ok
   lcd()->setColorIndex(black);
   lcd()->setCursor(5, 18); 
-  lcd()->print("Налаштування");
+  lcd()->print(L("Налаштування", "Settings"));
 
   drawStatusbar(363, 1, true);  
   drawMenuLegend();
 
-  drawListItem(itemModeSettingsBack,                 draw_ic24_back,       "Назад",                 "Повернутись до меню програм",           firstDraw);
-  drawListItem(itemModeSettingsCategoryTime,         draw_ic24_clock,      "Дата та час",           "Налаштування що стосуються часу",       firstDraw);
-  drawListItem(itemModeSettingsCategoryDisplay,      draw_ic24_display,    "Дисплей",               "Параметри відображення",                firstDraw);
-  drawListItem(itemModeSettingsCategoryWiFi,         draw_ic24_wifi_3,     "Wi-Fi",                 "Мережі для доступу до Інтернет",        firstDraw);
-  drawListItem(itemModeSettingsCategorySound,        draw_ic24_sound_on,   "Звук",                  "Налаштування що стосуються звуку",      firstDraw);
-  drawListItem(itemModeSettingsCategoryShortcuts,    draw_ic24_shortcut,   "Швидкий доступ",        "Встановити дії на кнопки",              firstDraw);
-  drawListItem(itemModeSettingsReboot,               draw_ic24_reboot,     "Перезавантажити",       "Перезавантажити годинник",              firstDraw);
-  drawListItem(itemModeSettingsShutdown,             draw_ic24_shutdown,   "Вимкнути",              "Вимкнути годинник",                     firstDraw);
-  drawListItem(itemModeSettingsAbout   ,             draw_ic24_about,      "Про годинник",          "Інформація про розробника",             firstDraw);
+  drawListItem(itemModeSettingsBack,                 draw_ic24_back,       L("Назад", "Back"),                  L("До меню програм", "To apps menu"),                              firstDraw);
+  drawListItem(itemModeSettingsCategoryTime,         draw_ic24_clock,      L("Дата та час", "Date and time"),   L("Налаштування що стосуються часу", "Set, sync, timezone"),       firstDraw);
+  drawListItem(itemModeSettingsCategoryDisplay,      draw_ic24_display,    L("Дисплей", "Display"),             L("Параметри відображення", "Screen style"),                       firstDraw);
+  drawListItem(itemModeSettingsCategoryWiFi,         draw_ic24_wifi_3,     "Wi-Fi",                             L("Мережі для доступу до Інтернет", "Networks to access Internet"),firstDraw);
+  drawListItem(itemModeSettingsCategorySound,        draw_ic24_sound_on,   L("Звук", "Sound"),                  L("Налаштування що стосуються звуку", "Beeps, tones, silent"),     firstDraw);
+  drawListItem(itemModeSettingsCategoryShortcuts,    draw_ic24_shortcut,   L("Швидкий доступ", "Quick access"), L("Встановити дії на кнопки", "Set actions to buttons"),           firstDraw);
+  drawListItem(itemModeSettingsReboot,               draw_ic24_reboot,     L("Перезавантажити", "Reboot"),      L("Перезавантажити годинник", "Reboot watch"),                     firstDraw);
+  drawListItem(itemModeSettingsShutdown,             draw_ic24_shutdown,   L("Вимкнути", "Turn off"),           L("Вимкнути годинник", "Turn off watch"),                          firstDraw);
+  drawListItem(itemModeSettingsAbout   ,             draw_ic24_about,      L("Про годинник", "About watch"),    L("Інформація про розробника", "Information about developer"),     firstDraw);
   
 
   lcd()->sendBuffer();
@@ -113,9 +113,6 @@ void modeSettingsMenuButtonCenter(){
     modeAboutSetup();
     return;
   }
-
-  
-
 
 }
 
