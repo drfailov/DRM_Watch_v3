@@ -25,6 +25,7 @@ void print(char *arr, int length);
 const char* L(const char* ua, const char* en);
 const char* langName(int lang);
 int langCnt();
+void waitOk();
 
 
 #include "Global.h"
@@ -334,6 +335,24 @@ void drawMessage(String text, String text2, bool animate)
   }
 }
 
+//user must press OK to continue
+void waitOk(){
+  draw_ic16_empty(lx(), ly1(), black);
+  draw_ic16_check(lx(), ly2(), black);
+  draw_ic16_empty(lx(), ly3(), black);
+  lcd()->sendBuffer();
+  unsigned long started = millis();
+  while(true){
+    if(isButtonCenterPressed()){
+      buttonBeep();
+      while(isButtonCenterPressed());
+      break;
+    }
+    if(millis()-started > 60000)
+      break;
+  }
+}
+
 void drawQuestion(String text, String text2, bool animate)
 {
   Serial.println(text);
@@ -342,7 +361,7 @@ void drawQuestion(String text, String text2, bool animate)
   int y = 79;
   int width = 345;
   int height = 70;
-  // lcd()->setColorIndex(white);
+  lcd()->setColorIndex(white);
   // lcd()->drawBox(/*x*/x+1, /*y*/y+1, /*w*/width-2, /*h*/height-2);
   // lcd()->setColorIndex(black);
   // lcd()->drawFrame(/*x*/x, /*y*/y, /*w*/width, /*h*/height);

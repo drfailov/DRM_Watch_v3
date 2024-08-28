@@ -15,11 +15,13 @@ void ModeCalendarButtonDown();
 #include "ModeWatchface.h"
 #include "ModeMenuApps.h"
 #include "Icons.h"
+#include "RTC.h"
 
 #include <time.h>
 int year = 0;
 int monthToDraw = 0;/*01-12*/
 const char* days(int d) {
+    if(d == -1) return L("Нд", "Sun"); 
     if(d == 0) return L("Пн", "Mon"); 
     if(d == 1) return L("Вт", "Tue");
     if(d == 2) return L("Ср", "Wed");

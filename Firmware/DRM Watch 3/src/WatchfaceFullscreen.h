@@ -87,7 +87,7 @@ void drawWatchfaceFullscreen(bool firstDraw){
     draw_ic28_dji(178, 209, black);
 
   if(getWatchfaceDayOfWeekEnabled())
-    drawDayOfWeek(375, 20);
+    drawDayOfWeek(395, 20);
 
   if(getWatchfaceTemperatureEnabled())
     drawTemperature(5, 213);

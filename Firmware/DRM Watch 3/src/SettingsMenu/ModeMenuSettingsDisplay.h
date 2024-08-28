@@ -5,6 +5,7 @@ void setModeMenuSettingsDisplay();
 void ModeMenuSettingsDisplayLoop();
 void ModeMenuSettingsDisplayExit();
 void ModeMenuSettingsDisplayButtonCenter();
+void ModeMenuSettingsDisplay_ActionResetBatteryCali();
 
 #include "../Lcd.h"
 #include "../Global.h"
@@ -15,6 +16,7 @@ void ModeMenuSettingsDisplayButtonCenter();
 #include "ModeMenuSettingsWatchfaceContent.h"
 #include "ModeSetLcdFrequency.h"
 #include "ModeSetWatchface.h"
+#include "ModeQuestion.h"
 #include "../ModeMainMenu.h"
 #include "../DrmPreferences.h"
 #include "../ModeListSelection.h"
@@ -162,10 +164,18 @@ void ModeMenuSettingsDisplayButtonCenter()
   }
   if (selected == ModeMenuSettingsDisplayItemResetBatteryBars)
   {
-    resetBatteryCalibrationData();
-    drawMessage(L("Калібровку батареї скинуто", "Battery calibration was reset"), L("Проведіть повний цикл для калібровки", "Run full cycle to calibrate again"), true);
+    questionModeSet(L("Скинути калібровку?", "Reset calibration data?"), L("Буде необхідно перекалібрувати!","Calibration will be required!"), ModeMenuSettingsDisplay_ActionResetBatteryCali, setModeMenuSettingsDisplay);
     return;
   }
+}
+
+void ModeMenuSettingsDisplay_ActionResetBatteryCali()
+{
+  drawMessageAnimated(L("Скидання...", "Resetting..."));
+  resetBatteryCalibrationData();
+  drawMessage(L("Калібровку батареї скинуто", "Battery calibration was reset"), L("Проведіть повний цикл для калібровки", "Run full cycle to calibrate again"), true);
+  waitOk();
+  setModeMenuSettingsDisplay();
 }
 
 #endif

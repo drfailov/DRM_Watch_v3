@@ -60,7 +60,7 @@ void drawWatchfaceSide(bool firstDraw){
     drawTemperature(x_del+4, 3);
 
   if(getWatchfaceDayOfWeekEnabled())
-    drawDayOfWeek(375, 20);
+    drawDayOfWeek(395, 20);
   if(firstDraw) lcd()->sendBuffer();
   
   if(getWatchfaceDateEnabled())
