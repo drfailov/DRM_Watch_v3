@@ -76,6 +76,9 @@ funkytown lipps inc  https://onlinesequencer.net/3105663	  https://onlinesequenc
 На свою голову     https://onlinesequencer.net/4127721
 Gendalf song (https://onlinesequencer.net/1858589,   https://onlinesequencer.net/4150306)
 Star Wars https://onlinesequencer.net/4150357
+Stereo Love https://onlinesequencer.net/4163973
+Better off alone   https://onlinesequencer.net/4163979
+My Little Pony https://onlinesequencer.net/4164027
 
 
 Known Pins reserved on ESP32-S2 (Lolin S2 Mini):
@@ -748,6 +751,12 @@ Changelog:
 2024-08-28 FW:v3.09 Відображати запитання перед тим як скидати статистику батареї
 2024-08-28 FW:v3.09 Після повідомлення про те що калібровку скинуто - чекати на підтвердження від юзера про те що він прочитав
 2024-08-28 FW:v3.09 при малюванні питання затіняти екран на фоні
+2024-08-29 FW:v3.10 Додано мелодію: Stereo Love
+2024-08-29 FW:v3.10 Додано мелодію: Better Off Alone
+2024-08-29 FW:v3.10 Додано мелодію: My Little Pony
+2024-08-29 FW:v3.10 Перекладено екран налаштування часу
+2024-08-29 FW:v3.10 Перекладено екран налаштування часового поясу
+
 
 
 ==== todo:

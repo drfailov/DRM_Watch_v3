@@ -15,7 +15,6 @@ void ModeMenuSettingsTimeButtonCenter();
 #include "ModeSetTime.h"
 #include "ModeSetTimezone.h"
 
-
 const int ModeMenuSettingsTimeItemBack = 0;
 const int ModeMenuSettingsTimeItemSyncTime = 1;
 const int ModeMenuSettingsTimeItemAutoSyncEnabled = 2;
@@ -42,28 +41,24 @@ void setModeMenuSettingsTime(){
   items = 5;
 }
 
-
 void ModeMenuSettingsTimeLoop(){
   lcd()->setColorIndex(white);
   lcd()->drawBox(0, 0, 400, 240);
 
-
   lcd()->setFont(u8g2_font_10x20_t_cyrillic);  //ok
   lcd()->setColorIndex(black);
   lcd()->setCursor(5, 18); 
-  lcd()->print("Параметри часу");
+  lcd()->print(L("Параметри часу", "Time settings"));
 
   drawMenuLegend();
   drawStatusbar(363, 1, true);
 
-  drawListItem(ModeMenuSettingsTimeItemBack, draw_ic24_back, "Повернутись", "В меню налаштувань", firstDraw); //
-  drawListItem(ModeMenuSettingsTimeItemSyncTime, draw_ic24_sync, "Синхронізувати час зараз", "Через збережену Wi-Fi мережу", firstDraw); //
-  drawListCheckbox(ModeMenuSettingsTimeItemAutoSyncEnabled, draw_ic24_sync, "Автосинхронізація часу", "Синхронізувати без команди", getTimeSyncEnabled(), firstDraw);
-  drawListItem(ModeMenuSettingsTimeItemSetTime, draw_ic24_clock, "Встановити час", "Встановити поточний час вручну", firstDraw);
-  drawListItem(ModeMenuSettingsTimeItemSetTimeZone, draw_ic24_timezone, "Встановити часовий пояс", "Встановити зміщення відносно UTC", firstDraw);
+  drawListItem    (ModeMenuSettingsTimeItemBack,            draw_ic24_back,     L("Повернутись", "Back"),                       L("В меню налаштувань", "To settings menu"),                  firstDraw); //
+  drawListItem    (ModeMenuSettingsTimeItemSyncTime,        draw_ic24_sync,     L("Синхронізувати час зараз", "Sync time now"), L("Через збережену Wi-Fi мережу", "Over saved Wi-Fi"),        firstDraw); //
+  drawListCheckbox(ModeMenuSettingsTimeItemAutoSyncEnabled, draw_ic24_sync,     L("Автосинхронізація часу", "Sync time daily"), L("Синхронізувати без команди", "Sync automatically"),        getTimeSyncEnabled(), firstDraw);
+  drawListItem    (ModeMenuSettingsTimeItemSetTime,         draw_ic24_clock,    L("Встановити час", "Set time"),                L("Встановити поточний час вручну", "Set time manually"),     firstDraw);
+  drawListItem    (ModeMenuSettingsTimeItemSetTimeZone,     draw_ic24_timezone, L("Встановити часовий пояс", "Set timezone"),   L("Встановити зміщення відносно UTC", "Set offset from UTC"), firstDraw);
   
-
-
   lcd()->sendBuffer();
 }
 
@@ -86,13 +81,7 @@ void ModeMenuSettingsTimeButtonCenter(){
   if(selected==ModeMenuSettingsTimeItemSetTimeZone){
     setmodeSetTimezoneMenu();
     return;
-  }
-
-  
-  
-  
-  
+  }  
 }
-
 
 #endif

@@ -15,12 +15,6 @@ void modeSetTimezoneMenuButtonDown();
 #include "../DrmPreferences.h"
 #include "ModeMenuSettingsTime.h"
 
-//int modeSetTimezoneIndex = 0;
-//bool modeSetTimezoneEditMode = false;
-
-//const int itemmodeSetTimezoneBack=0;
-//const int itemmodeSetTimezoneHour=1;
-
 void setmodeSetTimezoneMenu(){
   clearScreenAnimation();
   Serial.println(F("Set mode: set timezone"));
@@ -49,22 +43,13 @@ void modeSetTimezoneMenuLoop(){
   lcd()->setFont(u8g2_font_10x20_t_cyrillic);  //ok
   lcd()->setColorIndex(black);
   lcd()->setCursor(5, 18); 
-  lcd()->print("Часовий пояс");
+  lcd()->print(L("Часовий пояс", "Set timezone"));
 
   drawStatusbar(363, 1, true);
   drawMenuLegend();
   draw_ic16_back(lx(), ly2(), black);
-  // if(modeSetTimezoneEditMode){
-     draw_ic16_plus(lx(), ly1(), black);
-     draw_ic16_minus(lx(), ly3(), black);
-  // }
-  
-  //drawMenuItem(itemmodeSetTimezoneBack, draw_ic24_back, "Назад", firstDraw, 30, 32);
-
-  //lcd()->setFont(u8g2_font_10x20_t_cyrillic);  //ok
-  //lcd()->setColorIndex(black);
-  //lcd()->setCursor(30, 113); 
-  //lcd()->print("Час");
+  draw_ic16_plus(lx(), ly1(), black);
+  draw_ic16_minus(lx(), ly3(), black);
   
   long offset = getTimeOffsetSec();
   long hours = offset/(60*60);
@@ -75,37 +60,19 @@ void modeSetTimezoneMenuLoop(){
   text += hours;
   text += ":";
   text += minutes;
-  drawTextFrame(/*index*/0, /*text*/text.c_str(), /*name*/"Обрати часовий пояс", /*editMode*/false, /*animate*/firstDraw, /*x*/30, /*y*/95, /*width*/308);
+  drawTextFrame(/*index*/0, /*text*/text.c_str(), /*name*/L("Обрати часовий пояс", "Select timezone"), /*editMode*/false, /*animate*/firstDraw, /*x*/30, /*y*/95, /*width*/308);
   
   lcd()->sendBuffer();
 }
 
 void modeSetTimezoneMenuButtonUp(){
-  // if(!modeSetTimezoneEditMode){
-  //   modeMainMenuButtonUp();
-  //   return;
-  // }
-  // if(selected == itemmodeSetTimezoneHour) 
   saveTimeOffsetSec(getTimeOffsetSec()+60*30);
 }
 void modeSetTimezoneMenuButtonDown(){
-  // if(!modeSetTimezoneEditMode){
-  //   modeMainMenuButtonDown();
-  //   return;
-  // }
-  // if(selected == itemmodeSetTimezoneHour) 
   saveTimeOffsetSec(getTimeOffsetSec()-60*30);
 }
 void modeSetTimezoneMenuButtonCenter(){
-  //if(selected == itemmodeSetTimezoneBack){
     setModeMenuSettingsTime();
-//    return;
-  //}
-  // if(selected==itemmodeSetTimezoneHour){
-  //   modeSetTimezoneEditMode = !modeSetTimezoneEditMode;
-  //   return;
-  // }
 }
-
 
 #endif
