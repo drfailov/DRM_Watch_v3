@@ -9,7 +9,7 @@ void ModeMenuSettingsTimeButtonCenter();
 #include "../AutoSleep.h"
 #include "../Button.h"
 #include "../Icons.h"
-#include "../ModeMainMenu.h"
+#include "../GlobalMenu.h"
 #include "../TimeSync.h"
 #include "../DrmPreferences.h"
 #include "ModeSetTime.h"
@@ -26,9 +26,9 @@ void setModeMenuSettingsTime(){
   Serial.println(F("Set mode: ModeMenuSettingsTime"));
   modeSetup = setModeMenuSettingsTime;
   modeLoop = ModeMenuSettingsTimeLoop;
-  modeButtonUp = modeMainMenuButtonUp;
+  modeButtonUp = globalMenuButtonUp;
   modeButtonCenter = ModeMenuSettingsTimeButtonCenter;
-  modeButtonDown = modeMainMenuButtonDown;
+  modeButtonDown = globalMenuButtonDown;
   modeButtonUpLong = 0;
   modeButtonCenterLong = 0;
   modeButtonDownLong = 0;

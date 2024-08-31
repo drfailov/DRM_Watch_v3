@@ -39,9 +39,9 @@ void setmodeMemoryManager()
   modeSetup = setmodeMemoryManager;
   modeLoop = modeMemoryManagerLoop;
   modeExit = modeMemoryManagerExit;
-  modeButtonUp = modeMainMenuButtonUp;
+  modeButtonUp = globalMenuButtonUp;
   modeButtonCenter = modeMemoryManagerButtonCenter;
-  modeButtonDown = modeMainMenuButtonDown;
+  modeButtonDown = globalMenuButtonDown;
   modeButtonUpLong = 0;
   modeButtonCenterLong = 0;
   modeButtonDownLong = 0;

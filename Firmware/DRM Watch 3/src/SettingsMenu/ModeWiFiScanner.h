@@ -15,7 +15,7 @@ bool tryConnectWifi(String ssid, String password, Runnable onConnected, Runnable
 #include "../Global.h"
 #include "../AutoSleep.h"
 #include "../Button.h"
-#include "../ModeMainMenu.h"
+#include "../GlobalMenu.h"
 #include "ModeSavedWiFiList.h"
 
 #include <WiFi.h>
@@ -47,9 +47,9 @@ void setModeWiFiScanner_(){
   Serial.println(F("Set mode: WiFiScanner"));
   modeSetup = setModeWiFiScanner_;
   modeLoop = modeWiFiScannerLoop;
-  modeButtonUp = modeMainMenuButtonUp;
+  modeButtonUp = globalMenuButtonUp;
   modeButtonCenter = modeWiFiScannerButtonCenter;
-  modeButtonDown = modeMainMenuButtonDown;
+  modeButtonDown = globalMenuButtonDown;
   modeButtonUpLong = 0;
   modeButtonCenterLong = 0;
   modeButtonDownLong = 0;
@@ -164,21 +164,21 @@ void modeWiFiScannerButtonCenter(){
 }
 
 bool tryConnectWifi(String ssid, String password, Runnable onConnected, Runnable onFailed){
-  drawMessage("Спроба з'єднання..", ssid + " " + password, true);
+  drawMessage(L("З'єднання...", "Connecting..."), ssid, true);
   WiFi.begin(ssid, password);
   for (long timeStarted = millis(); WiFi.status() != WL_CONNECTED ;) {
     delay(900);
     lcd()->print(".");
     lcd()->sendBuffer();
     if(millis()-timeStarted > 10000){
-      drawMessageAnimated("З'єднатись не вдалось.");
+      drawMessageAnimated(L("З'єднатись не вдалось.", "Connect failed."));
       delay(500);
       if(onFailed != 0)
         onFailed();
       return false;
     }
   }
-  drawMessageAnimated("Підключено.");
+  drawMessageAnimated(L("Підключено.", "Connected."));
   delay(500);
   if(onConnected != 0)
     onConnected();
@@ -186,27 +186,28 @@ bool tryConnectWifi(String ssid, String password, Runnable onConnected, Runnable
 }
 
 bool connectToKnownWifi(){
-  drawMessageAnimated("Налаштування Wi-Fi...");
+  drawMessageAnimated(L("Налаштування Wi-Fi...", "Enabling Wi-Fi..."));
   WiFi.mode(WIFI_STA);
   WiFi.disconnect();
   delay(100);
-  drawMessageAnimated("Cкaнyвaння...");
+  drawMessageAnimated(L("Cкaнyвaння...", "Scanning..."));
   int n = WiFi.scanNetworks();
-  drawMessageAnimated("Пошук знайомих мереж...");
+  drawMessageAnimated(L("Пошук знайомих мереж...", "Searching known networks..."));
   for(int i=0; i<n; i++){
     String name = WiFi.SSID(i);
     int index = getWifiSavedIndex(name);
     if(index != -1 && tryConnectWifi(name, wifiSlotPassword(index),0,0))
         return true;
   }
-  drawMessage("Відомих мереж не знайдено.", "Додайте одну з доступних мереж.", true);
-  delay(2000);
+  drawMessage(L("Відомих мереж не знайдено.", "Known networks not found."), L("Додайте одну з доступних мереж.", "Scan and add some."), true);
+  waitOk();
+  //delay(2000);
   wifiOff();
   return false;
 }
 
 void wifiOff(){
-  drawMessageAnimated("Вимкнення Wi-Fi...");
+  drawMessageAnimated(L("Вимкнення Wi-Fi...", "Turning off Wi-Fi..."));
   WiFi.disconnect(true);
   WiFi.mode(WIFI_OFF);
   resetCpuTemperatureSensor();

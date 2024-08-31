@@ -11,7 +11,7 @@ void modeSetSoundToneMenuButtonDown();
 #include "../Global.h"
 #include "../AutoSleep.h"
 #include "../Button.h"
-#include "../ModeMainMenu.h"
+#include "../GlobalMenu.h"
 #include "../DrmPreferences.h"
 #include "ModeMenuSettingsTime.h"
 
@@ -77,7 +77,7 @@ void modeSetSoundToneMenuLoop(){
 
 void modeSetSoundToneMenuButtonUp(){
   // if(!modeSetSoundToneEditMode){
-  //   modeMainMenuButtonUp();
+  //   globalMenuButtonUp();
   //   return;
   // }
   // if(selected == itemmodeSetSoundToneHour) 
@@ -87,7 +87,7 @@ void modeSetSoundToneMenuButtonUp(){
 void modeSetSoundToneMenuButtonDown(){
   saveSoundCoef(getSoundCoef()*0.9f);
   // if(!modeSetSoundToneEditMode){
-  //   modeMainMenuButtonDown();
+  //   globalMenuButtonDown();
   //   return;
   // }
   // if(selected == itemmodeSetSoundToneHour) 

@@ -188,9 +188,9 @@ void setModeShortcutListEventsMenu(){
   Serial.println(F("Set mode: Shortcuts List Events"));
   modeSetup = setModeShortcutListEventsMenu;
   modeLoop = ModeShortcutListEventsMenuLoop;
-  modeButtonUp = modeMainMenuButtonUp;
+  modeButtonUp = globalMenuButtonUp;
   modeButtonCenter = ModeShortcutListEventsMenuButtonCenter;
-  modeButtonDown = modeMainMenuButtonDown;
+  modeButtonDown = globalMenuButtonDown;
   modeButtonUpLong = 0;
   modeButtonCenterLong = 0;
   modeButtonDownLong = 0;
@@ -255,9 +255,9 @@ void setModeShortcutEventSettingsMenu()
   Serial.println(F("Set mode: Shortcut Event Settings"));
   modeSetup = setModeShortcutEventSettingsMenu;
   modeLoop = ModeShortcutEventSettingsMenuLoop;
-  modeButtonUp = modeMainMenuButtonUp;
+  modeButtonUp = globalMenuButtonUp;
   modeButtonCenter = ModeShortcutEventSettingsMenuButtonCenter;
-  modeButtonDown = modeMainMenuButtonDown;
+  modeButtonDown = globalMenuButtonDown;
   modeButtonUpLong = 0;
   modeButtonCenterLong = 0;
   modeButtonDownLong = 0;

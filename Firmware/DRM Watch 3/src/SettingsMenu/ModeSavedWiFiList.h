@@ -14,7 +14,7 @@ void modeSavedWiFiListOnNetworkFailed();
 #include "../Global.h"
 #include "../AutoSleep.h"
 #include "../Button.h"
-#include "../ModeMainMenu.h"
+#include "../GlobalMenu.h"
 #include "../ModeKeyboard.h"
 #include "ModeWiFiScanner.h"
 #include "../ModeQuestion.h"
@@ -27,9 +27,9 @@ void setModeSavedWiFiList(){
   Serial.println(F("Set mode: SavedWiFiList"));
   modeSetup = setModeSavedWiFiList;
   modeLoop = modeSavedWiFiListLoop;
-  modeButtonUp = modeMainMenuButtonUp;
+  modeButtonUp = globalMenuButtonUp;
   modeButtonCenter = modeSavedWiFiListButtonCenter;
-  modeButtonDown = modeMainMenuButtonDown;
+  modeButtonDown = globalMenuButtonDown;
   modeButtonUpLong = 0;
   modeButtonCenterLong = 0;
   modeButtonDownLong = 0;

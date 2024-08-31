@@ -10,7 +10,7 @@ void ModeMenuSettingsSoundButtonCenter();
 #include "../Button.h"
 #include "../Buzzer.h"
 #include "../AutoSleep.h"
-#include "../ModeMainMenu.h"
+#include "../GlobalMenu.h"
 #include "ModeSetSoundTone.h"
 #include "../Icons.h"
 
@@ -24,9 +24,9 @@ void setModeMenuSettingsSound(){
   Serial.println(F("Set mode: ModeMenuSettingsSound"));
   modeSetup = setModeMenuSettingsSound;
   modeLoop = ModeMenuSettingsSoundLoop;
-  modeButtonUp = modeMainMenuButtonUp;
+  modeButtonUp = globalMenuButtonUp;
   modeButtonCenter = ModeMenuSettingsSoundButtonCenter;
-  modeButtonDown = modeMainMenuButtonDown;
+  modeButtonDown = globalMenuButtonDown;
   modeButtonUpLong = 0;
   modeButtonCenterLong = 0;
   modeButtonDownLong = 0;

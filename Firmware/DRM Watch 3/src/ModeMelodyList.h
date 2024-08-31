@@ -8,7 +8,7 @@ void ModeMelodyListMenuButtonCenter();
 #include "Global.h"
 #include "AutoSleep.h"
 #include "Button.h"
-#include "ModeMainMenu.h"
+#include "GlobalMenu.h"
 #include "ModeMenuApps.h"
 #include "MelodyPlayer.h"
 
@@ -19,9 +19,9 @@ void setModeMelodyListMenu(){
   Serial.println(F("Set mode: Melody List"));
   modeSetup = setModeMelodyListMenu;
   modeLoop = ModeMelodyListMenuLoop;
-  modeButtonUp = modeMainMenuButtonUp;
+  modeButtonUp = globalMenuButtonUp;
   modeButtonCenter = ModeMelodyListMenuButtonCenter;
-  modeButtonDown = modeMainMenuButtonDown;
+  modeButtonDown = globalMenuButtonDown;
   modeButtonUpLong = 0;
   modeButtonCenterLong = 0;
   modeButtonDownLong = 0;

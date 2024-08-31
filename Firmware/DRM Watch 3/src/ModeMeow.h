@@ -9,7 +9,7 @@ void meow();
 #include "Global.h"
 #include "AutoSleep.h"
 #include "Button.h"
-#include "ModeMainMenu.h"
+#include "GlobalMenu.h"
 
 
 const int itemModeMeowBack=0;
@@ -25,9 +25,9 @@ void setModeMeow(){
   Serial.println(F("Set mode: Meow"));
   modeSetup = setModeMeow;
   modeLoop = modeMeowLoop;
-  modeButtonUp = modeMainMenuButtonUp;
+  modeButtonUp = globalMenuButtonUp;
   modeButtonCenter = modeMeowButtonCenter;
-  modeButtonDown = modeMainMenuButtonDown;
+  modeButtonDown = globalMenuButtonDown;
   modeButtonUpLong = 0;
   modeButtonCenterLong = 0;
   modeButtonDownLong = 0;

@@ -40,9 +40,9 @@ void setModeBackgroundsMenu(){
   Serial.println(F("Set mode: Backgrounds Menu"));
   modeSetup = setModeBackgroundsMenu;
   modeLoop = ModeBackgroundsMenuLoop;
-  modeButtonUp = modeMainMenuButtonUp;
+  modeButtonUp = globalMenuButtonUp;
   modeButtonCenter = ModeBackgroundsMenuButtonCenter;
-  modeButtonDown = modeMainMenuButtonDown;
+  modeButtonDown = globalMenuButtonDown;
   modeButtonUpLong = 0;
   modeButtonCenterLong = 0;
   modeButtonDownLong = 0;

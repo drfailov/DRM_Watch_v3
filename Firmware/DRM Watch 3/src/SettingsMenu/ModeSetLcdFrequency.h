@@ -11,7 +11,7 @@ void modeSetLcdFrequencyMenuButtonDown();
 #include "../Global.h"
 #include "../AutoSleep.h"
 #include "../Button.h"
-#include "../ModeMainMenu.h"
+#include "../GlobalMenu.h"
 #include "../DrmPreferences.h"
 
 //int modeSetLcdFrequencyIndex = 0;
@@ -86,7 +86,7 @@ void modeSetLcdFrequencyMenuLoop(){
 
 void modeSetLcdFrequencyMenuButtonUp(){
   // if(!modeSetLcdFrequencyEditMode){
-  //   modeMainMenuButtonUp();
+  //   globalMenuButtonUp();
   //   return;
   // }
   // if(selected == itemmodeSetLcdFrequencyHour) 
@@ -100,7 +100,7 @@ void modeSetLcdFrequencyMenuButtonUp(){
 }
 void modeSetLcdFrequencyMenuButtonDown(){
   // if(!modeSetLcdFrequencyEditMode){
-  //   modeMainMenuButtonDown();
+  //   globalMenuButtonDown();
   //   return;
   // }
   // if(selected == itemmodeSetLcdFrequencyHour) 

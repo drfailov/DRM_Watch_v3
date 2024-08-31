@@ -20,7 +20,7 @@ Runnable ModeListSelection_OnSelected;  //fill this before call
 #include "SettingsMenu/ModeMenuSettingsWatchfaceContent.h"
 #include "SettingsMenu/ModeSetLcdFrequency.h"
 #include "SettingsMenu/ModeSetWatchface.h"
-#include "ModeMainMenu.h"
+#include "GlobalMenu.h"
 #include "DrmPreferences.h"
 
 
@@ -77,9 +77,9 @@ void setModeListSelection(){
   Serial.println(F("Set mode: ModeListSelection"));
   modeSetup = setModeListSelection;
   modeLoop = ModeListSelectionLoop;
-  modeButtonUp = modeMainMenuButtonUp;
+  modeButtonUp = globalMenuButtonUp;
   modeButtonCenter = ModeListSelectionButtonCenter;
-  modeButtonDown = modeMainMenuButtonDown;
+  modeButtonDown = globalMenuButtonDown;
   modeButtonUpLong = 0;
   modeButtonCenterLong = 0;
   modeButtonDownLong = 0;

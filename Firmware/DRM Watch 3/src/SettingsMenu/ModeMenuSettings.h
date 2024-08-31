@@ -4,9 +4,9 @@
 /*PROTOTYPES*/
 void setModeSettingsMenu();
 void modeSettingsMenuLoop();
-void modeMainMenuButtonUp();
+void globalMenuButtonUp();
 void modeSettingsMenuButtonCenter();
-void modeMainMenuButtonDown();
+void globalMenuButtonDown();
 
 
 #include "../Global.h"
@@ -34,9 +34,9 @@ void setModeSettingsMenu(){
   Serial.println(F("Set mode: Settings Menu"));
   modeSetup = setModeSettingsMenu;
   modeLoop = modeSettingsMenuLoop;
-  modeButtonUp = modeMainMenuButtonUp;
+  modeButtonUp = globalMenuButtonUp;
   modeButtonCenter = modeSettingsMenuButtonCenter;
-  modeButtonDown = modeMainMenuButtonDown;
+  modeButtonDown = globalMenuButtonDown;
   modeButtonUpLong = 0;
   modeButtonCenterLong = 0;
   modeButtonDownLong = 0;

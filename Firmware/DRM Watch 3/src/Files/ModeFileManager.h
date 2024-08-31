@@ -39,9 +39,9 @@ void setmodeFileManager()
   modeSetup = setmodeFileManager;
   modeLoop = modeFileManagerLoop;
   modeExit = modeFileManagerExit;
-  modeButtonUp = modeMainMenuButtonUp; // modeFileManagerButtonUp;
+  modeButtonUp = globalMenuButtonUp; // modeFileManagerButtonUp;
   modeButtonCenter = modeFileManagerButtonCenter;
-  modeButtonDown = modeMainMenuButtonDown; // modeFileManagerButtonDown;
+  modeButtonDown = globalMenuButtonDown; // modeFileManagerButtonDown;
   modeButtonUpLong = 0;
   modeButtonCenterLong = 0;
   modeButtonDownLong = 0;

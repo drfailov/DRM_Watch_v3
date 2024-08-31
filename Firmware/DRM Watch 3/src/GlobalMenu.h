@@ -2,11 +2,8 @@
 #define MODEMAINMENU_H
 
 /*PROTOTYPES*/
-void drawMenuLegend();
-void modeMainMenuLoop();
-void modeMainMenuButtonUp();
-void modeMainMenuButtonCenter();
-void modeMainMenuButtonDown();
+void globalMenuButtonUp();
+void globalMenuButtonDown();
 void drawMenuItem(byte index, Drawable drawIcon, const char* name, bool animate, int x, int y, int width, int height);
 void drawMenuItem(byte index, Drawable drawIcon, const char* name, bool animate, int x, int y);
 void drawMenuItem(byte index, Drawable drawIcon, const char* name, bool animate);
@@ -24,77 +21,16 @@ void drawListValue(byte index, Drawable drawIcon, const char* name, const char* 
 #include "ModeAbout.h"
 
 const int itemBack=0;
-const int itemApps=1;
-const int itemSettings=2;
-const int itemAbout=3;
 
-void setModeMainMenu(){
-  clearScreenAnimation();
-  Serial.println(F("Set mode: Main Menu"));
-  modeSetup = setModeMainMenu;
-  modeLoop = modeMainMenuLoop;
-  modeButtonUp = modeMainMenuButtonUp;
-  modeButtonCenter = modeMainMenuButtonCenter;
-  modeButtonDown = modeMainMenuButtonDown;
-  modeButtonUpLong = 0;
-  modeButtonCenterLong = 0;
-  modeButtonDownLong = 0;
-  registerAction();
-  enableAutoReturn = true;
-  enableAutoSleep = false; 
-  autoReturnTime = autoReturnDefaultTime;
-  autoSleepTime = autoSleepDefaultTime;
-  selected = 0;
-  items = 4;
-}
 
-void modeMainMenuLoop(){
-  lcd()->setColorIndex(white);
-  lcd()->drawBox(0, 0, 400, 240);
-
-  lcd()->setFont(u8g2_font_10x20_t_cyrillic);  //ok
-  lcd()->setColorIndex(black);
-  lcd()->setCursor(5, 18); 
-  lcd()->print("Головне меню");
-  
-  drawStatusbar(363, 1, true);
-  drawMenuLegend();
-
-  drawMenuItem(itemBack,     draw_ic24_back,      "Назад",        /*animate*/firstDraw, /*x*/13,  /*y*/90, /*w*/77, /*h*/60);
-  drawMenuItem(itemApps,     draw_ic24_apps,      "Програми",     /*animate*/firstDraw, /*x*/102, /*y*/90, /*w*/77, /*h*/60);
-  drawMenuItem(itemSettings, draw_ic24_settings,  "Налаштування", /*animate*/firstDraw, /*x*/191, /*y*/90, /*w*/77, /*h*/60);
-  drawMenuItem(itemAbout,    draw_ic24_about,     "Про годинник", /*animate*/firstDraw, /*x*/280, /*y*/90, /*w*/77, /*h*/60);
-
-  lcd()->sendBuffer(); 
-}
-
-void modeMainMenuButtonUp(){
+void globalMenuButtonUp(){
   selected--;
   if(selected<0)
     selected=items-1;
 }
 
-void modeMainMenuButtonCenter(){
-  if(selected == itemBack){
-    setModeWatchface();
-    return;
-  }
-  if(selected == itemApps){
-    setModeAppsMenu();
-    return;
-  }
-  if(selected == itemSettings){
-    setModeSettingsMenu();
-    return;
-  }
-  
-  if(selected == itemAbout){
-    modeAboutSetup();
-    return;
-  }
-}
 
-void modeMainMenuButtonDown(){
+void globalMenuButtonDown(){
   selected++;
   if(selected>=items)
     selected=0;

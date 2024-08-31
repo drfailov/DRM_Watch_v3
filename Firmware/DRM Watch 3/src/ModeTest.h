@@ -34,6 +34,8 @@ void printMacAddress(){
 }
 
 void setModeTest(){
+  if(modeExit != 0)
+    modeExit();
   clearScreenAnimation();
   Serial.println(F("Set mode: Test"));
   modeSetup = setModeTest;

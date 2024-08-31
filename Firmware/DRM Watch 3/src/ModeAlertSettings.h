@@ -17,7 +17,7 @@ void ModeAlertSettingsMenuMelodySelected();
 #include "Global.h"
 #include "AutoSleep.h"
 #include "Button.h"
-#include "ModeMainMenu.h"
+#include "GlobalMenu.h"
 #include "ModeAlertsList.h"
 #include "ModeKeyboard.h"
 #include "MelodyPlayer.h"
@@ -125,7 +125,7 @@ void ModeAlertSettingsMenuLoop(){
 
 void ModeAlertSettingsMenuButtonUp(){
   if(!modeAlertSettingsEditMode){
-    modeMainMenuButtonUp();
+    globalMenuButtonUp();
     return;
   }
   if(selected == itemModeAlertSettingsHour)  modeAlertSettingsHourValue ++;
@@ -134,7 +134,7 @@ void ModeAlertSettingsMenuButtonUp(){
 }
 void ModeAlertSettingsMenuButtonDown(){
   if(!modeAlertSettingsEditMode){
-    modeMainMenuButtonDown();
+    globalMenuButtonDown();
     return;
   }
   if(selected == itemModeAlertSettingsHour)  modeAlertSettingsHourValue --;

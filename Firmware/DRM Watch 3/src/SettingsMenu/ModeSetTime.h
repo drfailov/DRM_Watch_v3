@@ -11,7 +11,7 @@ void ModeSetTimeMenuButtonDown();
 #include "../Global.h"
 #include "../AutoSleep.h"
 #include "../Button.h"
-#include "../ModeMainMenu.h"
+#include "../GlobalMenu.h"
 #include "../ModeWatchface.h"
 #include "../RTC.h"
 
@@ -56,7 +56,7 @@ void ModeSetTimeMenuLoop(){
   lcd()->setFont(u8g2_font_10x20_t_cyrillic);  //ok
   lcd()->setColorIndex(black);
   lcd()->setCursor(5, 18); 
-  lcd()->print("Налаштування часу");
+  lcd()->print(L("Налаштування часу", "Set time"));
 
   drawMenuLegend();
   if(modeSetTimeMenuEditMode){
@@ -64,29 +64,29 @@ void ModeSetTimeMenuLoop(){
     draw_ic16_minus(lx(), ly3(), black);
   }
   
-  drawMenuItem(itemmodeSetTimeMenuBack, draw_ic24_back, "Назад", firstDraw, 30, 32);
+  drawMenuItem(itemmodeSetTimeMenuBack, draw_ic24_back, L("Назад", "Back"), firstDraw, 30, 32);
   
   
   lcd()->setFont(u8g2_font_10x20_t_cyrillic);  //ok
   lcd()->setColorIndex(black);
   lcd()->setCursor(5, 100); 
-  lcd()->print("Введіть поточний місцевий час");
+  lcd()->print(L("Введіть поточний місцевий час", "Enter current local time"));
 
   lcd()->setFont(u8g2_font_10x20_t_cyrillic);  //ok
   lcd()->setColorIndex(black);
-  lcd()->setCursor(30, 136); 
-  lcd()->print("Час");
-  drawNumberFrame(/*index*/itemmodeSetTimeMenuHour,   /*number*/rtcGetHour(),   /*name*/"Обрати годину",  /*editMode*/modeSetTimeMenuEditMode, /*animate*/firstDraw, /*x*/68, /*y*/110, /*Width*/82);
-  drawNumberFrame(/*index*/itemmodeSetTimeMenuMinute, /*number*/rtcGetMinute(), /*name*/"Обрати хвилину", /*editMode*/modeSetTimeMenuEditMode, /*animate*/firstDraw, /*x*/168, /*y*/110, /*Width*/82);
-  drawNumberFrame(/*index*/itemmodeSetTimeMenuSecond, /*number*/rtcGetSecond(), /*name*/"Обрати секунду", /*editMode*/modeSetTimeMenuEditMode, /*animate*/firstDraw, /*x*/268, /*y*/110, /*Width*/82);
+  lcd()->setCursor(22, 136); 
+  lcd()->print(L("Час", "Time"));
+  drawNumberFrame(/*index*/itemmodeSetTimeMenuHour,   /*number*/rtcGetHour(),   /*name*/L("Обрати годину", "Select hour"),    /*editMode*/modeSetTimeMenuEditMode, /*animate*/firstDraw, /*x*/68, /*y*/110, /*Width*/82);
+  drawNumberFrame(/*index*/itemmodeSetTimeMenuMinute, /*number*/rtcGetMinute(), /*name*/L("Обрати хвилину", "Select minute"), /*editMode*/modeSetTimeMenuEditMode, /*animate*/firstDraw, /*x*/168, /*y*/110, /*Width*/82);
+  drawNumberFrame(/*index*/itemmodeSetTimeMenuSecond, /*number*/rtcGetSecond(), /*name*/L("Обрати секунду", "Select second"), /*editMode*/modeSetTimeMenuEditMode, /*animate*/firstDraw, /*x*/268, /*y*/110, /*Width*/82);
 
   lcd()->setFont(u8g2_font_10x20_t_cyrillic);  //ok
   lcd()->setColorIndex(black);
   lcd()->setCursor(22, 186); 
-  lcd()->print("Дата");
-  drawNumberFrame(/*index*/itemmodeSetTimeMenuDay,    /*number*/rtcGetDay(),    /*name*/"Обрати день",    /*editMode*/modeSetTimeMenuEditMode, /*animate*/firstDraw, /*x*/68, /*y*/160, /*Width*/82);
-  drawNumberFrame(/*index*/itemmodeSetTimeMenuMonth,  /*number*/rtcGetMonth(),  /*name*/"Обрати місяць",  /*editMode*/modeSetTimeMenuEditMode, /*animate*/firstDraw, /*x*/168, /*y*/160, /*Width*/82);
-  drawNumberFrame(/*index*/itemmodeSetTimeMenuYear,   /*number*/rtcGetYear(),   /*name*/"Обрати рік",  /*editMode*/modeSetTimeMenuEditMode, /*animate*/firstDraw, /*x*/268, /*y*/160, /*Width*/82);
+  lcd()->print(L("Дата", "Date"));
+  drawNumberFrame(/*index*/itemmodeSetTimeMenuDay,    /*number*/rtcGetDay(),    /*name*/L("Обрати день", "Select day"),       /*editMode*/modeSetTimeMenuEditMode, /*animate*/firstDraw, /*x*/68, /*y*/160, /*Width*/82);
+  drawNumberFrame(/*index*/itemmodeSetTimeMenuMonth,  /*number*/rtcGetMonth(),  /*name*/L("Обрати місяць", "Select month"),   /*editMode*/modeSetTimeMenuEditMode, /*animate*/firstDraw, /*x*/168, /*y*/160, /*Width*/82);
+  drawNumberFrame(/*index*/itemmodeSetTimeMenuYear,   /*number*/rtcGetYear(),   /*name*/L("Обрати рік", "Select year"),       /*editMode*/modeSetTimeMenuEditMode, /*animate*/firstDraw, /*x*/268, /*y*/160, /*Width*/82);
   
   lcd()->sendBuffer();
 }
@@ -103,7 +103,7 @@ void ModeSetTimeMenuButtonCenter(){
 }
 void ModeSetTimeMenuButtonUp(){
   if(!modeSetTimeMenuEditMode){
-    modeMainMenuButtonUp();
+    globalMenuButtonUp();
     return;
   }
   unsigned long epoch = rtcGetUtcEpoch();
@@ -123,7 +123,7 @@ void ModeSetTimeMenuButtonUp(){
 }
 void ModeSetTimeMenuButtonDown(){
   if(!modeSetTimeMenuEditMode){
-    modeMainMenuButtonDown();
+    globalMenuButtonDown();
     return;
   }
   unsigned long epoch = rtcGetUtcEpoch();

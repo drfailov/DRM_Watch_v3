@@ -11,7 +11,7 @@ void modeSetTimezoneMenuButtonDown();
 #include "../Global.h"
 #include "../AutoSleep.h"
 #include "../Button.h"
-#include "../ModeMainMenu.h"
+#include "../GlobalMenu.h"
 #include "../DrmPreferences.h"
 #include "ModeMenuSettingsTime.h"
 

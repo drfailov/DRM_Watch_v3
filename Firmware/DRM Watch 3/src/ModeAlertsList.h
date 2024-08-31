@@ -18,9 +18,9 @@ void setModeAlertsList(){
   Serial.println(F("Set mode: AlertsList"));
   modeSetup = setModeAlertsList;
   modeLoop = modeAlertsListLoop;
-  modeButtonUp = modeMainMenuButtonUp;
+  modeButtonUp = globalMenuButtonUp;
   modeButtonCenter = modeAlertsListButtonCenter;
-  modeButtonDown = modeMainMenuButtonDown;
+  modeButtonDown = globalMenuButtonDown;
   modeButtonUpLong = 0;
   modeButtonCenterLong = 0;
   modeButtonDownLong = 0;

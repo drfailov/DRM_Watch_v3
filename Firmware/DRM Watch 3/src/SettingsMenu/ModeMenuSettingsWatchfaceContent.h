@@ -8,7 +8,7 @@ void ModeMenuSettingsWatchfaceContentButtonCenter();
 #include "../Global.h"
 #include "../AutoSleep.h"
 #include "../Button.h"
-#include "../ModeMainMenu.h"
+#include "../GlobalMenu.h"
 
 
 const int ModeMenuSettingsWatchfaceContentItemBack = 0;
@@ -35,9 +35,9 @@ void setModeMenuSettingsWatchfaceContent(){
   Serial.println(F("Set mode: ModeMenuSettingsWatchfaceContent"));
   modeSetup = setModeMenuSettingsWatchfaceContent;
   modeLoop = ModeMenuSettingsWatchfaceContentLoop;
-  modeButtonUp = modeMainMenuButtonUp;
+  modeButtonUp = globalMenuButtonUp;
   modeButtonCenter = ModeMenuSettingsWatchfaceContentButtonCenter;
-  modeButtonDown = modeMainMenuButtonDown;
+  modeButtonDown = globalMenuButtonDown;
   modeButtonUpLong = 0;
   modeButtonCenterLong = 0;
   modeButtonDownLong = 0;

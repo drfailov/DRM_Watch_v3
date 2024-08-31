@@ -17,9 +17,10 @@ void ModeMenuSettingsDisplay_ActionResetBatteryCali();
 #include "ModeSetLcdFrequency.h"
 #include "ModeSetWatchface.h"
 #include "ModeQuestion.h"
-#include "../ModeMainMenu.h"
+#include "../GlobalMenu.h"
 #include "../DrmPreferences.h"
 #include "../ModeListSelection.h"
+#include "ModeBatteryCalibration.h"
 
 const int ModeMenuSettingsDisplayItemBack = 0;
 const int ModeMenuSettingsDisplayItemSelectWatchface = 1;
@@ -30,6 +31,7 @@ const int ModeMenuSettingsDisplayItemLanguage = 5;
 const int ModeMenuSettingsDisplayItemInAnimation = 6;
 const int ModeMenuSettingsDisplayItemOutAnimation = 7;
 const int ModeMenuSettingsDisplayItemResetBatteryBars = 8;
+const int ModeMenuSettingsDisplayItemBatteryCalibration = 9;
 
 int outAnimationOptionsCnt()
 {
@@ -67,9 +69,9 @@ void setModeMenuSettingsDisplay()
   modeSetup = setModeMenuSettingsDisplay;
   modeLoop = ModeMenuSettingsDisplayLoop;
   modeExit = ModeMenuSettingsDisplayExit;
-  modeButtonUp = modeMainMenuButtonUp;
+  modeButtonUp = globalMenuButtonUp;
   modeButtonCenter = ModeMenuSettingsDisplayButtonCenter;
-  modeButtonDown = modeMainMenuButtonDown;
+  modeButtonDown = globalMenuButtonDown;
   modeButtonUpLong = 0;
   modeButtonCenterLong = 0;
   modeButtonDownLong = 0;
@@ -79,7 +81,7 @@ void setModeMenuSettingsDisplay()
   autoReturnTime = autoReturnDefaultTime;
   autoSleepTime = autoSleepDefaultTime;
   selected = 0;
-  items = 9;
+  items = 10;
 }
 
 void ModeMenuSettingsDisplayExit(){
@@ -107,6 +109,7 @@ void ModeMenuSettingsDisplayLoop()
   drawListCheckbox(ModeMenuSettingsDisplayItemInAnimation,          draw_ic24_animation,  L("Анімація входу в меню", "Enter animation"),                 L("Поступова поява елементів меню", "Menu appearing gradually"),     getEnterAnimationValue(), firstDraw);
   drawListItem(ModeMenuSettingsDisplayItemOutAnimation,             draw_ic24_animation,  L("Анімація виходу з меню", "Exit animation"),                 outAnimationOptions(getClearAnimation()),                            firstDraw);
   drawListItem(ModeMenuSettingsDisplayItemResetBatteryBars,         draw_ic24_battery50,  L("Скинути калібровку батареї", "Reset battery calibration"),  L("Якщо \"Палички\" неправильні", "If shows wrong"),                 firstDraw);
+  drawListItem(ModeMenuSettingsDisplayItemBatteryCalibration,       draw_ic24_battery0,   L("Калібровка батареї", "Battery calibration"),                L("Тривалий але потрібний процес", "Time consuming process"),        firstDraw);
   lcd()->sendBuffer();
 }
 
@@ -165,6 +168,11 @@ void ModeMenuSettingsDisplayButtonCenter()
   if (selected == ModeMenuSettingsDisplayItemResetBatteryBars)
   {
     questionModeSet(L("Скинути калібровку?", "Reset calibration data?"), L("Буде необхідно перекалібрувати!","Calibration will be required!"), ModeMenuSettingsDisplay_ActionResetBatteryCali, setModeMenuSettingsDisplay);
+    return;
+  }
+  if (selected == ModeMenuSettingsDisplayItemBatteryCalibration)
+  {
+    setModeBatteryCalibration();
     return;
   }
 }

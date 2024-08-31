@@ -52,9 +52,9 @@ void setModeAppsMenu(){
   Serial.println(F("Set mode: Apps Menu"));
   modeSetup = setModeAppsMenu;
   modeLoop = ModeAppsMenuLoop;
-  modeButtonUp = modeMainMenuButtonUp;
+  modeButtonUp = globalMenuButtonUp;
   modeButtonCenter = ModeAppsMenuButtonCenter;
-  modeButtonDown = modeMainMenuButtonDown;
+  modeButtonDown = globalMenuButtonDown;
   modeButtonUpLong = 0;
   modeButtonCenterLong = 0;
   modeButtonDownLong = 0;
