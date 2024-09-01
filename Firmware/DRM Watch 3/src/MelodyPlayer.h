@@ -190,6 +190,8 @@ bool melodyPlayerPlayMelody(const int* melody, bool alarm) {
         noteCnt ++;
       }
     }
+    if(noteCnt == 0)
+      return true;
     prequencyThreshold = 100 + noteSum/noteCnt;
     Serial.print("frequencyThreshold="); Serial.println(prequencyThreshold);
   }
@@ -198,7 +200,8 @@ bool melodyPlayerPlayMelody(const int* melody, bool alarm) {
     for (int i = 0; i < length-1; i++) {
       int note = (melody[i]);
       if(note > 0){ //it's frequency
-        buzTone(note);
+        if(note > 10 && note < 20000)
+          buzTone(note);
         if(note>prequencyThreshold)
           ledFlashlightOnBottom();
         else

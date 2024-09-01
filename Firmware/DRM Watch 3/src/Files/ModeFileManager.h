@@ -97,7 +97,7 @@ void modeFileManagerLoop()
         if (!file) // no more files
           break;
 
-        Serial.println(file.name());
+        //Serial.println(file.name());
         if (file.isDirectory())
         {
           drawListItem(cnt, draw_ic24_folder, file.name(), L("Папка", "Folder"), false);
@@ -277,7 +277,8 @@ void playDwmMelody(const char* path){
       char c = (char)file.read();
       if(isdigit(c) || c=='-'){
         buffer[buffer_index] = c;
-        buffer_index ++;
+        if(buffer_index < BUFFER_SIZE)
+          buffer_index ++;
       }
       else{
         if(buffer_index != 0){
