@@ -108,6 +108,7 @@ https://www.tiktok.com/@drfailov
 
 ## Основний екран, циферблат
 <p align="center"> 
+<img src="Photos/DRM_Watch3_Screenshot_20240825-210844.png" height=300"/> 
 <img src="Photos/photo_2_2024-06-02_22-49-14.jpg" height=300"/> 
 <img src="Photos/photo_51_2024-06-02_22-49-14.jpg" height=300"/> 
 <img src="Photos/photo_52_2024-06-02_22-49-14.jpg" height=300"/> 
@@ -171,6 +172,17 @@ https://www.tiktok.com/@drfailov
 
 Важливо!!! Не зберігайте на годиннику цінну інформацію яка не має копії! У мене кілька разів "ламалась" файлова система і файли втрачались. 
 Закономірностей цього явища поки не виявив, але я б не довіряв годиннику нічого цінного!
+
+Формати файлів які може відкрити годинник:
+- BMP монохромний. Такі файли можна сформувати з допомогою Microsoft Paint.
+- DWM мелодії. Такі файли можна сформувати з допомогою програми в папці `Software\MIDI-to-Arduino-main`.
+- WAV PCM 8bit аудіо. Такі файли можна сформувати з допомогою Audacity.
+- TXT текстові файли в UTF8 кодуванні. Такі файли можна сформувати з допомогою Notepad++.
+<p align="center"> 
+<img src="Photos/bmp-create.png" height=300"/> 
+<img src="Photos/audacity-wav.png" height=300"/> 
+</p>
+
 
 ## Програми -> Менеджер пам'яті
 

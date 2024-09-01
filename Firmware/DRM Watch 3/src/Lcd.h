@@ -26,6 +26,7 @@ const char* L(const char* ua, const char* en);
 const char* langName(int lang);
 int langCnt();
 void waitOk();
+void drawDim();
 
 
 #include "Global.h"
@@ -350,6 +351,16 @@ void waitOk(){
     }
     if(millis()-started > 60000)
       break;
+  }
+}
+
+void drawDim()
+{
+  lcd()->setColorIndex(white);
+  for(int y=0; y<H; y++){
+    for(int x=y%2; x<W; x+=2){
+      lcd()->drawPixel(x, y);
+    }
   }
 }
 

@@ -39,12 +39,7 @@ void questionModeSet(String _text1, String _text2, Runnable _onYes, Runnable _on
 }
 
 void questionModeLoop(){
-  lcd()->setColorIndex(white);
-  for(int y=0; y<H; y++){
-    for(int x=y%2; x<W; x+=2){
-      lcd()->drawPixel(x, y);
-    }
-  }
+  drawDim();
   draw_ic16_check(lx(), ly1(), black);
   draw_ic16_empty(lx(), ly2(), black);
   draw_ic16_cancel(lx(), ly3(), black);

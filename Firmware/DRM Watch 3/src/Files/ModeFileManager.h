@@ -64,7 +64,7 @@ void modeFileManagerLoop()
   lcd()->setFont(u8g2_font_10x20_t_cyrillic); // ok
   lcd()->setColorIndex(black);
   lcd()->setCursor(5, 18);
-  lcd()->print("Файли: ");
+  lcd()->print(L("Файли: ", "Files: "));
   lcd()->print(modeFileManagerDir);
   
   drawStatusbar(363, 1, true);
@@ -78,18 +78,18 @@ void modeFileManagerLoop()
     if (!dir)
     {
       draw_ic24_bad_file(170, 90, black);
-      drawCentered("Помилка відкриття папки", 150);
+      drawCentered(L("Помилка відкриття папки", "Error opening folder"), 150);
       items = 1;
     }
     else if (!dir.isDirectory())
     {
-      drawCentered("Папка не папка", 100);
+      drawCentered(L("Папка не папка", "Folder is not folder"), 100);
       drawCentered(modeFileManagerDir, 150);
       items = 1;
     }
     else
     {
-      drawListItem(itemBack, draw_ic24_back, "Назад", "В попереднє меню", firstDraw);
+      drawListItem(itemBack, draw_ic24_back, L("Назад", "Back"), L("В попереднє меню", "To previous menu"), firstDraw);
       int cnt = 1;
       while (true)
       {
@@ -100,28 +100,33 @@ void modeFileManagerLoop()
         Serial.println(file.name());
         if (file.isDirectory())
         {
-          drawListItem(cnt, draw_ic24_folder, file.name(), "Папка", false);
+          drawListItem(cnt, draw_ic24_folder, file.name(), L("Папка", "Folder"), false);
         }
         else
         {
           if (strendswith(file.name(), ".txt"))
           {
-            sprintf(buffer, "Текст, %d Байт", file.size());
+            sprintf(buffer, L("Текст, %d байт", "Text, %d bytes"), file.size());
             drawListItem(cnt, draw_ic24_file, file.name(), buffer, false);
           }
           else if (strendswith(file.name(), ".dwm"))
           {
-            sprintf(buffer, "Мелодія, %d Байт", file.size());
+            sprintf(buffer, L("Мелодія, %d байт", "Melody, %d bytes"), file.size());
+            drawListItem(cnt, draw_ic24_music, file.name(), buffer, false);
+          }
+          else if (strendswith(file.name(), ".wav"))
+          {
+            sprintf(buffer, L("Аудіо, %d байт", "Audio, %d bytes"), file.size());
             drawListItem(cnt, draw_ic24_music, file.name(), buffer, false);
           }
           else if (strendswith(file.name(), ".bmp"))
           {
-            sprintf(buffer, "Картинка, %d Байт", file.size());
+            sprintf(buffer, L("Картинка, %d байт", "Image, %d bytes"), file.size());
             drawListItem(cnt, draw_ic24_image, file.name(), buffer, false);
           }
           else
           {
-            sprintf(buffer, "Файл, %d Байт", file.size());
+            sprintf(buffer, L("Файл, %d байт", "File, %d bytes"), file.size());
             drawListItem(cnt, draw_ic24_question, file.name(), buffer, false);
           }
         }
@@ -137,7 +142,7 @@ void modeFileManagerLoop()
   else
   {
     draw_ic24_bad_file(170, 90, black);
-    drawCentered("Файлова система пошкоджена", 150);
+    drawCentered(L("Файлова система пошкоджена", "File system damaged"), 150);
     drawCentered(modeFileManagerDir, 170);
     items = 1;
   }
@@ -150,6 +155,37 @@ void modeFileManagerExit()
 {
   FFat.end();
   modeExit = 0;
+}
+
+void playWavMelody(const char* path){
+  fs::FS &fs = FFat;
+  File file = FFat.open(F(path), FILE_READ, false);
+  if(file!=0){
+    unsigned long lastTick = micros();
+    ledStatusOn();
+    draw_ic16_empty(lx(), ly1(), black);
+    draw_ic16_empty(lx(), ly3(), black);
+    drawDim();
+    draw_ic16_back(lx(), ly2(), black);
+    drawMessage(L("Відтворення...", "Playing..."), file.name(), true);
+    
+    ledcSetup( /*channel*/0, /*freq*/20000, /*PWM_Res*/8);
+    while(file.available())
+    {
+      char c = (char)file.read();
+      ledcWrite( /*channel*/0, /*value*/c);
+      while(micros()-lastTick < 120);
+      lastTick = micros();
+      if(isButtonCenterPressed())
+        break;
+    }
+    ledStatusOff();
+    buzNoTone();
+    file.close(); 
+    buttonBeep();
+    clearScreenAnimation();
+    while(isButtonCenterPressed());
+  }
 }
 
 void modeFileManagerButtonCenter()
@@ -205,6 +241,13 @@ void modeFileManagerButtonCenter()
             playDwmMelody(melodyPath);
             break;
           }
+          if (!file.isDirectory() && strendswith(file.name(), ".wav"))
+          {
+            const char* melodyPath = strdup(file.path());
+            file.close();
+            playWavMelody(melodyPath);
+            break;
+          }
           if (!file.isDirectory() && strendswith(file.name(), ".bmp"))
           {
             modeFileReaderBmpPath = strdup(file.path());
@@ -218,6 +261,7 @@ void modeFileManagerButtonCenter()
     }
   }
 }
+
 
 void playDwmMelody(const char* path){
   fs::FS &fs = FFat;
@@ -254,7 +298,7 @@ void playDwmMelody(const char* path){
       melodyPlayerPlayMelody(/*const int* melody*/tmp_melody, /*bool alarm*/false); 
     }
     else{
-      drawMessageAnimated("Битий файл");
+      drawMessageAnimated(L("Битий файл", "Corrupted file"));
     }
     delete tmp_melody; // deallocate the memory
     tmp_melody = nullptr; // set pointer to nullptr
