@@ -67,6 +67,7 @@ void setTimezone(String timezone){
 
 void timeSync(){
   saveLastTryTimeSync(_rtcInternal()->getEpoch());
+  drawDim();
   if(connectToKnownWifi()){
     unsigned long syncStartedMillis = millis();     //millis
     _rtcInternal()->setTime(0);

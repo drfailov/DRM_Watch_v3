@@ -168,7 +168,6 @@ void playWavMelody(const char* path){
     drawDim();
     draw_ic16_back(lx(), ly2(), black);
     drawMessage(L("Відтворення...", "Playing..."), file.name(), true);
-    
     ledcSetup( /*channel*/0, /*freq*/20000, /*PWM_Res*/8);
     while(file.available())
     {
@@ -176,13 +175,14 @@ void playWavMelody(const char* path){
       ledcWrite( /*channel*/0, /*value*/c);
       while(micros()-lastTick < 120);
       lastTick = micros();
-      if(isButtonCenterPressed())
+      if(isButtonCenterPressed()){
+        buttonBeep();
         break;
+      }
     }
     ledStatusOff();
     buzNoTone();
     file.close(); 
-    buttonBeep();
     clearScreenAnimation();
     while(isButtonCenterPressed());
   }
@@ -298,6 +298,7 @@ void playDwmMelody(const char* path){
       melodyPlayerPlayMelody(/*const int* melody*/tmp_melody, /*bool alarm*/false); 
     }
     else{
+      drawDim();
       drawMessageAnimated(L("Битий файл", "Corrupted file"));
     }
     delete tmp_melody; // deallocate the memory

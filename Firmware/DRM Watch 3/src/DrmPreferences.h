@@ -380,13 +380,17 @@ void saveInversionValue(bool value)
 {
   preferencesObject.putInt("screenInverse", value ? 1 : 0);
 }
+int langCache = -1;
 void saveLangValue(int value)
 {
-  preferencesObject.putInt("lang", value);
+  langCache = value;
+  preferencesObject.putInt("lang", langCache);
 }
 int getLang()
 {
-  return preferencesObject.getInt("lang", LANG_UA);
+  if(langCache == -1)
+    langCache = preferencesObject.getInt("lang", LANG_UA);
+  return langCache;
 }
 bool getEnterAnimationValue()
 {

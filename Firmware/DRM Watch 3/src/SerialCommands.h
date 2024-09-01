@@ -25,6 +25,7 @@ void processCommand()
     {
       Serial.print(F("Received: "));
       Serial.println(receivedChars);
+      drawDim();
       drawMessageAnimated(String(receivedChars));
       Serial.println(F("-- Help begin: --"));
       Serial.println(F("<screenshot> - Send XBM screenshot"));

@@ -179,6 +179,7 @@ void ModeMenuSettingsDisplayButtonCenter()
 
 void ModeMenuSettingsDisplay_ActionResetBatteryCali()
 {
+  drawDim();
   drawMessageAnimated(L("Скидання...", "Resetting..."));
   resetBatteryCalibrationData();
   drawMessage(L("Калібровку батареї скинуто", "Battery calibration was reset"), L("Проведіть повний цикл для калібровки", "Run full cycle to calibrate again"), true);
