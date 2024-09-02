@@ -96,6 +96,16 @@ void modeFileReaderBmpLoop()
       int32_t bmp_y = 0;
 
 
+      // while (f.available()){
+      //   char c = f.read();
+      //   if(c == 'B' && f.available()){
+      //     c = f.read();
+      //     if(c == 'M'){
+      //       break;
+      //       offset == 0x02;
+      //     }
+      //   }
+      // }
       while (f.available())
       {
         /*

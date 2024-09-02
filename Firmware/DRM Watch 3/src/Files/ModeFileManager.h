@@ -168,7 +168,7 @@ void playWavMelody(const char* path){
     drawDim();
     draw_ic16_back(lx(), ly2(), black);
     drawMessage(L("Відтворення...", "Playing..."), file.name(), true);
-    ledcSetup( /*channel*/0, /*freq*/20000, /*PWM_Res*/8);
+    ledcSetup( /*channel*/0, /*freq*/24000, /*PWM_Res*/8);
     while(file.available())
     {
       char c = (char)file.read();
