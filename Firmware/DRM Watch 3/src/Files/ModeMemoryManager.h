@@ -17,6 +17,7 @@ void setmodeMemoryManager();
 void modeMemoryManagerButtonUp();
 void modeMemoryManagerButtonCenter();
 void modeMemoryManagerButtonDown();
+void formatSelected();
 
 
 
@@ -62,14 +63,14 @@ void modeMemoryManagerLoop()
   lcd()->setFont(u8g2_font_10x20_t_cyrillic); // ok
   lcd()->setColorIndex(black);
   lcd()->setCursor(5, 18);
-  lcd()->print("Менеджер пам'яті");
+  lcd()->print(L("Менеджер пам'яті", "Memory manager"));
 
   drawStatusbar(363, 1, true);
 
-  drawListItem(itemBack,                              draw_ic24_back,      "Назад",                       "До головного меню",      false);
-  drawListItem(modeMemoryManagerItemUpload,           draw_ic24_usb,       "Підключити до USB",           "Щоб закинути файли з компа",      false);
-  drawListItem(modeMemoryManagerItemShowPartitions,   draw_ic24_partitions,"Показати карту розділів",     "Як поділена пам'ять контролера",      false);
-  drawListItem(modeMemoryManagerItemFormatPartition,  draw_ic24_clean,     "Форматувати розділ",          "Це зітре всі дані на розділі",      false);
+  drawListItem(itemBack,                              draw_ic24_back,      L("Назад", "Back"),                              L("До головного меню", "To apps menu"),                        false);
+  drawListItem(modeMemoryManagerItemUpload,           draw_ic24_usb,       L("Підключити до USB", "Connect to USB"),        L("Щоб закинути файли з компа", "To upload files from PC"),    false);
+  drawListItem(modeMemoryManagerItemShowPartitions,   draw_ic24_partitions,L("Показати карту розділів", "Partitions list"), L("Як поділена пам'ять контролера", "List and sizes"),         false);
+  drawListItem(modeMemoryManagerItemFormatPartition,  draw_ic24_clean,     L("Форматувати розділ", "Format partition"),     L("Це зітре всі файли на розділі", "It will erase all files"), false);
 
   drawMenuLegend();
   lcd()->sendBuffer();
@@ -95,13 +96,18 @@ void modeMemoryManagerButtonCenter()
     return;
   }
   if(selected == modeMemoryManagerItemFormatPartition){
-    drawMessage("Форматування...", "fatffs", true);
-    if(FFat.format(FFAT_WIPE_FULL)){
-      drawMessage("Успішно!", "відформатовано fatffs", true);
-    } else {
-      drawMessage("Помилка", "форматування fatffs", true);
-    }
+    questionModeSet(L("Форматувати розділ?", "Format partition?"), L("Всі файли будуть видалені!","All files will be erased!"), formatSelected, setmodeMemoryManager);
     return;
+  }
+}
+
+void formatSelected()
+{
+  drawMessage(L("Форматування...", "Formatting..."), "fatffs", true);
+  if(FFat.format(FFAT_WIPE_FULL)){
+    drawMessage(L("Успішно!", "Success!"), L("відформатовано fatffs", "fatffs formatted"), true);
+  } else {
+    drawMessage(L("Помилка", "Failed"), L("форматування fatffs", "formatting fatffs"), true);
   }
 }
 

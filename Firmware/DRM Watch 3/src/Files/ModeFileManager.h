@@ -160,32 +160,54 @@ void modeFileManagerExit()
 void playWavMelody(const char* path){
   fs::FS &fs = FFat;
   File file = FFat.open(F(path), FILE_READ, false);
-  if(file!=0){
-    unsigned long lastTick = micros();
-    ledStatusOn();
-    draw_ic16_empty(lx(), ly1(), black);
-    draw_ic16_empty(lx(), ly3(), black);
-    drawDim();
-    draw_ic16_back(lx(), ly2(), black);
-    drawMessage(L("Відтворення...", "Playing..."), file.name(), true);
-    ledcSetup( /*channel*/0, /*freq*/24000, /*PWM_Res*/8);
-    while(file.available())
-    {
-      char c = (char)file.read();
-      ledcWrite( /*channel*/0, /*value*/c);
-      while(micros()-lastTick < 120);
-      lastTick = micros();
-      if(isButtonCenterPressed()){
-        buttonBeep();
-        break;
-      }
-    }
-    ledStatusOff();
-    buzNoTone();
+  bool repeat = false;
+  unsigned long lastTick = micros();
+  draw_ic16_empty(lx(), ly3(), black);
+  drawDim();
+  draw_ic16_repeat(lx(), ly1(), black);
+  draw_ic16_back(lx(), ly2(), black);
+  drawMessage(L("Відтворення...", "Playing..."), file.name(), true);
+  ledStatusOn();
+  backlightOff();
+
+  if(file!=0){  
     file.close(); 
-    clearScreenAnimation();
-    while(isButtonCenterPressed());
-  }
+    do{
+      file = FFat.open(F(path), FILE_READ, false);
+      ledcSetup( /*channel*/0, /*freq*/24000, /*PWM_Res*/8);
+      while(file.available())
+      {
+        char c = (char)file.read();
+        ledcWrite( /*channel*/0, /*value*/c);
+        while(micros()-lastTick < 120);
+        lastTick = micros();
+        if(isButtonUpPressed())
+        {
+          repeat = !repeat;
+          if(repeat)
+            draw_ic16_check(lx(), ly1(), black);
+          else 
+            draw_ic16_repeat(lx(), ly1(), black);
+          lcd()->sendBuffer();
+          while(isButtonUpPressed());
+        }
+        if(isButtonCenterPressed())
+        {
+          buttonBeep();
+          repeat = false;
+          break;
+        }
+      }
+      file.close(); 
+    }
+    while(repeat);
+  }  
+
+  ledStatusOff();
+  buzNoTone();
+  clearScreenAnimation();
+  registerAction();
+  while(isButtonCenterPressed());
 }
 
 void modeFileManagerButtonCenter()
