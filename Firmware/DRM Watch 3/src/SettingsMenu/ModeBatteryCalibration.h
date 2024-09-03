@@ -7,8 +7,6 @@ void ModeBatteryCalibrationLoop();
 void ModeBatteryCalibrationButtonUp();
 void ModeBatteryCalibrationButtonCenter();
 void ModeBatteryCalibrationButtonDown();
-void wakeup_reason();
-
 
 #include <Arduino.h>
 #include "Global.h"
@@ -18,14 +16,13 @@ void wakeup_reason();
 #include "DrmPreferences.h"
 
 
-//#include <WiFi.h>
 
 
 void setModeBatteryCalibration(){
   if(modeExit != 0)
     modeExit();
   clearScreenAnimation();
-  Serial.println(F("Set mode: Test"));
+  Serial.println(F("Set mode: Battery Calibration"));
   modeSetup = setModeBatteryCalibration;
   modeLoop = ModeBatteryCalibrationLoop;
   modeButtonUp = ModeBatteryCalibrationButtonUp;
@@ -36,22 +33,72 @@ void setModeBatteryCalibration(){
   modeButtonDownLong = 0;
   registerAction();
   enableAutoReturn = false;
-  enableAutoSleep = true; 
+  enableAutoSleep = false; 
   autoReturnTime = autoReturnDefaultTime;
   autoSleepTime = autoSleepDefaultTime;
-  //WiFi.mode(WIFI_STA);
+}
+
+void drawPlot(int x, int y, int w, int h, int16_t* values, int length){
+  //config
+  int padding = 15;
+
+  //frame
+  lcd()->setColorIndex(white);
+  lcd()->drawBox(x, y, w, h);
+  lcd()->setColorIndex(black);
+  lcd()->drawFrame(x, y, w, h);
+  
+  //min and max
+  int16_t min = values[0];
+  int16_t max = values[0];
+  for(int i = 1; i < length; i++){
+    if(values[i] < min)
+      min = values[i];
+    if(values[i] > max)
+      max = values[i];
+  }
+  lcd()->setFont(u8g2_font_unifont_t_cyrillic); //smalll
+  lcd()->setCursor(x+2, y+13);
+  lcd()->print(max);
+  lcd()->setCursor(x+2, y+h-2);
+  lcd()->print(min);
+  
+  //plot line
+  float maxPoint = y+padding;
+  float minPoint = y+h-padding;
+  float leftPoint = x;
+  float rightPoint = x+w;
+  float lastX = map(0, 0, length, leftPoint, rightPoint);
+  float lastY = map(values[0], min, max, minPoint, maxPoint);
+  for(int i = 1; i < length; i++){
+    float cx = map(i, 0, length, leftPoint, rightPoint);
+    float cy = map(values[i], min, max, minPoint, maxPoint);
+    lcd()->drawLine(cx, cy, lastX, lastY);
+    lastX = cx;
+    lastY = cy;
+  }
 }
 
 void ModeBatteryCalibrationLoop(){ 
   lcd()->setColorIndex(white);
   lcd()->drawBox(0, 0, 400, 240);
   
+  
+  
+  //int y=2;
+  //int x=5;
+  //int interval = 13;
   lcd()->setColorIndex(black);
-  lcd()->setFont(u8g2_font_unifont_t_cyrillic); //smalll
+  drawCentered("Зарядіть перед калібруванням!", 15);
+  drawCentered("Калібрування займе кілька годин.", 30);
 
-  int y=2;
-  int x=5;
-  int interval = 13;
+  
+  lcd()->setFont(u8g2_font_unifont_t_cyrillic); //smalll
+  lcd()->setCursor(10, 50); lcd()->print("RAW: "); lcd()->print(readSensBatteryRaw());
+  lcd()->setCursor(10, 65); lcd()->print("Total: "); lcd()->print(batteryCalibrationLength());
+  lcd()->setCursor(10, 80); lcd()->print("isBatteryCalibrated(): "); lcd()->print(isBatteryCalibrated());
+
+  drawPlot(10, 100, 350, 110, batteryCalibration, batteryCalibrationLength());
 
   // y+=interval; lcd()->setCursor(x, y); lcd()->print("Internal RTC: "); lcd()->print(_rtcInternal()->getTime("%d %b %Y %H:%M:%S"));  lcd()->print(" ("); lcd()->print(_rtcInternal()->getEpoch());   lcd()->print(")");
   // y+=interval; lcd()->setCursor(x, y); lcd()->print("External RTC: "); printRtcGetTimeRaw();   
@@ -79,9 +126,9 @@ void ModeBatteryCalibrationLoop(){
   //uint32_t getBusClock(void);
   //void setBusClock(uint32_t clock_speed);
   
-  draw_ic16_coffee(lx(), ly1(), black);
+  draw_ic16_arrow_right(lx(), ly1(), black);
   draw_ic16_back(lx(), ly2(), black);
-  //draw_ic16_hashtag(lx(), ly3(), black);
+  draw_ic16_repeat(lx(), ly3(), black);
 
 if(esp_sleep_get_wakeup_cause() != ESP_SLEEP_WAKEUP_TIMER) //if wake by timer, don't refresh display to keep image static, image will refresh when go to lock screen and drawing lock icon
     lcd()->sendBuffer();
@@ -91,6 +138,7 @@ if(esp_sleep_get_wakeup_cause() != ESP_SLEEP_WAKEUP_TIMER) //if wake by timer, d
 void ModeBatteryCalibrationButtonUp(){
   //goToSleep();
   //switchDontSleep();
+  batteryCalibrationAddValue(readSensBatteryRaw());
 }
 
 void ModeBatteryCalibrationButtonCenter(){
@@ -100,7 +148,7 @@ void ModeBatteryCalibrationButtonCenter(){
 }
 
 void ModeBatteryCalibrationButtonDown(){
-  
+  resetBatteryCalibration();
 }
 
 

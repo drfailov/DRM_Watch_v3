@@ -6,12 +6,24 @@
 
 /*PROTOTYPES*/
 int getPreferencesFreeSpace();
-//BATTERY
+// BATTERY
 int getBatteryMinVoltage();
 bool saveBatteryMinVoltage(int minVoltage);
 int getBatteryMaxVoltage();
 bool saveBatteryMaxVoltage(int minVoltage);
 void resetBatteryCalibrationData();
+
+#define batteryCalibrationLengthMax 100 // 100 is one record for 5 minutes = 8 hours total
+int16_t batteryCalibration[batteryCalibrationLengthMax];  //values written from higher[0] battery level to lower[batteryCalibrationLengthMax] battery level. 0 considered as end of data.
+bool batteryCalibrationLoaded = false;
+float batteryCalibrationGetValuePercent(int value);
+int batteryCalibrationGetIndexOfValue(int value);
+bool isBatteryCalibrated();
+int batteryCalibrationLength();
+int batteryCalibrationAddValue(int16_t value);
+void saveBatteryCalibration();
+void resetBatteryCalibration();
+void loadBatteryCalibration();
 // SHORTCUTS
 int getActionId(int eventId, int defaultActionId);
 int getActionId(int eventId);
@@ -146,9 +158,9 @@ void initPreferences()
   preferencesObject.begin("drm-watch-v3", false);
 }
 
-
 //----------------------//---------------------- BATTERY ----------//----------------------//----------------------//----------------------//----------------------
-void resetBatteryCalibrationData(){
+void resetBatteryCalibrationData()
+{
   preferencesObject.remove("batteryMin");
   preferencesObject.remove("batteryMax");
 }
@@ -161,13 +173,96 @@ bool saveBatteryMinVoltage(int minVoltage)
   return preferencesObject.putInt("batteryMin", minVoltage);
 }
 int getBatteryMaxVoltage()
-{                               // 123456789012345
+{ // 123456789012345
   return preferencesObject.getInt("batteryMax", 3900);
 }
 bool saveBatteryMaxVoltage(int minVoltage)
 {
   return preferencesObject.putInt("batteryMax", minVoltage);
 }
+
+void loadBatteryCalibration()  //load from preferences patrition
+{
+  if (preferencesObject.isKey("batteryCali"))
+  {
+    preferencesObject.getBytes("batteryCali", &batteryCalibration, sizeof(batteryCalibration));
+  }
+  else
+  {
+    for (int i = 0; i < batteryCalibrationLengthMax; i++)
+      batteryCalibration[i] = 0;
+  }
+  batteryCalibrationLoaded = true;
+}
+void saveBatteryCalibration()  //save to preferences patrition
+{
+  if(!batteryCalibrationLoaded)
+    loadBatteryCalibration();
+  preferencesObject.putBytes("batteryCali", (byte *)(&batteryCalibration), sizeof(batteryCalibration));
+}
+void resetBatteryCalibration()
+{
+  if(!batteryCalibrationLoaded)
+    loadBatteryCalibration();
+  for (int i = 0; i < batteryCalibrationLengthMax; i++)
+      batteryCalibration[i] = 0;
+  saveBatteryCalibration();    
+}
+bool isBatteryCalibrated()
+{
+  if(!batteryCalibrationLoaded)
+    loadBatteryCalibration();
+  return batteryCalibration[0] > 0 && batteryCalibration[0] <= 8192;
+}
+int batteryCalibrationAddValue(int16_t value) //add to end. Returns current length
+{
+  int length = batteryCalibrationLength();
+  if(length < batteryCalibrationLengthMax){
+    batteryCalibration[length] = value;
+    Serial.print("Added value ");
+    Serial.print(value);
+    Serial.print(" to index ");
+    Serial.println(length);
+    saveBatteryCalibration();
+    length ++;
+  }
+  return length;
+} 
+int batteryCalibrationLength()  //how many values actually filled
+{
+  if(!batteryCalibrationLoaded)
+    loadBatteryCalibration();
+  for (int i = 0; i < batteryCalibrationLengthMax; i++)
+  {
+    if (batteryCalibration[i] == 0)
+      return i;
+  }
+  return batteryCalibrationLengthMax;
+}
+int batteryCalibrationGetIndexOfValue(int value) //on which index is located given value (0 ... batteryCalibrationLengthMax)
+{
+  if(!batteryCalibrationLoaded)
+    loadBatteryCalibration();
+  if(value <= 0)
+    return 0;
+  for (int i = 0; i < batteryCalibrationLengthMax-1; i++)
+  {
+    int cur = batteryCalibration[i];
+    int next = batteryCalibration[i+1];
+    if(cur==0 || next==0)  //end of array
+      return i;
+    if (min(cur, next)>=value && max(cur, next)<value)
+      return i;
+  }
+  return batteryCalibrationLengthMax;
+}
+float batteryCalibrationGetValuePercent(int value) //which persent of charge (0...100) is this RAW value (0...4096)
+{
+  float total = batteryCalibrationLength();
+  float curr = batteryCalibrationGetIndexOfValue(value);   //0=100; total=0
+  return map(curr, 0, total, 100/*%*/, 0/*%*/);
+}
+
 //----------------------//---------------------- SHORTCUTS ----------//----------------------//----------------------//----------------------//----------------------
 int getActionId(int eventId, int defaultActionId)
 { // 123456789012345
@@ -388,7 +483,7 @@ void saveLangValue(int value)
 }
 int getLang()
 {
-  if(langCache == -1)
+  if (langCache == -1)
     langCache = preferencesObject.getInt("lang", LANG_UA);
   return langCache;
 }

@@ -117,40 +117,40 @@ void modeUsbMscLoop()
   lcd()->setFont(u8g2_font_10x20_t_cyrillic); // ok
   lcd()->setColorIndex(black);
   lcd()->setCursor(5, 18);
-  lcd()->print("Доступ по USB");
+  lcd()->print(L("Доступ по USB", "USB Access"));
 
   drawStatusbar(363, 1, true);
 
   if(modeUsbMsc_partition != NULL){
 
     draw_ic24_usb(180, 20, black);
-    drawCentered("Підключіть до USB", 60);
-    drawCentered("та закиньте файли з компа", 75);
+    drawCentered(L("Підключіть до USB", "Connect to USB"), 60);
+    drawCentered(L("та закиньте файли з компа", "and copy files from PC"), 75);
 
     draw_ic24_arrow_up(80, 100, black);
-    drawCentered("Прочитано", 90, 135);
-    sprintf(buffer, "%dK байт", modeUsbMsc_bytesRead/1000);
+    drawCentered(L("Прочитано", "Read"), 90, 135);
+    sprintf(buffer, L("%dK байт", "%dK bytes"), modeUsbMsc_bytesRead/1000);
     drawCentered(buffer, 90, 150);
     
     draw_ic24_arrow_down(280, 100, black);
-    drawCentered("Записано", 290, 135);
-    sprintf(buffer, "%dK байт", modeUsbMsc_bytesWrite/1000);
+    drawCentered(L("Записано", "Write"), 290, 135);
+    sprintf(buffer, L("%dK байт", "%dK bytes"), modeUsbMsc_bytesWrite/1000);
     drawCentered(buffer, 290, 150);
 
     if(modeUsbMsc_errorsWrite > 0)
     {
-      sprintf(buffer, "Помилок запису: %d!", modeUsbMsc_errorsWrite);
+      sprintf(buffer, L("Помилок запису: %d!", "Write errors: %d!"), modeUsbMsc_errorsWrite);
       drawCentered(buffer, 200, 170);
     }
 
     draw_ic16_warning(25, 206, black);
-    lcd()->drawUTF8(55, 202, "Увага! Ніколи не зберігайте");
-    lcd()->drawUTF8(55, 217, "на годиннику цінні файли!");
-    lcd()->drawUTF8(55, 232, "Буває, що файли втрачаються!");
+    lcd()->drawUTF8(55, 202, L("Увага! Ніколи не зберігайте", "Warning! Never store"));
+    lcd()->drawUTF8(55, 217, L("на годиннику цінні файли!", "impotrant files in watch!"));
+    lcd()->drawUTF8(55, 232, L("Буває, що файли втрачаються!", "Files can be lost!"));
   }
   else{
     draw_ic24_bad_file(170, 90, black);
-    drawCentered("Розділ недоступний", 150);
+    drawCentered(L("Розділ недоступний", "Partition error"), 150);
   }
 
   lcd()->setColorIndex(black);

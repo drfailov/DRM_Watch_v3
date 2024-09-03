@@ -17,8 +17,8 @@ byte batteryBars();
 #include "Buzzer.h"
 #include <Arduino.h>
 
-byte batteryCalibrationCnt = 4;
-float batteryCalibration[][2] = {    //raw analog reading to voltage in mv
+byte batteryDefaultCalibrationCnt = 4;
+float batteryDefaultCalibration[][2] = {    //raw analog reading to voltage in mv
   {0, 0}, //{mv, raw}
   {3000, 4650}, //{mv, raw}
   {4200, 6550}, //{mv, raw}
@@ -51,7 +51,7 @@ void drawBattery(int x, int y){
 
 RTC_DATA_ATTR float batterySmoothVoltage = -1;
 float readSensBatteryVoltage(){
-  float currentVoltage = linearInterpolate((int)readSensBatteryRaw(), batteryCalibration, batteryCalibrationCnt);
+  float currentVoltage = linearInterpolate((int)readSensBatteryRaw(), batteryDefaultCalibration, batteryDefaultCalibrationCnt);
   if(batterySmoothVoltage == -1)
     batterySmoothVoltage = currentVoltage;
   else
