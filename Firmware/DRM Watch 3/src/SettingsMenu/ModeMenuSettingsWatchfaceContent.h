@@ -59,23 +59,23 @@ void ModeMenuSettingsWatchfaceContentLoop(){
   lcd()->setFont(u8g2_font_10x20_t_cyrillic);  //ok
   lcd()->setColorIndex(black);
   lcd()->setCursor(5, 18); 
-  lcd()->print("Вміст циферблату");
+  lcd()->print(L("Вміст циферблату", "Watchface content"));
 
   drawMenuLegend();
   drawStatusbar(363, 1, true);
 
-  drawListItem(ModeMenuSettingsWatchfaceContentItemBack, draw_ic24_back, "Повернутись", "В налаштування екрана", firstDraw);
+  drawListItem(ModeMenuSettingsWatchfaceContentItemBack, draw_ic24_back, L("Повернутись", "Back"), L("В налаштування екрана", "To display settings"), firstDraw);
 
-  drawListCheckbox(ModeMenuSettingsWatchfaceContentItemShowStatusbar,         draw_ic24_battery50,       "Статус-бар", "Значки статусу годинника", getWatchfaceStatusbarEnabled(), firstDraw);
-  drawListCheckbox(ModeMenuSettingsWatchfaceContentItemShowAnalog,            draw_ic24_clock,           "Час стрілками", "Класичний годинник", getWatchfaceAnalogEnabled(), firstDraw);
-  drawListCheckbox(ModeMenuSettingsWatchfaceContentItemShowDigital,           draw_ic24_digitalclock,    "Час цифрами", "Цифровий годинник", getWatchfaceDigitalEnabled(), firstDraw);
-  drawListCheckbox(ModeMenuSettingsWatchfaceContentItemShowTemperature,       draw_ic24_temperature,     "Температура", "Температура мікросхеми RTC", getWatchfaceTemperatureEnabled(), firstDraw);
-  drawListCheckbox(ModeMenuSettingsWatchfaceContentItemShowDayOfWeek,         draw_ic24_weekday,         "День тижня", "Який зараз день тижня", getWatchfaceDayOfWeekEnabled(), firstDraw);
-  drawListCheckbox(ModeMenuSettingsWatchfaceContentItemShowDate,              draw_ic24_date,            "Поточна дата", "Яка зараз дата", getWatchfaceDateEnabled(), firstDraw);
-  drawListCheckbox(ModeMenuSettingsWatchfaceContentItemShowMonth,             draw_ic24_date,            "Назва місяця", "Назва місяця під датою", getWatchfaceMonthEnabled(), firstDraw);
-  drawListCheckbox(ModeMenuSettingsWatchfaceContentItemShowDjiLogo,           draw_ic24_dji,             "Лого DJI", "У мене всюди їх лого, навіть тут", getWatchfaceDjiLogoEnabled(), firstDraw);
-  drawListCheckbox(ModeMenuSettingsWatchfaceContentItemShowLifeBackgound,     draw_ic24_life,            "Фон \"Життя\"", "Convey's Game Of Life", getWatchfaceLifeBackgroundEnabled(), firstDraw);
-  drawListCheckbox(ModeMenuSettingsWatchfaceContentItemShowRandomBackgound,   draw_ic24_random,          "Фон \"Шум\"", "Випадковий шум на фоні", getWatchfaceRandomBackgroundEnabled(), firstDraw);
+  drawListCheckbox(ModeMenuSettingsWatchfaceContentItemShowStatusbar,         draw_ic24_battery50,       L("Статус-бар", "Status bar"),             "Значки статусу годинника", getWatchfaceStatusbarEnabled(), firstDraw);
+  drawListCheckbox(ModeMenuSettingsWatchfaceContentItemShowAnalog,            draw_ic24_clock,           L("Час стрілками", "Analog clock"),        "Класичний годинник", getWatchfaceAnalogEnabled(), firstDraw);
+  drawListCheckbox(ModeMenuSettingsWatchfaceContentItemShowDigital,           draw_ic24_digitalclock,    L("Час цифрами", "Digital clock"),         "Цифровий годинник", getWatchfaceDigitalEnabled(), firstDraw);
+  drawListCheckbox(ModeMenuSettingsWatchfaceContentItemShowTemperature,       draw_ic24_temperature,     L("Температура", "Temperature"),           "Температура мікросхеми RTC", getWatchfaceTemperatureEnabled(), firstDraw);
+  drawListCheckbox(ModeMenuSettingsWatchfaceContentItemShowDayOfWeek,         draw_ic24_weekday,         L("День тижня", "Day of week"),            "Який зараз день тижня", getWatchfaceDayOfWeekEnabled(), firstDraw);
+  drawListCheckbox(ModeMenuSettingsWatchfaceContentItemShowDate,              draw_ic24_date,            L("Поточна дата", "Date"),                 "Яка зараз дата", getWatchfaceDateEnabled(), firstDraw);
+  drawListCheckbox(ModeMenuSettingsWatchfaceContentItemShowMonth,             draw_ic24_date,            L("Назва місяця", "Month name"),           "Назва місяця під датою", getWatchfaceMonthEnabled(), firstDraw);
+  drawListCheckbox(ModeMenuSettingsWatchfaceContentItemShowDjiLogo,           draw_ic24_dji,             L("Лого DJI", "DJI Logo"),                 "У мене всюди їх лого, навіть тут", getWatchfaceDjiLogoEnabled(), firstDraw);
+  drawListCheckbox(ModeMenuSettingsWatchfaceContentItemShowLifeBackgound,     draw_ic24_life,            L("Фон \"Життя\"", "Background \"Life\""), "Convey's Game Of Life", getWatchfaceLifeBackgroundEnabled(), firstDraw);
+  drawListCheckbox(ModeMenuSettingsWatchfaceContentItemShowRandomBackgound,   draw_ic24_random,          L("Фон \"Шум\"", "Background \"Noize\""),  "Випадковий шум на фоні", getWatchfaceRandomBackgroundEnabled(), firstDraw);
   drawListCheckbox(ModeMenuSettingsWatchfaceContentItemShowAntBackgound,      draw_ic24_ant2,            "Фон \"Mypaxa\"", "Мураха Ленгтона на фоні", getWatchfaceAntBackgroundEnabled(), firstDraw);
   drawListCheckbox(ModeMenuSettingsWatchfaceContentItemShowDotsBackgound,     draw_ic24_pixels,          "Фон \"Точки\"", "Щокадру додається 1 точка на фоні", getWatchfaceDotsBackgroundEnabled(), firstDraw);
   drawListCheckbox(ModeMenuSettingsWatchfaceContentItemShowFireBackgound,     draw_ic24_fire,            "Фон \"Вогонь\"", "Красива симуляція вогню", getWatchfaceFireBackgroundEnabled(), firstDraw);

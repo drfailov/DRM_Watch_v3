@@ -251,7 +251,7 @@ int batteryCalibrationGetIndexOfValue(int value) //on which index is located giv
     int next = batteryCalibration[i+1];
     if(cur==0 || next==0)  //end of array
       return i;
-    if (min(cur, next)>=value && max(cur, next)<value)
+    if (min(cur, next)<=value && max(cur, next)>value)
       return i;
   }
   return batteryCalibrationLengthMax;

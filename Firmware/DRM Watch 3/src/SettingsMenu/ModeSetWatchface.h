@@ -34,7 +34,7 @@ void ModeSetWatchfaceLoop(){
   getWatchfaceDrawable(index)(false);
 
   String name = getWatchfaceName(index);
-  drawMessage("Вибір циферблату", name.c_str());
+  drawMessage(L("Вибір циферблату", "Watchface selection"), name.c_str());
 
   draw_ic16_arrow_up(lx(), ly1(), black);
   draw_ic16_back(lx(), ly2(), black);
