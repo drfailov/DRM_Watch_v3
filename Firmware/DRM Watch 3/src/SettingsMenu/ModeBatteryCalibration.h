@@ -217,7 +217,7 @@ void ModeBatteryCalibrationLoop(){
 
       return;
     }
-   if(timeSinceLastAdded > valueAddInterval){
+   if(timeSinceLastAdded > valueAddInterval || total == 0){
       valueAddLastTime = millis();
       batteryCalibrationAddValue(raw);
     }
