@@ -22,8 +22,7 @@ void drawCentered(const char *str);
 void drawCentered(String str, int y);
 void drawCentered(const char *str, int y);
 void drawDashedLine(u8g2_uint_t x1, u8g2_uint_t y1, u8g2_uint_t x2, u8g2_uint_t y2, u8g2_int_t d);
-void drawPlot(int x, int y, int w, int h, int16_t* values, int length, int highlightIndex);
-void drawSecondPlot(int x, int y, int w, int h, int16_t* mainValues, int16_t* secondValues, int length);
+void drawPlot(int x, int y, int w, int h, int thickness, bool legend, int16_t* rangeValues, int16_t* values, int length, int highlightIndex);
 void print(char *arr, int length);
 const char* L(const char* ua, const char* en);
 const char* langName(int lang);
@@ -340,7 +339,19 @@ void drawMessage(String text, String text2, bool animate)
 }
 
 
-void drawPlot(int x, int y, int w, int h, int16_t* values, int length, int highlightIndex)
+/// @brief Draw plot on screen
+/// @param x   Top left corner X
+/// @param y   Top left corner Y
+/// @param w   winth in pixels
+/// @param h   height in pixels
+/// @param thickness   thickness of line (0...3)
+/// @param legend    If draw min, max and frame
+/// @param rangeValues  Array of [length] items which range will be used as min and max. By default use same array as "values"  
+/// @param values    Array of data to be displayed
+/// @param length   Length of data. If set incorrectly - will be memory error
+/// @param highlightIndex   //Index in element to be highlighted (1...lingth-2)
+/// @example drawPlot (/*x*/10, /*y*/40, /*w*/360, /*h*/90, /*thickness*/2, /*legend*/true,  /*rangeValues*/ModeTestBatteryAnalysisHistoryDeviation, /*values*/ModeTestBatteryAnalysisHistoryDeviation,      /*length*/ModeTestBatteryAnalysisHistorySize, /*highlight*/0);
+void drawPlot(int x, int y, int w, int h, int thickness, bool legend, int16_t* rangeValues, int16_t* values, int length, int highlightIndex)
 {
   //config
   int padding = 15;
@@ -348,12 +359,15 @@ void drawPlot(int x, int y, int w, int h, int16_t* values, int length, int highl
   //frame
   // lcd()->setColorIndex(white);
   // lcd()->drawBox(x, y, w, h);
-  lcd()->setColorIndex(black);
-  lcd()->drawFrame(x, y, w, h);
-  lcd()->drawFrame(x-1, y-1, w+2, h+2);
+  if(legend){
+    lcd()->setColorIndex(black);
+    lcd()->drawFrame(x, y, w, h);
+    lcd()->drawFrame(x-1, y-1, w+2, h+2);
+  }
 
-  if(length == 0)
+  if(length == 0 && legend)
   {
+    lcd()->setColorIndex(black);
     lcd()->setFont(u8g2_font_10x20_t_cyrillic); // ok
     strcpy(buffer, L("Немає даних", "No data"));
     int width = lcd()->getUTF8Width(buffer);
@@ -363,19 +377,22 @@ void drawPlot(int x, int y, int w, int h, int16_t* values, int length, int highl
   }
   
   //min and max
-  int16_t min = values[0];
-  int16_t max = values[0];
+  int16_t min = rangeValues[0];
+  int16_t max = rangeValues[0];
   for(int i = 1; i < length; i++){
-    if(values[i] < min)
-      min = values[i];
-    if(values[i] > max)
-      max = values[i];
+    if(rangeValues[i] < min)
+      min = rangeValues[i];
+    if(rangeValues[i] > max)
+      max = rangeValues[i];
   }
-  lcd()->setFont(u8g2_font_unifont_t_cyrillic); //smalll
-  lcd()->setCursor(x+2, y+12);
-  lcd()->print(max);
-  lcd()->setCursor(x+2, y+h-2);
-  lcd()->print(min);
+  if(legend){
+    lcd()->setColorIndex(black);
+    lcd()->setFont(u8g2_font_unifont_t_cyrillic); //smalll
+    lcd()->setCursor(x+2, y+12);
+    lcd()->print(max);
+    lcd()->setCursor(x+2, y+h-2);
+    lcd()->print(min);
+  }
   
   //plot line
   float maxPoint = y+padding;
@@ -387,8 +404,14 @@ void drawPlot(int x, int y, int w, int h, int16_t* values, int length, int highl
   for(int i = 1; i < length; i++){
     float cx = map(i, 0, length, leftPoint, rightPoint);
     float cy = map(values[i], min, max, minPoint, maxPoint);
-    lcd()->drawLine(cx, cy, lastX, lastY);
-    lcd()->drawLine(cx, cy+1, lastX, lastY+1);
+    if(thickness == 0)
+      drawDashedLine(cx, cy, lastX, lastY, 1);
+    if (thickness > 0)
+      lcd()->drawLine(cx, cy, lastX, lastY);
+    if (thickness > 1)
+      lcd()->drawLine(cx, cy+1, lastX, lastY+1);
+    if (thickness > 2)
+      lcd()->drawLine(cx, cy-1, lastX, lastY-1);
     lastX = cx;
     lastY = cy;
   }
@@ -398,61 +421,10 @@ void drawPlot(int x, int y, int w, int h, int16_t* values, int length, int highl
     float cy = map(values[highlightIndex], min, max, minPoint, maxPoint);
     float cx = map(highlightIndex, 0, length, leftPoint, rightPoint);
     drawDashedLine(cx, y+padding, cx, y+h-padding-1, 1);
-    lcd()->drawDisc(cx, cy, 3);
+    lcd()->drawDisc(cx, cy, 2+thickness);
   }
 }
-void drawSecondPlot(int x, int y, int w, int h, int16_t* mainValues, int16_t* secondValues, int length)
-{
-  //config
-  int padding = 15;
 
-  //frame
-  // lcd()->setColorIndex(white);
-  // lcd()->drawBox(x, y, w, h);
-  lcd()->setColorIndex(black);
-  //lcd()->drawFrame(x, y, w, h);
-  //lcd()->drawFrame(x-1, y-1, w+2, h+2);
-
-  // if(length == 0)
-  // {
-  //   lcd()->setFont(u8g2_font_10x20_t_cyrillic); // ok
-  //   strcpy(buffer, L("Немає даних", "No data"));
-  //   int width = lcd()->getUTF8Width(buffer);
-  //   lcd()->setCursor((W - 30 - width) / 2, y+h/2+5);
-  //   lcd()->print(buffer);
-  //   return;
-  // }
-  
-  //min and max
-  int16_t min = mainValues[0];
-  int16_t max = mainValues[0];
-  for(int i = 1; i < length; i++){
-    if(mainValues[i] < min)
-      min = mainValues[i];
-    if(mainValues[i] > max)
-      max = mainValues[i];
-  }
-  // lcd()->setFont(u8g2_font_unifont_t_cyrillic); //smalll
-  // lcd()->setCursor(x+2, y+12);
-  // lcd()->print(max);
-  // lcd()->setCursor(x+2, y+h-2);
-  // lcd()->print(min);
-  
-  //plot line
-  float maxPoint = y+padding;
-  float minPoint = y+h-padding;
-  float leftPoint = x;
-  float rightPoint = x+w;
-  float lastX = map(0, 0, length, leftPoint, rightPoint);
-  float lastY = map(secondValues[0], min, max, minPoint, maxPoint);
-  for(int i = 1; i < length; i++){
-    float cx = map(i, 0, length, leftPoint, rightPoint);
-    float cy = map(secondValues[i], min, max, minPoint, maxPoint);
-    drawDashedLine(cx, cy, lastX, lastY, 1);
-    lastX = cx;
-    lastY = cy;
-  }
-}
 //user must press OK to continue
 void waitOk(){
   draw_ic16_empty(lx(), ly1(), black);

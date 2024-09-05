@@ -19,7 +19,6 @@ void wakeup_reason();
 #include "ModeTest.h"
 
 
-
 void setModeTestBatteryAnalysis(){
   if(modeExit != 0)
     modeExit();
@@ -40,50 +39,39 @@ void setModeTestBatteryAnalysis(){
   autoSleepTime = autoSleepDefaultTime;
 }
 
-RTC_DATA_ATTR float averageRaw = -1;
-RTC_DATA_ATTR float averageDeviation = -1;
-
+//RTC_DATA_ATTR float averageRaw = -1;
+//RTC_DATA_ATTR float averageDeviation = -1;
 
 #define ModeTestBatteryAnalysisHistorySize 100
 int16_t ModeTestBatteryAnalysisHistoryRaw[ModeTestBatteryAnalysisHistorySize]; 
-int16_t ModeTestBatteryAnalysisHistoryAverageRaw[ModeTestBatteryAnalysisHistorySize]; 
 int16_t ModeTestBatteryAnalysisHistoryDeviation[ModeTestBatteryAnalysisHistorySize]; 
-int16_t ModeTestBatteryAnalysisHistoryAverageDeviation[ModeTestBatteryAnalysisHistorySize]; 
 int16_t ModeTestBatteryAnalysisHistoryLimitDeviation[ModeTestBatteryAnalysisHistorySize]; 
 int16_t ModeTestBatteryAnalysisHistoryFiltered[ModeTestBatteryAnalysisHistorySize]; 
 
 
-
-
 void ModeTestBatteryAnalysisLoop(){ 
-
+  //this mechanism is DUPLICATED here.
   float raw = readSensBatteryRaw();
-  if(averageRaw == -1)
-    averageRaw = raw;
+  // if(averageRaw == -1)
+  //   averageRaw = raw;
   float volt = readSensBatteryVoltage();
-  float deviation = abs(raw-averageRaw);
-  if(averageDeviation == -1)
-    averageDeviation = deviation;
-  float limitDeviation = averageDeviation*2;
-  float filtered = raw;
-  if(deviation > limitDeviation)
-    filtered = averageRaw;
+  float deviation = abs(raw-battery_averageRaw);
+  // if(averageDeviation == -1)
+  //   averageDeviation = deviation;
+  float limitDeviation = battery_averageDeviation*2;
+  float filtered = readSensBatteryRawFiltered(raw);
 
-  averageRaw += (raw-averageRaw)*0.1;
-  averageDeviation += (deviation-averageDeviation)*0.1;
+  //averageRaw += (raw-averageRaw)*0.1;
+  //averageDeviation += (deviation-averageDeviation)*0.1;
   
   for(int i=1; i<ModeTestBatteryAnalysisHistorySize; i++){
     ModeTestBatteryAnalysisHistoryRaw[i-1]=ModeTestBatteryAnalysisHistoryRaw[i];
-    ModeTestBatteryAnalysisHistoryAverageRaw[i-1]=ModeTestBatteryAnalysisHistoryAverageRaw[i];
     ModeTestBatteryAnalysisHistoryDeviation[i-1]=ModeTestBatteryAnalysisHistoryDeviation[i];
-    ModeTestBatteryAnalysisHistoryAverageDeviation[i-1]=ModeTestBatteryAnalysisHistoryAverageDeviation[i];
     ModeTestBatteryAnalysisHistoryLimitDeviation[i-1]=ModeTestBatteryAnalysisHistoryLimitDeviation[i];
     ModeTestBatteryAnalysisHistoryFiltered[i-1]=ModeTestBatteryAnalysisHistoryFiltered[i];
   }
   ModeTestBatteryAnalysisHistoryRaw[ModeTestBatteryAnalysisHistorySize-1] = raw;
-  ModeTestBatteryAnalysisHistoryAverageRaw[ModeTestBatteryAnalysisHistorySize-1] = averageRaw;
   ModeTestBatteryAnalysisHistoryDeviation[ModeTestBatteryAnalysisHistorySize-1] = deviation;
-  ModeTestBatteryAnalysisHistoryAverageDeviation[ModeTestBatteryAnalysisHistorySize-1] = averageDeviation;
   ModeTestBatteryAnalysisHistoryLimitDeviation[ModeTestBatteryAnalysisHistorySize-1] = limitDeviation;
   ModeTestBatteryAnalysisHistoryFiltered[ModeTestBatteryAnalysisHistorySize-1] = filtered;
 
@@ -112,19 +100,19 @@ void ModeTestBatteryAnalysisLoop(){
   lcd()->setCursor(300, 17);
   lcd()->setFont(u8g2_font_unifont_t_cyrillic); //smalll
   lcd()->print("Avg:");
-  lcd()->print(averageRaw);
+  lcd()->print(battery_averageRaw);
 
-
-  drawPlot      (/*x*/10, /*y*/40, /*w*/360, /*h*/90, ModeTestBatteryAnalysisHistoryDeviation, /*length*/ModeTestBatteryAnalysisHistorySize, /*highlight*/0);
-  drawSecondPlot(/*x*/10, /*y*/40, /*w*/360, /*h*/90, ModeTestBatteryAnalysisHistoryDeviation, ModeTestBatteryAnalysisHistoryLimitDeviation, /*length*/ModeTestBatteryAnalysisHistorySize);
-
-  drawPlot      (/*x*/10, /*y*/140, /*w*/360, /*h*/90, ModeTestBatteryAnalysisHistoryFiltered, /*length*/ModeTestBatteryAnalysisHistorySize, /*highlight*/0);
-  drawSecondPlot(/*x*/10, /*y*/140, /*w*/360, /*h*/90, ModeTestBatteryAnalysisHistoryFiltered, ModeTestBatteryAnalysisHistoryAverageRaw, /*length*/ModeTestBatteryAnalysisHistorySize);
-  drawSecondPlot(/*x*/10, /*y*/140, /*w*/360, /*h*/90, ModeTestBatteryAnalysisHistoryFiltered, ModeTestBatteryAnalysisHistoryRaw, /*length*/ModeTestBatteryAnalysisHistorySize);
+  lcd()->setFont(u8g2_font_unifont_t_cyrillic); //smalll
+  lcd()->drawUTF8(10, 37, "Deviation / Limit deviation");
+  drawPlot (/*x*/10, /*y*/40, /*w*/360, /*h*/85, /*thickness*/2, /*legend*/true,  /*rangeValues*/ModeTestBatteryAnalysisHistoryDeviation, /*values*/ModeTestBatteryAnalysisHistoryDeviation,      /*length*/ModeTestBatteryAnalysisHistorySize, /*highlight*/0);
+  drawPlot (/*x*/10, /*y*/40, /*w*/360, /*h*/85, /*thickness*/0, /*legend*/false, /*rangeValues*/ModeTestBatteryAnalysisHistoryDeviation, /*values*/ModeTestBatteryAnalysisHistoryLimitDeviation, /*length*/ModeTestBatteryAnalysisHistorySize, /*highlight*/0);
+  
+  lcd()->drawUTF8(10, 147, "Filtered RAW / Non-filtered RAW");
+  drawPlot (/*x*/10, /*y*/150, /*w*/360, /*h*/85, /*thickness*/3, /*legend*/true,  /*rangeValues*/ModeTestBatteryAnalysisHistoryRaw, /*values*/ModeTestBatteryAnalysisHistoryFiltered, /*length*/ModeTestBatteryAnalysisHistorySize, /*highlight*/0);
+  drawPlot (/*x*/10, /*y*/150, /*w*/360, /*h*/85, /*thickness*/0, /*legend*/false, /*rangeValues*/ModeTestBatteryAnalysisHistoryRaw, /*values*/ModeTestBatteryAnalysisHistoryRaw, /*length*/ModeTestBatteryAnalysisHistorySize, /*highlight*/0);
   
   draw_ic16_arrow_up(lx(), ly1(), black);
   draw_ic16_back(lx(), ly2(), black);
-  //draw_ic16_hashtag(lx(), ly3(), black);
 
 if(esp_sleep_get_wakeup_cause() != ESP_SLEEP_WAKEUP_TIMER) //if wake by timer, don't refresh display to keep image static, image will refresh when go to lock screen and drawing lock icon
     lcd()->sendBuffer();
@@ -132,14 +120,11 @@ if(esp_sleep_get_wakeup_cause() != ESP_SLEEP_WAKEUP_TIMER) //if wake by timer, d
 
 
 void ModeTestBatteryAnalysisButtonUp(){
-  //goToSleep();
-  //switchDontSleep();
   setModeTest();
 }
 
 void ModeTestBatteryAnalysisButtonCenter(){
   setModeAppsMenu();
-  //wifiOff();
 }
 
 void ModeTestBatteryAnalysisButtonDown(){

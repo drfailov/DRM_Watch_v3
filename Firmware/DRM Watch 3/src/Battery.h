@@ -9,6 +9,8 @@ void onChargerConnected();
 int analogSmoothRead(int pin);
 int readSensUsbRaw();
 int readSensBatteryRaw();
+int readSensBatteryRawFiltered(float raw);
+int readSensBatteryRawFiltered();
 void drawBattery(int x, int y);
 float readSensBatteryVoltage();
 byte batteryBars();
@@ -51,7 +53,7 @@ void drawBattery(int x, int y){
 
 RTC_DATA_ATTR float batterySmoothVoltage = -1;
 float readSensBatteryVoltage(){
-  float currentVoltage = linearInterpolate((int)readSensBatteryRaw(), batteryDefaultCalibration, batteryDefaultCalibrationCnt);
+  float currentVoltage = linearInterpolate((int)readSensBatteryRawFiltered(), batteryDefaultCalibration, batteryDefaultCalibrationCnt);
   if(batterySmoothVoltage == -1)
     batterySmoothVoltage = currentVoltage;
   else
@@ -103,6 +105,31 @@ void onChargerDisconnected(){
 void onChargerConnected(){
   buzPlayChargerConnectedTone();
   registerAction();
+}
+
+
+RTC_DATA_ATTR float battery_averageRaw = -1;
+RTC_DATA_ATTR float battery_averageDeviation = -1;
+int readSensBatteryRawFiltered(float raw)
+{
+  if(battery_averageRaw == -1)
+    battery_averageRaw = raw;
+  float deviation = abs(raw-battery_averageRaw);
+  if(battery_averageDeviation == -1)
+    battery_averageDeviation = deviation;
+  float limitDeviation = battery_averageDeviation*2;
+  float filtered = raw;
+  if(deviation > limitDeviation)
+    filtered = battery_averageRaw;
+
+  battery_averageRaw += (raw-battery_averageRaw)*0.1;
+  battery_averageDeviation += (deviation-battery_averageDeviation)*0.1;
+  return (int)filtered;
+}
+int readSensBatteryRawFiltered()
+{
+  float raw = (int)readSensBatteryRaw();
+  return readSensBatteryRawFiltered(raw);
 }
 
 int readSensBatteryRaw(){

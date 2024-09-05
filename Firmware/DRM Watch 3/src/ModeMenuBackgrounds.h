@@ -63,18 +63,18 @@ void ModeBackgroundsMenuLoop(){
   lcd()->setFont(u8g2_font_10x20_t_cyrillic);  //ok
   lcd()->setColorIndex(black);
   lcd()->setCursor(5, 18); 
-  lcd()->print("Заставки");
+  lcd()->print(L("Заставки", "Backgrounds"));
   
   drawStatusbar(363, 1, true);
   drawMenuLegend();
   
-  drawMenuItem(itemModeBackgroundsBack,       draw_ic24_back,       "Вийти",                         false);
-  drawMenuItem(itemModeBackgroundsLife,       draw_ic24_life,       "Клітковий автомат \"Життя\"",   firstDraw);
-  drawMenuItem(itemModeBackgroundsFire,       draw_ic24_fire,       "Вогонь",                        false);
-  drawMenuItem(itemModeBackgroundsLava,       draw_ic24_bubbles,    "Лава Лампа",                    false);
-  drawMenuItem(itemModeBackgroundsRandom,     draw_ic24_random,     "Випадковий шум",                false);
-  drawMenuItem(itemModeBackgroundsAnt,        draw_ic24_ant2,       "Mypaxa Ленгтона",               firstDraw);
-  drawMenuItem(itemModeBackgroundsDots,       draw_ic24_pixels,     "Точки",                         false);
+  drawMenuItem(itemModeBackgroundsBack,       draw_ic24_back,       L("Вийти", "Back"),                                        false);
+  drawMenuItem(itemModeBackgroundsLife,       draw_ic24_life,       L("Клітковий автомат \"Життя\"", "Convey's Game Of Life"), false);
+  drawMenuItem(itemModeBackgroundsFire,       draw_ic24_fire,       L("Вогонь", "Fire"),                                       false);
+  drawMenuItem(itemModeBackgroundsLava,       draw_ic24_bubbles,    L("Лава Лампа", "Lava lamp"),                              firstDraw);
+  drawMenuItem(itemModeBackgroundsRandom,     draw_ic24_random,     L("Випадковий шум", "Noize"),                              false);
+  drawMenuItem(itemModeBackgroundsAnt,        draw_ic24_ant2,       L("Mypaxa Ленгтона", "Lengton`s ant"),                     false);
+  drawMenuItem(itemModeBackgroundsDots,       draw_ic24_pixels,     L("Точки", "Dots"),                                        false);
   
   lcd()->sendBuffer();
 }

@@ -17,7 +17,7 @@ void ModeBatteryCalibrationButtonDown();
 
 bool calibrationRunning = false;
 unsigned long valueAddLastTime = 0;
-unsigned long valueAddInterval = 1000*60*5; //5m
+unsigned long valueAddInterval = 1000*60*4; //4m
 //unsigned long valueAddInterval = 1000*10; //10s
 
 
@@ -46,7 +46,7 @@ void setModeBatteryCalibration(){
 
 
 void ModeBatteryCalibrationLoop(){
-  int raw = readSensBatteryRaw();
+  int raw = readSensBatteryRawFiltered();
   float volt = readSensBatteryVoltage();
   int total = batteryCalibrationLength();
   int inx = batteryCalibrationGetIndexOfValue(raw);
@@ -100,11 +100,7 @@ void ModeBatteryCalibrationLoop(){
       lcd()->setCursor(10, 60);
       lcd()->setFont(u8g2_font_unifont_t_cyrillic); //smalll
       lcd()->print(L("Каліброка не проводилась.", "No calibration data."));
-      
-      
     }
-    //lcd()->print("isBatteryCalibrated(): "); lcd()->print(isBatteryCalibrated());
-    //lcd()->print(", Total: "); lcd()->print(total);
   }
   lcd()->setCursor(10, 90);
   lcd()->setFont(u8g2_font_unifont_t_cyrillic); //smalll
@@ -113,45 +109,8 @@ void ModeBatteryCalibrationLoop(){
   lcd()->print(", ");
   lcd()->print(((float)volt)/1000.0);
   lcd()->print("v");
-  
 
-  //lcd()->setFont(u8g2_font_unifont_t_cyrillic); //smalll
-
-  //lcd()->setCursor(10, 50); 
-  //lcd()->print("isBatteryCalibrated(): "); lcd()->print(isBatteryCalibrated());
-  //lcd()->print(", Total: "); lcd()->print(total);
-
-  //lcd()->setCursor(10, 65);
-  //lcd()->print("RAW: "); lcd()->print(raw);
-  //lcd()->print(", index: "); lcd()->print(inx);
-  
-  //lcd()->setCursor(10, 80); 
-  //lcd()->print("timeSinceLastAdded: "); lcd()->print(timeSinceLastAdded);
-  
-  //lcd()->setCursor(10, 95); 
-  //lcd()->print("calibrationTime: "); displayPrintSecondsAsTime(calibrationTime/1000);
-
-  drawPlot(10, 100, 360, 125, batteryCalibration, batteryCalibrationLength(), /*highlight*/inx);
-
-  // y+=interval; lcd()->setCursor(x, y); lcd()->print("Internal RTC: "); lcd()->print(_rtcInternal()->getTime("%d %b %Y %H:%M:%S"));  lcd()->print(" ("); lcd()->print(_rtcInternal()->getEpoch());   lcd()->print(")");
-  // y+=interval; lcd()->setCursor(x, y); lcd()->print("External RTC: "); printRtcGetTimeRaw();   
-  // y+=interval; lcd()->setCursor(x, y); lcd()->print("SinceLastSync :"); displayPrintSecondsAsTime(rtcGetUtcEpoch()-getLastTimeSync());  lcd()->print(" Last sync:"); lcd()->print(getLastTimeSync());   
-  // y+=interval; lcd()->setCursor(x, y); lcd()->print("RTC CLK SRC: "); lcd()->print(getRtcSrc());
-
-  // y+=interval; lcd()->setCursor(x, y); lcd()->print("Wakeup_reason: "); wakeup_reason();
-  // y+=interval; lcd()->setCursor(x, y); lcd()->print("Millis:"); lcd()->print(millis()); lcd()->print(",   Don't sleep: "); lcd()->print(dontSleep);
-
-  // y+=interval; lcd()->setCursor(x, y); lcd()->print("RAW ");  lcd()->print("BATTERY: "); lcd()->print(readSensBatteryRaw()); lcd()->print(", USB:"); lcd()->print(readSensUsbRaw()); lcd()->print(" : "); lcd()->print(isChargerConnected());
-  // y+=interval; lcd()->setCursor(x, y); lcd()->print("VOLTAGE ");  lcd()->print("BATTERY: "); lcd()->print(readSensBatteryVoltage()); lcd()->print(" ("); lcd()->print(batteryBars()); lcd()->print(" bars)"); 
-  // y+=interval; lcd()->setCursor(x, y); lcd()->print("MIN voltage: ");  lcd()->print(getBatteryMinVoltage());  lcd()->print(", MAX voltage: ");  lcd()->print(getBatteryMaxVoltage()); 
-  // y+=interval; lcd()->setCursor(x, y); lcd()->print("SinceLastCharged: "); displayPrintSecondsAsTime(getTimeSinceLastCharged());
-
-  // y+=interval; lcd()->setCursor(x, y); lcd()->print("Preferences remaining memory: "); lcd()->print(getPreferencesFreeSpace());
-  // y+=interval; lcd()->setCursor(x, y); lcd()->print("RAM State: "); lcd()->print(esp_get_free_heap_size());  lcd()->print(",  ");  lcd()->print(ESP.getFreeHeap()); //RAM diagnosis
-
-  //y+=interval; lcd()->setCursor(x, y); lcd()->print("MAC: "); printMacAddress();
-  //uint32_t getBusClock(void);
-  //void setBusClock(uint32_t clock_speed);
+  drawPlot (/*x*/10, /*y*/100, /*w*/360, /*h*/125, /*thickness*/2, /*legend*/true,  /*rangeValues*/batteryCalibration, /*values*/batteryCalibration, /*length*/batteryCalibrationLength(), /*highlight*/inx);
   
   if(!calibrationRunning)
   {
@@ -171,7 +130,8 @@ void ModeBatteryCalibrationLoop(){
 
       return;
     }
-   if(timeSinceLastAdded > valueAddInterval || total == 0){
+    if(timeSinceLastAdded > valueAddInterval) // || total == 0
+    {
       valueAddLastTime = millis();
       batteryCalibrationAddValue(raw);
     }
