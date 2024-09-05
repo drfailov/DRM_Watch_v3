@@ -207,7 +207,7 @@ bool connectToKnownWifi(){
 }
 
 void wifiOff(){
-  drawMessageAnimated(L("Вимкнення Wi-Fi...", "Turning off Wi-Fi..."));
+  //drawMessageAnimated(L("Вимкнення Wi-Fi...", "Turning off Wi-Fi..."));
   WiFi.disconnect(true);
   WiFi.mode(WIFI_OFF);
   resetCpuTemperatureSensor();
