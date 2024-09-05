@@ -108,6 +108,7 @@ void drawPlot(int x, int y, int w, int h, int16_t* values, int length, int highl
 
 void ModeBatteryCalibrationLoop(){
   int raw = readSensBatteryRaw();
+  float volt = readSensBatteryVoltage();
   int total = batteryCalibrationLength();
   int inx = batteryCalibrationGetIndexOfValue(raw);
   unsigned long timeSinceLastAdded = millis()-valueAddLastTime;
@@ -123,8 +124,8 @@ void ModeBatteryCalibrationLoop(){
     lcd()->setFont(u8g2_font_10x20_t_cyrillic); // ok
     lcd()->drawUTF8(10, 20, L("Триває калібрування батареї...", "Battery calibration in progress..."));
     lcd()->drawUTF8(10, 40, L("Не чіпайте поки не розрядиться!", "Don't touch until turnoff!"));
-    lcd()->setFont(u8g2_font_unifont_t_cyrillic); //smalll
     
+    lcd()->setFont(u8g2_font_unifont_t_cyrillic); //smalll
     lcd()->setCursor(10, 60); 
     lcd()->print(L("Протягом ", "During ")); 
     displayPrintSecondsAsTime(calibrationTime/1000);
@@ -132,6 +133,7 @@ void ModeBatteryCalibrationLoop(){
     lcd()->print(total);
     lcd()->print(L(" значень.", " values."));
 
+    lcd()->setFont(u8g2_font_unifont_t_cyrillic); //smalll
     lcd()->setCursor(10, 75); 
     lcd()->print(timeSinceLastAdded / 1000);
     lcd()->print(L("сек / ", "s / "));
@@ -143,10 +145,11 @@ void ModeBatteryCalibrationLoop(){
     lcd()->setFont(u8g2_font_10x20_t_cyrillic); // ok
     lcd()->drawUTF8(10, 20, L("Повністю зарядіть перед калібруванням!", "Fully charge before calibration!"));
     lcd()->drawUTF8(10, 40, L("Калібрування займе кілька годин.", "Calibration will take few hours")); 
-    lcd()->setFont(u8g2_font_unifont_t_cyrillic); //smalll
-    lcd()->setCursor(10, 60); 
+
     if(isBatteryCalibrated())
     {
+      lcd()->setCursor(10, 60);
+      lcd()->setFont(u8g2_font_unifont_t_cyrillic); //smalll
       lcd()->print(L("Протягом ", "During ")); 
       displayPrintSecondsAsTime((total*valueAddInterval)/1000);
       lcd()->print(L(" було записано ", " were added "));
@@ -155,13 +158,25 @@ void ModeBatteryCalibrationLoop(){
     }
     else
     {
+      lcd()->setCursor(10, 60);
+      lcd()->setFont(u8g2_font_unifont_t_cyrillic); //smalll
       lcd()->print(L("Каліброка не проводилась.", "No calibration data."));
+      
+      
     }
     //lcd()->print("isBatteryCalibrated(): "); lcd()->print(isBatteryCalibrated());
     //lcd()->print(", Total: "); lcd()->print(total);
   }
-  
+  lcd()->setCursor(10, 90);
   lcd()->setFont(u8g2_font_unifont_t_cyrillic); //smalll
+  lcd()->print("RAW: ");
+  lcd()->print(raw);
+  lcd()->print(", ");
+  lcd()->print(((float)volt)/1000.0);
+  lcd()->print("v");
+  
+
+  //lcd()->setFont(u8g2_font_unifont_t_cyrillic); //smalll
 
   //lcd()->setCursor(10, 50); 
   //lcd()->print("isBatteryCalibrated(): "); lcd()->print(isBatteryCalibrated());
@@ -233,6 +248,9 @@ void ModeBatteryCalibrationSelectedStartBatteryCalibration(){
   calibrationRunning = true;
   drawDim();
   drawMessage(L("Почато калібровку!", "Calibration started!"), L("Не чіпайте поки не вимкнеться.", "Don't touch until turnoff."), true);
+  while(calibrationRunning){
+    ModeBatteryCalibrationLoop();
+  }
 }
 void ModeBatteryCalibrationButtonUp(){
   if(calibrationRunning)
