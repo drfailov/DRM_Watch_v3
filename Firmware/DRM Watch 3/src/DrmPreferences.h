@@ -243,7 +243,11 @@ int batteryCalibrationGetIndexOfValue(int value) //on which index is located giv
 {
   if(!batteryCalibrationLoaded)
     loadBatteryCalibration();
-  if(value <= 0)
+  if(value <= 0 || value > 8096)
+    return 0;
+  if(!isBatteryCalibrated())
+    return 0;
+  if(value > batteryCalibration[0])
     return 0;
   for (int i = 0; i < batteryCalibrationLengthMax-1; i++)
   {

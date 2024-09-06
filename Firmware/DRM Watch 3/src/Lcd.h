@@ -29,6 +29,7 @@ const char* langName(int lang);
 int langCnt();
 void waitOk();
 void drawDim();
+void drawWarningFrame();
 
 
 #include "Global.h"
@@ -401,7 +402,8 @@ void drawPlot(int x, int y, int w, int h, int thickness, bool legend, int16_t* r
   float rightPoint = x+w;
   float lastX = map(0, 0, length, leftPoint, rightPoint);
   float lastY = map(values[0], min, max, minPoint, maxPoint);
-  for(int i = 1; i < length; i++){
+  for(int i = 1; i < length; i++)
+  {
     float cx = map(i, 0, length, leftPoint, rightPoint);
     float cy = map(values[i], min, max, minPoint, maxPoint);
     if(thickness == 0)
@@ -417,7 +419,8 @@ void drawPlot(int x, int y, int w, int h, int thickness, bool legend, int16_t* r
   }
 
   //highlight mark
-  if(highlightIndex > 0 && highlightIndex < length-1){
+  if(length > 1 && highlightIndex >= 0 && highlightIndex < length)
+  {
     float cy = map(values[highlightIndex], min, max, minPoint, maxPoint);
     float cx = map(highlightIndex, 0, length, leftPoint, rightPoint);
     drawDashedLine(cx, y+padding, cx, y+h-padding-1, 1);
@@ -452,6 +455,21 @@ void drawDim()
     }
   }
 }
+void drawWarningFrame()
+{
+    int th=15;
+    int tw=22;
+    lcd()->setColorIndex(black);
+    for(int x=0; x<W; x+=tw*2)
+    {
+      int y=0;
+      lcd()->drawTriangle(x+th, y, x,       y+th, x+tw, y+th);
+      lcd()->drawTriangle(x+th, y, x+tw+th, y   , x+tw, y+th);
+      y=H-th;
+      lcd()->drawTriangle(x+th, y, x,       y+th, x+tw, y+th);
+      lcd()->drawTriangle(x+th, y, x+tw+th, y   , x+tw, y+th);
+    }
+  }
 
 void drawQuestion(String text, String text2, bool animate)
 {
