@@ -85,11 +85,11 @@ void ModeTestBatteryAnalysisLoop(){
 
 
   lcd()->setFont(u8g2_font_10x20_t_cyrillic); // ok
-  lcd()->drawUTF8(10, 17, "Battery debug");
+  lcd()->drawUTF8(10, 16, "Battery debug");
 
   
 
-  lcd()->setCursor(150, 17);
+  lcd()->setCursor(160, 16);
   lcd()->setFont(u8g2_font_unifont_t_cyrillic); //smalll
   lcd()->print("RAW:");
   lcd()->print((int)raw);
@@ -97,19 +97,19 @@ void ModeTestBatteryAnalysisLoop(){
   lcd()->print(((float)volt)/1000.0);
   lcd()->print("v");
 
-  lcd()->setCursor(300, 17);
+  lcd()->setCursor(305, 16);
   lcd()->setFont(u8g2_font_unifont_t_cyrillic); //smalll
   lcd()->print("Avg:");
   lcd()->print(battery_averageRaw);
 
   lcd()->setFont(u8g2_font_unifont_t_cyrillic); //smalll
-  lcd()->drawUTF8(10, 37, "Deviation / Limit deviation");
-  drawPlot (/*x*/10, /*y*/40, /*w*/360, /*h*/85, /*thickness*/2, /*legend*/true,  /*rangeValues*/ModeTestBatteryAnalysisHistoryDeviation, /*values*/ModeTestBatteryAnalysisHistoryDeviation,      /*length*/ModeTestBatteryAnalysisHistorySize, /*highlight*/0);
-  drawPlot (/*x*/10, /*y*/40, /*w*/360, /*h*/85, /*thickness*/0, /*legend*/false, /*rangeValues*/ModeTestBatteryAnalysisHistoryDeviation, /*values*/ModeTestBatteryAnalysisHistoryLimitDeviation, /*length*/ModeTestBatteryAnalysisHistorySize, /*highlight*/0);
+  lcd()->drawUTF8(10, 38, "Deviation / Limit deviation");
+  drawPlot (/*x*/10, /*y*/41, /*w*/360, /*h*/85, /*thickness*/2, /*legend*/true,  /*rangeValues*/ModeTestBatteryAnalysisHistoryDeviation, /*values*/ModeTestBatteryAnalysisHistoryDeviation,      /*length*/ModeTestBatteryAnalysisHistorySize, /*highlight*/-1);
+  drawPlot (/*x*/10, /*y*/41, /*w*/360, /*h*/85, /*thickness*/0, /*legend*/false, /*rangeValues*/ModeTestBatteryAnalysisHistoryDeviation, /*values*/ModeTestBatteryAnalysisHistoryLimitDeviation, /*length*/ModeTestBatteryAnalysisHistorySize, /*highlight*/-1);
   
-  lcd()->drawUTF8(10, 147, "Filtered RAW / Non-filtered RAW");
-  drawPlot (/*x*/10, /*y*/150, /*w*/360, /*h*/85, /*thickness*/3, /*legend*/true,  /*rangeValues*/ModeTestBatteryAnalysisHistoryRaw, /*values*/ModeTestBatteryAnalysisHistoryFiltered, /*length*/ModeTestBatteryAnalysisHistorySize, /*highlight*/0);
-  drawPlot (/*x*/10, /*y*/150, /*w*/360, /*h*/85, /*thickness*/0, /*legend*/false, /*rangeValues*/ModeTestBatteryAnalysisHistoryRaw, /*values*/ModeTestBatteryAnalysisHistoryRaw, /*length*/ModeTestBatteryAnalysisHistorySize, /*highlight*/0);
+  lcd()->drawUTF8(10, 148, "Filtered RAW / Non-filtered RAW");
+  drawPlot (/*x*/10, /*y*/151, /*w*/360, /*h*/85, /*thickness*/3, /*legend*/true,  /*rangeValues*/ModeTestBatteryAnalysisHistoryRaw, /*values*/ModeTestBatteryAnalysisHistoryFiltered, /*length*/ModeTestBatteryAnalysisHistorySize, /*highlight*/-1);
+  drawPlot (/*x*/10, /*y*/151, /*w*/360, /*h*/85, /*thickness*/0, /*legend*/false, /*rangeValues*/ModeTestBatteryAnalysisHistoryRaw, /*values*/ModeTestBatteryAnalysisHistoryRaw, /*length*/ModeTestBatteryAnalysisHistorySize, /*highlight*/-1);
   
   draw_ic16_arrow_up(lx(), ly1(), black);
   draw_ic16_back(lx(), ly2(), black);
