@@ -48,7 +48,7 @@ void setModeBatteryCalibration(){
 
 void ModeBatteryCalibrationLoop(){
   int raw = readSensBatteryRawFiltered();
-  float volt = readSensBatteryVoltage();
+  float volt = getBatteryVoltage(raw);
   int total = batteryCalibrationLength();
   int inx = batteryCalibrationGetIndexOfValue(raw);
   unsigned long timeSinceLastAdded = millis()-valueAddLastTime;
@@ -115,7 +115,9 @@ void ModeBatteryCalibrationLoop(){
   lcd()->print(raw);
   lcd()->print(", ");
   lcd()->print(((float)volt)/1000.0);
-  lcd()->print("v");
+  lcd()->print("v, ");
+  lcd()->print(batteryCalibrationGetValuePercent(raw));
+  lcd()->print("%");
 
   if(calibrationRunning)
     drawPlot (/*x*/10, /*y*/100, /*w*/380, /*h*/115, /*thickness*/2, /*legend*/true,  /*rangeValues*/batteryCalibration, /*values*/batteryCalibration, /*length*/batteryCalibrationLength(), /*highlight*/inx);

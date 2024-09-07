@@ -74,9 +74,9 @@ void modeTestLoop(){
   y+=interval; lcd()->setCursor(x, y); lcd()->print("Wakeup_reason: "); wakeup_reason();
   y+=interval; lcd()->setCursor(x, y); lcd()->print("Millis:"); lcd()->print(millis()); lcd()->print(",   Don't sleep: "); lcd()->print(dontSleep);
 
-  y+=interval; lcd()->setCursor(x, y); lcd()->print("RAW ");  lcd()->print("BATTERY: "); lcd()->print(readSensBatteryRawFiltered()); lcd()->print(", USB:"); lcd()->print(readSensUsbRaw()); lcd()->print(" : "); lcd()->print(isChargerConnected());
-  y+=interval; lcd()->setCursor(x, y); lcd()->print("VOLTAGE ");  lcd()->print("BATTERY: "); lcd()->print(readSensBatteryVoltage()); lcd()->print(" ("); lcd()->print(batteryBars()); lcd()->print(" bars)"); 
-  y+=interval; lcd()->setCursor(x, y); lcd()->print("MIN voltage: ");  lcd()->print(getBatteryMinVoltage());  lcd()->print(", MAX voltage: ");  lcd()->print(getBatteryMaxVoltage()); 
+  y+=interval; lcd()->setCursor(x, y); lcd()->print("USB: ");  lcd()->print(readSensUsbRaw()); lcd()->print(" : "); lcd()->print(isChargerConnected()?"Charging":"Not plugged");
+  int raw = readSensBatteryRawFiltered();
+  y+=interval; lcd()->setCursor(x, y); lcd()->print("BATTERY: "); lcd()->print(raw); lcd()->print(", "); lcd()->print(batteryCalibrationGetValuePercent(raw)); lcd()->print("%, "); lcd()->print(getBatteryVoltage(raw)); lcd()->print("v, ");  lcd()->print(getBatteryBars()); lcd()->print(" bars"); 
   y+=interval; lcd()->setCursor(x, y); lcd()->print("SinceLastCharged: "); displayPrintSecondsAsTime(getTimeSinceLastCharged());
 
   y+=interval; lcd()->setCursor(x, y); lcd()->print("BUTTONS "); lcd()->print("TOP:");lcd()->print(isPressed(BUT_UP)); lcd()->print(" CENTER:");lcd()->print(isPressed(BUT_CENTER)); lcd()->print(" BOTTOM:");lcd()->print(isPressed(BUT_DOWN));

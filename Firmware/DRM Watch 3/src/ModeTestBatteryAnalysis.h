@@ -39,9 +39,6 @@ void setModeTestBatteryAnalysis(){
   autoSleepTime = autoSleepDefaultTime;
 }
 
-//RTC_DATA_ATTR float averageRaw = -1;
-//RTC_DATA_ATTR float averageDeviation = -1;
-
 #define ModeTestBatteryAnalysisHistorySize 100
 int16_t ModeTestBatteryAnalysisHistoryRaw[ModeTestBatteryAnalysisHistorySize]; 
 int16_t ModeTestBatteryAnalysisHistoryDeviation[ModeTestBatteryAnalysisHistorySize]; 
@@ -52,17 +49,10 @@ int16_t ModeTestBatteryAnalysisHistoryFiltered[ModeTestBatteryAnalysisHistorySiz
 void ModeTestBatteryAnalysisLoop(){ 
   //this mechanism is DUPLICATED here.
   float raw = readSensBatteryRaw();
-  // if(averageRaw == -1)
-  //   averageRaw = raw;
-  float volt = readSensBatteryVoltage();
+  float volt = getBatteryVoltage(raw);
   float deviation = abs(raw-battery_averageRaw);
-  // if(averageDeviation == -1)
-  //   averageDeviation = deviation;
   float limitDeviation = battery_averageDeviation*2;
   float filtered = readSensBatteryRawFiltered(raw);
-
-  //averageRaw += (raw-averageRaw)*0.1;
-  //averageDeviation += (deviation-averageDeviation)*0.1;
   
   for(int i=1; i<ModeTestBatteryAnalysisHistorySize; i++){
     ModeTestBatteryAnalysisHistoryRaw[i-1]=ModeTestBatteryAnalysisHistoryRaw[i];
@@ -75,32 +65,24 @@ void ModeTestBatteryAnalysisLoop(){
   ModeTestBatteryAnalysisHistoryLimitDeviation[ModeTestBatteryAnalysisHistorySize-1] = limitDeviation;
   ModeTestBatteryAnalysisHistoryFiltered[ModeTestBatteryAnalysisHistorySize-1] = filtered;
 
-
-
-
   lcd()->setColorIndex(white);
   lcd()->drawBox(0, 0, 400, 240);
   
   lcd()->setColorIndex(black);
-
-
   lcd()->setFont(u8g2_font_10x20_t_cyrillic); // ok
-  lcd()->drawUTF8(10, 16, "Battery debug");
+  lcd()->drawUTF8(10, 16, "Battery");
 
-  
-
-  lcd()->setCursor(160, 16);
+  lcd()->setCursor(130, 16);
   lcd()->setFont(u8g2_font_unifont_t_cyrillic); //smalll
   lcd()->print("RAW:");
   lcd()->print((int)raw);
+  lcd()->print(", AVG:");
+  lcd()->print((int)battery_averageRaw);
   lcd()->print(", ");
   lcd()->print(((float)volt)/1000.0);
-  lcd()->print("v");
-
-  lcd()->setCursor(305, 16);
-  lcd()->setFont(u8g2_font_unifont_t_cyrillic); //smalll
-  lcd()->print("Avg:");
-  lcd()->print(battery_averageRaw);
+  lcd()->print("v, ");
+  lcd()->print((int)batteryCalibrationGetValuePercent(raw));
+  lcd()->print("%");
 
   lcd()->setFont(u8g2_font_unifont_t_cyrillic); //smalll
   lcd()->drawUTF8(10, 38, "Deviation / Limit deviation");
@@ -114,7 +96,7 @@ void ModeTestBatteryAnalysisLoop(){
   draw_ic16_arrow_up(lx(), ly1(), black);
   draw_ic16_back(lx(), ly2(), black);
 
-if(esp_sleep_get_wakeup_cause() != ESP_SLEEP_WAKEUP_TIMER) //if wake by timer, don't refresh display to keep image static, image will refresh when go to lock screen and drawing lock icon
+  if(esp_sleep_get_wakeup_cause() != ESP_SLEEP_WAKEUP_TIMER) //if wake by timer, don't refresh display to keep image static, image will refresh when go to lock screen and drawing lock icon
     lcd()->sendBuffer();
 }
 

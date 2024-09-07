@@ -12,8 +12,9 @@ int readSensBatteryRaw();
 int readSensBatteryRawFiltered(float raw);
 int readSensBatteryRawFiltered();
 void drawBattery(int x, int y);
-float readSensBatteryVoltage();
-byte batteryBars();
+float getBatteryVoltage();
+float getBatteryVoltage(int raw);
+byte getBatteryBars();
 
 #include "Icons.h"
 #include "Buzzer.h"
@@ -29,14 +30,10 @@ float batteryDefaultCalibration[][2] = {    //raw analog reading to voltage in m
 
 void drawBattery(int x, int y){
   if(isChargerConnected()){
-    float voltage = readSensBatteryVoltage();
-    if(voltage > 4110)
-      draw_ic24_battery_full(x, y, black);
-    else
       draw_ic24_battery_charging(x, y, black);
   }
   else{
-    int bars = batteryBars();
+    int bars = getBatteryBars();
     if(bars == 4) 
       draw_ic24_battery100(x, y, black);
     if(bars == 3) 
@@ -51,38 +48,38 @@ void drawBattery(int x, int y){
   
 }
 
-RTC_DATA_ATTR float batterySmoothVoltage = -1;
-float readSensBatteryVoltage(){
-  float currentVoltage = linearInterpolate((int)readSensBatteryRawFiltered(), batteryDefaultCalibration, batteryDefaultCalibrationCnt);
-  if(batterySmoothVoltage == -1)
-    batterySmoothVoltage = currentVoltage;
-  else
-    batterySmoothVoltage += (currentVoltage-batterySmoothVoltage)*0.1;
-  return batterySmoothVoltage;
+
+float getBatteryVoltage()
+{
+  return getBatteryVoltage(readSensBatteryRawFiltered());
+}
+float getBatteryVoltage(int raw)
+{
+  return linearInterpolate(raw, batteryDefaultCalibration, batteryDefaultCalibrationCnt);
 }
 
-byte batteryBars(){
-  bool charger = isChargerConnected();
-  int voltage = readSensBatteryVoltage();
-  int max = getBatteryMaxVoltage();
-  int min = getBatteryMinVoltage();
-  int d=max-min;
-  if(voltage < min && !charger && voltage > 2500){
-    saveBatteryMinVoltage(min+(voltage-min)*0.05);  //3500+(2800-3500)*0.2 = 3500-700*0.2 = 3500-140 = 3360
-  }
-  if(voltage > max && !charger && voltage < 4300)
-    saveBatteryMaxVoltage(max+(voltage-max)*0.05);  //4000+(4200-4000)*0.2 = 4000+200*0.2 = 4000+40 = 4040
+byte getBatteryBars(){
+  int raw = readSensBatteryRawFiltered();
   
-  byte level = 0;
-  if (voltage >= min+d*0.43) level = 1;  //3350 = 2400+(4200-2500)*x
-  if (voltage >= min+d*0.63) level = 2;  //3650 = 2400+(4200-2500)*x 
-  if (voltage >= min+d*0.76) level = 3;  //3850 = 2400+(4200-2500)*x
-  if (voltage >= min+d*0.83) level = 4;  //3950 = 2400+(4200-2500)*x
-  return level;
+  if(isBatteryCalibrated()){
+    float percent = batteryCalibrationGetValuePercent(raw);
+    if (percent >= 80) return 4; 
+    if (percent >= 60) return 3; 
+    if (percent >= 40) return 2; 
+    if (percent >= 20) return 1; 
+    return 0;
+  }
+
+  int voltage = getBatteryVoltage(raw);
+  if (voltage >= 3950) return 4; 
+  if (voltage >= 3850) return 3; 
+  if (voltage >= 3650) return 2; 
+  if (voltage >= 3350) return 1; 
+  return 0;
 }
 
 bool isBatteryCritical(){
-  return batteryBars() == 0;
+  return getBatteryBars() == 0;
 }
 
 RTC_DATA_ATTR bool previousState = false;

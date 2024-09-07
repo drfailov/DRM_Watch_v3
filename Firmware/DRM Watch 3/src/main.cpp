@@ -41,7 +41,7 @@ void setup(void) {
   initPreferences();
   black = getBlackValue(); //load from memory
   white = getWhiteValue(); //load from memory
-  if(readSensBatteryVoltage() < 3100){  //if deelpy discharged - go to sleep to let it charge
+  if(isBatteryCritical()){  //if deelpy discharged - go to sleep to let it charge
     setModeOff();
     return;
   }
@@ -69,7 +69,7 @@ void setup(void) {
     int x=130;
     displayDrawVector(getPathZubat(), x, 60, 3.0, 3, 0, black);
     lcd()->sendBuffer();
-    if(readSensBatteryVoltage() > 3100){
+    if(!isBatteryCritical()){
       ledSelftest();
       playInit();
     }

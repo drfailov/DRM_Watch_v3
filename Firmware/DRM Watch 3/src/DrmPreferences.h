@@ -7,20 +7,14 @@
 /*PROTOTYPES*/
 int getPreferencesFreeSpace();
 // BATTERY
-int getBatteryMinVoltage();
-bool saveBatteryMinVoltage(int minVoltage);
-int getBatteryMaxVoltage();
-bool saveBatteryMaxVoltage(int minVoltage);
-void resetBatteryCalibrationData();
-
 #define batteryCalibrationLengthMax 100 // 100 is one record for 5 minutes = 8 hours total
 int16_t batteryCalibration[batteryCalibrationLengthMax];  //values written from higher[0] battery level to lower[batteryCalibrationLengthMax] battery level. 0 considered as end of data.
 bool batteryCalibrationLoaded = false;
-float batteryCalibrationGetValuePercent(int value);
-int batteryCalibrationGetIndexOfValue(int value);
+float batteryCalibrationGetValuePercent(int raw);
+int batteryCalibrationGetIndexOfValue(int raw);
 bool isBatteryCalibrated();
 int batteryCalibrationLength();
-int batteryCalibrationAddValue(int16_t value);
+int batteryCalibrationAddValue(int16_t raw);
 void saveBatteryCalibration();
 void resetBatteryCalibration();
 void loadBatteryCalibration();
@@ -159,28 +153,6 @@ void initPreferences()
 }
 
 //----------------------//---------------------- BATTERY ----------//----------------------//----------------------//----------------------//----------------------
-void resetBatteryCalibrationData()
-{
-  preferencesObject.remove("batteryMin");
-  preferencesObject.remove("batteryMax");
-}
-int getBatteryMinVoltage()
-{ // 123456789012345
-  return preferencesObject.getInt("batteryMin", 3500);
-}
-bool saveBatteryMinVoltage(int minVoltage)
-{
-  return preferencesObject.putInt("batteryMin", minVoltage);
-}
-int getBatteryMaxVoltage()
-{ // 123456789012345
-  return preferencesObject.getInt("batteryMax", 3900);
-}
-bool saveBatteryMaxVoltage(int minVoltage)
-{
-  return preferencesObject.putInt("batteryMax", minVoltage);
-}
-
 void loadBatteryCalibration()  //load from preferences patrition
 {
   if (preferencesObject.isKey("batteryCali"))
@@ -214,13 +186,13 @@ bool isBatteryCalibrated()
     loadBatteryCalibration();
   return batteryCalibration[0] > 0 && batteryCalibration[0] <= 8192;
 }
-int batteryCalibrationAddValue(int16_t value) //add to end. Returns current length
+int batteryCalibrationAddValue(int16_t raw) //add to end. Returns current length
 {
   int length = batteryCalibrationLength();
   if(length < batteryCalibrationLengthMax){
-    batteryCalibration[length] = value;
-    Serial.print("Added value ");
-    Serial.print(value);
+    batteryCalibration[length] = raw;
+    Serial.print("Added raw ");
+    Serial.print(raw);
     Serial.print(" to index ");
     Serial.println(length);
     saveBatteryCalibration();
@@ -239,15 +211,15 @@ int batteryCalibrationLength()  //how many values actually filled
   }
   return batteryCalibrationLengthMax;
 }
-int batteryCalibrationGetIndexOfValue(int value) //on which index is located given value (0 ... batteryCalibrationLengthMax)
+int batteryCalibrationGetIndexOfValue(int raw) //on which index is located given value (0 ... batteryCalibrationLengthMax)
 {
   if(!batteryCalibrationLoaded)
     loadBatteryCalibration();
-  if(value <= 0 || value > 8096)
+  if(raw <= 0 || raw > 8096)
     return 0;
   if(!isBatteryCalibrated())
     return 0;
-  if(value > batteryCalibration[0])
+  if(raw > batteryCalibration[0])
     return 0;
   for (int i = 0; i < batteryCalibrationLengthMax-1; i++)
   {
@@ -255,15 +227,17 @@ int batteryCalibrationGetIndexOfValue(int value) //on which index is located giv
     int next = batteryCalibration[i+1];
     if(cur==0 || next==0)  //end of array
       return i;
-    if (min(cur, next)<=value && max(cur, next)>value)
+    if (min(cur, next)<=raw && max(cur, next)>raw)
       return i;
   }
   return batteryCalibrationLengthMax;
 }
-float batteryCalibrationGetValuePercent(int value) //which persent of charge (0...100) is this RAW value (0...4096)
+float batteryCalibrationGetValuePercent(int raw) //which persent of charge (0...100) is this RAW value (0...4096)
 {
+  if(!isBatteryCalibrated())
+    return -1;
   float total = batteryCalibrationLength();
-  float curr = batteryCalibrationGetIndexOfValue(value);   //0=100; total=0
+  float curr = batteryCalibrationGetIndexOfValue(raw);   //0=100; total=0
   return map(curr, 0, total, 100/*%*/, 0/*%*/);
 }
 

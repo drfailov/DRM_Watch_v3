@@ -30,8 +30,7 @@ const int ModeMenuSettingsDisplayItemInvertDisplay = 4;
 const int ModeMenuSettingsDisplayItemLanguage = 5;
 const int ModeMenuSettingsDisplayItemInAnimation = 6;
 const int ModeMenuSettingsDisplayItemOutAnimation = 7;
-const int ModeMenuSettingsDisplayItemResetBatteryBars = 8;
-const int ModeMenuSettingsDisplayItemBatteryCalibration = 9;
+const int ModeMenuSettingsDisplayItemBatteryCalibration = 8;
 
 int outAnimationOptionsCnt()
 {
@@ -81,7 +80,7 @@ void setModeMenuSettingsDisplay()
   autoReturnTime = autoReturnDefaultTime;
   autoSleepTime = autoSleepDefaultTime;
   selected = 0;
-  items = 10;
+  items = 9;
 }
 
 void ModeMenuSettingsDisplayExit(){
@@ -108,8 +107,7 @@ void ModeMenuSettingsDisplayLoop()
   drawListItem(ModeMenuSettingsDisplayItemLanguage,                 draw_ic24_language,   L("Мова", "Language"),                                         langName(getLang()),                                                 firstDraw);
   drawListCheckbox(ModeMenuSettingsDisplayItemInAnimation,          draw_ic24_animation,  L("Анімація входу в меню", "Enter animation"),                 L("Поступова поява елементів меню", "Menu appearing gradually"),     getEnterAnimationValue(), firstDraw);
   drawListItem(ModeMenuSettingsDisplayItemOutAnimation,             draw_ic24_animation,  L("Анімація виходу з меню", "Exit animation"),                 outAnimationOptions(getClearAnimation()),                            firstDraw);
-  drawListItem(ModeMenuSettingsDisplayItemResetBatteryBars,         draw_ic24_battery50,  L("Скинути калібровку батареї", "Reset battery calibration"),  L("Якщо \"Палички\" неправильні", "If shows wrong"),                 firstDraw);
-  drawListItem(ModeMenuSettingsDisplayItemBatteryCalibration,       draw_ic24_battery0,   L("Калібровка батареї", "Battery calibration"),                L("Тривалий але потрібний процес", "Time consuming process"),        firstDraw);
+  drawListItem(ModeMenuSettingsDisplayItemBatteryCalibration,       draw_ic24_battery75,   L("Калібровка батареї", "Battery calibration"),                L("Тривалий але потрібний процес", "Time consuming process"),        firstDraw);
   lcd()->sendBuffer();
 }
 
@@ -165,26 +163,11 @@ void ModeMenuSettingsDisplayButtonCenter()
     setModeListSelection();
     return;
   }
-  if (selected == ModeMenuSettingsDisplayItemResetBatteryBars)
-  {
-    questionModeSet(L("Скинути калібровку?", "Reset calibration data?"), L("Буде необхідно перекалібрувати!","Calibration will be required!"), ModeMenuSettingsDisplay_ActionResetBatteryCali, setModeMenuSettingsDisplay);
-    return;
-  }
   if (selected == ModeMenuSettingsDisplayItemBatteryCalibration)
   {
     setModeBatteryCalibration();
     return;
   }
-}
-
-void ModeMenuSettingsDisplay_ActionResetBatteryCali()
-{
-  drawDim();
-  drawMessageAnimated(L("Скидання...", "Resetting..."));
-  resetBatteryCalibrationData();
-  drawMessage(L("Калібровку батареї скинуто", "Battery calibration was reset"), L("Проведіть повний цикл для калібровки", "Run full cycle to calibrate again"), true);
-  waitOk();
-  setModeMenuSettingsDisplay();
 }
 
 #endif
