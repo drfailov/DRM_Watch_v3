@@ -10,7 +10,6 @@ void modeSavedWiFiListOnNetworkPasswordSelected();
 void modeSavedWiFiListOnNetworkConnected();
 void modeSavedWiFiListOnNetworkFailed();
 
-
 #include "../Global.h"
 #include "../AutoSleep.h"
 #include "../Button.h"
@@ -18,7 +17,6 @@ void modeSavedWiFiListOnNetworkFailed();
 #include "../ModeKeyboard.h"
 #include "ModeWiFiScanner.h"
 #include "../ModeQuestion.h"
-
 
 int ModeSavedWiFiListSelectedSlot = 0;
 
@@ -45,20 +43,18 @@ void setModeSavedWiFiList(){
 void modeSavedWiFiListLoop(){
   lcd()->setColorIndex(white);
   lcd()->drawBox(0, 0, 400, 240);
-
-
   lcd()->setFont(u8g2_font_10x20_t_cyrillic);  //ok
   lcd()->setColorIndex(black);
   lcd()->setCursor(5, 18); 
-  lcd()->print("Збережені мережі");
+  lcd()->print(L("Збережені мережі", "Saved networks"));
 
   drawMenuLegend();
   drawStatusbar(363, 1, true);
 
-  drawListItem(0, draw_ic24_back, "Повернутись", "В меню налаштувань", firstDraw); //
+  drawListItem(0, draw_ic24_back, L("Повернутись", "Back"), L("В меню налаштувань", "To settings menu"), firstDraw); //
   for(int i=1; i<items; i++){
     if(wifiSlotIsEmpty(i))
-      drawListItem(i, draw_ic24_wifi_0, "Пусто", "Немає даних про мережу", firstDraw); //
+      drawListItem(i, draw_ic24_wifi_0, L("Пусто", "Empty"), L("Немає даних про мережу", "No network info"), firstDraw); //
     else
       drawListItem(i, draw_ic24_wifi_3, wifiSlotName(i).c_str(), wifiSlotPassword(i).c_str(), firstDraw); //
   }
@@ -75,8 +71,7 @@ void modeSavedWiFiListButtonCenter(){
     setModeWiFiScanner(modeSavedWiFiListOnNetworkNameSelected, setModeSavedWiFiList);
   }
   else{
-    //deleet
-    questionModeSet("Видалити мережу?", wifiSlotName(selected), modeSavedWiFiListOnDeleteNetwork, setModeSavedWiFiList);
+    questionModeSet(L("Видалити мережу?", "Remove network?"), wifiSlotName(selected), modeSavedWiFiListOnDeleteNetwork, setModeSavedWiFiList);
   }
 }
 
@@ -86,7 +81,7 @@ void modeSavedWiFiListOnDeleteNetwork(){
 }
 
 void modeSavedWiFiListOnNetworkNameSelected(){
-  setModeKeyboard(String("Пароль:")+modeWiFiScannerGetSelectedNetworkName(), modeSavedWiFiListOnNetworkPasswordSelected, setModeSavedWiFiList); //then String password = getKeybordResult();
+  setModeKeyboard(String(L("Пароль:", "Password:"))+modeWiFiScannerGetSelectedNetworkName(), modeSavedWiFiListOnNetworkPasswordSelected, setModeSavedWiFiList); //then String password = getKeybordResult();
 }
 
 void modeSavedWiFiListOnNetworkPasswordSelected(){
@@ -99,10 +94,10 @@ void modeSavedWiFiListOnNetworkConnected(){
   String ssid = modeWiFiScannerGetSelectedNetworkName();
   String password = getKeybordResult();
   int slot = ModeSavedWiFiListSelectedSlot;
-  drawMessage("Збереження...", ssid + " " + password, true);
+  drawMessage(L("Збереження...", "Saving..."), ssid + " " + password, true);
   delay(500);
   if(wifiSlotSave(slot, ssid, password)){
-    drawMessageAnimated("Збережено.");
+    drawMessageAnimated(L("Збережено.", "Saved."));
   }
   delay(500);
   wifiOff();
@@ -110,8 +105,6 @@ void modeSavedWiFiListOnNetworkConnected(){
 }
 
 void modeSavedWiFiListOnNetworkFailed(){
-  //setModeSavedWiFiList();
 }
-
 
 #endif

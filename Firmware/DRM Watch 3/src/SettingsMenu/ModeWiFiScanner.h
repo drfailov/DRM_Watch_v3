@@ -70,21 +70,21 @@ void modeWiFiScannerLoop(){
   lcd()->setFont(u8g2_font_10x20_t_cyrillic);  //ok
   lcd()->setColorIndex(black);
   lcd()->setCursor(5, 18); 
-  lcd()->print("Знайдені мережі");
+  lcd()->print(L("Знайдені мережі", "Found networks"));
 
   drawStatusbar(363, 1, true);
 
   drawMenuLegend();
   
   if(modeWiFiScannerState == modeWiFiScannerStatePreparing){
-    drawMessageAnimated("Підготовка...");
+    drawMessageAnimated(L("Підготовка...", "Prepare..."));
     if(millis()-modeWiFiScannerStateChangeTime > 500){
       modeWiFiScannerState = modeWiFiScannerStateSettingUp;
       modeWiFiScannerStateChangeTime = millis();
     }
   }
   else if(modeWiFiScannerState == modeWiFiScannerStateSettingUp){
-    drawMessageAnimated("Налаштування Wi-Fi...");
+    drawMessageAnimated(L("Налаштування Wi-Fi...", "Wi-Fi setup..."));
     // Set WiFi to station mode and disconnect from an AP if it was previously connected.
     WiFi.mode(WIFI_STA);
     WiFi.disconnect();
