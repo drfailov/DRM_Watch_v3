@@ -47,15 +47,15 @@ void ModeMenuSettingsSoundLoop(){
   lcd()->setFont(u8g2_font_10x20_t_cyrillic);  //ok
   lcd()->setColorIndex(black);
   lcd()->setCursor(5, 18); 
-  lcd()->print("Параметри звуку");
+  lcd()->print(L("Параметри звуку", "Sound settings"));
 
   drawMenuLegend();
   drawStatusbar(363, 1, true);
 
-  drawListItem(ModeMenuSettingsSoundItemBack, draw_ic24_back,       "Повернутись", "B меню налаштувань", firstDraw); //
-  drawListValue(itemModeSettingsButtonSound, draw_ic24_buttonsound, "Звук кнопок", "Обрати звук кнопок", getButtonSound(), firstDraw);
-  drawListCheckbox(itemModeSettingsMute, draw_ic24_sound_mute, "Тихий режим", "Вимкнути все окрім мелодій", getMuteEnabled(), firstDraw);
-  drawListItem(itemModeSettingsSoundTone, draw_ic24_sound_on, "Тон звуку", "Змінити тон всього звуку", firstDraw);
+  drawListItem(ModeMenuSettingsSoundItemBack, draw_ic24_back,         L("Повернутись","Back"),          L("B меню налаштувань","To settings menu"),                   firstDraw); 
+  drawListValue(itemModeSettingsButtonSound,  draw_ic24_buttonsound,  L("Звук кнопок","Button sound"),  L("Обрати звук кнопок","Select button sound"),                getButtonSound(), firstDraw);
+  drawListCheckbox(itemModeSettingsMute,      draw_ic24_sound_mute,   L("Тихий режим","Silent mode"),   L("Вимкнути все окрім мелодій","Disable all sound"),          getMuteEnabled(), firstDraw);
+  drawListItem(itemModeSettingsSoundTone,     draw_ic24_sound_on,     L("Тон звуку","Sound tone"),      L("Змінити тон всього звуку","Change pitch of ALL sounds"),   firstDraw);
   lcd()->sendBuffer();
 }
 
