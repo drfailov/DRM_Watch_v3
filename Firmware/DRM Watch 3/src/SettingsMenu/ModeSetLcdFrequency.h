@@ -48,7 +48,7 @@ void modeSetLcdFrequencyMenuLoop(){
   lcd()->setFont(u8g2_font_10x20_t_cyrillic);  //ok
   lcd()->setColorIndex(black);
   lcd()->setCursor(5, 18); 
-  lcd()->print("Частота SPI дисплея");
+  lcd()->print(L("Частота SPI дисплея", "LCD SPI Frequency"));
 
   drawStatusbar(363, 1, true);
   drawMenuLegend();
@@ -72,15 +72,15 @@ void modeSetLcdFrequencyMenuLoop(){
   String text = "";
   text += frequency;
   text += " Hz";
-  drawTextFrame(/*index*/0, /*text*/text.c_str(), /*name*/"Обрати частоту SPI дисплея", /*editMode*/false, /*animate*/firstDraw, /*x*/30, /*y*/35, /*width*/308);
+  drawTextFrame(/*index*/0, /*text*/text.c_str(), /*name*/L("Обрати частоту SPI дисплея", "Select SPI frequency"), /*editMode*/false, /*animate*/firstDraw, /*x*/30, /*y*/35, /*width*/308);
   lcd()->setFont(u8g2_font_10x20_t_cyrillic);
   int y=90; int h = 17;
-  lcd()->setCursor(10, y+=h); lcd()->print("За замовчуванням: 2 000 000 Hz.");
-  lcd()->setCursor(10, y+=h); lcd()->print("Чим більша частота SPI, тим швидше");
-  lcd()->setCursor(10, y+=h); lcd()->print("працюватиме годинник.");
-  lcd()->setCursor(10, y+=h); lcd()->print("Оптимальне значення індивідуальне.");
-  lcd()->setCursor(10, y+=h); lcd()->print("Забагато-пошкодження зображення.");
-  lcd()->setCursor(10, y+=h); lcd()->print("Замало-повільна робота годинника.");
+  lcd()->setCursor(10, y+=h); lcd()->print(L("За замовчуванням: 2 000 000 Hz.", "Default:  2 000 000 Hz."));
+  lcd()->setCursor(10, y+=h); lcd()->print(L("Чим більша частота SPI, тим швидше", "The higher frequency the faster watch"));
+  lcd()->setCursor(10, y+=h); lcd()->print(L("працюватиме годинник.", "will work."));
+  lcd()->setCursor(10, y+=h); lcd()->print(L("Оптимальне значення індивідуальне.", "Optimal value is individual."));
+  lcd()->setCursor(10, y+=h); lcd()->print(L("Забагато=пошкодження зображення.", "Too high=damaged image."));
+  lcd()->setCursor(10, y+=h); lcd()->print(L("Замало-повільна робота годинника.", "Too low=slow work."));
   lcd()->sendBuffer();
 }
 

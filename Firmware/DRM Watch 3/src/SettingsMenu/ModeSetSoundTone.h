@@ -49,7 +49,7 @@ void modeSetSoundToneMenuLoop(){
   lcd()->setFont(u8g2_font_10x20_t_cyrillic);  //ok
   lcd()->setColorIndex(black);
   lcd()->setCursor(5, 18); 
-  lcd()->print("Тон звуків");
+  lcd()->print(L("Тон звуків", "All sounds tone"));
 
   drawStatusbar(363, 1, true);
   drawMenuLegend();
@@ -70,7 +70,7 @@ void modeSetSoundToneMenuLoop(){
 
   String text = "Coef: ";
   text += coef;
-  drawTextFrame(/*index*/0, /*text*/text.c_str(), /*name*/"Обрати тон всіх звуків", /*editMode*/false, /*animate*/firstDraw, /*x*/30, /*y*/95, /*width*/308);
+  drawTextFrame(/*index*/0, /*text*/text.c_str(), /*name*/L("Обрати тон всіх звуків", "Select tone of all sounds"), /*editMode*/false, /*animate*/firstDraw, /*x*/30, /*y*/95, /*width*/308);
   
   lcd()->sendBuffer();
 }
