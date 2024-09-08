@@ -52,6 +52,7 @@ const char *actionName(int i) {
     if(i==11) return L("Перемкнути інверсію", "Switch screen inversion"); //+
     if(i==12) return L("Перезавантажити", "Reboot");                      //+
     if(i==13) return L("Відкрити \"Про годинник\"", "Open \"About\"");    //+
+    return "---";
 };
 
 int defaultAction(int eventId);

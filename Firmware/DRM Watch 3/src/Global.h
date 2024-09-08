@@ -5,20 +5,13 @@ CTRL+K CTRL+J  - unfold
 
 #ifndef GLOBAL_H
 #define GLOBAL_H
-
-
-
 #include <Arduino.h>
-
 
 struct Point{
     public:
       int x;
       int y;
 };
-
-
-
 
 /*Do not use pins!
  D17 - Stays ON when firmware update
@@ -142,11 +135,6 @@ Runnable modeButtonDownLong = 0;
 #define BUFFER_SIZE 40  //размер текстового буфера. Чем меньше тем экономнее.
 char buffer[BUFFER_SIZE];   //общий на всю программу текстовый буфер чтобы не объявлять каждый раз локальную.
 
-
-
-
-
-
 void doNothing(){} //to use as reference in modes for buttons
 bool strendswith(const char* str, const char* suffix)
 {
@@ -171,6 +159,5 @@ const char* getFileNameFromPath(const char* _buffer)
     }
     return "";
 }
-
 
 #endif

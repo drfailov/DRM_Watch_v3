@@ -58,11 +58,17 @@ float getBatteryVoltage(int raw)
   return linearInterpolate(raw, batteryDefaultCalibration, batteryDefaultCalibrationCnt);
 }
 
+RTC_DATA_ATTR int shownBarsPercentLast = -1;
+RTC_DATA_ATTR int shownBarsPercentHysteresis = 15;
 byte getBatteryBars(){
   int raw = readSensBatteryRawFiltered();
   
   if(isBatteryCalibrated()){
     float percent = batteryCalibrationGetValuePercent(raw);
+    float percentChange = abs(shownBarsPercentLast-percent);
+    if(shownBarsPercentLast!=-1 && percentChange<shownBarsPercentHysteresis)   //Prevent jitter - ignore small changes
+      percent = shownBarsPercentLast;
+    shownBarsPercentLast = percent;
     if (percent >= 80) return 4; 
     if (percent >= 60) return 3; 
     if (percent >= 40) return 2; 
