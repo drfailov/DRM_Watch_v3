@@ -92,14 +92,14 @@ void modeWiFiScannerLoop(){
     modeWiFiScannerStateChangeTime = millis();
   }
   else if(modeWiFiScannerState == modeWiFiScannerStateSettingUpDelay){
-    drawMessageAnimated("Підготовка сканування...");
+    drawMessageAnimated(L("Підготовка сканування...", "Prepare for scanning..."));
     if(millis()-modeWiFiScannerStateChangeTime > 500){
       modeWiFiScannerState = modeWiFiScannerStateSettingUpScanning;
       modeWiFiScannerStateChangeTime = millis();
     }
   }
   else if(modeWiFiScannerState == modeWiFiScannerStateSettingUpScanning){
-    drawMessageAnimated("Cканування...");
+    drawMessageAnimated(L("Cканування...", "Scanning..."));
     int n = WiFi.scanNetworks();
     if(n==0){
       modeWiFiScannerState = modeWiFiScannerStateSettingUpNoNetworks;
@@ -113,7 +113,7 @@ void modeWiFiScannerLoop(){
     }
   }
   else if(modeWiFiScannerState == modeWiFiScannerStateSettingUpNoNetworks){
-    drawMessageAnimated("Мереж не знайдено.");
+    drawMessageAnimated(L("Мереж не знайдено.", "No networks found."));
     delay(1000);
     if(modeWiFiScannerOnCancel != 0)
         modeWiFiScannerOnCancel();
@@ -121,7 +121,7 @@ void modeWiFiScannerLoop(){
         setModeSavedWiFiList();
   }
   else if(modeWiFiScannerState == modeWiFiScannerStateSettingUpSelectingNetwork){
-    drawListItem(0, draw_ic24_back, "Повернутись", "Назад", false); 
+    drawListItem(0, draw_ic24_back, L("Повернутись", "Back"), L("Назад", "To previous menu"), false); 
     for(int i=0; i<items-1; i++){
       int rssi = WiFi.RSSI(i);
       void (*drawIcon)(int x,int y, bool color);

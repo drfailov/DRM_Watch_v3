@@ -79,7 +79,7 @@ void modeFileReaderTextLoop()
     if (!f)
     {
       draw_ic24_bad_file(170, 90, black);
-      drawCentered("Помилка відкриття файлу", 150);
+      drawCentered(L("Помилка відкриття файлу", "File open error"), 150);
     }
     else
     {
@@ -120,7 +120,7 @@ void modeFileReaderTextLoop()
   }
   else{
     draw_ic24_bad_file(170, 90, black);
-    drawCentered("Файлова система пошкоджена", 150);
+    drawCentered(L("Файлова система пошкоджена", "File system damaged"), 150);
     if(modeFileReaderTextPath != 0)
       drawCentered(modeFileReaderTextPath, 170);
   }

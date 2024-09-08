@@ -73,7 +73,7 @@ void modeFileReaderBmpLoop()
     if (!f)
     {
       draw_ic24_bad_file(170, 90, black);
-      drawCentered("Помилка відкриття файлу", 150);
+      drawCentered(L("Помилка відкриття файлу", "Error opening file"), 150);
     }
     else
     {
@@ -118,8 +118,8 @@ void modeFileReaderBmpLoop()
           if (id[0] != 'B' || id[1] != 'M')
           { // BM is valid
             draw_ic24_bad_file(170, 90, black);
-            drawCentered("Невалідний формат файлу!", 150);
-            drawCentered("Має бути BMP монохромний", 180);
+            drawCentered(L("Невалідний формат файлу!", "Invalid file header!"), 150);
+            drawCentered(L("Має бути BMP монохромний", "Only monochrome BMP supported"), 180);
             break;
           }
         }
@@ -140,8 +140,8 @@ void modeFileReaderBmpLoop()
           if (header_size != 40)
           { // should be 40
             draw_ic24_bad_file(170, 90, black);
-            drawCentered("Невалідний тип заголовку!", 150);
-            drawCentered("Спробуй створити іншою програмою", 180);
+            drawCentered(L("Невалідний тип BMP!", "Wrong BMP type!"), 150);
+            drawCentered(L("Спробуй створити іншою програмою", "Try save with other software"), 180);
             break;
           }
         }
@@ -153,8 +153,8 @@ void modeFileReaderBmpLoop()
           if (width == 0)
           { // should be not 0
             draw_ic24_bad_file(170, 90, black);
-            drawCentered("Некоректна ширина зображення!", 150);
-            drawCentered("Чомусь прописано 0 пікселів", 180);
+            drawCentered(L("Некоректна ширина зображення!", "Invalid width"), 150);
+            drawCentered(L("Чомусь прописано 0 пікселів", "Width set as 0 px"), 180);
             break;
           }
         }
@@ -167,8 +167,8 @@ void modeFileReaderBmpLoop()
           if (height == 0)
           { // should be not 0
             draw_ic24_bad_file(170, 90, black);
-            drawCentered("Некоректна висота зображення!", 150);
-            drawCentered("Чомусь прописано 0 пікселів", 180);
+            drawCentered(L("Некоректна висота зображення!", "Invalid height"), 150);
+            drawCentered(L("Чомусь прописано 0 пікселів", "Height set as 0 px"), 180);
             break;
           }
         }
@@ -179,8 +179,8 @@ void modeFileReaderBmpLoop()
           if (bitsPerPixel != 1)
           { // should be 1
             draw_ic24_bad_file(170, 90, black);
-            drawCentered("Некоректний кольоровий формат!", 150);
-            drawCentered("Має бути монохромне зображення", 180);
+            drawCentered(L("Некоректний кольоровий формат!", "Wrong color format"), 150);
+            drawCentered(L("Має бути монохромне зображення", "Has to be monochrome image"), 180);
             break;
           }
         }
@@ -191,8 +191,8 @@ void modeFileReaderBmpLoop()
           if (compressionMethod != 0)
           { // should be 0
             draw_ic24_bad_file(170, 90, black);
-            drawCentered("Файл стиснений!", 150);
-            drawCentered("Має бути без компресії", 180);
+            drawCentered(L("Файл стиснений!", "File compressed"), 150);
+            drawCentered(L("Має бути без компресії", "Only non compressed supported"), 180);
             break;
           }
         }
@@ -270,7 +270,7 @@ void modeFileReaderBmpLoop()
   else
   {
     draw_ic24_bad_file(170, 90, black);
-    drawCentered("Файлова система пошкоджена", 150);
+    drawCentered(L("Файлова система пошкоджена", "File system damaged"), 150);
     if (modeFileReaderBmpPath != 0)
       drawCentered(modeFileReaderBmpPath, 170);
   }
