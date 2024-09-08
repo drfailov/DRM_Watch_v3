@@ -225,45 +225,6 @@ void drawDate(int x, int y)
 
   if (getWatchfaceMonthEnabled())
   {
-    // switch (month)
-    // {
-    // case 1:
-    //   strcpy(buffer, "Січень");
-    //   break;
-    // case 2:
-    //   strcpy(buffer, "Лютий");
-    //   break;
-    // case 3:
-    //   strcpy(buffer, "Березень");
-    //   break;
-    // case 4:
-    //   strcpy(buffer, "Квітень");
-    //   break;
-    // case 5:
-    //   strcpy(buffer, "Травень");
-    //   break;
-    // case 6:
-    //   strcpy(buffer, "Червень");
-    //   break;
-    // case 7:
-    //   strcpy(buffer, "Липень");
-    //   break;
-    // case 8:
-    //   strcpy(buffer, "Серпень");
-    //   break;
-    // case 9:
-    //   strcpy(buffer, "Вересень");
-    //   break;
-    // case 10:
-    //   strcpy(buffer, "Жовтень");
-    //   break;
-    // case 11:
-    //   strcpy(buffer, "Листопад");
-    //   break;
-    // case 12:
-    //   strcpy(buffer, "Грудень");
-    //   break;
-    // }
     strcpy(buffer, months(month-1));
     lcd()->setFont(u8g2_font_unifont_t_cyrillic); // ok
     int tw = lcd()->getUTF8Width(buffer);
@@ -330,7 +291,6 @@ void resetCpuTemperatureSensor()
 
 void drawTemperature(int x, int y)
 {
-
   lcd()->setColorIndex(white);
   lcd()->drawBox(x, y - 1, 90, 24);
 

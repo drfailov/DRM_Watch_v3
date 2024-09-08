@@ -34,8 +34,8 @@ struct Watchface
 };
 
 Watchface watchfaces[] = {
-    {"Боковий", drawWatchfaceSide},
-    {"Повноекранний", drawWatchfaceFullscreen}};
+    {"Side", drawWatchfaceSide},
+    {"Fullscreen", drawWatchfaceFullscreen}};
 
 int getWatchfaceCount()
 {
