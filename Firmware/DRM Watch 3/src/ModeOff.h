@@ -50,7 +50,7 @@ void modeOffLoop()
       lcd()->setFont(u8g2_font_10x20_t_cyrillic);
       lcd()->setCursor(90, 105);
       lcd()->enableUTF8Print();
-      lcd()->print("Тримайте щоб увімкнути");
+      lcd()->print(L("Тримайте щоб увімкнути", "Hold more to turn on"));
 
       drawBattery(190, 130);
       lcd()->sendBuffer();
@@ -86,7 +86,7 @@ void turnOff()
   if (!isOff())
   {
     clearScreenAnimation();
-    drawMessageAnimated("Вимкнення...");
+    drawMessageAnimated(L("Вимкнення...", "Turning off..."));
     delay(500);
   }
   setModeOff();

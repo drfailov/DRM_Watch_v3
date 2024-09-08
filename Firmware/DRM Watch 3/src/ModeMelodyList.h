@@ -42,12 +42,12 @@ void ModeMelodyListMenuLoop(){
   lcd()->setFont(u8g2_font_10x20_t_cyrillic);  //ok
   lcd()->setColorIndex(black);
   lcd()->setCursor(5, 18); 
-  lcd()->print("Список Мелодій");
+  lcd()->print(L("Список Мелодій", "Melodies list"));
   
   drawStatusbar(363, 1, true);
   drawMenuLegend();
   
-  drawMenuItem(itemModeMelodyListBack, draw_ic24_back, "Назад", false);
+  drawMenuItem(itemModeMelodyListBack, draw_ic24_back, L("Назад", "Back"), false);
   for(int i=0; i<getMelodyCount(); i++){
     drawMenuItem(i+1, draw_ic24_music, getMelodyName(i).c_str(), firstDraw?(i+2)%4==0:false);
   }
