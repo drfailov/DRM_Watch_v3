@@ -48,7 +48,7 @@ void modeStopwatchLoop(){
   lcd()->setFont(u8g2_font_10x20_t_cyrillic);  //ok
   lcd()->setColorIndex(black);
   lcd()->setCursor(5, 18); 
-  lcd()->print("Секундомір");
+  lcd()->print(L("Секундомір", "Stopwatch"));
   drawStatusbar(363, 1, true);  
   
   lcd()->setColorIndex(black);

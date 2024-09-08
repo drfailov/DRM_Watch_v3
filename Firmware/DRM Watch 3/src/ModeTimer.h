@@ -10,7 +10,6 @@ void modeTimerButtonDown();
 int timerStep();
 bool timerAlert();
 void resetTimer();
-bool timerAlertCheckButtons();
 
 #include "Global.h"
 #include "AutoSleep.h"
@@ -43,7 +42,7 @@ void modeTimerLoop(){
   lcd()->setFont(u8g2_font_10x20_t_cyrillic);  //ok
   lcd()->setColorIndex(black);
   lcd()->setCursor(5, 18); 
-  lcd()->print("Таймер");
+  lcd()->print(L("Таймер", "Timer"));
 
   drawStatusbar(363, 1, true);
   unsigned long startedTime = getTimerStartedTime();
@@ -161,62 +160,11 @@ bool timerAlert(){
   clearScreenAnimation();
   wakeup();
   backlightOn();
-  
-  //unsigned long timerTime = getTimerTime();
+
   resetTimer();
   bool result = shortcutRun(EVENT_TIMER);
-  /*
-  unsigned long started = rtcGetEpoch();
-  unsigned long endTime = started+60*2; //2min
-  int freq = 1900;
-  while(rtcGetEpoch() < endTime){
-    
-    lcd()->setColorIndex(white);
-    lcd()->drawBox(0, 0, 400, 240);
-
-    drawStatusbar(363, 1, true);
-
-    displayDrawVector(getPathZubat(), 130, 45, 3.0, 3, false, black);
-
-    
-    lcd()->setCursor(100, 230); 
-    lcd()->setFont(u8g2_font_10x20_t_cyrillic);
-    lcd()->print("Таймер (");
-    displayPrintSecondsAsTime(timerTime);
-    lcd()->print(")");
-
-
-    lcd()->drawBox(369, 0, 2, 260);  //draw_ic16_repeat  draw_ic16_arrow_right  draw_ic16_back
-    draw_ic16_back(lx(), ly2(), black);
-    //draw_ic16_watchface(lx(), ly2(), black);
-    lcd()->setFont(u8g2_font_unifont_t_cyrillic); //smalll 
-    lcd()->setCursor(lx()-5, ly1()+16); lcd()->print("+10");
-    lcd()->setCursor(lx()-1, ly3()+16); lcd()->print("+5");
-
-    lcd()->sendBuffer();
-
-
-    for(int i=0; i<4; i++){
-      buzTone(freq);
-      for(long st=millis(); millis()<st+50;) if(timerAlertCheckButtons()){ clearScreenAnimation(); return false;}
-      buzNoTone(); 
-      for(long st=millis(); millis()<st+70;) if(timerAlertCheckButtons()){ clearScreenAnimation(); return false;}
-    }
-    for(long st=millis(); millis()<st+500;) if(timerAlertCheckButtons()){ clearScreenAnimation();  return false;}
-  }
-  buzNoTone(); 
-  */
-  //backlightOff();
-  //clearScreenAnimation();
   modeSetup(); 
   return result;
-}
-
-bool timerAlertCheckButtons(){
-  if(isButtonCenterPressed()){buttonBeep(); modeSetup(); resetTimer(); return true;}
-  if(isButtonUpPressed()){buttonBeep(); modeSetup(); setTimerToMinutes(10); drawMessageAnimated("Відкладено на 10 хвилин"); return true;}
-  if(isButtonDownPressed()){buttonBeep(); modeSetup(); setTimerToMinutes(5); drawMessageAnimated("Відкладено на 5 хвилин"); return true;}
-  return false;
 }
 
 

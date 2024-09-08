@@ -70,7 +70,7 @@ void ModeTestBatteryAnalysisLoop(){
   
   lcd()->setColorIndex(black);
   lcd()->setFont(u8g2_font_10x20_t_cyrillic); // ok
-  lcd()->drawUTF8(10, 16, "Battery");
+  lcd()->drawUTF8(10, 16, L("Акумулятор", "Battery"));
 
   lcd()->setCursor(130, 16);
   lcd()->setFont(u8g2_font_unifont_t_cyrillic); //smalll
