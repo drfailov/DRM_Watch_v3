@@ -247,7 +247,7 @@ bool melodyPlayerProcessButtons(bool alarm){
         //modeSetup(); 
         clearScreenAnimation();
         setTimerToMinutes(10); 
-        drawMessageAnimated("Відкладено на 10 хвилин");  
+        drawMessageAnimated(L("Відкладено на 10 хвилин", "Delayed for 10 minutes"));  
         ledFlashlightOffAll(); 
         buzNoTone();
         while(isButtonUpPressed()); 
@@ -259,7 +259,7 @@ bool melodyPlayerProcessButtons(bool alarm){
         //modeSetup(); 
         clearScreenAnimation();
         setTimerToMinutes(5); 
-        drawMessageAnimated("Відкладено на 5 хвилин");  
+        drawMessageAnimated(L("Відкладено на 5 хвилин", "Delayed for 5 minutes"));  
         ledFlashlightOffAll(); 
         buzNoTone();
         while(isButtonDownPressed()); 
@@ -272,7 +272,7 @@ bool melodyPlayerProcessButtons(bool alarm){
     {
       buttonBeep(); 
       melodyPlayerLoopMelody = !melodyPlayerLoopMelody; 
-      drawMessageAnimated(melodyPlayerLoopMelody?"Повтор увімкнено":"Вимкнено повтор");  
+      drawMessageAnimated(melodyPlayerLoopMelody?L("Повтор увімкнено", "Repeat ON"):L("Вимкнено повтор","Repeat OFF"));  
       while(isButtonDownPressed()); 
     }
   }
@@ -288,9 +288,9 @@ void melodyPlayerDrawScreen(bool alarm) {
   lcd()->setCursor(5, 18); 
   lcd()->setColorIndex(black);
   if(alarm)
-    lcd()->print("Сповіщення");
+    lcd()->print(L("Сповіщення", "Alert"));
   else
-    lcd()->print("Плеєр");
+    lcd()->print(L("Плеєр", "Player"));
   
   int x = drawStatusbar(363, 1, true); 
   if(melodyPlayerLoopMelody)      //draw repeat icon next to statusbar

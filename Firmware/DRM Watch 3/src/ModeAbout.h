@@ -43,7 +43,7 @@ void modeAboutLoop(){
   lcd()->drawBox(0, 0, 400, 240);
   lcd()->setFont(u8g2_font_10x20_t_cyrillic);  //ok
   lcd()->setColorIndex(black);
-  lcd()->setCursor(5, 17);  lcd()->print("Розробник: Dr.Failov");
+  lcd()->setCursor(5, 17);  lcd()->print(L("Розробник: Dr.Failov", "Developer: Dr.Failov"));
   drawStatusbar(395, 1, true);
   lcd()->setFont(u8g2_font_10x20_t_cyrillic);  //ok
   lcd()->setColorIndex(black);
@@ -61,7 +61,7 @@ void modeAboutLoop(){
   #ifdef HW_REV_4
   lcd()->setCursor(5, 216);  lcd()->print("HW:Rev4");
   #endif
-  lcd()->setCursor(105, 234);  lcd()->print("Розроблено в Україні");
+  lcd()->setCursor(105, 234);  lcd()->print(L("Розроблено в Україні", "Developed in Ukraine"));
   lcd()->setCursor(355, 234);  lcd()->print("2024");
 
   if(modeAboutCounter == 0){   //initial draw with animation
