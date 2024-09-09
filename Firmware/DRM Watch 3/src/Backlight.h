@@ -12,7 +12,7 @@ unsigned long backlightEnabledTime = 0;
 unsigned long backlightTimeoutMs = 25000;
 
 void backlightInit(){
-  if(isAwake()){/*NOT periodical wakeup*/ //==================================== BACKLIGHT
+  if(isAwake() && !isOff()){/*NOT periodical wakeup*/ //==================================== BACKLIGHT
     backlightOn();
   }
 }

@@ -54,7 +54,8 @@ void setmodeSerialLog(){
 
 void modeSerialLogLoop(){ 
 
-  while(Serial.available()){
+  while(Serial.available())
+  {
     bytesCounter++;
     lastTimeDataReceived = millis();
     enterAdded = false;

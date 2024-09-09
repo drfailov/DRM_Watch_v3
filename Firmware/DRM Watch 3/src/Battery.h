@@ -60,10 +60,12 @@ float getBatteryVoltage(int raw)
 
 RTC_DATA_ATTR int shownBarsPercentLast = -1;
 RTC_DATA_ATTR int shownBarsPercentHysteresis = 15;
-byte getBatteryBars(){
+byte getBatteryBars()
+{
   int raw = readSensBatteryRawFiltered();
   
-  if(isBatteryCalibrated()){
+  if(isBatteryCalibrated())
+  {
     float percent = batteryCalibrationGetValuePercent(raw);
     float percentChange = abs(shownBarsPercentLast-percent);
     if(shownBarsPercentLast!=-1 && percentChange<shownBarsPercentHysteresis)   //Prevent jitter - ignore small changes
@@ -84,8 +86,16 @@ byte getBatteryBars(){
   return 0;
 }
 
-bool isBatteryCritical(){
-  return getBatteryBars() == 0;
+bool isBatteryCritical()
+{
+  while(millis()<2); //assuming first few ms of wake is not reliable reading
+  if(getBatteryBars() == 0)
+  {
+    sleep(5);
+    if(getBatteryBars() == 0)  //double check to prevent glitches
+      return true;
+  }
+  return false;
 }
 
 RTC_DATA_ATTR bool previousState = false;
@@ -110,7 +120,7 @@ void onChargerConnected(){
   registerAction();
 }
 
-
+RTC_DATA_ATTR float battery_rawFilteredSmoothed = -1;
 RTC_DATA_ATTR float battery_averageRaw = -1;
 RTC_DATA_ATTR float battery_averageDeviation = -1;
 int readSensBatteryRawFiltered(float raw)
@@ -127,6 +137,10 @@ int readSensBatteryRawFiltered(float raw)
 
   battery_averageRaw += (raw-battery_averageRaw)*0.1;
   battery_averageDeviation += (deviation-battery_averageDeviation)*0.1;
+  
+  if(battery_rawFilteredSmoothed == -1)
+    battery_rawFilteredSmoothed = filtered;
+  battery_rawFilteredSmoothed += (filtered-battery_rawFilteredSmoothed)*0.3;
   return (int)filtered;
 }
 int readSensBatteryRawFiltered()
@@ -171,7 +185,7 @@ float linearInterpolate(float raw, float calibrationData[][2], byte tableLength)
 
 int analogSmoothRead(int pin){
   int sum=0;
-  int cnt=5;
+  int cnt=6;
   for(int i=0; i<cnt; i++)
     sum += analogRead(pin);
   return sum/cnt;

@@ -406,6 +406,7 @@ void drawPlot(int x, int y, int w, int h, int thickness, bool legend, int16_t* r
   {
     float cx = map(i, 0, length, leftPoint, rightPoint);
     float cy = map(values[i], min, max, minPoint, maxPoint);
+    cy = constrain(cy, y, y+h);
     if(thickness == 0)
       drawDashedLine(cx, cy, lastX, lastY, 1);
     if (thickness > 0)

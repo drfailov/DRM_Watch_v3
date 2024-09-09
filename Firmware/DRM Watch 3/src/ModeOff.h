@@ -33,16 +33,16 @@ void setModeOff()
   enableAutoSleep = false;
   autoReturnTime = autoReturnDefaultTime;
   autoSleepTime = autoSleepDefaultTime;
-  if (esp_sleep_get_wakeup_cause() == ESP_SLEEP_WAKEUP_EXT0)
-  { /*By button*/
+  if (esp_sleep_get_wakeup_cause() == ESP_SLEEP_WAKEUP_EXT0) /*By button*/
+  { 
     lcdPowerOn();
     lcd()->initInterface();
   }
 }
 void modeOffLoop()
 {
-  if (esp_sleep_get_wakeup_cause() == ESP_SLEEP_WAKEUP_EXT0)
-  { /*By button*/
+  if (esp_sleep_get_wakeup_cause() == ESP_SLEEP_WAKEUP_EXT0) /*By button*/
+  { 
     {
       lcd()->setColorIndex(white);
       lcd()->drawBox(0, 0, 400, 240);
@@ -50,7 +50,21 @@ void modeOffLoop()
       lcd()->setFont(u8g2_font_10x20_t_cyrillic);
       lcd()->setCursor(90, 105);
       lcd()->enableUTF8Print();
-      lcd()->print(L("Тримайте щоб увімкнути", "Hold more to turn on"));
+      if(isBatteryCritical())
+      {
+        if(isChargerConnected())
+        {
+          drawCentered(L("Почекайте поки зарядиться", "Wait to charge"), 200, 105);
+        }
+        else{
+          drawCentered(L("Зарядіть годинник", "Please charge"), 200, 105);
+        }
+      }
+      else
+      {
+        drawCentered(L("Тримайте щоб увімкнути", "Hold more to turn on"), 200, 105);
+      }
+      
 
       drawBattery(190, 130);
       lcd()->sendBuffer();

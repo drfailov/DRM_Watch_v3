@@ -1,5 +1,6 @@
 #include <Arduino.h>
 #include <Lcd.h>
+#include <ModeSerialLog.h>
 
 const byte numChars = 32;
 char receivedChars[numChars];
@@ -75,6 +76,9 @@ void recvWithStartEndMarkers()
 }
 
 void serialLoop(){
-  recvWithStartEndMarkers();
-  processCommand();
+  if(modeSetup != setmodeSerialLog || serialLogPaused)
+  {
+    recvWithStartEndMarkers();
+    processCommand();
+  }
 }

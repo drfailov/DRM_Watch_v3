@@ -124,5 +124,30 @@ void modeTestButtonDown(){
 //----------------------//----------------------//----------------------//----------------------//----------------------//----------------------//----------------------
 
 
+void wakeup_reason() {
+  /*
+  0 = first start
+  ESP_SLEEP_WAKEUP_TIMER = Wakeup periodically 
+
+  */
+  esp_sleep_wakeup_cause_t wakeup_reason = esp_sleep_get_wakeup_cause();
+  switch (wakeup_reason)
+  {
+    case ESP_SLEEP_WAKEUP_EXT0 : lcd()->print("Wakeup external signal RTC_IO"); break;
+    case ESP_SLEEP_WAKEUP_EXT1 : lcd()->print("Wakeup external signal RTC_CNTL"); break;
+    case ESP_SLEEP_WAKEUP_TIMER : lcd()->print("Wakeup caused by timer"); break;
+    case ESP_SLEEP_WAKEUP_TOUCHPAD : lcd()->print("Wakeup caused by touchpad"); break;
+    case ESP_SLEEP_WAKEUP_ULP : lcd()->print("Wakeup caused by ULP program"); break;
+    default :
+      lcd()->print("not deep sleep:");
+      lcd()->print(wakeup_reason);
+      //rtc.setTime(30, 24, 15, 17, 1, 2021);  // 17th Jan 2021 15:24:30
+      //rtc.setTime(1609459200);  // 1st Jan 2021 00:00:00
+      //rtc.offset = 7200; // change offset value
+
+      break;
+  }
+}
+
 
 #endif

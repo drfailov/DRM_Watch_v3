@@ -41,7 +41,7 @@ void setup(void) {
   initPreferences();
   black = getBlackValue(); //load from memory
   white = getWhiteValue(); //load from memory
-  if(isBatteryCritical()){  //if deelpy discharged - go to sleep to let it charge
+  if(!isOff() && isBatteryCritical()){  //if deelpy discharged - go to sleep to let it charge
     setModeOff();
     return;
   }
