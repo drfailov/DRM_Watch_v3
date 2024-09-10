@@ -28,8 +28,13 @@ void formatSelected();
 #include "ModeUsbMSC.h"
 #include "ModePartitionList.h"
 #include <Arduino.h>
+#include "esp_vfs.h"
+#include "esp_vfs_fat.h"
+#include "esp_system.h"
 
-
+// Handle of the wear levelling library instance
+static wl_handle_t s_wl_handle = WL_INVALID_HANDLE;
+const char *base_path = "/spiflash";
 
 void setmodeMemoryManager()
 {
@@ -53,6 +58,23 @@ void setmodeMemoryManager()
   autoSleepTime = autoSleepDefaultTime;
   selected = 0;
   items = 4;
+
+
+  //https://github.com/espressif/esp-idf/blob/release/v4.4/examples/storage/wear_levelling/main/wear_levelling_example_main.c
+    Serial.println("Mounting FAT filesystem");
+    // To mount device we need name of device partition, define base_path
+    // and allow format partition in case if it is new one and was not formated before
+    const esp_vfs_fat_mount_config_t mount_config={true, 4, CONFIG_WL_SECTOR_SIZE};
+    // mount_config.max_files = 4;
+    //         format_if_mount_failed = true,
+    //         allocation_unit_size = CONFIG_WL_SECTOR_SIZE
+    
+    esp_err_t err = esp_vfs_fat_spiflash_mount(base_path, "ffat", &mount_config, &s_wl_handle);
+    if (err != ESP_OK) {
+        Serial.print( "Failed to mount FATFS ");
+        Serial.println( esp_err_to_name(err));
+        return;
+    }
 }
 
 void modeMemoryManagerLoop()
@@ -75,6 +97,7 @@ void modeMemoryManagerLoop()
   drawMenuLegend();
   lcd()->sendBuffer();
 }
+
 void modeMemoryManagerExit()
 {
   
@@ -103,12 +126,14 @@ void modeMemoryManagerButtonCenter()
 
 void formatSelected()
 {
+  drawDim();
   drawMessage(L("Форматування...", "Formatting..."), "fatffs", true);
-  if(FFat.format(FFAT_WIPE_FULL)){
+  if(FFat.format(false)){
     drawMessage(L("Успішно!", "Success!"), L("відформатовано fatffs", "fatffs formatted"), true);
   } else {
     drawMessage(L("Помилка", "Failed"), L("форматування fatffs", "formatting fatffs"), true);
   }
+  setmodeMemoryManager();
 }
 
 

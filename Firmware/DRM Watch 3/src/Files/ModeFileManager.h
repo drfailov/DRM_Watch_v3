@@ -5,6 +5,7 @@ https://github.com/Munsutari/esp32-s3-internal-flash-msc
 #ifndef modeFileManager_H
 #define modeFileManager_H
 
+
 /*PROTOTYPES*/
 void modeFileManagerLoop();
 void modeFileManagerExit();

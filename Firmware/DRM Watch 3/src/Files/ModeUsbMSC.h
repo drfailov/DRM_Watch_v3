@@ -37,15 +37,23 @@ const esp_partition_t *modeUsbMsc_partition = NULL;
 uint32_t modeUsbMsc_bytesRead = 0;
 uint32_t modeUsbMsc_bytesWrite = 0;
 uint32_t modeUsbMsc_errorsWrite = 0;
+esp_err_t res;                          // used many times where patition operations occur  
+
 
 
 static int32_t modeUsbMsc_onWrite(uint32_t lba, uint32_t offset, uint8_t* buffer, uint32_t bufsize){
   for(int retries = 0; retries < 5; retries++){
     ledStatusOn();
     modeUsbMsc_bytesWrite += bufsize;
-    esp_partition_erase_range(modeUsbMsc_partition, offset + (lba * BLOCK_SIZE), bufsize);
-    esp_partition_write(modeUsbMsc_partition, offset + (lba * BLOCK_SIZE), buffer,      bufsize);
-    esp_partition_read (modeUsbMsc_partition, offset + (lba * BLOCK_SIZE), page_buffer, bufsize);
+    res = esp_partition_erase_range(modeUsbMsc_partition, offset + (lba * BLOCK_SIZE), bufsize);
+    if(res != ESP_OK) 
+      modeUsbMsc_errorsWrite++;
+    res = esp_partition_write(modeUsbMsc_partition, offset + (lba * BLOCK_SIZE), buffer,      bufsize);
+    if(res != ESP_OK) 
+      modeUsbMsc_errorsWrite++;
+    res = esp_partition_read (modeUsbMsc_partition, offset + (lba * BLOCK_SIZE), page_buffer, bufsize);
+    if(res != ESP_OK) 
+      modeUsbMsc_errorsWrite++;
     if(memcmp (buffer, page_buffer, bufsize) == 0)
       return bufsize;
     modeUsbMsc_errorsWrite ++;
@@ -104,7 +112,7 @@ void setmodeUsbMsc()
     MSC.onRead(modeUsbMsc_onRead);
     MSC.onWrite(modeUsbMsc_onWrite);
     MSC.mediaPresent(true);
-    MSC.begin(modeUsbMsc_partition->size/BLOCK_SIZE, BLOCK_SIZE);
+    MSC.begin(modeUsbMsc_partition->size/BLOCK_SIZE-1, BLOCK_SIZE);
   }
 }
 
