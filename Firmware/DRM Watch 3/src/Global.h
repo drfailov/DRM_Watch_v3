@@ -132,7 +132,7 @@ Runnable modeButtonDown = 0;
 Runnable modeButtonUpLong = 0;
 Runnable modeButtonCenterLong = 0;
 Runnable modeButtonDownLong = 0;
-#define BUFFER_SIZE 40  //размер текстового буфера. Чем меньше тем экономнее.
+#define BUFFER_SIZE 256  //размер текстового буфера. Чем меньше тем экономнее.
 char buffer[BUFFER_SIZE];   //общий на всю программу текстовый буфер чтобы не объявлять каждый раз локальную.
 
 void doNothing(){} //to use as reference in modes for buttons

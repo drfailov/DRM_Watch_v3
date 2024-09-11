@@ -27,31 +27,35 @@ void modeUsbMscButtonDown();
 #include <Arduino.h>
 #include "USB.h"
 #include "USBMSC.h"
+#include "esp_vfs.h"
+#include "esp_vfs_fat.h"
+#include "esp_system.h"
 
 USBMSC MSC;
-// Block size of flash memory (in bytes) (4KB)
-#define BLOCK_SIZE 4096  
-uint8_t page_buffer[BLOCK_SIZE];
-// https://github.com/espressif/esp-idf/blob/master/examples/storage/partition_api/partition_ops/main/main.c
-const esp_partition_t *modeUsbMsc_partition = NULL;
 uint32_t modeUsbMsc_bytesRead = 0;
 uint32_t modeUsbMsc_bytesWrite = 0;
 uint32_t modeUsbMsc_errorsWrite = 0;
-esp_err_t res;                          // used many times where patition operations occur  
-
 
 
 static int32_t modeUsbMsc_onWrite(uint32_t lba, uint32_t offset, uint8_t* buffer, uint32_t bufsize){
-  for(int retries = 0; retries < 5; retries++){
+  
+  if(s_wl_handle == WL_INVALID_HANDLE)
+    return 0;
+
+  for(int retries = 0; retries < 5; retries++)
+  {
     ledStatusOn();
     modeUsbMsc_bytesWrite += bufsize;
-    res = esp_partition_erase_range(modeUsbMsc_partition, offset + (lba * BLOCK_SIZE), bufsize);
+    //res = esp_partition_erase_range(modeUsbMsc_partition, offset + (lba * BLOCK_SIZE), bufsize);
+    res = wl_erase_range(s_wl_handle, offset + (lba * BLOCK_SIZE), bufsize); //esp_err_t wl_erase_range(wl_handle_thandle, size_t start_addr, size_t size)
     if(res != ESP_OK) 
       modeUsbMsc_errorsWrite++;
-    res = esp_partition_write(modeUsbMsc_partition, offset + (lba * BLOCK_SIZE), buffer,      bufsize);
+    //res = esp_partition_write(modeUsbMsc_partition, offset + (lba * BLOCK_SIZE), buffer,      bufsize);
+    res = wl_write(s_wl_handle, offset + (lba * BLOCK_SIZE), buffer, bufsize); //esp_err_t wl_write(wl_handle_thandle, size_t dest_addr, const void *src, size_t size)
     if(res != ESP_OK) 
       modeUsbMsc_errorsWrite++;
-    res = esp_partition_read (modeUsbMsc_partition, offset + (lba * BLOCK_SIZE), page_buffer, bufsize);
+    //res = esp_partition_read (modeUsbMsc_partition, offset + (lba * BLOCK_SIZE), page_buffer, bufsize);
+    res = wl_read (s_wl_handle, offset + (lba * BLOCK_SIZE), page_buffer, bufsize); //esp_err_twl_read(wl_handle_thandle, size_t src_addr, void *dest, size_t size)
     if(res != ESP_OK) 
       modeUsbMsc_errorsWrite++;
     if(memcmp (buffer, page_buffer, bufsize) == 0)
@@ -61,10 +65,20 @@ static int32_t modeUsbMsc_onWrite(uint32_t lba, uint32_t offset, uint8_t* buffer
   return 0;
 }
 
-static int32_t modeUsbMsc_onRead(uint32_t lba, uint32_t offset, void* buffer, uint32_t bufsize){
+static int32_t modeUsbMsc_onRead(uint32_t lba, uint32_t offset, void* buffer, uint32_t bufsize)
+{
+  if(s_wl_handle == WL_INVALID_HANDLE)
+    return 0;
   ledStatusOn();
   modeUsbMsc_bytesRead += bufsize;
-  esp_partition_read(modeUsbMsc_partition, offset + (lba * BLOCK_SIZE), buffer, bufsize);       //(uint32_t*)
+  //esp_partition_read(modeUsbMsc_partition, offset + (lba * BLOCK_SIZE), buffer, bufsize);       //(uint32_t*)
+  //esp_err_twl_read(wl_handle_thandle, size_t src_addr, void *dest, size_t size)
+  res = wl_read(s_wl_handle, offset + (lba * BLOCK_SIZE), buffer, bufsize);
+  if(res != ESP_OK){
+    ledFlashlightOnTop();
+    Serial.print("Error reading: ");
+    Serial.println( esp_err_to_name(res));
+  }
   return bufsize;
 }
 
@@ -100,11 +114,52 @@ void setmodeUsbMsc()
   modeUsbMsc_bytesRead = 0;
   modeUsbMsc_bytesWrite = 0;
   
-  //modeUsbMsc_partition = esp_partition_find_first(ESP_PARTITION_TYPE_DATA, ESP_PARTITION_SUBTYPE_ANY, "spiffs");
-  //modeUsbMsc_partition = esp_partition_find_first(ESP_PARTITION_TYPE_APP, ESP_PARTITION_SUBTYPE_ANY, "app1");
-  modeUsbMsc_partition = esp_partition_find_first(ESP_PARTITION_TYPE_DATA, ESP_PARTITION_SUBTYPE_DATA_FAT, NULL); //fatffs
+  //https://github.com/espressif/esp-idf/blob/release/v4.4/examples/storage/wear_levelling/main/wear_levelling_example_main.c
+  
+  // To mount device we need name of device partition, define base_path
+  // and allow format partition in case if it is new one and was not formated before
+  
+  Serial.println("Finding FFAT partition...");
+  if(ffat_partition != NULL)
+  {
+    Serial.println("FFAT partition already found.");
+  }
+  else
+  {
+    //modeUsbMsc_partition = esp_partition_find_first(ESP_PARTITION_TYPE_DATA, ESP_PARTITION_SUBTYPE_ANY, "spiffs");
+    //modeUsbMsc_partition = esp_partition_find_first(ESP_PARTITION_TYPE_APP, ESP_PARTITION_SUBTYPE_ANY, "app1");
+    ffat_partition = esp_partition_find_first(ESP_PARTITION_TYPE_DATA, ESP_PARTITION_SUBTYPE_DATA_FAT, NULL); //fatffs
+    if(ffat_partition == NULL)
+    {
+      Serial.println("Partition not found=(");
+      return;
+    }
+    Serial.println("Partition found.");
+  }
 
-  if(modeUsbMsc_partition != NULL){
+  
+  Serial.println("Mounting WearLeveling...");
+  if(s_wl_handle != WL_INVALID_HANDLE)
+  {
+    Serial.println("WearLeveling already mounted.");
+  }
+  else
+  {
+    //const esp_vfs_fat_mount_config_t mount_config={true, 4, CONFIG_WL_SECTOR_SIZE}; // mount_config.max_files = 4; format_if_mount_failed = true, allocation_unit_size = CONFIG_WL_SECTOR_SIZE
+    //esp_err_t err = esp_vfs_fat_spiflash_mount(base_path, "ffat", &mount_config, &s_wl_handle);
+    res = wl_mount(ffat_partition, &s_wl_handle);  //esp_err_twl_mount(const esp_partition_t *partition, wl_handle_t *out_handle) 
+    if (res != ESP_OK) {
+        Serial.print("Failed to mount FATFFS partition WL: ");
+        Serial.println( esp_err_to_name(res));
+        return;
+    }
+    Serial.println("WL Mounted.");
+  }
+  Serial.print("WL Sector size: ");
+  Serial.println(wl_sector_size(s_wl_handle));  //WL Sector size: 4096
+  
+
+  if(s_wl_handle != WL_INVALID_HANDLE){
     MSC.vendorID("DRM");     // max 8 chars
     MSC.productID("Watch 3"); // max 16 chars
     MSC.productRevision("3.0");   // max 4 chars
@@ -112,13 +167,14 @@ void setmodeUsbMsc()
     MSC.onRead(modeUsbMsc_onRead);
     MSC.onWrite(modeUsbMsc_onWrite);
     MSC.mediaPresent(true);
-    MSC.begin(modeUsbMsc_partition->size/BLOCK_SIZE-1, BLOCK_SIZE);
+    MSC.begin(wl_size(s_wl_handle)/BLOCK_SIZE, BLOCK_SIZE);
   }
 }
 
 void modeUsbMscLoop()
 {
   ledStatusOff();
+  ledFlashlightOffTop();
   lcd()->setColorIndex(white);
   lcd()->drawBox(0, 0, 400, 240);
 
@@ -129,7 +185,8 @@ void modeUsbMscLoop()
 
   drawStatusbar(363, 1, true);
 
-  if(modeUsbMsc_partition != NULL){
+  if(s_wl_handle != WL_INVALID_HANDLE)
+  {
 
     draw_ic24_usb(180, 20, black);
     drawCentered(L("Підключіть до USB", "Connect to USB"), 60);
@@ -167,9 +224,25 @@ void modeUsbMscLoop()
 
   lcd()->sendBuffer();
 }
+
 void modeUsbMscExit()
 {
   modeExit = 0;
+  Serial.println("UNmounting WearLeveling...");
+  if(s_wl_handle != WL_INVALID_HANDLE)
+  {
+    res = wl_unmount(s_wl_handle);  //esp_err_twl_mount(const esp_partition_t *partition, wl_handle_t *out_handle) 
+    if (res != ESP_OK) {
+      Serial.print("Failed to unmount partition WL: ");
+      Serial.println( esp_err_to_name(res));
+    }
+    else
+    {
+      s_wl_handle = WL_INVALID_HANDLE;
+      Serial.println("WL Unmounted.");
+    }
+    
+  }
   MSC.end();
 }
 
@@ -177,11 +250,13 @@ void modeUsbMscButtonUp()
 {
 
 }
+
 void modeUsbMscButtonCenter()
 {
   setmodeMemoryManager();
   return;
 }
+
 void modeUsbMscButtonDown()
 {
 

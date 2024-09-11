@@ -17,10 +17,12 @@ void modeFileReaderBmpButtonDown();
 #include "AutoSleep.h"
 #include "Button.h"
 #include "ModeSerialLog.h"
+#include "ModeMemoryManager.h"
 #include <Arduino.h>
 #include "FFat.h"
 #include "FS.h"
 
+//https://www.programiz.com/cpp-programming/library-function/cstdio/getc
 // https://github.com/espressif/esp-idf/blob/master/examples/storage/partition_api/partition_ops/main/main.c
 //  Find the partition map in the partition table
 RTC_DATA_ATTR char *modeFileReaderBmpPath = (char *)"/";
@@ -47,7 +49,9 @@ void setmodeFileReaderBmp()
   autoReturnTime = autoReturnDefaultTime;
   autoSleepTime = autoSleepDefaultTime;
 
-  modeFileReaderBmp_fatReady = FFat.begin();
+  //modeFileReaderBmp_fatReady = FFat.begin();
+  if(!initFat())
+    return;
 }
 
 void modeFileReaderBmpLoop()
@@ -284,8 +288,10 @@ void modeFileReaderBmpLoop()
 void modeFileReaderBmpExit()
 {
   free(modeFileReaderBmpPath);
-  FFat.end();
+  //FFat.end();
+  
   modeExit = 0;
+  exitFat();
 }
 
 void modeFileReaderBmpButtonUp()
