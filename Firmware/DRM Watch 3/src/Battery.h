@@ -89,13 +89,13 @@ byte getBatteryBars()
 bool isBatteryCritical()
 {
   while(millis()<2); //assuming first few ms of wake is not reliable reading
-  if(getBatteryBars() == 0)
+  for(int i=0; i<3; i++) ////multi check to prevent glitches
   {
-    sleep(5);
-    if(getBatteryBars() == 0)  //double check to prevent glitches
-      return true;
+    if(getBatteryBars() > 0)
+      return false;
+    sleep(5);  
   }
-  return false;
+  return true;
 }
 
 RTC_DATA_ATTR bool previousState = false;
