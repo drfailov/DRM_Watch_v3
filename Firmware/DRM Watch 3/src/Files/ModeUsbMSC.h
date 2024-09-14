@@ -24,12 +24,11 @@ void modeUsbMscButtonDown();
 #include "AutoSleep.h"
 #include "Button.h"
 #include "ModeSerialLog.h"
+#include "ModeMemoryManager.h"
 #include <Arduino.h>
 #include "USB.h"
 #include "USBMSC.h"
-#include "esp_vfs.h"
-#include "esp_vfs_fat.h"
-#include "esp_system.h"
+
 
 USBMSC MSC;
 uint32_t modeUsbMsc_bytesRead = 0;

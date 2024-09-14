@@ -26,7 +26,7 @@ void modeFileReaderBmpButtonDown();
 // https://github.com/espressif/esp-idf/blob/master/examples/storage/partition_api/partition_ops/main/main.c
 //  Find the partition map in the partition table
 RTC_DATA_ATTR char *modeFileReaderBmpPath = (char *)"/";
-bool modeFileReaderBmp_fatReady = false;
+//bool modeFileReaderBmp_fatReady = false;
 
 void setmodeFileReaderBmp()
 {

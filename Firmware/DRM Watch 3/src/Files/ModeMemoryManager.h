@@ -5,9 +5,9 @@ https://github.com/Munsutari/esp32-s3-internal-flash-msc
 #ifndef modeMemoryManager_H
 #define modeMemoryManager_H
 
-const int modeMemoryManagerItemUpload = 1;
-const int modeMemoryManagerItemShowPartitions = 2;
-const int modeMemoryManagerItemFormatPartition = 3;
+#include "esp_vfs.h"
+#include "esp_vfs_fat.h"
+#include "esp_system.h"
 
 // https://github.com/espressif/esp-idf/blob/master/examples/storage/partition_api/partition_ops/main/main.c
 const esp_partition_t *ffat_partition = NULL;
@@ -18,6 +18,10 @@ uint8_t page_buffer[BLOCK_SIZE];
 esp_err_t res;                          // used many times where patition operations occur  
 bool modeFileManagerFatReady = false;
 const char *base_path = "/spi";
+const int modeMemoryManagerItemUpload = 1;
+const int modeMemoryManagerItemShowPartitions = 2;
+//const int modeMemoryManagerItemFormatPartition = 3;
+
 
 
 /*PROTOTYPES*/
@@ -27,7 +31,7 @@ void setmodeMemoryManager();
 void modeMemoryManagerButtonUp();
 void modeMemoryManagerButtonCenter();
 void modeMemoryManagerButtonDown();
-void formatSelected();
+// void formatSelected();
 bool fatReady();
 bool initFat();
 void exitFat();
@@ -40,6 +44,7 @@ void exitFat();
 #include "ModeUsbMSC.h"
 #include "ModePartitionList.h"
 #include <Arduino.h>
+
 
 
 bool initFat()
@@ -116,7 +121,7 @@ void setmodeMemoryManager()
   autoReturnTime = autoReturnDefaultTime;
   autoSleepTime = autoSleepDefaultTime;
   selected = 0;
-  items = 4;
+  items = 3;
 
 }
 
@@ -135,7 +140,7 @@ void modeMemoryManagerLoop()
   drawListItem(itemBack,                              draw_ic24_back,      L("Назад", "Back"),                              L("До головного меню", "To apps menu"),                        false);
   drawListItem(modeMemoryManagerItemUpload,           draw_ic24_usb,       L("Підключити до USB", "Connect to USB"),        L("Щоб закинути файли з компа", "To upload files from PC"),    false);
   drawListItem(modeMemoryManagerItemShowPartitions,   draw_ic24_partitions,L("Показати карту розділів", "Partitions list"), L("Як поділена пам'ять контролера", "List and sizes"),         false);
-  drawListItem(modeMemoryManagerItemFormatPartition,  draw_ic24_clean,     L("Форматувати розділ", "Format partition"),     L("Це зітре всі файли на розділі", "It will erase all files"), false);
+  //drawListItem(modeMemoryManagerItemFormatPartition,  draw_ic24_clean,     L("Форматувати розділ", "Format partition"),     L("Це зітре всі файли на розділі", "It will erase all files"), false);
 
   drawMenuLegend();
   lcd()->sendBuffer();
@@ -161,23 +166,23 @@ void modeMemoryManagerButtonCenter()
     setmodePartitionList();
     return;
   }
-  if(selected == modeMemoryManagerItemFormatPartition){
-    questionModeSet(L("Форматувати розділ?", "Format partition?"), L("Всі файли будуть видалені!","All files will be erased!"), formatSelected, setmodeMemoryManager);
-    return;
-  }
+  // if(selected == modeMemoryManagerItemFormatPartition){
+  //   questionModeSet(L("Форматувати розділ?", "Format partition?"), L("Всі файли будуть видалені!","All files will be erased!"), formatSelected, setmodeMemoryManager);
+  //   return;
+  // }
 }
 
-void formatSelected()
-{
-  drawDim();
-  drawMessage(L("Форматування...", "Formatting..."), "fatffs", true);
-  if(FFat.format(false)){
-    drawMessage(L("Успішно!", "Success!"), L("відформатовано fatffs", "fatffs formatted"), true);
-  } else {
-    drawMessage(L("Помилка", "Failed"), L("форматування fatffs", "formatting fatffs"), true);
-  }
-  setmodeMemoryManager();
-}
+// void formatSelected()
+// {
+//   drawDim();
+//   drawMessage(L("Форматування...", "Formatting..."), "fatffs", true);
+//   // if(FFat.format(false)){
+//   //   drawMessage(L("Успішно!", "Success!"), L("відформатовано fatffs", "fatffs formatted"), true);
+//   // } else {
+//   //   drawMessage(L("Помилка", "Failed"), L("форматування fatffs", "formatting fatffs"), true);
+//   // }
+//   setmodeMemoryManager();
+// }
 
 
 

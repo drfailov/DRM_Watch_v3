@@ -12,6 +12,7 @@ void setmodeFileManager();
 void modeFileManagerButtonUp();
 void modeFileManagerButtonCenter();
 void modeFileManagerButtonDown();
+void openFile(const char *path);
 void playDwmMelody(const char *path);
 void playWavMelody(const char *path);
 
@@ -192,32 +193,8 @@ void modeFileManagerButtonCenter()
         }
         else    //is file
         {
-          if (strendswith(pDirent->d_name, ".txt"))
-          {
-            // sprintf(buffer, L("Текст, %d байт", "Text, %d bytes"), _stat.st_size);
-            // drawListItem(cnt, draw_ic24_file, pDirent->d_name, buffer, false);
-          }
-          else if (strendswith(pDirent->d_name, ".dwm"))
-          {
-            const char *melodyPath = strdup(buffer);
-            playDwmMelody(melodyPath);
-            break;
-          }
-          else if (strendswith(pDirent->d_name, ".wav"))
-          {
-            const char *melodyPath = strdup(buffer);
-            playWavMelody(melodyPath);
-            break;
-          }
-          else if (strendswith(pDirent->d_name, ".bmp"))
-          {
-            modeFileReaderBmpPath = strdup(buffer);
-            //file.close();
-            setmodeFileReaderBmp();
-            break;
-            // sprintf(buffer, L("Картинка, %d байт", "Image, %d bytes"), _stat.st_size);
-            // drawListItem(cnt, draw_ic24_image, pDirent->d_name, buffer, false);
-          }
+          openFile(buffer);
+          break;
         }
       }
     }
@@ -273,6 +250,33 @@ void modeFileManagerButtonCenter()
   //   }
   // }
   
+}
+void openFile(const char *path)
+{
+  if (strendswith(pDirent->d_name, ".txt"))
+  {
+    modeFileReaderTextPath = strdup(path);
+    setmodeFileReaderText();
+  }
+  else if (strendswith(pDirent->d_name, ".dwm"))
+  {
+    const char *melodyPath = strdup(path);
+    playDwmMelody(melodyPath);
+  }
+  else if (strendswith(pDirent->d_name, ".wav"))
+  {
+    const char *melodyPath = strdup(path);
+    playWavMelody(melodyPath);
+  }
+  else if (strendswith(pDirent->d_name, ".bmp"))
+  {
+    modeFileReaderBmpPath = strdup(path);
+    setmodeFileReaderBmp();
+  }
+  else
+  {
+    drawMessageAnimated(L("Формат не підтримується", "Unsupported format"));
+  }
 }
 
 void playDwmMelody(const char *path)
