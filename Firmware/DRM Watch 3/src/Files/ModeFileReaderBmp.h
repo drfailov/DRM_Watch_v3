@@ -49,9 +49,7 @@ void setmodeFileReaderBmp()
   autoReturnTime = autoReturnDefaultTime;
   autoSleepTime = autoSleepDefaultTime;
 
-  //modeFileReaderBmp_fatReady = FFat.begin();
-  if(!initFat())
-    return;
+  initFat();
 }
 
 void modeFileReaderBmpLoop()
@@ -69,15 +67,16 @@ void modeFileReaderBmpLoop()
 
   //drawStatusbar(363, 1, true);
 
-  if (modeFileReaderBmp_fatReady)
-  {
-    fs::FS &fs = FFat;
-    File f = FFat.open(F(modeFileReaderBmpPath), FILE_READ, false);
-    Serial.println(f.name());
-    if (!f)
+    //fs::FS &fs = FFat;
+    //File f = FFat.open(F(modeFileReaderBmpPath), FILE_READ, false);
+    //Serial.println(f.name());
+    FILE* f = fopen(modeFileReaderBmpPath, "r");   //https://cplusplus.com/reference/cstdio/
+    if(f == NULL)
     {
       draw_ic24_bad_file(170, 90, black);
       drawCentered(L("Помилка відкриття файлу", "Error opening file"), 150);
+      if (modeFileReaderBmpPath != 0)
+        drawCentered(modeFileReaderBmpPath, 170);
     }
     else
     {
@@ -110,14 +109,17 @@ void modeFileReaderBmpLoop()
       //     }
       //   }
       // }
-      while (f.available())
+      //while (f.available())
+      while(feof(f) == 0)
       {
         /*
         We're reading file linearly and when we're on offset of needed data, read it then continue reading linearly
         */
         if (offset == 0x00)
         {
-          f.read((uint8_t *)id, 2/*bytes*/);
+          //size_t fread ( void * ptr, size_t size, size_t count, FILE * stream );
+          fread (id, 2/*size*/, 1/*cnt*/, /*FILE*/f );   //https://cplusplus.com/reference/cstdio/
+          //f.read((uint8_t *)id, 2/*bytes*/);
           offset += 2/*bytes*/;
           if (id[0] != 'B' || id[1] != 'M')
           { // BM is valid
@@ -129,17 +131,21 @@ void modeFileReaderBmpLoop()
         }
         else if (offset == 0x02) //bmp_size offset
         {
-          f.read((uint8_t *)&bmp_size, 4 /*bytes*/);
+          fread (&bmp_size, 4/*size*/, 1/*cnt*/, /*FILE*/f );  //https://cplusplus.com/reference/cstdio/
+          //f.read((uint8_t *)&bmp_size, 4 /*bytes*/);
           offset += 4;
         }
         else if (offset == 0x0A) //imgdata_offset_OFFSET
         {
-          f.read((uint8_t *)&imgdata_offset, 4 /*bytes*/);
+          fread (&imgdata_offset, 4/*size*/, 1/*cnt*/, /*FILE*/f );  //https://cplusplus.com/reference/cstdio/
+          //f.read((uint8_t *)&imgdata_offset, 4 /*bytes*/);
+          //fread ((uint8_t *)&bmp_size, 1/*char=1byte*/, 4/*read 4 bytes*/, /*FILE*/f );
           offset += 4;
         }
         else if (offset == 0x0E) //header_size_OFFSET
         {
-          f.read((uint8_t *)&header_size, 4  /*bytes*/);
+          fread ((uint8_t *)&header_size, 1/*char=1byte*/, 4/*read 4 bytes*/, /*FILE*/f );  //https://cplusplus.com/reference/cstdio/
+          //f.read((uint8_t *)&header_size, 4  /*bytes*/);
           offset += 4;
           if (header_size != 40)
           { // should be 40
@@ -151,7 +157,8 @@ void modeFileReaderBmpLoop()
         }
         else if (offset == 0x12) //width
         {
-          f.read((uint8_t *)&width,   4/*bytes*/);
+          fread ((uint8_t *)&width, 1/*char=1byte*/, 4/*read 4 bytes*/, /*FILE*/f );  //https://cplusplus.com/reference/cstdio/
+          //f.read((uint8_t *)&width,   4/*bytes*/);
           offset += 4;
           offset_x = (W-width)/2;
           if (width == 0)
@@ -164,7 +171,8 @@ void modeFileReaderBmpLoop()
         }
         else if (offset == 0x16) //height
         {
-          f.read((uint8_t *)&height, 4/*bytes*/);
+          fread ((uint8_t *)&height, 1/*char=1byte*/, 4/*read 4 bytes*/, /*FILE*/f );  //https://cplusplus.com/reference/cstdio/
+          //f.read((uint8_t *)&height, 4/*bytes*/);
           offset += 4;
           bmp_y = height-1;
           offset_y = (H-height)/2 ;
@@ -178,7 +186,8 @@ void modeFileReaderBmpLoop()
         }
         else if (offset == 0x1C) //bitsPerPixel
         {
-          f.read((uint8_t *)&bitsPerPixel, 2/*bytes*/);
+          fread ((uint8_t *)&bitsPerPixel, 1/*char=1byte*/, 2/*read 2 bytes*/, /*FILE*/f );  //https://cplusplus.com/reference/cstdio/
+          //f.read((uint8_t *)&bitsPerPixel, 2/*bytes*/);
           offset += 2;
           if (bitsPerPixel != 1)
           { // should be 1
@@ -190,7 +199,8 @@ void modeFileReaderBmpLoop()
         }
         else if (offset == 0x1E) //compression method
         {
-          f.read((uint8_t *)&compressionMethod, 4/*bytes*/);
+          fread ((uint8_t *)&compressionMethod, 1/*char=1byte*/, 4/*read 4 bytes*/, /*FILE*/f );  //https://cplusplus.com/reference/cstdio/
+          //f.read((uint8_t *)&compressionMethod, 4/*bytes*/);
           offset += 4;
           if (compressionMethod != 0)
           { // should be 0
@@ -203,7 +213,8 @@ void modeFileReaderBmpLoop()
         else if (offset >= imgdata_offset) //actual image
         {
           uint32_t img_buffer = 0;
-          f.read((uint8_t *)&img_buffer, 4/*bytes*/);
+          fread ((uint8_t *)&img_buffer, 4/*size*/, 1/*cnt*/, /*FILE*/f );  //https://cplusplus.com/reference/cstdio/
+          //f.read((uint8_t *)&img_buffer, 4/*bytes*/);
           offset += 4;
           for (int j = 0;  j < 4;  j++)
           {
@@ -226,12 +237,15 @@ void modeFileReaderBmpLoop()
         }
         else
         {
-          f.read();
+          fgetc(f);
+          //fread ((uint8_t *)&bmp_size, 1/*char=1byte*/, 4/*read 4 bytes*/, /*FILE*/f );  //https://cplusplus.com/reference/cstdio/
+          //f.read();
           offset++;
         }
       }
 
-      if(false){  //DEBUG
+      if(false) //DEBUG
+      {  
         lcd()->setFont(u8g2_font_unifont_t_cyrillic); // smalll
         lcd()->setColorIndex(black);
         
@@ -268,16 +282,10 @@ void modeFileReaderBmpLoop()
         lcd()->print(compressionMethod);
       }
 
-      f.close();
+      fclose(f);
     }
-  }
-  else
-  {
-    draw_ic24_bad_file(170, 90, black);
-    drawCentered(L("Файлова система пошкоджена", "File system damaged"), 150);
-    if (modeFileReaderBmpPath != 0)
-      drawCentered(modeFileReaderBmpPath, 170);
-  }
+  
+  
   //lcd()->setColorIndex(black);
   //lcd()->drawBox(369, 0, 2, 260); // draw_ic16_repeat  draw_ic16_arrow_right  draw_ic16_back
   //draw_ic16_back(lx(), ly2(), black);

@@ -335,7 +335,7 @@ void drawMessage(String text, String text2, bool animate)
   if (animate)
   {
     lcd()->sendBuffer();
-    delay(300);
+    delay(400);
   }
 }
 

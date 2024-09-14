@@ -235,6 +235,7 @@ bool melodyPlayerProcessButtons(bool alarm){
   {
     buttonBeep(); 
     //modeSetup(); 
+    registerAction(); //to brevent auto exit after melody played
     clearScreenAnimation();
     ledFlashlightOffAll(); 
     while(isButtonCenterPressed()); 
@@ -247,6 +248,7 @@ bool melodyPlayerProcessButtons(bool alarm){
       {
         buttonBeep(); 
         //modeSetup(); 
+        registerAction(); //to brevent auto exit after melody played
         clearScreenAnimation();
         setTimerToMinutes(10); 
         drawMessageAnimated(L("Відкладено на 10 хвилин", "Delayed for 10 minutes"));  
@@ -259,6 +261,7 @@ bool melodyPlayerProcessButtons(bool alarm){
       {
         buttonBeep(); 
         //modeSetup(); 
+        registerAction(); //to brevent auto exit after melody played
         clearScreenAnimation();
         setTimerToMinutes(5); 
         drawMessageAnimated(L("Відкладено на 5 хвилин", "Delayed for 5 minutes"));  
@@ -273,6 +276,7 @@ bool melodyPlayerProcessButtons(bool alarm){
     if(isButtonDownPressed())
     {
       buttonBeep(); 
+      registerAction(); //to brevent auto exit after melody played
       melodyPlayerLoopMelody = !melodyPlayerLoopMelody; 
       drawMessageAnimated(melodyPlayerLoopMelody?L("Повтор увімкнено", "Repeat ON"):L("Вимкнено повтор","Repeat OFF"));  
       while(isButtonDownPressed()); 

@@ -13,6 +13,7 @@ void modeFileManagerButtonUp();
 void modeFileManagerButtonCenter();
 void modeFileManagerButtonDown();
 void playDwmMelody(const char *path);
+void playWavMelody(const char *path);
 
 #include "Global.h"
 #include "../AutoSleep.h"
@@ -150,58 +151,6 @@ void modeFileManagerExit()
   exitFat();
 }
 
-void playWavMelody(const char *path)
-{ 
-  bool repeat = false;
-  unsigned long lastTick = micros();
-  draw_ic16_empty(lx(), ly3(), black);
-  drawDim();
-  draw_ic16_repeat(lx(), ly1(), black);
-  draw_ic16_back(lx(), ly2(), black);
-  char *lastSlash = strrchr(path, '/');
-  drawMessage(L("Відтворення...", "Playing..."), lastSlash, true);
-  ledStatusOn();
-  backlightOff();
- 
-  do
-  {
-    FILE* f = fopen(path, "r");
-    ledcSetup(/*channel*/ 0, /*freq*/ 24000, /*PWM_Res*/ 8);
-
-    while(feof(f) == 0)
-    {
-      char c = getc(f);
-      ledcWrite(/*channel*/ 0, /*value*/ c);
-      while (micros() - lastTick < 120)
-        ;
-      lastTick = micros();
-      if (isButtonUpPressed())
-      {
-        repeat = !repeat;
-        if (repeat)
-          draw_ic16_check(lx(), ly1(), black);
-        else
-          draw_ic16_repeat(lx(), ly1(), black);
-        lcd()->sendBuffer();
-        while (isButtonUpPressed())
-          ;
-      }
-      if (isButtonCenterPressed())
-      {
-        buttonBeep();
-        repeat = false;
-        break;
-      }
-    }
-    fclose(f);
-  } while (repeat);
-
-  ledStatusOff();
-  buzNoTone();
-  clearScreenAnimation();
-  registerAction();
-  while (isButtonCenterPressed());
-}
 
 void modeFileManagerButtonCenter()
 {
@@ -240,7 +189,6 @@ void modeFileManagerButtonCenter()
           modeFileManagerDir = strdup(buffer);
           selected = 0;
           clearScreenAnimation();
-          //drawListItem(cnt, draw_ic24_folder, pDirent->d_name, L("Папка", "Folder"), false);
         }
         else    //is file
         {
@@ -251,27 +199,24 @@ void modeFileManagerButtonCenter()
           }
           else if (strendswith(pDirent->d_name, ".dwm"))
           {
-            // sprintf(buffer, L("Мелодія, %d байт", "Melody, %d bytes"), _stat.st_size);
-            // drawListItem(cnt, draw_ic24_music, pDirent->d_name, buffer, false);
+            const char *melodyPath = strdup(buffer);
+            playDwmMelody(melodyPath);
+            break;
           }
           else if (strendswith(pDirent->d_name, ".wav"))
           {
-              const char *melodyPath = strdup(buffer);
-              //file.close();
-              playWavMelody(melodyPath);
-              break;
-            // sprintf(buffer, L("Аудіо, %d байт", "Audio, %d bytes"), _stat.st_size);
-            // drawListItem(cnt, draw_ic24_music, pDirent->d_name, buffer, false);
+            const char *melodyPath = strdup(buffer);
+            playWavMelody(melodyPath);
+            break;
           }
           else if (strendswith(pDirent->d_name, ".bmp"))
           {
+            modeFileReaderBmpPath = strdup(buffer);
+            //file.close();
+            setmodeFileReaderBmp();
+            break;
             // sprintf(buffer, L("Картинка, %d байт", "Image, %d bytes"), _stat.st_size);
             // drawListItem(cnt, draw_ic24_image, pDirent->d_name, buffer, false);
-          }
-          else
-          {
-            // sprintf(buffer, L("Файл, %d байт", "File, %d bytes"), _stat.st_size);
-            // drawListItem(cnt, draw_ic24_question, pDirent->d_name, buffer, false);
           }
         }
       }
@@ -332,53 +277,110 @@ void modeFileManagerButtonCenter()
 
 void playDwmMelody(const char *path)
 {
-  fs::FS &fs = FFat;
-  File file = FFat.open(F(path), FILE_READ, false);
-  if (file != 0)
+  initFat();
+  FILE* f = fopen(path, "r");
+  if(f == NULL){
+    drawMessage(L("Помилка відкриття файлу", "Error opening file"), path, true);
+    return;
+  }
+  melodyPlayerSetMelodyName(String(strdup(strrchr(path, '/'))));
+  const int melody_max = 2048;
+  int *tmp_melody = new int[melody_max]; // dynamically allocate memory
+  int buffer_index = 0;
+  int melody_index = 0;
+  while (feof(f) == 0)
   {
-    melodyPlayerSetMelodyName(String(strdup(file.name())));
-    const int melody_max = 2048;
-    int *tmp_melody = new int[melody_max]; // dynamically allocate memory
-    int buffer_index = 0;
-    int melody_index = 0;
-    while (file.available())
+    char c = getc(f);
+    if (isdigit(c) || c == '-')
     {
-      char c = (char)file.read();
-      if (isdigit(c) || c == '-')
-      {
-        buffer[buffer_index] = c;
-        if (buffer_index < BUFFER_SIZE)
-          buffer_index++;
-      }
-      else
-      {
-        if (buffer_index != 0)
-        {
-          buffer[buffer_index] = '\0';
-          buffer_index = 0;
-          tmp_melody[melody_index] = atoi(buffer);
-          melody_index++;
-        }
-      }
-      if (melody_index >= melody_max)
-        break;
-    }
-    file.close();
-    if (melody_index > 0)
-    {
-      tmp_melody[melody_index] = 19;
-      tmp_melody[melody_max - 1] = 19;
-
-      melodyPlayerPlayMelody(/*const int* melody*/ tmp_melody, /*bool alarm*/ false);
+      buffer[buffer_index] = c;
+      if (buffer_index < BUFFER_SIZE)
+        buffer_index++;
     }
     else
     {
-      drawDim();
-      drawMessageAnimated(L("Битий файл", "Corrupted file"));
+      if (buffer_index != 0)
+      {
+        buffer[buffer_index] = '\0';
+        buffer_index = 0;
+        tmp_melody[melody_index] = atoi(buffer);
+        melody_index++;
+      }
     }
-    delete tmp_melody;    // deallocate the memory
-    tmp_melody = nullptr; // set pointer to nullptr
+    if (melody_index >= melody_max)
+      break;
   }
+  fclose(f);
+  if (melody_index > 0)
+  {
+    tmp_melody[melody_index] = 19;
+    tmp_melody[melody_max - 1] = 19;
+    melodyPlayerPlayMelody(/*const int* melody*/ tmp_melody, /*bool alarm*/ false);
+  }
+  else
+  {
+    drawDim();
+    drawMessageAnimated(L("Битий файл", "Corrupted file"));
+  }
+  delete tmp_melody;    // deallocate the memory
+  tmp_melody = nullptr; // set pointer to nullptr
 }
 
+void playWavMelody(const char *path)
+{ 
+  initFat();
+  bool repeat = false;
+  unsigned long lastTick = micros();
+  draw_ic16_empty(lx(), ly3(), black);
+  drawDim();
+  draw_ic16_repeat(lx(), ly1(), black);
+  draw_ic16_back(lx(), ly2(), black);
+  char *lastSlash = strrchr(path, '/');
+  drawMessage(L("Відтворення...", "Playing..."), lastSlash, true);
+  ledStatusOn();
+  backlightOff();
+  do
+  {
+    FILE* f = fopen(path, "r");
+    if(f == NULL)
+    {
+      drawMessage(L("Помилка відкриття файлу", "Error opening file"), path, true);
+      return;
+    }
+    ledcSetup(/*channel*/ 0, /*freq*/ 24000, /*PWM_Res*/ 8);
+
+    while(feof(f) == 0)
+    {
+      char c = getc(f);
+      ledcWrite(/*channel*/ 0, /*value*/ c);
+      while (micros() - lastTick < 120)
+        ;
+      lastTick = micros();
+      if (isButtonUpPressed())
+      {
+        repeat = !repeat;
+        if (repeat)
+          draw_ic16_check(lx(), ly1(), black);
+        else
+          draw_ic16_repeat(lx(), ly1(), black);
+        lcd()->sendBuffer();
+        while (isButtonUpPressed());
+      }
+      if (isButtonCenterPressed())
+      {
+        buttonBeep();
+        repeat = false;
+        registerAction(); //to brevent auto exit after melody played
+        break;
+      }
+    }
+    fclose(f);
+  } while (repeat);
+
+  ledStatusOff();
+  buzNoTone();
+  clearScreenAnimation();
+  registerAction();
+  while (isButtonCenterPressed());
+}
 #endif

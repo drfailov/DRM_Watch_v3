@@ -149,6 +149,7 @@ void ModeAppsMenuButtonCenter(){
     return;
   }
   if(selected == itemModeAppsFileManager){
+    modeFileManagerDir = "/spi";
     setmodeFileManager();
     selected = 0;
     return;
