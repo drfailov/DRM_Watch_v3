@@ -182,7 +182,7 @@ void drawDayOfWeek(int x_end, int y)
   int w = lcd()->getUTF8Width(text);
   int x = x_end-w;
   lcd()->setColorIndex(white);
-  lcd()->drawBox(x - 3, y - 16, w+6, 20);
+  lcd()->drawRBox(x - 3, y - 16, w+6, 20, roundness);
   lcd()->setColorIndex(black);
   lcd()->drawUTF8(x, y, text);
 }
@@ -207,7 +207,7 @@ void printDate(unsigned long epoch)
 void drawDate(int x, int y)
 {
   lcd()->setColorIndex(white);
-  lcd()->drawBox(x - 3, y - 16, 106, 20);
+  lcd()->drawRBox(x - 3, y - 16, 106, 20, roundness);
   lcd()->setFont(u8g2_font_10x20_t_cyrillic); // ok
   lcd()->setColorIndex(black);
   lcd()->setCursor(x, y);
@@ -231,7 +231,7 @@ void drawDate(int x, int y)
     lcd()->setColorIndex(white);
     int mx = x + 44 - tw / 2;
     int my = y + 13;
-    lcd()->drawBox(mx - 3, my - 12, tw + 6, 16);
+    lcd()->drawRBox(mx - 3, my - 12, tw + 6, 16, roundness);
     lcd()->setColorIndex(black);
     lcd()->setCursor(mx, my);
     lcd()->print(buffer);
@@ -292,13 +292,13 @@ void resetCpuTemperatureSensor()
 void drawTemperature(int x, int y)
 {
   lcd()->setColorIndex(white);
-  lcd()->drawBox(x, y - 1, 90, 24);
+  lcd()->drawRBox(x-4, y - 1, 90, 25, roundness);
 
   lcd()->setFont(u8g2_font_10x20_t_cyrillic);
   draw_ic24_temperature(x, y, black);
   lcd()->setCursor(x + 24, y + 18);
   lcd()->print(temperature(), 1);
-  lcd()->print("°C");
+  lcd()->print("C");
 }
 
 #endif

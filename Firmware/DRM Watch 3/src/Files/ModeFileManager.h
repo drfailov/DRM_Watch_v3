@@ -34,6 +34,7 @@ struct stat _stat;
 #include "ModeFileReaderText.h"
 #include "ModeFileReaderBmp.h"
 #include "ModeMemoryManager.h"
+#include "MelodyPlayer.h"
 #include "esp_vfs.h"
 #include "esp_vfs_fat.h"
 #include "esp_system.h"
@@ -238,7 +239,7 @@ void openFile(const char *path)
   }
   else if (strendswith(path, ".bmp"))
   {
-    modeFileReaderBmpPath = strdup(path);
+    strcpy(modeFileReaderBmpPath, path);
     setmodeFileReaderBmp();
   }
   else

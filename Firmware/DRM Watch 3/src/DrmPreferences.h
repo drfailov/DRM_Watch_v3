@@ -136,6 +136,10 @@ bool getWatchfaceCalendarEnabled();
 bool saveWatchfaceCalendarEnabled(bool value);
 bool getWatchfaceSinceChargedEnabled();
 bool saveWatchfaceSinceChargedEnabled(bool value);
+bool getWatchfaceFileBackgroundEnable();
+bool saveWatchfaceFileBackgroundEnable(bool value);
+String getWatchfaceFileBackgroundPath();
+bool saveWatchfaceFileBackgroundPath(String path);
 // ant
 int getAntSpeed();
 bool saveAntSpeed(int value);
@@ -710,6 +714,22 @@ bool getWatchfaceSinceChargedEnabled()
 bool saveWatchfaceSinceChargedEnabled(bool value)
 {
   return preferencesObject.putInt("wtfSCEn", value ? 1 : 0);
+}
+bool getWatchfaceFileBackgroundEnable()
+{                               // 123456789012345   max length = 15
+  return preferencesObject.getInt("wtfBgFileEn", 0) == 1;
+}
+bool saveWatchfaceFileBackgroundEnable(bool value)
+{
+  return preferencesObject.putInt("wtfBgFileEn", value ? 1 : 0);
+}
+String getWatchfaceFileBackgroundPath()
+{                                  // 123456789012345   max length = 15
+  return preferencesObject.getString("wtfBgFilePath", "");
+}
+bool saveWatchfaceFileBackgroundPath(String path)
+{
+  return preferencesObject.putString("wtfBgFilePath", path);
 }
 
 //----------------------//---------------------- ALERT -----------------//----------------------//----------------------//----------------------//----------------------

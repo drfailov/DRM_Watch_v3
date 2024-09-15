@@ -13,6 +13,7 @@ void modeStopwatchButtonDown();
 #include "Global.h"
 #include "AutoSleep.h"
 #include "Button.h"
+#include "RTC.h"
 
 const int itemModeStopwatchBack=0;
 const int itemModeStopwatchStartStop=1;

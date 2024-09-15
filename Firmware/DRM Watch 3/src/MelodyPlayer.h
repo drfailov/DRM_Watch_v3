@@ -7,6 +7,10 @@ bool melodyPlayerProcessButtons(bool alarm);
 void melodyPlayerDrawScreen(bool alarm);
 const char* getMelodyNameC(int index);
 String getMelodyName(int index);
+int getMelodyCount();
+void melodyPlayerSetMelodyName(String _name);
+bool melodyPlayerPlayMelody(const int* melody, bool alarm);
+const int* getMelodyData(int index);
 
 #include "Lcd.h"
 #include "Led.h"
@@ -133,7 +137,8 @@ Melody melodies[]={   //відсортовано по алфавіту
   {"Щедрик", carol}
 };
 
-int getMelodyCount(){
+int getMelodyCount()
+{
    return sizeof(melodies)/sizeof(melodies[0]);
 }
 
@@ -159,11 +164,13 @@ bool melodyPlayerLoopMelody = false;
 String melodyPlayerMelodyName;
 unsigned long melodyPlayerPlayStarted = 0;
 
-void melodyPlayerSetMelodyName(String _name){
+void melodyPlayerSetMelodyName(String _name)
+{
   melodyPlayerMelodyName=_name;
 }
 //return true if was played completely or false if interrupted
-bool melodyPlayerPlayMelody(const int* melody, bool alarm) {
+bool melodyPlayerPlayMelody(const int* melody, bool alarm) 
+{
   Serial.println(F("Open: PlayMelody"));
   clearScreenAnimation();
   while(isButtonCenterPressed()); 

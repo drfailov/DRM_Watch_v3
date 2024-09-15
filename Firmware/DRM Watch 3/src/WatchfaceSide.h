@@ -45,6 +45,10 @@ void drawWatchfaceSide(bool firstDraw){
       antStep();
     drawScreenBuffer(0,0,x_del/BUFF_SCALE,BUFF_H);
   }
+  else if(getWatchfaceFileBackgroundEnable()){
+    strcpy(modeFileReaderBmpPath, getWatchfaceFileBackgroundPath().c_str());
+    drawBmp(modeFileReaderBmpPath);
+  }
   else{
     lcd()->setColorIndex(white);
     lcd()->drawBox(0, 0, 400, 240);

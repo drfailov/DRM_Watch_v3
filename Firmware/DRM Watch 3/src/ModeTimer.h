@@ -10,10 +10,12 @@ void modeTimerButtonDown();
 int timerStep();
 bool timerAlert();
 void resetTimer();
+void setTimerToMinutes(int minutes);
 
 #include "Global.h"
 #include "AutoSleep.h"
 #include "Button.h"
+#include "SettingsMenu/ShortcutManager.h"
 #include <Arduino.h>
 
 
@@ -121,7 +123,8 @@ void modeTimerButtonCenter(){
   }
 }
 
-void setTimerToMinutes(int minutes){
+void setTimerToMinutes(int minutes)
+{
   saveTimerTime(60*minutes);
   saveTimerStartedTime(rtcGetEpoch());//start
 }

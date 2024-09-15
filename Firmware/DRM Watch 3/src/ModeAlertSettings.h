@@ -16,6 +16,7 @@ void ModeAlertSettingsMenuMelodySelected();
 #include "Lcd.h"
 #include "Global.h"
 #include "AutoSleep.h"
+#include "ModeTimer.h"
 #include "Button.h"
 #include "GlobalMenu.h"
 #include "ModeAlertsList.h"

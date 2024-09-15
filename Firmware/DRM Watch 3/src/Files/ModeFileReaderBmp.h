@@ -22,7 +22,7 @@ void drawBmp(const char* path);
 #include <Arduino.h>
 
 Runnable modeFileReaderBmpBack = 0;
-char* modeFileReaderBmpPath = (char *)"/";
+char modeFileReaderBmpPath[256];
 
 void setmodeFileReaderBmp()
 {
@@ -50,18 +50,13 @@ void setmodeFileReaderBmp()
 void modeFileReaderBmpLoop()
 {
   ledStatusOff();
-  lcd()->setColorIndex(white);
-  lcd()->drawBox(0, 0, 400, 240);
-  lcd()->setColorIndex(black);
-
   drawBmp(modeFileReaderBmpPath);
-  
   lcd()->sendBuffer();
 }
 
 void modeFileReaderBmpExit()
 {
-  free(modeFileReaderBmpPath);
+  //free(modeFileReaderBmpPath);
   modeExit = 0;
   exitFat();
 }
@@ -89,13 +84,16 @@ void modeFileReaderBmpButtonDown()
 void drawBmp(const char* path)
 {
   initFat();
-  FILE* f = fopen(modeFileReaderBmpPath, "r");   //https://cplusplus.com/reference/cstdio/
+  lcd()->setColorIndex(white);
+  lcd()->drawBox(0, 0, 400, 240);
+  lcd()->setColorIndex(black);
+  FILE* f = fopen(path, "r");   //https://cplusplus.com/reference/cstdio/
   if(f == NULL)
   {
     draw_ic24_bad_file(170, 90, black);
     drawCentered(L("Помилка відкриття файлу", "Error opening file"), 150);
-    if (modeFileReaderBmpPath != 0)
-      drawCentered(modeFileReaderBmpPath, 170);
+    if (path != 0)
+      drawCentered(path, 170);
   }
   else
   {

@@ -45,6 +45,10 @@ void drawWatchfaceFullscreen(bool firstDraw){
       antStep();
     drawScreenBuffer();
   }
+  else if(getWatchfaceFileBackgroundEnable()){
+    strcpy(modeFileReaderBmpPath, getWatchfaceFileBackgroundPath().c_str());
+    drawBmp(modeFileReaderBmpPath);
+  }
   else{
     lcd()->setColorIndex(white);
     lcd()->drawBox(0, 0, 400, 240);
@@ -59,9 +63,9 @@ void drawWatchfaceFullscreen(bool firstDraw){
     int width = lcd()->getStrWidth(buffer);
     int tx = (400-width)/2;
     int ty = 160;
-    int margin = 5;
+    int margin = 10;
     lcd()->setColorIndex(white);
-    lcd()->drawBox(tx-margin, ty-92-margin, width+margin*2, 92+margin*2);
+    lcd()->drawRBox(tx-margin, ty-92-margin, width+margin*2, 92+margin*2, margin*2);
     lcd()->setColorIndex(black);
     lcd()->setCursor(tx, ty);
     lcd()->print(buffer); 
@@ -81,19 +85,19 @@ void drawWatchfaceFullscreen(bool firstDraw){
   }
 
   if(getWatchfaceDateEnabled())
-    drawDate(5, 20);
+    drawDate(3, 16);
   
   if(getWatchfaceDjiLogoEnabled())
     draw_ic28_dji(178, 209, black);
 
   if(getWatchfaceDayOfWeekEnabled())
-    drawDayOfWeek(395, 20);
+    drawDayOfWeek(397, 16);
 
   if(getWatchfaceTemperatureEnabled())
-    drawTemperature(5, 213);
+    drawTemperature(4, 216);
 
   if(getWatchfaceStatusbarEnabled()){
-    drawStatusbar(395, 214, getWatchfaceStatusbarDigitalEnabled());
+    drawStatusbar(395, 216, getWatchfaceStatusbarDigitalEnabled());
   }
 }
 

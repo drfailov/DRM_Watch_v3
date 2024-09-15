@@ -135,9 +135,9 @@ int drawStatusbar(int x, int y, bool drawTime, bool simulate)
   {
     int xLeft = drawStatusbar(x, y, drawTime, true);
     int width = x - xLeft;
-    int height = 30;
+    int height = 24;
     lcd()->setColorIndex(white);
-    lcd()->drawBox(xLeft, y, width + interval, height);
+    lcd()->drawRBox(xLeft, y, width + interval, height, roundness);
   }
 
   if (drawTime)

@@ -4,11 +4,13 @@
 void setModeMenuSettingsWatchfaceContent();
 void ModeMenuSettingsWatchfaceContentLoop();
 void ModeMenuSettingsWatchfaceContentButtonCenter();
+void backgroundSelected();
 
 #include "../Global.h"
 #include "../AutoSleep.h"
 #include "../Button.h"
 #include "../GlobalMenu.h"
+#include "../Files/ModeFileManager.h"
 
 
 const int ModeMenuSettingsWatchfaceContentItemBack = 0;
@@ -24,11 +26,13 @@ const int ModeMenuSettingsWatchfaceContentItemShowAntBackgound = 9;
 const int ModeMenuSettingsWatchfaceContentItemShowDotsBackgound = 10;
 const int ModeMenuSettingsWatchfaceContentItemShowFireBackgound = 11;
 const int ModeMenuSettingsWatchfaceContentItemShowLavaBackgound = 12;
-const int ModeMenuSettingsWatchfaceContentItemShowCalendar = 13;
-const int ModeMenuSettingsWatchfaceContentItemShowTemperature = 14;
-const int ModeMenuSettingsWatchfaceContentItemShowDjiLogo = 15;
-const int ModeMenuSettingsWatchfaceContentItemShowTimeInStatusbar = 16;
-const int ModeMenuSettingsWatchfaceContentItemShowSinceCharged = 17;
+const int ModeMenuSettingsWatchfaceContentItemShowFileBackgound = 13;
+const int ModeMenuSettingsWatchfaceContentItemEnableFileBackgound = 14;
+const int ModeMenuSettingsWatchfaceContentItemShowCalendar = 15;
+const int ModeMenuSettingsWatchfaceContentItemShowTemperature = 16;
+const int ModeMenuSettingsWatchfaceContentItemShowDjiLogo = 17;
+const int ModeMenuSettingsWatchfaceContentItemShowTimeInStatusbar = 18;
+const int ModeMenuSettingsWatchfaceContentItemShowSinceCharged = 19;
 
 void setModeMenuSettingsWatchfaceContent(){
   clearScreenAnimation();
@@ -47,7 +51,7 @@ void setModeMenuSettingsWatchfaceContent(){
   autoReturnTime = autoReturnDefaultTime;
   autoSleepTime = autoSleepDefaultTime;
   selected = 0;
-  items = 18;
+  items = 20;
 }
 
 
@@ -80,6 +84,8 @@ void ModeMenuSettingsWatchfaceContentLoop(){
   drawListCheckbox(ModeMenuSettingsWatchfaceContentItemShowDotsBackgound,     draw_ic24_pixels,          L("Фон \"Точки\"", "Background \"Dots\""),    L("Щокадру додаються токи", "Adds some dots every frame"),      getWatchfaceDotsBackgroundEnabled(), firstDraw);
   drawListCheckbox(ModeMenuSettingsWatchfaceContentItemShowFireBackgound,     draw_ic24_fire,            L("Фон \"Вогонь\"", "Background \"Fire\""),   L("Красива симуляція вогню", "File simulation"),                getWatchfaceFireBackgroundEnabled(), firstDraw);
   drawListCheckbox(ModeMenuSettingsWatchfaceContentItemShowLavaBackgound,     draw_ic24_bubbles,         L("Фон \"Лава\"", "Background \"Lava\""),     L("Симуляція лава-лампи", "Lava lamp simulation"),              getWatchfaceLavaBackgroundEnabled(), firstDraw);
+  drawListCheckbox(ModeMenuSettingsWatchfaceContentItemShowFileBackgound,     draw_ic24_file,            L("Фон з BMP файла", "BMP File Background"),  L("Фон з файла", "Background from file"),                       getWatchfaceFileBackgroundEnable(), firstDraw);
+  drawListItem    (ModeMenuSettingsWatchfaceContentItemEnableFileBackgound,   draw_ic24_file,            L("BMP файл фону", "BMP File"),               getWatchfaceFileBackgroundPath().c_str(),                       firstDraw);
   drawListCheckbox(ModeMenuSettingsWatchfaceContentItemShowCalendar,          draw_ic24_calendar,        L("Календар", "Calendar"),                    L("Ha поточний місяць", "For current month"),                   getWatchfaceCalendarEnabled(), firstDraw);
   drawListCheckbox(ModeMenuSettingsWatchfaceContentItemShowTimeInStatusbar,   draw_ic24_digitalclock2,   L("Час в статус-бapi", "Clock in statusbar"), L("Серед інконок статусу ще й час", "Add clock to statusbar"),  getWatchfaceStatusbarDigitalEnabled(), firstDraw);
   drawListCheckbox(ModeMenuSettingsWatchfaceContentItemShowSinceCharged,      draw_ic24_battery100,      L("Днів від зарядки", "Days from charge"),    L("Скільки днів тримає заряд", "How many days charge lasts"),   getWatchfaceSinceChargedEnabled(), firstDraw);
@@ -160,6 +166,23 @@ void ModeMenuSettingsWatchfaceContentButtonCenter(){
     saveWatchfaceSinceChargedEnabled(!getWatchfaceSinceChargedEnabled());
     return;
   }
+  if(selected==ModeMenuSettingsWatchfaceContentItemShowFileBackgound){
+    saveWatchfaceFileBackgroundEnable(!getWatchfaceFileBackgroundEnable());
+    return;
+  }
+  if(selected==ModeMenuSettingsWatchfaceContentItemEnableFileBackgound){
+    modeFileManagerOnFileSelected = backgroundSelected;
+    modeFileManagerOnCancel = setModeMenuSettingsWatchfaceContent;
+    selected = 0;
+    setmodeFileManager();   //обрати файл
+    return;
+  }
+}
+
+void backgroundSelected()
+{
+  saveWatchfaceFileBackgroundPath(modeFileManagerFileSelected);
+  setModeMenuSettingsWatchfaceContent();
 }
 
 
