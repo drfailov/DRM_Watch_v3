@@ -24,6 +24,8 @@ int getActionId(int eventId);
 bool saveActionId(int eventId, int actionId);
 int getActionArgument(int eventId);
 bool saveActionArgument(int eventId, int value);
+String getActionArgumentString(int eventId);
+bool saveActionArgumentString(int eventId, String value);
 // timer
 bool saveTimerStartedTime(unsigned long epoch);
 bool saveTimerTime(unsigned long epoch);
@@ -263,6 +265,14 @@ int getActionArgument(int eventId)
 bool saveActionArgument(int eventId, int value)
 {
   return preferencesObject.putInt((String("actArg") + eventId).c_str(), value);
+}
+String getActionArgumentString(int eventId)
+{
+  return preferencesObject.getString((String("actArgStr") + eventId).c_str(), "");
+}
+bool saveActionArgumentString(int eventId, String value)
+{
+  return preferencesObject.putString((String("actArgStr") + eventId).c_str(), value);
 }
 
 //----------------------//---------------------- TIMER ----------//----------------------//----------------------//----------------------//----------------------

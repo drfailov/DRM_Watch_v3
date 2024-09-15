@@ -86,7 +86,6 @@ bool isAwake(){//return true only if not sleepong or about to sleep
   return sinceLastAction() < autoSleepTimeMs()-1000;
 }
 
-
 void goToSleep(){
   /*
   Battery Capacity: 250mA
@@ -111,7 +110,7 @@ void goToSleep(){
     esp_sleep_enable_timer_wakeup(600 * 1000000ULL);
   else{
     int second = rtcGetSecond();
-    int timeToSleep = 60-second; //55
+    int timeToSleep = 61-second;
     esp_sleep_enable_timer_wakeup(timeToSleep * 1000000ULL);
   }
     
@@ -121,6 +120,5 @@ void goToSleep(){
 bool isDontSleep(){
   return dontSleep || (!enableAutoReturn && !enableAutoSleep);
 }
-
 
 #endif

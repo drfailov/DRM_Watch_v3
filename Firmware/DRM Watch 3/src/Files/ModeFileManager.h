@@ -16,26 +16,27 @@ void openFile(const char *path);
 void playDwmMelody(const char *path);
 void playWavMelody(const char *path);
 
+// https://github.com/espressif/esp-idf/blob/master/examples/storage/partition_api/partition_ops/main/main.c
+//https://github.com/pcbreflux/espressif/blob/master/esp32/app/ESP32_sd_card/main/sd_card_example_main.c  
+//  Find the partition map in the partition table
+RTC_DATA_ATTR const char *modeFileManagerDir = "/spi";
+Runnable modeFileManagerOnFileSelected = 0;
+Runnable modeFileManagerOnCancel = 0;
+char modeFileManagerFileSelected[256];
+struct dirent *pDirent;
+struct stat _stat;
+
 #include "Global.h"
 #include "../AutoSleep.h"
 #include "../Button.h"
 #include "../ModeSerialLog.h"
 #include <Arduino.h>
-// #include "FFat.h"
-// #include "FS.h"
 #include "ModeFileReaderText.h"
 #include "ModeFileReaderBmp.h"
 #include "ModeMemoryManager.h"
 #include "esp_vfs.h"
 #include "esp_vfs_fat.h"
 #include "esp_system.h"
-
-// https://github.com/espressif/esp-idf/blob/master/examples/storage/partition_api/partition_ops/main/main.c
-//https://github.com/pcbreflux/espressif/blob/master/esp32/app/ESP32_sd_card/main/sd_card_example_main.c  
-//  Find the partition map in the partition table
-RTC_DATA_ATTR const char *modeFileManagerDir = "/spi";
-struct dirent *pDirent;
-struct stat _stat;
 
 void setmodeFileManager()
 {
@@ -146,12 +147,12 @@ void modeFileManagerLoop()
 
   lcd()->sendBuffer();
 }
+
 void modeFileManagerExit()
 {
   modeExit = 0;
   exitFat();
 }
-
 
 void modeFileManagerButtonCenter()
 {
@@ -160,7 +161,14 @@ void modeFileManagerButtonCenter()
     char *lastSlash = strrchr(modeFileManagerDir, '/');
     if (lastSlash == NULL || strlen(modeFileManagerDir) <= 4)
     {
-      setModeAppsMenu(); // exit
+      if(modeFileManagerOnCancel != 0){
+        modeFileManagerOnCancel();
+        modeFileManagerOnCancel = 0;
+        modeFileManagerOnFileSelected = 0;
+      }
+      else{
+        setModeAppsMenu(); // exit
+      }
     }
     else
     {
@@ -183,98 +191,59 @@ void modeFileManagerButtonCenter()
     {
       if(cnt == selected)
       {
-        sprintf(buffer, "%s/%s", modeFileManagerDir, pDirent->d_name);
-        stat(buffer, &_stat);
+        sprintf(modeFileManagerFileSelected, "%s/%s", modeFileManagerDir, pDirent->d_name);
+        stat(modeFileManagerFileSelected, &_stat);
         if (S_ISDIR(_stat.st_mode))  //is folder
         {
-          modeFileManagerDir = strdup(buffer);
+          modeFileManagerDir = strdup(modeFileManagerFileSelected);
           selected = 0;
           clearScreenAnimation();
         }
         else    //is file
         {
-          openFile(buffer);
+          if(modeFileManagerOnFileSelected != 0){
+            modeFileManagerOnFileSelected();
+            modeFileManagerOnFileSelected = 0;
+            modeFileManagerOnCancel = 0;
+          }
+          else{
+            openFile(modeFileManagerFileSelected);
+          }
           break;
         }
       }
     }
     closedir(dir);
   }
-  //fs::FS &fs = FFat;
-  //File dir = fs.open(F(modeFileManagerDir));
-  //if (dir != 0 && dir.isDirectory())
-  // {
-  //   for (int index = 1; index < 1000; index++)
-  //   {
-  //     File file = dir.openNextFile();
-  //     if (!file) // no more files
-  //       break;
-  //     if (index == selected)
-  //     {
-  //       if (file.isDirectory())
-  //       {
-  //         modeFileManagerDir = strdup(file.path());
-  //         selected = 0;
-  //         clearScreenAnimation();
-  //       }
-  //       if (!file.isDirectory() && strendswith(file.name(), ".txt"))
-  //       {
-  //         modeFileReaderTextPath = strdup(file.path());
-  //         file.close();
-  //         setmodeFileReaderText();
-  //         break;
-  //       }
-  //       if (!file.isDirectory() && strendswith(file.name(), ".dwm"))
-  //       {
-  //         const char *melodyPath = strdup(file.path());
-  //         file.close();
-  //         playDwmMelody(melodyPath);
-  //         break;
-  //       }
-  //       if (!file.isDirectory() && strendswith(file.name(), ".wav"))
-  //       {
-  //         const char *melodyPath = strdup(file.path());
-  //         file.close();
-  //         playWavMelody(melodyPath);
-  //         break;
-  //       }
-  //       if (!file.isDirectory() && strendswith(file.name(), ".bmp"))
-  //       {
-  //         modeFileReaderBmpPath = strdup(file.path());
-  //         file.close();
-  //         setmodeFileReaderBmp();
-  //         break;
-  //       }
-  //     }
-  //     file.close();
-  //   }
-  // }
-  
 }
+
 void openFile(const char *path)
 {
-  if (strendswith(pDirent->d_name, ".txt"))
+  if(strlen(path) == 0)
+    return;
+  if (strendswith(path, ".txt"))
   {
     modeFileReaderTextPath = strdup(path);
     setmodeFileReaderText();
   }
-  else if (strendswith(pDirent->d_name, ".dwm"))
+  else if (strendswith(path, ".dwm"))
   {
     const char *melodyPath = strdup(path);
     playDwmMelody(melodyPath);
   }
-  else if (strendswith(pDirent->d_name, ".wav"))
+  else if (strendswith(path, ".wav"))
   {
     const char *melodyPath = strdup(path);
     playWavMelody(melodyPath);
   }
-  else if (strendswith(pDirent->d_name, ".bmp"))
+  else if (strendswith(path, ".bmp"))
   {
     modeFileReaderBmpPath = strdup(path);
     setmodeFileReaderBmp();
   }
   else
   {
+    drawDim();
     drawMessageAnimated(L("Формат не підтримується", "Unsupported format"));
   }
 }
@@ -340,7 +309,8 @@ void playWavMelody(const char *path)
   draw_ic16_repeat(lx(), ly1(), black);
   draw_ic16_back(lx(), ly2(), black);
   char *lastSlash = strrchr(path, '/');
-  drawMessage(L("Відтворення...", "Playing..."), lastSlash, true);
+  drawMessage(L("Відтворення...", "Playing..."), lastSlash, false);
+  lcd()->sendBuffer();
   ledStatusOn();
   backlightOff();
   do
