@@ -50,14 +50,7 @@ void exitFat();
 bool initFat()
 {
   modeFileManagerFatReady = false; 
-  Serial.println("Mounting WearLeveling FAT...");
-  if (s_wl_handle != WL_INVALID_HANDLE)
-  {
-    Serial.println("WearLeveling FAT already mounted.");
-    modeFileManagerFatReady = true;
-    return modeFileManagerFatReady;
-  }
-  else
+  if (s_wl_handle == WL_INVALID_HANDLE)
   {
     const esp_vfs_fat_mount_config_t mount_config = {true, 4, CONFIG_WL_SECTOR_SIZE}; // mount_config.max_files = 4; format_if_mount_failed = true, allocation_unit_size = CONFIG_WL_SECTOR_SIZE
     res = esp_vfs_fat_spiflash_mount(base_path, "ffat", &mount_config, &s_wl_handle);
@@ -68,9 +61,10 @@ bool initFat()
       return modeFileManagerFatReady;
     }
     Serial.println("WL FAT Mounted.");
+    modeFileManagerFatReady = true;
   }
-  Serial.print("WL FAT Sector size: ");
-  Serial.println(wl_sector_size(s_wl_handle)); // WL Sector size: 4096
+  //Serial.print("WL FAT Sector size: ");
+  //Serial.println(wl_sector_size(s_wl_handle)); // WL Sector size: 4096
   modeFileManagerFatReady = true;
   return modeFileManagerFatReady;
 }

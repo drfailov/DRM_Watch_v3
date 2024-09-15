@@ -12,6 +12,7 @@ void setmodeFileReaderBmp();
 void modeFileReaderBmpButtonUp();
 void modeFileReaderBmpButtonCenter();
 void modeFileReaderBmpButtonDown();
+void drawBmp(const char* path);
 
 #include "Global.h"
 #include "AutoSleep.h"
@@ -44,7 +45,6 @@ void setmodeFileReaderBmp()
   enableAutoSleep = false;
   autoReturnTime = autoReturnDefaultTime;
   autoSleepTime = autoSleepDefaultTime;
-  initFat();
 }
 
 void modeFileReaderBmpLoop()
@@ -54,6 +54,41 @@ void modeFileReaderBmpLoop()
   lcd()->drawBox(0, 0, 400, 240);
   lcd()->setColorIndex(black);
 
+  drawBmp(modeFileReaderBmpPath);
+  
+  lcd()->sendBuffer();
+}
+
+void modeFileReaderBmpExit()
+{
+  free(modeFileReaderBmpPath);
+  modeExit = 0;
+  exitFat();
+}
+
+void modeFileReaderBmpButtonUp()
+{
+
+}
+void modeFileReaderBmpButtonCenter()
+{
+  if(modeFileReaderBmpBack != 0)
+  {
+    modeFileReaderBmpBack();
+    modeFileReaderBmpBack = 0;
+  }
+  else{
+    setmodeFileManager(); // exit
+  }
+}
+void modeFileReaderBmpButtonDown()
+{
+
+}
+
+void drawBmp(const char* path)
+{
+  initFat();
   FILE* f = fopen(modeFileReaderBmpPath, "r");   //https://cplusplus.com/reference/cstdio/
   if(f == NULL)
   {
@@ -240,34 +275,6 @@ void modeFileReaderBmpLoop()
     }
     fclose(f);
   }
-  lcd()->sendBuffer();
-}
-
-void modeFileReaderBmpExit()
-{
-  free(modeFileReaderBmpPath);
-  modeExit = 0;
-  exitFat();
-}
-
-void modeFileReaderBmpButtonUp()
-{
-
-}
-void modeFileReaderBmpButtonCenter()
-{
-  if(modeFileReaderBmpBack != 0)
-  {
-    modeFileReaderBmpBack();
-    modeFileReaderBmpBack = 0;
-  }
-  else{
-    setmodeFileManager(); // exit
-  }
-}
-void modeFileReaderBmpButtonDown()
-{
-
 }
 
 #endif
