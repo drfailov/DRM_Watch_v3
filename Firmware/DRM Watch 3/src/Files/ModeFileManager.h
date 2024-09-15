@@ -302,6 +302,7 @@ void playDwmMelody(const char *path)
 
 void playWavMelody(const char *path)
 { 
+  while (isButtonCenterPressed());
   initFat();
   bool repeat = false;
   unsigned long lastTick = micros();

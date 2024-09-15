@@ -56,8 +56,6 @@ void drawWatchfaceSide(bool firstDraw){
 
   lcd()->setColorIndex(white);
   lcd()->drawBox(x_del, 0, W-x_del, 240);
-  lcd()->setColorIndex(black);
-  lcd()->drawBox(x_del, 0, 4, 240);
   if(firstDraw) lcd()->sendBuffer();
   
   if(getWatchfaceTemperatureEnabled())
@@ -69,6 +67,9 @@ void drawWatchfaceSide(bool firstDraw){
   
   if(getWatchfaceDateEnabled())
     drawDate(x_del+30, 57);
+
+  lcd()->setColorIndex(black);
+  lcd()->drawBox(x_del, 0, 4, 240);
 
   if(firstDraw) lcd()->sendBuffer();
 
