@@ -55,6 +55,9 @@ Icons used as reference:
  <a href="https://www.flaticon.com/free-icons/screenshot" title="screenshot icons">Screenshot icons created by Freepik - Flaticon</a>
  <a href="https://www.flaticon.com/free-icons/save" title="save icons">Save icons created by Google - Flaticon</a>
  <a href="https://www.flaticon.com/free-icons/world" title="world icons">World icons created by Google - Flaticon</a>
+ <a href="https://www.flaticon.com/free-icons/no-water" title="no water icons">No water icons created by Freepik - Flaticon</a>
+ <a href="https://www.flaticon.com/free-icons/hammer" title="hammer icons">Hammer icons created by Pixel perfect - Flaticon</a>
+ 
  
  
 Jingle Bells: https://onlinesequencer.net/3729549#
