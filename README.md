@@ -6,7 +6,7 @@
 # Про проект DRM Watch 3
 
 <p align="center">
-<img src="Photos/DRM_welcome.jpg" width="700"/>
+<img src="Photos/DRM3_welcome.png" width="700"/>
 </p>
 
 **DRM Watch 3** - це мій саморобний наручний годинник, в основі якого лежить дисплей Sharp Memory LCD, ESP32-S2 і бажання носити це на руці:)  <br>
@@ -21,11 +21,11 @@
 
 
 ## Фото
-<p align="center">
+<!--p align="center">
 <img src="Photos/cad-angle.png" width="200"/>
 <img src="Photos/cad-front.png" width="200"/>
 <img src="Photos/cad-side.png" width="200"/>
-</p>
+</p-->
 
 <p align="center">
 <img src="Photos/DSC_3058.jpg" width="600"/>
@@ -40,11 +40,11 @@
 <img src="Photos/DSC_3101.jpg" width="200"/>
 <img src="Photos/DSC_3063.jpg" width="200"/>
 </p>
-<p align="center">
+<!--p align="center">
 <img src="Photos/DSC_3084.jpg" width="200"/>
 <img src="Photos/DSC_3097.jpg" width="200"/>
 <img src="Photos/DSC_3115.jpg" width="200"/>
-</p>
+</p-->
 
 
 ## Відео про годинник
@@ -87,9 +87,9 @@ https://www.tiktok.com/@drfailov
 
 ## Застереження під час користування:
 <p align="center">
-<img src="Photos/no-water.png" width="200"/>
-<img src="Photos/no-hammer.png" width="200"/>
-<img src="Photos/no-esd.png" width="200"/>
+<img src="Photos/no-water.png" width="100"/>
+<img src="Photos/no-hammer.png" width="100"/>
+<img src="Photos/no-esd.png" width="100"/>
 </p>
 
 - Годинник **не можна мочити**. Захист від води тут майже відсутній і це призведе до поломки годинника. Від дрібного дощу або поту йому нічого не буде, а от залити при митті рук - може бути проблемою.
