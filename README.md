@@ -155,8 +155,9 @@ https://www.tiktok.com/@drfailov
 ## Програми -> Будильник
 
 <p align="center"> 
-<img src="Photos/photo_4_2024-06-02_22-49-14.jpg" height=300"/> 
-<img src="Photos/photo_12_2024-06-02_22-49-14.jpg" height=300"/> 
+<img src="Photos/DRM_Watch3_Screenshot_20240917-221554.png" height=200"/> 
+<img src="Photos/DRM_Watch3_Screenshot_20240917-221617.png" height=200"/> 
+<img src="Photos/DRM_Watch3_Screenshot_20240909-214600.png" height=200"/> 
 </p>
 
 Будильник запускає відтворення заданої мелодії в заданий час дня.     <br>
