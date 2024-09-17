@@ -38,6 +38,7 @@ void drawWarningFrame();
 #include "DrmPreferences.h"
 #include "Led.h"
 #include "Button.h"
+#include "Battery.h"
 #include "Icons.h"
 
 #include "driver/rtc_io.h"
