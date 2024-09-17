@@ -115,15 +115,21 @@ https://www.tiktok.com/@drfailov
 
 ## Основний екран, циферблат
 <p align="center"> 
-<img src="Photos/DRM_Watch3_Screenshot_20240825-210844.png" height=200"/> 
-<img src="Photos/photo_2_2024-06-02_22-49-14.jpg" height=200"/> 
+<img src="Photos/DRM_Watch3_Screenshot_20240917-220742.png" height=200"/> 
+<img src="Photos/DRM_Watch3_Screenshot_20240917-220822.png" height=200"/> 
+<img src="Photos/DRM_Watch3_Screenshot_20240917-221101.png" height=200"/> 
+<img src="Photos/DRM_Watch3_Screenshot_20240917-221132.png" height=200"/> 
+<img src="Photos/DRM_Watch3_Screenshot_20240917-221302.png" height=200"/> 
+<img src="Photos/DRM_Watch3_Screenshot_20240917-221350.png" height=200"/> 
+<img src="Photos/DRM_Watch3_Screenshot_20240917-221522.png" height=200"/> 
+<!--img src="Photos/photo_2_2024-06-02_22-49-14.jpg" height=200"/> 
 <img src="Photos/photo_51_2024-06-02_22-49-14.jpg" height=200"/> 
 <img src="Photos/photo_52_2024-06-02_22-49-14.jpg" height=200"/> 
 <img src="Photos/photo_50_2024-06-02_22-49-14.jpg" height=200"/> 
 <img src="Photos/photo_46_2024-06-02_22-49-14.jpg" height=200"/> 
 <img src="Photos/photo_44_2024-06-02_22-49-14.jpg" height=200"/> 
 <img src="Photos/photo_22_2024-06-02_22-49-14.jpg" height=200"/> 
-<img src="Photos/photo_17_2024-06-02_22-49-14.jpg" height=200"/>
+<img src="Photos/photo_17_2024-06-02_22-49-14.jpg" height=200"/-->
 </p>
 
 Тут відображаєтья час. Це основний екран годинника, на нього переходят більшість екранів по таймеру бездіяльності. На цьому екрані годинник заходить в сон і спить, просинаючись раз в хвилину щоб намалювати час.     <br>
@@ -322,6 +328,7 @@ https://www.tiktok.com/@drfailov
 ## Програми -> Інженерне меню
 <p align="center"> 
 <img src="Photos/DRM_Watch3_Screenshot_20240909-214134.png" height=200"/> 
+<img src="Photos/DRM_Watch3_Screenshot_20240909-213914.png" height=200"/> 
 </p>
 
 На цьому екрані зібрано максимум технічної інформації яка допоможе зрозуміти стан системи.      <br> 
@@ -334,6 +341,10 @@ https://www.tiktok.com/@drfailov
 
 
 ## Програми -> Лог UART
+<p align="center"> 
+<img src="Photos/DRM_Watch3_Screenshot_20240909-220405.png" height=200"/> 
+</p>
+
 Годинник при підключенні до компа імітує на компі **COM порт**. 
 Всі дані що надходять на COM порт - виводяться в лог на екрані.   <br>
 Це може бути корисно якщо потрібно зрозуміти яку команду надсилає 
