@@ -60,7 +60,11 @@ void lcdInit()
     u8g2.begin();
   else
     u8g2.initInterface();
-  u8g2.setBusClock(getLcdSpiSpeed());
+  unsigned long spiSpeed = getLcdSpiSpeed();
+  if(!isAwake() || isOff() || isBatteryCritical())
+    if(spiSpeed > 1000000)
+      spiSpeed = 1000000;
+  u8g2.setBusClock(spiSpeed);
   u8g2.enableUTF8Print();
   u8g2.setBitmapMode(0); // 1-is transparent   0-not transparent
 }

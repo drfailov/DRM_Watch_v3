@@ -57,15 +57,18 @@ https://www.tiktok.com/@drfailov
 - Зроблено в Україні;
 - Стабільно працює і підходить для щоденного користування;
 - Дисплей завжди показує час;
+- В годиннику є вбудована "флешка" на 1.2МБ, в яку можна закинути файли
+- Годинник може відкрити монохромний BMP, Wav файли, текстовий TXT документи
 - Є дуже тускла але дуже приємна нічна підсвітка дисплея;
 - Є ліхтарик, білий яскравий та червоний нічний;
-- Акумулятора вистачає на понад 20днів, є індикатор заряду;
+- Акумулятора вистачає на понад 14днів, є індикатор заряду;
 - Зручні меню, звідки можна отримати доступ до всіх функцій;
 - Наявність Wi-Fi, можна зберегти до 8 мереж в пам'яті;
 - Можливість синхронізації часу по Wi-Fi;
 - Багато мелодій. Їх можна або просто слухати або встановити на будильник.
 - Імітація звуку мявчання кошенят;
 - Кілька циферблатів, які можна налаштувати;
+- На циферблати можна додати календар, стрілочний годинник, дату, та цікавий фон
 - Секундомір, працює в фоні;
 - Будильники, до 6шт з назвами;
 - Вічний календар (або я ще не догортав до кінця);
@@ -102,21 +105,19 @@ https://www.tiktok.com/@drfailov
 
 
 
-
-
 # Опис меню, функцій та екранів
 
 ## Основний екран, циферблат
 <p align="center"> 
-<img src="Photos/DRM_Watch3_Screenshot_20240825-210844.png" height=300"/> 
-<img src="Photos/photo_2_2024-06-02_22-49-14.jpg" height=300"/> 
-<img src="Photos/photo_51_2024-06-02_22-49-14.jpg" height=300"/> 
-<img src="Photos/photo_52_2024-06-02_22-49-14.jpg" height=300"/> 
-<img src="Photos/photo_50_2024-06-02_22-49-14.jpg" height=300"/> 
-<img src="Photos/photo_46_2024-06-02_22-49-14.jpg" height=300"/> 
-<img src="Photos/photo_44_2024-06-02_22-49-14.jpg" height=300"/> 
-<img src="Photos/photo_22_2024-06-02_22-49-14.jpg" height=300"/> 
-<img src="Photos/photo_17_2024-06-02_22-49-14.jpg" height=300"/>
+<img src="Photos/DRM_Watch3_Screenshot_20240825-210844.png" height=200"/> 
+<img src="Photos/photo_2_2024-06-02_22-49-14.jpg" height=200"/> 
+<img src="Photos/photo_51_2024-06-02_22-49-14.jpg" height=200"/> 
+<img src="Photos/photo_52_2024-06-02_22-49-14.jpg" height=200"/> 
+<img src="Photos/photo_50_2024-06-02_22-49-14.jpg" height=200"/> 
+<img src="Photos/photo_46_2024-06-02_22-49-14.jpg" height=200"/> 
+<img src="Photos/photo_44_2024-06-02_22-49-14.jpg" height=200"/> 
+<img src="Photos/photo_22_2024-06-02_22-49-14.jpg" height=200"/> 
+<img src="Photos/photo_17_2024-06-02_22-49-14.jpg" height=200"/>
 </p>
 
 Тут відображаєтья час. Це основний екран годинника, на нього переходят більшість екранів по таймеру бездіяльності. На цьому екрані годинник заходить в сон і спить, просинаючись раз в хвилину щоб намалювати час.     <br>
@@ -130,7 +131,8 @@ https://www.tiktok.com/@drfailov
 ## Програми
 
 <p align="center"> 
-<img src="Photos/photo_3_2024-06-02_22-49-14.jpg" height=300"/> 
+<img src="Photos/DRM_Watch3_Screenshot_20240825-210905.png" height=200"/> 
+<!--img src="Photos/photo_3_2024-06-02_22-49-14.jpg" height=300"/--> 
 </p>
 
 Звідси можна запустити функції які не є налаштуваннями. Будильники, секундоміри, ігри, розваги, тощо.     <br>
@@ -156,7 +158,8 @@ https://www.tiktok.com/@drfailov
 ## Програми -> Календар
 
 <p align="center"> 
-<img src="Photos/photo_14_2024-06-02_22-49-14.jpg" height=300"/> 
+<img src="Photos/DRM_Watch3_Screenshot_20240909-214037.png" height=200"/> 
+<!--img src="Photos/photo_14_2024-06-02_22-49-14.jpg" height=300"/--> 
 </p>
 
 Показує календар на місяць.     <br>
@@ -166,29 +169,29 @@ https://www.tiktok.com/@drfailov
 
 ## Налаштування
 <p align="center"> 
-<img src="Photos/DRM_Watch3_Screenshot_20240825-210922.png" height=300"/> 
+<img src="Photos/DRM_Watch3_Screenshot_20240825-210922.png" height=200"/> 
 </p>
 
 ## Налаштування -> Дисплей
 <p align="center"> 
-<img src="Photos/DRM_Watch3_Screenshot_20240909-214158.png" height=300"/> 
+<img src="Photos/DRM_Watch3_Screenshot_20240909-214158.png" height=200"/> 
 </p>
 
 ### Інверсія
 <p align="center"> 
-<img src="Photos/DRM_Watch3_Screenshot_20240909-214352.png" height=300"/> 
-<img src="Photos/DRM_Watch3_Screenshot_20240909-214315.png" height=300"/> 
+<img src="Photos/DRM_Watch3_Screenshot_20240909-214352.png" height=200"/> 
+<img src="Photos/DRM_Watch3_Screenshot_20240909-214315.png" height=200"/> 
 </p>
 
 ### Мова
 <p align="center"> 
-<img src="Photos/DRM_Watch3_Screenshot_20240909-214352.png" height=300"/> 
-<img src="Photos/DRM_Watch3_Screenshot_20240909-214331.png" height=300"/> 
+<img src="Photos/DRM_Watch3_Screenshot_20240909-214352.png" height=200"/> 
+<img src="Photos/DRM_Watch3_Screenshot_20240909-214331.png" height=200"/> 
 </p>
 
 ### Калібрування акумулятора 
 <p align="center"> 
-<img src="Photos/DRM_Watch3_Screenshot_20240909-214218.png" height=300"/> 
+<img src="Photos/DRM_Watch3_Screenshot_20240909-214218.png" height=200"/> 
 </p>
 
 
@@ -202,7 +205,12 @@ https://www.tiktok.com/@drfailov
 
 
 ## Програми -> Файли
-Для роботи файлової системи необхідно спочатку відформатувати пам'ять через "форматувати розділ" в менеджері пам'яті.
+<p align="center"> 
+<img src="Photos/DRM_Watch3_Screenshot_20240909-215038.png" height=200"/> 
+<img src="Photos/DRM_Watch3_Screenshot_20240909-215102.png" height=200"/> 
+</p>
+
+
 
 Важливо!!! Не зберігайте на годиннику цінну інформацію яка не має копії! У мене кілька разів "ламалась" файлова система і файли втрачались. 
 Закономірностей цього явища поки не виявив, але я б не довіряв годиннику нічого цінного!
