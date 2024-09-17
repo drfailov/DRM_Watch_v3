@@ -233,14 +233,22 @@ https://www.tiktok.com/@drfailov
 
 
 ## Програми -> Менеджер пам'яті
+<p align="center"> 
+<img src="Photos/DRM_Watch3_Screenshot_20240917-221710.png" height=200"/> 
+<img src="Photos/DRM_Watch3_Screenshot_20240917-221753.png" height=200"/> 
+<img src="Photos/DRM_Watch3_Screenshot_20240917-221728.png" height=200"/> 
+</p>
 
-Підключити до USB - імітує підключену флешку.
+**Підключити до USB** - імітує підключену флешку.
+**Показати карту розділів** - Відображає як поділена пам'ять ESP32.
+
+
 
 
 
 ## Програми -> Мелодії
 <p align="center"> 
-<img src="Photos/photo_26_2024-06-02_22-49-14.jpg" height=300"/> 
+<img src="Photos/DRM_Watch3_Screenshot_20240917-222437.png" height=200"/> 
 </p>
 
 Меню зі списком мелодій. Можна переглянути назви та увімкнути мелодію. Їх там багато.     <br>
@@ -267,7 +275,7 @@ https://www.tiktok.com/@drfailov
 
 ## Програми -> Таймер
 <p align="center"> 
-<img src="Photos/photo_32_2024-06-02_22-49-14.jpg" height=300"/> 
+<img src="Photos/DRM_Watch3_Screenshot_20240917-221816.png" height=200"/> 
 </p>
 
 Таймер веде відлік заданого часу від моменту запуску. Коли час спливає, запускається звуковий сигнал.      <br>
@@ -281,7 +289,7 @@ https://www.tiktok.com/@drfailov
 
 ## Програми -> Секундомір
 <p align="center"> 
-<img src="Photos/photo_33_2024-06-02_22-49-14.jpg" height=300"/> 
+<img src="Photos/DRM_Watch3_Screenshot_20240917-221859.png" height=200"/> 
 </p>
 
 Веде відлік часу від моменту запуску.       <br> 
@@ -313,7 +321,7 @@ https://www.tiktok.com/@drfailov
 
 ## Програми -> Інженерне меню
 <p align="center"> 
-<img src="Photos/photo_34_2024-06-02_22-49-14.jpg" height=300"/> 
+<img src="Photos/DRM_Watch3_Screenshot_20240909-214134.png" height=200"/> 
 </p>
 
 На цьому екрані зібрано максимум технічної інформації яка допоможе зрозуміти стан системи.      <br> 
@@ -338,7 +346,7 @@ https://www.tiktok.com/@drfailov
 
 ## Програми -> Meow
 <p align="center"> 
-<img src="Photos/photo_38_2024-06-02_22-49-14.jpg" height=300"/> 
+<img src="Photos/DRM_Watch3_Screenshot_20240909-215000.png" height=200"/> 
 </p>
 
 Симуляція мявчання кошенят. Генерується програмно випадковим чином. Можна обрати тон мявчання та вийти.
@@ -346,7 +354,7 @@ https://www.tiktok.com/@drfailov
 
 ## Програми -> Життя
 <p align="center"> 
-<img src="Photos/photo_20_2024-06-02_22-49-14.jpg" height=300"/> 
+<img src="Photos/DRM_Watch3_Screenshot_20240909-214932.png" height=200"/> 
 </p>
 
 Режим повноекранного кліткового автомату "Життя" (Convey's Game Of Life).    <br>
@@ -355,7 +363,7 @@ https://www.tiktok.com/@drfailov
 
 ## Програми -> Вогонь
 <p align="center"> 
-<img src="Photos/photo_40_2024-06-02_22-49-14.jpg" height=300"/> 
+<img src="Photos/DRM_Watch3_Screenshot_20240909-214832.png" height=200"/> 
 </p>
 
 Режим повноекранної анімації вогню. Красиво. В основі лежить шум Перліна.    <br>
@@ -366,7 +374,7 @@ https://www.tiktok.com/@drfailov
 
 ## Програми -> Лава
 <p align="center"> 
-<img src="Photos/photo_25_2024-06-02_22-49-14.jpg" height=300"/> 
+<img src="Photos/DRM_Watch3_Screenshot_20240909-214857.png" height=200"/> 
 </p>
 
 Режим повноекранної анімації лави. Красиво. В основі лежить шум Перліна.    <br>

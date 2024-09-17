@@ -62,7 +62,7 @@ void lcdInit()
   else
     u8g2.initInterface();
   unsigned long spiSpeed = getLcdSpiSpeed();
-  if(!isAwake() || isOff() || isBatteryCritical())
+  if(!isAwake() || isOff() || isBatteryLow())
     if(spiSpeed > 1000000)
       spiSpeed = 1000000;
   u8g2.setBusClock(spiSpeed);

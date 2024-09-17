@@ -4,6 +4,8 @@
 /*PROTOTYPES*/
 float linearInterpolate(float raw, float calibrationData[][2], byte tableLength);
 bool isChargerConnected();
+bool isBatteryLow();
+bool isBatteryCritical();
 void onChargerDisconnected();
 void onChargerConnected();
 int analogSmoothRead(int pin);
@@ -84,6 +86,18 @@ byte getBatteryBars()
   if (voltage >= 3650) return 2; 
   if (voltage >= 3350) return 1; 
   return 0;
+}
+
+bool isBatteryLow()
+{
+  while(millis()<2); //assuming first few ms of wake is not reliable reading
+  for(int i=0; i<2; i++) ////multi check to prevent glitches
+  {
+    if(getBatteryBars() > 1)
+      return false;
+    sleep(5);  
+  }
+  return true;
 }
 
 bool isBatteryCritical()

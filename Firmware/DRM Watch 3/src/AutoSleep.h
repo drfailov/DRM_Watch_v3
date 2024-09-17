@@ -50,7 +50,7 @@ long autoReturnTimeMs(){
     return NO_SLEEP;
   if(enableAutoSleep)
     return NO_SLEEP;
-  if(!enableAutoReturn && getBatteryBars()>1)
+  if(!enableAutoReturn && !isBatteryLow())
     return NO_SLEEP;
   return autoReturnTime;
 }
