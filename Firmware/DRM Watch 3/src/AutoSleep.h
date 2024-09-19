@@ -45,7 +45,8 @@ void autoSleepLoop(){
     goToSleep();
 }
 
-long autoReturnTimeMs(){
+long autoReturnTimeMs()
+{
   if(dontSleep)
     return NO_SLEEP;
   if(enableAutoSleep)
@@ -78,6 +79,8 @@ long timeToAutoAction(){
 void wakeup()
 { 
   wakeupFromSleep = true;
+  unsigned long spiSpeed = getLcdSpiSpeed();
+  lcd()->setBusClock(spiSpeed);
 }
 
 bool isAwake(){//return true only if not sleepong or about to sleep

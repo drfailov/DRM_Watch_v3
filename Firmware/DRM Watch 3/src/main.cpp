@@ -97,6 +97,9 @@ void loop(void) {
   alertLoop();
   timerLoop();
   serialLoop();
+
+  isBatteryLow();   //TEST!!! 
+
   if(modeLoop != 0){
      //unsigned long millisStarted = millis();  //routine needed to measure performance
     modeLoop();    //125ms 1MHz SPI  |   63ms  3MHz SPI

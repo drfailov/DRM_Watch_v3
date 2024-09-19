@@ -73,10 +73,10 @@ byte getBatteryBars()
     if(shownBarsPercentLast!=-1 && percentChange<shownBarsPercentHysteresis)   //Prevent jitter - ignore small changes
       percent = shownBarsPercentLast;
     shownBarsPercentLast = percent;
-    if (percent >= 80) return 4; 
-    if (percent >= 60) return 3; 
-    if (percent >= 40) return 2; 
-    if (percent >= 20) return 1; 
+    if (percent >= 77) return 4; 
+    if (percent >= 55) return 3; 
+    if (percent >= 32) return 2; 
+    if (percent >= 10) return 1; 
     return 0;
   }
 
@@ -90,24 +90,22 @@ byte getBatteryBars()
 
 bool isBatteryLow()
 {
-  while(millis()<2); //assuming first few ms of wake is not reliable reading
   for(int i=0; i<2; i++) ////multi check to prevent glitches
   {
-    if(getBatteryBars() > 1)
+    if(getBatteryBars() > 4)
       return false;
-    sleep(5);  
+    delay(5);  
   }
   return true;
 }
 
 bool isBatteryCritical()
 {
-  while(millis()<2); //assuming first few ms of wake is not reliable reading
   for(int i=0; i<3; i++) ////multi check to prevent glitches
   {
     if(getBatteryBars() > 0)
       return false;
-    sleep(5);  
+    delay(5);  
   }
   return true;
 }
@@ -155,7 +153,7 @@ int readSensBatteryRawFiltered(float raw)
   if(battery_rawFilteredSmoothed == -1)
     battery_rawFilteredSmoothed = filtered;
   battery_rawFilteredSmoothed += (filtered-battery_rawFilteredSmoothed)*0.3;
-  return (int)filtered;
+  return (int)battery_rawFilteredSmoothed;
 }
 int readSensBatteryRawFiltered()
 {
@@ -197,7 +195,9 @@ float linearInterpolate(float raw, float calibrationData[][2], byte tableLength)
 }
 
 
-int analogSmoothRead(int pin){
+int analogSmoothRead(int pin)
+{
+  while(millis()<2); //assuming first few ms of wake is not reliable reading
   int sum=0;
   int cnt=6;
   for(int i=0; i<cnt; i++)
