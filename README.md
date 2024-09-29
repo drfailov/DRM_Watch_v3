@@ -547,7 +547,7 @@ https://www.aliexpress.us/item/32419907074.html   <br>
 ### Кнопки
 <p align="center"><img src="Photos/buttons.png" height="200"/>  </p>
 
-Я так і не знайшов як їх можна назвати, тому шукаємо по фото і цьому тексту: ** 2\*4\*3.5mm Micro SMD Tact Switch Side Button **  <br>
+Я так і не знайшов як їх можна назвати, тому шукаємо по фото і цьому тексту: **2\*4\*3.5mm Micro SMD Tact Switch Side Button**  <br>
 https://www.aliexpress.us/item/32880903601.html    <br>
 
 
