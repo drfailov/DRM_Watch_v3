@@ -215,7 +215,10 @@ Buzzer: Buzzer SMD 7525-3.6V-passive
 Mosfets: 2N7002LT1G
 Esp32 module: Lolin S2 Mini (desolder to get elements)
 Charging module: TP4056 module
-
+Resistors: SMD 0603 at most (multiple resistances)
+Capacitors: SMD 0603 at most
+RTC Module: Analog Devices DS3231 module
+White LED: 020 SMD Side View LED White 6000K
 
 
 
