@@ -207,6 +207,15 @@ EL панель: 3шт = $9.99 = 40грн, 1шт = 13грн
 
 
 
+Materials used:
+Display: Sharp LS027B7DH01A
+LCD Connector: FPC 10pin 0.5mm pitch
+Battery: lipo 502535
+Buzzer: Buzzer SMD 7525-3.6V-passive
+Mosfets: 2N7002LT1G
+Esp32 module: Lolin S2 Mini (desolder to get elements)
+Charging module: TP4056 module
+
 
 
 
