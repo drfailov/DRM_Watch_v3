@@ -219,6 +219,13 @@ Resistors: SMD 0603 at most (multiple resistances)
 Capacitors: SMD 0603 at most
 RTC Module: Analog Devices DS3231 module
 White LED: 020 SMD Side View LED White 6000K
+Buttons: 2*4*3.5mm Micro SMD Tact Switch Side Button
+Screw mounts: SMTSO Surface Mount Copper Nut M1.4X3X1.5-2X0.8
+Screws: PH000, M1.4, 3mm
+Screws: Self-tapping 1.4mm x 5mm
+Backlight: EL Panel, need to be cut to size and connect thin wires. (optional)
+Backlight driver: Microchip HV857MG MSOP8 (optional)
+
 
 
 

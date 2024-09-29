@@ -555,7 +555,7 @@ https://www.aliexpress.us/item/32880903601.html    <br>
 <p align="center"><img src="Photos/smtso-brass.png" height="200"/>  </p>
 
 Такі можна знайти на материнці DJI Mavic 3. Під гвинт М1.4  <br>
-Орієнтовна назва: SMTSO Surface Mount Copper Nut M1.4X3X1.5-2X0.8  <br>
+Орієнтовна назва: **SMTSO Surface Mount Copper Nut M1.4X3X1.5-2X0.8**  <br>
 Щось схоже:  <br>
 Обирати: M1.4X3X1.5-2X0.8 <br>
 https://www.aliexpress.com/item/1005005579653583.html
