@@ -15,12 +15,6 @@ void modeSetSoundToneMenuButtonDown();
 #include "../DrmPreferences.h"
 #include "ModeMenuSettingsTime.h"
 
-//int modeSetSoundToneIndex = 0;
-//bool modeSetSoundToneEditMode = false;
-
-//const int itemmodeSetSoundToneBack=0;
-//const int itemmodeSetSoundToneHour=1;
-
 void setmodeSetSoundToneMenu(){
   clearScreenAnimation();
   Serial.println(F("Set mode: set SoundTone"));
@@ -37,10 +31,7 @@ void setmodeSetSoundToneMenu(){
   enableAutoSleep = false; 
   autoReturnTime = autoReturnDefaultTime;
   autoSleepTime = autoSleepDefaultTime;
-  selected = 0;
-  items = 2;
 }
-
 
 void modeSetSoundToneMenuLoop(){
   lcd()->setColorIndex(white);
@@ -54,17 +45,8 @@ void modeSetSoundToneMenuLoop(){
   drawStatusbar(363, 1, true);
   drawMenuLegend();
   draw_ic16_back(lx(), ly2(), black);
-  // if(modeSetSoundToneEditMode){
-     draw_ic16_plus(lx(), ly1(), black);
-     draw_ic16_minus(lx(), ly3(), black);
-  // }
-  
-  //drawMenuItem(itemmodeSetSoundToneBack, draw_ic24_back, "Назад", firstDraw, 30, 32);
-
-  //lcd()->setFont(u8g2_font_10x20_t_cyrillic);  //ok
-  //lcd()->setColorIndex(black);
-  //lcd()->setCursor(30, 113); 
-  //lcd()->print("Час");
+  draw_ic16_plus(lx(), ly1(), black);
+  draw_ic16_minus(lx(), ly3(), black);
   
   float coef = getSoundCoef();
 
@@ -76,32 +58,13 @@ void modeSetSoundToneMenuLoop(){
 }
 
 void modeSetSoundToneMenuButtonUp(){
-  // if(!modeSetSoundToneEditMode){
-  //   globalMenuButtonUp();
-  //   return;
-  // }
-  // if(selected == itemmodeSetSoundToneHour) 
-  //saveTimeOffsetSec(getTimeOffsetSec()+60*30);
   saveSoundCoef(getSoundCoef()*1.1f);
 }
 void modeSetSoundToneMenuButtonDown(){
   saveSoundCoef(getSoundCoef()*0.9f);
-  // if(!modeSetSoundToneEditMode){
-  //   globalMenuButtonDown();
-  //   return;
-  // }
-  // if(selected == itemmodeSetSoundToneHour) 
-  //saveTimeOffsetSec(getTimeOffsetSec()-60*30);
 }
 void modeSetSoundToneMenuButtonCenter(){
-  //if(selected == itemmodeSetSoundToneBack){
-    setModeMenuSettingsSound();
-//    return;
-  //}
-  // if(selected==itemmodeSetSoundToneHour){
-  //   modeSetSoundToneEditMode = !modeSetSoundToneEditMode;
-  //   return;
-  // }
+  setModeMenuSettingsSound();
 }
 
 

@@ -15,9 +15,12 @@ int batteryCalibrationGetIndexOfValue(int raw);
 bool isBatteryCalibrated();
 int batteryCalibrationLength();
 int batteryCalibrationAddValue(int16_t raw);
+void batteryCalibrationShrink();
 void saveBatteryCalibration();
 void resetBatteryCalibration();
 void loadBatteryCalibration();
+unsigned long getBatteryCalibrationValueAddInterval();
+void saveBatteryCalibrationValueAddInterval(unsigned long value);
 // SHORTCUTS
 int getActionId(int eventId, int defaultActionId);
 int getActionId(int eventId);
@@ -45,6 +48,9 @@ void saveClearAnimationValue(int value);
 int getClearAnimation();
 unsigned long getLcdSpiSpeed();
 bool saveLcdSpiSpeed(unsigned long spiSpeed);
+void saveRoundness(int value);
+int getRoundness();
+int getRoundness(int max);
 // sound
 bool getMuteEnabled();
 bool saveMuteEnabled(bool value);
@@ -192,6 +198,21 @@ bool isBatteryCalibrated()
     loadBatteryCalibration();
   return batteryCalibration[0] > 0 && batteryCalibration[0] <= 8192;
 }
+void batteryCalibrationShrink()
+{
+  if(!batteryCalibrationLoaded)
+    loadBatteryCalibration();
+  int length = batteryCalibrationLength();
+  for (int i = 0; i < batteryCalibrationLengthMax; i++)
+  {
+    int src = i*2;
+    if(src < batteryCalibrationLength())
+      batteryCalibration[i] = batteryCalibration[src];
+    else
+      batteryCalibration[i] = 0;
+  }
+  saveBatteryCalibration();
+}
 int batteryCalibrationAddValue(int16_t raw) //add to end. Returns current length
 {
   int length = batteryCalibrationLength();
@@ -245,6 +266,14 @@ float batteryCalibrationGetValuePercent(int raw) //which persent of charge (0...
   float total = batteryCalibrationLength();
   float curr = batteryCalibrationGetIndexOfValue(raw);   //0=100; total=0
   return map(curr, 0, total, 100/*%*/, 0/*%*/);
+}
+unsigned long getBatteryCalibrationValueAddInterval()
+{                                  //1234567890123
+  return preferencesObject.getULong("batCaliInte", 1000*5); //defailt is 5s
+}
+void saveBatteryCalibrationValueAddInterval(unsigned long value)
+{
+  preferencesObject.putULong("batCaliInte", value);
 }
 
 //----------------------//---------------------- SHORTCUTS ----------//----------------------//----------------------//----------------------//----------------------
@@ -503,6 +532,30 @@ bool saveLcdSpiSpeed(unsigned long spiSpeed)
 {
   return preferencesObject.putULong64("spiSpeed", spiSpeed) > 0;
 }
+int roundnessCache = -1;
+void saveRoundness(int value)
+{
+  roundnessCache = value;
+  preferencesObject.putInt("roundness", roundnessCache);
+}
+int getRoundness()
+{ 
+  if(roundnessCache < 0)
+    roundnessCache = preferencesObject.getInt("roundness", 4);
+  if(roundnessCache > 19) 
+    roundnessCache = 19;
+  if(roundnessCache < 0) 
+    roundnessCache = 0;
+  return roundnessCache;
+}
+int getRoundness(int max)
+{
+  int r = getRoundness();
+  if(r>max)
+    return max;
+  return r;
+}
+
 
 //----------------------//---------------------- LAST CHARGED ------------//----------------------//----------------------//----------------------//----------------------
 

@@ -39,14 +39,14 @@ void drawListItem(byte index, Drawable drawIcon, const char* name, bool animate)
   
   if(selected == index){
     lcd()->setColorIndex(black);
-    lcd()->drawRBox(/*x*/x, /*y*/y, /*w*/width, /*h*/height, roundness);
+    lcd()->drawRBox(/*x*/x, /*y*/y, /*w*/width, /*h*/height, getRoundness());
     //lcd()->drawBox(/*x*/x, /*y*/y, /*w*/width, /*h*/height);
   }
   else{
     lcd()->setColorIndex(black);
-    lcd()->drawRBox(/*x*/x, /*y*/y, /*w*/width, /*h*/height, roundness);
+    lcd()->drawRBox(/*x*/x, /*y*/y, /*w*/width, /*h*/height, getRoundness());
     lcd()->setColorIndex(white);
-    lcd()->drawRBox(/*x*/x+frame, /*y*/y+frame, /*w*/width-frame*2, /*h*/height-frame*2, roundness);
+    lcd()->drawRBox(/*x*/x+frame, /*y*/y+frame, /*w*/width-frame*2, /*h*/height-frame*2, getRoundness());
   }
   drawIcon(x + 7, y+5, selected == index?white:black);
   

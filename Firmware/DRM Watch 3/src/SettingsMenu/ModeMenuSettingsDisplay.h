@@ -21,6 +21,7 @@ void ModeMenuSettingsDisplay_ActionResetBatteryCali();
 #include "../DrmPreferences.h"
 #include "../ModeListSelection.h"
 #include "ModeBatteryCalibration.h"
+#include "ModeSetRoundness.h"
 
 const int ModeMenuSettingsDisplayItemBack = 0;
 const int ModeMenuSettingsDisplayItemSelectWatchface = 1;
@@ -28,9 +29,10 @@ const int ModeMenuSettingsDisplayItemSelectWatchfaceContent = 2;
 const int ModeMenuSettingsDisplayItemLcdFrequency = 3;
 const int ModeMenuSettingsDisplayItemInvertDisplay = 4;
 const int ModeMenuSettingsDisplayItemLanguage = 5;
-const int ModeMenuSettingsDisplayItemInAnimation = 6;
-const int ModeMenuSettingsDisplayItemOutAnimation = 7;
-const int ModeMenuSettingsDisplayItemBatteryCalibration = 8;
+const int ModeMenuSettingsDisplayItemRoundness = 6;
+const int ModeMenuSettingsDisplayItemInAnimation = 7;
+const int ModeMenuSettingsDisplayItemOutAnimation = 8;
+const int ModeMenuSettingsDisplayItemBatteryCalibration = 9;
 
 int outAnimationOptionsCnt()
 {
@@ -80,7 +82,7 @@ void setModeMenuSettingsDisplay()
   autoReturnTime = autoReturnDefaultTime;
   autoSleepTime = autoSleepDefaultTime;
   selected = 0;
-  items = 9;
+  items = 10;
 }
 
 void ModeMenuSettingsDisplayExit(){
@@ -99,15 +101,16 @@ void ModeMenuSettingsDisplayLoop()
   drawMenuLegend();
   drawStatusbar(363, 1, true);
 
-  drawListItem(ModeMenuSettingsDisplayItemBack,                     draw_ic24_back,       L("Повернутись", "Back"),                                      L("B меню налаштувань", "To settings menu"),                         firstDraw);
-  drawListItem(ModeMenuSettingsDisplayItemSelectWatchface,          draw_ic24_watchface,  L("Обрати циферблат", "Select watchface"),                     L("Дизайн відображення часу", "Main screen design"),                 firstDraw);
-  drawListItem(ModeMenuSettingsDisplayItemSelectWatchfaceContent,   draw_ic24_checklist,  L("Вміст циферблату", "Watchface content"),                    L("Обрати елементи циферблату", "Select elements of watchface"),     firstDraw);
-  drawListItem(ModeMenuSettingsDisplayItemLcdFrequency,             draw_ic24_frequency,  L("Частота SPI", "SPI Frequency"),                             L("Частота комунікації з дисплеєм", "LCD communication frequency"),  firstDraw);
-  drawListCheckbox(ModeMenuSettingsDisplayItemInvertDisplay,        draw_ic24_invert,     L("Інвертувати екран", "Invert colors"),                       L("Поміняти місцями чорне i біле", "Swap black and white colors"),   getInversionValue(), firstDraw);
-  drawListItem(ModeMenuSettingsDisplayItemLanguage,                 draw_ic24_language,   L("Мова", "Language"),                                         langName(getLang()),                                                 firstDraw);
-  drawListCheckbox(ModeMenuSettingsDisplayItemInAnimation,          draw_ic24_animation,  L("Анімація входу в меню", "Enter animation"),                 L("Поступова поява елементів меню", "Menu appearing gradually"),     getEnterAnimationValue(), firstDraw);
-  drawListItem(ModeMenuSettingsDisplayItemOutAnimation,             draw_ic24_animation,  L("Анімація виходу з меню", "Exit animation"),                 outAnimationOptions(getClearAnimation()),                            firstDraw);
-  drawListItem(ModeMenuSettingsDisplayItemBatteryCalibration,       draw_ic24_battery75,   L("Калібровка батареї", "Battery calibration"),                L("Тривалий але потрібний процес", "Time consuming process"),        firstDraw);
+  drawListItem(ModeMenuSettingsDisplayItemBack,                   draw_ic24_back,       L("Повернутись", "Back"),                       L("B меню налаштувань", "To settings menu"),                         firstDraw);
+  drawListItem(ModeMenuSettingsDisplayItemSelectWatchface,        draw_ic24_watchface,  L("Обрати циферблат", "Select watchface"),      L("Дизайн відображення часу", "Main screen design"),                 firstDraw);
+  drawListItem(ModeMenuSettingsDisplayItemSelectWatchfaceContent, draw_ic24_checklist,  L("Вміст циферблату", "Watchface content"),     L("Обрати елементи циферблату", "Select elements of watchface"),     firstDraw);
+  drawListItem(ModeMenuSettingsDisplayItemLcdFrequency,           draw_ic24_frequency,  L("Частота SPI", "SPI Frequency"),              L("Частота комунікації з дисплеєм", "LCD communication frequency"),  firstDraw);
+  drawListCheckbox(ModeMenuSettingsDisplayItemInvertDisplay,      draw_ic24_invert,     L("Інвертувати екран", "Invert colors"),        L("Поміняти місцями чорне i біле", "Swap black and white colors"),   getInversionValue(), firstDraw);
+  drawListItem(ModeMenuSettingsDisplayItemLanguage,               draw_ic24_language,   L("Мова", "Language"),                          langName(getLang()),                                                 firstDraw);
+  drawListItem(ModeMenuSettingsDisplayItemRoundness,              draw_ic24_roundness,  L("Скруглення", "Roundness"),                   L("Скруглення всіх меню","All menus roundness"),                     firstDraw);
+  drawListCheckbox(ModeMenuSettingsDisplayItemInAnimation,        draw_ic24_animation,  L("Анімація входу в меню", "Enter animation"),  L("Поступова поява елементів меню", "Menu appearing gradually"),     getEnterAnimationValue(), firstDraw);
+  drawListItem(ModeMenuSettingsDisplayItemOutAnimation,           draw_ic24_animation,  L("Анімація виходу з меню", "Exit animation"),  outAnimationOptions(getClearAnimation()),                            firstDraw);
+  drawListItem(ModeMenuSettingsDisplayItemBatteryCalibration,     draw_ic24_battery75,  L("Калібровка батареї", "Battery calibration"), L("Тривалий але потрібний процес", "Time consuming process"),        firstDraw);
   lcd()->sendBuffer();
 }
 
@@ -130,6 +133,11 @@ void ModeMenuSettingsDisplayButtonCenter()
   if (selected == ModeMenuSettingsDisplayItemLcdFrequency)
   {
     setmodeSetLcdFrequencyMenu();
+    return;
+  }
+  if (selected == ModeMenuSettingsDisplayItemRoundness)
+  {
+    setmodeSetRoundness();
     return;
   }
   if (selected == ModeMenuSettingsDisplayItemInvertDisplay)

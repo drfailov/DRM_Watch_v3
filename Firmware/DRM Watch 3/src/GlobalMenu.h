@@ -58,13 +58,13 @@ void drawMenuItem(byte index, Drawable drawIcon, const char* name, bool animate,
   
   if(selected == index){
     lcd()->setColorIndex(black);
-    lcd()->drawRBox(/*x*/x, /*y*/y, /*w*/width, /*h*/height, roundness);
+    lcd()->drawRBox(/*x*/x, /*y*/y, /*w*/width, /*h*/height, getRoundness());
   }
   else{
     lcd()->setColorIndex(black);
-    lcd()->drawRBox(/*x*/x, /*y*/y, /*w*/width, /*h*/height, roundness);
+    lcd()->drawRBox(/*x*/x, /*y*/y, /*w*/width, /*h*/height, getRoundness());
     lcd()->setColorIndex(white);
-    lcd()->drawRBox(/*x*/x+frame, /*y*/y+frame, /*w*/width-frame*2, /*h*/height-frame*2, roundness);
+    lcd()->drawRBox(/*x*/x+frame, /*y*/y+frame, /*w*/width-frame*2, /*h*/height-frame*2, getRoundness());
   }
   int iconsize = 24;
   int iconx = x+(width-iconsize)/2;
@@ -108,19 +108,19 @@ void drawTextFrame(byte index, const char* text, const char* name, bool editMode
 
   if(selected == index){
     lcd()->setColorIndex(black);
-    lcd()->drawRBox(/*x*/x, /*y*/y, /*w*/width, /*h*/height, roundness);
+    lcd()->drawRBox(/*x*/x, /*y*/y, /*w*/width, /*h*/height, getRoundness());
     //lcd()->drawBox(/*x*/x, /*y*/y, /*w*/width, /*h*/height);
     if(editMode) {
       lcd()->setColorIndex(white);
-      lcd()->drawRBox(/*x*/textX-textMargin, /*y*/textY-textMargin-textHeight, /*w*/textwidth + textMargin*2, /*h*/textHeight + textMargin*2, roundness);
+      lcd()->drawRBox(/*x*/textX-textMargin, /*y*/textY-textMargin-textHeight, /*w*/textwidth + textMargin*2, /*h*/textHeight + textMargin*2, getRoundness());
       //lcd()->drawBox(/*x*/textX-textMargin, /*y*/textY-textMargin-textHeight, /*w*/textwidth + textMargin*2, /*h*/textHeight + textMargin*2);
     }
   }
   else{
     lcd()->setColorIndex(black);
-    lcd()->drawRBox(/*x*/x, /*y*/y, /*w*/width, /*h*/height, roundness);
+    lcd()->drawRBox(/*x*/x, /*y*/y, /*w*/width, /*h*/height, getRoundness());
     lcd()->setColorIndex(white);
-    lcd()->drawRBox(/*x*/x+frame, /*y*/y+frame, /*w*/width-frame*2, /*h*/height-frame*2, roundness);
+    lcd()->drawRBox(/*x*/x+frame, /*y*/y+frame, /*w*/width-frame*2, /*h*/height-frame*2, getRoundness());
   }
   lcd()->setColorIndex(selected == index?white:black);
   if(editMode) lcd()->setColorIndex(black);
@@ -151,14 +151,14 @@ void drawListItem(byte index, Drawable drawIcon, const char* name, const char* d
   
   if(selected == index){
     lcd()->setColorIndex(black);
-    lcd()->drawRBox(/*x*/x, /*y*/y, /*w*/width, /*h*/height, roundness);
+    lcd()->drawRBox(/*x*/x, /*y*/y, /*w*/width, /*h*/height, getRoundness());
     //lcd()->drawBox(/*x*/x, /*y*/y, /*w*/width, /*h*/height);
   }
   else{
     lcd()->setColorIndex(black);
-    lcd()->drawRBox(/*x*/x, /*y*/y, /*w*/width, /*h*/height, roundness);
+    lcd()->drawRBox(/*x*/x, /*y*/y, /*w*/width, /*h*/height, getRoundness());
     lcd()->setColorIndex(white);
-    lcd()->drawRBox(/*x*/x+frame, /*y*/y+frame, /*w*/width-frame*2, /*h*/height-frame*2, roundness);
+    lcd()->drawRBox(/*x*/x+frame, /*y*/y+frame, /*w*/width-frame*2, /*h*/height-frame*2, getRoundness());
   }
   drawIcon(x + 9, y+9, selected == index?white:black);
   
@@ -190,14 +190,14 @@ void drawListCheckbox(byte index, Drawable drawIcon, const char* name, const cha
   
   if(selected == index){
     lcd()->setColorIndex(black);
-    lcd()->drawRBox(/*x*/x, /*y*/y, /*w*/width, /*h*/height, roundness);
+    lcd()->drawRBox(/*x*/x, /*y*/y, /*w*/width, /*h*/height, getRoundness());
     //lcd()->drawBox(/*x*/x, /*y*/y, /*w*/width, /*h*/height);
   }
   else{
     lcd()->setColorIndex(black);
-    lcd()->drawRBox(/*x*/x, /*y*/y, /*w*/width, /*h*/height, roundness);
+    lcd()->drawRBox(/*x*/x, /*y*/y, /*w*/width, /*h*/height, getRoundness());
     lcd()->setColorIndex(white);
-    lcd()->drawRBox(/*x*/x+frame, /*y*/y+frame, /*w*/width-frame*2, /*h*/height-frame*2, roundness);
+    lcd()->drawRBox(/*x*/x+frame, /*y*/y+frame, /*w*/width-frame*2, /*h*/height-frame*2, getRoundness());
   }
   drawIcon(x + 9, y+9, selected == index?white:black);
 
@@ -235,14 +235,14 @@ void drawListValue(byte index, Drawable drawIcon, const char* name, const char* 
   
   if(selected == index){
     lcd()->setColorIndex(black);
-    lcd()->drawRBox(/*x*/x, /*y*/y, /*w*/width, /*h*/height, roundness);
+    lcd()->drawRBox(/*x*/x, /*y*/y, /*w*/width, /*h*/height, getRoundness());
     //lcd()->drawBox(/*x*/x, /*y*/y, /*w*/width, /*h*/height);
   }
   else{
     lcd()->setColorIndex(black);
-    lcd()->drawRBox(/*x*/x, /*y*/y, /*w*/width, /*h*/height, roundness);
+    lcd()->drawRBox(/*x*/x, /*y*/y, /*w*/width, /*h*/height, getRoundness());
     lcd()->setColorIndex(white);
-    lcd()->drawRBox(/*x*/x+frame, /*y*/y+frame, /*w*/width-frame*2, /*h*/height-frame*2, roundness);
+    lcd()->drawRBox(/*x*/x+frame, /*y*/y+frame, /*w*/width-frame*2, /*h*/height-frame*2, getRoundness());
   }
   drawIcon(x + 9, y+9, selected == index?white:black);
   

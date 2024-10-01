@@ -110,7 +110,7 @@ void goToSleep(){
   esp_sleep_enable_ext0_wakeup(BUT_CENTER, 0); //1 = High, 0 = Low
   
   if(isOff() || isBatteryCritical())
-    esp_sleep_enable_timer_wakeup(600 * 1000000ULL);
+    esp_sleep_enable_timer_wakeup(30*60 * 1000000ULL); //30 min
   else{
     int second = rtcGetSecond();
     int timeToSleep = 61-second;

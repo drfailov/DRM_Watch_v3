@@ -260,9 +260,9 @@ void drawMessageAnimated(String text)
   int width = 345;
   int height = 70;
   lcd()->setColorIndex(black);
-  lcd()->drawRBox(/*x*/ x, /*y*/ y, /*w*/ width, /*h*/ height, roundness);
+  lcd()->drawRBox(/*x*/ x, /*y*/ y, /*w*/ width, /*h*/ height, getRoundness());
   lcd()->setColorIndex(white);
-  lcd()->drawRBox(/*x*/ x + frame, /*y*/ y + frame, /*w*/ width - frame * 2, /*h*/ height - frame * 2, roundness);
+  lcd()->drawRBox(/*x*/ x + frame, /*y*/ y + frame, /*w*/ width - frame * 2, /*h*/ height - frame * 2, getRoundness());
   draw_ic24_about(x + 10, y + 22, black);
 
   lcd()->setColorIndex(black);
@@ -298,9 +298,9 @@ void drawMessage(String text, String text2, bool animate)
   // lcd()->drawFrame(/*x*/x+1, /*y*/y+1, /*w*/width-2, /*h*/height-2);
 
   lcd()->setColorIndex(black);
-  lcd()->drawRBox(/*x*/ x, /*y*/ y, /*w*/ width, /*h*/ height, roundness);
+  lcd()->drawRBox(/*x*/ x, /*y*/ y, /*w*/ width, /*h*/ height, getRoundness());
   lcd()->setColorIndex(white);
-  lcd()->drawRBox(/*x*/ x + frame, /*y*/ y + frame, /*w*/ width - frame * 2, /*h*/ height - frame * 2, roundness);
+  lcd()->drawRBox(/*x*/ x + frame, /*y*/ y + frame, /*w*/ width - frame * 2, /*h*/ height - frame * 2, getRoundness());
 
   draw_ic24_about(x + 10, y + 22, black);
   lcd()->setColorIndex(black);
@@ -492,9 +492,9 @@ void drawQuestion(String text, String text2, bool animate)
   // lcd()->drawFrame(/*x*/x+1, /*y*/y+1, /*w*/width-2, /*h*/height-2);
 
   lcd()->setColorIndex(black);
-  lcd()->drawRBox(/*x*/ x, /*y*/ y, /*w*/ width, /*h*/ height, roundness);
+  lcd()->drawRBox(/*x*/ x, /*y*/ y, /*w*/ width, /*h*/ height, getRoundness());
   lcd()->setColorIndex(white);
-  lcd()->drawRBox(/*x*/ x + frame, /*y*/ y + frame, /*w*/ width - frame * 2, /*h*/ height - frame * 2, roundness);
+  lcd()->drawRBox(/*x*/ x + frame, /*y*/ y + frame, /*w*/ width - frame * 2, /*h*/ height - frame * 2, getRoundness());
 
   draw_ic24_question(x + 10, y + 22, black);
 

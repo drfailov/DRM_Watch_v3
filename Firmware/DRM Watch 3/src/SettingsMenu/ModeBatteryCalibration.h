@@ -17,11 +17,7 @@ void ModeBatteryCalibrationButtonDown();
 
 bool calibrationRunning = false;
 unsigned long valueAddLastTime = 0;
-unsigned long valueAddInterval = 1000*60*5; //5m
-//unsigned long valueAddInterval = 1000*10; //10s
 int lastAddedValue = -1;
-
-
 
 void setModeBatteryCalibration(){
   if(modeExit != 0)
@@ -45,7 +41,6 @@ void setModeBatteryCalibration(){
   valueAddLastTime = 0;
 }
 
-
 void ModeBatteryCalibrationLoop(){
   int raw = readSensBatteryRawFiltered();
   float volt = getBatteryVoltage(raw);
@@ -54,7 +49,7 @@ void ModeBatteryCalibrationLoop(){
   unsigned long timeSinceLastAdded = millis()-valueAddLastTime;
   unsigned long calibrationTime = 0;
   if(calibrationRunning)
-    calibrationTime = total*valueAddInterval+timeSinceLastAdded;
+    calibrationTime = total*getBatteryCalibrationValueAddInterval()+timeSinceLastAdded;
 
   lcd()->setColorIndex(white);
   lcd()->drawBox(0, 0, 400, 240);
@@ -81,7 +76,7 @@ void ModeBatteryCalibrationLoop(){
     lcd()->setCursor(10, 80); 
     lcd()->print(timeSinceLastAdded / 1000);
     lcd()->print(L("сек / ", "s / "));
-    lcd()->print(valueAddInterval / 1000);
+    lcd()->print(getBatteryCalibrationValueAddInterval() / 1000);
     lcd()->print(L("сек.", "s."));
   }
   else
@@ -96,7 +91,7 @@ void ModeBatteryCalibrationLoop(){
       lcd()->setCursor(10, 60);
       lcd()->setFont(u8g2_font_unifont_t_cyrillic); //smalll
       lcd()->print(L("Протягом ", "During ")); 
-      displayPrintSecondsAsTime((total*valueAddInterval)/1000);
+      displayPrintSecondsAsTime((total*getBatteryCalibrationValueAddInterval())/1000);
       lcd()->print(L(" було записано ", " were added "));
       lcd()->print(total);
       lcd()->print(L(" значень.", " values."));
@@ -135,20 +130,24 @@ void ModeBatteryCalibrationLoop(){
   if(calibrationRunning){
     if(isChargerConnected()){
       calibrationRunning = false;
-      //resetBatteryCalibration();
       drawDim();
       drawMessage(L("Калібровка була припинена!", "Calibration stopped!"), L("Відключіть зарядний пристрій.", "Disconnect charger."), true);
       waitOk();
 
       return;
     }
-    if(timeSinceLastAdded > valueAddInterval) // || total == 0
+    if(timeSinceLastAdded > getBatteryCalibrationValueAddInterval()) // || total == 0
     {
       if(raw<lastAddedValue || lastAddedValue == -1)
       {
         valueAddLastTime = millis();
         lastAddedValue = raw;
-        batteryCalibrationAddValue(raw);
+        int length = batteryCalibrationAddValue(raw);
+        if(length > batteryCalibrationLengthMax-2)
+        {
+          batteryCalibrationShrink();
+          saveBatteryCalibrationValueAddInterval(getBatteryCalibrationValueAddInterval()*2);
+        }
       }  
     }
   }
@@ -156,11 +155,12 @@ void ModeBatteryCalibrationLoop(){
 
 }
 
-
-void ModeBatteryCalibrationSelectedStartBatteryCalibration(){
+void ModeBatteryCalibrationSelectedStartBatteryCalibration()
+{
   resetBatteryCalibration();
   setModeBatteryCalibration();
   calibrationRunning = true;
+  saveBatteryCalibrationValueAddInterval(10*1000); //5 s
   backlightOff();
   drawDim();
   drawMessage(L("Почато калібровку!", "Calibration started!"), L("Не чіпайте поки не вимкнеться.", "Don't touch until turnoff."), true);
@@ -168,12 +168,10 @@ void ModeBatteryCalibrationSelectedStartBatteryCalibration(){
     ModeBatteryCalibrationLoop();
   }
 }
+
 void ModeBatteryCalibrationButtonUp(){
   if(calibrationRunning)
     return;
-  //goToSleep();
-  //switchDontSleep();
-  //batteryCalibrationAddValue(readSensBatteryRaw());
   if(isChargerConnected()){
     drawDim();
     drawMessageAnimated(L("Спершу відключіть зарядку.", "Disconnect charger first."));
@@ -186,9 +184,7 @@ void ModeBatteryCalibrationButtonUp(){
 void ModeBatteryCalibrationButtonCenter(){
   if(calibrationRunning)
     return;
-  //setModeAppsMenu();
   setModeMenuSettingsDisplay();
-  //wifiOff();
 }
 
 void ModeBatteryCalibrationSelectedResetBatteryCalibration(){
@@ -203,14 +199,6 @@ void ModeBatteryCalibrationButtonDown(){
     return;
   questionModeSet(L("Скинути калібровку?", "Reset calibration data?"), L("Буде необхідно перекалібрувати!","Calibration will be required!"), ModeBatteryCalibrationSelectedResetBatteryCalibration, setModeBatteryCalibration);
 }
-
-
-
-
-
-
-//----------------------//----------------------//----------------------//----------------------//----------------------//----------------------//----------------------
-
 
 
 #endif
