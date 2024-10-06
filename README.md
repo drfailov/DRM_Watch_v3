@@ -416,6 +416,58 @@ https://www.tiktok.com/@drfailov
 # Де брати комплектуючі
 <p align="center"><img src="Photos/2024-09-29 Components-together.png"/> </p>
 Готових годинників в продажу не існує, тому якщо є бажання отримати такий годинник, можна зібрати самому.
+Якщо коротко, то:
+- Board: Order PCB on jlcpcb, GERBER included
+- Front panel: order alluminium CNC Milling on jlcpcb, STEP included
+- Back panel: 3d print, STL included
+- Display Sharp LS027B7DH01A
+https://www.aliexpress.us/item/1005005611440829.html
+- Connector FPC 10pin 0.5mm pitch
+https://www.aliexpress.us/item/10000348360254.html
+- Battery lipo 502535
+https://ampul.eu/de/batterie/4242-li-pol-akku-450mah-37v-502535
+- Buzzer SMD 7525-3.6V-passive
+https://www.aliexpress.us/item/1005003620083880.html
+- Mosfet 2N7002LT1G
+https://www.aliexpress.us/item/1005003079655220.html
+- Esp32 board: Lolin S2 Mini
+https://www.aliexpress.us/item/1005004438665554.html
+- TP4056 Charging module
+https://www.aliexpress.com/item/1005006310424899.html
+- Resistor set SMD 0603
+https://www.aliexpress.us/item/1005002364437129.html
+- Capacitors set SMD 0603
+https://www.aliexpress.us/item/1005006124283234.html
+- RTC Module based on Analog Devices DS3231 
+https://www.aliexpress.us/item/32822420722.html
+- 020 SMD Side View LED White 6000K
+https://www.aliexpress.us/item/32419907074.html
+- Buttons 2\*4\*3.5mm Micro SMD Tact Switch Side Button
+https://www.aliexpress.us/item/1005004312046546.html
+- Screw places SMTSO Surface Mount Copper Nut M1.4X3X1.5-2X0.8
+https://www.aliexpress.com/item/1005005579653583.html
+- Screws PH000, M1.4, 3mm length
+https://www.aliexpress.com/item/1005002364568213.html
+- Self tapping screws M1.5, 6mm
+https://www.aliexpress.com/item/1005002324715062.html
+- Watch band, 22мм 
+https://www.aliexpress.us/item/1005005890436737.html
+- USB Type C cover:
+https://www.aliexpress.com/item/4000148621089.html
+- EL Panel driver: Microchip HV857MG MSOP8  (optional, only if you want backlight)
+https://www.aliexpress.us/item/1005005512523052.html
+- EL Driver Capacitor SMD 1206 10NF X7R 200V (optional, only if you want backlight)
+https://www.aliexpress.us/item/1005004628006766.html
+- EL Driver Capacitors SMD 1206 320PCS 16Value   (optional, only if you want backlight)
+https://www.aliexpress.us/item/1005006124283234.html 
+- EL Driver Diode ES1D   (optional, only if you want backlight)
+https://www.aliexpress.us/item/1005005254835443.html
+- EL Driver  SMD Inductor 1210 3225 22UH   (optional, only if you want backlight)
+https://www.aliexpress.us/item/32981310345.html
+- Glue to connect EL panel MECHANIC MCN-DJ002 Conductive Adhesive Glue Silver (optional, only if you want backlight)
+https://www.aliexpress.us/item/1005002369819447.html
+
+
 
 ### Дисплей
 <p align="center"><img src="Photos/5a768_electronic_circuits_gI_0_MemoryLCDPress.jpg" height="200"/> </p>
@@ -442,6 +494,7 @@ https://www.aliexpress.us/item/10000348360254.html   <br>
 Корпус та плата спроектовано під літій-іонний акумулятор такої форми: 35*25*5mm. Звісно, підійде будь-який і меншого розміру, але матиме меншу ємність.  <br>
 Модель яка найкраще підходить: **lipo 502535**. Я купував тут:    <br>
 https://prom.ua/ua/p1286391849-akkumulyator-kontrollerom-universalnyj.html   <br>
+https://ampul.eu/de/batterie/4242-li-pol-akku-450mah-37v-502535   <br>
 
 ### Буззер
 <p align="center"><img src="Photos/buzzer.png" height="200"/> </p>
@@ -486,6 +539,7 @@ https://www.aliexpress.us/item/1005004689346275.html  <br>
 </p>
 
 Щоб була можливість заряджати акумулятор. Причому якщо акума не буде - годинник не працюватиме навіть на зарядці.   <br>
+https://www.aliexpress.com/item/1005006310424899.html
 Тому якщо потрібно обійти модуль зарядки, можна замкнути перемичку біля мікросхеми заряду на платі (вона вона розташована біля самого краю плати) - вона подасть напряму напругу з USB порта замість напруги батареї. Основне не залишити перемичку зі вставленим акумом, щоб не отримати **фаєр-шоу**)))   <br>
 Розпаявши такий модуль можна дістати чіп **TP4056** , який відоповідає за зарядку акума. Датащит:  <br>
 https://dlnmh9ip6v2uc.cloudfront.net/datasheets/Prototyping/TP4056.pdf  <br>
@@ -683,6 +737,17 @@ https://www.aliexpress.com/item/4000148621089.html
 Для замовлення фрезерування та лазерного маркування вам знадобиться файл `.step` та `.dwg`.  <br>
 Для друку металом або звичайним 3д принтером знадобиться `.stl` файл. (по одному на кожну частину корпусу)
 
+### Замовлення фрезерування
+<p align="center">
+<img src="Photos/case-front.png" height="250"/>  
+<img src="Photos/photo_2024-10-06_21-41-37.jpg" height="250"/>  
+<img src="Photos/order-front-panel.png" height="250"/>
+</p>
+Передню частину корпусу рекомендую фрезерувати з алюмінію. 
+Замовити можна на JLCPCB, для замовлення знадобиться `.step` файл. 
+Також можна додати гравіювання, для цього знадобиться `.dxf` файл.
+Параметри можна побачити на скріншоті з замовлення.
+
 ## Плата
 <p align="center">
 <img src="Board/Photos/v4.png" height="330"/>  
@@ -706,8 +771,14 @@ https://www.aliexpress.com/item/4000148621089.html
 **Rev 4:** Додано піни щоб підключити до RTC окремий акум щоб не збивався час при розрядці акумулятора, 
 додано елементи які відповідають за роботу вібро. Поки програмно він ніяк не задіяний, але хай буде.  <br>  
 
+
+### Замовлення плати
+<p align="center">
+<img src="Board/Photos/order.png" height="200"/> 
+<img src="Board/Photos/photo_2024-10-06_20-38-09.jpg" height="200"/> 
+</p>
 Щоб замовити собі плату, можна скористатись файлами в папках GERBER. Знаходяться вони тут: `Board\Gerber OUTPUTs`  <br>
-Ці файли достатньо завантажити на сайт не виготовляють плати, я замовляв у **jlcpcb.com**. 
+Ці файли достатньо завантажити на сайт де виготовляють плати, я замовляв у **jlcpcb.com**. 
 Там одразу має бути видно як виглядатиме плата.   <br>
 Якщо потрібно щось поміняти - ставимо KiKad, відкриваєм проект `Board\KiCad Project\_DRM_Watch_v3\DRM_Watch_V3.kicad_pro` і можна міняти.   <br>
 Експортувати Gerber на Drl можна в редакторі плат KiKad.  <br>
