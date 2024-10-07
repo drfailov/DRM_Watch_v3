@@ -412,60 +412,78 @@ https://www.tiktok.com/@drfailov
 
 
 
+# Як зібрати годинник
+Готових годинників в продажу не існує, тому якщо є бажання отримати такий годинник, можна зібрати самому.  <br>  
 
-# Де брати комплектуючі
-<p align="center"><img src="Photos/2024-09-29 Components-together.png"/> </p>
-Готових годинників в продажу не існує, тому якщо є бажання отримати такий годинник, можна зібрати самому.
-Якщо коротко, то:
-- Board: Order PCB on jlcpcb, GERBER included
-- Front panel: order alluminium CNC Milling on jlcpcb, STEP included
-- Back panel: 3d print, STL included
-- Display Sharp LS027B7DH01A
-https://www.aliexpress.us/item/1005005611440829.html
-- Connector FPC 10pin 0.5mm pitch
-https://www.aliexpress.us/item/10000348360254.html
-- Battery lipo 502535
-https://ampul.eu/de/batterie/4242-li-pol-akku-450mah-37v-502535
-- Buzzer SMD 7525-3.6V-passive
-https://www.aliexpress.us/item/1005003620083880.html
-- Mosfet 2N7002LT1G
-https://www.aliexpress.us/item/1005003079655220.html
-- Esp32 board: Lolin S2 Mini
-https://www.aliexpress.us/item/1005004438665554.html
-- TP4056 Charging module
-https://www.aliexpress.com/item/1005006310424899.html
-- Resistor set SMD 0603
-https://www.aliexpress.us/item/1005002364437129.html
-- Capacitors set SMD 0603
-https://www.aliexpress.us/item/1005006124283234.html
-- RTC Module based on Analog Devices DS3231 
-https://www.aliexpress.us/item/32822420722.html
-- 020 SMD Side View LED White 6000K
-https://www.aliexpress.us/item/32419907074.html
-- Buttons 2\*4\*3.5mm Micro SMD Tact Switch Side Button
-https://www.aliexpress.us/item/1005004312046546.html
-- Screw places SMTSO Surface Mount Copper Nut M1.4X3X1.5-2X0.8
-https://www.aliexpress.com/item/1005005579653583.html
-- Screws PH000, M1.4, 3mm length
-https://www.aliexpress.com/item/1005002364568213.html
-- Self tapping screws M1.5, 6mm
-https://www.aliexpress.com/item/1005002324715062.html
-- Watch band, 22мм 
-https://www.aliexpress.us/item/1005005890436737.html
-- USB Type C cover:
-https://www.aliexpress.com/item/4000148621089.html
-- EL Panel driver: Microchip HV857MG MSOP8  (optional, only if you want backlight)
-https://www.aliexpress.us/item/1005005512523052.html
-- EL Driver Capacitor SMD 1206 10NF X7R 200V (optional, only if you want backlight)
-https://www.aliexpress.us/item/1005004628006766.html
-- EL Driver Capacitors SMD 1206 320PCS 16Value   (optional, only if you want backlight)
-https://www.aliexpress.us/item/1005006124283234.html 
-- EL Driver Diode ES1D   (optional, only if you want backlight)
-https://www.aliexpress.us/item/1005005254835443.html
-- EL Driver  SMD Inductor 1210 3225 22UH   (optional, only if you want backlight)
-https://www.aliexpress.us/item/32981310345.html
-- Glue to connect EL panel MECHANIC MCN-DJ002 Conductive Adhesive Glue Silver (optional, only if you want backlight)
-https://www.aliexpress.us/item/1005002369819447.html
+## Що знадобиться
+<p align="center">
+<img src="Photos/2024-09-29 Components-together.png"/> 
+</p>
+
+- Паяльник
+- Припой
+- Паяльний фен або столик
+- Флюс
+- Пінцети
+- Викрутки
+- Мікроскоп (бажано)
+
+
+## Де брати комплектуючі
+<p align="center">
+<img src="Photos/2024-09-29 Components-together.png"/> 
+</p>
+
+Якщо коротко, то:  <br>  
+- Board: Order PCB on jlcpcb, GERBER included  <br>  
+- Front panel: order alluminium CNC Milling on jlcpcb, STEP included  <br>  
+- Back panel: 3d print, STL included  <br>  
+- Display Sharp LS027B7DH01A  <br>  
+https://www.aliexpress.us/item/1005005611440829.html  <br>  
+- Connector FPC 10pin 0.5mm pitch  <br>  
+https://www.aliexpress.us/item/10000348360254.html  <br>  
+- Battery lipo 502535  <br>  
+https://ampul.eu/de/batterie/4242-li-pol-akku-450mah-37v-502535  <br>  
+- Buzzer SMD 7525-3.6V-passive  <br>  
+https://www.aliexpress.us/item/1005003620083880.html  <br>  
+- Mosfet 2N7002LT1G  <br>  
+https://www.aliexpress.us/item/1005003079655220.html  <br>  
+- Esp32 board: Lolin S2 Mini  <br>  
+https://www.aliexpress.us/item/1005004438665554.html  <br>  
+- TP4056 Charging module  <br>  
+https://www.aliexpress.com/item/1005006310424899.html  <br>  
+- Resistor set SMD 0603  <br>  
+https://www.aliexpress.us/item/1005002364437129.html  <br>  
+- Capacitors set SMD 0603  <br>  
+https://www.aliexpress.us/item/1005006124283234.html  <br>  
+- RTC Module based on Analog Devices DS3231   <br>  
+https://www.aliexpress.us/item/32822420722.html  <br>  
+- 020 SMD Side View LED White 6000K  <br>  
+https://www.aliexpress.us/item/32419907074.html  <br>  
+- Buttons 2\*4\*3.5mm Micro SMD Tact Switch Side Button  <br>  
+https://www.aliexpress.us/item/1005004312046546.html  <br>  
+- Screw places SMTSO Surface Mount Copper Nut M1.4X3X1.5-2X0.8  <br>  
+https://www.aliexpress.com/item/1005005579653583.html  <br>  
+- Screws PH000, M1.4, 3mm length  <br>  
+https://www.aliexpress.com/item/1005002364568213.html  <br>  
+- Self tapping screws M1.5, 6mm  <br>  
+https://www.aliexpress.com/item/1005002324715062.html  <br>  
+- Watch band, 22мм   <br>  
+https://www.aliexpress.us/item/1005005890436737.html  <br>  
+- USB Type C cover:  <br>  
+https://www.aliexpress.com/item/4000148621089.html  <br>  
+- EL Panel driver: Microchip HV857MG MSOP8  (optional, only if you want backlight)  <br>  
+https://www.aliexpress.us/item/1005005512523052.html  <br>  
+- EL Driver Capacitor SMD 1206 10NF X7R 200V (optional, only if you want backlight)  <br>  
+https://www.aliexpress.us/item/1005004628006766.html  <br>  
+- EL Driver Capacitors SMD 1206 320PCS 16Value   (optional, only if you want backlight)  <br>  
+https://www.aliexpress.us/item/1005006124283234.html   <br>  
+- EL Driver Diode ES1D   (optional, only if you want backlight)  <br>  
+https://www.aliexpress.us/item/1005005254835443.html  <br>  
+- EL Driver  SMD Inductor 1210 3225 22UH   (optional, only if you want backlight)  <br>  
+https://www.aliexpress.us/item/32981310345.html  <br>  
+- Glue to connect EL panel MECHANIC MCN-DJ002 Conductive Adhesive Glue Silver (optional, only if you want backlight)  <br>  
+https://www.aliexpress.us/item/1005002369819447.html  <br>  
 
 
 
@@ -770,6 +788,23 @@ https://www.aliexpress.com/item/4000148621089.html
 Підсвітка електролюмінесцентна з драйвером. Компоненти розміщені плотно. Можна поставити великий акум на 500мАг.  <br>
 **Rev 4:** Додано піни щоб підключити до RTC окремий акум щоб не збивався час при розрядці акумулятора, 
 додано елементи які відповідають за роботу вібро. Поки програмно він ніяк не задіяний, але хай буде.  <br>  
+**Rev 5:** Оновлено BOM виправлено потенційні неоднозначності  <br>  
+
+### Генерування BOM з проекту KiCad
+- Відкрити проект KiCad, Перейти до редактора схеми.
+- Натиснути `Genetate Bill Of Materials`
+- Зі списку обрати `bom_csv_grouped_by_value_with_fp`
+- Згенерований файл лежатиме тут: `Board\KiCad Project\_DRM_Watch_v3\DRM_Watch_V3.csv`, але він напряму екселем не читається.
+- Створюємо нову таблицю в екселі.
+- Йдемо до `Дані - Отримати з текстового/CSV файлу`, обираємо створений файл. Обираємо параметри з якими відображатиметься коректно.
+- Готово. Зберігаємо таблицю в файл - цей BOM вже можна нормально переглядати.
+
+Якщо формат "Стандартного" генератора BOM не подобається, то можна замінити скрипт. Я вже його трохи підправив.
+Ідемо до папки `C:\Program Files\KiCad\7.0\bin\scripting\plugins` (у вас може бути в іншому місці, пошукайте), 
+і заміняємо файл `bom_csv_grouped_by_value_with_fp.py` на файл з моєї папки `Board\KiCad Project\_DRM_Watch_v3\bom_csv_grouped_by_value_with_fp.py`. 
+Після заміни створюєм BOM повторно. 
+Якщо і цей формат не сподобається, тоді правце цей файл під себе.
+
 
 
 ### Замовлення плати

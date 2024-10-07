@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <export version="E">
   <design>
-    <source>C:\Data\Projects\2023-10-05 SHARP MEMORY LCD\Git\DRM_Watch_v3\Board\_DRM_Watch_v3\DRM_Watch_V3.kicad_sch</source>
-    <date>29/06/2024 17:14:43</date>
+    <source>C:\Data\Projects\2023-10-05 SHARP MEMORY LCD\Git\DRM_Watch_v3\Board\KiCad Project\_DRM_Watch_v3\DRM_Watch_V3.kicad_sch</source>
+    <date>08/10/2024 00:11:06</date>
     <tool>Eeschema 7.0.9</tool>
     <sheet number="1" name="/" tstamps="/">
       <title_block>
-        <title>DRM Watch V3</title>
+        <title>DRM Watch 3</title>
         <company>Dr. Failov</company>
-        <rev>0.1</rev>
-        <date>2023-12-05</date>
+        <rev>5</rev>
+        <date>2024-07-01</date>
         <source>DRM_Watch_V3.kicad_sch</source>
         <comment number="1" value=""/>
         <comment number="2" value=""/>
@@ -591,56 +591,56 @@
       <tstamps>d2b63507-a77a-4b6c-9808-427fa46d1138</tstamps>
     </comp>
     <comp ref="M1">
-      <value>M1.2 screw mount get from DJI Mavic 3 CORE board</value>
-      <footprint>Project-Lib:m1.2-screw-mount</footprint>
-      <datasheet>https://www.swaco.com/SMTSO-M1.2-2ET-PEM-ReelFast</datasheet>
+      <value>Brass SMTSO-M1.4X3X1.5-2X0.8</value>
+      <footprint>Project-Lib:m1.4-screw-mount</footprint>
       <fields>
-        <field name="Description">Surface mount spacers with thread</field>
-        <field name="Link">https://www.aliexpress.com/i/1005005125674149.html   (SMTSO-M1.2-2)</field>
+        <field name="Description">M1.4 screw mount get from DJI Mavic 3 CORE board</field>
+        <field name="Link">https://www.aliexpress.com/item/1005005579653583.html</field>
         <field name="Role">Screw mount for back case</field>
       </fields>
-      <libsource lib="Project-Lib" part="screwMount" description=""/>
-      <property name="Link" value="https://www.aliexpress.com/i/1005005125674149.html   (SMTSO-M1.2-2)"/>
+      <libsource lib="Project-Lib" part="screwMount" description="M1.4 screw mount get from DJI Mavic 3 CORE board"/>
+      <property name="Link" value="https://www.aliexpress.com/item/1005005579653583.html"/>
       <property name="Role" value="Screw mount for back case"/>
-      <property name="Description" value="Surface mount spacers with thread"/>
+      <property name="Description" value="M1.4 screw mount get from DJI Mavic 3 CORE board"/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="DRM_Watch_V3.kicad_sch"/>
+      <property name="ki_description" value="M1.4 screw mount get from DJI Mavic 3 CORE board"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>a633002a-2464-45b1-8601-93b0dab96a28</tstamps>
     </comp>
     <comp ref="M2">
-      <value>M1.2 screw mount get from DJI Mavic 3 CORE board</value>
-      <footprint>Project-Lib:m1.2-screw-mount</footprint>
-      <datasheet>https://www.swaco.com/SMTSO-M1.2-2ET-PEM-ReelFast</datasheet>
+      <value>Brass SMTSO-M1.4X3X1.5-2X0.8</value>
+      <footprint>Project-Lib:m1.4-screw-mount</footprint>
       <fields>
-        <field name="Description">Surface mount spacers with thread</field>
-        <field name="Link">https://www.aliexpress.com/i/1005005125674149.html   (SMTSO-M1.2-2)</field>
+        <field name="Description">M1.4 screw mount get from DJI Mavic 3 CORE board</field>
+        <field name="Link">https://www.aliexpress.com/item/1005005579653583.html</field>
         <field name="Role">Screw mount for back case</field>
       </fields>
-      <libsource lib="Project-Lib" part="screwMount" description=""/>
-      <property name="Link" value="https://www.aliexpress.com/i/1005005125674149.html   (SMTSO-M1.2-2)"/>
+      <libsource lib="Project-Lib" part="screwMount" description="M1.4 screw mount get from DJI Mavic 3 CORE board"/>
+      <property name="Link" value="https://www.aliexpress.com/item/1005005579653583.html"/>
       <property name="Role" value="Screw mount for back case"/>
-      <property name="Description" value="Surface mount spacers with thread"/>
+      <property name="Description" value="M1.4 screw mount get from DJI Mavic 3 CORE board"/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="DRM_Watch_V3.kicad_sch"/>
+      <property name="ki_description" value="M1.4 screw mount get from DJI Mavic 3 CORE board"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>ceeb06f1-67bf-4499-bec4-1c7c8650273f</tstamps>
     </comp>
     <comp ref="M3">
-      <value>M1.2 screw mount get from DJI Mavic 3 CORE board</value>
-      <footprint>Project-Lib:m1.2-screw-mount</footprint>
-      <datasheet>https://www.swaco.com/SMTSO-M1.2-2ET-PEM-ReelFast</datasheet>
+      <value>Brass SMTSO-M1.4X3X1.5-2X0.8</value>
+      <footprint>Project-Lib:m1.4-screw-mount</footprint>
       <fields>
-        <field name="Description">Surface mount spacers with thread</field>
-        <field name="Link">https://www.aliexpress.com/i/1005005125674149.html   (SMTSO-M1.2-2)</field>
+        <field name="Description">M1.4 screw mount get from DJI Mavic 3 CORE board</field>
+        <field name="Link">https://www.aliexpress.com/item/1005005579653583.html</field>
         <field name="Role">Screw mount for back case</field>
       </fields>
-      <libsource lib="Project-Lib" part="screwMount" description=""/>
-      <property name="Link" value="https://www.aliexpress.com/i/1005005125674149.html   (SMTSO-M1.2-2)"/>
+      <libsource lib="Project-Lib" part="screwMount" description="M1.4 screw mount get from DJI Mavic 3 CORE board"/>
+      <property name="Link" value="https://www.aliexpress.com/item/1005005579653583.html"/>
       <property name="Role" value="Screw mount for back case"/>
-      <property name="Description" value="Surface mount spacers with thread"/>
+      <property name="Description" value="M1.4 screw mount get from DJI Mavic 3 CORE board"/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="DRM_Watch_V3.kicad_sch"/>
+      <property name="ki_description" value="M1.4 screw mount get from DJI Mavic 3 CORE board"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>1efab346-c66e-491a-a48d-b1e28a1d28f5</tstamps>
     </comp>
@@ -1159,12 +1159,12 @@
       <datasheet>https://www.espressif.com/sites/default/files/documentation/esp32-s2_datasheet_en.pdf</datasheet>
       <fields>
         <field name="Description">ESP32-S2FN4R2 Programmable Microcontroller Chip</field>
-        <field name="Link">https://www.tme.eu/en/details/esp32s2/iot-wifi-bluetooth-modules/espressif/esp32-s2/</field>
+        <field name="Link">https://www.tme.eu/ua/details/esp32s2fn4r2/moduli-iot-wifi-bluetooth/espressif/esp32-s2fn4r2</field>
         <field name="Manufacturer">Espressif</field>
         <field name="Role">Main controller</field>
       </fields>
       <libsource lib="Project-Lib" part="ESP32-S2" description="ESP32-S2 family is a highly-integrated, low-power, 2.4GHz Wi-Fi System-on-Chip (SoC) solution."/>
-      <property name="Link" value="https://www.tme.eu/en/details/esp32s2/iot-wifi-bluetooth-modules/espressif/esp32-s2/"/>
+      <property name="Link" value="https://www.tme.eu/ua/details/esp32s2fn4r2/moduli-iot-wifi-bluetooth/espressif/esp32-s2fn4r2"/>
       <property name="Manufacturer" value="Espressif"/>
       <property name="Role" value="Main controller"/>
       <property name="Description" value="ESP32-S2FN4R2 Programmable Microcontroller Chip"/>
@@ -1256,20 +1256,19 @@
     </comp>
     <comp ref="Y1">
       <value>3225 4PIN 40Mhz 3.2*2.5mm Passive SMD Quartz Resonator Crystal</value>
-      <footprint>Project-Lib:OSC_XRCGB48M000F0Z00R0</footprint>
+      <footprint>Project-Lib:Oscilator</footprint>
       <fields>
         <field name="Description">SMD 3225 4PIN 40Mhz 3.2*2.5mm Passive SMD Quartz Resonator 40.000Mhz</field>
         <field name="Link">https://www.aliexpress.us/item/1005004689346275.html</field>
-        <field name="Manufacturer">Murata Electronics</field>
         <field name="Role">Frequency Oscilator</field>
       </fields>
-      <libsource lib="Project-Lib" part="XRCGB48M000F0Z00R0" description=""/>
+      <libsource lib="Project-Lib" part="Oscolator" description="SMD 3225 4PIN 40Mhz 3.2*2.5mm Passive SMD Quartz Resonator 40.000Mhz"/>
       <property name="Link" value="https://www.aliexpress.us/item/1005004689346275.html"/>
       <property name="Role" value="Frequency Oscilator"/>
       <property name="Description" value="SMD 3225 4PIN 40Mhz 3.2*2.5mm Passive SMD Quartz Resonator 40.000Mhz"/>
-      <property name="Manufacturer" value="Murata Electronics"/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="DRM_Watch_V3.kicad_sch"/>
+      <property name="ki_description" value="SMD 3225 4PIN 40Mhz 3.2*2.5mm Passive SMD Quartz Resonator 40.000Mhz"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>c0f64dbc-8767-49c8-a3da-c9f0cfbacdce</tstamps>
     </comp>
@@ -1515,10 +1514,10 @@ N-Channel 60 V 115mA (Tc) 225mW (Ta) Surface Mount SOT-23-3 (TO-236)
       <docs>https://www.espressif.com/sites/default/files/documentation/esp32-s2_datasheet_en.pdf</docs>
       <fields>
         <field name="Reference">U</field>
-        <field name="Value">ESP32-S2</field>
+        <field name="Value">ESP32-S2FN4R2</field>
         <field name="Footprint">Project-Lib:QFN-56-1EP_7x7mm_P0.4mm_EP4x4mm_ThermalVias</field>
         <field name="Datasheet">https://www.espressif.com/sites/default/files/documentation/esp32-s2_datasheet_en.pdf</field>
-        <field name="Link">https://www.tme.eu/en/details/esp32s2/iot-wifi-bluetooth-modules/espressif/esp32-s2/</field>
+        <field name="Link">https://www.tme.eu/ua/details/esp32s2fn4r2/moduli-iot-wifi-bluetooth/espressif/esp32-s2fn4r2</field>
         <field name="Manufacturer">Espressif</field>
       </fields>
       <pins>
@@ -1620,6 +1619,21 @@ N-Channel 60 V 115mA (Tc) 225mW (Ta) Surface Mount SOT-23-3 (TO-236)
         <pin num="5" name="V_out" type="power_out"/>
       </pins>
     </libpart>
+    <libpart lib="Project-Lib" part="Oscolator">
+      <description>SMD 3225 4PIN 40Mhz 3.2*2.5mm Passive SMD Quartz Resonator 40.000Mhz</description>
+      <fields>
+        <field name="Reference">Y</field>
+        <field name="Value">40MHz</field>
+        <field name="Footprint">Project-Lib:Oscilator</field>
+        <field name="Description">SMD 3225 4PIN 40Mhz 3.2*2.5mm Passive SMD Quartz Resonator 40.000Mhz</field>
+      </fields>
+      <pins>
+        <pin num="1" name="XTAL_P" type="passive"/>
+        <pin num="2" name="GND" type="power_in"/>
+        <pin num="3" name="XTAL_N" type="passive"/>
+        <pin num="4" name="GND" type="power_in"/>
+      </pins>
+    </libpart>
     <libpart lib="Project-Lib" part="TL3330AF130QG">
       <fields>
         <field name="Reference">S</field>
@@ -1692,25 +1706,14 @@ N-Channel 60 V 115mA (Tc) 225mW (Ta) Surface Mount SOT-23-3 (TO-236)
         <pin num="1" name="1" type="passive"/>
       </pins>
     </libpart>
-    <libpart lib="Project-Lib" part="XRCGB48M000F0Z00R0">
-      <fields>
-        <field name="Reference">Y</field>
-        <field name="Value">XRCGB48M000F0Z00R0</field>
-        <field name="Footprint">Project-Lib:OSC_XRCGB48M000F0Z00R0</field>
-        <field name="Description">SMD 3225 4PIN 40Mhz 3.2*2.5mm Passive SMD Quartz Resonator 40.000Mhz</field>
-        <field name="Manufacturer">Murata Electronics</field>
-      </fields>
-      <pins>
-        <pin num="1" name="XTAL_P" type="passive"/>
-        <pin num="2" name="GND" type="power_in"/>
-        <pin num="3" name="XTAL_N" type="passive"/>
-        <pin num="4" name="GND" type="power_in"/>
-      </pins>
-    </libpart>
     <libpart lib="Project-Lib" part="screwMount">
+      <description>M1.4 screw mount get from DJI Mavic 3 CORE board</description>
       <fields>
         <field name="Reference">M</field>
-        <field name="Footprint">Project-Lib:m1.2-screw-mount</field>
+        <field name="Value">Brass SMTSO-M1.4X3X1.5-2X0.8</field>
+        <field name="Footprint">Project-Lib:m1.4-screw-mount</field>
+        <field name="Description">M1.4 screw mount get from DJI Mavic 3 CORE board</field>
+        <field name="Link">https://www.aliexpress.com/item/1005005579653583.html</field>
       </fields>
       <pins>
         <pin num="1" name="" type="passive"/>
@@ -1728,7 +1731,7 @@ N-Channel 60 V 115mA (Tc) 225mW (Ta) Surface Mount SOT-23-3 (TO-236)
       <uri>C:\Program Files\KiCad\7.0\share\kicad\symbols\/Jumper.kicad_sym</uri>
     </library>
     <library logical="Project-Lib">
-      <uri>C:\Data\Projects\2023-10-05 SHARP MEMORY LCD\Git\DRM_Watch_v3\Board\_DRM_Watch_v3/Project-Lib.kicad_sym</uri>
+      <uri>C:\Data\Projects\2023-10-05 SHARP MEMORY LCD\Git\DRM_Watch_v3\Board\KiCad Project\_DRM_Watch_v3/Project-Lib.kicad_sym</uri>
     </library>
   </libraries>
   <nets>
