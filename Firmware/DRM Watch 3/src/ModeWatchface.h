@@ -267,7 +267,8 @@ int drawStatusbar(int x, int y, bool drawTime, bool simulate)
       draw_ic16_warning(x, y + 4, black);
     x -= interval;
   }
-  if(Serial.available()>0){
+  if(Serial.available()>0)
+  {
     lcd()->setColorIndex(black);
     lcd()->setFont(u8g2_font_unifont_t_cyrillic);
     sprintf(buffer, "%d", Serial.available());
@@ -298,7 +299,7 @@ int drawStatusbar(int x, int y, bool drawTime, bool simulate)
         int margin = 4;
         x -= width + margin * 2;
         if (!simulate)
-          lcd()->drawRBox(/*x*/ x, /*y*/ y + 4, /*w*/ width + margin * 2, /*h*/ 16, /*r*/ 3);
+          lcd()->drawRBox(/*x*/ x, /*y*/ y + 4, /*w*/ width + margin * 2, /*h*/ 16, /*r*/ getRoundness(5));
         lcd()->setColorIndex(white);
         lcd()->setCursor(x + margin, y + 17);
         if (!simulate)

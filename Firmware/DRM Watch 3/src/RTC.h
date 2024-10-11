@@ -256,12 +256,33 @@ unsigned long minutesFromSec(unsigned long seconds)
   return minutesPart / spminute;
 }
 
+const int temperatureLogLength = 100;
+RTC_DATA_ATTR float temperatureLog[temperatureLogLength]; //Oldest values from 0, Latest values is at the end of array.
+unsigned long temperatureLogInterval = 10; //SECONDS
+RTC_DATA_ATTR unsigned long temperatureLogLastAddedTime = 0; //EPOCH
+void addTemperatureToLog(float temp)
+{
+}
+
 float temperature()
 {
+  float result = 0;
+  
+  // decide source based on rtc is present or no
   if (rtcReady)
-    return rtcChipTemperature();
+    result = rtcChipTemperature();
   else
-    return cpuTemperature();
+    result = cpuTemperature();
+  
+  //add to history to draw on graph later
+  int now = rtcGetEpoch();
+  if(now-temperatureLogLastAddedTime > temperatureLogInterval)
+  {
+    addTemperatureToLog(result);
+    temperatureLogLastAddedTime = now;
+  }
+  
+  return result;
 }
 
 float rtcChipTemperature()

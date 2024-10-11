@@ -83,7 +83,7 @@ Stereo Love https://onlinesequencer.net/4163973
 Better off alone   https://onlinesequencer.net/4163979
 My Little Pony https://onlinesequencer.net/4164027
 Megalovania https://onlinesequencer.net/4182790
-
+Tetris https://onlinesequencer.net/4235353
 
 Known Pins reserved on ESP32-S2 (Lolin S2 Mini):
 GPIO 7: SPI SCK
@@ -905,6 +905,11 @@ RELEASE FW:v3.20
 2024-10-11 FW:v3.22 Виправлено поведінку на екрані налаштування часу
 2024-10-11 FW:v3.22 Виправлено потенційні глюки будильників при збоях часу
 2024-10-11 FW:v3.22 Збільшено кількість будильників
+2024-10-11 FW:v3.22 Додано мелодію: Тетріс
+2024-10-11 FW:v3.22 Додано врахування параметра скругленості в статусбарі
+2024-10-11 FW:v3.22 Почата робота над графіком температури
+
+
 
 
 

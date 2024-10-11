@@ -106,7 +106,7 @@ void drawCalendar(int xoffset/*px*/, int ylegend/*px*/, int month /*01-12*/, int
 
       if(month == monthCurrent && drawday == dayCurrent){ //highlight current day
         lcd()->setColorIndex(black);
-        lcd()->drawRBox(/*x*/x-dayFrameMargin-dayTextWidth/2, /*y*/y-dayFrameTextHeight-dayFrameMargin, /*w*/dayTextWidth + dayFrameMargin*2 + (DoW>5), /*h*/dayFrameTextHeight + dayFrameMargin*2, getRoundness(6));
+        lcd()->drawRBox(/*x*/x-dayFrameMargin-dayTextWidth/2, /*y*/y-dayFrameTextHeight-dayFrameMargin, /*w*/dayTextWidth + dayFrameMargin*2 + (DoW>5), /*h*/dayFrameTextHeight + dayFrameMargin*2, getRoundness(5));
         lcd()->setColorIndex(white);
         lcd()->drawUTF8(x-dayTextWidth/2, y, buffer);
         if(DoW > 5){ //highlight weekeng as bold text
