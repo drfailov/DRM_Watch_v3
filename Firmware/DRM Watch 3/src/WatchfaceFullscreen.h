@@ -53,7 +53,9 @@ void drawWatchfaceFullscreen(bool firstDraw){
     lcd()->setColorIndex(white);
     lcd()->drawBox(0, 0, 400, 240);
   }
-  //lcd()->clearBuffer();   //fills actually black
+  
+  if(getWatchfaceTemperatureGraphEnabled())
+    drawPlot<float>(/*x*/ 0, /*y*/ 0, /*w*/ 400, /*h*/ 76, /*thickness*/ 1, /*legend*/ false, /*rangeValues*/ temperatureLog, /*values*/ temperatureLog, /*length*/ temperatureLogLength, /*highlight*/ -1);
 
   if(getWatchfaceDigitalEnabled()){
     lcd()->setFont(u8g2_font_logisoso92_tn);

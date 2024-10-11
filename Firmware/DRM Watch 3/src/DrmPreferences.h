@@ -118,6 +118,8 @@ bool getWatchfaceStatusbarDigitalEnabled();
 bool saveWatchfaceStatusbarDigitalEnabled(bool value);
 bool getWatchfaceTemperatureEnabled();
 bool saveWatchfaceTemperatureEnabled(bool value);
+bool getWatchfaceTemperatureGraphEnabled();
+bool saveWatchfaceTemperatureGraphEnabled(bool value);
 bool getWatchfaceDayOfWeekEnabled();
 bool saveWatchfaceDayOfWeekEnabled(bool value);
 bool getWatchfaceDateEnabled();
@@ -642,7 +644,7 @@ bool saveWatchfaceStatusbarEnabled(bool value)
 }
 bool getWatchfaceAnalogEnabled()
 { // 123456789012345   max length = 15
-  return preferencesObject.getInt("wtfAnalogEn", 1) == 1;
+  return preferencesObject.getInt("wtfAnalogEn", 0) == 1;
 }
 bool saveWatchfaceAnalogEnabled(bool value)
 {
@@ -672,6 +674,14 @@ bool saveWatchfaceTemperatureEnabled(bool value)
 {
   return preferencesObject.putInt("wtfTempEn", value ? 1 : 0);
 }
+bool getWatchfaceTemperatureGraphEnabled()
+{ // 123456789012345   max length = 15
+  return preferencesObject.getInt("wtfTempGrEn", 1) == 1;
+}
+bool saveWatchfaceTemperatureGraphEnabled(bool value)
+{
+  return preferencesObject.putInt("wtfTempGrEn", value ? 1 : 0);
+}
 bool getWatchfaceDayOfWeekEnabled()
 { // 123456789012345   max length = 15
   return preferencesObject.getInt("wtfDayOfWeekEn", 1) == 1;
@@ -690,7 +700,7 @@ bool saveWatchfaceDateEnabled(bool value)
 }
 bool getWatchfaceMonthEnabled()
 { // 123456789012345   max length = 15
-  return preferencesObject.getInt("wtfMonthEn", 0) == 1;
+  return preferencesObject.getInt("wtfMonthEn", 1) == 1;
 }
 bool saveWatchfaceMonthEnabled(bool value)
 {
@@ -706,7 +716,7 @@ bool saveWatchfaceDjiLogoEnabled(bool value)
 }
 bool getWatchfaceLifeBackgroundEnabled()
 { // 123456789012345   max length = 15
-  return preferencesObject.getInt("wtfLifeEn", 1) == 1;
+  return preferencesObject.getInt("wtfLifeEn", 0) == 1;
 }
 bool saveWatchfaceLifeBackgroundEnabled(bool value)
 {
@@ -730,7 +740,7 @@ bool saveWatchfaceRandomBackgroundEnabled(bool value)
 }
 bool getWatchfaceFireBackgroundEnabled()
 { // 123456789012345   max length = 15
-  return preferencesObject.getInt("wtfFireEn", 0) == 1;
+  return preferencesObject.getInt("wtfFireEn", 1) == 1;
 }
 bool saveWatchfaceFireBackgroundEnabled(bool value)
 {
@@ -754,7 +764,7 @@ bool saveWatchfaceDotsBackgroundEnabled(bool value)
 }
 bool getWatchfaceCalendarEnabled()
 { // 123456789012345   max length = 15
-  return preferencesObject.getInt("wtfCalendarEn", 0) == 1;
+  return preferencesObject.getInt("wtfCalendarEn", 1) == 1;
 }
 bool saveWatchfaceCalendarEnabled(bool value)
 {

@@ -61,7 +61,8 @@ void drawWatchfaceSide(bool firstDraw){
   if(getWatchfaceTemperatureEnabled())
     drawTemperature(x_del+4, 3);
 
-  drawPlot<float>(/*x*/ 0, /*y*/ -14, /*w*/ x_del+2, /*h*/ 76, /*thickness*/ 1, /*legend*/ false, /*rangeValues*/ temperatureLog, /*values*/ temperatureLog, /*length*/ temperatureLogLength, /*highlight*/ -1);
+  if(getWatchfaceTemperatureGraphEnabled())
+    drawPlot<float>(/*x*/ 0, /*y*/ -14, /*w*/ x_del+2, /*h*/ 76, /*thickness*/ 1, /*legend*/ false, /*rangeValues*/ temperatureLog, /*values*/ temperatureLog, /*length*/ temperatureLogLength, /*highlight*/ -1);
 
   if(getWatchfaceDayOfWeekEnabled())
     drawDayOfWeek(395, 20);

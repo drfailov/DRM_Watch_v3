@@ -30,9 +30,10 @@ const int ModeMenuSettingsWatchfaceContentItemShowFileBackgound = 13;
 const int ModeMenuSettingsWatchfaceContentItemEnableFileBackgound = 14;
 const int ModeMenuSettingsWatchfaceContentItemShowCalendar = 15;
 const int ModeMenuSettingsWatchfaceContentItemShowTemperature = 16;
-const int ModeMenuSettingsWatchfaceContentItemShowDjiLogo = 17;
-const int ModeMenuSettingsWatchfaceContentItemShowTimeInStatusbar = 18;
-const int ModeMenuSettingsWatchfaceContentItemShowSinceCharged = 19;
+const int ModeMenuSettingsWatchfaceContentItemShowTemperatureGraph = 17;
+const int ModeMenuSettingsWatchfaceContentItemShowDjiLogo = 18;
+const int ModeMenuSettingsWatchfaceContentItemShowTimeInStatusbar = 19;
+const int ModeMenuSettingsWatchfaceContentItemShowSinceCharged = 20;
 
 void setModeMenuSettingsWatchfaceContent(){
   clearScreenAnimation();
@@ -51,7 +52,7 @@ void setModeMenuSettingsWatchfaceContent(){
   autoReturnTime = autoReturnDefaultTime;
   autoSleepTime = autoSleepDefaultTime;
   selected = 0;
-  items = 20;
+  items = 21;
 }
 
 
@@ -74,6 +75,7 @@ void ModeMenuSettingsWatchfaceContentLoop(){
   drawListCheckbox(ModeMenuSettingsWatchfaceContentItemShowAnalog,            draw_ic24_clock,           L("Час стрілками", "Analog clock"),           L("Класичний годинник", "Classic round clock"),                 getWatchfaceAnalogEnabled(), firstDraw);
   drawListCheckbox(ModeMenuSettingsWatchfaceContentItemShowDigital,           draw_ic24_digitalclock,    L("Час цифрами", "Digital clock"),            L("Цифровий годинник", "Digital clock"),                        getWatchfaceDigitalEnabled(), firstDraw);
   drawListCheckbox(ModeMenuSettingsWatchfaceContentItemShowTemperature,       draw_ic24_temperature,     L("Температура", "Temperature"),              L("Температура мікросхеми RTC", "RTC Chip temperature"),        getWatchfaceTemperatureEnabled(), firstDraw);
+  drawListCheckbox(ModeMenuSettingsWatchfaceContentItemShowTemperatureGraph,  draw_ic24_temperature,     L("Графік температури", "Temperature Plot"),  L("Як мінялась за 2 години", "How temp changed last 2 hours"),  getWatchfaceTemperatureGraphEnabled(), firstDraw);
   drawListCheckbox(ModeMenuSettingsWatchfaceContentItemShowDayOfWeek,         draw_ic24_weekday,         L("День тижня", "Day of week"),               L("Який зараз день тижня", "Current day of week"),              getWatchfaceDayOfWeekEnabled(), firstDraw);
   drawListCheckbox(ModeMenuSettingsWatchfaceContentItemShowDate,              draw_ic24_date,            L("Поточна дата", "Date"),                    L("Яка зараз дата", "Current date"),                            getWatchfaceDateEnabled(), firstDraw);
   drawListCheckbox(ModeMenuSettingsWatchfaceContentItemShowMonth,             draw_ic24_date,            L("Назва місяця", "Month name"),              L("Назва місяця під датою", "Name of month"),                   getWatchfaceMonthEnabled(), firstDraw);
@@ -112,6 +114,10 @@ void ModeMenuSettingsWatchfaceContentButtonCenter(){
   }
   if(selected==ModeMenuSettingsWatchfaceContentItemShowTemperature){
     saveWatchfaceTemperatureEnabled(!getWatchfaceTemperatureEnabled());
+    return;
+  }
+  if(selected==ModeMenuSettingsWatchfaceContentItemShowTemperatureGraph){
+    saveWatchfaceTemperatureGraphEnabled(!getWatchfaceTemperatureGraphEnabled());
     return;
   }
   if(selected==ModeMenuSettingsWatchfaceContentItemShowDayOfWeek){
