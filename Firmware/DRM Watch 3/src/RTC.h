@@ -13,6 +13,7 @@ int rtcGetDay();
 int rtcGetMonth();
 int rtcGetDayOfWeek();
 int rtcGetYear();
+bool isTimeValid();
 
 #include "soc/rtc.h"
 #include "driver/temp_sensor.h"
@@ -66,6 +67,10 @@ void printRtcGetTimeRaw()
   lcd()->print(datetime.minute());
   lcd()->print(":");
   lcd()->print(datetime.second());
+}
+bool isTimeValid()
+{
+  return rtcGetYear() > 2023;
 }
 
 unsigned long rtcGetEpoch()

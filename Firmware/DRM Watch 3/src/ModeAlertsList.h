@@ -31,6 +31,15 @@ void setModeAlertsList(){
   autoSleepTime = autoSleepDefaultTime;
   selected = 0;
   items = getAlertsNumber()+1;
+  if(!isTimeValid())
+  {
+    drawDim();
+    drawMessage(
+      L("Час встановлено невірно",          "Incorrect time set"), 
+      L("Будильники поки не працюватимуть", "Alerts will not work until time set"), 
+      true);
+    waitOk();
+  }
 }
 
 

@@ -22,6 +22,8 @@ const int ModeMenuSettingsTimeItemSetTime = 3;
 const int ModeMenuSettingsTimeItemSetTimeZone = 4;
 
 void setModeMenuSettingsTime(){
+  if(modeExit != 0)
+    modeExit();
   clearScreenAnimation();
   Serial.println(F("Set mode: ModeMenuSettingsTime"));
   modeSetup = setModeMenuSettingsTime;
@@ -41,7 +43,8 @@ void setModeMenuSettingsTime(){
   items = 5;
 }
 
-void ModeMenuSettingsTimeLoop(){
+void ModeMenuSettingsTimeLoop()
+{
   lcd()->setColorIndex(white);
   lcd()->drawBox(0, 0, 400, 240);
 

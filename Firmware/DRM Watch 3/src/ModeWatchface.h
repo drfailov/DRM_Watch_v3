@@ -76,6 +76,7 @@ void setModeWatchface()
 
 void modeWatchfaceLoop()
 {
+  disableAlertsTemporarily = false; //in case if alerts was disabled by other mode and didn't enabled afterwards - enable it.
   if (!isAwake()) // make auto sync only when watch is sleeping and not interrupt user
     loopTimeAutoSync();
 
@@ -245,6 +246,13 @@ int drawStatusbar(int x, int y, bool drawTime, bool simulate)
       draw_ic16_alert(x, y + 4, black);
     x -= interval;
   }
+  // if(!isTimeValid())
+  // {
+  //   x -= 16;
+  //   if (!simulate)
+  //     draw_ic16_(x, y + 4, black);
+  //   x -= interval;
+  // }
   if (getMuteEnabled())
   {
     x -= 16;

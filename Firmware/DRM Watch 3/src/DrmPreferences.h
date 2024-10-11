@@ -794,7 +794,7 @@ bool saveWatchfaceFileBackgroundPath(String path)
 
 int getAlertsNumber()
 {
-  return 6;
+  return 10;
 }
 bool getAlertEnabled(int index)
 { // 123456789012345
@@ -803,13 +803,6 @@ bool getAlertEnabled(int index)
 bool saveAlertEnabled(int index, bool value)
 {
   return preferencesObject.putInt((String("alertEnabled") + index).c_str(), value ? 1 : 0);
-}
-bool getAnyAlertEnabled()
-{
-  for (int i = 0; i < getAlertsNumber(); i++)
-    if (getAlertEnabled(i))
-      return true;
-  return false;
 }
 int getAlertLastRunDay(int index)
 { // 123456789012345

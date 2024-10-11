@@ -39,7 +39,8 @@ void setModeMenuSettingsSound(){
   items = 4;
 }
 
-void ModeMenuSettingsSoundLoop(){
+void ModeMenuSettingsSoundLoop()
+{
   lcd()->setColorIndex(white);
   lcd()->drawBox(0, 0, 400, 240);
 
