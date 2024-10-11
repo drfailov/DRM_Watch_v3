@@ -345,6 +345,7 @@ void drawMessage(String text, String text2, bool animate)
 }
 
 
+
 /// @brief Draw plot on screen
 /// @param x   Top left corner X
 /// @param y   Top left corner Y
@@ -357,7 +358,8 @@ void drawMessage(String text, String text2, bool animate)
 /// @param length   Length of data. If set incorrectly - will be memory error
 /// @param highlightIndex   //Index in element to be highlighted (1...lingth-2)
 /// @example drawPlot (/*x*/10, /*y*/40, /*w*/360, /*h*/90, /*thickness*/2, /*legend*/true,  /*rangeValues*/ModeTestBatteryAnalysisHistoryDeviation, /*values*/ModeTestBatteryAnalysisHistoryDeviation,      /*length*/ModeTestBatteryAnalysisHistorySize, /*highlight*/0);
-void drawPlot(int x, int y, int w, int h, int thickness, bool legend, int16_t* rangeValues, int16_t* values, int length, int highlightIndex)
+template <typename T>
+void drawPlot(int x, int y, int w, int h, int thickness, bool legend, T* rangeValues, T* values, int length, int highlightIndex)
 {
   //config
   int padding = 15;
@@ -383,13 +385,18 @@ void drawPlot(int x, int y, int w, int h, int thickness, bool legend, int16_t* r
   }
   
   //min and max
-  int16_t min = rangeValues[0];
-  int16_t max = rangeValues[0];
+  T min = rangeValues[0];
+  T max = rangeValues[0];
   for(int i = 1; i < length; i++){
     if(rangeValues[i] < min)
       min = rangeValues[i];
     if(rangeValues[i] > max)
       max = rangeValues[i];
+  }
+  if(abs(max-min)<1)
+  {
+    min -= 1;
+    max += 1;
   }
   if(legend){
     lcd()->setColorIndex(black);
@@ -406,11 +413,11 @@ void drawPlot(int x, int y, int w, int h, int thickness, bool legend, int16_t* r
   float leftPoint = x;
   float rightPoint = x+w;
   float lastX = map(0, 0, length, leftPoint, rightPoint);
-  float lastY = map(values[0], min, max, minPoint, maxPoint);
+  float lastY = map(values[0], (float)min, (float)max, minPoint, maxPoint);
   for(int i = 1; i < length; i++)
   {
     float cx = map(i, 0, length, leftPoint, rightPoint);
-    float cy = map(values[i], min, max, minPoint, maxPoint);
+    float cy = map(values[i], (float)min, (float)max, minPoint, maxPoint);
     cy = constrain(cy, y, y+h);
     if(thickness == 0)
       drawDashedLine(cx, cy, lastX, lastY, 1);

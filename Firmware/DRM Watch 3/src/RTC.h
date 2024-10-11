@@ -6,6 +6,8 @@ String getRtcSrc();
 void adjustExternalRtc(unsigned long epoch);
 float rtcChipTemperature();
 float cpuTemperature();
+float temperature();
+void addTemperatureToLog(float temp);
 int rtcGetHour();
 int rtcGetMinute();
 int rtcGetSecond();
@@ -256,12 +258,25 @@ unsigned long minutesFromSec(unsigned long seconds)
   return minutesPart / spminute;
 }
 
-const int temperatureLogLength = 100;
+const int temperatureLogLength = 120;
 RTC_DATA_ATTR float temperatureLog[temperatureLogLength]; //Oldest values from 0, Latest values is at the end of array.
-unsigned long temperatureLogInterval = 10; //SECONDS
+unsigned long temperatureLogInterval = 50; //SECONDS
 RTC_DATA_ATTR unsigned long temperatureLogLastAddedTime = 0; //EPOCH
+
+
 void addTemperatureToLog(float temp)
 {
+  if(temperatureLog[0] == 0) //if array is empty, fill it all
+  {
+    for(int i=0; i<temperatureLogLength; i++)
+      temperatureLog[i] = temp;
+  }
+  else //if array filled, shift values and add to end
+  {
+    for(int i=0; i<temperatureLogLength-1; i++)
+      temperatureLog[i] = temperatureLog[i+1];
+    temperatureLog[temperatureLogLength-1] = temp;
+  }
 }
 
 float temperature()
@@ -276,7 +291,7 @@ float temperature()
   
   //add to history to draw on graph later
   int now = rtcGetEpoch();
-  if(now-temperatureLogLastAddedTime > temperatureLogInterval)
+  if(now-temperatureLogLastAddedTime >= temperatureLogInterval)
   {
     addTemperatureToLog(result);
     temperatureLogLastAddedTime = now;

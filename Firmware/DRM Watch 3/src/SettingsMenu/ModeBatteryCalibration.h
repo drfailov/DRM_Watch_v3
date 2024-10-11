@@ -115,9 +115,9 @@ void ModeBatteryCalibrationLoop(){
   lcd()->print("%");
 
   if(calibrationRunning)
-    drawPlot (/*x*/10, /*y*/100, /*w*/380, /*h*/115, /*thickness*/2, /*legend*/true,  /*rangeValues*/batteryCalibration, /*values*/batteryCalibration, /*length*/batteryCalibrationLength(), /*highlight*/inx);
+    drawPlot<int16_t> (/*x*/10, /*y*/100, /*w*/380, /*h*/115, /*thickness*/2, /*legend*/true,  /*rangeValues*/batteryCalibration, /*values*/batteryCalibration, /*length*/batteryCalibrationLength(), /*highlight*/inx);
   else 
-    drawPlot (/*x*/10, /*y*/100, /*w*/360, /*h*/125, /*thickness*/2, /*legend*/true,  /*rangeValues*/batteryCalibration, /*values*/batteryCalibration, /*length*/batteryCalibrationLength(), /*highlight*/inx);
+    drawPlot<int16_t> (/*x*/10, /*y*/100, /*w*/360, /*h*/125, /*thickness*/2, /*legend*/true,  /*rangeValues*/batteryCalibration, /*values*/batteryCalibration, /*length*/batteryCalibrationLength(), /*highlight*/inx);
   
   if(!calibrationRunning)
   {

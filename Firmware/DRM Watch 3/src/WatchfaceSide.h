@@ -61,6 +61,8 @@ void drawWatchfaceSide(bool firstDraw){
   if(getWatchfaceTemperatureEnabled())
     drawTemperature(x_del+4, 3);
 
+  drawPlot<float>(/*x*/ 0, /*y*/ -14, /*w*/ x_del+2, /*h*/ 76, /*thickness*/ 1, /*legend*/ false, /*rangeValues*/ temperatureLog, /*values*/ temperatureLog, /*length*/ temperatureLogLength, /*highlight*/ -1);
+
   if(getWatchfaceDayOfWeekEnabled())
     drawDayOfWeek(395, 20);
   if(firstDraw) lcd()->sendBuffer();
@@ -108,7 +110,7 @@ void drawWatchfaceSide(bool firstDraw){
     drawClock(/*centerX*/centerX, /*centerY*/centerY, /*clockRadius*/clockRadius, /*hour*/h, /*minute*/m);
   }
   else if(getWatchfaceCalendarEnabled()){
-    drawCalendar(/*x*/45, /*y*/68, /*month 01-12*/rtcGetMonth()+1, rtcGetYear(), /*compact*/true);
+    drawCalendar(/*x*/45, /*y*/69, /*month 01-12*/rtcGetMonth()+1, rtcGetYear(), /*compact*/true);
   }
   
   

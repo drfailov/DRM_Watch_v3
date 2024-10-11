@@ -88,12 +88,12 @@ void ModeTestBatteryAnalysisLoop()
 
   lcd()->setFont(u8g2_font_unifont_t_cyrillic); // smalll
   lcd()->drawUTF8(10, 38, "Deviation / Limit deviation");
-  drawPlot(/*x*/ 10, /*y*/ 41, /*w*/ 360, /*h*/ 85, /*thickness*/ 2, /*legend*/ true, /*rangeValues*/ ModeTestBatteryAnalysisHistoryDeviation, /*values*/ ModeTestBatteryAnalysisHistoryDeviation, /*length*/ ModeTestBatteryAnalysisHistorySize, /*highlight*/ -1);
-  drawPlot(/*x*/ 10, /*y*/ 41, /*w*/ 360, /*h*/ 85, /*thickness*/ 0, /*legend*/ false, /*rangeValues*/ ModeTestBatteryAnalysisHistoryDeviation, /*values*/ ModeTestBatteryAnalysisHistoryLimitDeviation, /*length*/ ModeTestBatteryAnalysisHistorySize, /*highlight*/ -1);
+  drawPlot<int16_t>(/*x*/ 10, /*y*/ 41, /*w*/ 360, /*h*/ 85, /*thickness*/ 2, /*legend*/ true, /*rangeValues*/ ModeTestBatteryAnalysisHistoryDeviation, /*values*/ ModeTestBatteryAnalysisHistoryDeviation, /*length*/ ModeTestBatteryAnalysisHistorySize, /*highlight*/ -1);
+  drawPlot<int16_t>(/*x*/ 10, /*y*/ 41, /*w*/ 360, /*h*/ 85, /*thickness*/ 0, /*legend*/ false, /*rangeValues*/ ModeTestBatteryAnalysisHistoryDeviation, /*values*/ ModeTestBatteryAnalysisHistoryLimitDeviation, /*length*/ ModeTestBatteryAnalysisHistorySize, /*highlight*/ -1);
 
   lcd()->drawUTF8(10, 148, "Filtered RAW / Non-filtered RAW");
-  drawPlot(/*x*/ 10, /*y*/ 151, /*w*/ 360, /*h*/ 85, /*thickness*/ 3, /*legend*/ true, /*rangeValues*/ ModeTestBatteryAnalysisHistoryRaw, /*values*/ ModeTestBatteryAnalysisHistoryFiltered, /*length*/ ModeTestBatteryAnalysisHistorySize, /*highlight*/ -1);
-  drawPlot(/*x*/ 10, /*y*/ 151, /*w*/ 360, /*h*/ 85, /*thickness*/ 0, /*legend*/ false, /*rangeValues*/ ModeTestBatteryAnalysisHistoryRaw, /*values*/ ModeTestBatteryAnalysisHistoryRaw, /*length*/ ModeTestBatteryAnalysisHistorySize, /*highlight*/ -1);
+  drawPlot<int16_t>(/*x*/ 10, /*y*/ 151, /*w*/ 360, /*h*/ 85, /*thickness*/ 3, /*legend*/ true, /*rangeValues*/ ModeTestBatteryAnalysisHistoryRaw, /*values*/ ModeTestBatteryAnalysisHistoryFiltered, /*length*/ ModeTestBatteryAnalysisHistorySize, /*highlight*/ -1);
+  drawPlot<int16_t>(/*x*/ 10, /*y*/ 151, /*w*/ 360, /*h*/ 85, /*thickness*/ 0, /*legend*/ false, /*rangeValues*/ ModeTestBatteryAnalysisHistoryRaw, /*values*/ ModeTestBatteryAnalysisHistoryRaw, /*length*/ ModeTestBatteryAnalysisHistorySize, /*highlight*/ -1);
 
   draw_ic16_arrow_up(lx(), ly1(), black);
   draw_ic16_back(lx(), ly2(), black);
