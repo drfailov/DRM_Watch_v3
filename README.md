@@ -106,7 +106,7 @@ https://www.instructables.com/DIY-ESP32-Wearable-DRM-Watch-3/    <br>
 
 
 <p align="center">
-[<img src="Photos/video-yt.png"  width="300">](https://youtu.be/EeJpstsf5wk?si=9BsKVnumjvJCgt0X)
+[!<img src="Photos/video-yt.png"  width="300">](https://youtu.be/EeJpstsf5wk?si=9BsKVnumjvJCgt0X)
 <!--img src="Photos/video-yt.png" width="300"/-->
 </p>
 https://youtu.be/EeJpstsf5wk?si=9BsKVnumjvJCgt0X      <br>
