@@ -50,16 +50,6 @@ https://www.instructables.com/DIY-ESP32-Wearable-DRM-Watch-3/    <br>
 </p-->
 
 
-## Відео про годинник
-<p align="center">
-<img src="Photos/video-yt.png" width="300"/>
-</p>
-https://youtu.be/EeJpstsf5wk?si=9BsKVnumjvJCgt0X      <br>
-   <br>
-      <br>
-Мій акаунт тікток, де відео багато:   <br>
-https://www.tiktok.com/@drfailov   <br>
-
 
 
 ## Особливості годинника
@@ -111,6 +101,20 @@ https://www.tiktok.com/@drfailov   <br>
 ## Короткий відео огляд годинника:
 [<p align="center"><img width="300px" src="Photos/Screenshot 2024-04-21 161551.png" /> </p>](https://www.youtube.com/watch?v=3oIwZVaCEvY) 
 <p align="center">https://www.youtube.com/watch?v=3oIwZVaCEvY </p>
+
+
+
+
+<p align="center">
+[<img src="Photos/video-yt.png"  width="300">](https://youtu.be/EeJpstsf5wk?si=9BsKVnumjvJCgt0X)
+<!--img src="Photos/video-yt.png" width="300"/-->
+</p>
+https://youtu.be/EeJpstsf5wk?si=9BsKVnumjvJCgt0X      <br>
+   <br>
+   <br>
+Мій акаунт тікток, де відео багато:   <br>
+https://www.tiktok.com/@drfailov   <br>
+
 
 
 ## Короткий відео огляд мелодій:
