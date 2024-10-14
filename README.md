@@ -98,30 +98,28 @@ https://www.instructables.com/DIY-ESP32-Wearable-DRM-Watch-3/    <br>
 
 
 
-## Короткий відео огляд годинника:
-[<p align="center"><img width="300px" src="Photos/Screenshot 2024-04-21 161551.png" /> </p>](https://www.youtube.com/watch?v=3oIwZVaCEvY) 
-<p align="center">https://www.youtube.com/watch?v=3oIwZVaCEvY </p>
+## Відео огляди годинника:
+Тут я зібрав наявні відео годинника.
 
 
+### Короткий огляд станом на FW v2.03
+[![Video review](Photos/Screenshot 2024-04-21 161551.png)](https://www.youtube.com/watch?v=3oIwZVaCEvY)  <br>
+https://www.youtube.com/watch?v=3oIwZVaCEvY
 
 
+### Повний огляд годинника станом на FW v3.22
+[![Video review](Photos/video-yt.png)](https://youtu.be/EeJpstsf5wk?si=9BsKVnumjvJCgt0X)  <br>
+https://youtu.be/EeJpstsf5wk?si=9BsKVnumjvJCgt0X
 
 
-[![Video review](Photos/video-yt.png)](https://youtu.be/EeJpstsf5wk?si=9BsKVnumjvJCgt0X)
-<!--[!<img src="Photos/video-yt.png"  width="300">](https://youtu.be/EeJpstsf5wk?si=9BsKVnumjvJCgt0X)-->
-<!--img src="Photos/video-yt.png" width="300"/-->
-
-https://youtu.be/EeJpstsf5wk?si=9BsKVnumjvJCgt0X      <br>
-   <br>
-   <br>
-Мій акаунт тікток, де відео багато:   <br>
-https://www.tiktok.com/@drfailov   <br>
+## Короткий відео огляд мелодій станом на FW v2.03
+[![Video review](Photos/Screenshot 2024-04-21 161739.png)](https://www.youtube.com/watch?v=Ylm3CU0DTDE)  <br>
+https://www.youtube.com/watch?v=Ylm3CU0DTDE
 
 
-
-## Короткий відео огляд мелодій:
-[<p align="center"><img width="300px" src="Photos/Screenshot 2024-04-21 161739.png" /> </p>](https://www.youtube.com/watch?v=Ylm3CU0DTDE) 
-<p align="center">https://www.youtube.com/watch?v=Ylm3CU0DTDE </p>
+### Мій акаунт тікток, де відео багато
+[![TT](Photos/tt.png)](https://www.tiktok.com/@drfailov)  <br>
+https://www.tiktok.com/@drfailov
 
 
 
