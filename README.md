@@ -113,7 +113,7 @@ https://youtu.be/EeJpstsf5wk?si=9BsKVnumjvJCgt0X
 
 
 ## Короткий відео огляд мелодій станом на FW v2.03
-[![Video review](Photos/Screenshot 2024-04-21 161739.png)](https://www.youtube.com/watch?v=Ylm3CU0DTDE)  <br>
+[![Video review](Photos/Screenshot%202024-04-21%20161739.png)](https://www.youtube.com/watch?v=Ylm3CU0DTDE)  <br>
 https://www.youtube.com/watch?v=Ylm3CU0DTDE
 
 
