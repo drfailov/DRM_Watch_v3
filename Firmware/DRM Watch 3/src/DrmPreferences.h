@@ -676,7 +676,7 @@ bool saveWatchfaceTemperatureEnabled(bool value)
 }
 bool getWatchfaceTemperatureGraphEnabled()
 { // 123456789012345   max length = 15
-  return preferencesObject.getInt("wtfTempGrEn", 1) == 1;
+  return preferencesObject.getInt("wtfTempGrEn", 0) == 1;
 }
 bool saveWatchfaceTemperatureGraphEnabled(bool value)
 {
