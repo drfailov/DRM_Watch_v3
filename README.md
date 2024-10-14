@@ -18,6 +18,9 @@
   <br>
 Посилання що наведено в цьому тексті є актуальними станом на **2024-04**. Якщо якісь товари будуть вже не актуальні, то шукайте за фотками))  <br>
   <br>
+Стаття на Instructables:  <br>
+https://www.instructables.com/DIY-ESP32-Wearable-DRM-Watch-3/    <br>
+	  <br>
 
 
 ## Фото
@@ -48,8 +51,14 @@
 
 
 ## Відео про годинник
-Тут є трохи:
-https://www.tiktok.com/@drfailov
+<p align="center">
+<img src="Photos/video-yt.png" width="300"/>
+</p>
+https://youtu.be/EeJpstsf5wk?si=9BsKVnumjvJCgt0X      <br>
+   <br>
+      <br>
+Мій акаунт тікток, де відео багато:   <br>
+https://www.tiktok.com/@drfailov   <br>
 
 
 
